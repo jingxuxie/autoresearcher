@@ -1,10 +1,10 @@
 {
   "best_primary_metric": null,
   "human_review_required": false,
-  "iteration": 1,
+  "iteration": 2,
   "last_decision": "continue",
   "last_pro_review_iteration": 0,
-  "no_progress_rounds": 1,
+  "no_progress_rounds": 2,
   "notes": [],
   "primary_metric": null,
   "status": "active"
