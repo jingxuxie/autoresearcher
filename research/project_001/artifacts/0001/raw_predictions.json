@@ -1,0 +1,110 @@
+{
+  "dataset_name": "tiny_deterministic_counting_positive_control",
+  "experiment_id": "0001",
+  "records": [
+    {
+      "baseline_correct": false,
+      "baseline_method": "always_predict_zero",
+      "baseline_prediction": 0,
+      "corrected_correct": true,
+      "corrected_method": "exact_target_item_count",
+      "corrected_prediction": 2,
+      "example_id": "ex_001",
+      "items": [
+        "red",
+        "blue",
+        "red",
+        "green"
+      ],
+      "label": 2,
+      "target": "red"
+    },
+    {
+      "baseline_correct": false,
+      "baseline_method": "always_predict_zero",
+      "baseline_prediction": 0,
+      "corrected_correct": true,
+      "corrected_method": "exact_target_item_count",
+      "corrected_prediction": 2,
+      "example_id": "ex_002",
+      "items": [
+        "triangle",
+        "circle",
+        "square",
+        "circle"
+      ],
+      "label": 2,
+      "target": "circle"
+    },
+    {
+      "baseline_correct": false,
+      "baseline_method": "always_predict_zero",
+      "baseline_prediction": 0,
+      "corrected_correct": true,
+      "corrected_method": "exact_target_item_count",
+      "corrected_prediction": 3,
+      "example_id": "ex_003",
+      "items": [
+        "cat",
+        "cat",
+        "dog",
+        "cat"
+      ],
+      "label": 3,
+      "target": "cat"
+    },
+    {
+      "baseline_correct": false,
+      "baseline_method": "always_predict_zero",
+      "baseline_prediction": 0,
+      "corrected_correct": true,
+      "corrected_method": "exact_target_item_count",
+      "corrected_prediction": 1,
+      "example_id": "ex_004",
+      "items": [
+        "north",
+        "south",
+        "east"
+      ],
+      "label": 1,
+      "target": "east"
+    },
+    {
+      "baseline_correct": false,
+      "baseline_method": "always_predict_zero",
+      "baseline_prediction": 0,
+      "corrected_correct": true,
+      "corrected_method": "exact_target_item_count",
+      "corrected_prediction": 4,
+      "example_id": "ex_005",
+      "items": [
+        "aa",
+        "bb",
+        "aa",
+        "cc",
+        "aa",
+        "aa"
+      ],
+      "label": 4,
+      "target": "aa"
+    },
+    {
+      "baseline_correct": false,
+      "baseline_method": "always_predict_zero",
+      "baseline_prediction": 0,
+      "corrected_correct": true,
+      "corrected_method": "exact_target_item_count",
+      "corrected_prediction": 2,
+      "example_id": "ex_006",
+      "items": [
+        "m",
+        "n",
+        "m",
+        "o",
+        "n"
+      ],
+      "label": 2,
+      "target": "n"
+    }
+  ]
+}

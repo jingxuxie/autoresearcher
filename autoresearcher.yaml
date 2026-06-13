@@ -1,0 +1,76 @@
+project_default: project_001
+
+codex:
+  model: gpt-5.5
+  reasoning_effort: xhigh
+  resume_mode: role-resume
+  fail_if_model_unavailable: true
+
+roles:
+  setup_env:
+    sandbox: workspace-write
+    gpu_sandbox: danger-full-access
+    output_schema: schemas/env_setup.schema.json
+    timeout_minutes: 45
+
+  supervisor:
+    sandbox: read-only
+    output_schema: schemas/decision.schema.json
+    timeout_minutes: 15
+
+  executor:
+    sandbox: workspace-write
+    gpu_sandbox: danger-full-access
+    output_schema: null
+    timeout_minutes: 30
+
+  reviewer:
+    sandbox: read-only
+    output_schema: schemas/review.schema.json
+    timeout_minutes: 15
+
+loop:
+  max_iterations: 12
+  max_no_progress_rounds: 3
+  require_environment_ready: true
+  require_human_for_pivot: true
+  require_human_for_expensive_run: true
+  require_human_for_publishable_claim: true
+  stop_on_missing_result: true
+  stop_on_invalid_schema: true
+  stop_on_timeout: true
+
+git:
+  enabled: true
+  commit: true
+  push: true
+  remote: origin
+  branch: main
+
+chatgpt_pro:
+  enabled: false
+  backend: codex-chatgpt-control
+  cadence_iterations: 3
+  allow_cadence_2_or_3: true
+  thread_url: null
+  existing_tab: true
+  require_visible_session: true
+  require_user_approved_prompt: true
+  require_model: GPT-5.5 Pro
+  require_thinking: Heavy
+  fail_if_unavailable: true
+  allow_model_fallback: false
+  max_retries: 0
+
+environment:
+  create_new_conda_env_per_project: true
+  default_python: "3.11"
+  env_name_prefix: autoresearcher
+  require_ready_before_run: true
+  setup_summary_path: setup_logs/setup_summary.md
+  gpu:
+    prefer: true
+    require_escalation_for_gpu_runs: true
+    auto_approve_escalation: true
+    use_gpu_sandbox_for_setup: true
+    use_gpu_sandbox_for_executor: true

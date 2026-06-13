@@ -1,0 +1,40 @@
+{
+  "artifacts": [
+    "research/project_001/artifacts/0001/raw_predictions.json",
+    "research/project_001/artifacts/0001/metrics.json",
+    "research/project_001/artifacts/0001/run_counting_experiment.py"
+  ],
+  "baseline_metrics": {
+    "baseline_accuracy": 0.0,
+    "baseline_correct": 0,
+    "baseline_method": "always_predict_zero"
+  },
+  "claim_tested": "An exact target-item counting method achieves higher accuracy than a deliberately weak always-zero baseline on the same deterministic synthetic counting examples.",
+  "commands_run": [
+    "find . -maxdepth 4 -type f | sort",
+    "find research -maxdepth 4 -type d | sort",
+    "sed -n '1,220p' schemas/result.schema.json",
+    "sed -n '1,240p' scripts/validate_artifacts.py",
+    "ls -la research/project_001/results research/project_001/artifacts",
+    "mkdir -p research/project_001/artifacts/0001",
+    "python3 research/project_001/artifacts/0001/run_counting_experiment.py",
+    "python3 scripts/validate_artifacts.py --repo-root . --json research/project_001/results/0001_result.json --schema schemas/result.schema.json --check-result-artifacts"
+  ],
+  "experiment_id": "0001",
+  "interpretation": "The corrected exact-counting method counted every target occurrence correctly (6/6), while the weak always-zero baseline was correct on 0/6. The corrected accuracy exceeded the baseline by 1.000.",
+  "known_failures": [],
+  "metrics": {
+    "accuracy_delta": 1.0,
+    "baseline_accuracy": 0.0,
+    "corrected_accuracy": 1.0,
+    "corrected_correct": 6,
+    "corrected_method": "exact_target_item_count",
+    "num_examples": 6,
+    "success_criteria_met": true
+  },
+  "next_questions": [
+    "Does the same exact-counting implementation remain correct when examples include zero-count labels?",
+    "How should this positive control be extended to a nontrivial counting method?"
+  ],
+  "status": "completed"
+}

@@ -1,0 +1,13 @@
+{
+  "default_backend": "gpu",
+  "devices": [
+    "cuda:0"
+  ],
+  "error": null,
+  "gpu_devices": [
+    "cuda:0"
+  ],
+  "jax_version": "0.10.1",
+  "ok": true,
+  "tiny_compute": 140.0
+}

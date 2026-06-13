@@ -1,0 +1,34 @@
+{
+  "estimated_runtime_minutes": 20,
+  "experiment_id": "0001",
+  "failure_criteria": [
+    "No exact DP ground truth is implemented for the stochastic diagnostic.",
+    "The deterministic chain does not recover shortest-path or discounted-reachability structure for raw/log variants.",
+    "The result only reports training loss or prose without raw value and policy metrics.",
+    "The risky-shortcut dataset lacks coverage of lucky and unlucky stochastic outcomes.",
+    "The run requires large downloads, OGBench, AntMaze, neural-network training, or exceeds the 30 minute executor budget."
+  ],
+  "hypothesis": "A small tabular risky-shortcut MDP with offline lucky/unlucky outcomes will reveal whether raw deterministic-style TRL overestimates risky stochastic paths, while log-space or MC+TRL-log variants preserve deterministic behavior and improve calibration relative to MC-only or raw TRL.",
+  "objective": "Build and run a minimal tabular diagnostic for stochastic TRL covering deterministic chain sanity and one risky-shortcut stochastic MDP, with exact discounted-reachability DP ground truth and raw metrics saved.",
+  "required_outputs": [
+    "research/sto_trl/results/0001_result.json",
+    "research/sto_trl/results/0001_summary.md",
+    "research/sto_trl/artifacts/0001/"
+  ],
+  "success_criteria": [
+    "Creates a reproducible prototype under research/sto_trl/artifacts/0001/ without modifying repository control scripts or schemas.",
+    "Produces exact DP ground truth for the deterministic chain and risky-shortcut MDP.",
+    "Compares MC supervised, TRL-raw, TRL-log, and MC+TRL-log on the same tiny offline datasets.",
+    "Saves raw numeric metrics including overestimation error, underestimation error, long-horizon value MSE, policy regret, risky action selection rate, calibration error, and coverage diagnostics.",
+    "Writes valid research/sto_trl/results/0001_result.json and research/sto_trl/results/0001_summary.md with exact commands run."
+  ],
+  "tasks_for_codex": [
+    "Create a small self-contained tabular prototype in research/sto_trl/artifacts/0001/.",
+    "Implement deterministic chain and one risky-shortcut versus safe-route stochastic MDP with exact transition tables.",
+    "Implement exact discounted reachability DP and greedy policy evaluation from the DP values.",
+    "Generate tiny offline trajectories with explicit coverage diagnostics for states, actions, goals, and risky success/failure outcomes.",
+    "Implement MC supervised, TRL-raw product backup, TRL-log additive backup, and MC+TRL-log using simple tabular tables and fixed small update counts.",
+    "Run the experiment in conda environment autoresearcher_sto_trl with deterministic seeds and save raw metrics as JSON or CSV under research/sto_trl/artifacts/0001/.",
+    "Write research/sto_trl/results/0001_result.json matching schemas/result.schema.json and research/sto_trl/results/0001_summary.md, including exact commands run."
+  ]
+}

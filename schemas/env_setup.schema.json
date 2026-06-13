@@ -1,0 +1,57 @@
+{
+  "type": "object",
+  "properties": {
+    "project": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "ready", "blocked", "failed"]
+    },
+    "conda_env_name": { "type": "string" },
+    "conda_env_path": { "type": ["string", "null"] },
+    "environment_file": { "type": "string" },
+    "commands_run": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "packages_verified": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "gpu_requested": { "type": "boolean" },
+    "gpu_available": { "type": ["boolean", "null"] },
+    "gpu_checks": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "summary": { "type": "string" },
+    "blocker": {
+      "type": ["object", "null"],
+      "properties": {
+        "reason": { "type": "string" },
+        "failed_command": { "type": "string" },
+        "needs_escalation": { "type": "boolean" },
+        "escalation_type": {
+          "type": "string",
+          "enum": ["network", "gpu", "filesystem", "approval", "unknown"]
+        }
+      },
+      "required": ["reason", "failed_command", "needs_escalation", "escalation_type"],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "project",
+    "status",
+    "conda_env_name",
+    "conda_env_path",
+    "environment_file",
+    "commands_run",
+    "packages_verified",
+    "gpu_requested",
+    "gpu_available",
+    "gpu_checks",
+    "summary",
+    "blocker"
+  ],
+  "additionalProperties": false
+}

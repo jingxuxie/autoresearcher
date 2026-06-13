@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "properties": {
+    "decision": {
+      "type": "string",
+      "enum": ["continue", "pivot", "stop", "needs_human"]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "evidence": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "risks": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "next_experiment": {
+      "type": ["object", "null"],
+      "additionalProperties": true
+    }
+  },
+  "required": ["decision", "confidence", "rationale", "evidence", "risks", "next_experiment"],
+  "additionalProperties": false
+}
+

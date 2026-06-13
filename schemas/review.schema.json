@@ -1,0 +1,40 @@
+{
+  "type": "object",
+  "properties": {
+    "experiment_id": { "type": "string" },
+    "verdict": {
+      "type": "string",
+      "enum": ["pass", "weak_pass", "fail", "needs_human"]
+    },
+    "allows_auto_continue": {
+      "type": "boolean"
+    },
+    "reasons": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "evidence_checked": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "required_fixes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "risk_flags": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "required": [
+    "experiment_id",
+    "verdict",
+    "allows_auto_continue",
+    "reasons",
+    "evidence_checked",
+    "required_fixes",
+    "risk_flags"
+  ],
+  "additionalProperties": false
+}
+

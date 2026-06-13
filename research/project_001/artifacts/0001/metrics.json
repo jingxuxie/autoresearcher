@@ -1,0 +1,12 @@
+{
+  "accuracy_delta": 1.0,
+  "baseline_accuracy": 0.0,
+  "baseline_correct": 0,
+  "baseline_method": "always_predict_zero",
+  "corrected_accuracy": 1.0,
+  "corrected_correct": 6,
+  "corrected_method": "exact_target_item_count",
+  "experiment_id": "0001",
+  "num_examples": 6,
+  "success_criteria_met": true
+}

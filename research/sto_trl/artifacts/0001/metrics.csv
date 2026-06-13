@@ -1,0 +1,9 @@
+mdp,method,value_mse,long_horizon_value_mse,value_overestimation_error,value_underestimation_error,q_calibration_error,q_overestimation_error,q_underestimation_error,policy_regret,mean_policy_regret,max_policy_regret,risky_action_selection_rate,eval_greedy_action
+deterministic_chain,mc_supervised,2.0543252740130515e-33,3.697785493223493e-33,0.0,1.1102230246251565e-16,0.2638688400000001,0.0,0.7290000000000001,0.0,0.0,0.0,0.0,right
+deterministic_chain,trl_raw,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,right
+deterministic_chain,trl_log,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,right
+deterministic_chain,mc_plus_trl_log,0.0,0.0,0.0,0.0,0.13193442000000005,0.0,0.36450000000000005,0.0,0.0,0.0,0.0,right
+risky_shortcut,mc_supervised,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,safe
+risky_shortcut,trl_raw,0.0031946399999999986,0.01996649999999999,0.22499999999999998,0.0,0.05625,0.675,0.0,0.5040000000000001,0.07200000000000002,0.5040000000000001,1.0,risky
+risky_shortcut,trl_log,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,safe
+risky_shortcut,mc_plus_trl_log,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,safe

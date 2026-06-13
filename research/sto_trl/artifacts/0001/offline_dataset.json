@@ -1,0 +1,434 @@
+{
+  "datasets": {
+    "deterministic_chain": [
+      {
+        "actions": [
+          "right",
+          "right",
+          "right",
+          "right",
+          "right"
+        ],
+        "episode_id": "chain_forward",
+        "mdp": "deterministic_chain",
+        "states": [
+          "c0",
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "transitions": [
+          {
+            "action": "right",
+            "next_state": "c1",
+            "outcome": "deterministic",
+            "state": "c0",
+            "t": 0
+          },
+          {
+            "action": "right",
+            "next_state": "c2",
+            "outcome": "deterministic",
+            "state": "c1",
+            "t": 1
+          },
+          {
+            "action": "right",
+            "next_state": "c3",
+            "outcome": "deterministic",
+            "state": "c2",
+            "t": 2
+          },
+          {
+            "action": "right",
+            "next_state": "c4",
+            "outcome": "deterministic",
+            "state": "c3",
+            "t": 3
+          },
+          {
+            "action": "right",
+            "next_state": "c5",
+            "outcome": "deterministic",
+            "state": "c4",
+            "t": 4
+          }
+        ]
+      },
+      {
+        "actions": [
+          "left",
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "episode_id": "chain_backward",
+        "mdp": "deterministic_chain",
+        "states": [
+          "c5",
+          "c4",
+          "c3",
+          "c2",
+          "c1",
+          "c0"
+        ],
+        "transitions": [
+          {
+            "action": "left",
+            "next_state": "c4",
+            "outcome": "deterministic",
+            "state": "c5",
+            "t": 0
+          },
+          {
+            "action": "left",
+            "next_state": "c3",
+            "outcome": "deterministic",
+            "state": "c4",
+            "t": 1
+          },
+          {
+            "action": "left",
+            "next_state": "c2",
+            "outcome": "deterministic",
+            "state": "c3",
+            "t": 2
+          },
+          {
+            "action": "left",
+            "next_state": "c1",
+            "outcome": "deterministic",
+            "state": "c2",
+            "t": 3
+          },
+          {
+            "action": "left",
+            "next_state": "c0",
+            "outcome": "deterministic",
+            "state": "c1",
+            "t": 4
+          }
+        ]
+      }
+    ],
+    "risky_shortcut": [
+      {
+        "actions": [
+          "safe",
+          "forward",
+          "forward"
+        ],
+        "episode_id": "safe_0",
+        "mdp": "risky_shortcut",
+        "states": [
+          "start",
+          "safe1",
+          "safe2",
+          "goal"
+        ],
+        "transitions": [
+          {
+            "action": "safe",
+            "next_state": "safe1",
+            "outcome": "safe_step",
+            "state": "start",
+            "t": 0
+          },
+          {
+            "action": "forward",
+            "next_state": "safe2",
+            "outcome": "safe_step",
+            "state": "safe1",
+            "t": 1
+          },
+          {
+            "action": "forward",
+            "next_state": "goal",
+            "outcome": "safe_goal",
+            "state": "safe2",
+            "t": 2
+          }
+        ]
+      },
+      {
+        "actions": [
+          "safe",
+          "forward",
+          "forward"
+        ],
+        "episode_id": "safe_1",
+        "mdp": "risky_shortcut",
+        "states": [
+          "start",
+          "safe1",
+          "safe2",
+          "goal"
+        ],
+        "transitions": [
+          {
+            "action": "safe",
+            "next_state": "safe1",
+            "outcome": "safe_step",
+            "state": "start",
+            "t": 0
+          },
+          {
+            "action": "forward",
+            "next_state": "safe2",
+            "outcome": "safe_step",
+            "state": "safe1",
+            "t": 1
+          },
+          {
+            "action": "forward",
+            "next_state": "goal",
+            "outcome": "safe_goal",
+            "state": "safe2",
+            "t": 2
+          }
+        ]
+      },
+      {
+        "actions": [
+          "safe",
+          "forward",
+          "forward"
+        ],
+        "episode_id": "safe_2",
+        "mdp": "risky_shortcut",
+        "states": [
+          "start",
+          "safe1",
+          "safe2",
+          "goal"
+        ],
+        "transitions": [
+          {
+            "action": "safe",
+            "next_state": "safe1",
+            "outcome": "safe_step",
+            "state": "start",
+            "t": 0
+          },
+          {
+            "action": "forward",
+            "next_state": "safe2",
+            "outcome": "safe_step",
+            "state": "safe1",
+            "t": 1
+          },
+          {
+            "action": "forward",
+            "next_state": "goal",
+            "outcome": "safe_goal",
+            "state": "safe2",
+            "t": 2
+          }
+        ]
+      },
+      {
+        "actions": [
+          "safe",
+          "forward",
+          "forward"
+        ],
+        "episode_id": "safe_3",
+        "mdp": "risky_shortcut",
+        "states": [
+          "start",
+          "safe1",
+          "safe2",
+          "goal"
+        ],
+        "transitions": [
+          {
+            "action": "safe",
+            "next_state": "safe1",
+            "outcome": "safe_step",
+            "state": "start",
+            "t": 0
+          },
+          {
+            "action": "forward",
+            "next_state": "safe2",
+            "outcome": "safe_step",
+            "state": "safe1",
+            "t": 1
+          },
+          {
+            "action": "forward",
+            "next_state": "goal",
+            "outcome": "safe_goal",
+            "state": "safe2",
+            "t": 2
+          }
+        ]
+      },
+      {
+        "actions": [
+          "risky"
+        ],
+        "episode_id": "risky_0_success",
+        "mdp": "risky_shortcut",
+        "states": [
+          "start",
+          "goal"
+        ],
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "goal",
+            "outcome": "risky_success",
+            "state": "start",
+            "t": 0
+          }
+        ]
+      },
+      {
+        "actions": [
+          "risky"
+        ],
+        "episode_id": "risky_1_failure",
+        "mdp": "risky_shortcut",
+        "states": [
+          "start",
+          "trap"
+        ],
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "trap",
+            "outcome": "risky_failure",
+            "state": "start",
+            "t": 0
+          }
+        ]
+      },
+      {
+        "actions": [
+          "risky"
+        ],
+        "episode_id": "risky_2_failure",
+        "mdp": "risky_shortcut",
+        "states": [
+          "start",
+          "trap"
+        ],
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "trap",
+            "outcome": "risky_failure",
+            "state": "start",
+            "t": 0
+          }
+        ]
+      },
+      {
+        "actions": [
+          "risky"
+        ],
+        "episode_id": "risky_3_failure",
+        "mdp": "risky_shortcut",
+        "states": [
+          "start",
+          "trap"
+        ],
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "trap",
+            "outcome": "risky_failure",
+            "state": "start",
+            "t": 0
+          }
+        ]
+      },
+      {
+        "actions": [
+          "risky"
+        ],
+        "episode_id": "risky_4_success",
+        "mdp": "risky_shortcut",
+        "states": [
+          "start",
+          "goal"
+        ],
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "goal",
+            "outcome": "risky_success",
+            "state": "start",
+            "t": 0
+          }
+        ]
+      },
+      {
+        "actions": [
+          "risky"
+        ],
+        "episode_id": "risky_5_failure",
+        "mdp": "risky_shortcut",
+        "states": [
+          "start",
+          "trap"
+        ],
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "trap",
+            "outcome": "risky_failure",
+            "state": "start",
+            "t": 0
+          }
+        ]
+      },
+      {
+        "actions": [
+          "risky"
+        ],
+        "episode_id": "risky_6_failure",
+        "mdp": "risky_shortcut",
+        "states": [
+          "start",
+          "trap"
+        ],
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "trap",
+            "outcome": "risky_failure",
+            "state": "start",
+            "t": 0
+          }
+        ]
+      },
+      {
+        "actions": [
+          "risky"
+        ],
+        "episode_id": "risky_7_failure",
+        "mdp": "risky_shortcut",
+        "states": [
+          "start",
+          "trap"
+        ],
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "trap",
+            "outcome": "risky_failure",
+            "state": "start",
+            "t": 0
+          }
+        ]
+      }
+    ]
+  },
+  "experiment_id": "0001",
+  "gamma": 0.9
+}

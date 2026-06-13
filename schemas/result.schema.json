@@ -1,0 +1,50 @@
+{
+  "type": "object",
+  "properties": {
+    "experiment_id": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["completed", "failed", "blocked", "timeout"]
+    },
+    "claim_tested": { "type": "string" },
+    "commands_run": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "baseline_metrics": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "artifacts": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "interpretation": { "type": "string" },
+    "known_failures": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "next_questions": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "required": [
+    "experiment_id",
+    "status",
+    "claim_tested",
+    "commands_run",
+    "metrics",
+    "baseline_metrics",
+    "artifacts",
+    "interpretation",
+    "known_failures",
+    "next_questions"
+  ],
+  "additionalProperties": false
+}
+

@@ -1,0 +1,81 @@
+{
+  "type": "object",
+  "properties": {
+    "decision": {
+      "type": "string",
+      "enum": ["continue", "pivot", "stop", "needs_human"]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "progress_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "evidence": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "risks": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "next_experiment": {
+      "type": ["object", "null"],
+      "properties": {
+        "experiment_id": { "type": "string" },
+        "objective": { "type": "string" },
+        "hypothesis": { "type": "string" },
+        "success_criteria": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "failure_criteria": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "tasks_for_codex": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "required_outputs": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "estimated_runtime_minutes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 30
+        }
+      },
+      "required": [
+        "experiment_id",
+        "objective",
+        "hypothesis",
+        "success_criteria",
+        "failure_criteria",
+        "tasks_for_codex",
+        "required_outputs",
+        "estimated_runtime_minutes"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "decision",
+    "confidence",
+    "progress_score",
+    "rationale",
+    "evidence",
+    "risks",
+    "next_experiment"
+  ],
+  "additionalProperties": false
+}
+
