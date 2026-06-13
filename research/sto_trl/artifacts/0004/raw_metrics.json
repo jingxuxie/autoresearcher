@@ -1,0 +1,2183 @@
+{
+  "aggregate": {
+    "risk_matched_successor_calibration_only_policy_regret": 0.0,
+    "risk_matched_successor_distance_trl_log_policy_regret": 0.0,
+    "safe_lucky_stress_successor_distance_action": "risky",
+    "safe_matched_successor_calibration_only_policy_regret": 0.5040000000000001,
+    "safe_matched_successor_distance_trl_log_policy_regret": 0.0,
+    "successor_calibration_only_main_mean_heldout_mse": 0.21524060774329223,
+    "successor_distance_trl_log_main_mean_heldout_mse": 9.782501304824055e-35
+  },
+  "experiment_id": "0004",
+  "gamma": 0.9,
+  "label_horizon_cutoff": 2,
+  "scenarios": {
+    "chain_len9_holdout": {
+      "coverage_diagnostics": {
+        "action_counts": {
+          "left": 8,
+          "right": 8
+        },
+        "num_episodes": 2,
+        "num_transitions": 16,
+        "outcome_counts": {
+          "deterministic": 16
+        },
+        "risky_failure_count": 0,
+        "risky_success_count": 0,
+        "risky_success_rate_observed": null,
+        "state_action_coverage_fraction": 1.0,
+        "state_action_pairs_seen": [
+          [
+            "c0",
+            "right"
+          ],
+          [
+            "c1",
+            "left"
+          ],
+          [
+            "c1",
+            "right"
+          ],
+          [
+            "c2",
+            "left"
+          ],
+          [
+            "c2",
+            "right"
+          ],
+          [
+            "c3",
+            "left"
+          ],
+          [
+            "c3",
+            "right"
+          ],
+          [
+            "c4",
+            "left"
+          ],
+          [
+            "c4",
+            "right"
+          ],
+          [
+            "c5",
+            "left"
+          ],
+          [
+            "c5",
+            "right"
+          ],
+          [
+            "c6",
+            "left"
+          ],
+          [
+            "c6",
+            "right"
+          ],
+          [
+            "c7",
+            "left"
+          ],
+          [
+            "c7",
+            "right"
+          ],
+          [
+            "c8",
+            "left"
+          ]
+        ],
+        "state_coverage_fraction": 1.0,
+        "states_seen": [
+          "c0",
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5",
+          "c6",
+          "c7",
+          "c8"
+        ]
+      },
+      "label_or_pair_coverage": {
+        "censored_examples": [
+          {
+            "action": "right",
+            "episode_id": "chain_forward",
+            "goal": "c3",
+            "positive_horizon": 3,
+            "state": "c0"
+          },
+          {
+            "action": "right",
+            "episode_id": "chain_forward",
+            "goal": "c4",
+            "positive_horizon": 4,
+            "state": "c0"
+          },
+          {
+            "action": "right",
+            "episode_id": "chain_forward",
+            "goal": "c5",
+            "positive_horizon": 5,
+            "state": "c0"
+          },
+          {
+            "action": "right",
+            "episode_id": "chain_forward",
+            "goal": "c6",
+            "positive_horizon": 6,
+            "state": "c0"
+          },
+          {
+            "action": "right",
+            "episode_id": "chain_forward",
+            "goal": "c7",
+            "positive_horizon": 7,
+            "state": "c0"
+          },
+          {
+            "action": "right",
+            "episode_id": "chain_forward",
+            "goal": "c8",
+            "positive_horizon": 8,
+            "state": "c0"
+          },
+          {
+            "action": "right",
+            "episode_id": "chain_forward",
+            "goal": "c4",
+            "positive_horizon": 3,
+            "state": "c1"
+          },
+          {
+            "action": "right",
+            "episode_id": "chain_forward",
+            "goal": "c5",
+            "positive_horizon": 4,
+            "state": "c1"
+          },
+          {
+            "action": "right",
+            "episode_id": "chain_forward",
+            "goal": "c6",
+            "positive_horizon": 5,
+            "state": "c1"
+          },
+          {
+            "action": "right",
+            "episode_id": "chain_forward",
+            "goal": "c7",
+            "positive_horizon": 6,
+            "state": "c1"
+          },
+          {
+            "action": "right",
+            "episode_id": "chain_forward",
+            "goal": "c8",
+            "positive_horizon": 7,
+            "state": "c1"
+          },
+          {
+            "action": "right",
+            "episode_id": "chain_forward",
+            "goal": "c5",
+            "positive_horizon": 3,
+            "state": "c2"
+          }
+        ],
+        "counts_by_bin": {
+          "h1_train_visible": {
+            "included_positive": 16
+          },
+          "h2_train_visible": {
+            "included_positive": 14
+          },
+          "heldout_gt2": {
+            "censored_positive": 42
+          },
+          "unreached_zero": {
+            "included_zero": 72
+          }
+        },
+        "eval_q_pairs_by_horizon_bin": {
+          "h1_train_visible": 16,
+          "h2_train_visible": 14,
+          "heldout_gt2": 98
+        },
+        "eval_value_pairs_by_horizon_bin": {
+          "h1_train_visible": 16,
+          "h2_train_visible": 14,
+          "heldout_gt2": 42
+        },
+        "label_horizon_cutoff": 2,
+        "num_censored_positive_labels": 42,
+        "num_included_positive_labels": 30,
+        "num_included_zero_labels": 72,
+        "unique_state_action_goal_pairs_by_bin": {
+          "h1_train_visible": 16,
+          "h2_train_visible": 14,
+          "heldout_gt2": 42,
+          "unreached_zero": 72
+        }
+      },
+      "mdp": "deterministic_chain_len9",
+      "methods": {
+        "mc_plus_trl_log": {
+          "calibration_error": 0.13125827819531247,
+          "chose_exact_optimal_action": true,
+          "eval_goal": "c8",
+          "eval_greedy_action": "right",
+          "eval_start": "c0",
+          "eval_start_exact_q": {
+            "right": 0.43046721000000016
+          },
+          "eval_start_learned_q": {
+            "right": 0.43046721000000016
+          },
+          "exact_optimal_action": "right",
+          "heldout_long_horizon_value_mse": 2.9347503914472164e-34,
+          "horizon_metrics": {
+            "h1_train_visible": {
+              "num_q_pairs": 16,
+              "num_value_pairs": 16,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "h2_train_visible": {
+              "num_q_pairs": 14,
+              "num_value_pairs": 14,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "heldout_gt2": {
+              "num_q_pairs": 98,
+              "num_value_pairs": 42,
+              "q_calibration_error": 0.17143938376530607,
+              "q_overestimation_error": 5.551115123125783e-17,
+              "q_underestimation_error": 0.36450000000000005,
+              "value_mse": 2.9347503914472164e-34,
+              "value_overestimation_error": 5.551115123125783e-17,
+              "value_underestimation_error": 0.0
+            }
+          },
+          "policy_regret": 0.0,
+          "q_calibration_error": 0.13125827819531247,
+          "q_overestimation_error": 5.551115123125783e-17,
+          "q_underestimation_error": 0.36450000000000005,
+          "risky_action_selection_rate": 0.0,
+          "value_mse": 1.7119377283442096e-34,
+          "value_overestimation_error": 5.551115123125783e-17,
+          "value_underestimation_error": 0.0
+        },
+        "mc_supervised": {
+          "calibration_error": 0.4656078690468753,
+          "chose_exact_optimal_action": true,
+          "eval_goal": "c8",
+          "eval_greedy_action": "right",
+          "eval_start": "c0",
+          "eval_start_exact_q": {
+            "right": 0.43046721000000016
+          },
+          "eval_start_learned_q": {
+            "right": 0.0
+          },
+          "exact_optimal_action": "right",
+          "heldout_long_horizon_value_mse": 0.3917058232298766,
+          "horizon_metrics": {
+            "h1_train_visible": {
+              "num_q_pairs": 16,
+              "num_value_pairs": 16,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "h2_train_visible": {
+              "num_q_pairs": 14,
+              "num_value_pairs": 14,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "heldout_gt2": {
+              "num_q_pairs": 98,
+              "num_value_pairs": 42,
+              "q_calibration_error": 0.6081408901836739,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.7290000000000001,
+              "value_mse": 0.3917058232298766,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.7290000000000001
+            }
+          },
+          "policy_regret": 0.0,
+          "q_calibration_error": 0.4656078690468753,
+          "q_overestimation_error": 0.0,
+          "q_underestimation_error": 0.7290000000000001,
+          "risky_action_selection_rate": 0.0,
+          "value_mse": 0.22849506355076135,
+          "value_overestimation_error": 0.0,
+          "value_underestimation_error": 0.7290000000000001
+        },
+        "successor_calibration_only": {
+          "calibration_error": 0.4656078690468753,
+          "chose_exact_optimal_action": true,
+          "eval_goal": "c8",
+          "eval_greedy_action": "right",
+          "eval_start": "c0",
+          "eval_start_exact_q": {
+            "right": 0.43046721000000016
+          },
+          "eval_start_learned_q": {
+            "right": 0.0
+          },
+          "exact_optimal_action": "right",
+          "heldout_long_horizon_value_mse": 0.3917058232298766,
+          "horizon_metrics": {
+            "h1_train_visible": {
+              "num_q_pairs": 16,
+              "num_value_pairs": 16,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "h2_train_visible": {
+              "num_q_pairs": 14,
+              "num_value_pairs": 14,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "heldout_gt2": {
+              "num_q_pairs": 98,
+              "num_value_pairs": 42,
+              "q_calibration_error": 0.6081408901836739,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.7290000000000001,
+              "value_mse": 0.3917058232298766,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.7290000000000001
+            }
+          },
+          "policy_regret": 0.0,
+          "q_calibration_error": 0.4656078690468753,
+          "q_overestimation_error": 0.0,
+          "q_underestimation_error": 0.7290000000000001,
+          "risky_action_selection_rate": 0.0,
+          "value_mse": 0.22849506355076135,
+          "value_overestimation_error": 0.0,
+          "value_underestimation_error": 0.7290000000000001
+        },
+        "successor_distance_trl_log": {
+          "calibration_error": 4.336808689942018e-18,
+          "chose_exact_optimal_action": true,
+          "eval_goal": "c8",
+          "eval_greedy_action": "right",
+          "eval_start": "c0",
+          "eval_start_exact_q": {
+            "right": 0.43046721000000016
+          },
+          "eval_start_learned_q": {
+            "right": 0.43046721000000016
+          },
+          "exact_optimal_action": "right",
+          "heldout_long_horizon_value_mse": 2.9347503914472164e-34,
+          "horizon_metrics": {
+            "h1_train_visible": {
+              "num_q_pairs": 16,
+              "num_value_pairs": 16,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "h2_train_visible": {
+              "num_q_pairs": 14,
+              "num_value_pairs": 14,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "heldout_gt2": {
+              "num_q_pairs": 98,
+              "num_value_pairs": 42,
+              "q_calibration_error": 5.664403186863044e-18,
+              "q_overestimation_error": 5.551115123125783e-17,
+              "q_underestimation_error": 0.0,
+              "value_mse": 2.9347503914472164e-34,
+              "value_overestimation_error": 5.551115123125783e-17,
+              "value_underestimation_error": 0.0
+            }
+          },
+          "policy_regret": 0.0,
+          "q_calibration_error": 4.336808689942018e-18,
+          "q_overestimation_error": 5.551115123125783e-17,
+          "q_underestimation_error": 0.0,
+          "risky_action_selection_rate": 0.0,
+          "value_mse": 1.7119377283442096e-34,
+          "value_overestimation_error": 5.551115123125783e-17,
+          "value_underestimation_error": 0.0
+        },
+        "trl_log": {
+          "calibration_error": 4.336808689942018e-18,
+          "chose_exact_optimal_action": true,
+          "eval_goal": "c8",
+          "eval_greedy_action": "right",
+          "eval_start": "c0",
+          "eval_start_exact_q": {
+            "right": 0.43046721000000016
+          },
+          "eval_start_learned_q": {
+            "right": 0.43046721000000016
+          },
+          "exact_optimal_action": "right",
+          "heldout_long_horizon_value_mse": 2.9347503914472164e-34,
+          "horizon_metrics": {
+            "h1_train_visible": {
+              "num_q_pairs": 16,
+              "num_value_pairs": 16,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "h2_train_visible": {
+              "num_q_pairs": 14,
+              "num_value_pairs": 14,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "heldout_gt2": {
+              "num_q_pairs": 98,
+              "num_value_pairs": 42,
+              "q_calibration_error": 5.664403186863044e-18,
+              "q_overestimation_error": 5.551115123125783e-17,
+              "q_underestimation_error": 0.0,
+              "value_mse": 2.9347503914472164e-34,
+              "value_overestimation_error": 5.551115123125783e-17,
+              "value_underestimation_error": 0.0
+            }
+          },
+          "policy_regret": 0.0,
+          "q_calibration_error": 4.336808689942018e-18,
+          "q_overestimation_error": 5.551115123125783e-17,
+          "q_underestimation_error": 0.0,
+          "risky_action_selection_rate": 0.0,
+          "value_mse": 1.7119377283442096e-34,
+          "value_overestimation_error": 5.551115123125783e-17,
+          "value_underestimation_error": 0.0
+        },
+        "trl_raw": {
+          "calibration_error": 0.0,
+          "chose_exact_optimal_action": true,
+          "eval_goal": "c8",
+          "eval_greedy_action": "right",
+          "eval_start": "c0",
+          "eval_start_exact_q": {
+            "right": 0.43046721000000016
+          },
+          "eval_start_learned_q": {
+            "right": 0.43046721000000016
+          },
+          "exact_optimal_action": "right",
+          "heldout_long_horizon_value_mse": 0.0,
+          "horizon_metrics": {
+            "h1_train_visible": {
+              "num_q_pairs": 16,
+              "num_value_pairs": 16,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "h2_train_visible": {
+              "num_q_pairs": 14,
+              "num_value_pairs": 14,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "heldout_gt2": {
+              "num_q_pairs": 98,
+              "num_value_pairs": 42,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            }
+          },
+          "policy_regret": 0.0,
+          "q_calibration_error": 0.0,
+          "q_overestimation_error": 0.0,
+          "q_underestimation_error": 0.0,
+          "risky_action_selection_rate": 0.0,
+          "value_mse": 0.0,
+          "value_overestimation_error": 0.0,
+          "value_underestimation_error": 0.0
+        }
+      },
+      "scenario_role": "main_holdout",
+      "successor_meta": {
+        "successor_calibration_only": {
+          "lambda_tr": 0.0,
+          "normalization": "per_state_action_max_self_normalization"
+        },
+        "successor_distance_trl_log": {
+          "anchor": "self_normalized_censored_successor_calibration",
+          "lambda_tr": 0.75,
+          "relaxation": "distance_space_geometric_interpolation"
+        }
+      }
+    },
+    "risk_optimal_matched": {
+      "coverage_diagnostics": {
+        "action_counts": {
+          "forward": 8,
+          "risky": 10,
+          "safe": 4
+        },
+        "num_episodes": 14,
+        "num_transitions": 22,
+        "outcome_counts": {
+          "risky_failure": 1,
+          "risky_success": 9,
+          "safe_goal": 4,
+          "safe_step": 8
+        },
+        "risky_failure_count": 1,
+        "risky_success_count": 9,
+        "risky_success_rate_observed": 0.9,
+        "state_action_coverage_fraction": 1.0,
+        "state_action_pairs_seen": [
+          [
+            "safe1",
+            "forward"
+          ],
+          [
+            "safe2",
+            "forward"
+          ],
+          [
+            "start",
+            "risky"
+          ],
+          [
+            "start",
+            "safe"
+          ]
+        ],
+        "state_coverage_fraction": 1.0,
+        "states_seen": [
+          "goal",
+          "safe1",
+          "safe2",
+          "start",
+          "trap"
+        ]
+      },
+      "label_or_pair_coverage": {
+        "censored_examples": [
+          {
+            "action": "safe",
+            "episode_id": "risk_optimal_matched_safe_0",
+            "goal": "goal",
+            "positive_horizon": 3,
+            "state": "start"
+          },
+          {
+            "action": "safe",
+            "episode_id": "risk_optimal_matched_safe_1",
+            "goal": "goal",
+            "positive_horizon": 3,
+            "state": "start"
+          },
+          {
+            "action": "safe",
+            "episode_id": "risk_optimal_matched_safe_2",
+            "goal": "goal",
+            "positive_horizon": 3,
+            "state": "start"
+          },
+          {
+            "action": "safe",
+            "episode_id": "risk_optimal_matched_safe_3",
+            "goal": "goal",
+            "positive_horizon": 3,
+            "state": "start"
+          }
+        ],
+        "counts_by_bin": {
+          "h1_train_visible": {
+            "included_positive": 22
+          },
+          "h2_train_visible": {
+            "included_positive": 8
+          },
+          "heldout_gt2": {
+            "censored_positive": 4
+          },
+          "unreached_zero": {
+            "included_zero": 76
+          }
+        },
+        "eval_q_pairs_by_horizon_bin": {
+          "h1_train_visible": 5,
+          "h2_train_visible": 2,
+          "heldout_gt2": 1,
+          "unreachable": 8
+        },
+        "eval_value_pairs_by_horizon_bin": {
+          "h1_train_visible": 5,
+          "h2_train_visible": 2,
+          "unreachable": 13
+        },
+        "label_horizon_cutoff": 2,
+        "num_censored_positive_labels": 4,
+        "num_included_positive_labels": 30,
+        "num_included_zero_labels": 76,
+        "unique_state_action_goal_pairs_by_bin": {
+          "h1_train_visible": 5,
+          "h2_train_visible": 2,
+          "heldout_gt2": 1,
+          "unreached_zero": 14
+        }
+      },
+      "mdp": "risk_optimal_matched",
+      "methods": {
+        "mc_plus_trl_log": {
+          "calibration_error": 8.673617379884035e-19,
+          "chose_exact_optimal_action": true,
+          "eval_goal": "goal",
+          "eval_greedy_action": "risky",
+          "eval_start": "start",
+          "eval_start_exact_q": {
+            "risky": 0.81,
+            "safe": 0.7290000000000001
+          },
+          "eval_start_learned_q": {
+            "risky": 0.81,
+            "safe": 0.7290000000000001
+          },
+          "exact_optimal_action": "risky",
+          "heldout_long_horizon_value_mse": 0.0,
+          "horizon_metrics": {
+            "h1_train_visible": {
+              "num_q_pairs": 5,
+              "num_value_pairs": 5,
+              "q_calibration_error": 2.7755575615628915e-18,
+              "q_overestimation_error": 1.3877787807814457e-17,
+              "q_underestimation_error": 0.0,
+              "value_mse": 3.851859888774472e-35,
+              "value_overestimation_error": 1.3877787807814457e-17,
+              "value_underestimation_error": 0.0
+            },
+            "h2_train_visible": {
+              "num_q_pairs": 2,
+              "num_value_pairs": 2,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "heldout_gt2": {
+              "num_q_pairs": 1,
+              "num_value_pairs": 0,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "unreachable": {
+              "num_q_pairs": 8,
+              "num_value_pairs": 13,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            }
+          },
+          "policy_regret": 0.0,
+          "q_calibration_error": 8.673617379884035e-19,
+          "q_overestimation_error": 1.3877787807814457e-17,
+          "q_underestimation_error": 0.0,
+          "risky_action_selection_rate": 1.0,
+          "value_mse": 9.62964972193618e-36,
+          "value_overestimation_error": 1.3877787807814457e-17,
+          "value_underestimation_error": 0.0
+        },
+        "mc_supervised": {
+          "calibration_error": 0.04556250000000001,
+          "chose_exact_optimal_action": true,
+          "eval_goal": "goal",
+          "eval_greedy_action": "risky",
+          "eval_start": "start",
+          "eval_start_exact_q": {
+            "risky": 0.81,
+            "safe": 0.7290000000000001
+          },
+          "eval_start_learned_q": {
+            "risky": 0.8100000000000002,
+            "safe": 0.0
+          },
+          "exact_optimal_action": "risky",
+          "heldout_long_horizon_value_mse": 0.0,
+          "horizon_metrics": {
+            "h1_train_visible": {
+              "num_q_pairs": 5,
+              "num_value_pairs": 5,
+              "q_calibration_error": 2.4980018054066023e-17,
+              "q_overestimation_error": 1.1102230246251565e-16,
+              "q_underestimation_error": 0.0,
+              "value_mse": 2.5037089277034066e-33,
+              "value_overestimation_error": 1.1102230246251565e-16,
+              "value_underestimation_error": 0.0
+            },
+            "h2_train_visible": {
+              "num_q_pairs": 2,
+              "num_value_pairs": 2,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "heldout_gt2": {
+              "num_q_pairs": 1,
+              "num_value_pairs": 0,
+              "q_calibration_error": 0.7290000000000001,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.7290000000000001,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "unreachable": {
+              "num_q_pairs": 8,
+              "num_value_pairs": 13,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            }
+          },
+          "policy_regret": 0.0,
+          "q_calibration_error": 0.04556250000000001,
+          "q_overestimation_error": 1.1102230246251565e-16,
+          "q_underestimation_error": 0.7290000000000001,
+          "risky_action_selection_rate": 1.0,
+          "value_mse": 6.2592723192585165e-34,
+          "value_overestimation_error": 1.1102230246251565e-16,
+          "value_underestimation_error": 0.0
+        },
+        "successor_calibration_only": {
+          "calibration_error": 0.04556250000000001,
+          "chose_exact_optimal_action": true,
+          "eval_goal": "goal",
+          "eval_greedy_action": "risky",
+          "eval_start": "start",
+          "eval_start_exact_q": {
+            "risky": 0.81,
+            "safe": 0.7290000000000001
+          },
+          "eval_start_learned_q": {
+            "risky": 0.8100000000000002,
+            "safe": 0.0
+          },
+          "exact_optimal_action": "risky",
+          "heldout_long_horizon_value_mse": 0.0,
+          "horizon_metrics": {
+            "h1_train_visible": {
+              "num_q_pairs": 5,
+              "num_value_pairs": 5,
+              "q_calibration_error": 2.4980018054066023e-17,
+              "q_overestimation_error": 1.1102230246251565e-16,
+              "q_underestimation_error": 0.0,
+              "value_mse": 2.5037089277034066e-33,
+              "value_overestimation_error": 1.1102230246251565e-16,
+              "value_underestimation_error": 0.0
+            },
+            "h2_train_visible": {
+              "num_q_pairs": 2,
+              "num_value_pairs": 2,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "heldout_gt2": {
+              "num_q_pairs": 1,
+              "num_value_pairs": 0,
+              "q_calibration_error": 0.7290000000000001,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.7290000000000001,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "unreachable": {
+              "num_q_pairs": 8,
+              "num_value_pairs": 13,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            }
+          },
+          "policy_regret": 0.0,
+          "q_calibration_error": 0.04556250000000001,
+          "q_overestimation_error": 1.1102230246251565e-16,
+          "q_underestimation_error": 0.7290000000000001,
+          "risky_action_selection_rate": 1.0,
+          "value_mse": 6.2592723192585165e-34,
+          "value_overestimation_error": 1.1102230246251565e-16,
+          "value_underestimation_error": 0.0
+        },
+        "successor_distance_trl_log": {
+          "calibration_error": 3.469446951953614e-18,
+          "chose_exact_optimal_action": true,
+          "eval_goal": "goal",
+          "eval_greedy_action": "risky",
+          "eval_start": "start",
+          "eval_start_exact_q": {
+            "risky": 0.81,
+            "safe": 0.7290000000000001
+          },
+          "eval_start_learned_q": {
+            "risky": 0.81,
+            "safe": 0.7290000000000001
+          },
+          "exact_optimal_action": "risky",
+          "heldout_long_horizon_value_mse": 0.0,
+          "horizon_metrics": {
+            "h1_train_visible": {
+              "num_q_pairs": 5,
+              "num_value_pairs": 5,
+              "q_calibration_error": 1.1102230246251566e-17,
+              "q_overestimation_error": 5.551115123125783e-17,
+              "q_underestimation_error": 0.0,
+              "value_mse": 6.162975822039155e-34,
+              "value_overestimation_error": 5.551115123125783e-17,
+              "value_underestimation_error": 0.0
+            },
+            "h2_train_visible": {
+              "num_q_pairs": 2,
+              "num_value_pairs": 2,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "heldout_gt2": {
+              "num_q_pairs": 1,
+              "num_value_pairs": 0,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "unreachable": {
+              "num_q_pairs": 8,
+              "num_value_pairs": 13,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            }
+          },
+          "policy_regret": 0.0,
+          "q_calibration_error": 3.469446951953614e-18,
+          "q_overestimation_error": 5.551115123125783e-17,
+          "q_underestimation_error": 0.0,
+          "risky_action_selection_rate": 1.0,
+          "value_mse": 1.5407439555097888e-34,
+          "value_overestimation_error": 5.551115123125783e-17,
+          "value_underestimation_error": 0.0
+        },
+        "trl_log": {
+          "calibration_error": 1.734723475976807e-18,
+          "chose_exact_optimal_action": true,
+          "eval_goal": "goal",
+          "eval_greedy_action": "risky",
+          "eval_start": "start",
+          "eval_start_exact_q": {
+            "risky": 0.81,
+            "safe": 0.7290000000000001
+          },
+          "eval_start_learned_q": {
+            "risky": 0.81,
+            "safe": 0.7290000000000001
+          },
+          "exact_optimal_action": "risky",
+          "heldout_long_horizon_value_mse": 0.0,
+          "horizon_metrics": {
+            "h1_train_visible": {
+              "num_q_pairs": 5,
+              "num_value_pairs": 5,
+              "q_calibration_error": 5.551115123125783e-18,
+              "q_overestimation_error": 2.7755575615628914e-17,
+              "q_underestimation_error": 0.0,
+              "value_mse": 1.5407439555097888e-34,
+              "value_overestimation_error": 2.7755575615628914e-17,
+              "value_underestimation_error": 0.0
+            },
+            "h2_train_visible": {
+              "num_q_pairs": 2,
+              "num_value_pairs": 2,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "heldout_gt2": {
+              "num_q_pairs": 1,
+              "num_value_pairs": 0,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "unreachable": {
+              "num_q_pairs": 8,
+              "num_value_pairs": 13,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            }
+          },
+          "policy_regret": 0.0,
+          "q_calibration_error": 1.734723475976807e-18,
+          "q_overestimation_error": 2.7755575615628914e-17,
+          "q_underestimation_error": 0.0,
+          "risky_action_selection_rate": 1.0,
+          "value_mse": 3.851859888774472e-35,
+          "value_overestimation_error": 2.7755575615628914e-17,
+          "value_underestimation_error": 0.0
+        },
+        "trl_raw": {
+          "calibration_error": 0.05625,
+          "chose_exact_optimal_action": true,
+          "eval_goal": "goal",
+          "eval_greedy_action": "risky",
+          "eval_start": "start",
+          "eval_start_exact_q": {
+            "risky": 0.81,
+            "safe": 0.7290000000000001
+          },
+          "eval_start_learned_q": {
+            "risky": 0.9,
+            "safe": 0.7290000000000001
+          },
+          "exact_optimal_action": "risky",
+          "heldout_long_horizon_value_mse": 0.0,
+          "horizon_metrics": {
+            "h1_train_visible": {
+              "num_q_pairs": 5,
+              "num_value_pairs": 5,
+              "q_calibration_error": 0.18,
+              "q_overestimation_error": 0.81,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.13284,
+              "value_overestimation_error": 0.81,
+              "value_underestimation_error": 0.0
+            },
+            "h2_train_visible": {
+              "num_q_pairs": 2,
+              "num_value_pairs": 2,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "heldout_gt2": {
+              "num_q_pairs": 1,
+              "num_value_pairs": 0,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "unreachable": {
+              "num_q_pairs": 8,
+              "num_value_pairs": 13,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            }
+          },
+          "policy_regret": 0.0,
+          "q_calibration_error": 0.05625,
+          "q_overestimation_error": 0.81,
+          "q_underestimation_error": 0.0,
+          "risky_action_selection_rate": 1.0,
+          "value_mse": 0.03321,
+          "value_overestimation_error": 0.81,
+          "value_underestimation_error": 0.0
+        }
+      },
+      "scenario_role": "main_matched",
+      "successor_meta": {
+        "successor_calibration_only": {
+          "lambda_tr": 0.0,
+          "normalization": "per_state_action_max_self_normalization"
+        },
+        "successor_distance_trl_log": {
+          "anchor": "self_normalized_censored_successor_calibration",
+          "lambda_tr": 0.75,
+          "relaxation": "distance_space_geometric_interpolation"
+        }
+      }
+    },
+    "safe_optimal_lucky_only_stress": {
+      "coverage_diagnostics": {
+        "action_counts": {
+          "forward": 8,
+          "risky": 4,
+          "safe": 4
+        },
+        "num_episodes": 8,
+        "num_transitions": 16,
+        "outcome_counts": {
+          "risky_success": 4,
+          "safe_goal": 4,
+          "safe_step": 8
+        },
+        "risky_failure_count": 0,
+        "risky_success_count": 4,
+        "risky_success_rate_observed": 1.0,
+        "state_action_coverage_fraction": 1.0,
+        "state_action_pairs_seen": [
+          [
+            "safe1",
+            "forward"
+          ],
+          [
+            "safe2",
+            "forward"
+          ],
+          [
+            "start",
+            "risky"
+          ],
+          [
+            "start",
+            "safe"
+          ]
+        ],
+        "state_coverage_fraction": 0.8,
+        "states_seen": [
+          "goal",
+          "safe1",
+          "safe2",
+          "start"
+        ]
+      },
+      "label_or_pair_coverage": {
+        "censored_examples": [
+          {
+            "action": "safe",
+            "episode_id": "safe_optimal_lucky_only_stress_safe_0",
+            "goal": "goal",
+            "positive_horizon": 3,
+            "state": "start"
+          },
+          {
+            "action": "safe",
+            "episode_id": "safe_optimal_lucky_only_stress_safe_1",
+            "goal": "goal",
+            "positive_horizon": 3,
+            "state": "start"
+          },
+          {
+            "action": "safe",
+            "episode_id": "safe_optimal_lucky_only_stress_safe_2",
+            "goal": "goal",
+            "positive_horizon": 3,
+            "state": "start"
+          },
+          {
+            "action": "safe",
+            "episode_id": "safe_optimal_lucky_only_stress_safe_3",
+            "goal": "goal",
+            "positive_horizon": 3,
+            "state": "start"
+          }
+        ],
+        "counts_by_bin": {
+          "h1_train_visible": {
+            "included_positive": 16
+          },
+          "h2_train_visible": {
+            "included_positive": 8
+          },
+          "heldout_gt2": {
+            "censored_positive": 4
+          },
+          "unreached_zero": {
+            "included_zero": 52
+          }
+        },
+        "eval_q_pairs_by_horizon_bin": {
+          "h1_train_visible": 5,
+          "h2_train_visible": 2,
+          "heldout_gt2": 1,
+          "unreachable": 8
+        },
+        "eval_value_pairs_by_horizon_bin": {
+          "h1_train_visible": 4,
+          "h2_train_visible": 2,
+          "heldout_gt2": 1,
+          "unreachable": 13
+        },
+        "label_horizon_cutoff": 2,
+        "num_censored_positive_labels": 4,
+        "num_included_positive_labels": 24,
+        "num_included_zero_labels": 52,
+        "unique_state_action_goal_pairs_by_bin": {
+          "h1_train_visible": 4,
+          "h2_train_visible": 2,
+          "heldout_gt2": 1,
+          "unreached_zero": 13
+        }
+      },
+      "mdp": "safe_optimal_lucky_only",
+      "methods": {
+        "mc_plus_trl_log": {
+          "calibration_error": 0.084375,
+          "chose_exact_optimal_action": false,
+          "eval_goal": "goal",
+          "eval_greedy_action": "risky",
+          "eval_start": "start",
+          "eval_start_exact_q": {
+            "risky": 0.225,
+            "safe": 0.7290000000000001
+          },
+          "eval_start_learned_q": {
+            "risky": 0.9,
+            "safe": 0.7290000000000001
+          },
+          "exact_optimal_action": "safe",
+          "heldout_long_horizon_value_mse": 0.029240999999999975,
+          "horizon_metrics": {
+            "h1_train_visible": {
+              "num_q_pairs": 5,
+              "num_value_pairs": 4,
+              "q_calibration_error": 0.27,
+              "q_overestimation_error": 0.675,
+              "q_underestimation_error": 0.675,
+              "value_mse": 0.11390625000000001,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.675
+            },
+            "h2_train_visible": {
+              "num_q_pairs": 2,
+              "num_value_pairs": 2,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "heldout_gt2": {
+              "num_q_pairs": 1,
+              "num_value_pairs": 1,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.029240999999999975,
+              "value_overestimation_error": 0.17099999999999993,
+              "value_underestimation_error": 0.0
+            },
+            "unreachable": {
+              "num_q_pairs": 8,
+              "num_value_pairs": 13,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            }
+          },
+          "policy_regret": 0.5040000000000001,
+          "q_calibration_error": 0.084375,
+          "q_overestimation_error": 0.675,
+          "q_underestimation_error": 0.675,
+          "risky_action_selection_rate": 1.0,
+          "value_mse": 0.024243300000000002,
+          "value_overestimation_error": 0.17099999999999993,
+          "value_underestimation_error": 0.675
+        },
+        "mc_supervised": {
+          "calibration_error": 0.1299375,
+          "chose_exact_optimal_action": false,
+          "eval_goal": "goal",
+          "eval_greedy_action": "risky",
+          "eval_start": "start",
+          "eval_start_exact_q": {
+            "risky": 0.225,
+            "safe": 0.7290000000000001
+          },
+          "eval_start_learned_q": {
+            "risky": 0.9,
+            "safe": 0.0
+          },
+          "exact_optimal_action": "safe",
+          "heldout_long_horizon_value_mse": 0.029240999999999975,
+          "horizon_metrics": {
+            "h1_train_visible": {
+              "num_q_pairs": 5,
+              "num_value_pairs": 4,
+              "q_calibration_error": 0.27,
+              "q_overestimation_error": 0.675,
+              "q_underestimation_error": 0.675,
+              "value_mse": 0.11390625000000001,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.675
+            },
+            "h2_train_visible": {
+              "num_q_pairs": 2,
+              "num_value_pairs": 2,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "heldout_gt2": {
+              "num_q_pairs": 1,
+              "num_value_pairs": 1,
+              "q_calibration_error": 0.7290000000000001,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.7290000000000001,
+              "value_mse": 0.029240999999999975,
+              "value_overestimation_error": 0.17099999999999993,
+              "value_underestimation_error": 0.0
+            },
+            "unreachable": {
+              "num_q_pairs": 8,
+              "num_value_pairs": 13,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            }
+          },
+          "policy_regret": 0.5040000000000001,
+          "q_calibration_error": 0.1299375,
+          "q_overestimation_error": 0.675,
+          "q_underestimation_error": 0.7290000000000001,
+          "risky_action_selection_rate": 1.0,
+          "value_mse": 0.024243300000000002,
+          "value_overestimation_error": 0.17099999999999993,
+          "value_underestimation_error": 0.675
+        },
+        "successor_calibration_only": {
+          "calibration_error": 0.1299375,
+          "chose_exact_optimal_action": false,
+          "eval_goal": "goal",
+          "eval_greedy_action": "risky",
+          "eval_start": "start",
+          "eval_start_exact_q": {
+            "risky": 0.225,
+            "safe": 0.7290000000000001
+          },
+          "eval_start_learned_q": {
+            "risky": 0.9,
+            "safe": 0.0
+          },
+          "exact_optimal_action": "safe",
+          "heldout_long_horizon_value_mse": 0.029240999999999975,
+          "horizon_metrics": {
+            "h1_train_visible": {
+              "num_q_pairs": 5,
+              "num_value_pairs": 4,
+              "q_calibration_error": 0.27,
+              "q_overestimation_error": 0.675,
+              "q_underestimation_error": 0.675,
+              "value_mse": 0.11390625000000001,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.675
+            },
+            "h2_train_visible": {
+              "num_q_pairs": 2,
+              "num_value_pairs": 2,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "heldout_gt2": {
+              "num_q_pairs": 1,
+              "num_value_pairs": 1,
+              "q_calibration_error": 0.7290000000000001,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.7290000000000001,
+              "value_mse": 0.029240999999999975,
+              "value_overestimation_error": 0.17099999999999993,
+              "value_underestimation_error": 0.0
+            },
+            "unreachable": {
+              "num_q_pairs": 8,
+              "num_value_pairs": 13,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            }
+          },
+          "policy_regret": 0.5040000000000001,
+          "q_calibration_error": 0.1299375,
+          "q_overestimation_error": 0.675,
+          "q_underestimation_error": 0.7290000000000001,
+          "risky_action_selection_rate": 1.0,
+          "value_mse": 0.024243300000000002,
+          "value_overestimation_error": 0.17099999999999993,
+          "value_underestimation_error": 0.675
+        },
+        "successor_distance_trl_log": {
+          "calibration_error": 0.084375,
+          "chose_exact_optimal_action": false,
+          "eval_goal": "goal",
+          "eval_greedy_action": "risky",
+          "eval_start": "start",
+          "eval_start_exact_q": {
+            "risky": 0.225,
+            "safe": 0.7290000000000001
+          },
+          "eval_start_learned_q": {
+            "risky": 0.9,
+            "safe": 0.7290000000000001
+          },
+          "exact_optimal_action": "safe",
+          "heldout_long_horizon_value_mse": 0.029240999999999975,
+          "horizon_metrics": {
+            "h1_train_visible": {
+              "num_q_pairs": 5,
+              "num_value_pairs": 4,
+              "q_calibration_error": 0.27,
+              "q_overestimation_error": 0.675,
+              "q_underestimation_error": 0.675,
+              "value_mse": 0.11390625000000001,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.675
+            },
+            "h2_train_visible": {
+              "num_q_pairs": 2,
+              "num_value_pairs": 2,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "heldout_gt2": {
+              "num_q_pairs": 1,
+              "num_value_pairs": 1,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.029240999999999975,
+              "value_overestimation_error": 0.17099999999999993,
+              "value_underestimation_error": 0.0
+            },
+            "unreachable": {
+              "num_q_pairs": 8,
+              "num_value_pairs": 13,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            }
+          },
+          "policy_regret": 0.5040000000000001,
+          "q_calibration_error": 0.084375,
+          "q_overestimation_error": 0.675,
+          "q_underestimation_error": 0.675,
+          "risky_action_selection_rate": 1.0,
+          "value_mse": 0.024243300000000002,
+          "value_overestimation_error": 0.17099999999999993,
+          "value_underestimation_error": 0.675
+        },
+        "trl_log": {
+          "calibration_error": 0.084375,
+          "chose_exact_optimal_action": false,
+          "eval_goal": "goal",
+          "eval_greedy_action": "risky",
+          "eval_start": "start",
+          "eval_start_exact_q": {
+            "risky": 0.225,
+            "safe": 0.7290000000000001
+          },
+          "eval_start_learned_q": {
+            "risky": 0.9,
+            "safe": 0.7290000000000001
+          },
+          "exact_optimal_action": "safe",
+          "heldout_long_horizon_value_mse": 0.029240999999999975,
+          "horizon_metrics": {
+            "h1_train_visible": {
+              "num_q_pairs": 5,
+              "num_value_pairs": 4,
+              "q_calibration_error": 0.27,
+              "q_overestimation_error": 0.675,
+              "q_underestimation_error": 0.675,
+              "value_mse": 0.11390625000000001,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.675
+            },
+            "h2_train_visible": {
+              "num_q_pairs": 2,
+              "num_value_pairs": 2,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "heldout_gt2": {
+              "num_q_pairs": 1,
+              "num_value_pairs": 1,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.029240999999999975,
+              "value_overestimation_error": 0.17099999999999993,
+              "value_underestimation_error": 0.0
+            },
+            "unreachable": {
+              "num_q_pairs": 8,
+              "num_value_pairs": 13,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            }
+          },
+          "policy_regret": 0.5040000000000001,
+          "q_calibration_error": 0.084375,
+          "q_overestimation_error": 0.675,
+          "q_underestimation_error": 0.675,
+          "risky_action_selection_rate": 1.0,
+          "value_mse": 0.024243300000000002,
+          "value_overestimation_error": 0.17099999999999993,
+          "value_underestimation_error": 0.675
+        },
+        "trl_raw": {
+          "calibration_error": 0.084375,
+          "chose_exact_optimal_action": false,
+          "eval_goal": "goal",
+          "eval_greedy_action": "risky",
+          "eval_start": "start",
+          "eval_start_exact_q": {
+            "risky": 0.225,
+            "safe": 0.7290000000000001
+          },
+          "eval_start_learned_q": {
+            "risky": 0.9,
+            "safe": 0.7290000000000001
+          },
+          "exact_optimal_action": "safe",
+          "heldout_long_horizon_value_mse": 0.029240999999999975,
+          "horizon_metrics": {
+            "h1_train_visible": {
+              "num_q_pairs": 5,
+              "num_value_pairs": 4,
+              "q_calibration_error": 0.27,
+              "q_overestimation_error": 0.675,
+              "q_underestimation_error": 0.675,
+              "value_mse": 0.11390625000000001,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.675
+            },
+            "h2_train_visible": {
+              "num_q_pairs": 2,
+              "num_value_pairs": 2,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "heldout_gt2": {
+              "num_q_pairs": 1,
+              "num_value_pairs": 1,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.029240999999999975,
+              "value_overestimation_error": 0.17099999999999993,
+              "value_underestimation_error": 0.0
+            },
+            "unreachable": {
+              "num_q_pairs": 8,
+              "num_value_pairs": 13,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            }
+          },
+          "policy_regret": 0.5040000000000001,
+          "q_calibration_error": 0.084375,
+          "q_overestimation_error": 0.675,
+          "q_underestimation_error": 0.675,
+          "risky_action_selection_rate": 1.0,
+          "value_mse": 0.024243300000000002,
+          "value_overestimation_error": 0.17099999999999993,
+          "value_underestimation_error": 0.675
+        }
+      },
+      "scenario_role": "stress_biased",
+      "successor_meta": {
+        "successor_calibration_only": {
+          "lambda_tr": 0.0,
+          "normalization": "per_state_action_max_self_normalization"
+        },
+        "successor_distance_trl_log": {
+          "anchor": "self_normalized_censored_successor_calibration",
+          "lambda_tr": 0.75,
+          "relaxation": "distance_space_geometric_interpolation"
+        }
+      }
+    },
+    "safe_optimal_matched": {
+      "coverage_diagnostics": {
+        "action_counts": {
+          "forward": 8,
+          "risky": 8,
+          "safe": 4
+        },
+        "num_episodes": 12,
+        "num_transitions": 20,
+        "outcome_counts": {
+          "risky_failure": 6,
+          "risky_success": 2,
+          "safe_goal": 4,
+          "safe_step": 8
+        },
+        "risky_failure_count": 6,
+        "risky_success_count": 2,
+        "risky_success_rate_observed": 0.25,
+        "state_action_coverage_fraction": 1.0,
+        "state_action_pairs_seen": [
+          [
+            "safe1",
+            "forward"
+          ],
+          [
+            "safe2",
+            "forward"
+          ],
+          [
+            "start",
+            "risky"
+          ],
+          [
+            "start",
+            "safe"
+          ]
+        ],
+        "state_coverage_fraction": 1.0,
+        "states_seen": [
+          "goal",
+          "safe1",
+          "safe2",
+          "start",
+          "trap"
+        ]
+      },
+      "label_or_pair_coverage": {
+        "censored_examples": [
+          {
+            "action": "safe",
+            "episode_id": "safe_optimal_matched_safe_0",
+            "goal": "goal",
+            "positive_horizon": 3,
+            "state": "start"
+          },
+          {
+            "action": "safe",
+            "episode_id": "safe_optimal_matched_safe_1",
+            "goal": "goal",
+            "positive_horizon": 3,
+            "state": "start"
+          },
+          {
+            "action": "safe",
+            "episode_id": "safe_optimal_matched_safe_2",
+            "goal": "goal",
+            "positive_horizon": 3,
+            "state": "start"
+          },
+          {
+            "action": "safe",
+            "episode_id": "safe_optimal_matched_safe_3",
+            "goal": "goal",
+            "positive_horizon": 3,
+            "state": "start"
+          }
+        ],
+        "counts_by_bin": {
+          "h1_train_visible": {
+            "included_positive": 20
+          },
+          "h2_train_visible": {
+            "included_positive": 8
+          },
+          "heldout_gt2": {
+            "censored_positive": 4
+          },
+          "unreached_zero": {
+            "included_zero": 68
+          }
+        },
+        "eval_q_pairs_by_horizon_bin": {
+          "h1_train_visible": 5,
+          "h2_train_visible": 2,
+          "heldout_gt2": 1,
+          "unreachable": 8
+        },
+        "eval_value_pairs_by_horizon_bin": {
+          "h1_train_visible": 4,
+          "h2_train_visible": 2,
+          "heldout_gt2": 1,
+          "unreachable": 13
+        },
+        "label_horizon_cutoff": 2,
+        "num_censored_positive_labels": 4,
+        "num_included_positive_labels": 28,
+        "num_included_zero_labels": 68,
+        "unique_state_action_goal_pairs_by_bin": {
+          "h1_train_visible": 5,
+          "h2_train_visible": 2,
+          "heldout_gt2": 1,
+          "unreached_zero": 14
+        }
+      },
+      "mdp": "safe_optimal_matched",
+      "methods": {
+        "mc_plus_trl_log": {
+          "calibration_error": 0.0,
+          "chose_exact_optimal_action": true,
+          "eval_goal": "goal",
+          "eval_greedy_action": "safe",
+          "eval_start": "start",
+          "eval_start_exact_q": {
+            "risky": 0.225,
+            "safe": 0.7290000000000001
+          },
+          "eval_start_learned_q": {
+            "risky": 0.225,
+            "safe": 0.7290000000000001
+          },
+          "exact_optimal_action": "safe",
+          "heldout_long_horizon_value_mse": 0.0,
+          "horizon_metrics": {
+            "h1_train_visible": {
+              "num_q_pairs": 5,
+              "num_value_pairs": 4,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "h2_train_visible": {
+              "num_q_pairs": 2,
+              "num_value_pairs": 2,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "heldout_gt2": {
+              "num_q_pairs": 1,
+              "num_value_pairs": 1,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "unreachable": {
+              "num_q_pairs": 8,
+              "num_value_pairs": 13,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            }
+          },
+          "policy_regret": 0.0,
+          "q_calibration_error": 0.0,
+          "q_overestimation_error": 0.0,
+          "q_underestimation_error": 0.0,
+          "risky_action_selection_rate": 0.0,
+          "value_mse": 0.0,
+          "value_overestimation_error": 0.0,
+          "value_underestimation_error": 0.0
+        },
+        "mc_supervised": {
+          "calibration_error": 0.045562500000000006,
+          "chose_exact_optimal_action": false,
+          "eval_goal": "goal",
+          "eval_greedy_action": "risky",
+          "eval_start": "start",
+          "eval_start_exact_q": {
+            "risky": 0.225,
+            "safe": 0.7290000000000001
+          },
+          "eval_start_learned_q": {
+            "risky": 0.225,
+            "safe": 0.0
+          },
+          "exact_optimal_action": "safe",
+          "heldout_long_horizon_value_mse": 0.25401600000000013,
+          "horizon_metrics": {
+            "h1_train_visible": {
+              "num_q_pairs": 5,
+              "num_value_pairs": 4,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "h2_train_visible": {
+              "num_q_pairs": 2,
+              "num_value_pairs": 2,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "heldout_gt2": {
+              "num_q_pairs": 1,
+              "num_value_pairs": 1,
+              "q_calibration_error": 0.7290000000000001,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.7290000000000001,
+              "value_mse": 0.25401600000000013,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.5040000000000001
+            },
+            "unreachable": {
+              "num_q_pairs": 8,
+              "num_value_pairs": 13,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            }
+          },
+          "policy_regret": 0.5040000000000001,
+          "q_calibration_error": 0.045562500000000006,
+          "q_overestimation_error": 0.0,
+          "q_underestimation_error": 0.7290000000000001,
+          "risky_action_selection_rate": 1.0,
+          "value_mse": 0.012700800000000007,
+          "value_overestimation_error": 0.0,
+          "value_underestimation_error": 0.5040000000000001
+        },
+        "successor_calibration_only": {
+          "calibration_error": 0.045562500000000006,
+          "chose_exact_optimal_action": false,
+          "eval_goal": "goal",
+          "eval_greedy_action": "risky",
+          "eval_start": "start",
+          "eval_start_exact_q": {
+            "risky": 0.225,
+            "safe": 0.7290000000000001
+          },
+          "eval_start_learned_q": {
+            "risky": 0.225,
+            "safe": 0.0
+          },
+          "exact_optimal_action": "safe",
+          "heldout_long_horizon_value_mse": 0.25401600000000013,
+          "horizon_metrics": {
+            "h1_train_visible": {
+              "num_q_pairs": 5,
+              "num_value_pairs": 4,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "h2_train_visible": {
+              "num_q_pairs": 2,
+              "num_value_pairs": 2,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "heldout_gt2": {
+              "num_q_pairs": 1,
+              "num_value_pairs": 1,
+              "q_calibration_error": 0.7290000000000001,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.7290000000000001,
+              "value_mse": 0.25401600000000013,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.5040000000000001
+            },
+            "unreachable": {
+              "num_q_pairs": 8,
+              "num_value_pairs": 13,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            }
+          },
+          "policy_regret": 0.5040000000000001,
+          "q_calibration_error": 0.045562500000000006,
+          "q_overestimation_error": 0.0,
+          "q_underestimation_error": 0.7290000000000001,
+          "risky_action_selection_rate": 1.0,
+          "value_mse": 0.012700800000000007,
+          "value_overestimation_error": 0.0,
+          "value_underestimation_error": 0.5040000000000001
+        },
+        "successor_distance_trl_log": {
+          "calibration_error": 0.0,
+          "chose_exact_optimal_action": true,
+          "eval_goal": "goal",
+          "eval_greedy_action": "safe",
+          "eval_start": "start",
+          "eval_start_exact_q": {
+            "risky": 0.225,
+            "safe": 0.7290000000000001
+          },
+          "eval_start_learned_q": {
+            "risky": 0.225,
+            "safe": 0.7290000000000001
+          },
+          "exact_optimal_action": "safe",
+          "heldout_long_horizon_value_mse": 0.0,
+          "horizon_metrics": {
+            "h1_train_visible": {
+              "num_q_pairs": 5,
+              "num_value_pairs": 4,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "h2_train_visible": {
+              "num_q_pairs": 2,
+              "num_value_pairs": 2,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "heldout_gt2": {
+              "num_q_pairs": 1,
+              "num_value_pairs": 1,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "unreachable": {
+              "num_q_pairs": 8,
+              "num_value_pairs": 13,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            }
+          },
+          "policy_regret": 0.0,
+          "q_calibration_error": 0.0,
+          "q_overestimation_error": 0.0,
+          "q_underestimation_error": 0.0,
+          "risky_action_selection_rate": 0.0,
+          "value_mse": 0.0,
+          "value_overestimation_error": 0.0,
+          "value_underestimation_error": 0.0
+        },
+        "trl_log": {
+          "calibration_error": 0.0,
+          "chose_exact_optimal_action": true,
+          "eval_goal": "goal",
+          "eval_greedy_action": "safe",
+          "eval_start": "start",
+          "eval_start_exact_q": {
+            "risky": 0.225,
+            "safe": 0.7290000000000001
+          },
+          "eval_start_learned_q": {
+            "risky": 0.225,
+            "safe": 0.7290000000000001
+          },
+          "exact_optimal_action": "safe",
+          "heldout_long_horizon_value_mse": 0.0,
+          "horizon_metrics": {
+            "h1_train_visible": {
+              "num_q_pairs": 5,
+              "num_value_pairs": 4,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "h2_train_visible": {
+              "num_q_pairs": 2,
+              "num_value_pairs": 2,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "heldout_gt2": {
+              "num_q_pairs": 1,
+              "num_value_pairs": 1,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "unreachable": {
+              "num_q_pairs": 8,
+              "num_value_pairs": 13,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            }
+          },
+          "policy_regret": 0.0,
+          "q_calibration_error": 0.0,
+          "q_overestimation_error": 0.0,
+          "q_underestimation_error": 0.0,
+          "risky_action_selection_rate": 0.0,
+          "value_mse": 0.0,
+          "value_overestimation_error": 0.0,
+          "value_underestimation_error": 0.0
+        },
+        "trl_raw": {
+          "calibration_error": 0.05625,
+          "chose_exact_optimal_action": false,
+          "eval_goal": "goal",
+          "eval_greedy_action": "risky",
+          "eval_start": "start",
+          "eval_start_exact_q": {
+            "risky": 0.225,
+            "safe": 0.7290000000000001
+          },
+          "eval_start_learned_q": {
+            "risky": 0.9,
+            "safe": 0.7290000000000001
+          },
+          "exact_optimal_action": "safe",
+          "heldout_long_horizon_value_mse": 0.029240999999999975,
+          "horizon_metrics": {
+            "h1_train_visible": {
+              "num_q_pairs": 5,
+              "num_value_pairs": 4,
+              "q_calibration_error": 0.18,
+              "q_overestimation_error": 0.675,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.012656249999999997,
+              "value_overestimation_error": 0.22499999999999998,
+              "value_underestimation_error": 0.0
+            },
+            "h2_train_visible": {
+              "num_q_pairs": 2,
+              "num_value_pairs": 2,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            },
+            "heldout_gt2": {
+              "num_q_pairs": 1,
+              "num_value_pairs": 1,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.029240999999999975,
+              "value_overestimation_error": 0.17099999999999993,
+              "value_underestimation_error": 0.0
+            },
+            "unreachable": {
+              "num_q_pairs": 8,
+              "num_value_pairs": 13,
+              "q_calibration_error": 0.0,
+              "q_overestimation_error": 0.0,
+              "q_underestimation_error": 0.0,
+              "value_mse": 0.0,
+              "value_overestimation_error": 0.0,
+              "value_underestimation_error": 0.0
+            }
+          },
+          "policy_regret": 0.5040000000000001,
+          "q_calibration_error": 0.05625,
+          "q_overestimation_error": 0.675,
+          "q_underestimation_error": 0.0,
+          "risky_action_selection_rate": 1.0,
+          "value_mse": 0.003993299999999998,
+          "value_overestimation_error": 0.22499999999999998,
+          "value_underestimation_error": 0.0
+        }
+      },
+      "scenario_role": "main_matched",
+      "successor_meta": {
+        "successor_calibration_only": {
+          "lambda_tr": 0.0,
+          "normalization": "per_state_action_max_self_normalization"
+        },
+        "successor_distance_trl_log": {
+          "anchor": "self_normalized_censored_successor_calibration",
+          "lambda_tr": 0.75,
+          "relaxation": "distance_space_geometric_interpolation"
+        }
+      }
+    }
+  },
+  "success_checks": {
+    "chain_raw_exact": true,
+    "chain_trl_log_exact": true,
+    "success_criteria_met": true,
+    "successor_distance_improves_main_heldout_mse_vs_calibration_only": true,
+    "successor_distance_no_matched_policy_regret_increase_vs_calibration_only": true,
+    "successor_distance_no_matched_q_overestimation_increase_vs_calibration_only": true,
+    "successor_distance_selects_risky_when_risk_optimal": true,
+    "successor_distance_selects_safe_when_safe_optimal_matched": true
+  },
+  "successor_lambda_tr": 0.75,
+  "update_steps": 32
+}
