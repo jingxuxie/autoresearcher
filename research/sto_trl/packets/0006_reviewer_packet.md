@@ -1,0 +1,4495 @@
+# Reviewer Context: sto_trl
+
+## Latest plan
+
+# Experiment 0006
+
+## Objective
+
+Test a minimal uncertainty-aware or one-sided conservative log-TRL backup on the tabular biased-coverage failure while preserving matched safe-optimal, matched risk-optimal, and deterministic long-horizon behavior.
+
+## Hypothesis
+
+A small uncertainty penalty based only on offline branch count or outcome variance can reduce lucky-only risky overestimation versus trl_log without breaking deterministic horizon recovery or incorrectly avoiding the risky action when it is truly optimal under matched coverage.
+
+## Success criteria
+
+- Create a self-contained artifact under research/sto_trl/artifacts/0006/ without editing prior results, schemas, AGENTS.md, scripts/autoresearcher.py, or environment files.
+- Implement at least one predeclared uncertainty-aware log-TRL variant, such as empirical_log_backup_minus_count_penalty or one_sided_conservative_log_trl, with a tiny fixed penalty grid including zero.
+- Evaluate exact DP on chain_len9_holdout, safe_optimal_matched, risk_optimal_matched, safe_optimal_lucky_only_stress, and one risk_optimal_unlucky_or_no_success stress case.
+- Compare against mc_supervised, trl_raw, trl_log, mc_plus_trl_log, and the best 0005 trl_log-equivalent successor-distance baseline on identical constructed datasets.
+- Report per-scenario and per-penalty raw metrics: held-out long-horizon value MSE, Q calibration error, overestimation, underestimation, policy regret, risky action selection rate, branch-count or variance diagnostics, and coverage diagnostics.
+- Count positive evidence only if a nonzero uncertainty penalty reduces safe_optimal_lucky_only risky overestimation or policy regret versus trl_log while still selecting risky with zero policy regret on risk_optimal_matched and preserving chain held-out MSE near trl_log.
+- Produce valid research/sto_trl/results/0006_result.json and research/sto_trl/results/0006_summary.md with exact commands run.
+
+## Failure criteria
+
+- The uncertainty penalty uses exact DP, true transition probabilities, or hidden knowledge of missing stochastic outcomes rather than offline coverage statistics.
+- The experiment omits the matched risk-optimal anti-conservatism check.
+- The result reports only the best penalty and hides the full predeclared penalty grid.
+- The method is claimed successful despite failing deterministic chain recovery or selecting safe in the matched risk-optimal scenario.
+- The run expands to neural networks, OGBench, large sweeps, downloads, or exceeds 30 minutes.
+
+## Estimated runtime
+
+<= 20 minutes
+
+## Tasks for Codex
+
+- Create research/sto_trl/artifacts/0006/ and adapt the 0005 audit harness into a conservative or uncertainty-aware log-TRL script.
+- Define the uncertainty diagnostic and penalty formula explicitly in the artifact source, using only offline trajectory counts or observed outcome variance.
+- Run a tiny predeclared penalty grid, for example alpha in [0.0, 0.05, 0.1, 0.2], on the fixed tabular scenarios.
+- Save raw_metrics.json, metrics.csv, penalty_sweep.json, uncertainty_diagnostics.json, offline_datasets.json, transition_tables.json, and value_tables.json under research/sto_trl/artifacts/0006/.
+- Write research/sto_trl/results/0006_result.json and research/sto_trl/results/0006_summary.md, then validate the result JSON against schemas/result.schema.json with artifact checks.
+
+## Required outputs
+
+- `research/sto_trl/results/0006_result.json`
+- `research/sto_trl/results/0006_summary.md`
+- `research/sto_trl/artifacts/0006/`
+
+
+## Latest plan JSON
+
+```json
+{
+  "estimated_runtime_minutes": 20,
+  "experiment_id": "0006",
+  "failure_criteria": [
+    "The uncertainty penalty uses exact DP, true transition probabilities, or hidden knowledge of missing stochastic outcomes rather than offline coverage statistics.",
+    "The experiment omits the matched risk-optimal anti-conservatism check.",
+    "The result reports only the best penalty and hides the full predeclared penalty grid.",
+    "The method is claimed successful despite failing deterministic chain recovery or selecting safe in the matched risk-optimal scenario.",
+    "The run expands to neural networks, OGBench, large sweeps, downloads, or exceeds 30 minutes."
+  ],
+  "hypothesis": "A small uncertainty penalty based only on offline branch count or outcome variance can reduce lucky-only risky overestimation versus trl_log without breaking deterministic horizon recovery or incorrectly avoiding the risky action when it is truly optimal under matched coverage.",
+  "objective": "Test a minimal uncertainty-aware or one-sided conservative log-TRL backup on the tabular biased-coverage failure while preserving matched safe-optimal, matched risk-optimal, and deterministic long-horizon behavior.",
+  "required_outputs": [
+    "research/sto_trl/results/0006_result.json",
+    "research/sto_trl/results/0006_summary.md",
+    "research/sto_trl/artifacts/0006/"
+  ],
+  "success_criteria": [
+    "Create a self-contained artifact under research/sto_trl/artifacts/0006/ without editing prior results, schemas, AGENTS.md, scripts/autoresearcher.py, or environment files.",
+    "Implement at least one predeclared uncertainty-aware log-TRL variant, such as empirical_log_backup_minus_count_penalty or one_sided_conservative_log_trl, with a tiny fixed penalty grid including zero.",
+    "Evaluate exact DP on chain_len9_holdout, safe_optimal_matched, risk_optimal_matched, safe_optimal_lucky_only_stress, and one risk_optimal_unlucky_or_no_success stress case.",
+    "Compare against mc_supervised, trl_raw, trl_log, mc_plus_trl_log, and the best 0005 trl_log-equivalent successor-distance baseline on identical constructed datasets.",
+    "Report per-scenario and per-penalty raw metrics: held-out long-horizon value MSE, Q calibration error, overestimation, underestimation, policy regret, risky action selection rate, branch-count or variance diagnostics, and coverage diagnostics.",
+    "Count positive evidence only if a nonzero uncertainty penalty reduces safe_optimal_lucky_only risky overestimation or policy regret versus trl_log while still selecting risky with zero policy regret on risk_optimal_matched and preserving chain held-out MSE near trl_log.",
+    "Produce valid research/sto_trl/results/0006_result.json and research/sto_trl/results/0006_summary.md with exact commands run."
+  ],
+  "tasks_for_codex": [
+    "Create research/sto_trl/artifacts/0006/ and adapt the 0005 audit harness into a conservative or uncertainty-aware log-TRL script.",
+    "Define the uncertainty diagnostic and penalty formula explicitly in the artifact source, using only offline trajectory counts or observed outcome variance.",
+    "Run a tiny predeclared penalty grid, for example alpha in [0.0, 0.05, 0.1, 0.2], on the fixed tabular scenarios.",
+    "Save raw_metrics.json, metrics.csv, penalty_sweep.json, uncertainty_diagnostics.json, offline_datasets.json, transition_tables.json, and value_tables.json under research/sto_trl/artifacts/0006/.",
+    "Write research/sto_trl/results/0006_result.json and research/sto_trl/results/0006_summary.md, then validate the result JSON against schemas/result.schema.json with artifact checks."
+  ]
+}
+```
+
+
+## Latest result JSON
+
+```json
+{
+  "artifacts": [
+    "research/sto_trl/artifacts/0006/run_uncertainty_conservative_log_trl.py",
+    "research/sto_trl/artifacts/0006/raw_metrics.json",
+    "research/sto_trl/artifacts/0006/metrics.csv",
+    "research/sto_trl/artifacts/0006/penalty_sweep.json",
+    "research/sto_trl/artifacts/0006/uncertainty_diagnostics.json",
+    "research/sto_trl/artifacts/0006/offline_datasets.json",
+    "research/sto_trl/artifacts/0006/transition_tables.json",
+    "research/sto_trl/artifacts/0006/value_tables.json"
+  ],
+  "baseline_metrics": {
+    "chain_len9_holdout": {
+      "calibration_error": 4.336808689942018e-18,
+      "chose_exact_optimal_action": true,
+      "eval_goal": "c8",
+      "eval_greedy_action": "right",
+      "eval_start": "c0",
+      "eval_start_exact_q": {
+        "right": 0.43046721000000016
+      },
+      "eval_start_learned_q": {
+        "right": 0.43046721000000016
+      },
+      "exact_optimal_action": "right",
+      "heldout_long_horizon_value_mse": 2.9347503914472164e-34,
+      "horizon_metrics": {
+        "h1_train_visible": {
+          "num_q_pairs": 16,
+          "num_value_pairs": 16,
+          "q_calibration_error": 0.0,
+          "q_overestimation_error": 0.0,
+          "q_underestimation_error": 0.0,
+          "value_mse": 0.0,
+          "value_overestimation_error": 0.0,
+          "value_underestimation_error": 0.0
+        },
+        "h2_train_visible": {
+          "num_q_pairs": 14,
+          "num_value_pairs": 14,
+          "q_calibration_error": 0.0,
+          "q_overestimation_error": 0.0,
+          "q_underestimation_error": 0.0,
+          "value_mse": 0.0,
+          "value_overestimation_error": 0.0,
+          "value_underestimation_error": 0.0
+        },
+        "heldout_gt2": {
+          "num_q_pairs": 98,
+          "num_value_pairs": 42,
+          "q_calibration_error": 5.664403186863044e-18,
+          "q_overestimation_error": 5.551115123125783e-17,
+          "q_underestimation_error": 0.0,
+          "value_mse": 2.9347503914472164e-34,
+          "value_overestimation_error": 5.551115123125783e-17,
+          "value_underestimation_error": 0.0
+        }
+      },
+      "policy_regret": 0.0,
+      "q_calibration_error": 4.336808689942018e-18,
+      "q_overestimation_error": 5.551115123125783e-17,
+      "q_underestimation_error": 0.0,
+      "risky_action_selection_rate": 0.0,
+      "value_mse": 1.7119377283442096e-34,
+      "value_overestimation_error": 5.551115123125783e-17,
+      "value_underestimation_error": 0.0
+    },
+    "method": "trl_log",
+    "risk_optimal_matched": {
+      "calibration_error": 1.734723475976807e-18,
+      "chose_exact_optimal_action": true,
+      "eval_goal": "goal",
+      "eval_greedy_action": "risky",
+      "eval_start": "start",
+      "eval_start_exact_q": {
+        "risky": 0.81,
+        "safe": 0.7290000000000001
+      },
+      "eval_start_learned_q": {
+        "risky": 0.81,
+        "safe": 0.7290000000000001
+      },
+      "exact_optimal_action": "risky",
+      "heldout_long_horizon_value_mse": 0.0,
+      "horizon_metrics": {
+        "h1_train_visible": {
+          "num_q_pairs": 5,
+          "num_value_pairs": 5,
+          "q_calibration_error": 5.551115123125783e-18,
+          "q_overestimation_error": 2.7755575615628914e-17,
+          "q_underestimation_error": 0.0,
+          "value_mse": 1.5407439555097888e-34,
+          "value_overestimation_error": 2.7755575615628914e-17,
+          "value_underestimation_error": 0.0
+        },
+        "h2_train_visible": {
+          "num_q_pairs": 2,
+          "num_value_pairs": 2,
+          "q_calibration_error": 0.0,
+          "q_overestimation_error": 0.0,
+          "q_underestimation_error": 0.0,
+          "value_mse": 0.0,
+          "value_overestimation_error": 0.0,
+          "value_underestimation_error": 0.0
+        },
+        "heldout_gt2": {
+          "num_q_pairs": 1,
+          "num_value_pairs": 0,
+          "q_calibration_error": 0.0,
+          "q_overestimation_error": 0.0,
+          "q_underestimation_error": 0.0,
+          "value_mse": 0.0,
+          "value_overestimation_error": 0.0,
+          "value_underestimation_error": 0.0
+        },
+        "unreachable": {
+          "num_q_pairs": 8,
+          "num_value_pairs": 13,
+          "q_calibration_error": 0.0,
+          "q_overestimation_error": 0.0,
+          "q_underestimation_error": 0.0,
+          "value_mse": 0.0,
+          "value_overestimation_error": 0.0,
+          "value_underestimation_error": 0.0
+        }
+      },
+      "policy_regret": 0.0,
+      "q_calibration_error": 1.734723475976807e-18,
+      "q_overestimation_error": 2.7755575615628914e-17,
+      "q_underestimation_error": 0.0,
+      "risky_action_selection_rate": 1.0,
+      "value_mse": 3.851859888774472e-35,
+      "value_overestimation_error": 2.7755575615628914e-17,
+      "value_underestimation_error": 0.0
+    },
+    "safe_optimal_lucky_only_stress": {
+      "calibration_error": 0.084375,
+      "chose_exact_optimal_action": false,
+      "eval_goal": "goal",
+      "eval_greedy_action": "risky",
+      "eval_start": "start",
+      "eval_start_exact_q": {
+        "risky": 0.225,
+        "safe": 0.7290000000000001
+      },
+      "eval_start_learned_q": {
+        "risky": 0.9,
+        "safe": 0.7290000000000001
+      },
+      "exact_optimal_action": "safe",
+      "heldout_long_horizon_value_mse": 0.029240999999999975,
+      "horizon_metrics": {
+        "h1_train_visible": {
+          "num_q_pairs": 5,
+          "num_value_pairs": 4,
+          "q_calibration_error": 0.27,
+          "q_overestimation_error": 0.675,
+          "q_underestimation_error": 0.675,
+          "value_mse": 0.11390625000000001,
+          "value_overestimation_error": 0.0,
+          "value_underestimation_error": 0.675
+        },
+        "h2_train_visible": {
+          "num_q_pairs": 2,
+          "num_value_pairs": 2,
+          "q_calibration_error": 0.0,
+          "q_overestimation_error": 0.0,
+          "q_underestimation_error": 0.0,
+          "value_mse": 0.0,
+          "value_overestimation_error": 0.0,
+          "value_underestimation_error": 0.0
+        },
+        "heldout_gt2": {
+          "num_q_pairs": 1,
+          "num_value_pairs": 1,
+          "q_calibration_error": 0.0,
+          "q_overestimation_error": 0.0,
+          "q_underestimation_error": 0.0,
+          "value_mse": 0.029240999999999975,
+          "value_overestimation_error": 0.17099999999999993,
+          "value_underestimation_error": 0.0
+        },
+        "unreachable": {
+          "num_q_pairs": 8,
+          "num_value_pairs": 13,
+          "q_calibration_error": 0.0,
+          "q_overestimation_error": 0.0,
+          "q_underestimation_error": 0.0,
+          "value_mse": 0.0,
+          "value_overestimation_error": 0.0,
+          "value_underestimation_error": 0.0
+        }
+      },
+      "policy_regret": 0.5040000000000001,
+      "q_calibration_error": 0.084375,
+      "q_overestimation_error": 0.675,
+      "q_underestimation_error": 0.675,
+      "risky_action_selection_rate": 1.0,
+      "value_mse": 0.024243300000000002,
+      "value_overestimation_error": 0.17099999999999993,
+      "value_underestimation_error": 0.675
+    }
+  },
+  "claim_tested": "A one-sided count-based conservative log-TRL backup can reduce lucky-only risky overestimation without breaking deterministic recovery or matched risk-optimal action selection.",
+  "commands_run": [
+    "mkdir -p research/sto_trl/artifacts/0006 research/sto_trl/results && cp research/sto_trl/artifacts/0005/run_lambda_equivalence_audit.py research/sto_trl/artifacts/0006/run_uncertainty_conservative_log_trl.py",
+    "conda run -n autoresearcher_sto_trl python research/sto_trl/artifacts/0006/run_uncertainty_conservative_log_trl.py",
+    "conda run -n autoresearcher_sto_trl python scripts/validate_artifacts.py --repo-root . --json research/sto_trl/results/0006_result.json --schema schemas/result.schema.json --check-result-artifacts"
+  ],
+  "experiment_id": "0006",
+  "interpretation": "one_sided_conservative_log_trl_alpha_0_20 reduced the lucky-only safe-optimal failure versus trl_log while preserving the chain and selecting risky with zero regret in the matched risk-optimal scenario.",
+  "known_failures": [],
+  "metrics": {
+    "aggregate": {
+      "alpha_summaries": {
+        "one_sided_conservative_log_trl_alpha_0_00": {
+          "alpha": 0.0,
+          "chain_heldout_mse": 2.9347503914472164e-34,
+          "chain_preserved_near_trl_log": true,
+          "lucky_q_overestimation_reduced_vs_trl_log": false,
+          "lucky_regret_reduced_vs_trl_log": false,
+          "positive_uncertainty_evidence": false,
+          "risk_optimal_matched_action": "risky",
+          "risk_optimal_matched_ok": true,
+          "risk_optimal_matched_policy_regret": 0.0,
+          "safe_optimal_lucky_policy_regret": 0.5040000000000001,
+          "safe_optimal_lucky_q_overestimation": 0.675,
+          "safe_optimal_matched_ok": true
+        },
+        "one_sided_conservative_log_trl_alpha_0_20": {
+          "alpha": 0.2,
+          "chain_heldout_mse": 2.9347503914472164e-34,
+          "chain_preserved_near_trl_log": true,
+          "lucky_q_overestimation_reduced_vs_trl_log": true,
+          "lucky_regret_reduced_vs_trl_log": false,
+          "positive_uncertainty_evidence": true,
+          "risk_optimal_matched_action": "risky",
+          "risk_optimal_matched_ok": true,
+          "risk_optimal_matched_policy_regret": 0.0,
+          "safe_optimal_lucky_policy_regret": 0.5040000000000001,
+          "safe_optimal_lucky_q_overestimation": 0.5850000000000001,
+          "safe_optimal_matched_ok": true
+        },
+        "one_sided_conservative_log_trl_alpha_0_40": {
+          "alpha": 0.4,
+          "chain_heldout_mse": 2.9347503914472164e-34,
+          "chain_preserved_near_trl_log": true,
+          "lucky_q_overestimation_reduced_vs_trl_log": true,
+          "lucky_regret_reduced_vs_trl_log": true,
+          "positive_uncertainty_evidence": true,
+          "risk_optimal_matched_action": "risky",
+          "risk_optimal_matched_ok": true,
+          "risk_optimal_matched_policy_regret": 0.0,
+          "safe_optimal_lucky_policy_regret": 0.0,
+          "safe_optimal_lucky_q_overestimation": 0.495,
+          "safe_optimal_matched_ok": true
+        },
+        "one_sided_conservative_log_trl_alpha_0_60": {
+          "alpha": 0.6,
+          "chain_heldout_mse": 2.9347503914472164e-34,
+          "chain_preserved_near_trl_log": true,
+          "lucky_q_overestimation_reduced_vs_trl_log": true,
+          "lucky_regret_reduced_vs_trl_log": true,
+          "positive_uncertainty_evidence": true,
+          "risk_optimal_matched_action": "risky",
+          "risk_optimal_matched_ok": true,
+          "risk_optimal_matched_policy_regret": 0.0,
+          "safe_optimal_lucky_policy_regret": 0.0,
+          "safe_optimal_lucky_q_overestimation": 0.405,
+          "safe_optimal_matched_ok": true
+        }
+      },
+      "best_positive_method": "one_sided_conservative_log_trl_alpha_0_20",
+      "positive_uncertainty_evidence": true,
+      "trl_log_safe_lucky_policy_regret": 0.5040000000000001,
+      "trl_log_safe_lucky_q_overestimation": 0.675
+    },
+    "alpha_grid": [
+      0.0,
+      0.2,
+      0.4,
+      0.6
+    ],
+    "experiment_id": "0006",
+    "gamma": 0.9,
+    "label_horizon_cutoff": 2,
+    "scenarios": {
+      "chain_len9_holdout": {
+        "coverage_diagnostics": {
+          "action_counts": {
+            "left": 8,
+            "right": 8
+          },
+          "num_episodes": 2,
+          "num_transitions": 16,
+          "outcome_counts": {
+            "deterministic": 16
+          },
+          "risky_failure_count": 0,
+          "risky_success_count": 0,
+          "risky_success_rate_observed": null,
+          "state_action_coverage_fraction": 1.0,
+          "state_action_pairs_seen": [
+            [
+              "c0",
+              "right"
+            ],
+            [
+              "c1",
+              "left"
+            ],
+            [
+              "c1",
+              "right"
+            ],
+            [
+              "c2",
+              "left"
+            ],
+            [
+              "c2",
+              "right"
+            ],
+            [
+              "c3",
+              "left"
+            ],
+            [
+              "c3",
+              "right"
+            ],
+            [
+              "c4",
+              "left"
+            ],
+            [
+              "c4",
+              "right"
+            ],
+            [
+              "c5",
+              "left"
+            ],
+            [
+              "c5",
+              "right"
+            ],
+            [
+              "c6",
+              "left"
+            ],
+            [
+              "c6",
+              "right"
+            ],
+            [
+              "c7",
+              "left"
+            ],
+            [
+              "c7",
+              "right"
+            ],
+            [
+              "c8",
+              "left"
+            ]
+          ],
+          "state_coverage_fraction": 1.0,
+          "states_seen": [
+            "c0",
+            "c1",
+            "c2",
+            "c3",
+            "c4",
+            "c5",
+            "c6",
+            "c7",
+            "c8"
+          ]
+        },
+        "label_or_pair_coverage": {
+          "censored_examples": [
+            {
+              "action": "right",
+              "episode_id": "chain_forward",
+              "goal": "c3",
+              "positive_horizon": 3,
+              "state": "c0"
+            },
+            {
+              "action": "right",
+              "episode_id": "chain_forward",
+              "goal": "c4",
+              "positive_horizon": 4,
+              "state": "c0"
+            },
+            {
+              "action": "right",
+              "episode_id": "chain_forward",
+              "goal": "c5",
+              "positive_horizon": 5,
+              "state": "c0"
+            },
+            {
+              "action": "right",
+              "episode_id": "chain_forward",
+              "goal": "c6",
+              "positive_horizon": 6,
+              "state": "c0"
+            },
+            {
+              "action": "right",
+              "episode_id": "chain_forward",
+              "goal": "c7",
+              "positive_horizon": 7,
+              "state": "c0"
+            },
+            {
+              "action": "right",
+              "episode_id": "chain_forward",
+              "goal": "c8",
+              "positive_horizon": 8,
+              "state": "c0"
+            },
+            {
+              "action": "right",
+              "episode_id": "chain_forward",
+              "goal": "c4",
+              "positive_horizon": 3,
+              "state": "c1"
+            },
+            {
+              "action": "right",
+              "episode_id": "chain_forward",
+              "goal": "c5",
+              "positive_horizon": 4,
+              "state": "c1"
+            },
+            {
+              "action": "right",
+              "episode_id": "chain_forward",
+              "goal": "c6",
+              "positive_horizon": 5,
+              "state": "c1"
+            },
+            {
+              "action": "right",
+              "episode_id": "chain_forward",
+              "goal": "c7",
+              "positive_horizon": 6,
+              "state": "c1"
+            },
+            {
+              "action": "right",
+              "episode_id": "chain_forward",
+              "goal": "c8",
+              "positive_horizon": 7,
+              "state": "c1"
+            },
+            {
+              "action": "right",
+              "episode_id": "chain_forward",
+              "goal": "c5",
+              "positive_horizon": 3,
+              "state": "c2"
+            }
+          ],
+          "counts_by_bin": {
+            "h1_train_visible": {
+              "included_positive": 16
+            },
+            "h2_train_visible": {
+              "included_positive": 14
+            },
+            "heldout_gt2": {
+              "censored_positive": 42
+            },
+            "unreached_zero": {
+              "included_zero": 72
+            }
+          },
+          "eval_q_pairs_by_horizon_bin": {
+            "h1_train_visible": 16,
+            "h2_train_visible": 14,
+            "heldout_gt2": 98
+          },
+          "eval_value_pairs_by_horizon_bin": {
+            "h1_train_visible": 16,
+            "h2_train_visible": 14,
+            "heldout_gt2": 42
+          },
+          "label_horizon_cutoff": 2,
+          "num_censored_positive_labels": 42,
+          "num_included_positive_labels": 30,
+          "num_included_zero_labels": 72,
+          "unique_state_action_goal_pairs_by_bin": {
+            "h1_train_visible": 16,
+            "h2_train_visible": 14,
+            "heldout_gt2": 42,
+            "unreached_zero": 72
+          }
+        },
+        "mdp": "deterministic_chain_len9",
+        "methods": {
+          "mc_plus_trl_log": {
+            "calibration_error": 0.13125827819531247,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "c8",
+            "eval_greedy_action": "right",
+            "eval_start": "c0",
+            "eval_start_exact_q": {
+              "right": 0.43046721000000016
+            },
+            "eval_start_learned_q": {
+              "right": 0.43046721000000016
+            },
+            "exact_optimal_action": "right",
+            "heldout_long_horizon_value_mse": 2.9347503914472164e-34,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 16,
+                "num_value_pairs": 16,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 14,
+                "num_value_pairs": 14,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 98,
+                "num_value_pairs": 42,
+                "q_calibration_error": 0.17143938376530607,
+                "q_overestimation_error": 5.551115123125783e-17,
+                "q_underestimation_error": 0.36450000000000005,
+                "value_mse": 2.9347503914472164e-34,
+                "value_overestimation_error": 5.551115123125783e-17,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 0.13125827819531247,
+            "q_overestimation_error": 5.551115123125783e-17,
+            "q_underestimation_error": 0.36450000000000005,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 1.7119377283442096e-34,
+            "value_overestimation_error": 5.551115123125783e-17,
+            "value_underestimation_error": 0.0
+          },
+          "mc_supervised": {
+            "calibration_error": 0.4656078690468753,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "c8",
+            "eval_greedy_action": "right",
+            "eval_start": "c0",
+            "eval_start_exact_q": {
+              "right": 0.43046721000000016
+            },
+            "eval_start_learned_q": {
+              "right": 0.0
+            },
+            "exact_optimal_action": "right",
+            "heldout_long_horizon_value_mse": 0.3917058232298766,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 16,
+                "num_value_pairs": 16,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 14,
+                "num_value_pairs": 14,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 98,
+                "num_value_pairs": 42,
+                "q_calibration_error": 0.6081408901836739,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.7290000000000001,
+                "value_mse": 0.3917058232298766,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.7290000000000001
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 0.4656078690468753,
+            "q_overestimation_error": 0.0,
+            "q_underestimation_error": 0.7290000000000001,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 0.22849506355076135,
+            "value_overestimation_error": 0.0,
+            "value_underestimation_error": 0.7290000000000001
+          },
+          "one_sided_conservative_log_trl_alpha_0_00": {
+            "calibration_error": 4.336808689942018e-18,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "c8",
+            "eval_greedy_action": "right",
+            "eval_start": "c0",
+            "eval_start_exact_q": {
+              "right": 0.43046721000000016
+            },
+            "eval_start_learned_q": {
+              "right": 0.43046721000000016
+            },
+            "exact_optimal_action": "right",
+            "heldout_long_horizon_value_mse": 2.9347503914472164e-34,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 16,
+                "num_value_pairs": 16,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 14,
+                "num_value_pairs": 14,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 98,
+                "num_value_pairs": 42,
+                "q_calibration_error": 5.664403186863044e-18,
+                "q_overestimation_error": 5.551115123125783e-17,
+                "q_underestimation_error": 0.0,
+                "value_mse": 2.9347503914472164e-34,
+                "value_overestimation_error": 5.551115123125783e-17,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 4.336808689942018e-18,
+            "q_overestimation_error": 5.551115123125783e-17,
+            "q_underestimation_error": 0.0,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 1.7119377283442096e-34,
+            "value_overestimation_error": 5.551115123125783e-17,
+            "value_underestimation_error": 0.0
+          },
+          "one_sided_conservative_log_trl_alpha_0_20": {
+            "calibration_error": 4.336808689942018e-18,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "c8",
+            "eval_greedy_action": "right",
+            "eval_start": "c0",
+            "eval_start_exact_q": {
+              "right": 0.43046721000000016
+            },
+            "eval_start_learned_q": {
+              "right": 0.43046721000000016
+            },
+            "exact_optimal_action": "right",
+            "heldout_long_horizon_value_mse": 2.9347503914472164e-34,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 16,
+                "num_value_pairs": 16,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 14,
+                "num_value_pairs": 14,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 98,
+                "num_value_pairs": 42,
+                "q_calibration_error": 5.664403186863044e-18,
+                "q_overestimation_error": 5.551115123125783e-17,
+                "q_underestimation_error": 0.0,
+                "value_mse": 2.9347503914472164e-34,
+                "value_overestimation_error": 5.551115123125783e-17,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 4.336808689942018e-18,
+            "q_overestimation_error": 5.551115123125783e-17,
+            "q_underestimation_error": 0.0,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 1.7119377283442096e-34,
+            "value_overestimation_error": 5.551115123125783e-17,
+            "value_underestimation_error": 0.0
+          },
+          "one_sided_conservative_log_trl_alpha_0_40": {
+            "calibration_error": 4.336808689942018e-18,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "c8",
+            "eval_greedy_action": "right",
+            "eval_start": "c0",
+            "eval_start_exact_q": {
+              "right": 0.43046721000000016
+            },
+            "eval_start_learned_q": {
+              "right": 0.43046721000000016
+            },
+            "exact_optimal_action": "right",
+            "heldout_long_horizon_value_mse": 2.9347503914472164e-34,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 16,
+                "num_value_pairs": 16,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 14,
+                "num_value_pairs": 14,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 98,
+                "num_value_pairs": 42,
+                "q_calibration_error": 5.664403186863044e-18,
+                "q_overestimation_error": 5.551115123125783e-17,
+                "q_underestimation_error": 0.0,
+                "value_mse": 2.9347503914472164e-34,
+                "value_overestimation_error": 5.551115123125783e-17,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 4.336808689942018e-18,
+            "q_overestimation_error": 5.551115123125783e-17,
+            "q_underestimation_error": 0.0,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 1.7119377283442096e-34,
+            "value_overestimation_error": 5.551115123125783e-17,
+            "value_underestimation_error": 0.0
+          },
+          "one_sided_conservative_log_trl_alpha_0_60": {
+            "calibration_error": 4.336808689942018e-18,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "c8",
+            "eval_greedy_action": "right",
+            "eval_start": "c0",
+            "eval_start_exact_q": {
+              "right": 0.43046721000000016
+            },
+            "eval_start_learned_q": {
+              "right": 0.43046721000000016
+            },
+            "exact_optimal_action": "right",
+            "heldout_long_horizon_value_mse": 2.9347503914472164e-34,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 16,
+                "num_value_pairs": 16,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 14,
+                "num_value_pairs": 14,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 98,
+                "num_value_pairs": 42,
+                "q_calibration_error": 5.664403186863044e-18,
+                "q_overestimation_error": 5.551115123125783e-17,
+                "q_underestimation_error": 0.0,
+                "value_mse": 2.9347503914472164e-34,
+                "value_overestimation_error": 5.551115123125783e-17,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 4.336808689942018e-18,
+            "q_overestimation_error": 5.551115123125783e-17,
+            "q_underestimation_error": 0.0,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 1.7119377283442096e-34,
+            "value_overestimation_error": 5.551115123125783e-17,
+            "value_underestimation_error": 0.0
+          },
+          "successor_distance_best_0005": {
+            "calibration_error": 4.336808689942018e-18,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "c8",
+            "eval_greedy_action": "right",
+            "eval_start": "c0",
+            "eval_start_exact_q": {
+              "right": 0.43046721000000016
+            },
+            "eval_start_learned_q": {
+              "right": 0.43046721000000016
+            },
+            "exact_optimal_action": "right",
+            "heldout_long_horizon_value_mse": 2.9347503914472164e-34,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 16,
+                "num_value_pairs": 16,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 14,
+                "num_value_pairs": 14,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 98,
+                "num_value_pairs": 42,
+                "q_calibration_error": 5.664403186863044e-18,
+                "q_overestimation_error": 5.551115123125783e-17,
+                "q_underestimation_error": 0.0,
+                "value_mse": 2.9347503914472164e-34,
+                "value_overestimation_error": 5.551115123125783e-17,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 4.336808689942018e-18,
+            "q_overestimation_error": 5.551115123125783e-17,
+            "q_underestimation_error": 0.0,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 1.7119377283442096e-34,
+            "value_overestimation_error": 5.551115123125783e-17,
+            "value_underestimation_error": 0.0
+          },
+          "trl_log": {
+            "calibration_error": 4.336808689942018e-18,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "c8",
+            "eval_greedy_action": "right",
+            "eval_start": "c0",
+            "eval_start_exact_q": {
+              "right": 0.43046721000000016
+            },
+            "eval_start_learned_q": {
+              "right": 0.43046721000000016
+            },
+            "exact_optimal_action": "right",
+            "heldout_long_horizon_value_mse": 2.9347503914472164e-34,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 16,
+                "num_value_pairs": 16,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 14,
+                "num_value_pairs": 14,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 98,
+                "num_value_pairs": 42,
+                "q_calibration_error": 5.664403186863044e-18,
+                "q_overestimation_error": 5.551115123125783e-17,
+                "q_underestimation_error": 0.0,
+                "value_mse": 2.9347503914472164e-34,
+                "value_overestimation_error": 5.551115123125783e-17,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 4.336808689942018e-18,
+            "q_overestimation_error": 5.551115123125783e-17,
+            "q_underestimation_error": 0.0,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 1.7119377283442096e-34,
+            "value_overestimation_error": 5.551115123125783e-17,
+            "value_underestimation_error": 0.0
+          },
+          "trl_raw": {
+            "calibration_error": 0.0,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "c8",
+            "eval_greedy_action": "right",
+            "eval_start": "c0",
+            "eval_start_exact_q": {
+              "right": 0.43046721000000016
+            },
+            "eval_start_learned_q": {
+              "right": 0.43046721000000016
+            },
+            "exact_optimal_action": "right",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 16,
+                "num_value_pairs": 16,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 14,
+                "num_value_pairs": 14,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 98,
+                "num_value_pairs": 42,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 0.0,
+            "q_overestimation_error": 0.0,
+            "q_underestimation_error": 0.0,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 0.0,
+            "value_overestimation_error": 0.0,
+            "value_underestimation_error": 0.0
+          }
+        },
+        "scenario_role": "main_holdout",
+        "uncertainty_meta": {
+          "one_sided_conservative_log_trl_alpha_0_00": {
+            "alpha": 0.0,
+            "penalized_pairs": {},
+            "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+          },
+          "one_sided_conservative_log_trl_alpha_0_20": {
+            "alpha": 0.2,
+            "penalized_pairs": {},
+            "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+          },
+          "one_sided_conservative_log_trl_alpha_0_40": {
+            "alpha": 0.4,
+            "penalized_pairs": {},
+            "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+          },
+          "one_sided_conservative_log_trl_alpha_0_60": {
+            "alpha": 0.6,
+            "penalized_pairs": {},
+            "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+          },
+          "successor_distance_best_0005": {
+            "lambda_tr": 0.25,
+            "source": "0005_trl_log_equivalent_baseline"
+          }
+        }
+      },
+      "risk_optimal_matched": {
+        "coverage_diagnostics": {
+          "action_counts": {
+            "forward": 8,
+            "risky": 10,
+            "safe": 4
+          },
+          "num_episodes": 14,
+          "num_transitions": 22,
+          "outcome_counts": {
+            "risky_failure": 1,
+            "risky_success": 9,
+            "safe_goal": 4,
+            "safe_step": 8
+          },
+          "risky_failure_count": 1,
+          "risky_success_count": 9,
+          "risky_success_rate_observed": 0.9,
+          "state_action_coverage_fraction": 1.0,
+          "state_action_pairs_seen": [
+            [
+              "safe1",
+              "forward"
+            ],
+            [
+              "safe2",
+              "forward"
+            ],
+            [
+              "start",
+              "risky"
+            ],
+            [
+              "start",
+              "safe"
+            ]
+          ],
+          "state_coverage_fraction": 1.0,
+          "states_seen": [
+            "goal",
+            "safe1",
+            "safe2",
+            "start",
+            "trap"
+          ]
+        },
+        "label_or_pair_coverage": {
+          "censored_examples": [
+            {
+              "action": "safe",
+              "episode_id": "risk_optimal_matched_safe_0",
+              "goal": "goal",
+              "positive_horizon": 3,
+              "state": "start"
+            },
+            {
+              "action": "safe",
+              "episode_id": "risk_optimal_matched_safe_1",
+              "goal": "goal",
+              "positive_horizon": 3,
+              "state": "start"
+            },
+            {
+              "action": "safe",
+              "episode_id": "risk_optimal_matched_safe_2",
+              "goal": "goal",
+              "positive_horizon": 3,
+              "state": "start"
+            },
+            {
+              "action": "safe",
+              "episode_id": "risk_optimal_matched_safe_3",
+              "goal": "goal",
+              "positive_horizon": 3,
+              "state": "start"
+            }
+          ],
+          "counts_by_bin": {
+            "h1_train_visible": {
+              "included_positive": 22
+            },
+            "h2_train_visible": {
+              "included_positive": 8
+            },
+            "heldout_gt2": {
+              "censored_positive": 4
+            },
+            "unreached_zero": {
+              "included_zero": 76
+            }
+          },
+          "eval_q_pairs_by_horizon_bin": {
+            "h1_train_visible": 5,
+            "h2_train_visible": 2,
+            "heldout_gt2": 1,
+            "unreachable": 8
+          },
+          "eval_value_pairs_by_horizon_bin": {
+            "h1_train_visible": 5,
+            "h2_train_visible": 2,
+            "unreachable": 13
+          },
+          "label_horizon_cutoff": 2,
+          "num_censored_positive_labels": 4,
+          "num_included_positive_labels": 30,
+          "num_included_zero_labels": 76,
+          "unique_state_action_goal_pairs_by_bin": {
+            "h1_train_visible": 5,
+            "h2_train_visible": 2,
+            "heldout_gt2": 1,
+            "unreached_zero": 14
+          }
+        },
+        "mdp": "risk_optimal_matched",
+        "methods": {
+          "mc_plus_trl_log": {
+            "calibration_error": 8.673617379884035e-19,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "goal",
+            "eval_greedy_action": "risky",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "risky",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 5,
+                "q_calibration_error": 2.7755575615628915e-18,
+                "q_overestimation_error": 1.3877787807814457e-17,
+                "q_underestimation_error": 0.0,
+                "value_mse": 3.851859888774472e-35,
+                "value_overestimation_error": 1.3877787807814457e-17,
+                "value_underestimation_error": 0.0
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 0,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 8.673617379884035e-19,
+            "q_overestimation_error": 1.3877787807814457e-17,
+            "q_underestimation_error": 0.0,
+            "risky_action_selection_rate": 1.0,
+            "value_mse": 9.62964972193618e-36,
+            "value_overestimation_error": 1.3877787807814457e-17,
+            "value_underestimation_error": 0.0
+          },
+          "mc_supervised": {
+            "calibration_error": 0.04556250000000001,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "goal",
+            "eval_greedy_action": "risky",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.8100000000000002,
+              "safe": 0.0
+            },
+            "exact_optimal_action": "risky",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 5,
+                "q_calibration_error": 2.4980018054066023e-17,
+                "q_overestimation_error": 1.1102230246251565e-16,
+                "q_underestimation_error": 0.0,
+                "value_mse": 2.5037089277034066e-33,
+                "value_overestimation_error": 1.1102230246251565e-16,
+                "value_underestimation_error": 0.0
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 0,
+                "q_calibration_error": 0.7290000000000001,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.7290000000000001,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 0.04556250000000001,
+            "q_overestimation_error": 1.1102230246251565e-16,
+            "q_underestimation_error": 0.7290000000000001,
+            "risky_action_selection_rate": 1.0,
+            "value_mse": 6.2592723192585165e-34,
+            "value_overestimation_error": 1.1102230246251565e-16,
+            "value_underestimation_error": 0.0
+          },
+          "one_sided_conservative_log_trl_alpha_0_00": {
+            "calibration_error": 1.734723475976807e-18,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "goal",
+            "eval_greedy_action": "risky",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "risky",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 5,
+                "q_calibration_error": 5.551115123125783e-18,
+                "q_overestimation_error": 2.7755575615628914e-17,
+                "q_underestimation_error": 0.0,
+                "value_mse": 1.5407439555097888e-34,
+                "value_overestimation_error": 2.7755575615628914e-17,
+                "value_underestimation_error": 0.0
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 0,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 1.734723475976807e-18,
+            "q_overestimation_error": 2.7755575615628914e-17,
+            "q_underestimation_error": 0.0,
+            "risky_action_selection_rate": 1.0,
+            "value_mse": 3.851859888774472e-35,
+            "value_overestimation_error": 2.7755575615628914e-17,
+            "value_underestimation_error": 0.0
+          },
+          "one_sided_conservative_log_trl_alpha_0_20": {
+            "calibration_error": 0.005625,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "goal",
+            "eval_greedy_action": "risky",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "risky",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 5,
+                "q_calibration_error": 0.018,
+                "q_overestimation_error": 2.7755575615628914e-17,
+                "q_underestimation_error": 0.08999999999999997,
+                "value_mse": 0.0016199999999999988,
+                "value_overestimation_error": 2.7755575615628914e-17,
+                "value_underestimation_error": 0.08999999999999997
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 0,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 0.005625,
+            "q_overestimation_error": 2.7755575615628914e-17,
+            "q_underestimation_error": 0.08999999999999997,
+            "risky_action_selection_rate": 1.0,
+            "value_mse": 0.0004049999999999997,
+            "value_overestimation_error": 2.7755575615628914e-17,
+            "value_underestimation_error": 0.08999999999999997
+          },
+          "one_sided_conservative_log_trl_alpha_0_40": {
+            "calibration_error": 0.011250000000000005,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "goal",
+            "eval_greedy_action": "risky",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "risky",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 5,
+                "q_calibration_error": 0.03600000000000002,
+                "q_overestimation_error": 2.7755575615628914e-17,
+                "q_underestimation_error": 0.18000000000000005,
+                "value_mse": 0.006480000000000004,
+                "value_overestimation_error": 2.7755575615628914e-17,
+                "value_underestimation_error": 0.18000000000000005
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 0,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 0.011250000000000005,
+            "q_overestimation_error": 2.7755575615628914e-17,
+            "q_underestimation_error": 0.18000000000000005,
+            "risky_action_selection_rate": 1.0,
+            "value_mse": 0.001620000000000001,
+            "value_overestimation_error": 2.7755575615628914e-17,
+            "value_underestimation_error": 0.18000000000000005
+          },
+          "one_sided_conservative_log_trl_alpha_0_60": {
+            "calibration_error": 0.016875,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "goal",
+            "eval_greedy_action": "risky",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "risky",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 5,
+                "q_calibration_error": 0.054000000000000006,
+                "q_overestimation_error": 2.7755575615628914e-17,
+                "q_underestimation_error": 0.27,
+                "value_mse": 0.014580000000000001,
+                "value_overestimation_error": 2.7755575615628914e-17,
+                "value_underestimation_error": 0.27
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 0,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 0.016875,
+            "q_overestimation_error": 2.7755575615628914e-17,
+            "q_underestimation_error": 0.27,
+            "risky_action_selection_rate": 1.0,
+            "value_mse": 0.0036450000000000002,
+            "value_overestimation_error": 2.7755575615628914e-17,
+            "value_underestimation_error": 0.27
+          },
+          "successor_distance_best_0005": {
+            "calibration_error": 7.806255641895632e-18,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "goal",
+            "eval_greedy_action": "risky",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.8100000000000002,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "risky",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 5,
+                "q_calibration_error": 2.4980018054066023e-17,
+                "q_overestimation_error": 1.1102230246251565e-16,
+                "q_underestimation_error": 0.0,
+                "value_mse": 2.5037089277034066e-33,
+                "value_overestimation_error": 1.1102230246251565e-16,
+                "value_underestimation_error": 0.0
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 0,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 7.806255641895632e-18,
+            "q_overestimation_error": 1.1102230246251565e-16,
+            "q_underestimation_error": 0.0,
+            "risky_action_selection_rate": 1.0,
+            "value_mse": 6.2592723192585165e-34,
+            "value_overestimation_error": 1.1102230246251565e-16,
+            "value_underestimation_error": 0.0
+          },
+          "trl_log": {
+            "calibration_error": 1.734723475976807e-18,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "goal",
+            "eval_greedy_action": "risky",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "risky",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 5,
+                "q_calibration_error": 5.551115123125783e-18,
+                "q_overestimation_error": 2.7755575615628914e-17,
+                "q_underestimation_error": 0.0,
+                "value_mse": 1.5407439555097888e-34,
+                "value_overestimation_error": 2.7755575615628914e-17,
+                "value_underestimation_error": 0.0
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 0,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 1.734723475976807e-18,
+            "q_overestimation_error": 2.7755575615628914e-17,
+            "q_underestimation_error": 0.0,
+            "risky_action_selection_rate": 1.0,
+            "value_mse": 3.851859888774472e-35,
+            "value_overestimation_error": 2.7755575615628914e-17,
+            "value_underestimation_error": 0.0
+          },
+          "trl_raw": {
+            "calibration_error": 0.05625,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "goal",
+            "eval_greedy_action": "risky",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.9,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "risky",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 5,
+                "q_calibration_error": 0.18,
+                "q_overestimation_error": 0.81,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.13284,
+                "value_overestimation_error": 0.81,
+                "value_underestimation_error": 0.0
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 0,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 0.05625,
+            "q_overestimation_error": 0.81,
+            "q_underestimation_error": 0.0,
+            "risky_action_selection_rate": 1.0,
+            "value_mse": 0.03321,
+            "value_overestimation_error": 0.81,
+            "value_underestimation_error": 0.0
+          }
+        },
+        "scenario_role": "main_matched",
+        "uncertainty_meta": {
+          "one_sided_conservative_log_trl_alpha_0_00": {
+            "alpha": 0.0,
+            "penalized_pairs": {},
+            "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+          },
+          "one_sided_conservative_log_trl_alpha_0_20": {
+            "alpha": 0.2,
+            "penalized_pairs": {
+              "start|safe|safe1": {
+                "alpha": 0.2,
+                "branch_count": 1,
+                "count": 4,
+                "direct_goal_only": true,
+                "eligible": true,
+                "multi_action_state": true,
+                "penalized_backup": 0.81,
+                "penalty": 0.09000000000000001,
+                "raw_backup": 0.9
+              }
+            },
+            "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+          },
+          "one_sided_conservative_log_trl_alpha_0_40": {
+            "alpha": 0.4,
+            "penalized_pairs": {
+              "start|safe|safe1": {
+                "alpha": 0.4,
+                "branch_count": 1,
+                "count": 4,
+                "direct_goal_only": true,
+                "eligible": true,
+                "multi_action_state": true,
+                "penalized_backup": 0.72,
+                "penalty": 0.18000000000000002,
+                "raw_backup": 0.9
+              }
+            },
+            "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+          },
+          "one_sided_conservative_log_trl_alpha_0_60": {
+            "alpha": 0.6,
+            "penalized_pairs": {
+              "start|safe|safe1": {
+                "alpha": 0.6,
+                "branch_count": 1,
+                "count": 4,
+                "direct_goal_only": true,
+                "eligible": true,
+                "multi_action_state": true,
+                "penalized_backup": 0.63,
+                "penalty": 0.27,
+                "raw_backup": 0.9
+              }
+            },
+            "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+          },
+          "successor_distance_best_0005": {
+            "lambda_tr": 0.25,
+            "source": "0005_trl_log_equivalent_baseline"
+          }
+        }
+      },
+      "risk_optimal_no_success_stress": {
+        "coverage_diagnostics": {
+          "action_counts": {
+            "forward": 8,
+            "risky": 8,
+            "safe": 4
+          },
+          "num_episodes": 12,
+          "num_transitions": 20,
+          "outcome_counts": {
+            "risky_failure": 8,
+            "safe_goal": 4,
+            "safe_step": 8
+          },
+          "risky_failure_count": 8,
+          "risky_success_count": 0,
+          "risky_success_rate_observed": 0.0,
+          "state_action_coverage_fraction": 1.0,
+          "state_action_pairs_seen": [
+            [
+              "safe1",
+              "forward"
+            ],
+            [
+              "safe2",
+              "forward"
+            ],
+            [
+              "start",
+              "risky"
+            ],
+            [
+              "start",
+              "safe"
+            ]
+          ],
+          "state_coverage_fraction": 1.0,
+          "states_seen": [
+            "goal",
+            "safe1",
+            "safe2",
+            "start",
+            "trap"
+          ]
+        },
+        "label_or_pair_coverage": {
+          "censored_examples": [
+            {
+              "action": "safe",
+              "episode_id": "risk_optimal_no_success_stress_safe_0",
+              "goal": "goal",
+              "positive_horizon": 3,
+              "state": "start"
+            },
+            {
+              "action": "safe",
+              "episode_id": "risk_optimal_no_success_stress_safe_1",
+              "goal": "goal",
+              "positive_horizon": 3,
+              "state": "start"
+            },
+            {
+              "action": "safe",
+              "episode_id": "risk_optimal_no_success_stress_safe_2",
+              "goal": "goal",
+              "positive_horizon": 3,
+              "state": "start"
+            },
+            {
+              "action": "safe",
+              "episode_id": "risk_optimal_no_success_stress_safe_3",
+              "goal": "goal",
+              "positive_horizon": 3,
+              "state": "start"
+            }
+          ],
+          "counts_by_bin": {
+            "h1_train_visible": {
+              "included_positive": 20
+            },
+            "h2_train_visible": {
+              "included_positive": 8
+            },
+            "heldout_gt2": {
+              "censored_positive": 4
+            },
+            "unreached_zero": {
+              "included_zero": 68
+            }
+          },
+          "eval_q_pairs_by_horizon_bin": {
+            "h1_train_visible": 5,
+            "h2_train_visible": 2,
+            "heldout_gt2": 1,
+            "unreachable": 8
+          },
+          "eval_value_pairs_by_horizon_bin": {
+            "h1_train_visible": 5,
+            "h2_train_visible": 2,
+            "unreachable": 13
+          },
+          "label_horizon_cutoff": 2,
+          "num_censored_positive_labels": 4,
+          "num_included_positive_labels": 28,
+          "num_included_zero_labels": 68,
+          "unique_state_action_goal_pairs_by_bin": {
+            "h1_train_visible": 4,
+            "h2_train_visible": 2,
+            "heldout_gt2": 1,
+            "unreached_zero": 13
+          }
+        },
+        "mdp": "risk_optimal_no_success",
+        "methods": {
+          "mc_plus_trl_log": {
+            "calibration_error": 0.10125,
+            "chose_exact_optimal_action": false,
+            "eval_goal": "goal",
+            "eval_greedy_action": "safe",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.0,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "risky",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 5,
+                "q_calibration_error": 0.324,
+                "q_overestimation_error": 0.8100000000000002,
+                "q_underestimation_error": 0.81,
+                "value_mse": 0.13253220000000004,
+                "value_overestimation_error": 0.8100000000000002,
+                "value_underestimation_error": 0.08099999999999996
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 0,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.08099999999999996,
+            "q_calibration_error": 0.10125,
+            "q_overestimation_error": 0.8100000000000002,
+            "q_underestimation_error": 0.81,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 0.03313305000000001,
+            "value_overestimation_error": 0.8100000000000002,
+            "value_underestimation_error": 0.08099999999999996
+          },
+          "mc_supervised": {
+            "calibration_error": 0.1468125,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "goal",
+            "eval_greedy_action": "risky",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.0,
+              "safe": 0.0
+            },
+            "exact_optimal_action": "risky",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 5,
+                "q_calibration_error": 0.324,
+                "q_overestimation_error": 0.8100000000000002,
+                "q_underestimation_error": 0.81,
+                "value_mse": 0.26244000000000006,
+                "value_overestimation_error": 0.8100000000000002,
+                "value_underestimation_error": 0.81
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 0,
+                "q_calibration_error": 0.7290000000000001,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.7290000000000001,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 0.1468125,
+            "q_overestimation_error": 0.8100000000000002,
+            "q_underestimation_error": 0.81,
+            "risky_action_selection_rate": 1.0,
+            "value_mse": 0.06561000000000002,
+            "value_overestimation_error": 0.8100000000000002,
+            "value_underestimation_error": 0.81
+          },
+          "one_sided_conservative_log_trl_alpha_0_00": {
+            "calibration_error": 0.10125,
+            "chose_exact_optimal_action": false,
+            "eval_goal": "goal",
+            "eval_greedy_action": "safe",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.0,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "risky",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 5,
+                "q_calibration_error": 0.324,
+                "q_overestimation_error": 0.81,
+                "q_underestimation_error": 0.81,
+                "value_mse": 0.13253220000000004,
+                "value_overestimation_error": 0.81,
+                "value_underestimation_error": 0.08099999999999996
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 0,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.08099999999999996,
+            "q_calibration_error": 0.10125,
+            "q_overestimation_error": 0.81,
+            "q_underestimation_error": 0.81,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 0.03313305000000001,
+            "value_overestimation_error": 0.81,
+            "value_underestimation_error": 0.08099999999999996
+          },
+          "one_sided_conservative_log_trl_alpha_0_20": {
+            "calibration_error": 0.10289752435582566,
+            "chose_exact_optimal_action": false,
+            "eval_goal": "goal",
+            "eval_greedy_action": "safe",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.0,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "risky",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 5,
+                "q_calibration_error": 0.3292720779386421,
+                "q_overestimation_error": 0.7463603896932108,
+                "q_underestimation_error": 0.81,
+                "value_mse": 0.11434296626060032,
+                "value_overestimation_error": 0.7463603896932108,
+                "value_underestimation_error": 0.08999999999999997
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 0,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.08099999999999996,
+            "q_calibration_error": 0.10289752435582566,
+            "q_overestimation_error": 0.7463603896932108,
+            "q_underestimation_error": 0.81,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 0.02858574156515008,
+            "value_overestimation_error": 0.7463603896932108,
+            "value_underestimation_error": 0.08999999999999997
+          },
+          "one_sided_conservative_log_trl_alpha_0_40": {
+            "calibration_error": 0.10454504871165135,
+            "chose_exact_optimal_action": false,
+            "eval_goal": "goal",
+            "eval_greedy_action": "safe",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.0,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "risky",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 5,
+                "q_calibration_error": 0.3345441558772843,
+                "q_overestimation_error": 0.6827207793864215,
+                "q_underestimation_error": 0.81,
+                "value_mse": 0.10101373252120056,
+                "value_overestimation_error": 0.6827207793864215,
+                "value_underestimation_error": 0.18000000000000005
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 0,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.08099999999999996,
+            "q_calibration_error": 0.10454504871165135,
+            "q_overestimation_error": 0.6827207793864215,
+            "q_underestimation_error": 0.81,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 0.02525343313030014,
+            "value_overestimation_error": 0.6827207793864215,
+            "value_underestimation_error": 0.18000000000000005
+          },
+          "one_sided_conservative_log_trl_alpha_0_60": {
+            "calibration_error": 0.10619257306747701,
+            "chose_exact_optimal_action": false,
+            "eval_goal": "goal",
+            "eval_greedy_action": "safe",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.0,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "risky",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 5,
+                "q_calibration_error": 0.3398162338159264,
+                "q_overestimation_error": 0.6190811690796322,
+                "q_underestimation_error": 0.81,
+                "value_mse": 0.09254449878180082,
+                "value_overestimation_error": 0.6190811690796322,
+                "value_underestimation_error": 0.27
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 0,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.08099999999999996,
+            "q_calibration_error": 0.10619257306747701,
+            "q_overestimation_error": 0.6190811690796322,
+            "q_underestimation_error": 0.81,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 0.023136124695450205,
+            "value_overestimation_error": 0.6190811690796322,
+            "value_underestimation_error": 0.27
+          },
+          "successor_distance_best_0005": {
+            "calibration_error": 0.10125,
+            "chose_exact_optimal_action": false,
+            "eval_goal": "goal",
+            "eval_greedy_action": "safe",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.0,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "risky",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 5,
+                "q_calibration_error": 0.324,
+                "q_overestimation_error": 0.8100000000000002,
+                "q_underestimation_error": 0.81,
+                "value_mse": 0.13253220000000004,
+                "value_overestimation_error": 0.8100000000000002,
+                "value_underestimation_error": 0.08099999999999996
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 0,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.08099999999999996,
+            "q_calibration_error": 0.10125,
+            "q_overestimation_error": 0.8100000000000002,
+            "q_underestimation_error": 0.81,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 0.03313305000000001,
+            "value_overestimation_error": 0.8100000000000002,
+            "value_underestimation_error": 0.08099999999999996
+          },
+          "trl_log": {
+            "calibration_error": 0.10125,
+            "chose_exact_optimal_action": false,
+            "eval_goal": "goal",
+            "eval_greedy_action": "safe",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.0,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "risky",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 5,
+                "q_calibration_error": 0.324,
+                "q_overestimation_error": 0.81,
+                "q_underestimation_error": 0.81,
+                "value_mse": 0.13253220000000004,
+                "value_overestimation_error": 0.81,
+                "value_underestimation_error": 0.08099999999999996
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 0,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.08099999999999996,
+            "q_calibration_error": 0.10125,
+            "q_overestimation_error": 0.81,
+            "q_underestimation_error": 0.81,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 0.03313305000000001,
+            "value_overestimation_error": 0.81,
+            "value_underestimation_error": 0.08099999999999996
+          },
+          "trl_raw": {
+            "calibration_error": 0.10125,
+            "chose_exact_optimal_action": false,
+            "eval_goal": "goal",
+            "eval_greedy_action": "safe",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.0,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "risky",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 5,
+                "q_calibration_error": 0.324,
+                "q_overestimation_error": 0.81,
+                "q_underestimation_error": 0.81,
+                "value_mse": 0.13253220000000004,
+                "value_overestimation_error": 0.81,
+                "value_underestimation_error": 0.08099999999999996
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 0,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.08099999999999996,
+            "q_calibration_error": 0.10125,
+            "q_overestimation_error": 0.81,
+            "q_underestimation_error": 0.81,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 0.03313305000000001,
+            "value_overestimation_error": 0.81,
+            "value_underestimation_error": 0.08099999999999996
+          }
+        },
+        "scenario_role": "stress_biased",
+        "uncertainty_meta": {
+          "one_sided_conservative_log_trl_alpha_0_00": {
+            "alpha": 0.0,
+            "penalized_pairs": {},
+            "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+          },
+          "one_sided_conservative_log_trl_alpha_0_20": {
+            "alpha": 0.2,
+            "penalized_pairs": {
+              "start|risky|trap": {
+                "alpha": 0.2,
+                "branch_count": 1,
+                "count": 8,
+                "direct_goal_only": true,
+                "eligible": true,
+                "multi_action_state": true,
+                "penalized_backup": 0.8363603896932108,
+                "penalty": 0.06363961030678927,
+                "raw_backup": 0.9
+              },
+              "start|safe|safe1": {
+                "alpha": 0.2,
+                "branch_count": 1,
+                "count": 4,
+                "direct_goal_only": true,
+                "eligible": true,
+                "multi_action_state": true,
+                "penalized_backup": 0.81,
+                "penalty": 0.09000000000000001,
+                "raw_backup": 0.9
+              }
+            },
+            "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+          },
+          "one_sided_conservative_log_trl_alpha_0_40": {
+            "alpha": 0.4,
+            "penalized_pairs": {
+              "start|risky|trap": {
+                "alpha": 0.4,
+                "branch_count": 1,
+                "count": 8,
+                "direct_goal_only": true,
+                "eligible": true,
+                "multi_action_state": true,
+                "penalized_backup": 0.7727207793864215,
+                "penalty": 0.12727922061357855,
+                "raw_backup": 0.9
+              },
+              "start|safe|safe1": {
+                "alpha": 0.4,
+                "branch_count": 1,
+                "count": 4,
+                "direct_goal_only": true,
+                "eligible": true,
+                "multi_action_state": true,
+                "penalized_backup": 0.72,
+                "penalty": 0.18000000000000002,
+                "raw_backup": 0.9
+              }
+            },
+            "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+          },
+          "one_sided_conservative_log_trl_alpha_0_60": {
+            "alpha": 0.6,
+            "penalized_pairs": {
+              "start|risky|trap": {
+                "alpha": 0.6,
+                "branch_count": 1,
+                "count": 8,
+                "direct_goal_only": true,
+                "eligible": true,
+                "multi_action_state": true,
+                "penalized_backup": 0.7090811690796321,
+                "penalty": 0.19091883092036782,
+                "raw_backup": 0.9
+              },
+              "start|safe|safe1": {
+                "alpha": 0.6,
+                "branch_count": 1,
+                "count": 4,
+                "direct_goal_only": true,
+                "eligible": true,
+                "multi_action_state": true,
+                "penalized_backup": 0.63,
+                "penalty": 0.27,
+                "raw_backup": 0.9
+              }
+            },
+            "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+          },
+          "successor_distance_best_0005": {
+            "lambda_tr": 0.25,
+            "source": "0005_trl_log_equivalent_baseline"
+          }
+        }
+      },
+      "safe_optimal_lucky_only_stress": {
+        "coverage_diagnostics": {
+          "action_counts": {
+            "forward": 8,
+            "risky": 4,
+            "safe": 4
+          },
+          "num_episodes": 8,
+          "num_transitions": 16,
+          "outcome_counts": {
+            "risky_success": 4,
+            "safe_goal": 4,
+            "safe_step": 8
+          },
+          "risky_failure_count": 0,
+          "risky_success_count": 4,
+          "risky_success_rate_observed": 1.0,
+          "state_action_coverage_fraction": 1.0,
+          "state_action_pairs_seen": [
+            [
+              "safe1",
+              "forward"
+            ],
+            [
+              "safe2",
+              "forward"
+            ],
+            [
+              "start",
+              "risky"
+            ],
+            [
+              "start",
+              "safe"
+            ]
+          ],
+          "state_coverage_fraction": 0.8,
+          "states_seen": [
+            "goal",
+            "safe1",
+            "safe2",
+            "start"
+          ]
+        },
+        "label_or_pair_coverage": {
+          "censored_examples": [
+            {
+              "action": "safe",
+              "episode_id": "safe_optimal_lucky_only_stress_safe_0",
+              "goal": "goal",
+              "positive_horizon": 3,
+              "state": "start"
+            },
+            {
+              "action": "safe",
+              "episode_id": "safe_optimal_lucky_only_stress_safe_1",
+              "goal": "goal",
+              "positive_horizon": 3,
+              "state": "start"
+            },
+            {
+              "action": "safe",
+              "episode_id": "safe_optimal_lucky_only_stress_safe_2",
+              "goal": "goal",
+              "positive_horizon": 3,
+              "state": "start"
+            },
+            {
+              "action": "safe",
+              "episode_id": "safe_optimal_lucky_only_stress_safe_3",
+              "goal": "goal",
+              "positive_horizon": 3,
+              "state": "start"
+            }
+          ],
+          "counts_by_bin": {
+            "h1_train_visible": {
+              "included_positive": 16
+            },
+            "h2_train_visible": {
+              "included_positive": 8
+            },
+            "heldout_gt2": {
+              "censored_positive": 4
+            },
+            "unreached_zero": {
+              "included_zero": 52
+            }
+          },
+          "eval_q_pairs_by_horizon_bin": {
+            "h1_train_visible": 5,
+            "h2_train_visible": 2,
+            "heldout_gt2": 1,
+            "unreachable": 8
+          },
+          "eval_value_pairs_by_horizon_bin": {
+            "h1_train_visible": 4,
+            "h2_train_visible": 2,
+            "heldout_gt2": 1,
+            "unreachable": 13
+          },
+          "label_horizon_cutoff": 2,
+          "num_censored_positive_labels": 4,
+          "num_included_positive_labels": 24,
+          "num_included_zero_labels": 52,
+          "unique_state_action_goal_pairs_by_bin": {
+            "h1_train_visible": 4,
+            "h2_train_visible": 2,
+            "heldout_gt2": 1,
+            "unreached_zero": 13
+          }
+        },
+        "mdp": "safe_optimal_lucky_only",
+        "methods": {
+          "mc_plus_trl_log": {
+            "calibration_error": 0.084375,
+            "chose_exact_optimal_action": false,
+            "eval_goal": "goal",
+            "eval_greedy_action": "risky",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.9,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "safe",
+            "heldout_long_horizon_value_mse": 0.029240999999999975,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 4,
+                "q_calibration_error": 0.27,
+                "q_overestimation_error": 0.675,
+                "q_underestimation_error": 0.675,
+                "value_mse": 0.11390625000000001,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.675
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 1,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.029240999999999975,
+                "value_overestimation_error": 0.17099999999999993,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.5040000000000001,
+            "q_calibration_error": 0.084375,
+            "q_overestimation_error": 0.675,
+            "q_underestimation_error": 0.675,
+            "risky_action_selection_rate": 1.0,
+            "value_mse": 0.024243300000000002,
+            "value_overestimation_error": 0.17099999999999993,
+            "value_underestimation_error": 0.675
+          },
+          "mc_supervised": {
+            "calibration_error": 0.1299375,
+            "chose_exact_optimal_action": false,
+            "eval_goal": "goal",
+            "eval_greedy_action": "risky",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.9,
+              "safe": 0.0
+            },
+            "exact_optimal_action": "safe",
+            "heldout_long_horizon_value_mse": 0.029240999999999975,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 4,
+                "q_calibration_error": 0.27,
+                "q_overestimation_error": 0.675,
+                "q_underestimation_error": 0.675,
+                "value_mse": 0.11390625000000001,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.675
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 1,
+                "q_calibration_error": 0.7290000000000001,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.7290000000000001,
+                "value_mse": 0.029240999999999975,
+                "value_overestimation_error": 0.17099999999999993,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.5040000000000001,
+            "q_calibration_error": 0.1299375,
+            "q_overestimation_error": 0.675,
+            "q_underestimation_error": 0.7290000000000001,
+            "risky_action_selection_rate": 1.0,
+            "value_mse": 0.024243300000000002,
+            "value_overestimation_error": 0.17099999999999993,
+            "value_underestimation_error": 0.675
+          },
+          "one_sided_conservative_log_trl_alpha_0_00": {
+            "calibration_error": 0.084375,
+            "chose_exact_optimal_action": false,
+            "eval_goal": "goal",
+            "eval_greedy_action": "risky",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.9,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "safe",
+            "heldout_long_horizon_value_mse": 0.029240999999999975,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 4,
+                "q_calibration_error": 0.27,
+                "q_overestimation_error": 0.675,
+                "q_underestimation_error": 0.675,
+                "value_mse": 0.11390625000000001,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.675
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 1,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.029240999999999975,
+                "value_overestimation_error": 0.17099999999999993,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.5040000000000001,
+            "q_calibration_error": 0.084375,
+            "q_overestimation_error": 0.675,
+            "q_underestimation_error": 0.675,
+            "risky_action_selection_rate": 1.0,
+            "value_mse": 0.024243300000000002,
+            "value_overestimation_error": 0.17099999999999993,
+            "value_underestimation_error": 0.675
+          },
+          "one_sided_conservative_log_trl_alpha_0_20": {
+            "calibration_error": 0.084375,
+            "chose_exact_optimal_action": false,
+            "eval_goal": "goal",
+            "eval_greedy_action": "risky",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.81,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "safe",
+            "heldout_long_horizon_value_mse": 0.006560999999999994,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 4,
+                "q_calibration_error": 0.27,
+                "q_overestimation_error": 0.5850000000000001,
+                "q_underestimation_error": 0.675,
+                "value_mse": 0.11593125000000001,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.675
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 1,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.006560999999999994,
+                "value_overestimation_error": 0.08099999999999996,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.5040000000000001,
+            "q_calibration_error": 0.084375,
+            "q_overestimation_error": 0.5850000000000001,
+            "q_underestimation_error": 0.675,
+            "risky_action_selection_rate": 1.0,
+            "value_mse": 0.023514300000000002,
+            "value_overestimation_error": 0.08099999999999996,
+            "value_underestimation_error": 0.675
+          },
+          "one_sided_conservative_log_trl_alpha_0_40": {
+            "calibration_error": 0.084375,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "goal",
+            "eval_greedy_action": "safe",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.72,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "safe",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 4,
+                "q_calibration_error": 0.27,
+                "q_overestimation_error": 0.495,
+                "q_underestimation_error": 0.675,
+                "value_mse": 0.12200625000000002,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.675
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 1,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 0.084375,
+            "q_overestimation_error": 0.495,
+            "q_underestimation_error": 0.675,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 0.024401250000000006,
+            "value_overestimation_error": 0.0,
+            "value_underestimation_error": 0.675
+          },
+          "one_sided_conservative_log_trl_alpha_0_60": {
+            "calibration_error": 0.084375,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "goal",
+            "eval_greedy_action": "safe",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.63,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "safe",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 4,
+                "q_calibration_error": 0.27,
+                "q_overestimation_error": 0.405,
+                "q_underestimation_error": 0.675,
+                "value_mse": 0.13213125,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.675
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 1,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 0.084375,
+            "q_overestimation_error": 0.405,
+            "q_underestimation_error": 0.675,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 0.026426250000000002,
+            "value_overestimation_error": 0.0,
+            "value_underestimation_error": 0.675
+          },
+          "successor_distance_best_0005": {
+            "calibration_error": 0.084375,
+            "chose_exact_optimal_action": false,
+            "eval_goal": "goal",
+            "eval_greedy_action": "risky",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.9,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "safe",
+            "heldout_long_horizon_value_mse": 0.029240999999999975,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 4,
+                "q_calibration_error": 0.27,
+                "q_overestimation_error": 0.675,
+                "q_underestimation_error": 0.675,
+                "value_mse": 0.11390625000000001,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.675
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 1,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.029240999999999975,
+                "value_overestimation_error": 0.17099999999999993,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.5040000000000001,
+            "q_calibration_error": 0.084375,
+            "q_overestimation_error": 0.675,
+            "q_underestimation_error": 0.675,
+            "risky_action_selection_rate": 1.0,
+            "value_mse": 0.024243300000000002,
+            "value_overestimation_error": 0.17099999999999993,
+            "value_underestimation_error": 0.675
+          },
+          "trl_log": {
+            "calibration_error": 0.084375,
+            "chose_exact_optimal_action": false,
+            "eval_goal": "goal",
+            "eval_greedy_action": "risky",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.9,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "safe",
+            "heldout_long_horizon_value_mse": 0.029240999999999975,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 4,
+                "q_calibration_error": 0.27,
+                "q_overestimation_error": 0.675,
+                "q_underestimation_error": 0.675,
+                "value_mse": 0.11390625000000001,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.675
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 1,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.029240999999999975,
+                "value_overestimation_error": 0.17099999999999993,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.5040000000000001,
+            "q_calibration_error": 0.084375,
+            "q_overestimation_error": 0.675,
+            "q_underestimation_error": 0.675,
+            "risky_action_selection_rate": 1.0,
+            "value_mse": 0.024243300000000002,
+            "value_overestimation_error": 0.17099999999999993,
+            "value_underestimation_error": 0.675
+          },
+          "trl_raw": {
+            "calibration_error": 0.084375,
+            "chose_exact_optimal_action": false,
+            "eval_goal": "goal",
+            "eval_greedy_action": "risky",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.9,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "safe",
+            "heldout_long_horizon_value_mse": 0.029240999999999975,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 4,
+                "q_calibration_error": 0.27,
+                "q_overestimation_error": 0.675,
+                "q_underestimation_error": 0.675,
+                "value_mse": 0.11390625000000001,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.675
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 1,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.029240999999999975,
+                "value_overestimation_error": 0.17099999999999993,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.5040000000000001,
+            "q_calibration_error": 0.084375,
+            "q_overestimation_error": 0.675,
+            "q_underestimation_error": 0.675,
+            "risky_action_selection_rate": 1.0,
+            "value_mse": 0.024243300000000002,
+            "value_overestimation_error": 0.17099999999999993,
+            "value_underestimation_error": 0.675
+          }
+        },
+        "scenario_role": "stress_biased",
+        "uncertainty_meta": {
+          "one_sided_conservative_log_trl_alpha_0_00": {
+            "alpha": 0.0,
+            "penalized_pairs": {},
+            "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+          },
+          "one_sided_conservative_log_trl_alpha_0_20": {
+            "alpha": 0.2,
+            "penalized_pairs": {
+              "start|risky|goal": {
+                "alpha": 0.2,
+                "branch_count": 1,
+                "count": 4,
+                "direct_goal_only": true,
+                "eligible": true,
+                "multi_action_state": true,
+                "penalized_backup": 0.81,
+                "penalty": 0.09000000000000001,
+                "raw_backup": 0.9
+              },
+              "start|safe|safe1": {
+                "alpha": 0.2,
+                "branch_count": 1,
+                "count": 4,
+                "direct_goal_only": true,
+                "eligible": true,
+                "multi_action_state": true,
+                "penalized_backup": 0.81,
+                "penalty": 0.09000000000000001,
+                "raw_backup": 0.9
+              }
+            },
+            "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+          },
+          "one_sided_conservative_log_trl_alpha_0_40": {
+            "alpha": 0.4,
+            "penalized_pairs": {
+              "start|risky|goal": {
+                "alpha": 0.4,
+                "branch_count": 1,
+                "count": 4,
+                "direct_goal_only": true,
+                "eligible": true,
+                "multi_action_state": true,
+                "penalized_backup": 0.72,
+                "penalty": 0.18000000000000002,
+                "raw_backup": 0.9
+              },
+              "start|safe|safe1": {
+                "alpha": 0.4,
+                "branch_count": 1,
+                "count": 4,
+                "direct_goal_only": true,
+                "eligible": true,
+                "multi_action_state": true,
+                "penalized_backup": 0.72,
+                "penalty": 0.18000000000000002,
+                "raw_backup": 0.9
+              }
+            },
+            "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+          },
+          "one_sided_conservative_log_trl_alpha_0_60": {
+            "alpha": 0.6,
+            "penalized_pairs": {
+              "start|risky|goal": {
+                "alpha": 0.6,
+                "branch_count": 1,
+                "count": 4,
+                "direct_goal_only": true,
+                "eligible": true,
+                "multi_action_state": true,
+                "penalized_backup": 0.63,
+                "penalty": 0.27,
+                "raw_backup": 0.9
+              },
+              "start|safe|safe1": {
+                "alpha": 0.6,
+                "branch_count": 1,
+                "count": 4,
+                "direct_goal_only": true,
+                "eligible": true,
+                "multi_action_state": true,
+                "penalized_backup": 0.63,
+                "penalty": 0.27,
+                "raw_backup": 0.9
+              }
+            },
+            "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+          },
+          "successor_distance_best_0005": {
+            "lambda_tr": 0.25,
+            "source": "0005_trl_log_equivalent_baseline"
+          }
+        }
+      },
+      "safe_optimal_matched": {
+        "coverage_diagnostics": {
+          "action_counts": {
+            "forward": 8,
+            "risky": 8,
+            "safe": 4
+          },
+          "num_episodes": 12,
+          "num_transitions": 20,
+          "outcome_counts": {
+            "risky_failure": 6,
+            "risky_success": 2,
+            "safe_goal": 4,
+            "safe_step": 8
+          },
+          "risky_failure_count": 6,
+          "risky_success_count": 2,
+          "risky_success_rate_observed": 0.25,
+          "state_action_coverage_fraction": 1.0,
+          "state_action_pairs_seen": [
+            [
+              "safe1",
+              "forward"
+            ],
+            [
+              "safe2",
+              "forward"
+            ],
+            [
+              "start",
+              "risky"
+            ],
+            [
+              "start",
+              "safe"
+            ]
+          ],
+          "state_coverage_fraction": 1.0,
+          "states_seen": [
+            "goal",
+            "safe1",
+            "safe2",
+            "start",
+            "trap"
+          ]
+        },
+        "label_or_pair_coverage": {
+          "censored_examples": [
+            {
+              "action": "safe",
+              "episode_id": "safe_optimal_matched_safe_0",
+              "goal": "goal",
+              "positive_horizon": 3,
+              "state": "start"
+            },
+            {
+              "action": "safe",
+              "episode_id": "safe_optimal_matched_safe_1",
+              "goal": "goal",
+              "positive_horizon": 3,
+              "state": "start"
+            },
+            {
+              "action": "safe",
+              "episode_id": "safe_optimal_matched_safe_2",
+              "goal": "goal",
+              "positive_horizon": 3,
+              "state": "start"
+            },
+            {
+              "action": "safe",
+              "episode_id": "safe_optimal_matched_safe_3",
+              "goal": "goal",
+              "positive_horizon": 3,
+              "state": "start"
+            }
+          ],
+          "counts_by_bin": {
+            "h1_train_visible": {
+              "included_positive": 20
+            },
+            "h2_train_visible": {
+              "included_positive": 8
+            },
+            "heldout_gt2": {
+              "censored_positive": 4
+            },
+            "unreached_zero": {
+              "included_zero": 68
+            }
+          },
+          "eval_q_pairs_by_horizon_bin": {
+            "h1_train_visible": 5,
+            "h2_train_visible": 2,
+            "heldout_gt2": 1,
+            "unreachable": 8
+          },
+          "eval_value_pairs_by_horizon_bin": {
+            "h1_train_visible": 4,
+            "h2_train_visible": 2,
+            "heldout_gt2": 1,
+            "unreachable": 13
+          },
+          "label_horizon_cutoff": 2,
+          "num_censored_positive_labels": 4,
+          "num_included_positive_labels": 28,
+          "num_included_zero_labels": 68,
+          "unique_state_action_goal_pairs_by_bin": {
+            "h1_train_visible": 5,
+            "h2_train_visible": 2,
+            "heldout_gt2": 1,
+            "unreached_zero": 14
+          }
+        },
+        "mdp": "safe_optimal_matched",
+        "methods": {
+          "mc_plus_trl_log": {
+            "calibration_error": 0.0,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "goal",
+            "eval_greedy_action": "safe",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "safe",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 4,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 1,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 0.0,
+            "q_overestimation_error": 0.0,
+            "q_underestimation_error": 0.0,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 0.0,
+            "value_overestimation_error": 0.0,
+            "value_underestimation_error": 0.0
+          },
+          "mc_supervised": {
+            "calibration_error": 0.045562500000000006,
+            "chose_exact_optimal_action": false,
+            "eval_goal": "goal",
+            "eval_greedy_action": "risky",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.225,
+              "safe": 0.0
+            },
+            "exact_optimal_action": "safe",
+            "heldout_long_horizon_value_mse": 0.25401600000000013,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 4,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 1,
+                "q_calibration_error": 0.7290000000000001,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.7290000000000001,
+                "value_mse": 0.25401600000000013,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.5040000000000001
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.5040000000000001,
+            "q_calibration_error": 0.045562500000000006,
+            "q_overestimation_error": 0.0,
+            "q_underestimation_error": 0.7290000000000001,
+            "risky_action_selection_rate": 1.0,
+            "value_mse": 0.012700800000000007,
+            "value_overestimation_error": 0.0,
+            "value_underestimation_error": 0.5040000000000001
+          },
+          "one_sided_conservative_log_trl_alpha_0_00": {
+            "calibration_error": 0.0,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "goal",
+            "eval_greedy_action": "safe",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "safe",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 4,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 1,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 0.0,
+            "q_overestimation_error": 0.0,
+            "q_underestimation_error": 0.0,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 0.0,
+            "value_overestimation_error": 0.0,
+            "value_underestimation_error": 0.0
+          },
+          "one_sided_conservative_log_trl_alpha_0_20": {
+            "calibration_error": 0.005624999999999998,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "goal",
+            "eval_greedy_action": "safe",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "safe",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 4,
+                "q_calibration_error": 0.017999999999999995,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.08999999999999997,
+                "value_mse": 0.0020249999999999986,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.08999999999999997
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 1,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 0.005624999999999998,
+            "q_overestimation_error": 0.0,
+            "q_underestimation_error": 0.08999999999999997,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 0.0004049999999999997,
+            "value_overestimation_error": 0.0,
+            "value_underestimation_error": 0.08999999999999997
+          },
+          "one_sided_conservative_log_trl_alpha_0_40": {
+            "calibration_error": 0.011250000000000003,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "goal",
+            "eval_greedy_action": "safe",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "safe",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 4,
+                "q_calibration_error": 0.03600000000000001,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.18000000000000005,
+                "value_mse": 0.008100000000000005,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.18000000000000005
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 1,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 0.011250000000000003,
+            "q_overestimation_error": 0.0,
+            "q_underestimation_error": 0.18000000000000005,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 0.001620000000000001,
+            "value_overestimation_error": 0.0,
+            "value_underestimation_error": 0.18000000000000005
+          },
+          "one_sided_conservative_log_trl_alpha_0_60": {
+            "calibration_error": 0.016875,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "goal",
+            "eval_greedy_action": "safe",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "safe",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 4,
+                "q_calibration_error": 0.054000000000000006,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.27,
+                "value_mse": 0.018225,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.27
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 1,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 0.016875,
+            "q_overestimation_error": 0.0,
+            "q_underestimation_error": 0.27,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 0.0036450000000000002,
+            "value_overestimation_error": 0.0,
+            "value_underestimation_error": 0.27
+          },
+          "successor_distance_best_0005": {
+            "calibration_error": 0.0,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "goal",
+            "eval_greedy_action": "safe",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "safe",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 4,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 1,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 0.0,
+            "q_overestimation_error": 0.0,
+            "q_underestimation_error": 0.0,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 0.0,
+            "value_overestimation_error": 0.0,
+            "value_underestimation_error": 0.0
+          },
+          "trl_log": {
+            "calibration_error": 0.0,
+            "chose_exact_optimal_action": true,
+            "eval_goal": "goal",
+            "eval_greedy_action": "safe",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "safe",
+            "heldout_long_horizon_value_mse": 0.0,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 4,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 1,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.0,
+            "q_calibration_error": 0.0,
+            "q_overestimation_error": 0.0,
+            "q_underestimation_error": 0.0,
+            "risky_action_selection_rate": 0.0,
+            "value_mse": 0.0,
+            "value_overestimation_error": 0.0,
+            "value_underestimation_error": 0.0
+          },
+          "trl_raw": {
+            "calibration_error": 0.05625,
+            "chose_exact_optimal_action": false,
+            "eval_goal": "goal",
+            "eval_greedy_action": "risky",
+            "eval_start": "start",
+            "eval_start_exact_q": {
+              "risky": 0.225,
+              "safe": 0.7290000000000001
+            },
+            "eval_start_learned_q": {
+              "risky": 0.9,
+              "safe": 0.7290000000000001
+            },
+            "exact_optimal_action": "safe",
+            "heldout_long_horizon_value_mse": 0.029240999999999975,
+            "horizon_metrics": {
+              "h1_train_visible": {
+                "num_q_pairs": 5,
+                "num_value_pairs": 4,
+                "q_calibration_error": 0.18,
+                "q_overestimation_error": 0.675,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.012656249999999997,
+                "value_overestimation_error": 0.22499999999999998,
+                "value_underestimation_error": 0.0
+              },
+              "h2_train_visible": {
+                "num_q_pairs": 2,
+                "num_value_pairs": 2,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              },
+              "heldout_gt2": {
+                "num_q_pairs": 1,
+                "num_value_pairs": 1,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.029240999999999975,
+                "value_overestimation_error": 0.17099999999999993,
+                "value_underestimation_error": 0.0
+              },
+              "unreachable": {
+                "num_q_pairs": 8,
+                "num_value_pairs": 13,
+                "q_calibration_error": 0.0,
+                "q_overestimation_error": 0.0,
+                "q_underestimation_error": 0.0,
+                "value_mse": 0.0,
+                "value_overestimation_error": 0.0,
+                "value_underestimation_error": 0.0
+              }
+            },
+            "policy_regret": 0.5040000000000001,
+            "q_calibration_error": 0.05625,
+            "q_overestimation_error": 0.675,
+            "q_underestimation_error": 0.0,
+            "risky_action_selection_rate": 1.0,
+            "value_mse": 0.003993299999999998,
+            "value_overestimation_error": 0.22499999999999998,
+            "value_underestimation_error": 0.0
+          }
+        },
+        "scenario_role": "main_matched",
+        "uncertainty_meta": {
+          "one_sided_conservative_log_trl_alpha_0_00": {
+            "alpha": 0.0,
+            "penalized_pairs": {},
+            "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+          },
+          "one_sided_conservative_log_trl_alpha_0_20": {
+            "alpha": 0.2,
+            "penalized_pairs": {
+              "start|safe|safe1": {
+                "alpha": 0.2,
+                "branch_count": 1,
+                "count": 4,
+                "direct_goal_only": true,
+                "eligible": true,
+                "multi_action_state": true,
+                "penalized_backup": 0.81,
+                "penalty": 0.09000000000000001,
+                "raw_backup": 0.9
+              }
+            },
+            "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+          },
+          "one_sided_conservative_log_trl_alpha_0_40": {
+            "alpha": 0.4,
+            "penalized_pairs": {
+              "start|safe|safe1": {
+                "alpha": 0.4,
+                "branch_count": 1,
+                "count": 4,
+                "direct_goal_only": true,
+                "eligible": true,
+                "multi_action_state": true,
+                "penalized_backup": 0.72,
+                "penalty": 0.18000000000000002,
+                "raw_backup": 0.9
+              }
+            },
+            "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+          },
+          "one_sided_conservative_log_trl_alpha_0_60": {
+            "alpha": 0.6,
+            "penalized_pairs": {
+              "start|safe|safe1": {
+                "alpha": 0.6,
+                "branch_count": 1,
+                "count": 4,
+                "direct_goal_only": true,
+                "eligible": true,
+                "multi_action_state": true,
+                "penalized_backup": 0.63,
+                "penalty": 0.27,
+                "raw_backup": 0.9
+              }
+            },
+            "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+          },
+          "successor_distance_best_0005": {
+            "lambda_tr": 0.25,
+            "source": "0005_trl_log_equivalent_baseline"
+          }
+        }
+      }
+    },
+    "success_checks": {
+      "alpha_grid_completed": true,
+      "chain_raw_exact": true,
+      "chain_trl_log_exact": true,
+      "experiment_completed": true,
+      "positive_uncertainty_evidence": true
+    },
+    "successor_baseline_lambda": 0.25,
+    "update_steps": 32
+  },
+  "next_questions": [
+    "Can the direct-goal shortcut penalty be generalized without hand-tuning the decision-state eligibility rule?",
+    "How should uncertainty penalties trade off lucky-only safety against no-success risk-optimal conservatism?",
+    "Would bootstrap or Bayesian branch uncertainty provide smoother behavior than the fixed count penalty grid?"
+  ],
+  "status": "completed"
+}
+```
+
+
+## Latest summary
+
+# Experiment 0006 Summary
+
+## Objective
+
+Test a one-sided conservative log-TRL backup on biased stochastic coverage while preserving matched and deterministic behavior.
+
+## Commands Run
+
+```bash
+mkdir -p research/sto_trl/artifacts/0006 research/sto_trl/results && cp research/sto_trl/artifacts/0005/run_lambda_equivalence_audit.py research/sto_trl/artifacts/0006/run_uncertainty_conservative_log_trl.py
+conda run -n autoresearcher_sto_trl python research/sto_trl/artifacts/0006/run_uncertainty_conservative_log_trl.py
+conda run -n autoresearcher_sto_trl python scripts/validate_artifacts.py --repo-root . --json research/sto_trl/results/0006_result.json --schema schemas/result.schema.json --check-result-artifacts
+```
+
+## Setup
+
+- Discount: `0.9`
+- Label horizon cutoff: `2`
+- Fixed backup iterations: `32`
+- Alpha grid: `[0.0, 0.2, 0.4, 0.6]`
+- Conservative penalty: `alpha * gamma / sqrt(count)` for direct-goal single-branch shortcut actions at multi-action states with count at least 4.
+
+## Metrics
+
+| Scenario | Method | Alpha | Held-out MSE | Q calibration | Policy regret | Action | Risky selected |
+| --- | --- | ---: | ---: | ---: | ---: | --- | ---: |
+| chain_len9_holdout | mc_supervised | None | 0.391705823230 | 0.465607869047 | 0.000000000000 | right | 0.0 |
+| chain_len9_holdout | trl_raw | None | 0.000000000000 | 0.000000000000 | 0.000000000000 | right | 0.0 |
+| chain_len9_holdout | trl_log | None | 0.000000000000 | 0.000000000000 | 0.000000000000 | right | 0.0 |
+| chain_len9_holdout | mc_plus_trl_log | None | 0.000000000000 | 0.131258278195 | 0.000000000000 | right | 0.0 |
+| chain_len9_holdout | successor_distance_best_0005 | None | 0.000000000000 | 0.000000000000 | 0.000000000000 | right | 0.0 |
+| chain_len9_holdout | one_sided_conservative_log_trl_alpha_0_00 | 0.0 | 0.000000000000 | 0.000000000000 | 0.000000000000 | right | 0.0 |
+| chain_len9_holdout | one_sided_conservative_log_trl_alpha_0_20 | 0.2 | 0.000000000000 | 0.000000000000 | 0.000000000000 | right | 0.0 |
+| chain_len9_holdout | one_sided_conservative_log_trl_alpha_0_40 | 0.4 | 0.000000000000 | 0.000000000000 | 0.000000000000 | right | 0.0 |
+| chain_len9_holdout | one_sided_conservative_log_trl_alpha_0_60 | 0.6 | 0.000000000000 | 0.000000000000 | 0.000000000000 | right | 0.0 |
+| safe_optimal_matched | mc_supervised | None | 0.254016000000 | 0.045562500000 | 0.504000000000 | risky | 1.0 |
+| safe_optimal_matched | trl_raw | None | 0.029241000000 | 0.056250000000 | 0.504000000000 | risky | 1.0 |
+| safe_optimal_matched | trl_log | None | 0.000000000000 | 0.000000000000 | 0.000000000000 | safe | 0.0 |
+| safe_optimal_matched | mc_plus_trl_log | None | 0.000000000000 | 0.000000000000 | 0.000000000000 | safe | 0.0 |
+| safe_optimal_matched | successor_distance_best_0005 | None | 0.000000000000 | 0.000000000000 | 0.000000000000 | safe | 0.0 |
+| safe_optimal_matched | one_sided_conservative_log_trl_alpha_0_00 | 0.0 | 0.000000000000 | 0.000000000000 | 0.000000000000 | safe | 0.0 |
+| safe_optimal_matched | one_sided_conservative_log_trl_alpha_0_20 | 0.2 | 0.000000000000 | 0.005625000000 | 0.000000000000 | safe | 0.0 |
+| safe_optimal_matched | one_sided_conservative_log_trl_alpha_0_40 | 0.4 | 0.000000000000 | 0.011250000000 | 0.000000000000 | safe | 0.0 |
+| safe_optimal_matched | one_sided_conservative_log_trl_alpha_0_60 | 0.6 | 0.000000000000 | 0.016875000000 | 0.000000000000 | safe | 0.0 |
+| risk_optimal_matched | mc_supervised | None | 0.000000000000 | 0.045562500000 | 0.000000000000 | risky | 1.0 |
+| risk_optimal_matched | trl_raw | None | 0.000000000000 | 0.056250000000 | 0.000000000000 | risky | 1.0 |
+| risk_optimal_matched | trl_log | None | 0.000000000000 | 0.000000000000 | 0.000000000000 | risky | 1.0 |
+| risk_optimal_matched | mc_plus_trl_log | None | 0.000000000000 | 0.000000000000 | 0.000000000000 | risky | 1.0 |
+| risk_optimal_matched | successor_distance_best_0005 | None | 0.000000000000 | 0.000000000000 | 0.000000000000 | risky | 1.0 |
+| risk_optimal_matched | one_sided_conservative_log_trl_alpha_0_00 | 0.0 | 0.000000000000 | 0.000000000000 | 0.000000000000 | risky | 1.0 |
+| risk_optimal_matched | one_sided_conservative_log_trl_alpha_0_20 | 0.2 | 0.000000000000 | 0.005625000000 | 0.000000000000 | risky | 1.0 |
+| risk_optimal_matched | one_sided_conservative_log_trl_alpha_0_40 | 0.4 | 0.000000000000 | 0.011250000000 | 0.000000000000 | risky | 1.0 |
+| risk_optimal_matched | one_sided_conservative_log_trl_alpha_0_60 | 0.6 | 0.000000000000 | 0.016875000000 | 0.000000000000 | risky | 1.0 |
+| safe_optimal_lucky_only_stress | mc_supervised | None | 0.029241000000 | 0.129937500000 | 0.504000000000 | risky | 1.0 |
+| safe_optimal_lucky_only_stress | trl_raw | None | 0.029241000000 | 0.084375000000 | 0.504000000000 | risky | 1.0 |
+| safe_optimal_lucky_only_stress | trl_log | None | 0.029241000000 | 0.084375000000 | 0.504000000000 | risky | 1.0 |
+| safe_optimal_lucky_only_stress | mc_plus_trl_log | None | 0.029241000000 | 0.084375000000 | 0.504000000000 | risky | 1.0 |
+| safe_optimal_lucky_only_stress | successor_distance_best_0005 | None | 0.029241000000 | 0.084375000000 | 0.504000000000 | risky | 1.0 |
+| safe_optimal_lucky_only_stress | one_sided_conservative_log_trl_alpha_0_00 | 0.0 | 0.029241000000 | 0.084375000000 | 0.504000000000 | risky | 1.0 |
+| safe_optimal_lucky_only_stress | one_sided_conservative_log_trl_alpha_0_20 | 0.2 | 0.006561000000 | 0.084375000000 | 0.504000000000 | risky | 1.0 |
+| safe_optimal_lucky_only_stress | one_sided_conservative_log_trl_alpha_0_40 | 0.4 | 0.000000000000 | 0.084375000000 | 0.000000000000 | safe | 0.0 |
+| safe_optimal_lucky_only_stress | one_sided_conservative_log_trl_alpha_0_60 | 0.6 | 0.000000000000 | 0.084375000000 | 0.000000000000 | safe | 0.0 |
+| risk_optimal_no_success_stress | mc_supervised | None | 0.000000000000 | 0.146812500000 | 0.000000000000 | risky | 1.0 |
+| risk_optimal_no_success_stress | trl_raw | None | 0.000000000000 | 0.101250000000 | 0.081000000000 | safe | 0.0 |
+| risk_optimal_no_success_stress | trl_log | None | 0.000000000000 | 0.101250000000 | 0.081000000000 | safe | 0.0 |
+| risk_optimal_no_success_stress | mc_plus_trl_log | None | 0.000000000000 | 0.101250000000 | 0.081000000000 | safe | 0.0 |
+| risk_optimal_no_success_stress | successor_distance_best_0005 | None | 0.000000000000 | 0.101250000000 | 0.081000000000 | safe | 0.0 |
+| risk_optimal_no_success_stress | one_sided_conservative_log_trl_alpha_0_00 | 0.0 | 0.000000000000 | 0.101250000000 | 0.081000000000 | safe | 0.0 |
+| risk_optimal_no_success_stress | one_sided_conservative_log_trl_alpha_0_20 | 0.2 | 0.000000000000 | 0.102897524356 | 0.081000000000 | safe | 0.0 |
+| risk_optimal_no_success_stress | one_sided_conservative_log_trl_alpha_0_40 | 0.4 | 0.000000000000 | 0.104545048712 | 0.081000000000 | safe | 0.0 |
+| risk_optimal_no_success_stress | one_sided_conservative_log_trl_alpha_0_60 | 0.6 | 0.000000000000 | 0.106192573067 | 0.081000000000 | safe | 0.0 |
+
+## Success Checks
+
+- Chain raw exact: `True`
+- Chain TRL-log exact: `True`
+- Alpha grid completed: `True`
+- Positive uncertainty evidence: `True`
+- Best positive method: `one_sided_conservative_log_trl_alpha_0_20`
+
+## Interpretation
+
+one_sided_conservative_log_trl_alpha_0_20 reduced the lucky-only safe-optimal failure versus trl_log while preserving the chain and selecting risky with zero regret in the matched risk-optimal scenario.
+
+## Artifacts
+
+- `research/sto_trl/artifacts/0006/run_uncertainty_conservative_log_trl.py`
+- `research/sto_trl/artifacts/0006/raw_metrics.json`
+- `research/sto_trl/artifacts/0006/metrics.csv`
+- `research/sto_trl/artifacts/0006/penalty_sweep.json`
+- `research/sto_trl/artifacts/0006/uncertainty_diagnostics.json`
+- `research/sto_trl/artifacts/0006/offline_datasets.json`
+- `research/sto_trl/artifacts/0006/transition_tables.json`
+- `research/sto_trl/artifacts/0006/value_tables.json`
+
+## Known Failures
+
+- None.
+
+
+## Artifact paths
+
+- `/home/eston/autoresearcher/research/sto_trl/artifacts/0002`
+- `/home/eston/autoresearcher/research/sto_trl/artifacts/0003`
+- `/home/eston/autoresearcher/research/sto_trl/artifacts/0004`
+- `/home/eston/autoresearcher/research/sto_trl/artifacts/0005`
+- `/home/eston/autoresearcher/research/sto_trl/artifacts/0006`
+
+
+## Review schema
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "experiment_id": { "type": "string" },
+    "verdict": {
+      "type": "string",
+      "enum": ["pass", "weak_pass", "fail", "needs_human"]
+    },
+    "allows_auto_continue": {
+      "type": "boolean"
+    },
+    "reasons": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "evidence_checked": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "required_fixes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "risk_flags": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "required": [
+    "experiment_id",
+    "verdict",
+    "allows_auto_continue",
+    "reasons",
+    "evidence_checked",
+    "required_fixes",
+    "risk_flags"
+  ],
+  "additionalProperties": false
+}
+```
