@@ -148,15 +148,21 @@ Do not optimize for benchmark performance in the first run. Optimize for a corre
 ```json
 {
   "best_primary_metric": null,
-  "failure_streak": 0,
+  "failure_streak": 1,
   "human_review_required": false,
   "iteration": 6,
-  "last_decision": "pivot",
-  "last_failure": null,
+  "last_decision": "retryable_failure",
+  "last_failure": {
+    "at": "2026-06-13T09:21:15+00:00",
+    "attempt": 1,
+    "max_attempts": 3,
+    "note": "reviewer failed or timed out; see /home/eston/autoresearcher/research/sto_trl/reviews/0007_review_stderr.log"
+  },
   "last_pro_review_iteration": 0,
   "no_progress_rounds": 0,
   "notes": [
-    "2026-06-13T08:58:38+00:00: supervisor decision pivot"
+    "2026-06-13T08:58:38+00:00: supervisor decision pivot",
+    "2026-06-13T09:21:15+00:00: retryable failure 1/3: reviewer failed or timed out; see /home/eston/autoresearcher/research/sto_trl/reviews/0007_review_stderr.log"
   ],
   "primary_metric": null,
   "status": "active"
