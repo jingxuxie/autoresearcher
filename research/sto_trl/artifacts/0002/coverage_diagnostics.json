@@ -1,0 +1,696 @@
+{
+  "deterministic_chain__chain_regression": {
+    "action_counts": {
+      "left": 5,
+      "right": 5
+    },
+    "future_goal_coverage_fraction": 1.0,
+    "future_goals_seen": [
+      "c0",
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+    ],
+    "mdp": "deterministic_chain",
+    "num_episodes": 2,
+    "num_transitions": 10,
+    "outcome_counts": {
+      "deterministic": 10
+    },
+    "regime": "chain_regression",
+    "risky_failure_count": 0,
+    "risky_success_count": 0,
+    "risky_success_rate_observed": null,
+    "state_action_coverage_fraction": 1.0,
+    "state_action_pairs_seen": [
+      [
+        "c0",
+        "right"
+      ],
+      [
+        "c1",
+        "left"
+      ],
+      [
+        "c1",
+        "right"
+      ],
+      [
+        "c2",
+        "left"
+      ],
+      [
+        "c2",
+        "right"
+      ],
+      [
+        "c3",
+        "left"
+      ],
+      [
+        "c3",
+        "right"
+      ],
+      [
+        "c4",
+        "left"
+      ],
+      [
+        "c4",
+        "right"
+      ],
+      [
+        "c5",
+        "left"
+      ]
+    ],
+    "state_coverage_fraction": 1.0,
+    "states_seen": [
+      "c0",
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5"
+    ],
+    "transition_counts": {
+      "c0|right|c1": 1,
+      "c1|left|c0": 1,
+      "c1|right|c2": 1,
+      "c2|left|c1": 1,
+      "c2|right|c3": 1,
+      "c3|left|c2": 1,
+      "c3|right|c4": 1,
+      "c4|left|c3": 1,
+      "c4|right|c5": 1,
+      "c5|left|c4": 1
+    },
+    "true_risky_success_prob": null
+  },
+  "risk_optimal__lucky_biased": {
+    "action_counts": {
+      "forward": 8,
+      "risky": 9,
+      "safe": 4
+    },
+    "future_goal_coverage_fraction": 0.6,
+    "future_goals_seen": [
+      "goal",
+      "safe1",
+      "safe2"
+    ],
+    "mdp": "risky_risk_optimal",
+    "num_episodes": 13,
+    "num_transitions": 21,
+    "outcome_counts": {
+      "risky_success": 9,
+      "safe_goal": 4,
+      "safe_step": 8
+    },
+    "regime": "lucky_biased",
+    "risky_failure_count": 0,
+    "risky_success_count": 9,
+    "risky_success_rate_observed": 1.0,
+    "state_action_coverage_fraction": 1.0,
+    "state_action_pairs_seen": [
+      [
+        "safe1",
+        "forward"
+      ],
+      [
+        "safe2",
+        "forward"
+      ],
+      [
+        "start",
+        "risky"
+      ],
+      [
+        "start",
+        "safe"
+      ]
+    ],
+    "state_coverage_fraction": 0.8,
+    "states_seen": [
+      "goal",
+      "safe1",
+      "safe2",
+      "start"
+    ],
+    "transition_counts": {
+      "safe1|forward|safe2": 4,
+      "safe2|forward|goal": 4,
+      "start|risky|goal": 9,
+      "start|safe|safe1": 4
+    },
+    "true_risky_success_prob": 0.9
+  },
+  "risk_optimal__lucky_only": {
+    "action_counts": {
+      "forward": 8,
+      "risky": 4,
+      "safe": 4
+    },
+    "future_goal_coverage_fraction": 0.6,
+    "future_goals_seen": [
+      "goal",
+      "safe1",
+      "safe2"
+    ],
+    "mdp": "risky_risk_optimal",
+    "num_episodes": 8,
+    "num_transitions": 16,
+    "outcome_counts": {
+      "risky_success": 4,
+      "safe_goal": 4,
+      "safe_step": 8
+    },
+    "regime": "lucky_only",
+    "risky_failure_count": 0,
+    "risky_success_count": 4,
+    "risky_success_rate_observed": 1.0,
+    "state_action_coverage_fraction": 1.0,
+    "state_action_pairs_seen": [
+      [
+        "safe1",
+        "forward"
+      ],
+      [
+        "safe2",
+        "forward"
+      ],
+      [
+        "start",
+        "risky"
+      ],
+      [
+        "start",
+        "safe"
+      ]
+    ],
+    "state_coverage_fraction": 0.8,
+    "states_seen": [
+      "goal",
+      "safe1",
+      "safe2",
+      "start"
+    ],
+    "transition_counts": {
+      "safe1|forward|safe2": 4,
+      "safe2|forward|goal": 4,
+      "start|risky|goal": 4,
+      "start|safe|safe1": 4
+    },
+    "true_risky_success_prob": 0.9
+  },
+  "risk_optimal__matched": {
+    "action_counts": {
+      "forward": 8,
+      "risky": 10,
+      "safe": 4
+    },
+    "future_goal_coverage_fraction": 0.8,
+    "future_goals_seen": [
+      "goal",
+      "safe1",
+      "safe2",
+      "trap"
+    ],
+    "mdp": "risky_risk_optimal",
+    "num_episodes": 14,
+    "num_transitions": 22,
+    "outcome_counts": {
+      "risky_failure": 1,
+      "risky_success": 9,
+      "safe_goal": 4,
+      "safe_step": 8
+    },
+    "regime": "matched",
+    "risky_failure_count": 1,
+    "risky_success_count": 9,
+    "risky_success_rate_observed": 0.9,
+    "state_action_coverage_fraction": 1.0,
+    "state_action_pairs_seen": [
+      [
+        "safe1",
+        "forward"
+      ],
+      [
+        "safe2",
+        "forward"
+      ],
+      [
+        "start",
+        "risky"
+      ],
+      [
+        "start",
+        "safe"
+      ]
+    ],
+    "state_coverage_fraction": 1.0,
+    "states_seen": [
+      "goal",
+      "safe1",
+      "safe2",
+      "start",
+      "trap"
+    ],
+    "transition_counts": {
+      "safe1|forward|safe2": 4,
+      "safe2|forward|goal": 4,
+      "start|risky|goal": 9,
+      "start|risky|trap": 1,
+      "start|safe|safe1": 4
+    },
+    "true_risky_success_prob": 0.9
+  },
+  "risk_optimal__no_risky_success": {
+    "action_counts": {
+      "forward": 8,
+      "risky": 8,
+      "safe": 4
+    },
+    "future_goal_coverage_fraction": 0.8,
+    "future_goals_seen": [
+      "goal",
+      "safe1",
+      "safe2",
+      "trap"
+    ],
+    "mdp": "risky_risk_optimal",
+    "num_episodes": 12,
+    "num_transitions": 20,
+    "outcome_counts": {
+      "risky_failure": 8,
+      "safe_goal": 4,
+      "safe_step": 8
+    },
+    "regime": "no_risky_success",
+    "risky_failure_count": 8,
+    "risky_success_count": 0,
+    "risky_success_rate_observed": 0.0,
+    "state_action_coverage_fraction": 1.0,
+    "state_action_pairs_seen": [
+      [
+        "safe1",
+        "forward"
+      ],
+      [
+        "safe2",
+        "forward"
+      ],
+      [
+        "start",
+        "risky"
+      ],
+      [
+        "start",
+        "safe"
+      ]
+    ],
+    "state_coverage_fraction": 1.0,
+    "states_seen": [
+      "goal",
+      "safe1",
+      "safe2",
+      "start",
+      "trap"
+    ],
+    "transition_counts": {
+      "safe1|forward|safe2": 4,
+      "safe2|forward|goal": 4,
+      "start|risky|trap": 8,
+      "start|safe|safe1": 4
+    },
+    "true_risky_success_prob": 0.9
+  },
+  "risk_optimal__unlucky_biased": {
+    "action_counts": {
+      "forward": 8,
+      "risky": 8,
+      "safe": 4
+    },
+    "future_goal_coverage_fraction": 0.8,
+    "future_goals_seen": [
+      "goal",
+      "safe1",
+      "safe2",
+      "trap"
+    ],
+    "mdp": "risky_risk_optimal",
+    "num_episodes": 12,
+    "num_transitions": 20,
+    "outcome_counts": {
+      "risky_failure": 4,
+      "risky_success": 4,
+      "safe_goal": 4,
+      "safe_step": 8
+    },
+    "regime": "unlucky_biased",
+    "risky_failure_count": 4,
+    "risky_success_count": 4,
+    "risky_success_rate_observed": 0.5,
+    "state_action_coverage_fraction": 1.0,
+    "state_action_pairs_seen": [
+      [
+        "safe1",
+        "forward"
+      ],
+      [
+        "safe2",
+        "forward"
+      ],
+      [
+        "start",
+        "risky"
+      ],
+      [
+        "start",
+        "safe"
+      ]
+    ],
+    "state_coverage_fraction": 1.0,
+    "states_seen": [
+      "goal",
+      "safe1",
+      "safe2",
+      "start",
+      "trap"
+    ],
+    "transition_counts": {
+      "safe1|forward|safe2": 4,
+      "safe2|forward|goal": 4,
+      "start|risky|goal": 4,
+      "start|risky|trap": 4,
+      "start|safe|safe1": 4
+    },
+    "true_risky_success_prob": 0.9
+  },
+  "safe_optimal__lucky_biased": {
+    "action_counts": {
+      "forward": 8,
+      "risky": 8,
+      "safe": 4
+    },
+    "future_goal_coverage_fraction": 0.8,
+    "future_goals_seen": [
+      "goal",
+      "safe1",
+      "safe2",
+      "trap"
+    ],
+    "mdp": "risky_safe_optimal",
+    "num_episodes": 12,
+    "num_transitions": 20,
+    "outcome_counts": {
+      "risky_failure": 2,
+      "risky_success": 6,
+      "safe_goal": 4,
+      "safe_step": 8
+    },
+    "regime": "lucky_biased",
+    "risky_failure_count": 2,
+    "risky_success_count": 6,
+    "risky_success_rate_observed": 0.75,
+    "state_action_coverage_fraction": 1.0,
+    "state_action_pairs_seen": [
+      [
+        "safe1",
+        "forward"
+      ],
+      [
+        "safe2",
+        "forward"
+      ],
+      [
+        "start",
+        "risky"
+      ],
+      [
+        "start",
+        "safe"
+      ]
+    ],
+    "state_coverage_fraction": 1.0,
+    "states_seen": [
+      "goal",
+      "safe1",
+      "safe2",
+      "start",
+      "trap"
+    ],
+    "transition_counts": {
+      "safe1|forward|safe2": 4,
+      "safe2|forward|goal": 4,
+      "start|risky|goal": 6,
+      "start|risky|trap": 2,
+      "start|safe|safe1": 4
+    },
+    "true_risky_success_prob": 0.25
+  },
+  "safe_optimal__lucky_only": {
+    "action_counts": {
+      "forward": 8,
+      "risky": 4,
+      "safe": 4
+    },
+    "future_goal_coverage_fraction": 0.6,
+    "future_goals_seen": [
+      "goal",
+      "safe1",
+      "safe2"
+    ],
+    "mdp": "risky_safe_optimal",
+    "num_episodes": 8,
+    "num_transitions": 16,
+    "outcome_counts": {
+      "risky_success": 4,
+      "safe_goal": 4,
+      "safe_step": 8
+    },
+    "regime": "lucky_only",
+    "risky_failure_count": 0,
+    "risky_success_count": 4,
+    "risky_success_rate_observed": 1.0,
+    "state_action_coverage_fraction": 1.0,
+    "state_action_pairs_seen": [
+      [
+        "safe1",
+        "forward"
+      ],
+      [
+        "safe2",
+        "forward"
+      ],
+      [
+        "start",
+        "risky"
+      ],
+      [
+        "start",
+        "safe"
+      ]
+    ],
+    "state_coverage_fraction": 0.8,
+    "states_seen": [
+      "goal",
+      "safe1",
+      "safe2",
+      "start"
+    ],
+    "transition_counts": {
+      "safe1|forward|safe2": 4,
+      "safe2|forward|goal": 4,
+      "start|risky|goal": 4,
+      "start|safe|safe1": 4
+    },
+    "true_risky_success_prob": 0.25
+  },
+  "safe_optimal__matched": {
+    "action_counts": {
+      "forward": 8,
+      "risky": 8,
+      "safe": 4
+    },
+    "future_goal_coverage_fraction": 0.8,
+    "future_goals_seen": [
+      "goal",
+      "safe1",
+      "safe2",
+      "trap"
+    ],
+    "mdp": "risky_safe_optimal",
+    "num_episodes": 12,
+    "num_transitions": 20,
+    "outcome_counts": {
+      "risky_failure": 6,
+      "risky_success": 2,
+      "safe_goal": 4,
+      "safe_step": 8
+    },
+    "regime": "matched",
+    "risky_failure_count": 6,
+    "risky_success_count": 2,
+    "risky_success_rate_observed": 0.25,
+    "state_action_coverage_fraction": 1.0,
+    "state_action_pairs_seen": [
+      [
+        "safe1",
+        "forward"
+      ],
+      [
+        "safe2",
+        "forward"
+      ],
+      [
+        "start",
+        "risky"
+      ],
+      [
+        "start",
+        "safe"
+      ]
+    ],
+    "state_coverage_fraction": 1.0,
+    "states_seen": [
+      "goal",
+      "safe1",
+      "safe2",
+      "start",
+      "trap"
+    ],
+    "transition_counts": {
+      "safe1|forward|safe2": 4,
+      "safe2|forward|goal": 4,
+      "start|risky|goal": 2,
+      "start|risky|trap": 6,
+      "start|safe|safe1": 4
+    },
+    "true_risky_success_prob": 0.25
+  },
+  "safe_optimal__no_risky_success": {
+    "action_counts": {
+      "forward": 8,
+      "risky": 8,
+      "safe": 4
+    },
+    "future_goal_coverage_fraction": 0.8,
+    "future_goals_seen": [
+      "goal",
+      "safe1",
+      "safe2",
+      "trap"
+    ],
+    "mdp": "risky_safe_optimal",
+    "num_episodes": 12,
+    "num_transitions": 20,
+    "outcome_counts": {
+      "risky_failure": 8,
+      "safe_goal": 4,
+      "safe_step": 8
+    },
+    "regime": "no_risky_success",
+    "risky_failure_count": 8,
+    "risky_success_count": 0,
+    "risky_success_rate_observed": 0.0,
+    "state_action_coverage_fraction": 1.0,
+    "state_action_pairs_seen": [
+      [
+        "safe1",
+        "forward"
+      ],
+      [
+        "safe2",
+        "forward"
+      ],
+      [
+        "start",
+        "risky"
+      ],
+      [
+        "start",
+        "safe"
+      ]
+    ],
+    "state_coverage_fraction": 1.0,
+    "states_seen": [
+      "goal",
+      "safe1",
+      "safe2",
+      "start",
+      "trap"
+    ],
+    "transition_counts": {
+      "safe1|forward|safe2": 4,
+      "safe2|forward|goal": 4,
+      "start|risky|trap": 8,
+      "start|safe|safe1": 4
+    },
+    "true_risky_success_prob": 0.25
+  },
+  "safe_optimal__unlucky_biased": {
+    "action_counts": {
+      "forward": 8,
+      "risky": 8,
+      "safe": 4
+    },
+    "future_goal_coverage_fraction": 0.8,
+    "future_goals_seen": [
+      "goal",
+      "safe1",
+      "safe2",
+      "trap"
+    ],
+    "mdp": "risky_safe_optimal",
+    "num_episodes": 12,
+    "num_transitions": 20,
+    "outcome_counts": {
+      "risky_failure": 7,
+      "risky_success": 1,
+      "safe_goal": 4,
+      "safe_step": 8
+    },
+    "regime": "unlucky_biased",
+    "risky_failure_count": 7,
+    "risky_success_count": 1,
+    "risky_success_rate_observed": 0.125,
+    "state_action_coverage_fraction": 1.0,
+    "state_action_pairs_seen": [
+      [
+        "safe1",
+        "forward"
+      ],
+      [
+        "safe2",
+        "forward"
+      ],
+      [
+        "start",
+        "risky"
+      ],
+      [
+        "start",
+        "safe"
+      ]
+    ],
+    "state_coverage_fraction": 1.0,
+    "states_seen": [
+      "goal",
+      "safe1",
+      "safe2",
+      "start",
+      "trap"
+    ],
+    "transition_counts": {
+      "safe1|forward|safe2": 4,
+      "safe2|forward|goal": 4,
+      "start|risky|goal": 1,
+      "start|risky|trap": 7,
+      "start|safe|safe1": 4
+    },
+    "true_risky_success_prob": 0.25
+  }
+}

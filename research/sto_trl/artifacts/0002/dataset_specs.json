@@ -1,0 +1,50 @@
+{
+  "note": "Training methods consume only these constructed trajectories. Exact DP transition tables are used only for evaluation.",
+  "regime_specs": {
+    "risk_optimal": {
+      "lucky_biased": {
+        "risky_failures": 0,
+        "risky_successes": 9
+      },
+      "lucky_only": {
+        "risky_failures": 0,
+        "risky_successes": 4
+      },
+      "matched": {
+        "risky_failures": 1,
+        "risky_successes": 9
+      },
+      "no_risky_success": {
+        "risky_failures": 8,
+        "risky_successes": 0
+      },
+      "unlucky_biased": {
+        "risky_failures": 4,
+        "risky_successes": 4
+      }
+    },
+    "safe_optimal": {
+      "lucky_biased": {
+        "risky_failures": 2,
+        "risky_successes": 6
+      },
+      "lucky_only": {
+        "risky_failures": 0,
+        "risky_successes": 4
+      },
+      "matched": {
+        "risky_failures": 6,
+        "risky_successes": 2
+      },
+      "no_risky_success": {
+        "risky_failures": 8,
+        "risky_successes": 0
+      },
+      "unlucky_biased": {
+        "risky_failures": 7,
+        "risky_successes": 1
+      }
+    }
+  },
+  "safe_episodes_per_regime": 4
+}

@@ -1,0 +1,3271 @@
+{
+  "deterministic_chain__chain_regression": [
+    {
+      "actions": [
+        "right",
+        "right",
+        "right",
+        "right",
+        "right"
+      ],
+      "episode_id": "chain_forward",
+      "mdp": "deterministic_chain",
+      "states": [
+        "c0",
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5"
+      ],
+      "transitions": [
+        {
+          "action": "right",
+          "next_state": "c1",
+          "outcome": "deterministic",
+          "state": "c0",
+          "t": 0
+        },
+        {
+          "action": "right",
+          "next_state": "c2",
+          "outcome": "deterministic",
+          "state": "c1",
+          "t": 1
+        },
+        {
+          "action": "right",
+          "next_state": "c3",
+          "outcome": "deterministic",
+          "state": "c2",
+          "t": 2
+        },
+        {
+          "action": "right",
+          "next_state": "c4",
+          "outcome": "deterministic",
+          "state": "c3",
+          "t": 3
+        },
+        {
+          "action": "right",
+          "next_state": "c5",
+          "outcome": "deterministic",
+          "state": "c4",
+          "t": 4
+        }
+      ]
+    },
+    {
+      "actions": [
+        "left",
+        "left",
+        "left",
+        "left",
+        "left"
+      ],
+      "episode_id": "chain_backward",
+      "mdp": "deterministic_chain",
+      "states": [
+        "c5",
+        "c4",
+        "c3",
+        "c2",
+        "c1",
+        "c0"
+      ],
+      "transitions": [
+        {
+          "action": "left",
+          "next_state": "c4",
+          "outcome": "deterministic",
+          "state": "c5",
+          "t": 0
+        },
+        {
+          "action": "left",
+          "next_state": "c3",
+          "outcome": "deterministic",
+          "state": "c4",
+          "t": 1
+        },
+        {
+          "action": "left",
+          "next_state": "c2",
+          "outcome": "deterministic",
+          "state": "c3",
+          "t": 2
+        },
+        {
+          "action": "left",
+          "next_state": "c1",
+          "outcome": "deterministic",
+          "state": "c2",
+          "t": 3
+        },
+        {
+          "action": "left",
+          "next_state": "c0",
+          "outcome": "deterministic",
+          "state": "c1",
+          "t": 4
+        }
+      ]
+    }
+  ],
+  "risk_optimal__lucky_biased": [
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_risk_optimal_lucky_biased_safe_0",
+      "mdp": "risky_risk_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_risk_optimal_lucky_biased_safe_1",
+      "mdp": "risky_risk_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_risk_optimal_lucky_biased_safe_2",
+      "mdp": "risky_risk_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_risk_optimal_lucky_biased_safe_3",
+      "mdp": "risky_risk_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_lucky_biased_risky_0_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_lucky_biased_risky_1_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_lucky_biased_risky_2_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_lucky_biased_risky_3_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_lucky_biased_risky_4_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_lucky_biased_risky_5_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_lucky_biased_risky_6_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_lucky_biased_risky_7_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_lucky_biased_risky_8_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    }
+  ],
+  "risk_optimal__lucky_only": [
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_risk_optimal_lucky_only_safe_0",
+      "mdp": "risky_risk_optimal",
+      "regime": "lucky_only",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_risk_optimal_lucky_only_safe_1",
+      "mdp": "risky_risk_optimal",
+      "regime": "lucky_only",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_risk_optimal_lucky_only_safe_2",
+      "mdp": "risky_risk_optimal",
+      "regime": "lucky_only",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_risk_optimal_lucky_only_safe_3",
+      "mdp": "risky_risk_optimal",
+      "regime": "lucky_only",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_lucky_only_risky_0_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "lucky_only",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_lucky_only_risky_1_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "lucky_only",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_lucky_only_risky_2_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "lucky_only",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_lucky_only_risky_3_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "lucky_only",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    }
+  ],
+  "risk_optimal__matched": [
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_risk_optimal_matched_safe_0",
+      "mdp": "risky_risk_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_risk_optimal_matched_safe_1",
+      "mdp": "risky_risk_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_risk_optimal_matched_safe_2",
+      "mdp": "risky_risk_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_risk_optimal_matched_safe_3",
+      "mdp": "risky_risk_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_matched_risky_0_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_matched_risky_1_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_matched_risky_2_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_matched_risky_3_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_matched_risky_4_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_matched_risky_5_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_matched_risky_6_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_matched_risky_7_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_matched_risky_8_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_matched_risky_9_failure",
+      "mdp": "risky_risk_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    }
+  ],
+  "risk_optimal__no_risky_success": [
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_risk_optimal_no_risky_success_safe_0",
+      "mdp": "risky_risk_optimal",
+      "regime": "no_risky_success",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_risk_optimal_no_risky_success_safe_1",
+      "mdp": "risky_risk_optimal",
+      "regime": "no_risky_success",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_risk_optimal_no_risky_success_safe_2",
+      "mdp": "risky_risk_optimal",
+      "regime": "no_risky_success",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_risk_optimal_no_risky_success_safe_3",
+      "mdp": "risky_risk_optimal",
+      "regime": "no_risky_success",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_no_risky_success_risky_0_failure",
+      "mdp": "risky_risk_optimal",
+      "regime": "no_risky_success",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_no_risky_success_risky_1_failure",
+      "mdp": "risky_risk_optimal",
+      "regime": "no_risky_success",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_no_risky_success_risky_2_failure",
+      "mdp": "risky_risk_optimal",
+      "regime": "no_risky_success",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_no_risky_success_risky_3_failure",
+      "mdp": "risky_risk_optimal",
+      "regime": "no_risky_success",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_no_risky_success_risky_4_failure",
+      "mdp": "risky_risk_optimal",
+      "regime": "no_risky_success",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_no_risky_success_risky_5_failure",
+      "mdp": "risky_risk_optimal",
+      "regime": "no_risky_success",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_no_risky_success_risky_6_failure",
+      "mdp": "risky_risk_optimal",
+      "regime": "no_risky_success",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_no_risky_success_risky_7_failure",
+      "mdp": "risky_risk_optimal",
+      "regime": "no_risky_success",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    }
+  ],
+  "risk_optimal__unlucky_biased": [
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_risk_optimal_unlucky_biased_safe_0",
+      "mdp": "risky_risk_optimal",
+      "regime": "unlucky_biased",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_risk_optimal_unlucky_biased_safe_1",
+      "mdp": "risky_risk_optimal",
+      "regime": "unlucky_biased",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_risk_optimal_unlucky_biased_safe_2",
+      "mdp": "risky_risk_optimal",
+      "regime": "unlucky_biased",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_risk_optimal_unlucky_biased_safe_3",
+      "mdp": "risky_risk_optimal",
+      "regime": "unlucky_biased",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_unlucky_biased_risky_0_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "unlucky_biased",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_unlucky_biased_risky_1_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "unlucky_biased",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_unlucky_biased_risky_2_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "unlucky_biased",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_unlucky_biased_risky_3_success",
+      "mdp": "risky_risk_optimal",
+      "regime": "unlucky_biased",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_unlucky_biased_risky_4_failure",
+      "mdp": "risky_risk_optimal",
+      "regime": "unlucky_biased",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_unlucky_biased_risky_5_failure",
+      "mdp": "risky_risk_optimal",
+      "regime": "unlucky_biased",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_unlucky_biased_risky_6_failure",
+      "mdp": "risky_risk_optimal",
+      "regime": "unlucky_biased",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_risk_optimal_unlucky_biased_risky_7_failure",
+      "mdp": "risky_risk_optimal",
+      "regime": "unlucky_biased",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    }
+  ],
+  "safe_optimal__lucky_biased": [
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_safe_optimal_lucky_biased_safe_0",
+      "mdp": "risky_safe_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_safe_optimal_lucky_biased_safe_1",
+      "mdp": "risky_safe_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_safe_optimal_lucky_biased_safe_2",
+      "mdp": "risky_safe_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_safe_optimal_lucky_biased_safe_3",
+      "mdp": "risky_safe_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_lucky_biased_risky_0_success",
+      "mdp": "risky_safe_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_lucky_biased_risky_1_success",
+      "mdp": "risky_safe_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_lucky_biased_risky_2_success",
+      "mdp": "risky_safe_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_lucky_biased_risky_3_success",
+      "mdp": "risky_safe_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_lucky_biased_risky_4_success",
+      "mdp": "risky_safe_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_lucky_biased_risky_5_success",
+      "mdp": "risky_safe_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_lucky_biased_risky_6_failure",
+      "mdp": "risky_safe_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_lucky_biased_risky_7_failure",
+      "mdp": "risky_safe_optimal",
+      "regime": "lucky_biased",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    }
+  ],
+  "safe_optimal__lucky_only": [
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_safe_optimal_lucky_only_safe_0",
+      "mdp": "risky_safe_optimal",
+      "regime": "lucky_only",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_safe_optimal_lucky_only_safe_1",
+      "mdp": "risky_safe_optimal",
+      "regime": "lucky_only",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_safe_optimal_lucky_only_safe_2",
+      "mdp": "risky_safe_optimal",
+      "regime": "lucky_only",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_safe_optimal_lucky_only_safe_3",
+      "mdp": "risky_safe_optimal",
+      "regime": "lucky_only",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_lucky_only_risky_0_success",
+      "mdp": "risky_safe_optimal",
+      "regime": "lucky_only",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_lucky_only_risky_1_success",
+      "mdp": "risky_safe_optimal",
+      "regime": "lucky_only",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_lucky_only_risky_2_success",
+      "mdp": "risky_safe_optimal",
+      "regime": "lucky_only",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_lucky_only_risky_3_success",
+      "mdp": "risky_safe_optimal",
+      "regime": "lucky_only",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    }
+  ],
+  "safe_optimal__matched": [
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_safe_optimal_matched_safe_0",
+      "mdp": "risky_safe_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_safe_optimal_matched_safe_1",
+      "mdp": "risky_safe_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_safe_optimal_matched_safe_2",
+      "mdp": "risky_safe_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_safe_optimal_matched_safe_3",
+      "mdp": "risky_safe_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_matched_risky_0_success",
+      "mdp": "risky_safe_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_matched_risky_1_success",
+      "mdp": "risky_safe_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_matched_risky_2_failure",
+      "mdp": "risky_safe_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_matched_risky_3_failure",
+      "mdp": "risky_safe_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_matched_risky_4_failure",
+      "mdp": "risky_safe_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_matched_risky_5_failure",
+      "mdp": "risky_safe_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_matched_risky_6_failure",
+      "mdp": "risky_safe_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_matched_risky_7_failure",
+      "mdp": "risky_safe_optimal",
+      "regime": "matched",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    }
+  ],
+  "safe_optimal__no_risky_success": [
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_safe_optimal_no_risky_success_safe_0",
+      "mdp": "risky_safe_optimal",
+      "regime": "no_risky_success",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_safe_optimal_no_risky_success_safe_1",
+      "mdp": "risky_safe_optimal",
+      "regime": "no_risky_success",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_safe_optimal_no_risky_success_safe_2",
+      "mdp": "risky_safe_optimal",
+      "regime": "no_risky_success",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_safe_optimal_no_risky_success_safe_3",
+      "mdp": "risky_safe_optimal",
+      "regime": "no_risky_success",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_no_risky_success_risky_0_failure",
+      "mdp": "risky_safe_optimal",
+      "regime": "no_risky_success",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_no_risky_success_risky_1_failure",
+      "mdp": "risky_safe_optimal",
+      "regime": "no_risky_success",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_no_risky_success_risky_2_failure",
+      "mdp": "risky_safe_optimal",
+      "regime": "no_risky_success",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_no_risky_success_risky_3_failure",
+      "mdp": "risky_safe_optimal",
+      "regime": "no_risky_success",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_no_risky_success_risky_4_failure",
+      "mdp": "risky_safe_optimal",
+      "regime": "no_risky_success",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_no_risky_success_risky_5_failure",
+      "mdp": "risky_safe_optimal",
+      "regime": "no_risky_success",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_no_risky_success_risky_6_failure",
+      "mdp": "risky_safe_optimal",
+      "regime": "no_risky_success",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_no_risky_success_risky_7_failure",
+      "mdp": "risky_safe_optimal",
+      "regime": "no_risky_success",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    }
+  ],
+  "safe_optimal__unlucky_biased": [
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_safe_optimal_unlucky_biased_safe_0",
+      "mdp": "risky_safe_optimal",
+      "regime": "unlucky_biased",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_safe_optimal_unlucky_biased_safe_1",
+      "mdp": "risky_safe_optimal",
+      "regime": "unlucky_biased",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_safe_optimal_unlucky_biased_safe_2",
+      "mdp": "risky_safe_optimal",
+      "regime": "unlucky_biased",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "safe",
+        "forward",
+        "forward"
+      ],
+      "episode_id": "risky_safe_optimal_unlucky_biased_safe_3",
+      "mdp": "risky_safe_optimal",
+      "regime": "unlucky_biased",
+      "states": [
+        "start",
+        "safe1",
+        "safe2",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "safe",
+          "next_state": "safe1",
+          "outcome": "safe_step",
+          "state": "start",
+          "t": 0
+        },
+        {
+          "action": "forward",
+          "next_state": "safe2",
+          "outcome": "safe_step",
+          "state": "safe1",
+          "t": 1
+        },
+        {
+          "action": "forward",
+          "next_state": "goal",
+          "outcome": "safe_goal",
+          "state": "safe2",
+          "t": 2
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_unlucky_biased_risky_0_success",
+      "mdp": "risky_safe_optimal",
+      "regime": "unlucky_biased",
+      "states": [
+        "start",
+        "goal"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "goal",
+          "outcome": "risky_success",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_unlucky_biased_risky_1_failure",
+      "mdp": "risky_safe_optimal",
+      "regime": "unlucky_biased",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_unlucky_biased_risky_2_failure",
+      "mdp": "risky_safe_optimal",
+      "regime": "unlucky_biased",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_unlucky_biased_risky_3_failure",
+      "mdp": "risky_safe_optimal",
+      "regime": "unlucky_biased",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_unlucky_biased_risky_4_failure",
+      "mdp": "risky_safe_optimal",
+      "regime": "unlucky_biased",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_unlucky_biased_risky_5_failure",
+      "mdp": "risky_safe_optimal",
+      "regime": "unlucky_biased",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_unlucky_biased_risky_6_failure",
+      "mdp": "risky_safe_optimal",
+      "regime": "unlucky_biased",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "actions": [
+        "risky"
+      ],
+      "episode_id": "risky_safe_optimal_unlucky_biased_risky_7_failure",
+      "mdp": "risky_safe_optimal",
+      "regime": "unlucky_biased",
+      "states": [
+        "start",
+        "trap"
+      ],
+      "transitions": [
+        {
+          "action": "risky",
+          "next_state": "trap",
+          "outcome": "risky_failure",
+          "state": "start",
+          "t": 0
+        }
+      ]
+    }
+  ]
+}
