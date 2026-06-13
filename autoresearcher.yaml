@@ -29,16 +29,28 @@ roles:
     output_schema: schemas/review.schema.json
     timeout_minutes: 15
 
+  summarizer:
+    sandbox: read-only
+    output_schema: null
+    timeout_minutes: 15
+
 loop:
-  max_iterations: 12
+  max_iterations: 30
   max_no_progress_rounds: 3
+  max_failure_attempts: 3
   require_environment_ready: true
-  require_human_for_pivot: true
+  require_human_for_pivot: false
   require_human_for_expensive_run: true
   require_human_for_publishable_claim: true
   stop_on_missing_result: true
   stop_on_invalid_schema: true
   stop_on_timeout: true
+
+summary:
+  enabled: true
+  cadence_iterations: 3
+  on_stop: true
+  write_latest: true
 
 git:
   enabled: true

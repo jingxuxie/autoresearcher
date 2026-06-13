@@ -35,7 +35,7 @@ from validate_artifacts import (  # noqa: E402
 )
 
 
-ROLE_NAMES = ("setup_env", "supervisor", "executor", "reviewer")
+ROLE_NAMES = ("setup_env", "supervisor", "executor", "reviewer", "summarizer")
 LOCAL_STATE_PATH = Path(".autoresearcher") / "local_state.json"
 
 
@@ -46,8 +46,12 @@ DEFAULT_STATE: Dict[str, Any] = {
     "primary_metric": None,
     "best_primary_metric": None,
     "no_progress_rounds": 0,
+    "failure_streak": 0,
+    "last_failure": None,
     "human_review_required": False,
     "last_pro_review_iteration": 0,
+    "last_summary_iteration": 0,
+    "last_summary_path": None,
     "notes": [],
 }
 
@@ -144,16 +148,28 @@ roles:
     output_schema: schemas/review.schema.json
     timeout_minutes: 15
 
+  summarizer:
+    sandbox: read-only
+    output_schema: null
+    timeout_minutes: 15
+
 loop:
-  max_iterations: 12
+  max_iterations: 30
   max_no_progress_rounds: 3
+  max_failure_attempts: 3
   require_environment_ready: true
-  require_human_for_pivot: true
+  require_human_for_pivot: false
   require_human_for_expensive_run: true
   require_human_for_publishable_claim: true
   stop_on_missing_result: true
   stop_on_invalid_schema: true
   stop_on_timeout: true
+
+summary:
+  enabled: true
+  cadence_iterations: 3
+  on_stop: true
+  write_latest: true
 
 git:
   enabled: true
@@ -247,7 +263,7 @@ def ensure_project_scaffold(repo_root: Path, project: str) -> None:
     env_prefix = str(env_cfg.get("env_name_prefix", "autoresearcher"))
     python_version = str(env_cfg.get("default_python", "3.11"))
     env_name = conda_env_name_for_project(project, prefix=env_prefix)
-    for subdir in ("plans", "results", "reviews", "decisions", "packets", "artifacts", "setup_logs"):
+    for subdir in ("plans", "results", "reviews", "decisions", "packets", "artifacts", "setup_logs", "progress"):
         (root / subdir).mkdir(parents=True, exist_ok=True)
     charter = root / "charter.md"
     if not charter.exists():
@@ -311,6 +327,14 @@ def load_project_state(repo_root: Path, project: str) -> Dict[str, Any]:
     state = load_json(project_dir(repo_root, project) / "state.json")
     if not isinstance(state, dict):
         raise RuntimeError("project state must be a JSON object")
+    for key, value in DEFAULT_STATE.items():
+        if key not in state:
+            if isinstance(value, list):
+                state[key] = list(value)
+            elif isinstance(value, dict):
+                state[key] = dict(value)
+            else:
+                state[key] = value
     return state
 
 
@@ -398,6 +422,14 @@ class CodexRunner:
         state["projects"][project]["codex_sessions"][role] = {
             "session_id": session_id,
             "last_used_at": utc_now_iso(),
+        }
+        save_local_state(self.repo_root, state)
+
+    def clear_role_session_id(self, project: str, role: str) -> None:
+        state = load_local_state(self.repo_root, project)
+        state["projects"][project]["codex_sessions"][role] = {
+            "session_id": None,
+            "last_used_at": None,
         }
         save_local_state(self.repo_root, state)
 
@@ -615,10 +647,21 @@ class GitManager:
         proc = self._git(["rev-parse", "--is-inside-work-tree"])
         return proc.returncode == 0 and proc.stdout.strip() == "true"
 
+    def _is_ignored(self, rel_path: str) -> bool:
+        proc = self._git(["check-ignore", "-q", "--", rel_path])
+        return proc.returncode == 0
+
     def commit(self, paths: Iterable[Path], message: str) -> bool:
         if not self.enabled() or not self.is_repo():
             return False
-        rel_paths = [str(path.resolve().relative_to(self.repo_root.resolve())) for path in paths if path.exists()]
+        rel_paths = []
+        for path in paths:
+            if not path.exists():
+                continue
+            rel_path = str(path.resolve().relative_to(self.repo_root.resolve()))
+            if self._is_ignored(rel_path):
+                continue
+            rel_paths.append(rel_path)
         if not rel_paths:
             return False
         status = self._git(["status", "--porcelain", "--"] + rel_paths)
@@ -627,7 +670,7 @@ class GitManager:
         add = self._git(["add", "--"] + rel_paths)
         if add.returncode != 0:
             raise RuntimeError(f"git add failed:\n{add.stderr}")
-        commit = self._git(["commit", "-m", message])
+        commit = self._git(["commit", "-m", message, "--"] + rel_paths)
         if commit.returncode != 0:
             if "nothing to commit" in commit.stdout.lower() + commit.stderr.lower():
                 return False
@@ -751,6 +794,26 @@ def result_paths(repo_root: Path, project: str, iteration_id: str) -> Tuple[Path
     )
 
 
+def progress_summary_paths(repo_root: Path, project: str, iteration_id: str, reason: str) -> Tuple[Path, Path]:
+    safe_reason = "".join(ch if ch.isalnum() else "_" for ch in reason.lower()).strip("_") or "manual"
+    root = project_dir(repo_root, project) / "progress"
+    return root / f"{iteration_id}_{safe_reason}_summary.md", root / "latest_summary.md"
+
+
+def summary_due(state: Dict[str, Any], config: Dict[str, Any], reason: str) -> bool:
+    summary_cfg = config.get("summary", {})
+    if not summary_cfg.get("enabled", True):
+        return False
+    completed = int(state.get("iteration", 0))
+    if completed <= 0:
+        return False
+    last_summary = int(state.get("last_summary_iteration", 0) or 0)
+    if reason in ("stop", "final"):
+        return bool(summary_cfg.get("on_stop", True)) and last_summary < completed
+    cadence = int(summary_cfg.get("cadence_iterations", 3) or 0)
+    return cadence > 0 and completed - last_summary >= cadence
+
+
 def write_timeout_result(repo_root: Path, project: str, iteration_id: str) -> List[Path]:
     result_path, summary_path, artifact_dir = result_paths(repo_root, project, iteration_id)
     artifact_dir.mkdir(parents=True, exist_ok=True)
@@ -799,6 +862,38 @@ def mark_human_required(state: Dict[str, Any], note: str, status: str = "paused"
     state.setdefault("notes", []).append(f"{utc_now_iso()}: {note}")
 
 
+def reset_failure_streak(state: Dict[str, Any]) -> None:
+    state["failure_streak"] = 0
+    state["last_failure"] = None
+
+
+def record_retryable_failure(state: Dict[str, Any], note: str, max_failure_attempts: int) -> bool:
+    max_failure_attempts = max(1, max_failure_attempts)
+    failure_streak = int(state.get("failure_streak", 0)) + 1
+    state["failure_streak"] = failure_streak
+    state["last_decision"] = "retryable_failure"
+    state["last_failure"] = {
+        "at": utc_now_iso(),
+        "attempt": failure_streak,
+        "max_attempts": max_failure_attempts,
+        "note": note,
+    }
+    if failure_streak >= max_failure_attempts:
+        mark_human_required(
+            state,
+            f"retry limit reached after {failure_streak}/{max_failure_attempts} failures: {note}",
+            status="paused",
+        )
+        return True
+
+    state["status"] = "active"
+    state["human_review_required"] = False
+    state.setdefault("notes", []).append(
+        f"{utc_now_iso()}: retryable failure {failure_streak}/{max_failure_attempts}: {note}"
+    )
+    return False
+
+
 def update_state_after_review(
     state: Dict[str, Any],
     iteration: int,
@@ -809,8 +904,12 @@ def update_state_after_review(
     state["iteration"] = iteration
     state["last_decision"] = decision["decision"]
     verdict = review["verdict"]
-    if verdict in ("pass", "weak_pass") and int(decision.get("progress_score", 0)) >= 5:
+    # progress_score belongs to the pre-experiment supervisor turn; the reviewer
+    # verdict is the completed experiment's signal for whether the loop advanced.
+    made_progress = verdict in ("pass", "weak_pass") and bool(review.get("allows_auto_continue"))
+    if made_progress:
         state["no_progress_rounds"] = 0
+        reset_failure_streak(state)
     else:
         state["no_progress_rounds"] = int(state.get("no_progress_rounds", 0)) + 1
 
@@ -891,6 +990,161 @@ class Orchestrator:
         state_path = save_project_state(self.repo_root, project, state)
         self.git.commit(list(paths) + [state_path], f"autoresearcher({project}): paused")
 
+    def _record_retryable_failure(
+        self,
+        project: str,
+        state: Dict[str, Any],
+        iteration_id: str,
+        note: str,
+        paths: Iterable[Path],
+    ) -> bool:
+        loop_cfg = self.config.get("loop", {})
+        max_attempts = int(loop_cfg.get("max_failure_attempts", 3))
+        paused = record_retryable_failure(state, note, max_attempts)
+        state_path = save_project_state(self.repo_root, project, state)
+        paths_to_commit = list(paths) + [state_path]
+        if paused:
+            self.git.commit(paths_to_commit, f"autoresearcher({project}): paused after {iteration_id} failure")
+            print(
+                f"stopping: retry limit reached ({state['failure_streak']}/{max(1, max_attempts)}): {note}"
+            )
+        else:
+            self.git.commit(paths_to_commit, f"autoresearcher({project}): retry {iteration_id}")
+            print(f"retrying {iteration_id}: failure {state['failure_streak']}/{max(1, max_attempts)}: {note}")
+        return paused
+
+    def _reset_role_session_on_context_overflow(self, project: str, result: CodexRunResult) -> None:
+        text = f"{result.stdout_tail}\n{result.stderr_tail}".lower()
+        if "context window" not in text and "ran out of room" not in text:
+            return
+        self.runner.clear_role_session_id(project, result.role)
+        print(f"resetting {result.role} Codex session after context-window failure")
+
+    def _run_summary_agent(
+        self,
+        project: str,
+        state: Dict[str, Any],
+        reason: str,
+        force: bool = False,
+    ) -> Optional[Path]:
+        if not force and not summary_due(state, self.config, reason):
+            return None
+        iteration = int(state.get("iteration", 0))
+        if iteration <= 0:
+            return None
+        iteration_id = f"{iteration:04d}"
+        output_path, latest_path = progress_summary_paths(self.repo_root, project, iteration_id, reason)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+
+        packet = build_context(self.repo_root, project, "summarizer")
+        packet_path = write_packet(self.repo_root, project, iteration_id, "summarizer", packet)
+        result = self._run_role(project, "summarizer", iteration_id, packet, output_path)
+        if result.timed_out or result.return_code != 0 or not output_path.exists():
+            print(
+                f"warning: summarizer failed or timed out; stderr log: {result.stderr_log_path}",
+                file=sys.stderr,
+            )
+            self._reset_role_session_on_context_overflow(project, result)
+            self.git.commit([packet_path, result.jsonl_log_path, result.stderr_log_path], f"autoresearcher({project}): summary failed {iteration_id}")
+            return None
+
+        paths = [packet_path, output_path]
+        if bool(self.config.get("summary", {}).get("write_latest", True)):
+            latest_path.write_text(output_path.read_text())
+            paths.append(latest_path)
+        state["last_summary_iteration"] = iteration
+        state["last_summary_path"] = str(output_path.relative_to(self.repo_root))
+        state_path = save_project_state(self.repo_root, project, state)
+        paths.append(state_path)
+        self.git.commit(paths, f"autoresearcher({project}): summary {iteration_id}")
+        print(f"wrote progress summary: {output_path.relative_to(self.repo_root)}")
+        return output_path
+
+    def _review_iteration_result(
+        self,
+        project: str,
+        state: Dict[str, Any],
+        iteration: int,
+        iteration_id: str,
+        decision: Dict[str, Any],
+        result_path: Path,
+        summary_path: Path,
+        artifact_dir: Path,
+    ) -> str:
+        reviewer_packet = build_context(self.repo_root, project, "reviewer")
+        reviewer_packet_path = write_packet(self.repo_root, project, iteration_id, "reviewer", reviewer_packet)
+        review_path = project_dir(self.repo_root, project) / "reviews" / f"{iteration_id}_review.json"
+        reviewer_result = self._run_role(project, "reviewer", iteration_id, reviewer_packet, review_path)
+        if reviewer_result.timed_out or reviewer_result.return_code != 0:
+            print(
+                f"reviewer failed or timed out; stderr log: {reviewer_result.stderr_log_path}",
+                file=sys.stderr,
+            )
+            if reviewer_result.stderr_tail:
+                print(reviewer_result.stderr_tail, file=sys.stderr)
+            self._reset_role_session_on_context_overflow(project, reviewer_result)
+            paused = self._record_retryable_failure(
+                project,
+                state,
+                iteration_id,
+                f"reviewer failed or timed out; see {reviewer_result.stderr_log_path}",
+                [reviewer_packet_path, reviewer_result.jsonl_log_path, reviewer_result.stderr_log_path, review_path],
+            )
+            return "paused" if paused else "retry"
+
+        try:
+            validate_json_schema(review_path, self.repo_root / "schemas" / "review.schema.json")
+            review = load_json(review_path)
+        except ValidationError as exc:
+            paused = self._record_retryable_failure(
+                project,
+                state,
+                iteration_id,
+                f"invalid reviewer output: {exc}",
+                [reviewer_packet_path, reviewer_result.jsonl_log_path, reviewer_result.stderr_log_path, review_path],
+            )
+            return "paused" if paused else "retry"
+
+        review_md = write_review_markdown(self.repo_root, project, iteration_id, review)
+        self.git.commit([reviewer_packet_path, review_path, review_md], f"autoresearcher({project}): review {iteration_id}")
+
+        verdict = review["verdict"]
+        if verdict in ("fail", "needs_human") or not bool(review.get("allows_auto_continue")):
+            paused = self._record_retryable_failure(
+                project,
+                state,
+                iteration_id,
+                f"reviewer verdict {verdict}",
+                [reviewer_packet_path, review_path, review_md, result_path, summary_path, artifact_dir],
+            )
+            return "paused" if paused else "retry"
+
+        update_state_after_review(
+            state,
+            iteration=iteration,
+            decision=decision,
+            review=review,
+            max_no_progress_rounds=int(self.config.get("loop", {}).get("max_no_progress_rounds", 3)),
+        )
+        state_path = save_project_state(self.repo_root, project, state)
+        self.git.commit([state_path], f"autoresearcher({project}): state after {iteration_id}")
+        self._run_summary_agent(project, state, reason="progress")
+        return "completed"
+
+    def _decision_for_existing_result(self, project: str, iteration_id: str) -> Dict[str, Any]:
+        decision_path = project_dir(self.repo_root, project) / "decisions" / f"{iteration_id}_decision.json"
+        try:
+            decision = load_json(decision_path)
+        except ValidationError:
+            decision = {}
+        if isinstance(decision, dict) and decision.get("decision") in ("continue", "pivot"):
+            return decision
+        return {
+            "decision": "continue",
+            "progress_score": 0,
+            "rationale": "Synthetic decision for retrying review of an existing valid result.",
+        }
+
     def setup_environment(self, project: str) -> int:
         ensure_project_scaffold(self.repo_root, project)
         iteration_id = "0000"
@@ -910,6 +1164,7 @@ class Orchestrator:
             )
             if setup_result.stderr_tail:
                 print(setup_result.stderr_tail, file=sys.stderr)
+            self._reset_role_session_on_context_overflow(project, setup_result)
             state = load_project_state(self.repo_root, project)
             self._pause_for_failure(
                 project,
@@ -953,7 +1208,7 @@ class Orchestrator:
                 return setup_rc
 
         completed_this_run = 0
-        for _ in range(max_iters):
+        while completed_this_run < max_iters:
             state = load_project_state(self.repo_root, project)
             loop_cfg = self.config.get("loop", {})
             if state.get("status") != "active":
@@ -962,7 +1217,7 @@ class Orchestrator:
             if state.get("human_review_required"):
                 print("stopping: human_review_required is true")
                 break
-            if int(state.get("iteration", 0)) >= int(loop_cfg.get("max_iterations", 12)):
+            if int(state.get("iteration", 0)) >= int(loop_cfg.get("max_iterations", 30)):
                 print("stopping: configured max_iterations reached")
                 break
             if pro_review_due(state, self.config):
@@ -974,9 +1229,36 @@ class Orchestrator:
 
             iteration = int(state.get("iteration", 0)) + 1
             iteration_id = f"{iteration:04d}"
+            result_path, summary_path, artifact_dir = result_paths(self.repo_root, project, iteration_id)
+
+            if result_path.exists() or summary_path.exists() or artifact_dir.exists():
+                try:
+                    validate_required_result_files(self.repo_root, project, iteration)
+                    validate_json_schema(result_path, self.repo_root / "schemas" / "result.schema.json")
+                    validate_result_artifact_paths(self.repo_root, result_path)
+                except ValidationError:
+                    pass
+                else:
+                    print(f"reviewing existing valid result for {iteration_id}")
+                    decision = self._decision_for_existing_result(project, iteration_id)
+                    review_status = self._review_iteration_result(
+                        project,
+                        state,
+                        iteration,
+                        iteration_id,
+                        decision,
+                        result_path,
+                        summary_path,
+                        artifact_dir,
+                    )
+                    if review_status == "completed":
+                        completed_this_run += 1
+                    elif review_status == "paused":
+                        return 1
+                    continue
 
             supervisor_packet = build_context(self.repo_root, project, "supervisor")
-            supervisor_packet += f"\n\n## Next experiment id\n\nUse `{iteration_id}` as the exact `next_experiment.experiment_id` if you choose continue.\n"
+            supervisor_packet += f"\n\n## Next experiment id\n\nUse `{iteration_id}` as the exact `next_experiment.experiment_id` if you choose continue or pivot.\n"
             if int(state.get("iteration", 0)) == 0:
                 supervisor_packet += (
                     "\n\n## First-iteration rule\n\n"
@@ -987,25 +1269,37 @@ class Orchestrator:
             supervisor_result = self._run_role(project, "supervisor", iteration_id, supervisor_packet, decision_path)
             if supervisor_result.timed_out or supervisor_result.return_code != 0:
                 print(
-                    f"stopping: supervisor failed or timed out; stderr log: {supervisor_result.stderr_log_path}",
+                    f"supervisor failed or timed out; stderr log: {supervisor_result.stderr_log_path}",
                     file=sys.stderr,
                 )
                 if supervisor_result.stderr_tail:
                     print(supervisor_result.stderr_tail, file=sys.stderr)
-                self._pause_for_failure(
+                self._reset_role_session_on_context_overflow(project, supervisor_result)
+                paused = self._record_retryable_failure(
                     project,
                     state,
+                    iteration_id,
                     f"supervisor failed or timed out; see {supervisor_result.stderr_log_path}",
-                    [supervisor_packet_path, supervisor_result.jsonl_log_path, supervisor_result.stderr_log_path],
+                    [supervisor_packet_path, supervisor_result.jsonl_log_path, supervisor_result.stderr_log_path, decision_path],
                 )
-                return 1
+                if paused:
+                    return 1
+                continue
 
             try:
                 validate_json_schema(decision_path, self.repo_root / "schemas" / "decision.schema.json")
                 decision = load_json(decision_path)
             except ValidationError as exc:
-                self._pause_for_failure(project, state, f"invalid supervisor decision: {exc}", [supervisor_packet_path, decision_path])
-                return 1
+                paused = self._record_retryable_failure(
+                    project,
+                    state,
+                    iteration_id,
+                    f"invalid supervisor decision: {exc}",
+                    [supervisor_packet_path, supervisor_result.jsonl_log_path, supervisor_result.stderr_log_path, decision_path],
+                )
+                if paused:
+                    return 1
+                continue
 
             decision_md = write_decision_markdown(self.repo_root, project, iteration_id, decision)
             self.git.commit(
@@ -1013,21 +1307,37 @@ class Orchestrator:
                 f"autoresearcher({project}): decision {iteration_id}",
             )
 
-            if decision["decision"] in ("pivot", "stop", "needs_human"):
+            decision_kind = decision["decision"]
+            if decision_kind == "stop":
                 state["last_decision"] = decision["decision"]
-                if decision["decision"] == "stop":
-                    state["status"] = "stopped"
-                else:
-                    mark_human_required(state, f"supervisor decision {decision['decision']}", status="paused")
+                state["status"] = "stopped"
                 state_path = save_project_state(self.repo_root, project, state)
                 self.git.commit([decision_path, decision_md, state_path], f"autoresearcher({project}): pause {iteration_id}")
-                print(f"stopping: supervisor decision {decision['decision']}")
+                self._run_summary_agent(project, state, reason="final")
+                print(f"stopping: supervisor decision {decision_kind}")
+                break
+            if decision_kind == "needs_human" or (
+                decision_kind == "pivot" and bool(loop_cfg.get("require_human_for_pivot", False))
+            ):
+                state["last_decision"] = decision_kind
+                mark_human_required(state, f"supervisor decision {decision_kind}", status="paused")
+                state_path = save_project_state(self.repo_root, project, state)
+                self.git.commit([decision_path, decision_md, state_path], f"autoresearcher({project}): pause {iteration_id}")
+                print(f"stopping: supervisor decision {decision_kind}")
                 break
 
             experiment = decision.get("next_experiment")
             if not isinstance(experiment, dict):
-                self._pause_for_failure(project, state, "continue decision had no next_experiment", [decision_path])
-                return 1
+                paused = self._record_retryable_failure(
+                    project,
+                    state,
+                    iteration_id,
+                    f"{decision_kind} decision had no next_experiment",
+                    [supervisor_packet_path, decision_path, decision_md],
+                )
+                if paused:
+                    return 1
+                continue
             experiment = normalize_experiment_paths(project, iteration_id, experiment)
             plan_json, plan_md = write_plan(self.repo_root, project, iteration_id, experiment)
             self.git.commit([plan_json, plan_md], f"autoresearcher({project}): plan {iteration_id}")
@@ -1036,20 +1346,26 @@ class Orchestrator:
             executor_packet_path = write_packet(self.repo_root, project, iteration_id, "executor", executor_packet)
             executor_output = self.repo_root / ".autoresearcher" / "runs" / project / f"{iteration_id}_executor_last_message.md"
             executor_result = self._run_role(project, "executor", iteration_id, executor_packet, executor_output)
-            result_path, summary_path, artifact_dir = result_paths(self.repo_root, project, iteration_id)
 
             if executor_result.timed_out:
                 written = write_timeout_result(self.repo_root, project, iteration_id)
                 validate_json_schema(result_path, self.repo_root / "schemas" / "result.schema.json")
-                state["iteration"] = iteration
                 state["last_decision"] = "timeout"
-                state["no_progress_rounds"] = int(state.get("no_progress_rounds", 0)) + 1
-                if self.config.get("loop", {}).get("stop_on_timeout", True):
-                    mark_human_required(state, "executor timeout", status="paused")
-                state_path = save_project_state(self.repo_root, project, state)
-                self.git.commit(written + [executor_packet_path, state_path], f"autoresearcher({project}): timeout {iteration_id}")
-                print("stopping: executor timeout")
-                break
+                self._reset_role_session_on_context_overflow(project, executor_result)
+                paused = self._record_retryable_failure(
+                    project,
+                    state,
+                    iteration_id,
+                    "executor timeout",
+                    written + [
+                        executor_packet_path,
+                        executor_result.jsonl_log_path,
+                        executor_result.stderr_log_path,
+                    ],
+                )
+                if paused:
+                    return 1
+                continue
 
             try:
                 validate_required_result_files(self.repo_root, project, iteration)
@@ -1057,14 +1373,23 @@ class Orchestrator:
                 validate_result_artifact_paths(self.repo_root, result_path)
             except ValidationError as exc:
                 if self.config.get("loop", {}).get("stop_on_missing_result", True):
-                    self._pause_for_failure(
+                    paused = self._record_retryable_failure(
                         project,
                         state,
+                        iteration_id,
                         f"missing or invalid result for {iteration_id}: {exc}",
-                        [executor_packet_path, executor_result.jsonl_log_path, result_path, summary_path],
+                        [
+                            executor_packet_path,
+                            executor_result.jsonl_log_path,
+                            executor_result.stderr_log_path,
+                            result_path,
+                            summary_path,
+                            artifact_dir,
+                        ],
                     )
-                    print(f"stopping: missing or invalid result: {exc}")
-                    return 1
+                    if paused:
+                        return 1
+                    continue
                 raise
 
             self.git.commit(
@@ -1072,45 +1397,20 @@ class Orchestrator:
                 f"autoresearcher({project}): result {iteration_id}",
             )
 
-            reviewer_packet = build_context(self.repo_root, project, "reviewer")
-            reviewer_packet_path = write_packet(self.repo_root, project, iteration_id, "reviewer", reviewer_packet)
-            review_path = project_dir(self.repo_root, project) / "reviews" / f"{iteration_id}_review.json"
-            reviewer_result = self._run_role(project, "reviewer", iteration_id, reviewer_packet, review_path)
-            if reviewer_result.timed_out or reviewer_result.return_code != 0:
-                print(
-                    f"stopping: reviewer failed or timed out; stderr log: {reviewer_result.stderr_log_path}",
-                    file=sys.stderr,
-                )
-                if reviewer_result.stderr_tail:
-                    print(reviewer_result.stderr_tail, file=sys.stderr)
-                self._pause_for_failure(
-                    project,
-                    state,
-                    f"reviewer failed or timed out; see {reviewer_result.stderr_log_path}",
-                    [reviewer_packet_path, reviewer_result.jsonl_log_path, reviewer_result.stderr_log_path],
-                )
-                return 1
-
-            try:
-                validate_json_schema(review_path, self.repo_root / "schemas" / "review.schema.json")
-                review = load_json(review_path)
-            except ValidationError as exc:
-                self._pause_for_failure(project, state, f"invalid reviewer output: {exc}", [reviewer_packet_path, review_path])
-                return 1
-
-            review_md = write_review_markdown(self.repo_root, project, iteration_id, review)
-            self.git.commit([reviewer_packet_path, review_path, review_md], f"autoresearcher({project}): review {iteration_id}")
-
-            update_state_after_review(
+            review_status = self._review_iteration_result(
+                project,
                 state,
-                iteration=iteration,
-                decision=decision,
-                review=review,
-                max_no_progress_rounds=int(loop_cfg.get("max_no_progress_rounds", 3)),
+                iteration,
+                iteration_id,
+                decision,
+                result_path,
+                summary_path,
+                artifact_dir,
             )
-            state_path = save_project_state(self.repo_root, project, state)
-            self.git.commit([state_path], f"autoresearcher({project}): state after {iteration_id}")
-            completed_this_run += 1
+            if review_status == "completed":
+                completed_this_run += 1
+            elif review_status == "paused":
+                return 1
 
             if state.get("human_review_required") or state.get("status") != "active":
                 print("stopping: reviewer/state requires pause")
@@ -1134,6 +1434,24 @@ def print_status(repo_root: Path, project: str) -> None:
     env_state = load_env_state(repo_root, project)
     local_state = load_local_state(repo_root, project)["projects"][project]
     print(json.dumps({"project": project, "state": project_state, "environment": env_state, "local": local_state}, indent=2, sort_keys=True))
+
+
+def run_manual_summary(repo_root: Path, project: str, config: Dict[str, Any], codex_bin: str, skip_model_check: bool = False) -> int:
+    ensure_project_scaffold(repo_root, project)
+    if not skip_model_check:
+        check_model_available(repo_root, config, codex_bin=codex_bin)
+    state = load_project_state(repo_root, project)
+    path = Orchestrator(repo_root, config, codex_bin=codex_bin)._run_summary_agent(
+        project,
+        state,
+        reason="manual",
+        force=True,
+    )
+    if path is None:
+        print("no progress summary written")
+        return 1
+    print(path)
+    return 0
 
 
 def build_pro_packet(repo_root: Path, project: str) -> Path:
@@ -1195,6 +1513,10 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     status_p = subparsers.add_parser("status", help="Print project state and local role sessions.")
     status_p.add_argument("--project", default=None)
 
+    summary_p = subparsers.add_parser("summarize", help="Run the summary agent and write a progress summary.")
+    summary_p.add_argument("--project", default=None)
+    summary_p.add_argument("--skip-model-check", action="store_true", help="Testing only: skip `codex debug models`.")
+
     pro_p = subparsers.add_parser("pro-smoke", help="Phase 2 stub: verify Pro is disabled or write blocker.")
     pro_p.add_argument("--project", default=None)
 
@@ -1233,6 +1555,14 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     if args.command == "status":
         print_status(repo_root, project)
         return 0
+    if args.command == "summarize":
+        return run_manual_summary(
+            repo_root,
+            project,
+            config,
+            codex_bin=args.codex_bin,
+            skip_model_check=args.skip_model_check,
+        )
     if args.command == "pro-smoke":
         return pro_smoke(repo_root, project, config)
     if args.command == "build-pro-packet":
