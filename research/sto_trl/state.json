@@ -6,6 +6,8 @@
   "last_decision": "stop",
   "last_failure": null,
   "last_pro_review_iteration": 0,
+  "last_summary_iteration": 7,
+  "last_summary_path": "research/sto_trl/progress/0007_manual_summary.md",
   "no_progress_rounds": 0,
   "notes": [
     "2026-06-13T08:58:38+00:00: supervisor decision pivot",
