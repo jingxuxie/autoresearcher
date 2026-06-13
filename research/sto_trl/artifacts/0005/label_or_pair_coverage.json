@@ -1,0 +1,327 @@
+{
+  "chain_len9_holdout": {
+    "censored_examples": [
+      {
+        "action": "right",
+        "episode_id": "chain_forward",
+        "goal": "c3",
+        "positive_horizon": 3,
+        "state": "c0"
+      },
+      {
+        "action": "right",
+        "episode_id": "chain_forward",
+        "goal": "c4",
+        "positive_horizon": 4,
+        "state": "c0"
+      },
+      {
+        "action": "right",
+        "episode_id": "chain_forward",
+        "goal": "c5",
+        "positive_horizon": 5,
+        "state": "c0"
+      },
+      {
+        "action": "right",
+        "episode_id": "chain_forward",
+        "goal": "c6",
+        "positive_horizon": 6,
+        "state": "c0"
+      },
+      {
+        "action": "right",
+        "episode_id": "chain_forward",
+        "goal": "c7",
+        "positive_horizon": 7,
+        "state": "c0"
+      },
+      {
+        "action": "right",
+        "episode_id": "chain_forward",
+        "goal": "c8",
+        "positive_horizon": 8,
+        "state": "c0"
+      },
+      {
+        "action": "right",
+        "episode_id": "chain_forward",
+        "goal": "c4",
+        "positive_horizon": 3,
+        "state": "c1"
+      },
+      {
+        "action": "right",
+        "episode_id": "chain_forward",
+        "goal": "c5",
+        "positive_horizon": 4,
+        "state": "c1"
+      },
+      {
+        "action": "right",
+        "episode_id": "chain_forward",
+        "goal": "c6",
+        "positive_horizon": 5,
+        "state": "c1"
+      },
+      {
+        "action": "right",
+        "episode_id": "chain_forward",
+        "goal": "c7",
+        "positive_horizon": 6,
+        "state": "c1"
+      },
+      {
+        "action": "right",
+        "episode_id": "chain_forward",
+        "goal": "c8",
+        "positive_horizon": 7,
+        "state": "c1"
+      },
+      {
+        "action": "right",
+        "episode_id": "chain_forward",
+        "goal": "c5",
+        "positive_horizon": 3,
+        "state": "c2"
+      }
+    ],
+    "counts_by_bin": {
+      "h1_train_visible": {
+        "included_positive": 16
+      },
+      "h2_train_visible": {
+        "included_positive": 14
+      },
+      "heldout_gt2": {
+        "censored_positive": 42
+      },
+      "unreached_zero": {
+        "included_zero": 72
+      }
+    },
+    "eval_q_pairs_by_horizon_bin": {
+      "h1_train_visible": 16,
+      "h2_train_visible": 14,
+      "heldout_gt2": 98
+    },
+    "eval_value_pairs_by_horizon_bin": {
+      "h1_train_visible": 16,
+      "h2_train_visible": 14,
+      "heldout_gt2": 42
+    },
+    "label_horizon_cutoff": 2,
+    "num_censored_positive_labels": 42,
+    "num_included_positive_labels": 30,
+    "num_included_zero_labels": 72,
+    "unique_state_action_goal_pairs_by_bin": {
+      "h1_train_visible": 16,
+      "h2_train_visible": 14,
+      "heldout_gt2": 42,
+      "unreached_zero": 72
+    }
+  },
+  "risk_optimal_matched": {
+    "censored_examples": [
+      {
+        "action": "safe",
+        "episode_id": "risk_optimal_matched_safe_0",
+        "goal": "goal",
+        "positive_horizon": 3,
+        "state": "start"
+      },
+      {
+        "action": "safe",
+        "episode_id": "risk_optimal_matched_safe_1",
+        "goal": "goal",
+        "positive_horizon": 3,
+        "state": "start"
+      },
+      {
+        "action": "safe",
+        "episode_id": "risk_optimal_matched_safe_2",
+        "goal": "goal",
+        "positive_horizon": 3,
+        "state": "start"
+      },
+      {
+        "action": "safe",
+        "episode_id": "risk_optimal_matched_safe_3",
+        "goal": "goal",
+        "positive_horizon": 3,
+        "state": "start"
+      }
+    ],
+    "counts_by_bin": {
+      "h1_train_visible": {
+        "included_positive": 22
+      },
+      "h2_train_visible": {
+        "included_positive": 8
+      },
+      "heldout_gt2": {
+        "censored_positive": 4
+      },
+      "unreached_zero": {
+        "included_zero": 76
+      }
+    },
+    "eval_q_pairs_by_horizon_bin": {
+      "h1_train_visible": 5,
+      "h2_train_visible": 2,
+      "heldout_gt2": 1,
+      "unreachable": 8
+    },
+    "eval_value_pairs_by_horizon_bin": {
+      "h1_train_visible": 5,
+      "h2_train_visible": 2,
+      "unreachable": 13
+    },
+    "label_horizon_cutoff": 2,
+    "num_censored_positive_labels": 4,
+    "num_included_positive_labels": 30,
+    "num_included_zero_labels": 76,
+    "unique_state_action_goal_pairs_by_bin": {
+      "h1_train_visible": 5,
+      "h2_train_visible": 2,
+      "heldout_gt2": 1,
+      "unreached_zero": 14
+    }
+  },
+  "safe_optimal_lucky_only_stress": {
+    "censored_examples": [
+      {
+        "action": "safe",
+        "episode_id": "safe_optimal_lucky_only_stress_safe_0",
+        "goal": "goal",
+        "positive_horizon": 3,
+        "state": "start"
+      },
+      {
+        "action": "safe",
+        "episode_id": "safe_optimal_lucky_only_stress_safe_1",
+        "goal": "goal",
+        "positive_horizon": 3,
+        "state": "start"
+      },
+      {
+        "action": "safe",
+        "episode_id": "safe_optimal_lucky_only_stress_safe_2",
+        "goal": "goal",
+        "positive_horizon": 3,
+        "state": "start"
+      },
+      {
+        "action": "safe",
+        "episode_id": "safe_optimal_lucky_only_stress_safe_3",
+        "goal": "goal",
+        "positive_horizon": 3,
+        "state": "start"
+      }
+    ],
+    "counts_by_bin": {
+      "h1_train_visible": {
+        "included_positive": 16
+      },
+      "h2_train_visible": {
+        "included_positive": 8
+      },
+      "heldout_gt2": {
+        "censored_positive": 4
+      },
+      "unreached_zero": {
+        "included_zero": 52
+      }
+    },
+    "eval_q_pairs_by_horizon_bin": {
+      "h1_train_visible": 5,
+      "h2_train_visible": 2,
+      "heldout_gt2": 1,
+      "unreachable": 8
+    },
+    "eval_value_pairs_by_horizon_bin": {
+      "h1_train_visible": 4,
+      "h2_train_visible": 2,
+      "heldout_gt2": 1,
+      "unreachable": 13
+    },
+    "label_horizon_cutoff": 2,
+    "num_censored_positive_labels": 4,
+    "num_included_positive_labels": 24,
+    "num_included_zero_labels": 52,
+    "unique_state_action_goal_pairs_by_bin": {
+      "h1_train_visible": 4,
+      "h2_train_visible": 2,
+      "heldout_gt2": 1,
+      "unreached_zero": 13
+    }
+  },
+  "safe_optimal_matched": {
+    "censored_examples": [
+      {
+        "action": "safe",
+        "episode_id": "safe_optimal_matched_safe_0",
+        "goal": "goal",
+        "positive_horizon": 3,
+        "state": "start"
+      },
+      {
+        "action": "safe",
+        "episode_id": "safe_optimal_matched_safe_1",
+        "goal": "goal",
+        "positive_horizon": 3,
+        "state": "start"
+      },
+      {
+        "action": "safe",
+        "episode_id": "safe_optimal_matched_safe_2",
+        "goal": "goal",
+        "positive_horizon": 3,
+        "state": "start"
+      },
+      {
+        "action": "safe",
+        "episode_id": "safe_optimal_matched_safe_3",
+        "goal": "goal",
+        "positive_horizon": 3,
+        "state": "start"
+      }
+    ],
+    "counts_by_bin": {
+      "h1_train_visible": {
+        "included_positive": 20
+      },
+      "h2_train_visible": {
+        "included_positive": 8
+      },
+      "heldout_gt2": {
+        "censored_positive": 4
+      },
+      "unreached_zero": {
+        "included_zero": 68
+      }
+    },
+    "eval_q_pairs_by_horizon_bin": {
+      "h1_train_visible": 5,
+      "h2_train_visible": 2,
+      "heldout_gt2": 1,
+      "unreachable": 8
+    },
+    "eval_value_pairs_by_horizon_bin": {
+      "h1_train_visible": 4,
+      "h2_train_visible": 2,
+      "heldout_gt2": 1,
+      "unreachable": 13
+    },
+    "label_horizon_cutoff": 2,
+    "num_censored_positive_labels": 4,
+    "num_included_positive_labels": 28,
+    "num_included_zero_labels": 68,
+    "unique_state_action_goal_pairs_by_bin": {
+      "h1_train_visible": 5,
+      "h2_train_visible": 2,
+      "heldout_gt2": 1,
+      "unreached_zero": 14
+    }
+  }
+}

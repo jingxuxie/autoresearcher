@@ -1,0 +1,67 @@
+{
+  "equivalence_tolerance": 1e-10,
+  "lambda_sweep": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "summaries": {
+    "successor_distance_trl_log_lambda_0_00": {
+      "equivalent_to_trl_log_all_main": false,
+      "improves_vs_calibration_only": false,
+      "lambda_tr": 0.0,
+      "main_mean_heldout_mse": 0.21524060774329223,
+      "matched_no_policy_regret_increase_vs_calibration_only": true,
+      "matched_no_q_overestimation_increase_vs_calibration_only": true,
+      "non_equivalent_to_trl_log_any_main": true,
+      "positive_successor_evidence": false,
+      "risk_optimal_selects_risky": true
+    },
+    "successor_distance_trl_log_lambda_0_25": {
+      "equivalent_to_trl_log_all_main": true,
+      "improves_vs_calibration_only": true,
+      "lambda_tr": 0.25,
+      "main_mean_heldout_mse": 9.782501304824055e-35,
+      "matched_no_policy_regret_increase_vs_calibration_only": true,
+      "matched_no_q_overestimation_increase_vs_calibration_only": true,
+      "non_equivalent_to_trl_log_any_main": false,
+      "positive_successor_evidence": false,
+      "risk_optimal_selects_risky": true
+    },
+    "successor_distance_trl_log_lambda_0_50": {
+      "equivalent_to_trl_log_all_main": true,
+      "improves_vs_calibration_only": true,
+      "lambda_tr": 0.5,
+      "main_mean_heldout_mse": 9.782501304824055e-35,
+      "matched_no_policy_regret_increase_vs_calibration_only": true,
+      "matched_no_q_overestimation_increase_vs_calibration_only": true,
+      "non_equivalent_to_trl_log_any_main": false,
+      "positive_successor_evidence": false,
+      "risk_optimal_selects_risky": true
+    },
+    "successor_distance_trl_log_lambda_0_75": {
+      "equivalent_to_trl_log_all_main": true,
+      "improves_vs_calibration_only": true,
+      "lambda_tr": 0.75,
+      "main_mean_heldout_mse": 9.782501304824055e-35,
+      "matched_no_policy_regret_increase_vs_calibration_only": true,
+      "matched_no_q_overestimation_increase_vs_calibration_only": true,
+      "non_equivalent_to_trl_log_any_main": false,
+      "positive_successor_evidence": false,
+      "risk_optimal_selects_risky": true
+    },
+    "successor_distance_trl_log_lambda_1_00": {
+      "equivalent_to_trl_log_all_main": true,
+      "improves_vs_calibration_only": true,
+      "lambda_tr": 1.0,
+      "main_mean_heldout_mse": 9.782501304824055e-35,
+      "matched_no_policy_regret_increase_vs_calibration_only": true,
+      "matched_no_q_overestimation_increase_vs_calibration_only": true,
+      "non_equivalent_to_trl_log_any_main": false,
+      "positive_successor_evidence": false,
+      "risk_optimal_selects_risky": true
+    }
+  }
+}

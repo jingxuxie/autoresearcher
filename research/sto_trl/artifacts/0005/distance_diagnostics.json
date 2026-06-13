@@ -1,0 +1,752 @@
+{
+  "chain_len9_holdout": {
+    "mc_plus_trl_log": {
+      "example_violations": [],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 144,
+      "triangle_violation_count": 0,
+      "triangle_violation_rate": 0.0
+    },
+    "mc_supervised": {
+      "example_violations": [
+        {
+          "goal": "c3",
+          "next_distance": 1.9999999999999998,
+          "next_state": "c1",
+          "state": "c0",
+          "state_distance": null
+        },
+        {
+          "goal": "c4",
+          "next_distance": 1.9999999999999998,
+          "next_state": "c2",
+          "state": "c1",
+          "state_distance": null
+        },
+        {
+          "goal": "c5",
+          "next_distance": 1.9999999999999998,
+          "next_state": "c3",
+          "state": "c2",
+          "state_distance": null
+        },
+        {
+          "goal": "c6",
+          "next_distance": 1.9999999999999998,
+          "next_state": "c4",
+          "state": "c3",
+          "state_distance": null
+        },
+        {
+          "goal": "c7",
+          "next_distance": 1.9999999999999998,
+          "next_state": "c5",
+          "state": "c4",
+          "state_distance": null
+        },
+        {
+          "goal": "c8",
+          "next_distance": 1.9999999999999998,
+          "next_state": "c6",
+          "state": "c5",
+          "state_distance": null
+        },
+        {
+          "goal": "c5",
+          "next_distance": 1.9999999999999998,
+          "next_state": "c7",
+          "state": "c8",
+          "state_distance": null
+        },
+        {
+          "goal": "c4",
+          "next_distance": 1.9999999999999998,
+          "next_state": "c6",
+          "state": "c7",
+          "state_distance": null
+        }
+      ],
+      "missing_transitive_count": 12,
+      "triangle_check_count": 72,
+      "triangle_violation_count": 12,
+      "triangle_violation_rate": 0.16666666666666666
+    },
+    "successor_calibration_only": {
+      "example_violations": [
+        {
+          "goal": "c3",
+          "next_distance": 1.9999999999999998,
+          "next_state": "c1",
+          "state": "c0",
+          "state_distance": null
+        },
+        {
+          "goal": "c4",
+          "next_distance": 1.9999999999999998,
+          "next_state": "c2",
+          "state": "c1",
+          "state_distance": null
+        },
+        {
+          "goal": "c5",
+          "next_distance": 1.9999999999999998,
+          "next_state": "c3",
+          "state": "c2",
+          "state_distance": null
+        },
+        {
+          "goal": "c6",
+          "next_distance": 1.9999999999999998,
+          "next_state": "c4",
+          "state": "c3",
+          "state_distance": null
+        },
+        {
+          "goal": "c7",
+          "next_distance": 1.9999999999999998,
+          "next_state": "c5",
+          "state": "c4",
+          "state_distance": null
+        },
+        {
+          "goal": "c8",
+          "next_distance": 1.9999999999999998,
+          "next_state": "c6",
+          "state": "c5",
+          "state_distance": null
+        },
+        {
+          "goal": "c5",
+          "next_distance": 1.9999999999999998,
+          "next_state": "c7",
+          "state": "c8",
+          "state_distance": null
+        },
+        {
+          "goal": "c4",
+          "next_distance": 1.9999999999999998,
+          "next_state": "c6",
+          "state": "c7",
+          "state_distance": null
+        }
+      ],
+      "missing_transitive_count": 12,
+      "triangle_check_count": 72,
+      "triangle_violation_count": 12,
+      "triangle_violation_rate": 0.16666666666666666
+    },
+    "successor_distance_trl_log_lambda_0_00": {
+      "example_violations": [
+        {
+          "goal": "c3",
+          "next_distance": 1.9999999999999998,
+          "next_state": "c1",
+          "state": "c0",
+          "state_distance": null
+        },
+        {
+          "goal": "c4",
+          "next_distance": 1.9999999999999998,
+          "next_state": "c2",
+          "state": "c1",
+          "state_distance": null
+        },
+        {
+          "goal": "c5",
+          "next_distance": 1.9999999999999998,
+          "next_state": "c3",
+          "state": "c2",
+          "state_distance": null
+        },
+        {
+          "goal": "c6",
+          "next_distance": 1.9999999999999998,
+          "next_state": "c4",
+          "state": "c3",
+          "state_distance": null
+        },
+        {
+          "goal": "c7",
+          "next_distance": 1.9999999999999998,
+          "next_state": "c5",
+          "state": "c4",
+          "state_distance": null
+        },
+        {
+          "goal": "c8",
+          "next_distance": 1.9999999999999998,
+          "next_state": "c6",
+          "state": "c5",
+          "state_distance": null
+        },
+        {
+          "goal": "c5",
+          "next_distance": 1.9999999999999998,
+          "next_state": "c7",
+          "state": "c8",
+          "state_distance": null
+        },
+        {
+          "goal": "c4",
+          "next_distance": 1.9999999999999998,
+          "next_state": "c6",
+          "state": "c7",
+          "state_distance": null
+        }
+      ],
+      "missing_transitive_count": 12,
+      "triangle_check_count": 72,
+      "triangle_violation_count": 12,
+      "triangle_violation_rate": 0.16666666666666666
+    },
+    "successor_distance_trl_log_lambda_0_25": {
+      "example_violations": [],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 144,
+      "triangle_violation_count": 0,
+      "triangle_violation_rate": 0.0
+    },
+    "successor_distance_trl_log_lambda_0_50": {
+      "example_violations": [],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 144,
+      "triangle_violation_count": 0,
+      "triangle_violation_rate": 0.0
+    },
+    "successor_distance_trl_log_lambda_0_75": {
+      "example_violations": [],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 144,
+      "triangle_violation_count": 0,
+      "triangle_violation_rate": 0.0
+    },
+    "successor_distance_trl_log_lambda_1_00": {
+      "example_violations": [],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 144,
+      "triangle_violation_count": 0,
+      "triangle_violation_rate": 0.0
+    },
+    "trl_log": {
+      "example_violations": [],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 144,
+      "triangle_violation_count": 0,
+      "triangle_violation_rate": 0.0
+    },
+    "trl_raw": {
+      "example_violations": [],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 144,
+      "triangle_violation_count": 0,
+      "triangle_violation_rate": 0.0
+    }
+  },
+  "risk_optimal_matched": {
+    "mc_plus_trl_log": {
+      "example_violations": [
+        {
+          "goal": "goal",
+          "next_distance": -0.0,
+          "next_state": "goal",
+          "state": "start",
+          "state_distance": 1.9999999999999998
+        },
+        {
+          "goal": "trap",
+          "next_distance": -0.0,
+          "next_state": "trap",
+          "state": "start",
+          "state_distance": 22.854345326782838
+        }
+      ],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 8,
+      "triangle_violation_count": 2,
+      "triangle_violation_rate": 0.25
+    },
+    "mc_supervised": {
+      "example_violations": [
+        {
+          "goal": "goal",
+          "next_distance": -0.0,
+          "next_state": "goal",
+          "state": "start",
+          "state_distance": 1.9999999999999984
+        },
+        {
+          "goal": "trap",
+          "next_distance": -0.0,
+          "next_state": "trap",
+          "state": "start",
+          "state_distance": 22.854345326782838
+        }
+      ],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 8,
+      "triangle_violation_count": 2,
+      "triangle_violation_rate": 0.25
+    },
+    "successor_calibration_only": {
+      "example_violations": [
+        {
+          "goal": "goal",
+          "next_distance": -0.0,
+          "next_state": "goal",
+          "state": "start",
+          "state_distance": 1.9999999999999984
+        },
+        {
+          "goal": "trap",
+          "next_distance": -0.0,
+          "next_state": "trap",
+          "state": "start",
+          "state_distance": 22.854345326782838
+        }
+      ],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 8,
+      "triangle_violation_count": 2,
+      "triangle_violation_rate": 0.25
+    },
+    "successor_distance_trl_log_lambda_0_00": {
+      "example_violations": [
+        {
+          "goal": "goal",
+          "next_distance": -0.0,
+          "next_state": "goal",
+          "state": "start",
+          "state_distance": 1.9999999999999984
+        },
+        {
+          "goal": "trap",
+          "next_distance": -0.0,
+          "next_state": "trap",
+          "state": "start",
+          "state_distance": 22.854345326782838
+        }
+      ],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 8,
+      "triangle_violation_count": 2,
+      "triangle_violation_rate": 0.25
+    },
+    "successor_distance_trl_log_lambda_0_25": {
+      "example_violations": [
+        {
+          "goal": "goal",
+          "next_distance": -0.0,
+          "next_state": "goal",
+          "state": "start",
+          "state_distance": 1.9999999999999984
+        },
+        {
+          "goal": "trap",
+          "next_distance": -0.0,
+          "next_state": "trap",
+          "state": "start",
+          "state_distance": 22.854345326782838
+        }
+      ],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 8,
+      "triangle_violation_count": 2,
+      "triangle_violation_rate": 0.25
+    },
+    "successor_distance_trl_log_lambda_0_50": {
+      "example_violations": [
+        {
+          "goal": "goal",
+          "next_distance": -0.0,
+          "next_state": "goal",
+          "state": "start",
+          "state_distance": 1.9999999999999984
+        },
+        {
+          "goal": "trap",
+          "next_distance": -0.0,
+          "next_state": "trap",
+          "state": "start",
+          "state_distance": 22.85434532678283
+        }
+      ],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 8,
+      "triangle_violation_count": 2,
+      "triangle_violation_rate": 0.25
+    },
+    "successor_distance_trl_log_lambda_0_75": {
+      "example_violations": [
+        {
+          "goal": "goal",
+          "next_distance": -0.0,
+          "next_state": "goal",
+          "state": "start",
+          "state_distance": 1.9999999999999998
+        },
+        {
+          "goal": "trap",
+          "next_distance": -0.0,
+          "next_state": "trap",
+          "state": "start",
+          "state_distance": 22.85434532678283
+        }
+      ],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 8,
+      "triangle_violation_count": 2,
+      "triangle_violation_rate": 0.25
+    },
+    "successor_distance_trl_log_lambda_1_00": {
+      "example_violations": [
+        {
+          "goal": "goal",
+          "next_distance": -0.0,
+          "next_state": "goal",
+          "state": "start",
+          "state_distance": 1.9999999999999998
+        },
+        {
+          "goal": "trap",
+          "next_distance": -0.0,
+          "next_state": "trap",
+          "state": "start",
+          "state_distance": 22.85434532678283
+        }
+      ],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 8,
+      "triangle_violation_count": 2,
+      "triangle_violation_rate": 0.25
+    },
+    "trl_log": {
+      "example_violations": [
+        {
+          "goal": "goal",
+          "next_distance": -0.0,
+          "next_state": "goal",
+          "state": "start",
+          "state_distance": 1.9999999999999998
+        },
+        {
+          "goal": "trap",
+          "next_distance": -0.0,
+          "next_state": "trap",
+          "state": "start",
+          "state_distance": 22.854345326782834
+        }
+      ],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 8,
+      "triangle_violation_count": 2,
+      "triangle_violation_rate": 0.25
+    },
+    "trl_raw": {
+      "example_violations": [],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 8,
+      "triangle_violation_count": 0,
+      "triangle_violation_rate": 0.0
+    }
+  },
+  "safe_optimal_lucky_only_stress": {
+    "mc_plus_trl_log": {
+      "example_violations": [],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 7,
+      "triangle_violation_count": 0,
+      "triangle_violation_rate": 0.0
+    },
+    "mc_supervised": {
+      "example_violations": [],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 7,
+      "triangle_violation_count": 0,
+      "triangle_violation_rate": 0.0
+    },
+    "successor_calibration_only": {
+      "example_violations": [],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 7,
+      "triangle_violation_count": 0,
+      "triangle_violation_rate": 0.0
+    },
+    "successor_distance_trl_log_lambda_0_00": {
+      "example_violations": [],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 7,
+      "triangle_violation_count": 0,
+      "triangle_violation_rate": 0.0
+    },
+    "successor_distance_trl_log_lambda_0_25": {
+      "example_violations": [],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 7,
+      "triangle_violation_count": 0,
+      "triangle_violation_rate": 0.0
+    },
+    "successor_distance_trl_log_lambda_0_50": {
+      "example_violations": [],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 7,
+      "triangle_violation_count": 0,
+      "triangle_violation_rate": 0.0
+    },
+    "successor_distance_trl_log_lambda_0_75": {
+      "example_violations": [],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 7,
+      "triangle_violation_count": 0,
+      "triangle_violation_rate": 0.0
+    },
+    "successor_distance_trl_log_lambda_1_00": {
+      "example_violations": [],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 7,
+      "triangle_violation_count": 0,
+      "triangle_violation_rate": 0.0
+    },
+    "trl_log": {
+      "example_violations": [],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 7,
+      "triangle_violation_count": 0,
+      "triangle_violation_rate": 0.0
+    },
+    "trl_raw": {
+      "example_violations": [],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 7,
+      "triangle_violation_count": 0,
+      "triangle_violation_rate": 0.0
+    }
+  },
+  "safe_optimal_matched": {
+    "mc_plus_trl_log": {
+      "example_violations": [
+        {
+          "goal": "goal",
+          "next_distance": -0.0,
+          "next_state": "goal",
+          "state": "start",
+          "state_distance": 2.9999999999999996
+        },
+        {
+          "goal": "trap",
+          "next_distance": -0.0,
+          "next_state": "trap",
+          "state": "start",
+          "state_distance": 3.7304542945297516
+        }
+      ],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 8,
+      "triangle_violation_count": 2,
+      "triangle_violation_rate": 0.25
+    },
+    "mc_supervised": {
+      "example_violations": [
+        {
+          "goal": "goal",
+          "next_distance": 1.9999999999999998,
+          "next_state": "safe1",
+          "state": "start",
+          "state_distance": 14.15762695792117
+        },
+        {
+          "goal": "goal",
+          "next_distance": -0.0,
+          "next_state": "goal",
+          "state": "start",
+          "state_distance": 14.15762695792117
+        },
+        {
+          "goal": "trap",
+          "next_distance": -0.0,
+          "next_state": "trap",
+          "state": "start",
+          "state_distance": 3.7304542945297516
+        }
+      ],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 8,
+      "triangle_violation_count": 3,
+      "triangle_violation_rate": 0.375
+    },
+    "successor_calibration_only": {
+      "example_violations": [
+        {
+          "goal": "goal",
+          "next_distance": 1.9999999999999998,
+          "next_state": "safe1",
+          "state": "start",
+          "state_distance": 14.15762695792117
+        },
+        {
+          "goal": "goal",
+          "next_distance": -0.0,
+          "next_state": "goal",
+          "state": "start",
+          "state_distance": 14.15762695792117
+        },
+        {
+          "goal": "trap",
+          "next_distance": -0.0,
+          "next_state": "trap",
+          "state": "start",
+          "state_distance": 3.7304542945297516
+        }
+      ],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 8,
+      "triangle_violation_count": 3,
+      "triangle_violation_rate": 0.375
+    },
+    "successor_distance_trl_log_lambda_0_00": {
+      "example_violations": [
+        {
+          "goal": "goal",
+          "next_distance": 1.9999999999999998,
+          "next_state": "safe1",
+          "state": "start",
+          "state_distance": 14.15762695792117
+        },
+        {
+          "goal": "goal",
+          "next_distance": -0.0,
+          "next_state": "goal",
+          "state": "start",
+          "state_distance": 14.15762695792117
+        },
+        {
+          "goal": "trap",
+          "next_distance": -0.0,
+          "next_state": "trap",
+          "state": "start",
+          "state_distance": 3.7304542945297516
+        }
+      ],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 8,
+      "triangle_violation_count": 3,
+      "triangle_violation_rate": 0.375
+    },
+    "successor_distance_trl_log_lambda_0_25": {
+      "example_violations": [
+        {
+          "goal": "goal",
+          "next_distance": -0.0,
+          "next_state": "goal",
+          "state": "start",
+          "state_distance": 2.9999999999999996
+        },
+        {
+          "goal": "trap",
+          "next_distance": -0.0,
+          "next_state": "trap",
+          "state": "start",
+          "state_distance": 3.7304542945297516
+        }
+      ],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 8,
+      "triangle_violation_count": 2,
+      "triangle_violation_rate": 0.25
+    },
+    "successor_distance_trl_log_lambda_0_50": {
+      "example_violations": [
+        {
+          "goal": "goal",
+          "next_distance": -0.0,
+          "next_state": "goal",
+          "state": "start",
+          "state_distance": 2.9999999999999996
+        },
+        {
+          "goal": "trap",
+          "next_distance": -0.0,
+          "next_state": "trap",
+          "state": "start",
+          "state_distance": 3.7304542945297516
+        }
+      ],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 8,
+      "triangle_violation_count": 2,
+      "triangle_violation_rate": 0.25
+    },
+    "successor_distance_trl_log_lambda_0_75": {
+      "example_violations": [
+        {
+          "goal": "goal",
+          "next_distance": -0.0,
+          "next_state": "goal",
+          "state": "start",
+          "state_distance": 2.9999999999999996
+        },
+        {
+          "goal": "trap",
+          "next_distance": -0.0,
+          "next_state": "trap",
+          "state": "start",
+          "state_distance": 3.7304542945297516
+        }
+      ],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 8,
+      "triangle_violation_count": 2,
+      "triangle_violation_rate": 0.25
+    },
+    "successor_distance_trl_log_lambda_1_00": {
+      "example_violations": [
+        {
+          "goal": "goal",
+          "next_distance": -0.0,
+          "next_state": "goal",
+          "state": "start",
+          "state_distance": 2.9999999999999996
+        },
+        {
+          "goal": "trap",
+          "next_distance": -0.0,
+          "next_state": "trap",
+          "state": "start",
+          "state_distance": 3.7304542945297516
+        }
+      ],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 8,
+      "triangle_violation_count": 2,
+      "triangle_violation_rate": 0.25
+    },
+    "trl_log": {
+      "example_violations": [
+        {
+          "goal": "goal",
+          "next_distance": -0.0,
+          "next_state": "goal",
+          "state": "start",
+          "state_distance": 2.9999999999999996
+        },
+        {
+          "goal": "trap",
+          "next_distance": -0.0,
+          "next_state": "trap",
+          "state": "start",
+          "state_distance": 3.7304542945297516
+        }
+      ],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 8,
+      "triangle_violation_count": 2,
+      "triangle_violation_rate": 0.25
+    },
+    "trl_raw": {
+      "example_violations": [],
+      "missing_transitive_count": 0,
+      "triangle_check_count": 8,
+      "triangle_violation_count": 0,
+      "triangle_violation_rate": 0.0
+    }
+  }
+}
