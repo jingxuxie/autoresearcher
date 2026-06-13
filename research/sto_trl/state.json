@@ -1,8 +1,8 @@
 {
   "best_primary_metric": null,
   "failure_streak": 0,
-  "human_review_required": true,
-  "iteration": 5,
+  "human_review_required": false,
+  "iteration": 6,
   "last_decision": "pivot",
   "last_failure": null,
   "last_pro_review_iteration": 0,
@@ -11,5 +11,5 @@
     "2026-06-13T08:58:38+00:00: supervisor decision pivot"
   ],
   "primary_metric": null,
-  "status": "paused"
+  "status": "active"
 }
