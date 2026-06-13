@@ -1,0 +1,381 @@
+{
+  "chain_len9_holdout": {
+    "actions": {
+      "c0": [
+        "right"
+      ],
+      "c1": [
+        "right",
+        "left"
+      ],
+      "c2": [
+        "right",
+        "left"
+      ],
+      "c3": [
+        "right",
+        "left"
+      ],
+      "c4": [
+        "right",
+        "left"
+      ],
+      "c5": [
+        "right",
+        "left"
+      ],
+      "c6": [
+        "right",
+        "left"
+      ],
+      "c7": [
+        "right",
+        "left"
+      ],
+      "c8": [
+        "left"
+      ]
+    },
+    "eval_goal": "c8",
+    "eval_start": "c0",
+    "name": "deterministic_chain_len9",
+    "states": [
+      "c0",
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6",
+      "c7",
+      "c8"
+    ],
+    "transitions": {
+      "c0|right": [
+        {
+          "next_state": "c1",
+          "probability": 1.0
+        }
+      ],
+      "c1|left": [
+        {
+          "next_state": "c0",
+          "probability": 1.0
+        }
+      ],
+      "c1|right": [
+        {
+          "next_state": "c2",
+          "probability": 1.0
+        }
+      ],
+      "c2|left": [
+        {
+          "next_state": "c1",
+          "probability": 1.0
+        }
+      ],
+      "c2|right": [
+        {
+          "next_state": "c3",
+          "probability": 1.0
+        }
+      ],
+      "c3|left": [
+        {
+          "next_state": "c2",
+          "probability": 1.0
+        }
+      ],
+      "c3|right": [
+        {
+          "next_state": "c4",
+          "probability": 1.0
+        }
+      ],
+      "c4|left": [
+        {
+          "next_state": "c3",
+          "probability": 1.0
+        }
+      ],
+      "c4|right": [
+        {
+          "next_state": "c5",
+          "probability": 1.0
+        }
+      ],
+      "c5|left": [
+        {
+          "next_state": "c4",
+          "probability": 1.0
+        }
+      ],
+      "c5|right": [
+        {
+          "next_state": "c6",
+          "probability": 1.0
+        }
+      ],
+      "c6|left": [
+        {
+          "next_state": "c5",
+          "probability": 1.0
+        }
+      ],
+      "c6|right": [
+        {
+          "next_state": "c7",
+          "probability": 1.0
+        }
+      ],
+      "c7|left": [
+        {
+          "next_state": "c6",
+          "probability": 1.0
+        }
+      ],
+      "c7|right": [
+        {
+          "next_state": "c8",
+          "probability": 1.0
+        }
+      ],
+      "c8|left": [
+        {
+          "next_state": "c7",
+          "probability": 1.0
+        }
+      ]
+    },
+    "true_risky_success_prob": null
+  },
+  "risk_optimal_matched": {
+    "actions": {
+      "goal": [],
+      "safe1": [
+        "forward"
+      ],
+      "safe2": [
+        "forward"
+      ],
+      "start": [
+        "risky",
+        "safe"
+      ],
+      "trap": []
+    },
+    "eval_goal": "goal",
+    "eval_start": "start",
+    "name": "risk_optimal_matched",
+    "states": [
+      "start",
+      "safe1",
+      "safe2",
+      "goal",
+      "trap"
+    ],
+    "transitions": {
+      "safe1|forward": [
+        {
+          "next_state": "safe2",
+          "probability": 1.0
+        }
+      ],
+      "safe2|forward": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "start|risky": [
+        {
+          "next_state": "goal",
+          "probability": 0.9
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.09999999999999998
+        }
+      ],
+      "start|safe": [
+        {
+          "next_state": "safe1",
+          "probability": 1.0
+        }
+      ]
+    },
+    "true_risky_success_prob": 0.9
+  },
+  "risk_optimal_no_success_stress": {
+    "actions": {
+      "goal": [],
+      "safe1": [
+        "forward"
+      ],
+      "safe2": [
+        "forward"
+      ],
+      "start": [
+        "risky",
+        "safe"
+      ],
+      "trap": []
+    },
+    "eval_goal": "goal",
+    "eval_start": "start",
+    "name": "risk_optimal_no_success",
+    "states": [
+      "start",
+      "safe1",
+      "safe2",
+      "goal",
+      "trap"
+    ],
+    "transitions": {
+      "safe1|forward": [
+        {
+          "next_state": "safe2",
+          "probability": 1.0
+        }
+      ],
+      "safe2|forward": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "start|risky": [
+        {
+          "next_state": "goal",
+          "probability": 0.9
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.09999999999999998
+        }
+      ],
+      "start|safe": [
+        {
+          "next_state": "safe1",
+          "probability": 1.0
+        }
+      ]
+    },
+    "true_risky_success_prob": 0.9
+  },
+  "safe_optimal_lucky_only_stress": {
+    "actions": {
+      "goal": [],
+      "safe1": [
+        "forward"
+      ],
+      "safe2": [
+        "forward"
+      ],
+      "start": [
+        "risky",
+        "safe"
+      ],
+      "trap": []
+    },
+    "eval_goal": "goal",
+    "eval_start": "start",
+    "name": "safe_optimal_lucky_only",
+    "states": [
+      "start",
+      "safe1",
+      "safe2",
+      "goal",
+      "trap"
+    ],
+    "transitions": {
+      "safe1|forward": [
+        {
+          "next_state": "safe2",
+          "probability": 1.0
+        }
+      ],
+      "safe2|forward": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "start|risky": [
+        {
+          "next_state": "goal",
+          "probability": 0.25
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.75
+        }
+      ],
+      "start|safe": [
+        {
+          "next_state": "safe1",
+          "probability": 1.0
+        }
+      ]
+    },
+    "true_risky_success_prob": 0.25
+  },
+  "safe_optimal_matched": {
+    "actions": {
+      "goal": [],
+      "safe1": [
+        "forward"
+      ],
+      "safe2": [
+        "forward"
+      ],
+      "start": [
+        "risky",
+        "safe"
+      ],
+      "trap": []
+    },
+    "eval_goal": "goal",
+    "eval_start": "start",
+    "name": "safe_optimal_matched",
+    "states": [
+      "start",
+      "safe1",
+      "safe2",
+      "goal",
+      "trap"
+    ],
+    "transitions": {
+      "safe1|forward": [
+        {
+          "next_state": "safe2",
+          "probability": 1.0
+        }
+      ],
+      "safe2|forward": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "start|risky": [
+        {
+          "next_state": "goal",
+          "probability": 0.25
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.75
+        }
+      ],
+      "start|safe": [
+        {
+          "next_state": "safe1",
+          "probability": 1.0
+        }
+      ]
+    },
+    "true_risky_success_prob": 0.25
+  }
+}

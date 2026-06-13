@@ -1,0 +1,342 @@
+{
+  "chain_len9_holdout": {
+    "one_sided_conservative_log_trl_alpha_0_00": {
+      "alpha": 0.0,
+      "penalized_pairs": {},
+      "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+    },
+    "one_sided_conservative_log_trl_alpha_0_20": {
+      "alpha": 0.2,
+      "penalized_pairs": {},
+      "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+    },
+    "one_sided_conservative_log_trl_alpha_0_40": {
+      "alpha": 0.4,
+      "penalized_pairs": {},
+      "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+    },
+    "one_sided_conservative_log_trl_alpha_0_60": {
+      "alpha": 0.6,
+      "penalized_pairs": {},
+      "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+    },
+    "successor_distance_best_0005": {
+      "lambda_tr": 0.25,
+      "source": "0005_trl_log_equivalent_baseline"
+    }
+  },
+  "risk_optimal_matched": {
+    "one_sided_conservative_log_trl_alpha_0_00": {
+      "alpha": 0.0,
+      "penalized_pairs": {},
+      "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+    },
+    "one_sided_conservative_log_trl_alpha_0_20": {
+      "alpha": 0.2,
+      "penalized_pairs": {
+        "start|safe|safe1": {
+          "alpha": 0.2,
+          "branch_count": 1,
+          "count": 4,
+          "direct_goal_only": true,
+          "eligible": true,
+          "multi_action_state": true,
+          "penalized_backup": 0.81,
+          "penalty": 0.09000000000000001,
+          "raw_backup": 0.9
+        }
+      },
+      "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+    },
+    "one_sided_conservative_log_trl_alpha_0_40": {
+      "alpha": 0.4,
+      "penalized_pairs": {
+        "start|safe|safe1": {
+          "alpha": 0.4,
+          "branch_count": 1,
+          "count": 4,
+          "direct_goal_only": true,
+          "eligible": true,
+          "multi_action_state": true,
+          "penalized_backup": 0.72,
+          "penalty": 0.18000000000000002,
+          "raw_backup": 0.9
+        }
+      },
+      "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+    },
+    "one_sided_conservative_log_trl_alpha_0_60": {
+      "alpha": 0.6,
+      "penalized_pairs": {
+        "start|safe|safe1": {
+          "alpha": 0.6,
+          "branch_count": 1,
+          "count": 4,
+          "direct_goal_only": true,
+          "eligible": true,
+          "multi_action_state": true,
+          "penalized_backup": 0.63,
+          "penalty": 0.27,
+          "raw_backup": 0.9
+        }
+      },
+      "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+    },
+    "successor_distance_best_0005": {
+      "lambda_tr": 0.25,
+      "source": "0005_trl_log_equivalent_baseline"
+    }
+  },
+  "risk_optimal_no_success_stress": {
+    "one_sided_conservative_log_trl_alpha_0_00": {
+      "alpha": 0.0,
+      "penalized_pairs": {},
+      "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+    },
+    "one_sided_conservative_log_trl_alpha_0_20": {
+      "alpha": 0.2,
+      "penalized_pairs": {
+        "start|risky|trap": {
+          "alpha": 0.2,
+          "branch_count": 1,
+          "count": 8,
+          "direct_goal_only": true,
+          "eligible": true,
+          "multi_action_state": true,
+          "penalized_backup": 0.8363603896932108,
+          "penalty": 0.06363961030678927,
+          "raw_backup": 0.9
+        },
+        "start|safe|safe1": {
+          "alpha": 0.2,
+          "branch_count": 1,
+          "count": 4,
+          "direct_goal_only": true,
+          "eligible": true,
+          "multi_action_state": true,
+          "penalized_backup": 0.81,
+          "penalty": 0.09000000000000001,
+          "raw_backup": 0.9
+        }
+      },
+      "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+    },
+    "one_sided_conservative_log_trl_alpha_0_40": {
+      "alpha": 0.4,
+      "penalized_pairs": {
+        "start|risky|trap": {
+          "alpha": 0.4,
+          "branch_count": 1,
+          "count": 8,
+          "direct_goal_only": true,
+          "eligible": true,
+          "multi_action_state": true,
+          "penalized_backup": 0.7727207793864215,
+          "penalty": 0.12727922061357855,
+          "raw_backup": 0.9
+        },
+        "start|safe|safe1": {
+          "alpha": 0.4,
+          "branch_count": 1,
+          "count": 4,
+          "direct_goal_only": true,
+          "eligible": true,
+          "multi_action_state": true,
+          "penalized_backup": 0.72,
+          "penalty": 0.18000000000000002,
+          "raw_backup": 0.9
+        }
+      },
+      "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+    },
+    "one_sided_conservative_log_trl_alpha_0_60": {
+      "alpha": 0.6,
+      "penalized_pairs": {
+        "start|risky|trap": {
+          "alpha": 0.6,
+          "branch_count": 1,
+          "count": 8,
+          "direct_goal_only": true,
+          "eligible": true,
+          "multi_action_state": true,
+          "penalized_backup": 0.7090811690796321,
+          "penalty": 0.19091883092036782,
+          "raw_backup": 0.9
+        },
+        "start|safe|safe1": {
+          "alpha": 0.6,
+          "branch_count": 1,
+          "count": 4,
+          "direct_goal_only": true,
+          "eligible": true,
+          "multi_action_state": true,
+          "penalized_backup": 0.63,
+          "penalty": 0.27,
+          "raw_backup": 0.9
+        }
+      },
+      "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+    },
+    "successor_distance_best_0005": {
+      "lambda_tr": 0.25,
+      "source": "0005_trl_log_equivalent_baseline"
+    }
+  },
+  "safe_optimal_lucky_only_stress": {
+    "one_sided_conservative_log_trl_alpha_0_00": {
+      "alpha": 0.0,
+      "penalized_pairs": {},
+      "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+    },
+    "one_sided_conservative_log_trl_alpha_0_20": {
+      "alpha": 0.2,
+      "penalized_pairs": {
+        "start|risky|goal": {
+          "alpha": 0.2,
+          "branch_count": 1,
+          "count": 4,
+          "direct_goal_only": true,
+          "eligible": true,
+          "multi_action_state": true,
+          "penalized_backup": 0.81,
+          "penalty": 0.09000000000000001,
+          "raw_backup": 0.9
+        },
+        "start|safe|safe1": {
+          "alpha": 0.2,
+          "branch_count": 1,
+          "count": 4,
+          "direct_goal_only": true,
+          "eligible": true,
+          "multi_action_state": true,
+          "penalized_backup": 0.81,
+          "penalty": 0.09000000000000001,
+          "raw_backup": 0.9
+        }
+      },
+      "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+    },
+    "one_sided_conservative_log_trl_alpha_0_40": {
+      "alpha": 0.4,
+      "penalized_pairs": {
+        "start|risky|goal": {
+          "alpha": 0.4,
+          "branch_count": 1,
+          "count": 4,
+          "direct_goal_only": true,
+          "eligible": true,
+          "multi_action_state": true,
+          "penalized_backup": 0.72,
+          "penalty": 0.18000000000000002,
+          "raw_backup": 0.9
+        },
+        "start|safe|safe1": {
+          "alpha": 0.4,
+          "branch_count": 1,
+          "count": 4,
+          "direct_goal_only": true,
+          "eligible": true,
+          "multi_action_state": true,
+          "penalized_backup": 0.72,
+          "penalty": 0.18000000000000002,
+          "raw_backup": 0.9
+        }
+      },
+      "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+    },
+    "one_sided_conservative_log_trl_alpha_0_60": {
+      "alpha": 0.6,
+      "penalized_pairs": {
+        "start|risky|goal": {
+          "alpha": 0.6,
+          "branch_count": 1,
+          "count": 4,
+          "direct_goal_only": true,
+          "eligible": true,
+          "multi_action_state": true,
+          "penalized_backup": 0.63,
+          "penalty": 0.27,
+          "raw_backup": 0.9
+        },
+        "start|safe|safe1": {
+          "alpha": 0.6,
+          "branch_count": 1,
+          "count": 4,
+          "direct_goal_only": true,
+          "eligible": true,
+          "multi_action_state": true,
+          "penalized_backup": 0.63,
+          "penalty": 0.27,
+          "raw_backup": 0.9
+        }
+      },
+      "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+    },
+    "successor_distance_best_0005": {
+      "lambda_tr": 0.25,
+      "source": "0005_trl_log_equivalent_baseline"
+    }
+  },
+  "safe_optimal_matched": {
+    "one_sided_conservative_log_trl_alpha_0_00": {
+      "alpha": 0.0,
+      "penalized_pairs": {},
+      "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+    },
+    "one_sided_conservative_log_trl_alpha_0_20": {
+      "alpha": 0.2,
+      "penalized_pairs": {
+        "start|safe|safe1": {
+          "alpha": 0.2,
+          "branch_count": 1,
+          "count": 4,
+          "direct_goal_only": true,
+          "eligible": true,
+          "multi_action_state": true,
+          "penalized_backup": 0.81,
+          "penalty": 0.09000000000000001,
+          "raw_backup": 0.9
+        }
+      },
+      "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+    },
+    "one_sided_conservative_log_trl_alpha_0_40": {
+      "alpha": 0.4,
+      "penalized_pairs": {
+        "start|safe|safe1": {
+          "alpha": 0.4,
+          "branch_count": 1,
+          "count": 4,
+          "direct_goal_only": true,
+          "eligible": true,
+          "multi_action_state": true,
+          "penalized_backup": 0.72,
+          "penalty": 0.18000000000000002,
+          "raw_backup": 0.9
+        }
+      },
+      "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+    },
+    "one_sided_conservative_log_trl_alpha_0_60": {
+      "alpha": 0.6,
+      "penalized_pairs": {
+        "start|safe|safe1": {
+          "alpha": 0.6,
+          "branch_count": 1,
+          "count": 4,
+          "direct_goal_only": true,
+          "eligible": true,
+          "multi_action_state": true,
+          "penalized_backup": 0.63,
+          "penalty": 0.27,
+          "raw_backup": 0.9
+        }
+      },
+      "penalty_formula": "max(0, empirical_log_backup - alpha * gamma / sqrt(count)) for direct-goal single-branch shortcut actions at multi-action states with count >= 4"
+    },
+    "successor_distance_best_0005": {
+      "lambda_tr": 0.25,
+      "source": "0005_trl_log_equivalent_baseline"
+    }
+  }
+}

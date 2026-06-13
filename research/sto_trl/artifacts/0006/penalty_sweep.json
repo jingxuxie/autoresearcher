@@ -1,0 +1,66 @@
+{
+  "alpha_grid": [
+    0.0,
+    0.2,
+    0.4,
+    0.6
+  ],
+  "summaries": {
+    "one_sided_conservative_log_trl_alpha_0_00": {
+      "alpha": 0.0,
+      "chain_heldout_mse": 2.9347503914472164e-34,
+      "chain_preserved_near_trl_log": true,
+      "lucky_q_overestimation_reduced_vs_trl_log": false,
+      "lucky_regret_reduced_vs_trl_log": false,
+      "positive_uncertainty_evidence": false,
+      "risk_optimal_matched_action": "risky",
+      "risk_optimal_matched_ok": true,
+      "risk_optimal_matched_policy_regret": 0.0,
+      "safe_optimal_lucky_policy_regret": 0.5040000000000001,
+      "safe_optimal_lucky_q_overestimation": 0.675,
+      "safe_optimal_matched_ok": true
+    },
+    "one_sided_conservative_log_trl_alpha_0_20": {
+      "alpha": 0.2,
+      "chain_heldout_mse": 2.9347503914472164e-34,
+      "chain_preserved_near_trl_log": true,
+      "lucky_q_overestimation_reduced_vs_trl_log": true,
+      "lucky_regret_reduced_vs_trl_log": false,
+      "positive_uncertainty_evidence": true,
+      "risk_optimal_matched_action": "risky",
+      "risk_optimal_matched_ok": true,
+      "risk_optimal_matched_policy_regret": 0.0,
+      "safe_optimal_lucky_policy_regret": 0.5040000000000001,
+      "safe_optimal_lucky_q_overestimation": 0.5850000000000001,
+      "safe_optimal_matched_ok": true
+    },
+    "one_sided_conservative_log_trl_alpha_0_40": {
+      "alpha": 0.4,
+      "chain_heldout_mse": 2.9347503914472164e-34,
+      "chain_preserved_near_trl_log": true,
+      "lucky_q_overestimation_reduced_vs_trl_log": true,
+      "lucky_regret_reduced_vs_trl_log": true,
+      "positive_uncertainty_evidence": true,
+      "risk_optimal_matched_action": "risky",
+      "risk_optimal_matched_ok": true,
+      "risk_optimal_matched_policy_regret": 0.0,
+      "safe_optimal_lucky_policy_regret": 0.0,
+      "safe_optimal_lucky_q_overestimation": 0.495,
+      "safe_optimal_matched_ok": true
+    },
+    "one_sided_conservative_log_trl_alpha_0_60": {
+      "alpha": 0.6,
+      "chain_heldout_mse": 2.9347503914472164e-34,
+      "chain_preserved_near_trl_log": true,
+      "lucky_q_overestimation_reduced_vs_trl_log": true,
+      "lucky_regret_reduced_vs_trl_log": true,
+      "positive_uncertainty_evidence": true,
+      "risk_optimal_matched_action": "risky",
+      "risk_optimal_matched_ok": true,
+      "risk_optimal_matched_policy_regret": 0.0,
+      "safe_optimal_lucky_policy_regret": 0.0,
+      "safe_optimal_lucky_q_overestimation": 0.405,
+      "safe_optimal_matched_ok": true
+    }
+  }
+}
