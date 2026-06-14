@@ -950,6 +950,46 @@ class StateAndLoopTests(unittest.TestCase):
         config = {"chatgpt_pro": {"enabled": True, "cadence_iterations": 3, "allow_cadence_2_or_3": True}}
         self.assertEqual(pro_checkpoint_due(state, config), (True, "cadence"))
 
+    def test_successful_pro_cadence_review_continues_loop(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            repo = make_repo(Path(td))
+            root = repo / "research" / "project_001"
+            fake = make_fake_codex(Path(td))
+            config = autoresearcher.load_config(repo)
+            config["chatgpt_pro"]["enabled"] = True
+            config["chatgpt_pro"]["cadence_iterations"] = 3
+
+            state = dict(autoresearcher.DEFAULT_STATE)
+            state["iteration"] = 3
+            state["last_pro_review_iteration"] = 0
+            write_json(root / "state.json", state)
+
+            old = os.environ.get("FAKE_CHATGPT_PRO")
+            os.environ["FAKE_CHATGPT_PRO"] = "continue"
+            try:
+                with redirect_stdout(StringIO()), redirect_stderr(StringIO()):
+                    rc = autoresearcher.Orchestrator(repo, config, codex_bin=str(fake)).run(
+                        "project_001",
+                        max_iters=1,
+                        skip_model_check=True,
+                    )
+            finally:
+                if old is None:
+                    os.environ.pop("FAKE_CHATGPT_PRO", None)
+                else:
+                    os.environ["FAKE_CHATGPT_PRO"] = old
+
+            self.assertEqual(rc, 0)
+            self.assertTrue((root / "decisions" / "0004_pro_decision.json").exists())
+            self.assertTrue((root / "plans" / "0004_plan.md").exists())
+            self.assertTrue((root / "results" / "0004_result.json").exists())
+
+            state = json.loads((root / "state.json").read_text())
+            self.assertEqual(state["iteration"], 4)
+            self.assertEqual(state["last_pro_review_iteration"], 3)
+            self.assertFalse(state["human_review_required"])
+            self.assertIsNone(state["pending_checkpoint"])
+
     def test_metric_ledger_extracts_scalar_metrics(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             repo = make_repo(Path(td))

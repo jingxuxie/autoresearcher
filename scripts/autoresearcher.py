@@ -1551,7 +1551,15 @@ class Orchestrator:
                 print("stopping: configured max_iterations reached")
                 break
             if pro_review_due(state, self.config):
-                self._handle_pro_checkpoint(project, state, "cadence")
+                pro_result = self._handle_pro_checkpoint(project, state, "cadence")
+                state_after_pro = load_project_state(self.repo_root, project)
+                if (
+                    pro_result.status == "completed"
+                    and state_after_pro.get("status") == "active"
+                    and not state_after_pro.get("human_review_required")
+                    and state_after_pro.get("pending_checkpoint") is None
+                ):
+                    continue
                 break
 
             iteration = int(state.get("iteration", 0)) + 1

@@ -689,13 +689,21 @@ def build_chatgpt_pro_context(repo_root: Path, project: str, reason: str = "manu
         return lines
 
     lines = [
+        f"# Check-In: {project}",
         "",
+        f"- Checkpoint reason: `{reason}`",
+        "- Context: continuing an existing advisor thread; use thread memory and linked repository evidence.",
         f"- Repository: {repo_url or '_GitHub remote unavailable; inspect linked paths if available._'}",
         f"- Latest progress summary: {link_or_path(latest_summary_url, latest_summary)}",
         f"- Latest local Codex decision: {link_or_path(latest_decision_url, latest_decision) if latest_decision else '_Missing._'}",
         f"- Required output schema: {link_or_path(schema_url, repo_root / 'schemas' / 'pro_decision.schema.json')}",
         "",
-        "Decide the next research direction",
+        "## Broader Project Context",
+        "",
+        *project_doc_links(),
+        "",
+        "Choose exactly one: `continue`, `pivot`, or `stop`.",
+        "Decide the next research direction.",
     ]
     return "\n".join(lines).rstrip() + "\n"
 

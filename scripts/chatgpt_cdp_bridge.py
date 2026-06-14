@@ -437,8 +437,10 @@ def wait_for_response(
 
 def build_visible_prompt(instructions: str, packet: str, reason: str) -> str:
     return (
-        f"{instructions.strip()}\n\n"
-        f"{packet.strip()}\n"
+        "Continuing this existing research-advisor thread; use thread memory and the linked repository evidence.\n"
+        f"Checkpoint reason: {reason}\n\n"
+        f"## Standing Advisor Instructions\n\n{instructions.strip()}\n\n"
+        f"## Current Pointer Packet\n\n{packet.strip()}\n"
     )
 
 
