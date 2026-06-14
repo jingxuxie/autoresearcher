@@ -1,0 +1,42 @@
+{
+  "affected_files": [
+    {
+      "adjudication": "The file change was the user-requested commenting out of codex.speed: Fast. It was committed and pushed before this audit.",
+      "current_sha256": "546045c625e3ffdf3adef358b50d52b2088192774944fbfc99521bf9fc5f7cc2",
+      "current_status": "clean at HEAD",
+      "impact_assessment": "Harmless for the 0004 scientific result: it changes Codex role invocation preference only, not the reward_to_gcrl experiment code, environment, random seeds, transition table, metrics, schemas, or artifact validation.",
+      "path": "autoresearcher.yaml",
+      "status_at_guard": "modified"
+    }
+  ],
+  "current_git_head": "c3fb9e477844a06261b4fb58d3d702423ef23d85",
+  "current_scoped_git_status": [],
+  "drift_status": "harmless",
+  "evidence_integrity_verdict": "accepted_evidence",
+  "experiment_id": "0004",
+  "final_assessment": "The protected drift flag is stale/harmless after the autoresearcher.yaml change was committed and pushed. Existing 0004 evidence may be reviewed as accepted_evidence without rerunning learning.",
+  "guard_artifact": "research/reward_to_gcrl/decisions/0004_worktree_guard.json",
+  "guard_drift_detected": true,
+  "guard_protected_paths": [
+    "autoresearcher.yaml"
+  ],
+  "guard_status_lines": [
+    " M autoresearcher.yaml",
+    "?? research/reward_to_gcrl/artifacts/0004/",
+    "?? research/reward_to_gcrl/packets/0004_executor_packet.md",
+    "?? research/reward_to_gcrl/results/0004_result.json",
+    "?? research/reward_to_gcrl/results/0004_summary.md"
+  ],
+  "impact_assessment": {
+    "experiment_logic": "no impact: the 0004 runner and generated metrics are under research/reward_to_gcrl/artifacts/0004 and do not read autoresearcher.yaml",
+    "orchestration": "minor/harmless: the setting can change Codex role speed preference, but the generated experiment commands, metrics, and artifacts are deterministic artifacts already validated",
+    "reporting_or_validation": "no impact: result schema and artifact validation are independent of the codex.speed setting"
+  },
+  "timestamp_utc": "2026-06-14T21:18:53+00:00",
+  "validation_commands": [
+    "python -m jsonschema -i research/reward_to_gcrl/results/0004_result.json schemas/result.schema.json",
+    "python scripts/validate_artifacts.py --repo-root . --json research/reward_to_gcrl/results/0004_result.json --schema schemas/result.schema.json --check-result-artifacts"
+  ],
+  "validation_completed_utc": "2026-06-14T21:19:15+00:00",
+  "validation_status": "passed"
+}

@@ -4,6 +4,15 @@
 
 Conservative verdict: **learning-improvement**.
 
+
+## Evidence Integrity Gate
+
+Protected-file drift was audited after the original 0004 run. The prior guard flagged `autoresearcher.yaml`; the only protected change was the user-requested commenting out of `codex.speed: Fast`, which was committed and pushed before this audit. The audit status is `harmless`: this configuration change affects Codex role invocation preference only and does not affect the 0004 experiment script, environment, transition table, seeds, metrics, schemas, or artifact validation.
+
+Audit artifact: `research/reward_to_gcrl/artifacts/0004/protected_file_drift_audit.json`.
+
+Evidence-integrity verdict: `accepted_evidence` for the repaired nondegenerate tabular gate, subject to the post-audit validation commands listed below.
+
 ## Key Metrics
 
 - Runs: `30` (`3` gammas x `10` seeds)

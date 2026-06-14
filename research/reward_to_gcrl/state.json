@@ -3,7 +3,7 @@
   "failure_streak": 0,
   "human_review_required": false,
   "iteration": 3,
-  "last_decision": "continue",
+  "last_decision": "drift_audited",
   "last_failure": null,
   "last_pro_review_iteration": 3,
   "last_pro_review_path": "research/reward_to_gcrl/decisions/0004_review5_pro_decision.json",
@@ -33,13 +33,14 @@
     "2026-06-14T21:12:57+00:00: Pro decision saved for checkpoint review_needs_human (research/reward_to_gcrl/decisions/0004_review4_pro_decision.json)",
     "2026-06-14T21:12:58+00:00: applied Pro decision continue from research/reward_to_gcrl/decisions/0004_review4_pro_decision.json",
     "2026-06-14T21:17:18+00:00: Pro decision saved for checkpoint review_fail (research/reward_to_gcrl/decisions/0004_review5_pro_decision.json)",
-    "2026-06-14T21:17:20+00:00: applied Pro decision continue from research/reward_to_gcrl/decisions/0004_review5_pro_decision.json"
+    "2026-06-14T21:17:20+00:00: applied Pro decision continue from research/reward_to_gcrl/decisions/0004_review5_pro_decision.json",
+    "2026-06-14T21:18:53+00:00: cleared protected_file_drift after audit research/reward_to_gcrl/artifacts/0004/protected_file_drift_audit.json; status=harmless accepted_evidence"
   ],
   "pending_checkpoint": null,
   "pending_local_decision_path": null,
   "primary_metric": null,
   "pro_review_count": 6,
-  "protected_file_drift": true,
+  "protected_file_drift": false,
   "status": "active",
   "weak_pass_streak": 0
 }

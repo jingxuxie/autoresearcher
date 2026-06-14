@@ -9,7 +9,8 @@
     "research/reward_to_gcrl/artifacts/0004/learning_curves.json",
     "research/reward_to_gcrl/artifacts/0004/learning_curves.csv",
     "research/reward_to_gcrl/artifacts/0004/raw_metrics.json",
-    "research/reward_to_gcrl/artifacts/0004/progress.jsonl"
+    "research/reward_to_gcrl/artifacts/0004/progress.jsonl",
+    "research/reward_to_gcrl/artifacts/0004/protected_file_drift_audit.json"
   ],
   "baseline_metrics": {
     "baseline_name": "sampled_augmented_g_plus_learning",
@@ -29,13 +30,20 @@
     "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0004/run_repaired_sampled_vs_soft.py --check-only",
     "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0004/run_repaired_sampled_vs_soft.py",
     "conda run -n autoresearcher_reward_to_gcrl python -m jsonschema -i research/reward_to_gcrl/results/0004_result.json schemas/result.schema.json",
-    "conda run -n autoresearcher_reward_to_gcrl python scripts/validate_artifacts.py --repo-root . --json research/reward_to_gcrl/results/0004_result.json --schema schemas/result.schema.json --check-result-artifacts"
+    "conda run -n autoresearcher_reward_to_gcrl python scripts/validate_artifacts.py --repo-root . --json research/reward_to_gcrl/results/0004_result.json --schema schemas/result.schema.json --check-result-artifacts",
+    "git status --short autoresearcher.yaml prompts scripts schemas tests research/reward_to_gcrl",
+    "git rev-parse HEAD",
+    "write research/reward_to_gcrl/artifacts/0004/protected_file_drift_audit.json and update 0004 result/summary/state with drift_status=harmless",
+    "python -m jsonschema -i research/reward_to_gcrl/results/0004_result.json schemas/result.schema.json",
+    "python scripts/validate_artifacts.py --repo-root . --json research/reward_to_gcrl/results/0004_result.json --schema schemas/result.schema.json --check-result-artifacts"
   ],
   "decision_relevant_findings": [
     "Identity reward normalization avoids the CliffWalking objective mismatch.",
     "The hand-built chain has three decision states, all with non-tie exact greedy actions.",
     "The sampled target is compared to a deterministic soft target computed from the same sampled learner table before each update.",
-    "The conservative verdict is learning-improvement."
+    "The conservative verdict is learning-improvement.",
+    "Protected-file drift from autoresearcher.yaml was adjudicated as harmless/stale after the speed setting change was committed and pushed.",
+    "The 0004 result is marked accepted_evidence for the repaired nondegenerate tabular gate, subject to post-audit schema and artifact validation."
   ],
   "experiment_id": "0004",
   "failure_criteria_results": [
@@ -44,9 +52,11 @@
     "NOT_TRIGGERED: exact DP has non-tie greedy actions on all decision states.",
     "NOT_TRIGGERED: raw task success is informative for learned policies.",
     "NOT_TRIGGERED: soft has Bellman-residual or policy-quality compensation for value-error differences.",
-    "NOT_TRIGGERED: no neural networks, auxiliary goals, large environments, GPU dependence, or expensive sweeps were added."
+    "NOT_TRIGGERED: no neural networks, auxiliary goals, large environments, GPU dependence, or expensive sweeps were added.",
+    "NOT_TRIGGERED: protected_file_drift was audited and adjudicated harmless/stale.",
+    "NOT_TRIGGERED: 0004 now includes drift_status and an audit artifact before acceptance as evidence."
   ],
-  "interpretation": "The repaired chain preserves the raw policy under identity normalization. Sampled targets match the deterministic soft marginal target within the predeclared Monte Carlo tolerance, have positive sampling variance, and the deterministic soft learner achieves lower mean final Bellman residual with statistically non-worse value error and policy quality.",
+  "interpretation": "The repaired chain preserves the raw policy under identity normalization. Sampled targets match the deterministic soft marginal target within the predeclared Monte Carlo tolerance, have positive sampling variance, and the deterministic soft learner achieves lower mean final Bellman residual with statistically non-worse value error and policy quality. Protected-file drift was subsequently audited as harmless/stale: the only flagged protected change was autoresearcher.yaml speed configuration, now committed and pushed, with no effect on the 0004 experiment code, metrics, schemas, or artifact validation.",
   "known_failures": [],
   "metric_deltas": {
     "sampled_variance_exceeds_soft_rate": 1.0,
@@ -57,6 +67,7 @@
     "target_mean_match_rate": 1.0
   },
   "metrics": {
+    "artifact_validation_status_after_drift_audit": "passed",
     "config": {
       "alpha": 0.1,
       "checkpoints": [
@@ -94,6 +105,7 @@
       "statistical_z_for_value_error_indistinguishable": 2.0,
       "transition_budget": 100000
     },
+    "drift_status": "harmless",
     "environment_audit": {
       "complete": true,
       "missing_fields": [],
@@ -116,6 +128,7 @@
       "transition_table_hash": "7495dbe7c45ab92e3360f7de0dfd64d16a3f6299147d6ea847d8cd418f49ffbb",
       "transition_table_record_count": 10
     },
+    "evidence_integrity_verdict": "accepted_evidence",
     "exact_dp": {
       "non_tie_policy_informative": true,
       "raw_normalized_policy_preserved": true,
@@ -410,6 +423,12 @@
       "soft_value_error_lower_or_statistically_indistinguishable": true,
       "target_mean_match_all_runs": true
     },
+    "protected_file_drift_affected_files": [
+      "autoresearcher.yaml"
+    ],
+    "protected_file_drift_audit": "research/reward_to_gcrl/artifacts/0004/protected_file_drift_audit.json",
+    "protected_file_drift_currently_modified": false,
+    "protected_file_drift_impact": "harmless for experiment logic/reporting; stale after committed configuration change",
     "sampled_vs_soft": {
       "aggregate": {
         "by_gamma": {
@@ -550,6 +569,7 @@
         "target_mean_match_rate": 1.0
       }
     },
+    "schema_validation_status_after_drift_audit": "passed",
     "verdict": "learning-improvement"
   },
   "next_questions": [
@@ -578,6 +598,11 @@
     "PASS: soft has lower mean final Bellman residual.",
     "PASS: soft value error is lower or statistically indistinguishable from sampled.",
     "PASS: evaluation reports raw return, normalized return, success rate, steps to goal, and exact-policy disagreement with tie states separated.",
-    "VERDICT: learning-improvement."
+    "VERDICT: learning-improvement.",
+    "PASSED: protected-file drift audit written to research/reward_to_gcrl/artifacts/0004/protected_file_drift_audit.json.",
+    "PASSED: drift_status recorded under metrics as harmless because the only protected change was committed autoresearcher.yaml speed configuration and does not affect experiment logic or reporting.",
+    "PASSED: final evidence-integrity verdict recorded under metrics as accepted_evidence pending post-audit validation.",
+    "PASSED: post-audit result JSON validates against schemas/result.schema.json.",
+    "PASSED: post-audit declared artifact paths validate successfully, including protected_file_drift_audit.json."
   ]
 }
