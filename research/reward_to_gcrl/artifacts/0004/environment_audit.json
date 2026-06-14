@@ -1,0 +1,190 @@
+{
+  "action_mapping": [
+    {
+      "action": 0,
+      "name": "stall_or_fail"
+    },
+    {
+      "action": 1,
+      "name": "advance"
+    }
+  ],
+  "decision_states": [
+    0,
+    1,
+    2
+  ],
+  "description": "Five-state deterministic chain. Action 1 advances from start to middle to pre_goal to goal. Action 0 stalls/resets early and fails at pre_goal.",
+  "environment": "tiny_non_degenerate_chain",
+  "experiment_id": "0004",
+  "failure_state": 4,
+  "goal_state": 3,
+  "n_actions": 2,
+  "n_states": 5,
+  "reward_audit": {
+    "affine_offset": 0.0,
+    "affine_scale": 1.0,
+    "non_success_reward": 0.0,
+    "normalization": "identity affine map because raw rewards are already in [0, 1]",
+    "normalized_rewards": [
+      0.0,
+      1.0
+    ],
+    "raw_rewards": [
+      0.0,
+      1.0
+    ],
+    "success_reward": 1.0,
+    "terminal_self_loop_reward": 0.0
+  },
+  "sampled_augmented_target_semantics": {
+    "continued_target": "max_a M(s_next,a), no extra gamma factor",
+    "direct_target_comparison": "each sampled target is compared against the deterministic soft marginal target computed from the sampled learner pre-update table on the same original transition",
+    "g_minus_target": 0.0,
+    "g_plus_target": 1.0,
+    "p_continue": "gamma",
+    "p_g_minus": "(1 - gamma) * (1 - r_bar)",
+    "p_g_plus": "(1 - gamma) * r_bar"
+  },
+  "start_state": 0,
+  "state_names": {
+    "0": "start",
+    "1": "middle",
+    "2": "pre_goal",
+    "3": "goal_terminal",
+    "4": "failure_terminal"
+  },
+  "terminal_handling": "goal and failure are absorbing for table completeness; Bellman and learning bootstraps are masked to zero on terminated transitions",
+  "terminal_states": [
+    3,
+    4
+  ],
+  "transition_records": [
+    {
+      "action": 0,
+      "action_name": "stall_or_fail",
+      "next_state": 0,
+      "next_state_name": "start",
+      "normalized_reward": 0.0,
+      "raw_reward": 0.0,
+      "state": 0,
+      "state_name": "start",
+      "success_transition": false,
+      "terminated": false
+    },
+    {
+      "action": 1,
+      "action_name": "advance",
+      "next_state": 1,
+      "next_state_name": "middle",
+      "normalized_reward": 0.0,
+      "raw_reward": 0.0,
+      "state": 0,
+      "state_name": "start",
+      "success_transition": false,
+      "terminated": false
+    },
+    {
+      "action": 0,
+      "action_name": "stall_or_fail",
+      "next_state": 0,
+      "next_state_name": "start",
+      "normalized_reward": 0.0,
+      "raw_reward": 0.0,
+      "state": 1,
+      "state_name": "middle",
+      "success_transition": false,
+      "terminated": false
+    },
+    {
+      "action": 1,
+      "action_name": "advance",
+      "next_state": 2,
+      "next_state_name": "pre_goal",
+      "normalized_reward": 0.0,
+      "raw_reward": 0.0,
+      "state": 1,
+      "state_name": "middle",
+      "success_transition": false,
+      "terminated": false
+    },
+    {
+      "action": 0,
+      "action_name": "stall_or_fail",
+      "next_state": 4,
+      "next_state_name": "failure_terminal",
+      "normalized_reward": 0.0,
+      "raw_reward": 0.0,
+      "state": 2,
+      "state_name": "pre_goal",
+      "success_transition": false,
+      "terminated": true
+    },
+    {
+      "action": 1,
+      "action_name": "advance",
+      "next_state": 3,
+      "next_state_name": "goal_terminal",
+      "normalized_reward": 1.0,
+      "raw_reward": 1.0,
+      "state": 2,
+      "state_name": "pre_goal",
+      "success_transition": true,
+      "terminated": true
+    },
+    {
+      "action": 0,
+      "action_name": "stall_or_fail",
+      "next_state": 3,
+      "next_state_name": "goal_terminal",
+      "normalized_reward": 0.0,
+      "raw_reward": 0.0,
+      "state": 3,
+      "state_name": "goal_terminal",
+      "success_transition": true,
+      "terminated": true
+    },
+    {
+      "action": 1,
+      "action_name": "advance",
+      "next_state": 3,
+      "next_state_name": "goal_terminal",
+      "normalized_reward": 0.0,
+      "raw_reward": 0.0,
+      "state": 3,
+      "state_name": "goal_terminal",
+      "success_transition": true,
+      "terminated": true
+    },
+    {
+      "action": 0,
+      "action_name": "stall_or_fail",
+      "next_state": 4,
+      "next_state_name": "failure_terminal",
+      "normalized_reward": 0.0,
+      "raw_reward": 0.0,
+      "state": 4,
+      "state_name": "failure_terminal",
+      "success_transition": false,
+      "terminated": true
+    },
+    {
+      "action": 1,
+      "action_name": "advance",
+      "next_state": 4,
+      "next_state_name": "failure_terminal",
+      "normalized_reward": 0.0,
+      "raw_reward": 0.0,
+      "state": 4,
+      "state_name": "failure_terminal",
+      "success_transition": false,
+      "terminated": true
+    }
+  ],
+  "transition_table_hash": "7495dbe7c45ab92e3360f7de0dfd64d16a3f6299147d6ea847d8cd418f49ffbb",
+  "transition_table_record_count": 10,
+  "transition_table_shape": [
+    5,
+    2
+  ]
+}

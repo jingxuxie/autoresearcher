@@ -3,7 +3,7 @@ project_default: project_001
 codex:
   model: gpt-5.5
   reasoning_effort: xhigh
-  speed: Fast
+  # speed: Fast
   resume_mode: role-resume
   fail_if_model_unavailable: true
 

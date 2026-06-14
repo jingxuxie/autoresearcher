@@ -1,0 +1,496 @@
+{
+  "metadata": {
+    "exact_tolerance": 1e-13,
+    "experiment_id": "0004",
+    "gammas": [
+      0.95,
+      0.99,
+      0.995
+    ],
+    "transition_table_hash": "7495dbe7c45ab92e3360f7de0dfd64d16a3f6299147d6ea847d8cd418f49ffbb"
+  },
+  "rows": [
+    {
+      "gamma": 0.95,
+      "max_abs_scaled_soft_minus_normalized_q": 1.1102230246251565e-16,
+      "non_tie_decision_state_fraction": 1.0,
+      "normalized_final_delta": 0.0,
+      "normalized_q": [
+        [
+          0.8573749999999999,
+          0.9025
+        ],
+        [
+          0.8573749999999999,
+          0.95
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "normalized_value_iteration_steps": 5,
+      "raw_final_delta": 0.0,
+      "raw_normalized_policy_comparison": {
+        "comparable_non_tie_state_count": 3,
+        "disagreement_count": 0,
+        "disagreement_rate": 0.0,
+        "state_count_total": 3,
+        "tie_state_count": 0
+      },
+      "raw_normalized_policy_preserved": true,
+      "raw_q": [
+        [
+          0.8573749999999999,
+          0.9025
+        ],
+        [
+          0.8573749999999999,
+          0.95
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "raw_value_iteration_steps": 5,
+      "soft_f_gplus": [
+        [
+          0.04286875000000004,
+          0.04512500000000004
+        ],
+        [
+          0.04286875000000004,
+          0.04750000000000004
+        ],
+        [
+          0.0,
+          0.050000000000000044
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "soft_final_delta": 0.0,
+      "soft_scaled_policy_comparison": {
+        "comparable_non_tie_state_count": 3,
+        "disagreement_count": 0,
+        "disagreement_rate": 0.0,
+        "state_count_total": 3,
+        "tie_state_count": 0
+      },
+      "soft_value_iteration_steps": 5
+    },
+    {
+      "gamma": 0.99,
+      "max_abs_scaled_soft_minus_normalized_q": 1.1102230246251565e-16,
+      "non_tie_decision_state_fraction": 1.0,
+      "normalized_final_delta": 0.0,
+      "normalized_q": [
+        [
+          0.9702989999999999,
+          0.9801
+        ],
+        [
+          0.9702989999999999,
+          0.99
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "normalized_value_iteration_steps": 5,
+      "raw_final_delta": 0.0,
+      "raw_normalized_policy_comparison": {
+        "comparable_non_tie_state_count": 3,
+        "disagreement_count": 0,
+        "disagreement_rate": 0.0,
+        "state_count_total": 3,
+        "tie_state_count": 0
+      },
+      "raw_normalized_policy_preserved": true,
+      "raw_q": [
+        [
+          0.9702989999999999,
+          0.9801
+        ],
+        [
+          0.9702989999999999,
+          0.99
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "raw_value_iteration_steps": 5,
+      "soft_f_gplus": [
+        [
+          0.009702990000000009,
+          0.00980100000000001
+        ],
+        [
+          0.009702990000000009,
+          0.00990000000000001
+        ],
+        [
+          0.0,
+          0.010000000000000009
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "soft_final_delta": 0.0,
+      "soft_scaled_policy_comparison": {
+        "comparable_non_tie_state_count": 3,
+        "disagreement_count": 0,
+        "disagreement_rate": 0.0,
+        "state_count_total": 3,
+        "tie_state_count": 0
+      },
+      "soft_value_iteration_steps": 5
+    },
+    {
+      "gamma": 0.995,
+      "max_abs_scaled_soft_minus_normalized_q": 0.0,
+      "non_tie_decision_state_fraction": 1.0,
+      "normalized_final_delta": 0.0,
+      "normalized_q": [
+        [
+          0.985074875,
+          0.990025
+        ],
+        [
+          0.985074875,
+          0.995
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "normalized_value_iteration_steps": 5,
+      "raw_final_delta": 0.0,
+      "raw_normalized_policy_comparison": {
+        "comparable_non_tie_state_count": 3,
+        "disagreement_count": 0,
+        "disagreement_rate": 0.0,
+        "state_count_total": 3,
+        "tie_state_count": 0
+      },
+      "raw_normalized_policy_preserved": true,
+      "raw_q": [
+        [
+          0.985074875,
+          0.990025
+        ],
+        [
+          0.985074875,
+          0.995
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "raw_value_iteration_steps": 5,
+      "soft_f_gplus": [
+        [
+          0.004925374375000005,
+          0.004950125000000005
+        ],
+        [
+          0.004925374375000005,
+          0.004975000000000005
+        ],
+        [
+          0.0,
+          0.0050000000000000044
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "soft_final_delta": 0.0,
+      "soft_scaled_policy_comparison": {
+        "comparable_non_tie_state_count": 3,
+        "disagreement_count": 0,
+        "disagreement_rate": 0.0,
+        "state_count_total": 3,
+        "tie_state_count": 0
+      },
+      "soft_value_iteration_steps": 5
+    }
+  ],
+  "tables": {
+    "0.95": {
+      "normalized_q": [
+        [
+          0.8573749999999999,
+          0.9025
+        ],
+        [
+          0.8573749999999999,
+          0.95
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "raw_q": [
+        [
+          0.8573749999999999,
+          0.9025
+        ],
+        [
+          0.8573749999999999,
+          0.95
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "soft_f_gplus": [
+        [
+          0.04286875000000004,
+          0.04512500000000004
+        ],
+        [
+          0.04286875000000004,
+          0.04750000000000004
+        ],
+        [
+          0.0,
+          0.050000000000000044
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    "0.99": {
+      "normalized_q": [
+        [
+          0.9702989999999999,
+          0.9801
+        ],
+        [
+          0.9702989999999999,
+          0.99
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "raw_q": [
+        [
+          0.9702989999999999,
+          0.9801
+        ],
+        [
+          0.9702989999999999,
+          0.99
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "soft_f_gplus": [
+        [
+          0.009702990000000009,
+          0.00980100000000001
+        ],
+        [
+          0.009702990000000009,
+          0.00990000000000001
+        ],
+        [
+          0.0,
+          0.010000000000000009
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    "0.995": {
+      "normalized_q": [
+        [
+          0.985074875,
+          0.990025
+        ],
+        [
+          0.985074875,
+          0.995
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "raw_q": [
+        [
+          0.985074875,
+          0.990025
+        ],
+        [
+          0.985074875,
+          0.995
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "soft_f_gplus": [
+        [
+          0.004925374375000005,
+          0.004950125000000005
+        ],
+        [
+          0.004925374375000005,
+          0.004975000000000005
+        ],
+        [
+          0.0,
+          0.0050000000000000044
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ]
+    }
+  }
+}

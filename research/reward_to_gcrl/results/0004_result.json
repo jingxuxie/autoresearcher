@@ -1,0 +1,583 @@
+{
+  "artifacts": [
+    "research/reward_to_gcrl/artifacts/0004/run_repaired_sampled_vs_soft.py",
+    "research/reward_to_gcrl/artifacts/0004/local_compatibility_check.json",
+    "research/reward_to_gcrl/artifacts/0004/environment_audit.json",
+    "research/reward_to_gcrl/artifacts/0004/exact_dp_references.json",
+    "research/reward_to_gcrl/artifacts/0004/per_seed_metrics.json",
+    "research/reward_to_gcrl/artifacts/0004/per_seed_summary.csv",
+    "research/reward_to_gcrl/artifacts/0004/learning_curves.json",
+    "research/reward_to_gcrl/artifacts/0004/learning_curves.csv",
+    "research/reward_to_gcrl/artifacts/0004/raw_metrics.json",
+    "research/reward_to_gcrl/artifacts/0004/progress.jsonl"
+  ],
+  "baseline_metrics": {
+    "baseline_name": "sampled_augmented_g_plus_learning",
+    "mean_conditional_sampling_variance": 0.006258455730468815,
+    "mean_final_bellman_residual": 0.005863347048562961,
+    "mean_final_value_error": 0.028406430871095144,
+    "mean_g_plus_events_per_10000": 63.79,
+    "mean_policy_disagreement": 0.55,
+    "mean_raw_return": 0.0,
+    "mean_success_rate": 0.0
+  },
+  "claim_tested": "In a nondegenerate tiny chain with identity reward normalization, sampled augmented g_plus updates are unbiased but higher variance, while deterministic soft terminal marginalization improves Bellman residual and preserves policy quality.",
+  "commands_run": [
+    "mkdir -p research/reward_to_gcrl/artifacts/0004 research/reward_to_gcrl/results",
+    "conda run -n autoresearcher_reward_to_gcrl python --version",
+    "conda run -n autoresearcher_reward_to_gcrl python -m py_compile research/reward_to_gcrl/artifacts/0004/run_repaired_sampled_vs_soft.py",
+    "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0004/run_repaired_sampled_vs_soft.py --check-only",
+    "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0004/run_repaired_sampled_vs_soft.py",
+    "conda run -n autoresearcher_reward_to_gcrl python -m jsonschema -i research/reward_to_gcrl/results/0004_result.json schemas/result.schema.json",
+    "conda run -n autoresearcher_reward_to_gcrl python scripts/validate_artifacts.py --repo-root . --json research/reward_to_gcrl/results/0004_result.json --schema schemas/result.schema.json --check-result-artifacts"
+  ],
+  "decision_relevant_findings": [
+    "Identity reward normalization avoids the CliffWalking objective mismatch.",
+    "The hand-built chain has three decision states, all with non-tie exact greedy actions.",
+    "The sampled target is compared to a deterministic soft target computed from the same sampled learner table before each update.",
+    "The conservative verdict is learning-improvement."
+  ],
+  "experiment_id": "0004",
+  "failure_criteria_results": [
+    "NOT_TRIGGERED: normalized objective preserves raw optimal policy.",
+    "NOT_TRIGGERED: target comparison uses deterministic soft marginal target from the same sampled learner table and transition.",
+    "NOT_TRIGGERED: exact DP has non-tie greedy actions on all decision states.",
+    "NOT_TRIGGERED: raw task success is informative for learned policies.",
+    "NOT_TRIGGERED: soft has Bellman-residual or policy-quality compensation for value-error differences.",
+    "NOT_TRIGGERED: no neural networks, auxiliary goals, large environments, GPU dependence, or expensive sweeps were added."
+  ],
+  "interpretation": "The repaired chain preserves the raw policy under identity normalization. Sampled targets match the deterministic soft marginal target within the predeclared Monte Carlo tolerance, have positive sampling variance, and the deterministic soft learner achieves lower mean final Bellman residual with statistically non-worse value error and policy quality.",
+  "known_failures": [],
+  "metric_deltas": {
+    "sampled_variance_exceeds_soft_rate": 1.0,
+    "soft_minus_sampled_mean_final_bellman_residual": -0.005863347048562949,
+    "soft_minus_sampled_mean_final_value_error": -0.028406430871095113,
+    "soft_minus_sampled_policy_disagreement": -0.55,
+    "soft_minus_sampled_success_rate": 1.0,
+    "target_mean_match_rate": 1.0
+  },
+  "metrics": {
+    "config": {
+      "alpha": 0.1,
+      "checkpoints": [
+        500,
+        1000,
+        2500,
+        5000,
+        10000,
+        25000,
+        50000,
+        100000
+      ],
+      "epsilon_end": 0.02,
+      "epsilon_start": 0.2,
+      "gammas": [
+        0.95,
+        0.99,
+        0.995
+      ],
+      "mc_sigma_tolerance": 6.0,
+      "reward_normalization": "identity affine map, normalized_reward = raw_reward",
+      "sampled_continue_target": "max_a M(s_next,a), no extra gamma factor",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "statistical_z_for_value_error_indistinguishable": 2.0,
+      "transition_budget": 100000
+    },
+    "environment_audit": {
+      "complete": true,
+      "missing_fields": [],
+      "reward_audit": {
+        "affine_offset": 0.0,
+        "affine_scale": 1.0,
+        "non_success_reward": 0.0,
+        "normalization": "identity affine map because raw rewards are already in [0, 1]",
+        "normalized_rewards": [
+          0.0,
+          1.0
+        ],
+        "raw_rewards": [
+          0.0,
+          1.0
+        ],
+        "success_reward": 1.0,
+        "terminal_self_loop_reward": 0.0
+      },
+      "transition_table_hash": "7495dbe7c45ab92e3360f7de0dfd64d16a3f6299147d6ea847d8cd418f49ffbb",
+      "transition_table_record_count": 10
+    },
+    "exact_dp": {
+      "non_tie_policy_informative": true,
+      "raw_normalized_policy_preserved": true,
+      "rows": [
+        {
+          "gamma": 0.95,
+          "max_abs_scaled_soft_minus_normalized_q": 1.1102230246251565e-16,
+          "non_tie_decision_state_fraction": 1.0,
+          "normalized_final_delta": 0.0,
+          "normalized_q": [
+            [
+              0.8573749999999999,
+              0.9025
+            ],
+            [
+              0.8573749999999999,
+              0.95
+            ],
+            [
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "normalized_value_iteration_steps": 5,
+          "raw_final_delta": 0.0,
+          "raw_normalized_policy_comparison": {
+            "comparable_non_tie_state_count": 3,
+            "disagreement_count": 0,
+            "disagreement_rate": 0.0,
+            "state_count_total": 3,
+            "tie_state_count": 0
+          },
+          "raw_normalized_policy_preserved": true,
+          "raw_q": [
+            [
+              0.8573749999999999,
+              0.9025
+            ],
+            [
+              0.8573749999999999,
+              0.95
+            ],
+            [
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "raw_value_iteration_steps": 5,
+          "soft_f_gplus": [
+            [
+              0.04286875000000004,
+              0.04512500000000004
+            ],
+            [
+              0.04286875000000004,
+              0.04750000000000004
+            ],
+            [
+              0.0,
+              0.050000000000000044
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "soft_final_delta": 0.0,
+          "soft_scaled_policy_comparison": {
+            "comparable_non_tie_state_count": 3,
+            "disagreement_count": 0,
+            "disagreement_rate": 0.0,
+            "state_count_total": 3,
+            "tie_state_count": 0
+          },
+          "soft_value_iteration_steps": 5
+        },
+        {
+          "gamma": 0.99,
+          "max_abs_scaled_soft_minus_normalized_q": 1.1102230246251565e-16,
+          "non_tie_decision_state_fraction": 1.0,
+          "normalized_final_delta": 0.0,
+          "normalized_q": [
+            [
+              0.9702989999999999,
+              0.9801
+            ],
+            [
+              0.9702989999999999,
+              0.99
+            ],
+            [
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "normalized_value_iteration_steps": 5,
+          "raw_final_delta": 0.0,
+          "raw_normalized_policy_comparison": {
+            "comparable_non_tie_state_count": 3,
+            "disagreement_count": 0,
+            "disagreement_rate": 0.0,
+            "state_count_total": 3,
+            "tie_state_count": 0
+          },
+          "raw_normalized_policy_preserved": true,
+          "raw_q": [
+            [
+              0.9702989999999999,
+              0.9801
+            ],
+            [
+              0.9702989999999999,
+              0.99
+            ],
+            [
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "raw_value_iteration_steps": 5,
+          "soft_f_gplus": [
+            [
+              0.009702990000000009,
+              0.00980100000000001
+            ],
+            [
+              0.009702990000000009,
+              0.00990000000000001
+            ],
+            [
+              0.0,
+              0.010000000000000009
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "soft_final_delta": 0.0,
+          "soft_scaled_policy_comparison": {
+            "comparable_non_tie_state_count": 3,
+            "disagreement_count": 0,
+            "disagreement_rate": 0.0,
+            "state_count_total": 3,
+            "tie_state_count": 0
+          },
+          "soft_value_iteration_steps": 5
+        },
+        {
+          "gamma": 0.995,
+          "max_abs_scaled_soft_minus_normalized_q": 0.0,
+          "non_tie_decision_state_fraction": 1.0,
+          "normalized_final_delta": 0.0,
+          "normalized_q": [
+            [
+              0.985074875,
+              0.990025
+            ],
+            [
+              0.985074875,
+              0.995
+            ],
+            [
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "normalized_value_iteration_steps": 5,
+          "raw_final_delta": 0.0,
+          "raw_normalized_policy_comparison": {
+            "comparable_non_tie_state_count": 3,
+            "disagreement_count": 0,
+            "disagreement_rate": 0.0,
+            "state_count_total": 3,
+            "tie_state_count": 0
+          },
+          "raw_normalized_policy_preserved": true,
+          "raw_q": [
+            [
+              0.985074875,
+              0.990025
+            ],
+            [
+              0.985074875,
+              0.995
+            ],
+            [
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "raw_value_iteration_steps": 5,
+          "soft_f_gplus": [
+            [
+              0.004925374375000005,
+              0.004950125000000005
+            ],
+            [
+              0.004925374375000005,
+              0.004975000000000005
+            ],
+            [
+              0.0,
+              0.0050000000000000044
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "soft_final_delta": 0.0,
+          "soft_scaled_policy_comparison": {
+            "comparable_non_tie_state_count": 3,
+            "disagreement_count": 0,
+            "disagreement_rate": 0.0,
+            "state_count_total": 3,
+            "tie_state_count": 0
+          },
+          "soft_value_iteration_steps": 5
+        }
+      ]
+    },
+    "pass_flags": {
+      "cpu_tabular_only": true,
+      "environment_audit_complete": true,
+      "exact_dp_non_tie_policy_informative": true,
+      "gamma_seed_budget_complete": true,
+      "raw_normalized_policy_preserved": true,
+      "sampled_variance_exceeds_soft_all_runs": true,
+      "soft_lower_mean_final_bellman_residual": true,
+      "soft_policy_quality_non_worse": true,
+      "soft_value_error_lower_or_statistically_indistinguishable": true,
+      "target_mean_match_all_runs": true
+    },
+    "sampled_vs_soft": {
+      "aggregate": {
+        "by_gamma": {
+          "0.95": {
+            "mean_conditional_sampling_variance": 0.014331165220744967,
+            "mean_final_sampled_bellman_residual": 0.012922277449519367,
+            "mean_final_sampled_value_error": 0.02884746962485611,
+            "mean_final_soft_bellman_residual": 2.312964634635743e-17,
+            "mean_final_soft_value_error": 6.476300976980079e-17,
+            "mean_g_plus_events_per_10000": 145.49,
+            "mean_sampled_policy_disagreement": 0.5666666666666667,
+            "mean_sampled_raw_return": 0.0,
+            "mean_sampled_success_rate": 0.0,
+            "mean_soft_policy_disagreement": 0.0,
+            "mean_soft_raw_return": 1.0,
+            "mean_soft_success_rate": 1.0,
+            "run_count": 10,
+            "sampled_variance_exceeds_soft_count": 10,
+            "sampled_variance_exceeds_soft_rate": 1.0,
+            "soft_bellman_residual_lower": true,
+            "soft_minus_sampled_bellman_residual": {
+              "abs_mean_within_2se": false,
+              "mean": -0.012922277449519348,
+              "n": 10,
+              "standard_error": 0.0018546536688189288
+            },
+            "soft_minus_sampled_value_error": {
+              "abs_mean_within_2se": false,
+              "mean": -0.028847469624856042,
+              "n": 10,
+              "standard_error": 0.001909477042082559
+            },
+            "soft_policy_quality_non_worse": true,
+            "soft_value_error_lower_or_indistinguishable": true,
+            "target_mean_match_count": 10,
+            "target_mean_match_rate": 1.0
+          },
+          "0.99": {
+            "mean_conditional_sampling_variance": 0.002960125677978717,
+            "mean_final_sampled_bellman_residual": 0.0030596421989857,
+            "mean_final_sampled_value_error": 0.029010854242538825,
+            "mean_final_soft_bellman_residual": 6.649773324577761e-18,
+            "mean_final_soft_value_error": 1.763635533909754e-17,
+            "mean_g_plus_events_per_10000": 30.85,
+            "mean_sampled_policy_disagreement": 0.4333333333333333,
+            "mean_sampled_raw_return": 0.0,
+            "mean_sampled_success_rate": 0.0,
+            "mean_soft_policy_disagreement": 0.0,
+            "mean_soft_raw_return": 1.0,
+            "mean_soft_success_rate": 1.0,
+            "run_count": 10,
+            "sampled_variance_exceeds_soft_count": 10,
+            "sampled_variance_exceeds_soft_rate": 1.0,
+            "soft_bellman_residual_lower": true,
+            "soft_minus_sampled_bellman_residual": {
+              "abs_mean_within_2se": false,
+              "mean": -0.003059642198985694,
+              "n": 10,
+              "standard_error": 0.0005046117481307657
+            },
+            "soft_minus_sampled_value_error": {
+              "abs_mean_within_2se": false,
+              "mean": -0.029010854242538808,
+              "n": 10,
+              "standard_error": 0.0013287709908533446
+            },
+            "soft_policy_quality_non_worse": true,
+            "soft_value_error_lower_or_indistinguishable": true,
+            "target_mean_match_count": 10,
+            "target_mean_match_rate": 1.0
+          },
+          "0.995": {
+            "mean_conditional_sampling_variance": 0.0014840762926827586,
+            "mean_final_sampled_bellman_residual": 0.0016081214971838086,
+            "mean_final_sampled_value_error": 0.02736096874589049,
+            "mean_final_soft_bellman_residual": 3.1803263726241462e-18,
+            "mean_final_soft_value_error": 9.107298248878237e-18,
+            "mean_g_plus_events_per_10000": 15.030000000000001,
+            "mean_sampled_policy_disagreement": 0.65,
+            "mean_sampled_raw_return": 0.0,
+            "mean_sampled_success_rate": 0.0,
+            "mean_soft_policy_disagreement": 0.0,
+            "mean_soft_raw_return": 1.0,
+            "mean_soft_success_rate": 1.0,
+            "run_count": 10,
+            "sampled_variance_exceeds_soft_count": 10,
+            "sampled_variance_exceeds_soft_rate": 1.0,
+            "soft_bellman_residual_lower": true,
+            "soft_minus_sampled_bellman_residual": {
+              "abs_mean_within_2se": false,
+              "mean": -0.001608121497183805,
+              "n": 10,
+              "standard_error": 0.0004809451310079002
+            },
+            "soft_minus_sampled_value_error": {
+              "abs_mean_within_2se": false,
+              "mean": -0.02736096874589048,
+              "n": 10,
+              "standard_error": 0.0012386385094103603
+            },
+            "soft_policy_quality_non_worse": true,
+            "soft_value_error_lower_or_indistinguishable": true,
+            "target_mean_match_count": 10,
+            "target_mean_match_rate": 1.0
+          }
+        },
+        "mean_conditional_sampling_variance": 0.006258455730468815,
+        "mean_final_sampled_bellman_residual": 0.005863347048562961,
+        "mean_final_sampled_value_error": 0.028406430871095144,
+        "mean_final_soft_bellman_residual": 1.0986582014519781e-17,
+        "mean_final_soft_value_error": 3.0502221119258856e-17,
+        "mean_g_plus_events_per_10000": 63.79,
+        "mean_sampled_policy_disagreement": 0.55,
+        "mean_sampled_raw_return": 0.0,
+        "mean_sampled_success_rate": 0.0,
+        "mean_soft_policy_disagreement": 0.0,
+        "mean_soft_raw_return": 1.0,
+        "mean_soft_success_rate": 1.0,
+        "run_count": 30,
+        "sampled_variance_exceeds_soft_count": 30,
+        "sampled_variance_exceeds_soft_rate": 1.0,
+        "soft_bellman_residual_lower": true,
+        "soft_minus_sampled_bellman_residual": {
+          "abs_mean_within_2se": false,
+          "mean": -0.005863347048562948,
+          "n": 30,
+          "standard_error": 0.0011301883526376913
+        },
+        "soft_minus_sampled_value_error": {
+          "abs_mean_within_2se": false,
+          "mean": -0.02840643087109511,
+          "n": 30,
+          "standard_error": 0.0008588048120058043
+        },
+        "soft_policy_quality_non_worse": true,
+        "soft_value_error_lower_or_indistinguishable": true,
+        "target_mean_match_count": 30,
+        "target_mean_match_rate": 1.0
+      }
+    },
+    "verdict": "learning-improvement"
+  },
+  "next_questions": [
+    "Would a decaying step-size schedule preserve the soft Bellman-residual advantage while reducing both learners' value error?",
+    "Does the repaired chain result transfer to a small grid with identity or policy-preserving reward normalization?"
+  ],
+  "resource_usage": {
+    "actions": 2,
+    "device": "cpu",
+    "gpu_used": false,
+    "large_datasets_downloaded": false,
+    "large_dependencies_installed": false,
+    "learning_runs": 30,
+    "states": 5,
+    "total_original_transitions": 3000000
+  },
+  "runtime_seconds": 19.7501538140059,
+  "status": "completed",
+  "success_criteria_results": [
+    "PASS: reward audit reports raw rewards, normalized rewards, affine constants, and terminal handling.",
+    "PASS: exact DP confirms normalized and raw greedy policies match on non-terminal non-tie states.",
+    "PASS: exact DP has informative non-tie greedy actions on the hand-built chain.",
+    "PASS: matched-stream sampled and soft learners ran for gamma in {0.95, 0.99, 0.995} over 10 seeds.",
+    "PASS: sampled targets are compared directly against deterministic soft targets from the sampled learner pre-update state and same transition.",
+    "PASS: sampled target variance exceeds zero soft terminal-sampling variance in all runs.",
+    "PASS: soft has lower mean final Bellman residual.",
+    "PASS: soft value error is lower or statistically indistinguishable from sampled.",
+    "PASS: evaluation reports raw return, normalized return, success rate, steps to goal, and exact-policy disagreement with tie states separated.",
+    "VERDICT: learning-improvement."
+  ]
+}
