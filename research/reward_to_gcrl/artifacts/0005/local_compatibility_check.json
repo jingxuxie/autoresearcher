@@ -1,0 +1,15 @@
+{
+  "audit_complete": true,
+  "command": "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0005/run_riverswim_sampled_vs_soft.py --check-only",
+  "gammas": [
+    0.95,
+    0.99,
+    0.995
+  ],
+  "missing_fields": [],
+  "scaled_soft_matches_q_norm": true,
+  "seed_count": 10,
+  "status": "passed",
+  "timestamp": "2026-06-14T21:29:05.385825+00:00",
+  "transition_budget": 200000
+}

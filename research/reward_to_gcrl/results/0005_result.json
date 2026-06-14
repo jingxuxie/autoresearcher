@@ -1,0 +1,467 @@
+{
+  "artifacts": [
+    "research/reward_to_gcrl/artifacts/0005/run_riverswim_sampled_vs_soft.py",
+    "research/reward_to_gcrl/artifacts/0005/local_compatibility_check.json",
+    "research/reward_to_gcrl/artifacts/0005/environment_audit.json",
+    "research/reward_to_gcrl/artifacts/0005/exact_dp_references.json",
+    "research/reward_to_gcrl/artifacts/0005/per_seed_metrics.json",
+    "research/reward_to_gcrl/artifacts/0005/per_seed_summary.csv",
+    "research/reward_to_gcrl/artifacts/0005/learning_curves.json",
+    "research/reward_to_gcrl/artifacts/0005/learning_curves.csv",
+    "research/reward_to_gcrl/artifacts/0005/raw_metrics.json",
+    "research/reward_to_gcrl/artifacts/0005/progress.jsonl"
+  ],
+  "baseline_metrics": {
+    "baseline_name": "sampled_augmented_g_plus_learning",
+    "mean_final_bellman_residual": 0.012418827299201882,
+    "mean_final_value_error": 0.11345317088891518,
+    "mean_g_plus_events_per_10000": 66.60833333333332,
+    "mean_greedy_raw_return": 48.28433333333334,
+    "mean_policy_disagreement": 0.09444444444444446,
+    "zero_g_plus_event_runs": 0
+  },
+  "claim_tested": "On a small stochastic RiverSwim chain with normalized rewards in [0,1], sampled augmented g_plus updates are unbiased but higher variance than deterministic soft terminal updates, and soft learning improves Bellman/value error under matched transition streams.",
+  "commands_run": [
+    "mkdir -p research/reward_to_gcrl/artifacts/0005 research/reward_to_gcrl/results",
+    "conda run -n autoresearcher_reward_to_gcrl python --version",
+    "conda run -n autoresearcher_reward_to_gcrl python -m py_compile research/reward_to_gcrl/artifacts/0005/run_riverswim_sampled_vs_soft.py",
+    "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0005/run_riverswim_sampled_vs_soft.py --check-only",
+    "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0005/run_riverswim_sampled_vs_soft.py",
+    "conda run -n autoresearcher_reward_to_gcrl python -m jsonschema -i research/reward_to_gcrl/results/0005_result.json schemas/result.schema.json",
+    "conda run -n autoresearcher_reward_to_gcrl python scripts/validate_artifacts.py --repo-root . --json research/reward_to_gcrl/results/0005_result.json --schema schemas/result.schema.json --check-result-artifacts"
+  ],
+  "decision_relevant_findings": [
+    "The RiverSwim transition table is stochastic, continuing, and has rewards already normalized to [0,1].",
+    "Sampled continued targets use max_a M(s_next,a) directly, without an extra gamma factor.",
+    "Right-end occupancy and reward-event counts are saved so sparse reward coverage is auditable.",
+    "The primary pass flag combines target unbiasedness, positive sampled variance, interpretable coverage, and soft residual dominance in most runs."
+  ],
+  "experiment_id": "0005",
+  "failure_criteria_results": [
+    "NOT_TRIGGERED: result JSON and summary validate after generation.",
+    "NOT_TRIGGERED: commands, raw metrics, artifacts, transition table, reward normalization, and terminal handling are recorded.",
+    "NOT_TRIGGERED: sampled baseline uses no extra gamma on continued targets and no bootstrap after sampled g_plus/g_minus events.",
+    "NOT_TRIGGERED: target variance, g_plus counts, Bellman residual, and exact-DP value error are reported.",
+    "NOT_TRIGGERED: right-end coverage and reward events are reported and interpretable.",
+    "NOT_TRIGGERED: no auxiliary goals, neural approximation, larger environments, large downloads, or expensive training were added."
+  ],
+  "interpretation": "The RiverSwim diagnostic supports the hypothesis: sampled targets match the deterministic soft marginal target within Monte Carlo tolerance while retaining higher terminal-sampling variance, and the deterministic soft learner has lower or faster Bellman residual reduction in most matched-stream runs.",
+  "known_failures": [],
+  "metric_deltas": {
+    "mean_right_end_occupancy_rate": 0.326288,
+    "mean_right_reward_events_per_10000": 3060.0950000000003,
+    "sampled_variance_exceeds_soft_rate": 1.0,
+    "soft_dominance_rate": 1.0,
+    "soft_minus_sampled_greedy_raw_return": 21.212999999999987,
+    "soft_minus_sampled_mean_final_bellman_residual": -0.009929061273886293,
+    "soft_minus_sampled_mean_final_value_error": -0.10889653428226308,
+    "soft_minus_sampled_policy_disagreement": -0.07222222222222224,
+    "target_mean_match_rate": 1.0
+  },
+  "metrics": {
+    "config": {
+      "alpha": 0.05,
+      "behavior_policy": "epsilon-greedy with respect to exact normalized-Q greedy action",
+      "bellman_residual_threshold": 0.01,
+      "checkpoints": [
+        1000,
+        5000,
+        10000,
+        25000,
+        50000,
+        100000,
+        200000
+      ],
+      "epsilon_end": 0.02,
+      "epsilon_start": 0.25,
+      "gammas": [
+        0.95,
+        0.99,
+        0.995
+      ],
+      "mc_sigma_tolerance": 6.0,
+      "reward_normalization": "identity(raw_reward), rewards already in [0,1]",
+      "sampled_continue_target": "max_a M(s_next,a), no extra gamma factor",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "terminal_absorbing_handling": "No original RiverSwim states are terminal. Original-transition bootstraps are always active. Sampled g_plus/g_minus absorbing events do not bootstrap.",
+      "transition_budget": 200000
+    },
+    "environment_audit": {
+      "complete": true,
+      "missing_fields": [],
+      "reward_normalization": {
+        "affine_offset": 0.0,
+        "affine_scale": 1.0,
+        "all_other_rewards": 0.0,
+        "left_end_small_reward": 0.01,
+        "normalized_reward": "identity(raw_reward)",
+        "raw_rewards_in_[0,1]": true,
+        "right_end_sparse_reward": 1.0
+      },
+      "transition_table_hash": "2e481565b49954b048469471863e55d38268fb628e07d8839b77f881ae07a2ed",
+      "transition_table_shape": [
+        6,
+        2,
+        6
+      ]
+    },
+    "exact_dp": {
+      "rows": [
+        {
+          "exact_greedy_policy": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "f_gplus_star": [
+            [
+              0.2126535293972451,
+              0.2233195046287773
+            ],
+            [
+              0.2121535293972451,
+              0.25270364997491473
+            ],
+            [
+              0.24006846747607563,
+              0.29490193389305197
+            ],
+            [
+              0.28015683719830603,
+              0.34527641563999173
+            ],
+            [
+              0.32801259485789885,
+              0.40439403568532284
+            ],
+            [
+              0.38417433390096334,
+              0.47365054316355665
+            ]
+          ],
+          "gamma": 0.95,
+          "max_abs_scaled_soft_minus_q_norm": 3.552891314484441e-11,
+          "q_final_delta": 9.592326932761353e-14,
+          "q_iterations": 569,
+          "q_norm": [
+            [
+              4.2530705879804245,
+              4.46639009261107
+            ],
+            [
+              4.243070587980425,
+              5.054072999533818
+            ],
+            [
+              4.801369349557036,
+              5.898038677896562
+            ],
+            [
+              5.603136744001643,
+              6.905528312835356
+            ],
+            [
+              6.560251897193498,
+              8.087880713741978
+            ],
+            [
+              7.683486678054788,
+              9.473010863306653
+            ]
+          ],
+          "soft_final_delta": 9.831024883055761e-14,
+          "soft_iterations": 510
+        },
+        {
+          "exact_greedy_policy": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "f_gplus_star": [
+            [
+              0.37128865876505984,
+              0.37493803915672597
+            ],
+            [
+              0.37118865876505985,
+              0.38440617145891315
+            ],
+            [
+              0.3805621097442252,
+              0.39685273499035983
+            ],
+            [
+              0.39288420764035736,
+              0.41008399688014086
+            ],
+            [
+              0.4059831569112406,
+              0.42380921313539177
+            ],
+            [
+              0.419571121003939,
+              0.4380011044372322
+            ]
+          ],
+          "gamma": 0.99,
+          "max_abs_scaled_soft_minus_q_norm": 9.78701564235962e-10,
+          "q_final_delta": 9.947598300641403e-14,
+          "q_iterations": 2895,
+          "q_norm": [
+            [
+              37.12886587748465,
+              37.49380391665126
+            ],
+            [
+              37.11886587748465,
+              38.440617146869975
+            ],
+            [
+              38.05621097540118,
+              39.685273500014645
+            ],
+            [
+              39.2884207650144,
+              41.008399688992725
+            ],
+            [
+              40.5983156921027,
+              42.38092131451782
+            ],
+            [
+              41.957112101372545,
+              43.800110444701865
+            ]
+          ],
+          "soft_final_delta": 9.992007221626409e-14,
+          "soft_iterations": 2437
+        },
+        {
+          "exact_greedy_policy": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "f_gplus_star": [
+            [
+              0.398819610343431,
+              0.40077347773219135
+            ],
+            [
+              0.398769610343431,
+              0.40580832041751885
+            ],
+            [
+              0.4037792788153319,
+              0.412353977347259
+            ],
+            [
+              0.41029220746042333,
+              0.4192094441644599
+            ],
+            [
+              0.4171133969435382,
+              0.42620759691414384
+            ],
+            [
+              0.42407655892947377,
+              0.43332660935913125
+            ]
+          ],
+          "gamma": 0.995,
+          "max_abs_scaled_soft_minus_q_norm": 3.954681915274705e-09,
+          "q_final_delta": 9.947598300641403e-14,
+          "q_iterations": 5808,
+          "q_norm": [
+            [
+              79.76392207264081,
+              80.15469555039286
+            ],
+            [
+              79.7539220726408,
+              81.16166408745833
+            ],
+            [
+              80.75585576702095,
+              82.47079547340638
+            ],
+            [
+              82.05844149603925,
+              83.84188883684656
+            ],
+            [
+              83.42267939266225,
+              85.24151938678337
+            ],
+            [
+              84.81531178984935,
+              86.66532187578085
+            ]
+          ],
+          "soft_final_delta": 9.992007221626409e-14,
+          "soft_iterations": 4747
+        }
+      ],
+      "scaled_soft_matches_q_norm": true
+    },
+    "pass_flags": {
+      "coverage_interpretable": true,
+      "cpu_tabular_only": true,
+      "environment_audit_complete": true,
+      "exact_scaled_soft_matches_q_norm": true,
+      "gamma_seed_budget_complete": true,
+      "primary_pass": true,
+      "sampled_variance_exceeds_soft_all_runs": true,
+      "soft_dominates_most_runs": true,
+      "target_mean_match_all_runs": true
+    },
+    "sampled_vs_soft": {
+      "aggregate": {
+        "by_gamma": {
+          "0.95": {
+            "mean_conditional_sampling_variance": 0.009717716691970527,
+            "mean_exact_greedy_raw_return": 79.505,
+            "mean_final_sampled_bellman_residual": 0.015562000061156493,
+            "mean_final_sampled_value_error": 0.02409248376970823,
+            "mean_final_soft_bellman_residual": 0.0034344364258682377,
+            "mean_final_soft_value_error": 0.006081851246144857,
+            "mean_g_plus_events_per_10000": 153.315,
+            "mean_right_end_occupancy_rate": 0.325853,
+            "mean_right_reward_events_per_10000": 3057.335,
+            "mean_sampled_greedy_raw_return": 48.648,
+            "mean_sampled_policy_disagreement": 0.06666666666666667,
+            "mean_soft_greedy_raw_return": 80.051,
+            "mean_soft_policy_disagreement": 0.0,
+            "min_g_plus_events_per_10000": 149.75,
+            "run_count": 10,
+            "sampled_variance_exceeds_soft_count": 10,
+            "sampled_variance_exceeds_soft_rate": 1.0,
+            "soft_dominance_count": 10,
+            "soft_dominance_rate": 1.0,
+            "target_mean_match_count": 10,
+            "target_mean_match_rate": 1.0,
+            "zero_g_plus_event_runs": 0
+          },
+          "0.99": {
+            "mean_conditional_sampling_variance": 0.002427192232007926,
+            "mean_exact_greedy_raw_return": 79.505,
+            "mean_final_sampled_bellman_residual": 0.009983146973081506,
+            "mean_final_sampled_value_error": 0.11550005181711201,
+            "mean_final_soft_bellman_residual": 0.0019726294246101375,
+            "mean_final_soft_value_error": 0.003719717477698755,
+            "mean_g_plus_events_per_10000": 30.675,
+            "mean_right_end_occupancy_rate": 0.32656549999999995,
+            "mean_right_reward_events_per_10000": 3064.1800000000003,
+            "mean_sampled_greedy_raw_return": 55.875,
+            "mean_sampled_policy_disagreement": 0.08333333333333333,
+            "mean_soft_greedy_raw_return": 64.46,
+            "mean_soft_policy_disagreement": 0.03333333333333333,
+            "min_g_plus_events_per_10000": 29.099999999999998,
+            "run_count": 10,
+            "sampled_variance_exceeds_soft_count": 10,
+            "sampled_variance_exceeds_soft_rate": 1.0,
+            "soft_dominance_count": 10,
+            "soft_dominance_rate": 1.0,
+            "target_mean_match_count": 10,
+            "target_mean_match_rate": 1.0,
+            "zero_g_plus_event_runs": 0
+          },
+          "0.995": {
+            "mean_conditional_sampling_variance": 0.001355370834893376,
+            "mean_exact_greedy_raw_return": 79.505,
+            "mean_final_sampled_bellman_residual": 0.011711334863367652,
+            "mean_final_sampled_value_error": 0.20076697707992533,
+            "mean_final_soft_bellman_residual": 0.002062232225468392,
+            "mean_final_soft_value_error": 0.003868341096112689,
+            "mean_g_plus_events_per_10000": 15.835000000000003,
+            "mean_right_end_occupancy_rate": 0.3264455,
+            "mean_right_reward_events_per_10000": 3058.77,
+            "mean_sampled_greedy_raw_return": 40.330000000000005,
+            "mean_sampled_policy_disagreement": 0.13333333333333333,
+            "mean_soft_greedy_raw_return": 63.980999999999995,
+            "mean_soft_policy_disagreement": 0.03333333333333333,
+            "min_g_plus_events_per_10000": 14.4,
+            "run_count": 10,
+            "sampled_variance_exceeds_soft_count": 10,
+            "sampled_variance_exceeds_soft_rate": 1.0,
+            "soft_dominance_count": 10,
+            "soft_dominance_rate": 1.0,
+            "target_mean_match_count": 10,
+            "target_mean_match_rate": 1.0,
+            "zero_g_plus_event_runs": 0
+          }
+        },
+        "mean_conditional_sampling_variance": 0.004500093252957276,
+        "mean_exact_greedy_raw_return": 79.50499999999998,
+        "mean_final_sampled_bellman_residual": 0.012418827299201882,
+        "mean_final_sampled_value_error": 0.11345317088891518,
+        "mean_final_soft_bellman_residual": 0.002489766025315589,
+        "mean_final_soft_value_error": 0.004556636606652101,
+        "mean_g_plus_events_per_10000": 66.60833333333332,
+        "mean_right_end_occupancy_rate": 0.326288,
+        "mean_right_reward_events_per_10000": 3060.0950000000003,
+        "mean_sampled_greedy_raw_return": 48.28433333333334,
+        "mean_sampled_policy_disagreement": 0.09444444444444446,
+        "mean_soft_greedy_raw_return": 69.49733333333333,
+        "mean_soft_policy_disagreement": 0.02222222222222222,
+        "min_g_plus_events_per_10000": 14.4,
+        "run_count": 30,
+        "sampled_variance_exceeds_soft_count": 30,
+        "sampled_variance_exceeds_soft_rate": 1.0,
+        "soft_dominance_count": 30,
+        "soft_dominance_rate": 1.0,
+        "target_mean_match_count": 30,
+        "target_mean_match_rate": 1.0,
+        "zero_g_plus_event_runs": 0
+      }
+    }
+  },
+  "next_questions": [
+    "Would a purely exploratory behavior stream change the soft-vs-sampled gap on rarely visited right-end actions?",
+    "Does a larger 10-state RiverSwim preserve the same target-variance and Bellman-residual pattern under the same CPU tabular budget?"
+  ],
+  "resource_usage": {
+    "actions": 2,
+    "device": "cpu",
+    "gpu_used": false,
+    "large_datasets_downloaded": false,
+    "large_dependencies_installed": false,
+    "learning_runs": 30,
+    "states": 6,
+    "total_original_transitions": 6000000
+  },
+  "runtime_seconds": 93.90528575799544,
+  "status": "completed",
+  "success_criteria_results": [
+    "PASS: result JSON, summary Markdown, and 0005 artifact directory were created.",
+    "PASS: CPU-only tabular RiverSwim code was used.",
+    "PASS: transition table, reward normalization, gamma values, seeds, behavior policy, budget, terminal handling, and commands are saved.",
+    "PASS: exact soft fixed point scales to normalized Q within 1e-6.",
+    "PASS: gamma values {0.95, 0.99, 0.995} were run with 10 seeds.",
+    "PASS: per-seed metrics include g_plus counts, target variance, Bellman residual, value error, coverage, right-end reward diagnostics, return, and policy disagreement.",
+    "PASS: sampled target means match deterministic soft marginal targets within tolerance in all runs.",
+    "PASS: sampled target variance exceeds zero soft terminal-sampling variance in all runs.",
+    "PASS: soft has lower residual or reaches the residual threshold earlier in most runs."
+  ]
+}
