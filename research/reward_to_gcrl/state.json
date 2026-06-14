@@ -32,20 +32,13 @@
     "2026-06-14T21:06:18+00:00: applied Pro decision pivot from research/reward_to_gcrl/decisions/0004_review3_pro_decision.json",
     "2026-06-14T21:12:57+00:00: Pro decision saved for checkpoint review_needs_human (research/reward_to_gcrl/decisions/0004_review4_pro_decision.json)",
     "2026-06-14T21:12:58+00:00: applied Pro decision continue from research/reward_to_gcrl/decisions/0004_review4_pro_decision.json",
-    "2026-06-14T21:17:18+00:00: Pro decision saved for checkpoint review_fail (research/reward_to_gcrl/decisions/0004_review5_pro_decision.json)"
+    "2026-06-14T21:17:18+00:00: Pro decision saved for checkpoint review_fail (research/reward_to_gcrl/decisions/0004_review5_pro_decision.json)",
+    "2026-06-14T21:17:20+00:00: applied Pro decision continue from research/reward_to_gcrl/decisions/0004_review5_pro_decision.json"
   ],
-  "pending_checkpoint": {
-    "backend": "cdp",
-    "iteration_id": "0004_review5",
-    "packet_path": "research/reward_to_gcrl/pro_packets/0004_review5_PRO_REVIEW_PACKET.md",
-    "pro_decision_path": "research/reward_to_gcrl/decisions/0004_review5_pro_decision.json",
-    "reason": "review_fail",
-    "status": "pro_decision_ingested",
-    "type": "chatgpt_pro"
-  },
+  "pending_checkpoint": null,
   "pending_local_decision_path": null,
   "primary_metric": null,
-  "pro_review_count": 5,
+  "pro_review_count": 6,
   "protected_file_drift": true,
   "status": "active",
   "weak_pass_streak": 0
