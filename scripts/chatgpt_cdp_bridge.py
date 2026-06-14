@@ -16,7 +16,7 @@ import urllib.parse
 import urllib.request
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional
+from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 
 DEFAULT_CDP_URL = "http://127.0.0.1:9222"
@@ -192,20 +192,25 @@ def _open_tab(cdp_url: str, url: str) -> Optional[Dict[str, Any]]:
     return None
 
 
-def select_chatgpt_page(cdp_url: str, thread_url: str, allow_new_tab: bool = True) -> Dict[str, Any]:
+def _candidate_chatgpt_pages(cdp_url: str, thread_url: str, allow_new_tab: bool = True) -> List[Dict[str, Any]]:
     pages = _list_pages(cdp_url)
     scored = sorted(((page, _page_score(page, thread_url)) for page in pages), key=lambda item: item[1], reverse=True)
-    if scored and scored[0][1] > 0:
-        return scored[0][0]
+    candidates = [page for page, score in scored if score > 0]
+    if candidates:
+        return candidates
     if allow_new_tab and thread_url:
         opened = _open_tab(cdp_url, thread_url)
         if opened is not None:
-            return opened
+            return [opened]
     raise CdpError(
         "thread_unavailable",
         "The configured ChatGPT thread is not available through Chrome DevTools.",
         {"cdp_url": cdp_url, "page_urls": [page.get("url") for page in pages]},
     )
+
+
+def select_chatgpt_page(cdp_url: str, thread_url: str, allow_new_tab: bool = True) -> Dict[str, Any]:
+    return _candidate_chatgpt_pages(cdp_url, thread_url, allow_new_tab=allow_new_tab)[0]
 
 
 STATE_SCRIPT = r"""
@@ -317,16 +322,44 @@ def _require_ready(state: Dict[str, Any]) -> None:
         raise CdpError("selector_drift", "Could not find the ChatGPT message composer.", state)
 
 
+def connect_chatgpt_page(cdp_url: str, thread_url: str, allow_new_tab: bool = True) -> Tuple[CdpClient, Dict[str, Any]]:
+    errors: List[Dict[str, Any]] = []
+    for page in _candidate_chatgpt_pages(cdp_url, thread_url, allow_new_tab=allow_new_tab):
+        websocket_url = page.get("webSocketDebuggerUrl")
+        if not isinstance(websocket_url, str) or not websocket_url:
+            errors.append({"url": page.get("url"), "title": page.get("title"), "error": "missing websocket URL"})
+            continue
+        client: Optional[CdpClient] = None
+        try:
+            client = CdpClient(websocket_url)
+            client.call("Runtime.enable")
+            client.call("Page.enable")
+            if thread_url and not _page_matches_thread(str(page.get("url") or ""), thread_url):
+                client.call("Page.navigate", {"url": thread_url})
+            return client, page
+        except CdpError as exc:
+            if client is not None:
+                client.close()
+            errors.append(
+                {
+                    "url": page.get("url"),
+                    "title": page.get("title"),
+                    "reason": exc.reason,
+                    "message": str(exc),
+                    "details": exc.details,
+                }
+            )
+            if exc.reason != "browser_bridge_unavailable":
+                raise
+    raise CdpError(
+        "browser_bridge_unavailable",
+        "Could not connect to any matching ChatGPT DevTools target.",
+        {"cdp_url": cdp_url, "attempts": errors},
+    )
+
+
 def connect_page(cdp_url: str, thread_url: str, allow_new_tab: bool = True) -> CdpClient:
-    page = select_chatgpt_page(cdp_url, thread_url, allow_new_tab=allow_new_tab)
-    websocket_url = page.get("webSocketDebuggerUrl")
-    if not isinstance(websocket_url, str) or not websocket_url:
-        raise CdpError("browser_bridge_unavailable", "Selected Chrome page has no webSocketDebuggerUrl.", page)
-    client = CdpClient(websocket_url)
-    client.call("Runtime.enable")
-    client.call("Page.enable")
-    if thread_url and not _page_matches_thread(str(page.get("url") or ""), thread_url):
-        client.call("Page.navigate", {"url": thread_url})
+    client, _page = connect_chatgpt_page(cdp_url, thread_url, allow_new_tab=allow_new_tab)
     return client
 
 
@@ -440,12 +473,7 @@ def run_cdp_review(
 def probe_cdp(cdp_url: str, thread_url: str) -> Dict[str, Any]:
     client: Optional[CdpClient] = None
     try:
-        page = select_chatgpt_page(cdp_url, thread_url, allow_new_tab=False)
-        websocket_url = page.get("webSocketDebuggerUrl")
-        if not isinstance(websocket_url, str):
-            raise CdpError("browser_bridge_unavailable", "Selected page has no websocket URL.", page)
-        client = CdpClient(websocket_url)
-        client.call("Runtime.enable")
+        client, page = connect_chatgpt_page(cdp_url, thread_url, allow_new_tab=False)
         state = client.evaluate(STATE_SCRIPT)
         return {"ok": True, "page": {"title": page.get("title"), "url": page.get("url")}, "state": state}
     except CdpError as exc:

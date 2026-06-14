@@ -16,7 +16,7 @@ if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
 import autoresearcher  # noqa: E402
-from chatgpt_cdp_bridge import CdpClient, CdpError, CdpResponse, build_visible_prompt, select_chatgpt_page  # noqa: E402
+from chatgpt_cdp_bridge import CdpClient, CdpError, CdpResponse, build_visible_prompt, connect_page, select_chatgpt_page  # noqa: E402
 from chatgpt_pro_bridge import extract_fenced_json  # noqa: E402
 
 
@@ -384,6 +384,45 @@ Short supporting paragraph.
 
         self.assertEqual(ctx.exception.reason, "browser_bridge_unavailable")
         self.assertEqual(ctx.exception.details["method"], "Runtime.enable")
+
+    def test_cdp_connect_skips_stale_matching_target(self) -> None:
+        pages = [
+            {
+                "type": "page",
+                "title": "Stale",
+                "url": "https://chatgpt.com/c/abc123",
+                "webSocketDebuggerUrl": "ws://stale",
+            },
+            {
+                "type": "page",
+                "title": "Fresh",
+                "url": "https://chatgpt.com/g/project/c/abc123",
+                "webSocketDebuggerUrl": "ws://fresh",
+            },
+        ]
+
+        class FakeClient:
+            instances = []
+
+            def __init__(self, websocket_url: str):
+                self.websocket_url = websocket_url
+                self.closed = False
+                FakeClient.instances.append(self)
+
+            def call(self, method: str, _params=None) -> dict:
+                if self.websocket_url == "ws://stale" and method == "Runtime.enable":
+                    raise CdpError("browser_bridge_unavailable", "closed", {"method": method})
+                return {}
+
+            def close(self) -> None:
+                self.closed = True
+
+        with patch("chatgpt_cdp_bridge._list_pages", return_value=pages):
+            with patch("chatgpt_cdp_bridge.CdpClient", FakeClient):
+                client = connect_page("http://127.0.0.1:9222", "https://chatgpt.com/c/abc123", allow_new_tab=False)
+
+        self.assertEqual(client.websocket_url, "ws://fresh")
+        self.assertTrue(FakeClient.instances[0].closed)
 
     def test_cdp_visible_prompt_uses_existing_thread_framing(self) -> None:
         prompt = build_visible_prompt("Advisor instructions.", "Pointer packet.", "local_stop")
