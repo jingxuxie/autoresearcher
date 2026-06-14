@@ -20,6 +20,29 @@
       ],
       "review_verdict": "weak_pass",
       "status": "completed"
+    },
+    {
+      "allows_auto_continue": false,
+      "claim_tested": "CPU-only tabular CliffWalking-v0 equivalence between ordinary normalized-reward Q-learning and terminal-only soft successor g_plus learning.",
+      "decision": "continue",
+      "important_metrics": {
+        "metrics.predeclared_tolerances.exact_dp_policy_disagreement_rate": 0.0,
+        "metrics.predeclared_tolerances.exact_dp_scaled_value_error": 1e-06
+      },
+      "iteration": "0002",
+      "negative_signals": [
+        "Because the plan names CliffWalking-v0 exactly, this iteration should be treated as a compatibility failure rather than evidence for or against soft successor equivalence.",
+        "gym.make('CliffWalking-v0') failed in the ready project environment.",
+        "No exact-DP oracle metrics or paired-learning metrics were produced because the compatibility gate failed before the experiment could run as written.",
+        "No baseline/proposed comparison occurred; baseline_metrics is empty by necessity.",
+        "The artifact directory contains timeout and retry-attempt files that are not listed in the final result artifacts."
+      ],
+      "positive_signals": [
+        "The installed Gymnasium version exposes CliffWalking-v1 and tabular/CliffWalking-v0, but gym.make('CliffWalking-v0') raises a DeprecatedEnv exception.",
+        "Experiment 0002 did not run the DP or paired-learning phases. The compatibility check failed because Gymnasium rejected CliffWalking-v0 in this environment (Environment version v0 for `CliffWalking` is deprecated. Please use `CliffWalking-v1` instead.). Since "
+      ],
+      "review_verdict": "needs_human",
+      "status": "failed"
     }
   ],
   "project": "reward_to_gcrl"
