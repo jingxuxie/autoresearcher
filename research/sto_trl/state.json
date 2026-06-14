@@ -30,14 +30,15 @@
     "2026-06-14T03:29:27+00:00: applied Pro decision continue from research/sto_trl/decisions/0010_pro_decision.json",
     "2026-06-14T04:02:40+00:00: Pro decision saved for checkpoint local_stop (research/sto_trl/decisions/0012_pro_decision.json)",
     "2026-06-14T04:03:00+00:00: applied Pro decision stop from research/sto_trl/decisions/0012_pro_decision.json",
-    "2026-06-14T05:59:47+00:00: Pro checkpoint blocked (browser_bridge_unavailable); packet research/sto_trl/pro_packets/0012_review2_PRO_REVIEW_PACKET.md"
+    "2026-06-14T05:59:47+00:00: Pro checkpoint blocked (browser_bridge_unavailable); packet research/sto_trl/pro_packets/0012_review2_PRO_REVIEW_PACKET.md",
+    "2026-06-14T06:02:00+00:00: Pro checkpoint blocked (browser_bridge_unavailable); packet research/sto_trl/pro_packets/0012_review3_PRO_REVIEW_PACKET.md"
   ],
   "pending_checkpoint": {
     "backend": "cdp",
-    "blocker_path": "research/sto_trl/decisions/0012_review2_pro_blocker.json",
-    "iteration_id": "0012_review2",
+    "blocker_path": "research/sto_trl/decisions/0012_review3_pro_blocker.json",
+    "iteration_id": "0012_review3",
     "manual_fallback": true,
-    "packet_path": "research/sto_trl/pro_packets/0012_review2_PRO_REVIEW_PACKET.md",
+    "packet_path": "research/sto_trl/pro_packets/0012_review3_PRO_REVIEW_PACKET.md",
     "reason": "human_requested_pivot",
     "status": "blocked",
     "type": "chatgpt_pro"

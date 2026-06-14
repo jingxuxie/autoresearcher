@@ -1,0 +1,40 @@
+{
+  "details": {
+    "attempts": [
+      {
+        "details": {
+          "error": "Connection is already closed.",
+          "method": "Runtime.enable"
+        },
+        "message": "Chrome DevTools WebSocket connection failed during Runtime.enable: Connection is already closed.",
+        "reason": "browser_bridge_unavailable",
+        "title": "Transitive RL Research - Branch \u00b7 Stochastic Extension of Transitive RL",
+        "url": "https://chatgpt.com/g/g-p-6a291a9d9bfc81918d9afbe6753f101e/c/6a2e15c9-17e4-83e8-9293-f695d85d7905"
+      },
+      {
+        "details": {
+          "error": "Connection is already closed.",
+          "method": "Runtime.enable"
+        },
+        "message": "Chrome DevTools WebSocket connection failed during Runtime.enable: Connection is already closed.",
+        "reason": "browser_bridge_unavailable",
+        "title": "Transitive RL Research - Branch \u00b7 Stochastic Extension of Transitive RL",
+        "url": "https://chatgpt.com/g/g-p-6a291a9d9bfc81918d9afbe6753f101e/c/6a2e15c9-17e4-83e8-9293-f695d85d7905"
+      }
+    ],
+    "cdp_url": "http://172.17.240.1:9223"
+  },
+  "failed_command": [
+    "python",
+    "scripts/chatgpt_cdp_bridge.py",
+    "probe",
+    "--cdp-url",
+    "http://172.17.240.1:9223",
+    "--thread-url",
+    "https://chatgpt.com/g/g-p-6a291a9d9bfc81918d9afbe6753f101e/c/6a2e15c9-17e4-83e8-9293-f695d85d7905"
+  ],
+  "iteration_id": "0012_review3",
+  "message": "Could not connect to any matching ChatGPT DevTools target.",
+  "packet_path": "research/sto_trl/pro_packets/0012_review3_PRO_REVIEW_PACKET.md",
+  "reason": "browser_bridge_unavailable"
+}
