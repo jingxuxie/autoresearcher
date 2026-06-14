@@ -410,7 +410,7 @@ Short supporting paragraph.
                 FakeClient.instances.append(self)
 
             def call(self, method: str, _params=None) -> dict:
-                if self.websocket_url == "ws://stale" and method == "Runtime.enable":
+                if self.websocket_url == "ws://stale" and method == "Runtime.evaluate":
                     raise CdpError("browser_bridge_unavailable", "closed", {"method": method})
                 return {}
 

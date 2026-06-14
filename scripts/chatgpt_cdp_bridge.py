@@ -332,8 +332,7 @@ def connect_chatgpt_page(cdp_url: str, thread_url: str, allow_new_tab: bool = Tr
         client: Optional[CdpClient] = None
         try:
             client = CdpClient(websocket_url)
-            client.call("Runtime.enable")
-            client.call("Page.enable")
+            client.call("Runtime.evaluate", {"expression": "document.readyState", "returnByValue": True})
             if thread_url and not _page_matches_thread(str(page.get("url") or ""), thread_url):
                 client.call("Page.navigate", {"url": thread_url})
             return client, page
