@@ -886,12 +886,18 @@ class StateAndLoopTests(unittest.TestCase):
             text = path.read_text()
             self.assertEqual(path.name, "0002_PRO_REVIEW_PACKET.md")
             self.assertIn("`local_stop`", text)
+            self.assertIn("ChatGPT Pro Advisor Check-In", text)
+            self.assertIn("existing ChatGPT project thread", text)
             self.assertIn("https://github.com/example/autoresearcher", text)
             self.assertIn(
                 "https://github.com/example/autoresearcher/blob/main/research/project_001/progress/latest_summary.md",
                 text,
             )
-            self.assertIn("Do not rely on this prompt for metrics or history", text)
+            self.assertIn(
+                "https://github.com/example/autoresearcher/blob/main/research/project_001/decisions/0002_decision.json",
+                text,
+            )
+            self.assertIn("Do not expect this packet to contain full metrics or history", text)
             self.assertNotIn("Important source plan", text)
             self.assertNotIn("Stopped for research reasons", text)
             self.assertNotIn("Local Codex recommends stop", text)

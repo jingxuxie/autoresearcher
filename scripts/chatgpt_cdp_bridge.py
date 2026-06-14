@@ -396,10 +396,11 @@ def build_visible_prompt(instructions: str, packet: str, reason: str) -> str:
     return (
         f"{PROMPT_MARKER}\n\n"
         f"Checkpoint reason: {reason}\n\n"
-        "Follow these instructions and return only the requested fenced JSON plus concise supporting text.\n\n"
-        "## Instructions\n\n"
+        "Continuing this existing research-advisor thread: use your thread memory plus the linked GitHub evidence in the packet. "
+        "Please decide the next research direction and return the requested fenced JSON plus at most one short paragraph.\n\n"
+        "## Standing Advisor Instructions\n\n"
         f"{instructions.strip()}\n\n"
-        "## Packet\n\n"
+        "## Current Pointer Packet\n\n"
         f"{packet.strip()}\n"
     )
 

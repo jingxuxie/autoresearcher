@@ -16,7 +16,7 @@ if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
 import autoresearcher  # noqa: E402
-from chatgpt_cdp_bridge import CdpClient, CdpError, CdpResponse, select_chatgpt_page  # noqa: E402
+from chatgpt_cdp_bridge import CdpClient, CdpError, CdpResponse, build_visible_prompt, select_chatgpt_page  # noqa: E402
 from chatgpt_pro_bridge import extract_fenced_json  # noqa: E402
 
 
@@ -340,6 +340,15 @@ Short supporting paragraph.
 
         self.assertEqual(ctx.exception.reason, "browser_bridge_unavailable")
         self.assertEqual(ctx.exception.details["method"], "Runtime.enable")
+
+    def test_cdp_visible_prompt_uses_existing_thread_framing(self) -> None:
+        prompt = build_visible_prompt("Advisor instructions.", "Pointer packet.", "local_stop")
+
+        self.assertIn("Continuing this existing research-advisor thread", prompt)
+        self.assertIn("thread memory", prompt)
+        self.assertIn("## Standing Advisor Instructions", prompt)
+        self.assertIn("## Current Pointer Packet", prompt)
+        self.assertIn("Checkpoint reason: local_stop", prompt)
 
     def test_cdp_page_selection_requires_configured_thread(self) -> None:
         pages = [
