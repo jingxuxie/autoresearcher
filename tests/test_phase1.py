@@ -76,6 +76,8 @@ def make_fake_codex(tmp: Path) -> Path:
 
             if name.endswith("_decision.json"):
                 decision = os.environ.get("FAKE_DECISION", "continue")
+                checkpoint_recommended = os.environ.get("FAKE_CHECKPOINT_RECOMMENDED") == "1"
+                checkpoint_reason = os.environ.get("FAKE_CHECKPOINT_REASON") if checkpoint_recommended else None
                 output_path.write_text(json.dumps({
                     "decision": decision,
                     "confidence": 0.8,
@@ -83,8 +85,8 @@ def make_fake_codex(tmp: Path) -> Path:
                     "rationale": "Run the tiny positive-control experiment.",
                     "evidence": ["Project charter asks for a toy positive control."],
                     "risks": ["Toy result may not generalize."],
-                    "checkpoint_recommended": False,
-                    "checkpoint_reason": None,
+                    "checkpoint_recommended": checkpoint_recommended,
+                    "checkpoint_reason": checkpoint_reason,
                     "terminal_decision_requires_pro": False,
                     "next_experiment": {
                         "experiment_id": "0001",
@@ -820,6 +822,48 @@ class StateAndLoopTests(unittest.TestCase):
             self.assertEqual(state["status"], "paused")
             self.assertEqual(state["pending_checkpoint"]["reason"], "local_pivot")
             self.assertTrue((repo / "research" / "project_001" / "pro_packets" / "0001_PRO_REVIEW_PACKET.md").exists())
+
+    def test_local_checkpoint_continue_keeps_same_run_going(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            repo = make_repo(Path(td))
+            fake = make_fake_codex(Path(td))
+            root = repo / "research" / "project_001"
+            config = autoresearcher.load_config(repo)
+            old_env = {
+                "FAKE_CHECKPOINT_RECOMMENDED": os.environ.get("FAKE_CHECKPOINT_RECOMMENDED"),
+                "FAKE_CHECKPOINT_REASON": os.environ.get("FAKE_CHECKPOINT_REASON"),
+                "FAKE_CHATGPT_PRO": os.environ.get("FAKE_CHATGPT_PRO"),
+            }
+            os.environ["FAKE_CHECKPOINT_RECOMMENDED"] = "1"
+            os.environ["FAKE_CHECKPOINT_REASON"] = "first shared-parameter checkpoint"
+            os.environ["FAKE_CHATGPT_PRO"] = "continue"
+            try:
+                stdout = StringIO()
+                with redirect_stdout(stdout), redirect_stderr(StringIO()):
+                    rc = autoresearcher.Orchestrator(repo, config, codex_bin=str(fake)).run(
+                        "project_001",
+                        max_iters=1,
+                        skip_model_check=True,
+                    )
+            finally:
+                for key, value in old_env.items():
+                    if value is None:
+                        os.environ.pop(key, None)
+                    else:
+                        os.environ[key] = value
+
+            self.assertEqual(rc, 0)
+            self.assertIn("Pro decision applied", stdout.getvalue())
+            self.assertIn("completed_iterations_this_run=1", stdout.getvalue())
+            state = json.loads((root / "state.json").read_text())
+            self.assertEqual(state["iteration"], 1)
+            self.assertEqual(state["last_decision"], "continue")
+            self.assertFalse(state["human_review_required"])
+            self.assertIsNone(state["pending_checkpoint"])
+            self.assertTrue((root / "decisions" / "0001_pro_decision.json").exists())
+            self.assertTrue((root / "plans" / "0001_plan.md").exists())
+            self.assertTrue((root / "results" / "0001_result.json").exists())
+            self.assertTrue((root / "reviews" / "0001_review.json").exists())
 
     def test_git_commit_skips_when_not_a_repo(self) -> None:
         with tempfile.TemporaryDirectory() as td:

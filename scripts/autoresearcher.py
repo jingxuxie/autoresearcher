@@ -1320,6 +1320,16 @@ class Orchestrator:
             print(f"stopping: Pro checkpoint blocked ({result.reason}); blocker: {blocker}")
         return result
 
+    def _pro_checkpoint_allows_loop_continue(self, project: str, result: SupervisorBackendResult) -> bool:
+        if result.status != "completed":
+            return False
+        state_after = load_project_state(self.repo_root, project)
+        return (
+            state_after.get("status") == "active"
+            and not bool(state_after.get("human_review_required"))
+            and state_after.get("pending_checkpoint") is None
+        )
+
     def _review_iteration_result(
         self,
         project: str,
@@ -1382,8 +1392,11 @@ class Orchestrator:
                 latest_result=latest_result,
             )
             if checkpoint:
-                self._handle_pro_checkpoint(project, state, reason)
-                return "checkpoint"
+                pro_result = self._handle_pro_checkpoint(project, state, reason)
+                if not self._pro_checkpoint_allows_loop_continue(project, pro_result):
+                    return "checkpoint"
+                if verdict in ("fail", "needs_human") or not bool(review.get("allows_auto_continue")):
+                    return "checkpoint"
 
         if verdict in ("fail", "needs_human") or not bool(review.get("allows_auto_continue")):
             paused = self._record_retryable_failure(
@@ -1418,8 +1431,9 @@ class Orchestrator:
             latest_result=latest_result,
         )
         if checkpoint:
-            self._handle_pro_checkpoint(project, state, reason)
-            return "checkpoint"
+            pro_result = self._handle_pro_checkpoint(project, state, reason)
+            if not self._pro_checkpoint_allows_loop_continue(project, pro_result):
+                return "checkpoint"
         self._run_summary_agent(project, state, reason="progress")
         return "completed"
 
@@ -1536,11 +1550,20 @@ class Orchestrator:
             if isinstance(pending, dict) and pending.get("pro_decision_path"):
                 state_path = apply_pro_decision(self.repo_root, project)
                 print(f"applied pending Pro decision: {state_path.relative_to(self.repo_root)}")
+                state_after_pro = load_project_state(self.repo_root, project)
+                if (
+                    state_after_pro.get("status") == "active"
+                    and not bool(state_after_pro.get("human_review_required"))
+                    and state_after_pro.get("pending_checkpoint") is None
+                ):
+                    continue
                 break
             if state.get("status") != "active":
                 checkpoint_reason = self._inactive_checkpoint_reason(state)
                 if checkpoint_reason:
-                    self._handle_pro_checkpoint(project, state, checkpoint_reason)
+                    pro_result = self._handle_pro_checkpoint(project, state, checkpoint_reason)
+                    if self._pro_checkpoint_allows_loop_continue(project, pro_result):
+                        continue
                     break
                 print(f"stopping: project status is {state.get('status')}")
                 break
@@ -1552,13 +1575,7 @@ class Orchestrator:
                 break
             if pro_review_due(state, self.config):
                 pro_result = self._handle_pro_checkpoint(project, state, "cadence")
-                state_after_pro = load_project_state(self.repo_root, project)
-                if (
-                    pro_result.status == "completed"
-                    and state_after_pro.get("status") == "active"
-                    and not state_after_pro.get("human_review_required")
-                    and state_after_pro.get("pending_checkpoint") is None
-                ):
+                if self._pro_checkpoint_allows_loop_continue(project, pro_result):
                     continue
                 break
 
@@ -1680,7 +1697,14 @@ class Orchestrator:
                 decision_kind = decision["decision"]
                 checkpoint, checkpoint_reason = pro_checkpoint_due(state, self.config, local_decision=decision)
                 if checkpoint:
-                    self._handle_pro_checkpoint(project, state, checkpoint_reason, local_decision_path=decision_path)
+                    pro_result = self._handle_pro_checkpoint(
+                        project,
+                        state,
+                        checkpoint_reason,
+                        local_decision_path=decision_path,
+                    )
+                    if self._pro_checkpoint_allows_loop_continue(project, pro_result):
+                        continue
                     break
                 if decision_kind == "stop":
                     state["last_decision"] = decision["decision"]
