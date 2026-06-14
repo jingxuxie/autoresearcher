@@ -1,0 +1,24 @@
+{
+  "best_primary_metric": null,
+  "failure_streak": 0,
+  "human_review_required": false,
+  "iteration": 0,
+  "last_decision": "start",
+  "last_failure": null,
+  "last_pro_review_iteration": 0,
+  "last_pro_review_path": null,
+  "last_summary_iteration": 0,
+  "last_summary_path": null,
+  "no_progress_rounds": 0,
+  "notes": [
+    "2026-06-14T09:16:58+00:00: setup_env failed or timed out; see /home/eston/autoresearcher/research/reward_to_gcrl/env_state_stderr.log",
+    "2026-06-14T09:27:51+00:00: resumed: Environment setup is ready after rerun; start requested by user."
+  ],
+  "pending_checkpoint": null,
+  "pending_local_decision_path": null,
+  "primary_metric": null,
+  "pro_review_count": 0,
+  "protected_file_drift": false,
+  "status": "active",
+  "weak_pass_streak": 0
+}
