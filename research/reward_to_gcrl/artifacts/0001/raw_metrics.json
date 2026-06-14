@@ -1,0 +1,691 @@
+{
+  "finite_mdp_equivalence": {
+    "metadata": {
+      "equivalence_test": "max_abs(F_gplus_star / (1 - gamma) - Q_norm_star)",
+      "experiment_id": "0001",
+      "finite_mdp_tolerance": 1e-06,
+      "project": "reward_to_gcrl",
+      "reward_matrix": [
+        [
+          0.0,
+          0.3
+        ],
+        [
+          0.6,
+          0.2
+        ],
+        [
+          1.0,
+          0.1
+        ]
+      ],
+      "transition_tensor_shape": [
+        3,
+        2,
+        3
+      ],
+      "value_iteration_tolerance": 1e-12
+    },
+    "rows": [
+      {
+        "f_final_delta": 9.385825450181073e-13,
+        "f_gplus_star": [
+          [
+            0.7893818181733714,
+            0.8645454545370078
+          ],
+          [
+            0.9272727272642806,
+            0.8834272727188259
+          ],
+          [
+            0.9999999999915533,
+            0.8368545454460987
+          ]
+        ],
+        "f_value_iteration_steps": 242,
+        "gamma": 0.9,
+        "max_abs_error_scaled_f_vs_q": 7.615064134824934e-11,
+        "passes_tolerance": true,
+        "q_final_delta": 9.254819133275305e-13,
+        "q_star": [
+          [
+            7.893818181809866,
+            8.645454545446231
+          ],
+          [
+            9.272727272718956,
+            8.83427272726441
+          ],
+          [
+            9.999999999991683,
+            8.368545454537138
+          ]
+        ],
+        "q_value_iteration_steps": 264,
+        "scaled_f_gplus_star": [
+          [
+            7.893818181733716,
+            8.64545454537008
+          ],
+          [
+            9.272727272642808,
+            8.834272727188262
+          ],
+          [
+            9.999999999915536,
+            8.368545454460989
+          ]
+        ]
+      },
+      {
+        "f_final_delta": 9.63895629979561e-13,
+        "f_gplus_star": [
+          [
+            0.8886571428388291,
+            0.9288095237912101
+          ],
+          [
+            0.9619047618864482,
+            0.9397107142674006
+          ],
+          [
+            0.9999999999816864,
+            0.9144214285531147
+          ]
+        ],
+        "f_value_iteration_steps": 482,
+        "gamma": 0.95,
+        "max_abs_error_scaled_f_vs_q": 3.475904009064834e-10,
+        "passes_tolerance": true,
+        "q_final_delta": 9.876544027065393e-13,
+        "q_star": [
+          [
+            17.773142857124153,
+            18.57619047617177
+          ],
+          [
+            19.238095238076532,
+            18.794214285695574
+          ],
+          [
+            19.99999999998129,
+            18.288428571409867
+          ]
+        ],
+        "q_value_iteration_steps": 540,
+        "scaled_f_gplus_star": [
+          [
+            17.773142856776566,
+            18.576190475824184
+          ],
+          [
+            19.23809523772895,
+            18.794214285347994
+          ],
+          [
+            19.99999999963371,
+            18.288428571062276
+          ]
+        ]
+      },
+      {
+        "f_final_delta": 9.906520048730272e-13,
+        "f_gplus_star": [
+          [
+            0.9766771484167892,
+            0.9851584157435218
+          ],
+          [
+            0.9920792078227297,
+            0.987592049406888
+          ],
+          [
+            0.9999999999019377,
+            0.9821840989118387
+          ]
+        ],
+        "f_value_iteration_steps": 2293,
+        "gamma": 0.99,
+        "max_abs_error_scaled_f_vs_q": 9.707918025014806e-09,
+        "passes_tolerance": true,
+        "q_final_delta": 9.947598300641403e-13,
+        "q_star": [
+          [
+            97.66771485138672,
+            98.51584158405998
+          ],
+          [
+            99.20792079198078,
+            98.75920495039662
+          ],
+          [
+            99.99999999990159,
+            98.21840990089167
+          ]
+        ],
+        "q_value_iteration_steps": 2751,
+        "scaled_f_gplus_star": [
+          [
+            97.66771484167883,
+            98.5158415743521
+          ],
+          [
+            99.20792078227288,
+            98.75920494068872
+          ],
+          [
+            99.99999999019367,
+            98.21840989118378
+          ]
+        ]
+      },
+      {
+        "f_final_delta": 9.969802761133906e-13,
+        "f_gplus_star": [
+          [
+            0.9882696415926773,
+            0.9925398007966575
+          ],
+          [
+            0.996019900299145,
+            0.9937731303986473
+          ],
+          [
+            0.9999999998016326,
+            0.9910462609956623
+          ]
+        ],
+        "f_value_iteration_steps": 4457,
+        "gamma": 0.995,
+        "max_abs_error_scaled_f_vs_q": 3.9475168023273e-08,
+        "passes_tolerance": true,
+        "q_final_delta": 9.947598300641403e-13,
+        "q_star": [
+          [
+            197.65392835801046,
+            198.50796019880644
+          ],
+          [
+            199.20398009930395,
+            198.75462611920443
+          ],
+          [
+            199.99999999980147,
+            198.20925223860743
+          ]
+        ],
+        "q_value_iteration_steps": 5514,
+        "scaled_f_gplus_star": [
+          [
+            197.6539283185353,
+            198.50796015933133
+          ],
+          [
+            199.20398005982884,
+            198.7546260797293
+          ],
+          [
+            199.99999996032633,
+            198.2092521991323
+          ]
+        ]
+      }
+    ]
+  },
+  "terminal_variance": {
+    "metadata": {
+      "experiment_id": "0001",
+      "gammas": [
+        0.9,
+        0.95,
+        0.99,
+        0.995
+      ],
+      "model_definition": {
+        "bootstrap_term": "Set to zero to isolate the immediate terminal-mass estimator; this is the variance source being tested in experiment 0001.",
+        "deterministic_soft_target": {
+          "sampling_variance": 0.0,
+          "soft_g_plus_target": "(1 - gamma) * r_bar"
+        },
+        "one_state_setup": "Every row represents repeated draws from one normalized-reward state-action transition with fixed r_bar in [0, 1].",
+        "reward_normalization": "r_bar is pre-normalized reward in [0, 1].",
+        "sampled_augmented_terminal_model": {
+          "P(continue_to_original_next_state | s,a)": "gamma",
+          "P(g_minus | s,a)": "(1 - gamma) * (1 - r_bar)",
+          "P(g_plus | s,a)": "(1 - gamma) * r_bar",
+          "sampled_g_plus_target": "1 if sampled augmented next state is g_plus else 0"
+        }
+      },
+      "monte_carlo_tolerance_rule": "abs(sampled_target_mean - soft_target_mean) <= 6.0 * sqrt(p_g_plus * (1 - p_g_plus) / samples)",
+      "project": "reward_to_gcrl",
+      "r_bars": [
+        0.01,
+        0.1,
+        0.5,
+        1.0
+      ],
+      "samples_per_setting": 1000000,
+      "seed": 20260614,
+      "soft_variance_tolerance": 1e-15
+    },
+    "rows": [
+      {
+        "analytic_expected_g_plus_count": 999.9999999999998,
+        "analytic_expected_g_plus_count_per_10000": 9.999999999999998,
+        "analytic_expected_mean": 0.0009999999999999998,
+        "analytic_expected_variance": 0.0009989999999999999,
+        "analytic_sample_mean_stderr": 3.1606961258558214e-05,
+        "analytic_target_coefficient_of_variation": 31.60696125855822,
+        "gamma": 0.9,
+        "monte_carlo_abs_tolerance": 0.0001896417675513493,
+        "p_continue": 0.9,
+        "p_g_minus": 0.09899999999999998,
+        "p_g_plus": 0.0009999999999999998,
+        "r_bar": 0.01,
+        "sampled_g_plus_count": 961,
+        "sampled_g_plus_count_per_10000": 9.610000000000001,
+        "sampled_mean_abs_error_vs_soft": 3.8999999999999755e-05,
+        "sampled_mean_within_tolerance": true,
+        "sampled_minus_soft_mean": -3.8999999999999755e-05,
+        "sampled_minus_soft_variance": 0.0009600764790000001,
+        "sampled_target_mean": 0.000961,
+        "sampled_target_variance": 0.0009600764790000001,
+        "samples": 1000000,
+        "soft_target_mean": 0.0009999999999999998,
+        "soft_target_variance": 0.0,
+        "soft_variance_negligible": true
+      },
+      {
+        "analytic_expected_g_plus_count": 9999.999999999998,
+        "analytic_expected_g_plus_count_per_10000": 99.99999999999999,
+        "analytic_expected_mean": 0.009999999999999998,
+        "analytic_expected_variance": 0.009899999999999999,
+        "analytic_sample_mean_stderr": 9.949874371066199e-05,
+        "analytic_target_coefficient_of_variation": 9.949874371066201,
+        "gamma": 0.9,
+        "monte_carlo_abs_tolerance": 0.0005969924622639719,
+        "p_continue": 0.9,
+        "p_g_minus": 0.08999999999999998,
+        "p_g_plus": 0.009999999999999998,
+        "r_bar": 0.1,
+        "sampled_g_plus_count": 10194,
+        "sampled_g_plus_count_per_10000": 101.94,
+        "sampled_mean_abs_error_vs_soft": 0.00019400000000000146,
+        "sampled_mean_within_tolerance": true,
+        "sampled_minus_soft_mean": 0.00019400000000000146,
+        "sampled_minus_soft_variance": 0.010090082363999999,
+        "sampled_target_mean": 0.010194,
+        "sampled_target_variance": 0.010090082363999999,
+        "samples": 1000000,
+        "soft_target_mean": 0.009999999999999998,
+        "soft_target_variance": 0.0,
+        "soft_variance_negligible": true
+      },
+      {
+        "analytic_expected_g_plus_count": 49999.999999999985,
+        "analytic_expected_g_plus_count_per_10000": 499.9999999999999,
+        "analytic_expected_mean": 0.04999999999999999,
+        "analytic_expected_variance": 0.04749999999999999,
+        "analytic_sample_mean_stderr": 0.00021794494717703366,
+        "analytic_target_coefficient_of_variation": 4.358898943540674,
+        "gamma": 0.9,
+        "monte_carlo_abs_tolerance": 0.0013076696830622019,
+        "p_continue": 0.9,
+        "p_g_minus": 0.04999999999999999,
+        "p_g_plus": 0.04999999999999999,
+        "r_bar": 0.5,
+        "sampled_g_plus_count": 49876,
+        "sampled_g_plus_count_per_10000": 498.76,
+        "sampled_mean_abs_error_vs_soft": 0.00012399999999999217,
+        "sampled_mean_within_tolerance": true,
+        "sampled_minus_soft_mean": -0.00012399999999999217,
+        "sampled_minus_soft_variance": 0.047388384623999996,
+        "sampled_target_mean": 0.049876,
+        "sampled_target_variance": 0.047388384623999996,
+        "samples": 1000000,
+        "soft_target_mean": 0.04999999999999999,
+        "soft_target_variance": 0.0,
+        "soft_variance_negligible": true
+      },
+      {
+        "analytic_expected_g_plus_count": 99999.99999999997,
+        "analytic_expected_g_plus_count_per_10000": 999.9999999999998,
+        "analytic_expected_mean": 0.09999999999999998,
+        "analytic_expected_variance": 0.08999999999999998,
+        "analytic_sample_mean_stderr": 0.0003,
+        "analytic_target_coefficient_of_variation": 3.0000000000000004,
+        "gamma": 0.9,
+        "monte_carlo_abs_tolerance": 0.0018,
+        "p_continue": 0.9,
+        "p_g_minus": 0.0,
+        "p_g_plus": 0.09999999999999998,
+        "r_bar": 1.0,
+        "sampled_g_plus_count": 100502,
+        "sampled_g_plus_count_per_10000": 1005.02,
+        "sampled_mean_abs_error_vs_soft": 0.0005020000000000163,
+        "sampled_mean_within_tolerance": true,
+        "sampled_minus_soft_mean": 0.0005020000000000163,
+        "sampled_minus_soft_variance": 0.090401347996,
+        "sampled_target_mean": 0.100502,
+        "sampled_target_variance": 0.090401347996,
+        "samples": 1000000,
+        "soft_target_mean": 0.09999999999999998,
+        "soft_target_variance": 0.0,
+        "soft_variance_negligible": true
+      },
+      {
+        "analytic_expected_g_plus_count": 500.00000000000045,
+        "analytic_expected_g_plus_count_per_10000": 5.000000000000004,
+        "analytic_expected_mean": 0.0005000000000000004,
+        "analytic_expected_variance": 0.0004997500000000005,
+        "analytic_sample_mean_stderr": 2.235508890610817e-05,
+        "analytic_target_coefficient_of_variation": 44.7101778122163,
+        "gamma": 0.95,
+        "monte_carlo_abs_tolerance": 0.000134130533436649,
+        "p_continue": 0.95,
+        "p_g_minus": 0.049500000000000044,
+        "p_g_plus": 0.0005000000000000004,
+        "r_bar": 0.01,
+        "sampled_g_plus_count": 479,
+        "sampled_g_plus_count_per_10000": 4.79,
+        "sampled_mean_abs_error_vs_soft": 2.1000000000000456e-05,
+        "sampled_mean_within_tolerance": true,
+        "sampled_minus_soft_mean": -2.1000000000000456e-05,
+        "sampled_minus_soft_variance": 0.000478770559,
+        "sampled_target_mean": 0.000479,
+        "sampled_target_variance": 0.000478770559,
+        "samples": 1000000,
+        "soft_target_mean": 0.0005000000000000004,
+        "soft_target_variance": 0.0,
+        "soft_variance_negligible": true
+      },
+      {
+        "analytic_expected_g_plus_count": 5000.000000000005,
+        "analytic_expected_g_plus_count_per_10000": 50.00000000000004,
+        "analytic_expected_mean": 0.0050000000000000044,
+        "analytic_expected_variance": 0.004975000000000005,
+        "analytic_sample_mean_stderr": 7.053367989832946e-05,
+        "analytic_target_coefficient_of_variation": 14.106735979665878,
+        "gamma": 0.95,
+        "monte_carlo_abs_tolerance": 0.00042320207938997676,
+        "p_continue": 0.95,
+        "p_g_minus": 0.04500000000000004,
+        "p_g_plus": 0.0050000000000000044,
+        "r_bar": 0.1,
+        "sampled_g_plus_count": 5086,
+        "sampled_g_plus_count_per_10000": 50.86,
+        "sampled_mean_abs_error_vs_soft": 8.59999999999958e-05,
+        "sampled_mean_within_tolerance": true,
+        "sampled_minus_soft_mean": 8.59999999999958e-05,
+        "sampled_minus_soft_variance": 0.005060132604,
+        "sampled_target_mean": 0.005086,
+        "sampled_target_variance": 0.005060132604,
+        "samples": 1000000,
+        "soft_target_mean": 0.0050000000000000044,
+        "soft_target_variance": 0.0,
+        "soft_variance_negligible": true
+      },
+      {
+        "analytic_expected_g_plus_count": 25000.000000000022,
+        "analytic_expected_g_plus_count_per_10000": 250.00000000000023,
+        "analytic_expected_mean": 0.025000000000000022,
+        "analytic_expected_variance": 0.02437500000000002,
+        "analytic_sample_mean_stderr": 0.00015612494995996003,
+        "analytic_target_coefficient_of_variation": 6.244997998398395,
+        "gamma": 0.95,
+        "monte_carlo_abs_tolerance": 0.0009367496997597602,
+        "p_continue": 0.95,
+        "p_g_minus": 0.025000000000000022,
+        "p_g_plus": 0.025000000000000022,
+        "r_bar": 0.5,
+        "sampled_g_plus_count": 25217,
+        "sampled_g_plus_count_per_10000": 252.17,
+        "sampled_mean_abs_error_vs_soft": 0.00021699999999997763,
+        "sampled_mean_within_tolerance": true,
+        "sampled_minus_soft_mean": 0.00021699999999997763,
+        "sampled_minus_soft_variance": 0.024581102910999998,
+        "sampled_target_mean": 0.025217,
+        "sampled_target_variance": 0.024581102910999998,
+        "samples": 1000000,
+        "soft_target_mean": 0.025000000000000022,
+        "soft_target_variance": 0.0,
+        "soft_variance_negligible": true
+      },
+      {
+        "analytic_expected_g_plus_count": 50000.000000000044,
+        "analytic_expected_g_plus_count_per_10000": 500.00000000000045,
+        "analytic_expected_mean": 0.050000000000000044,
+        "analytic_expected_variance": 0.04750000000000004,
+        "analytic_sample_mean_stderr": 0.00021794494717703377,
+        "analytic_target_coefficient_of_variation": 4.358898943540671,
+        "gamma": 0.95,
+        "monte_carlo_abs_tolerance": 0.0013076696830622027,
+        "p_continue": 0.95,
+        "p_g_minus": 0.0,
+        "p_g_plus": 0.050000000000000044,
+        "r_bar": 1.0,
+        "sampled_g_plus_count": 50025,
+        "sampled_g_plus_count_per_10000": 500.25,
+        "sampled_mean_abs_error_vs_soft": 2.4999999999955613e-05,
+        "sampled_mean_within_tolerance": true,
+        "sampled_minus_soft_mean": 2.4999999999955613e-05,
+        "sampled_minus_soft_variance": 0.047522499375,
+        "sampled_target_mean": 0.050025,
+        "sampled_target_variance": 0.047522499375,
+        "samples": 1000000,
+        "soft_target_mean": 0.050000000000000044,
+        "soft_target_variance": 0.0,
+        "soft_variance_negligible": true
+      },
+      {
+        "analytic_expected_g_plus_count": 100.00000000000009,
+        "analytic_expected_g_plus_count_per_10000": 1.0000000000000009,
+        "analytic_expected_mean": 0.00010000000000000009,
+        "analytic_expected_variance": 9.999000000000009e-05,
+        "analytic_sample_mean_stderr": 9.999499987499379e-06,
+        "analytic_target_coefficient_of_variation": 99.99499987499371,
+        "gamma": 0.99,
+        "monte_carlo_abs_tolerance": 5.999699992499628e-05,
+        "p_continue": 0.99,
+        "p_g_minus": 0.00990000000000001,
+        "p_g_plus": 0.00010000000000000009,
+        "r_bar": 0.01,
+        "sampled_g_plus_count": 109,
+        "sampled_g_plus_count_per_10000": 1.09,
+        "sampled_mean_abs_error_vs_soft": 8.99999999999992e-06,
+        "sampled_mean_within_tolerance": true,
+        "sampled_minus_soft_mean": 8.99999999999992e-06,
+        "sampled_minus_soft_variance": 0.000108988119,
+        "sampled_target_mean": 0.000109,
+        "sampled_target_variance": 0.000108988119,
+        "samples": 1000000,
+        "soft_target_mean": 0.00010000000000000009,
+        "soft_target_variance": 0.0,
+        "soft_variance_negligible": true
+      },
+      {
+        "analytic_expected_g_plus_count": 1000.0000000000009,
+        "analytic_expected_g_plus_count_per_10000": 10.000000000000009,
+        "analytic_expected_mean": 0.0010000000000000009,
+        "analytic_expected_variance": 0.000999000000000001,
+        "analytic_sample_mean_stderr": 3.1606961258558234e-05,
+        "analytic_target_coefficient_of_variation": 31.606961258558204,
+        "gamma": 0.99,
+        "monte_carlo_abs_tolerance": 0.0001896417675513494,
+        "p_continue": 0.99,
+        "p_g_minus": 0.009000000000000008,
+        "p_g_plus": 0.0010000000000000009,
+        "r_bar": 0.1,
+        "sampled_g_plus_count": 997,
+        "sampled_g_plus_count_per_10000": 9.97,
+        "sampled_mean_abs_error_vs_soft": 3.000000000000832e-06,
+        "sampled_mean_within_tolerance": true,
+        "sampled_minus_soft_mean": -3.000000000000832e-06,
+        "sampled_minus_soft_variance": 0.000996005991,
+        "sampled_target_mean": 0.000997,
+        "sampled_target_variance": 0.000996005991,
+        "samples": 1000000,
+        "soft_target_mean": 0.0010000000000000009,
+        "soft_target_variance": 0.0,
+        "soft_variance_negligible": true
+      },
+      {
+        "analytic_expected_g_plus_count": 5000.000000000005,
+        "analytic_expected_g_plus_count_per_10000": 50.00000000000004,
+        "analytic_expected_mean": 0.0050000000000000044,
+        "analytic_expected_variance": 0.004975000000000005,
+        "analytic_sample_mean_stderr": 7.053367989832946e-05,
+        "analytic_target_coefficient_of_variation": 14.106735979665878,
+        "gamma": 0.99,
+        "monte_carlo_abs_tolerance": 0.00042320207938997676,
+        "p_continue": 0.99,
+        "p_g_minus": 0.0050000000000000044,
+        "p_g_plus": 0.0050000000000000044,
+        "r_bar": 0.5,
+        "sampled_g_plus_count": 5026,
+        "sampled_g_plus_count_per_10000": 50.26,
+        "sampled_mean_abs_error_vs_soft": 2.5999999999995645e-05,
+        "sampled_mean_within_tolerance": true,
+        "sampled_minus_soft_mean": 2.5999999999995645e-05,
+        "sampled_minus_soft_variance": 0.005000739324,
+        "sampled_target_mean": 0.005026,
+        "sampled_target_variance": 0.005000739324,
+        "samples": 1000000,
+        "soft_target_mean": 0.0050000000000000044,
+        "soft_target_variance": 0.0,
+        "soft_variance_negligible": true
+      },
+      {
+        "analytic_expected_g_plus_count": 10000.00000000001,
+        "analytic_expected_g_plus_count_per_10000": 100.00000000000009,
+        "analytic_expected_mean": 0.010000000000000009,
+        "analytic_expected_variance": 0.00990000000000001,
+        "analytic_sample_mean_stderr": 9.949874371066204e-05,
+        "analytic_target_coefficient_of_variation": 9.949874371066196,
+        "gamma": 0.99,
+        "monte_carlo_abs_tolerance": 0.0005969924622639723,
+        "p_continue": 0.99,
+        "p_g_minus": 0.0,
+        "p_g_plus": 0.010000000000000009,
+        "r_bar": 1.0,
+        "sampled_g_plus_count": 9780,
+        "sampled_g_plus_count_per_10000": 97.80000000000001,
+        "sampled_mean_abs_error_vs_soft": 0.00022000000000000838,
+        "sampled_mean_within_tolerance": true,
+        "sampled_minus_soft_mean": -0.00022000000000000838,
+        "sampled_minus_soft_variance": 0.0096843516,
+        "sampled_target_mean": 0.00978,
+        "sampled_target_variance": 0.0096843516,
+        "samples": 1000000,
+        "soft_target_mean": 0.010000000000000009,
+        "soft_target_variance": 0.0,
+        "soft_variance_negligible": true
+      },
+      {
+        "analytic_expected_g_plus_count": 50.00000000000004,
+        "analytic_expected_g_plus_count_per_10000": 0.5000000000000004,
+        "analytic_expected_mean": 5.000000000000004e-05,
+        "analytic_expected_variance": 4.9997500000000044e-05,
+        "analytic_sample_mean_stderr": 7.070891032960418e-06,
+        "analytic_target_coefficient_of_variation": 141.41782065920822,
+        "gamma": 0.995,
+        "monte_carlo_abs_tolerance": 4.24253461977625e-05,
+        "p_continue": 0.995,
+        "p_g_minus": 0.004950000000000005,
+        "p_g_plus": 5.000000000000004e-05,
+        "r_bar": 0.01,
+        "sampled_g_plus_count": 48,
+        "sampled_g_plus_count_per_10000": 0.48000000000000004,
+        "sampled_mean_abs_error_vs_soft": 2.000000000000042e-06,
+        "sampled_mean_within_tolerance": true,
+        "sampled_minus_soft_mean": -2.000000000000042e-06,
+        "sampled_minus_soft_variance": 4.7997696e-05,
+        "sampled_target_mean": 4.8e-05,
+        "sampled_target_variance": 4.7997696e-05,
+        "samples": 1000000,
+        "soft_target_mean": 5.000000000000004e-05,
+        "soft_target_variance": 0.0,
+        "soft_variance_negligible": true
+      },
+      {
+        "analytic_expected_g_plus_count": 500.00000000000045,
+        "analytic_expected_g_plus_count_per_10000": 5.000000000000004,
+        "analytic_expected_mean": 0.0005000000000000004,
+        "analytic_expected_variance": 0.0004997500000000005,
+        "analytic_sample_mean_stderr": 2.235508890610817e-05,
+        "analytic_target_coefficient_of_variation": 44.7101778122163,
+        "gamma": 0.995,
+        "monte_carlo_abs_tolerance": 0.000134130533436649,
+        "p_continue": 0.995,
+        "p_g_minus": 0.004500000000000004,
+        "p_g_plus": 0.0005000000000000004,
+        "r_bar": 0.1,
+        "sampled_g_plus_count": 479,
+        "sampled_g_plus_count_per_10000": 4.79,
+        "sampled_mean_abs_error_vs_soft": 2.1000000000000456e-05,
+        "sampled_mean_within_tolerance": true,
+        "sampled_minus_soft_mean": -2.1000000000000456e-05,
+        "sampled_minus_soft_variance": 0.000478770559,
+        "sampled_target_mean": 0.000479,
+        "sampled_target_variance": 0.000478770559,
+        "samples": 1000000,
+        "soft_target_mean": 0.0005000000000000004,
+        "soft_target_variance": 0.0,
+        "soft_variance_negligible": true
+      },
+      {
+        "analytic_expected_g_plus_count": 2500.0000000000023,
+        "analytic_expected_g_plus_count_per_10000": 25.00000000000002,
+        "analytic_expected_mean": 0.0025000000000000022,
+        "analytic_expected_variance": 0.0024937500000000025,
+        "analytic_sample_mean_stderr": 4.993746088859547e-05,
+        "analytic_target_coefficient_of_variation": 19.97498435543817,
+        "gamma": 0.995,
+        "monte_carlo_abs_tolerance": 0.0002996247653315728,
+        "p_continue": 0.995,
+        "p_g_minus": 0.0025000000000000022,
+        "p_g_plus": 0.0025000000000000022,
+        "r_bar": 0.5,
+        "sampled_g_plus_count": 2549,
+        "sampled_g_plus_count_per_10000": 25.490000000000002,
+        "sampled_mean_abs_error_vs_soft": 4.899999999999783e-05,
+        "sampled_mean_within_tolerance": true,
+        "sampled_minus_soft_mean": 4.899999999999783e-05,
+        "sampled_minus_soft_variance": 0.002542502599,
+        "sampled_target_mean": 0.002549,
+        "sampled_target_variance": 0.002542502599,
+        "samples": 1000000,
+        "soft_target_mean": 0.0025000000000000022,
+        "soft_target_variance": 0.0,
+        "soft_variance_negligible": true
+      },
+      {
+        "analytic_expected_g_plus_count": 5000.000000000005,
+        "analytic_expected_g_plus_count_per_10000": 50.00000000000004,
+        "analytic_expected_mean": 0.0050000000000000044,
+        "analytic_expected_variance": 0.004975000000000005,
+        "analytic_sample_mean_stderr": 7.053367989832946e-05,
+        "analytic_target_coefficient_of_variation": 14.106735979665878,
+        "gamma": 0.995,
+        "monte_carlo_abs_tolerance": 0.00042320207938997676,
+        "p_continue": 0.995,
+        "p_g_minus": 0.0,
+        "p_g_plus": 0.0050000000000000044,
+        "r_bar": 1.0,
+        "sampled_g_plus_count": 5010,
+        "sampled_g_plus_count_per_10000": 50.099999999999994,
+        "sampled_mean_abs_error_vs_soft": 9.999999999995256e-06,
+        "sampled_mean_within_tolerance": true,
+        "sampled_minus_soft_mean": 9.999999999995256e-06,
+        "sampled_minus_soft_variance": 0.0049848999,
+        "sampled_target_mean": 0.00501,
+        "sampled_target_variance": 0.0049848999,
+        "samples": 1000000,
+        "soft_target_mean": 0.0050000000000000044,
+        "soft_target_variance": 0.0,
+        "soft_variance_negligible": true
+      }
+    ]
+  }
+}

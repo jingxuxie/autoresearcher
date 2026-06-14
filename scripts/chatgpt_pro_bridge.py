@@ -288,6 +288,20 @@ def local_state_thread_url(repo_root: Path, project: str) -> Optional[str]:
     return value if isinstance(value, str) and value.strip() else None
 
 
+def effective_thread_url(repo_root: Path, project: str, pro_cfg: Dict[str, Any]) -> Optional[str]:
+    """Resolve the ChatGPT thread URL for a project.
+
+    The local state is project-scoped, while `autoresearcher.yaml` is global.
+    Prefer the project-scoped value so separate projects can use separate
+    ChatGPT threads without editing the global config between runs.
+    """
+    local_url = local_state_thread_url(repo_root, project)
+    if local_url:
+        return local_url
+    configured = pro_cfg.get("thread_url")
+    return configured if isinstance(configured, str) and configured.strip() else None
+
+
 def _path_or_none(value: Any) -> Optional[Path]:
     return Path(value) if isinstance(value, str) and value else None
 
@@ -508,7 +522,7 @@ def run_chatgpt_pro_review(
             "blocker_markdown_path": blocker_md,
         }
 
-    thread_url = pro_cfg.get("thread_url") or local_state_thread_url(repo_root, project)
+    thread_url = effective_thread_url(repo_root, project, pro_cfg)
     if not isinstance(thread_url, str) or not thread_url.strip():
         blocker_json, blocker_md = write_pro_blocker(
             repo_root,
@@ -609,7 +623,7 @@ def run_chatgpt_pro_review_cdp(
     iteration_id: str,
 ) -> Dict[str, Any]:
     pro_cfg = config.get("chatgpt_pro", {}) if isinstance(config.get("chatgpt_pro"), dict) else {}
-    thread_url = pro_cfg.get("thread_url") or local_state_thread_url(repo_root, project)
+    thread_url = effective_thread_url(repo_root, project, pro_cfg)
     if not isinstance(thread_url, str) or not thread_url.strip():
         blocker_json, blocker_md = write_pro_blocker(
             repo_root,

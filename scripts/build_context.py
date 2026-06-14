@@ -689,30 +689,13 @@ def build_chatgpt_pro_context(repo_root: Path, project: str, reason: str = "manu
         return lines
 
     lines = [
-        f"# Check-In: {project}",
-        "",
-        f"Checkpoint reason: `{reason}`",
-        "",
-        "Continue from this existing advisor thread and use GitHub for the current evidence and broader project docs.",
         "",
         f"- Repository: {repo_url or '_GitHub remote unavailable; inspect linked paths if available._'}",
         f"- Latest progress summary: {link_or_path(latest_summary_url, latest_summary)}",
         f"- Latest local Codex decision: {link_or_path(latest_decision_url, latest_decision) if latest_decision else '_Missing._'}",
-        f"- Charter: {link_or_path(charter_url, root / 'charter.md')}",
         f"- Required output schema: {link_or_path(schema_url, repo_root / 'schemas' / 'pro_decision.schema.json')}",
         "",
-        "## Broader Project Context",
-        "",
-        *project_doc_links(),
-        "",
-        "Decide the next research direction as the human advisor for this loop:",
-        "",
-        "1. Choose exactly one: `continue`, `pivot`, or `stop`.",
-        "2. If Codex is stopping or pivoting, independently decide whether to stop or propose a better direction.",
-        "3. If choosing `continue` or `pivot`, propose small experiments runnable within 30 minutes.",
-        "4. Return exactly one fenced JSON block matching `schemas/pro_decision.schema.json`, followed by at most one short paragraph.",
-        "",
-        "",
+        "Decide the next research direction",
     ]
     return "\n".join(lines).rstrip() + "\n"
 

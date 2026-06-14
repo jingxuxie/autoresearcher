@@ -1,0 +1,35 @@
+{
+  "experiment_id": "0001",
+  "gammas": [
+    0.9,
+    0.95,
+    0.99,
+    0.995
+  ],
+  "model_definition": {
+    "bootstrap_term": "Set to zero to isolate the immediate terminal-mass estimator; this is the variance source being tested in experiment 0001.",
+    "deterministic_soft_target": {
+      "sampling_variance": 0.0,
+      "soft_g_plus_target": "(1 - gamma) * r_bar"
+    },
+    "one_state_setup": "Every row represents repeated draws from one normalized-reward state-action transition with fixed r_bar in [0, 1].",
+    "reward_normalization": "r_bar is pre-normalized reward in [0, 1].",
+    "sampled_augmented_terminal_model": {
+      "P(continue_to_original_next_state | s,a)": "gamma",
+      "P(g_minus | s,a)": "(1 - gamma) * (1 - r_bar)",
+      "P(g_plus | s,a)": "(1 - gamma) * r_bar",
+      "sampled_g_plus_target": "1 if sampled augmented next state is g_plus else 0"
+    }
+  },
+  "monte_carlo_tolerance_rule": "abs(sampled_target_mean - soft_target_mean) <= 6.0 * sqrt(p_g_plus * (1 - p_g_plus) / samples)",
+  "project": "reward_to_gcrl",
+  "r_bars": [
+    0.01,
+    0.1,
+    0.5,
+    1.0
+  ],
+  "samples_per_setting": 1000000,
+  "seed": 20260614,
+  "soft_variance_tolerance": 1e-15
+}

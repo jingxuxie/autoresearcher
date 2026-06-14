@@ -388,6 +388,39 @@ class ContextBuilderTests(unittest.TestCase):
 
 
 class CodexRunnerTests(unittest.TestCase):
+    def test_codex_speed_fast_maps_to_priority_service_tier(self) -> None:
+        self.assertEqual(autoresearcher.codex_service_tier({"speed": "Fast"}), "priority")
+        self.assertIsNone(autoresearcher.codex_service_tier({"speed": "standard"}))
+
+    def test_role_command_sets_fast_service_tier(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            repo = make_repo(Path(td))
+            fake = make_fake_codex(Path(td))
+            arg_log = Path(td) / "args.json"
+            config = autoresearcher.load_config(repo)
+            config["codex"]["speed"] = "Fast"
+            runner = autoresearcher.CodexRunner(repo, config, codex_bin=str(fake))
+            old = os.environ.get("FAKE_CODEX_ARG_LOG")
+            os.environ["FAKE_CODEX_ARG_LOG"] = str(arg_log)
+            try:
+                runner.run_role(
+                    project="project_001",
+                    role="supervisor",
+                    prompt="prompt",
+                    output_path=repo / "out.json",
+                    schema_path=None,
+                    sandbox="read-only",
+                    timeout_minutes=1,
+                    resume=False,
+                )
+            finally:
+                if old is None:
+                    os.environ.pop("FAKE_CODEX_ARG_LOG", None)
+                else:
+                    os.environ["FAKE_CODEX_ARG_LOG"] = old
+            args = json.loads(arg_log.read_text())
+            self.assertIn("service_tier=priority", args)
+
     def test_fresh_run_parses_thread_started_session_id(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             repo = make_repo(Path(td))

@@ -17,7 +17,7 @@ if str(SCRIPTS) not in sys.path:
 
 import autoresearcher  # noqa: E402
 from chatgpt_cdp_bridge import CdpClient, CdpError, CdpResponse, build_visible_prompt, connect_page, select_chatgpt_page  # noqa: E402
-from chatgpt_pro_bridge import extract_fenced_json  # noqa: E402
+from chatgpt_pro_bridge import effective_thread_url, extract_fenced_json  # noqa: E402
 
 
 def write_json(path: Path, data: object) -> None:
@@ -78,6 +78,30 @@ def fake_pro(mode: str):
 
 
 class ProBridgeTests(unittest.TestCase):
+    def test_project_local_thread_url_overrides_global_config(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            repo = make_repo(Path(td), project="reward_to_gcrl")
+            write_json(
+                repo / ".autoresearcher" / "local_state.json",
+                {
+                    "projects": {
+                        "reward_to_gcrl": {
+                            "chatgpt_pro": {
+                                "thread_url": "https://chatgpt.com/c/project-local",
+                            }
+                        }
+                    }
+                },
+            )
+
+            url = effective_thread_url(
+                repo,
+                "reward_to_gcrl",
+                {"thread_url": "https://chatgpt.com/c/global-default"},
+            )
+
+            self.assertEqual(url, "https://chatgpt.com/c/project-local")
+
     def test_fake_continue_pro_review_writes_decision_plan_and_pending_checkpoint(self) -> None:
         with tempfile.TemporaryDirectory() as td, fake_pro("continue"):
             repo = make_repo(Path(td))

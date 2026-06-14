@@ -134,6 +134,7 @@ DEFAULT_CONFIG_TEXT = """project_default: project_001
 codex:
   model: gpt-5.5
   reasoning_effort: xhigh
+  speed: Fast
   resume_mode: role-resume
   fail_if_model_unavailable: true
 
@@ -279,6 +280,21 @@ def load_config(repo_root: Path) -> Dict[str, Any]:
     if not isinstance(loaded, dict):
         raise RuntimeError(f"invalid config root in {config_path}: expected mapping")
     return loaded
+
+
+def codex_service_tier(codex_cfg: Dict[str, Any]) -> Optional[str]:
+    configured = codex_cfg.get("service_tier")
+    if isinstance(configured, str) and configured.strip():
+        return configured.strip()
+    speed = codex_cfg.get("speed")
+    if not isinstance(speed, str) or not speed.strip():
+        return None
+    normalized = speed.strip().lower()
+    if normalized == "fast":
+        return "priority"
+    if normalized in {"default", "standard", "auto", "none"}:
+        return None
+    return speed.strip()
 
 
 def project_dir(repo_root: Path, project: str) -> Path:
@@ -472,6 +488,7 @@ class CodexRunner:
         codex_cfg = self.config.get("codex", {})
         model = str(codex_cfg.get("model", "gpt-5.5"))
         reasoning_effort = str(codex_cfg.get("reasoning_effort", "xhigh"))
+        service_tier = codex_service_tier(codex_cfg)
         cmd = [
             self.codex_bin,
             "exec",
@@ -488,6 +505,8 @@ class CodexRunner:
             "--output-last-message",
             str(output_path),
         ]
+        if service_tier:
+            cmd.extend(["-c", f"service_tier={service_tier}"])
         if schema_path is not None:
             cmd.extend(["--output-schema", str(schema_path)])
         if session_id:
