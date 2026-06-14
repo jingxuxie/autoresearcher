@@ -230,6 +230,40 @@
       ],
       "review_verdict": "pass",
       "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "Adding real-state goal slices to a tabular vector successor measure should leave the g_plus reward-success slice equivalent to the terminal-only soft learner while learning correct real-state goal reachability maps.",
+      "decision": "continue",
+      "important_metrics": {
+        "metrics.config.goal_success_threshold": 0.99,
+        "metrics.exact_dp.rows.0.gamma": 0.95,
+        "metrics.exact_dp.rows.0.gplus_final_delta": 0.0,
+        "metrics.exact_dp.rows.0.gplus_iterations": 14,
+        "metrics.exact_dp.rows.0.max_abs_scaled_gplus_minus_q_norm": 1.1102230246251565e-16,
+        "metrics.exact_dp.rows.0.q_final_delta": 0.0,
+        "metrics.exact_dp.rows.0.q_iterations": 14,
+        "metrics.exact_dp.rows.0.real_goal_final_delta": 0.0,
+        "metrics.exact_dp.rows.0.real_goal_iterations": 14,
+        "metrics.exact_dp.rows.1.gamma": 0.99,
+        "metrics.exact_dp.rows.1.gplus_final_delta": 0.0,
+        "metrics.exact_dp.rows.1.gplus_iterations": 14
+      },
+      "iteration": "0008",
+      "negative_signals": [
+        "Independent tabular real-state goal slices did not perturb the g_plus reward-success slice.",
+        "This is an exact/full-sweep deterministic sanity check; it validates indexing and independent tabular slices, not learning under sampled data or function approximation.",
+        "The result is expected to be nearly tautological because exact references and learned vector backups use the same audited transition semantics; this is acceptable for the predeclared implementation gate but should not be...",
+        "Reward-policy comparison has many tie states, 17 of 40 with one skipped terminal state, although disagreement is zero on comparable non-tie states.",
+        "Heatmap/arrow artifacts are saved for a selected subset of goals, while numerical per-goal metrics cover all goals."
+      ],
+      "positive_signals": [
+        "The g_plus slice remains a direct scaled normalized-Q reference under the audited terminal mask.",
+        "Real-state goals solve the deterministic reachability sanity check, so future reward changes require shared parameters or coupling to be meaningful.",
+        "The vector SSM slices are numerically independent in this tabular FourRooms check: the g_plus slice matches terminal-only soft learning, scaled g_plus matches normalized Q, and real-state goal slices match exact reachability references with successful greedy g"
+      ],
+      "review_verdict": "pass",
+      "status": "completed"
     }
   ],
   "project": "reward_to_gcrl"

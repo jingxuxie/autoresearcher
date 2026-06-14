@@ -9,6 +9,7 @@
 | 0005 | completed | pass | continue | `metrics.exact_dp.rows.0.exact_greedy_policy.0`=1<br>`metrics.exact_dp.rows.0.exact_greedy_policy.1`=1<br>`metrics.exact_dp.rows.0.exact_greedy_policy.2`=1<br>`metrics.exact_dp.rows.0.exact_greedy_policy.3`=1<br>`metrics.exact_dp.rows.0.exact_greedy_policy.4`=1 |
 | 0006 | completed | pass | continue | `metrics.config.behaviors.right_biased_random.uses_exact_q`=False<br>`metrics.config.behaviors.uniform_random.uses_exact_q`=False<br>`metrics.exact_dp.rows.0.exact_greedy_policy.0`=1<br>`metrics.exact_dp.rows.0.exact_greedy_policy.1`=1<br>`metrics.exact_dp.rows.0.exact_greedy_policy.2`=1 |
 | 0007 | completed | pass | None | `metrics.config.behaviors.medium_right_bias.uses_exact_q`=False<br>`metrics.config.behaviors.mild_right_bias.uses_exact_q`=False<br>`metrics.config.behaviors.strong_right_bias.uses_exact_q`=False<br>`metrics.config.behaviors.uniform_random.uses_exact_q`=False<br>`metrics.exact_dp.rows.0.exact_greedy_policy.0`=1 |
+| 0008 | completed | pass | continue | `metrics.config.goal_success_threshold`=0.99<br>`metrics.exact_dp.rows.0.gamma`=0.95<br>`metrics.exact_dp.rows.0.gplus_final_delta`=0.0<br>`metrics.exact_dp.rows.0.gplus_iterations`=14<br>`metrics.exact_dp.rows.0.max_abs_scaled_gplus_minus_q_norm`=1.1102230246251565e-16 |
 
 ## Positive Signals
 
@@ -33,6 +34,9 @@
 - `0007`: Coverage bins are predeclared using right reward events per 10000 transitions and visited state-action pairs.
 - `0007`: Estimator claims are separated from learning claims on coverage-starved runs.
 - `0007`: The same 6-state RiverSwim transition hash as 0005 and 0006 was recreated and verified.
+- `0008`: The g_plus slice remains a direct scaled normalized-Q reference under the audited terminal mask.
+- `0008`: Real-state goals solve the deterministic reachability sanity check, so future reward changes require shared parameters or coupling to be meaningful.
+- `0008`: The vector SSM slices are numerically independent in this tabular FourRooms check: the g_plus slice matches terminal-only soft learning, scaled g_plus matches normalized Q, and real-state goal slices match exact reachability references with successful greedy g
 
 ## Negative Signals
 
@@ -57,3 +61,6 @@
 - `0007`: Data generation used fixed action probabilities only; exact DP was not consulted by behavior policies.
 - `0007`: The coverage-performance regression includes visited_state_action_pairs, but that feature is constant at 12 in the observed runs, so the regression is effectively driven by right-reward event variation.
 - `0007`: Soft value error is worse than sampled in 4 of 35 adequate-coverage individual runs, although the adequate-bin mean clearly favors soft and satisfies the stated criterion.
+- `0008`: Independent tabular real-state goal slices did not perturb the g_plus reward-success slice.
+- `0008`: This is an exact/full-sweep deterministic sanity check; it validates indexing and independent tabular slices, not learning under sampled data or function approximation.
+- `0008`: The result is expected to be nearly tautological because exact references and learned vector backups use the same audited transition semantics; this is acceptable for the predeclared implementation gate but should not be...
