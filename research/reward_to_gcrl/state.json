@@ -5,7 +5,7 @@
   "iteration": 10,
   "last_decision": "pivot",
   "last_failure": null,
-  "last_pro_review_iteration": 9,
+  "last_pro_review_iteration": 10,
   "last_pro_review_path": "research/reward_to_gcrl/decisions/0011_pro_decision.json",
   "last_summary_iteration": 10,
   "last_summary_path": "research/reward_to_gcrl/progress/0010_pre_pro_local_pivot_summary.md",
@@ -41,21 +41,14 @@
     "2026-06-14T22:55:17+00:00: applied Pro decision continue from research/reward_to_gcrl/decisions/0009_pro_decision.json",
     "2026-06-14T23:22:26+00:00: Pro decision saved for checkpoint This is the first shared-parameter function-approximation milestone. Keep the run small, but require review before expanding to larger sweeps, neural frameworks, or publishable auxiliary-goal claims. (research/reward_to_gcrl/decisions/0010_pro_decision.json)",
     "2026-06-14T23:22:27+00:00: applied Pro decision pivot from research/reward_to_gcrl/decisions/0010_pro_decision.json",
-    "2026-06-14T23:41:56+00:00: Pro decision saved for checkpoint local_pivot (research/reward_to_gcrl/decisions/0011_pro_decision.json)"
+    "2026-06-14T23:41:56+00:00: Pro decision saved for checkpoint local_pivot (research/reward_to_gcrl/decisions/0011_pro_decision.json)",
+    "2026-06-14T23:41:57+00:00: applied Pro decision pivot from research/reward_to_gcrl/decisions/0011_pro_decision.json"
   ],
-  "pending_checkpoint": {
-    "backend": "cdp",
-    "iteration_id": "0011",
-    "packet_path": "research/reward_to_gcrl/pro_packets/0011_PRO_REVIEW_PACKET.md",
-    "pro_decision_path": "research/reward_to_gcrl/decisions/0011_pro_decision.json",
-    "reason": "local_pivot",
-    "status": "pro_decision_ingested",
-    "type": "chatgpt_pro"
-  },
+  "pending_checkpoint": null,
   "pending_local_decision_path": null,
   "primary_metric": null,
-  "pro_review_count": 9,
+  "pro_review_count": 10,
   "protected_file_drift": false,
   "status": "active",
-  "weak_pass_streak": 1
+  "weak_pass_streak": 0
 }
