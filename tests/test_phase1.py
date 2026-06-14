@@ -1141,6 +1141,58 @@ class StateAndLoopTests(unittest.TestCase):
             state = json.loads((root / "state.json").read_text())
             self.assertEqual(state["iteration"], 2)
 
+    def test_run_retries_existing_timeout_result_and_archives_prior_output(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            repo = make_repo(Path(td))
+            fake = make_fake_codex(Path(td))
+            root = repo / "research" / "project_001"
+            state = dict(autoresearcher.DEFAULT_STATE)
+            state["iteration"] = 1
+            state["status"] = "active"
+            state["failure_streak"] = 1
+            state["last_decision"] = "retryable_failure"
+            state["last_failure"] = {
+                "at": "2026-06-14T10:19:58+00:00",
+                "attempt": 1,
+                "max_attempts": 3,
+                "note": "executor timeout",
+            }
+            write_json(root / "state.json", state)
+            experiment = autoresearcher.normalize_experiment_paths(
+                "project_001",
+                "0002",
+                {
+                    "experiment_id": "0002",
+                    "objective": "Retry existing approved plan after timeout.",
+                    "hypothesis": "Retry can complete after archiving the timeout result.",
+                    "success_criteria": ["corrected_accuracy > baseline_accuracy"],
+                    "failure_criteria": ["missing result JSON"],
+                    "tasks_for_codex": ["Write fake result files."],
+                    "required_outputs": [],
+                    "estimated_runtime_minutes": 1,
+                },
+            )
+            autoresearcher.write_plan(repo, "project_001", "0002", experiment)
+            autoresearcher.write_timeout_result(repo, "project_001", "0002")
+
+            config = autoresearcher.load_config(repo)
+            with redirect_stdout(StringIO()), redirect_stderr(StringIO()):
+                rc = autoresearcher.Orchestrator(repo, config, codex_bin=str(fake)).run(
+                    "project_001",
+                    max_iters=1,
+                    skip_model_check=True,
+                )
+
+            self.assertEqual(rc, 0)
+            archived = root / "artifacts" / "0002" / "retry_attempts" / "attempt_01" / "0002_result.json"
+            self.assertTrue(archived.exists())
+            self.assertEqual(json.loads(archived.read_text())["status"], "timeout")
+            self.assertEqual(json.loads((root / "results" / "0002_result.json").read_text())["status"], "completed")
+            self.assertFalse((root / "packets" / "0002_supervisor_packet.md").exists())
+            state = json.loads((root / "state.json").read_text())
+            self.assertEqual(state["iteration"], 2)
+            self.assertEqual(state["failure_streak"], 0)
+
 
 if __name__ == "__main__":
     unittest.main()

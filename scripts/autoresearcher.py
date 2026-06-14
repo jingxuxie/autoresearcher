@@ -7,6 +7,7 @@ import argparse
 import json
 import os
 import re
+import shutil
 import signal
 import subprocess
 import sys
@@ -919,6 +920,48 @@ def write_timeout_result(repo_root: Path, project: str, iteration_id: str) -> Li
     return [result_path, summary_path, diagnostic_path]
 
 
+def should_retry_existing_result(result: Dict[str, Any], state: Dict[str, Any]) -> bool:
+    if state.get("last_decision") != "retryable_failure":
+        return False
+    return result.get("status") in {"timeout", "failed", "blocked"}
+
+
+def archive_existing_result_for_retry(
+    repo_root: Path,
+    project: str,
+    iteration_id: str,
+    state: Dict[str, Any],
+) -> List[Path]:
+    result_path, summary_path, artifact_dir = result_paths(repo_root, project, iteration_id)
+    last_failure = state.get("last_failure") if isinstance(state.get("last_failure"), dict) else {}
+    attempt = int(last_failure.get("attempt") or state.get("failure_streak") or 1)
+    archive_dir = artifact_dir / "retry_attempts" / f"attempt_{max(1, attempt):02d}"
+    archive_dir.mkdir(parents=True, exist_ok=True)
+
+    written: List[Path] = []
+    if result_path.exists():
+        archived_result = archive_dir / result_path.name
+        shutil.copy2(result_path, archived_result)
+        written.append(archived_result)
+    if summary_path.exists():
+        archived_summary = archive_dir / summary_path.name
+        shutil.copy2(summary_path, archived_summary)
+        written.append(archived_summary)
+
+    manifest_path = archive_dir / "manifest.json"
+    manifest = {
+        "project": project,
+        "iteration_id": iteration_id,
+        "archived_at": utc_now_iso(),
+        "reason": "retry_existing_result",
+        "last_failure": last_failure,
+        "archived_paths": [str(path.relative_to(repo_root)) for path in written],
+    }
+    json_dump(manifest_path, manifest)
+    written.append(manifest_path)
+    return written
+
+
 def write_review_markdown(repo_root: Path, project: str, iteration_id: str, review: Dict[str, Any]) -> Path:
     path = project_dir(repo_root, project) / "reviews" / f"{iteration_id}_review.md"
     lines = [
@@ -1449,25 +1492,34 @@ class Orchestrator:
                 except ValidationError:
                     pass
                 else:
-                    print(f"reviewing existing valid result for {iteration_id}")
-                    decision = self._decision_for_existing_result(project, iteration_id)
-                    review_status = self._review_iteration_result(
-                        project,
-                        state,
-                        iteration,
-                        iteration_id,
-                        decision,
-                        result_path,
-                        summary_path,
-                        artifact_dir,
-                    )
-                    if review_status == "completed":
-                        completed_this_run += 1
-                    elif review_status == "checkpoint":
-                        break
-                    elif review_status == "paused":
-                        return 1
-                    continue
+                    existing_result = load_json(result_path)
+                    if should_retry_existing_result(existing_result, state):
+                        archived = archive_existing_result_for_retry(self.repo_root, project, iteration_id, state)
+                        self.git.commit(
+                            archived,
+                            f"autoresearcher({project}): archive retry {iteration_id}",
+                        )
+                        print(f"retrying existing {existing_result.get('status')} result for {iteration_id}")
+                    else:
+                        print(f"reviewing existing valid result for {iteration_id}")
+                        decision = self._decision_for_existing_result(project, iteration_id)
+                        review_status = self._review_iteration_result(
+                            project,
+                            state,
+                            iteration,
+                            iteration_id,
+                            decision,
+                            result_path,
+                            summary_path,
+                            artifact_dir,
+                        )
+                        if review_status == "completed":
+                            completed_this_run += 1
+                        elif review_status == "checkpoint":
+                            break
+                        elif review_status == "paused":
+                            return 1
+                        continue
 
             existing_plan_json, existing_plan_md = plan_paths(self.repo_root, project, iteration_id)
             decision: Optional[Dict[str, Any]] = None
