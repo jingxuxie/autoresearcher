@@ -1,0 +1,20 @@
+{
+  "archived_at": "2026-06-14T11:11:03+00:00",
+  "archived_paths": [
+    "research/reward_to_gcrl/artifacts/0002/retry_attempts/attempt_03/0002_result.json",
+    "research/reward_to_gcrl/artifacts/0002/retry_attempts/attempt_03/0002_summary.md"
+  ],
+  "cleared_live_paths": [
+    "research/reward_to_gcrl/results/0002_result.json",
+    "research/reward_to_gcrl/results/0002_summary.md"
+  ],
+  "iteration_id": "0002",
+  "last_failure": {
+    "at": "2026-06-14T10:55:39+00:00",
+    "attempt": 3,
+    "max_attempts": 3,
+    "note": "reviewer verdict needs_human"
+  },
+  "project": "reward_to_gcrl",
+  "reason": "retry_existing_result"
+}
