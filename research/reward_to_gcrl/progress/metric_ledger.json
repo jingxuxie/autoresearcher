@@ -297,6 +297,40 @@
       ],
       "review_verdict": "weak_pass",
       "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "The 0009 low-rank FourRooms negative transfer may be caused by loss-scaling or optimization imbalance; loss-balanced or staged auxiliary variants should reduce transfer harm if that diagnosis is correct.",
+      "decision": null,
+      "important_metrics": {
+        "metrics.config.improvement_threshold": 0.1,
+        "metrics.config.replay_behavior.uses_exact_q_or_dp": false,
+        "metrics.environment_audit.verified_against_0009_where_available.aggregate.mean_combined_goal_success_rate": 0.003717948717948718,
+        "metrics.environment_audit.verified_against_0009_where_available.aggregate.mean_combined_reward_success_rate": 0.0,
+        "metrics.environment_audit.verified_against_0009_where_available.aggregate.mean_terminal_reward_success_rate": 0.5384615384615384,
+        "metrics.environment_audit.verified_against_0009_where_available.aggregate.relative_bellman_residual_improvement": -37.09593648978651,
+        "metrics.environment_audit.verified_against_0009_where_available.aggregate.relative_value_error_improvement": -230.03690989471423,
+        "metrics.exact_dp.gamma": 0.95,
+        "metrics.exact_dp.goal_iterations": 14,
+        "metrics.exact_dp.gplus_iterations": 14,
+        "metrics.exact_dp.max_abs_scaled_gplus_minus_q_norm": 1.1102230246251565e-16,
+        "metrics.exact_dp.q_iterations": 14
+      },
+      "iteration": "0010",
+      "negative_signals": [
+        "Exact tabular references are used only for evaluation, not behavior generation or target labels.",
+        "Auxiliary reward-task benefit should not be claimed unless the verdict is repaired_auxiliary_promising.",
+        "repaired_variant_promising",
+        "Primary positive auxiliary-repair success was not achieved; this is valid negative evidence, not support for auxiliary-goal benefit.",
+        "Conclusion is limited to the single predeclared rank-4 low-rank architecture, optimizer, replay setup, and gamma used in this checkpoint."
+      ],
+      "positive_signals": [
+        "Conservative verdict: auxiliary_unsupported_for_lowrank.",
+        "The low-rank model genuinely shares state-action factors across real-state goals and g_plus.",
+        "Original negative transfer reproduced, and neither repaired variant matched terminal-only on g_plus value error and Bellman residual. Auxiliary real-state goals should be paused for this low-rank architecture."
+      ],
+      "review_verdict": "weak_pass",
+      "status": "completed"
     }
   ],
   "project": "reward_to_gcrl"

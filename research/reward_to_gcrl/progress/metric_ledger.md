@@ -11,6 +11,7 @@
 | 0007 | completed | pass | None | `metrics.config.behaviors.medium_right_bias.uses_exact_q`=False<br>`metrics.config.behaviors.mild_right_bias.uses_exact_q`=False<br>`metrics.config.behaviors.strong_right_bias.uses_exact_q`=False<br>`metrics.config.behaviors.uniform_random.uses_exact_q`=False<br>`metrics.exact_dp.rows.0.exact_greedy_policy.0`=1 |
 | 0008 | completed | pass | continue | `metrics.config.goal_success_threshold`=0.99<br>`metrics.exact_dp.rows.0.gamma`=0.95<br>`metrics.exact_dp.rows.0.gplus_final_delta`=0.0<br>`metrics.exact_dp.rows.0.gplus_iterations`=14<br>`metrics.exact_dp.rows.0.max_abs_scaled_gplus_minus_q_norm`=1.1102230246251565e-16 |
 | 0009 | completed | weak_pass | continue | `metrics.config.improvement_threshold`=0.1<br>`metrics.config.replay_behavior.uses_exact_q_or_dp`=False<br>`metrics.exact_dp.gamma`=0.95<br>`metrics.exact_dp.goal_iterations`=14<br>`metrics.exact_dp.gplus_iterations`=14 |
+| 0010 | completed | weak_pass | None | `metrics.config.improvement_threshold`=0.1<br>`metrics.config.replay_behavior.uses_exact_q_or_dp`=False<br>`metrics.environment_audit.verified_against_0009_where_available.aggregate.mean_combined_goal_success_rate`=0.003717948717948718<br>`metrics.environment_audit.verified_against_0009_where_available.aggregate.mean_combined_reward_success_rate`=0.0<br>`metrics.environment_audit.verified_against_0009_where_available.aggregate.mean_terminal_reward_success_rate`=0.5384615384615384 |
 
 ## Positive Signals
 
@@ -40,6 +41,9 @@
 - `0008`: The vector SSM slices are numerically independent in this tabular FourRooms check: the g_plus slice matches terminal-only soft learning, scaled g_plus matches normalized Q, and real-state goal slices match exact reachability references with successful greedy g
 - `0009`: The low-rank model genuinely shares state-action factors across real-state goals and g_plus.
 - `0009`: Combined auxiliary training worsened a g_plus metric or reward-policy disagreement under adequate replay coverage; auxiliary-goal benefit is not supported.
+- `0010`: Conservative verdict: auxiliary_unsupported_for_lowrank.
+- `0010`: The low-rank model genuinely shares state-action factors across real-state goals and g_plus.
+- `0010`: Original negative transfer reproduced, and neither repaired variant matched terminal-only on g_plus value error and Bellman residual. Auxiliary real-state goals should be paused for this low-rank architecture.
 
 ## Negative Signals
 
@@ -70,3 +74,6 @@
 - `0009`: Conservative verdict: negative_transfer.
 - `0009`: Exact tabular references are used only for evaluation, not behavior generation or target labels.
 - `0009`: Auxiliary reward-task benefit should not be claimed unless the verdict is auxiliary_helped_gplus.
+- `0010`: Exact tabular references are used only for evaluation, not behavior generation or target labels.
+- `0010`: Auxiliary reward-task benefit should not be claimed unless the verdict is repaired_auxiliary_promising.
+- `0010`: repaired_variant_promising
