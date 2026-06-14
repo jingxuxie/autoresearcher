@@ -313,6 +313,42 @@
       ],
       "review_verdict": "pass",
       "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "A fixed tiny randomized suite tested whether posterior TRL-log has distinct value over prior-matched posterior model DP beyond handcrafted branch-chain regimes.",
+      "decision": "continue",
+      "important_metrics": {
+        "metrics.coverage_diagnostics.tag_counts.no_success": 3,
+        "metrics.coverage_diagnostics.tag_counts.risk_optimal": 9,
+        "metrics.equivalence_aggregate.best_candidate": "posterior_mc_plus_trl_log",
+        "metrics.equivalence_aggregate.matched_risk_optimal_preserved": true,
+        "metrics.equivalence_aggregate.positive_evidence": false,
+        "metrics.matched_risk_optimal_preserved": true,
+        "metrics.method_summary.empirical_model_dp.mean_all_pair_value_mse": 0.04481289688774978,
+        "metrics.method_summary.empirical_model_dp.mean_heldout_long_horizon_value_mse": 0.03765166954543893,
+        "metrics.method_summary.empirical_model_dp.mean_policy_regret": 0.06840668344867584,
+        "metrics.method_summary.empirical_model_dp.mean_risky_q_calibration_error": 0.22652428374775355,
+        "metrics.method_summary.empirical_model_dp.mean_risky_q_overestimation": 0.07214453318022322,
+        "metrics.method_summary.empirical_model_dp.mean_risky_q_underestimation": 0.15437975056753034
+      },
+      "iteration": "0011",
+      "negative_signals": [
+        "posterior_trl_log and posterior_mc_plus_trl_log were near-equivalent to prior-matched posterior mean model DP across the randomized suite.",
+        "No credible posterior TRL benefit over both TRL-log and prior-matched posterior model DP was detected.",
+        "The suite is intentionally tiny and tabular; it is suitable for this loop but should not be generalized beyond these toy MDP families.",
+        "posterior_trl_log is implemented with the same run_model posterior_mean backup as posterior_mean_model_dp, so the equivalence finding is partly structural; useful as a baseline audit, not as proof about future distinct p...",
+        "Positive evidence is false; future work should not claim a posterior TRL win from this result."
+      ],
+      "positive_signals": [
+        "Positive evidence: False.",
+        "Near-equivalence to posterior model DP: True.",
+        "Max posterior_trl_log value difference vs posterior model DP: 0.",
+        "Action disagreement rate vs posterior model DP: 0.",
+        "The randomized tiny-suite audit supports the 0010 boundary result: posterior TRL-log variants match the prior-matched posterior mean model-DP baseline within numerical tolerance across branch-chain, stochastic stitching, and teleporter families. Any aggregate "
+      ],
+      "review_verdict": "pass",
+      "status": "completed"
     }
   ],
   "project": "sto_trl"

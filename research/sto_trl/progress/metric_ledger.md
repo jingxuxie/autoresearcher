@@ -12,6 +12,7 @@
 | 0008 | completed | weak_pass | continue | `metrics.classification_counts.no_success`=45<br>`metrics.method_summary.empirical_risky_value.action_accuracy`=0.6903225806451613<br>`metrics.method_summary.empirical_risky_value.mean_policy_regret`=0.07556516129032252<br>`metrics.method_summary.empirical_transition_dp.mean_policy_regret`=0.07556516129032252<br>`metrics.method_summary.hoeffding_lcb_delta_0_2.mean_policy_regret`=0.019136129032258063 |
 | 0009 | completed | weak_pass | continue | `metrics.best_transition_uncertainty_method`=posterior_lower_q10_dp_beta_1_1<br>`metrics.best_transition_uncertainty_target_regret_delta_vs_trl_log`=-0.17752500000000004<br>`metrics.chain_guard.by_distance.1.exact`=0.9<br>`metrics.chain_guard.by_distance.2.exact`=0.81<br>`metrics.chain_guard.by_distance.3.exact`=0.7290000000000001 |
 | 0010 | completed | pass | continue | `metrics.best_posterior_trl_candidate`=posterior_trl_log<br>`metrics.chain_guard.start_exact_value`=0.38742048900000015<br>`metrics.coverage_diagnostics.regimes.lucky_only_safe_optimal.label_coverage.risk_1|advance.censored_positive_labels`=0<br>`metrics.coverage_diagnostics.regimes.lucky_only_safe_optimal.label_coverage.risk_1|advance.label_count_used`=4<br>`metrics.coverage_diagnostics.regimes.lucky_only_safe_optimal.label_coverage.risk_1|advance.mean_used_label`=0.81 |
+| 0011 | completed | pass | continue | `metrics.coverage_diagnostics.tag_counts.no_success`=3<br>`metrics.coverage_diagnostics.tag_counts.risk_optimal`=9<br>`metrics.equivalence_aggregate.best_candidate`=posterior_mc_plus_trl_log<br>`metrics.equivalence_aggregate.matched_risk_optimal_preserved`=True<br>`metrics.equivalence_aggregate.positive_evidence`=False |
 
 ## Positive Signals
 
@@ -30,6 +31,9 @@
 - `0010`: Positive transitive evidence: False.
 - `0010`: Posterior TRL candidates equivalent to posterior model DP: True.
 - `0010`: MC-only heldout MSE minus TRL-log heldout MSE: 0.380607415380.
+- `0011`: Positive evidence: False.
+- `0011`: Near-equivalence to posterior model DP: True.
+- `0011`: Max posterior_trl_log value difference vs posterior model DP: 0.
 
 ## Negative Signals
 
@@ -62,3 +66,6 @@
 - `0010`: Matched risk-optimal action preserved by posterior TRL candidates: True.
 - `0010`: posterior_trl_log and posterior_mc_plus_trl_log were numerically equivalent to the prior-matched posterior mean model-DP baseline.
 - `0010`: No distinct posterior transitive benefit over both TRL-log and prior-matched posterior model DP was detected.
+- `0011`: posterior_trl_log and posterior_mc_plus_trl_log were near-equivalent to prior-matched posterior mean model DP across the randomized suite.
+- `0011`: No credible posterior TRL benefit over both TRL-log and prior-matched posterior model DP was detected.
+- `0011`: The suite is intentionally tiny and tabular; it is suitable for this loop but should not be generalized beyond these toy MDP families.
