@@ -5,7 +5,7 @@
   "iteration": 12,
   "last_decision": "pivot",
   "last_failure": null,
-  "last_pro_review_iteration": 11,
+  "last_pro_review_iteration": 12,
   "last_pro_review_path": "research/sto_trl/decisions/0013_pro_decision.json",
   "last_summary_iteration": 12,
   "last_summary_path": "research/sto_trl/progress/0012_pre_pro_local_pivot_summary.md",
@@ -34,21 +34,14 @@
     "2026-06-14T06:02:00+00:00: Pro checkpoint blocked (browser_bridge_unavailable); packet research/sto_trl/pro_packets/0012_review3_PRO_REVIEW_PACKET.md",
     "2026-06-14T06:08:11+00:00: Pro decision saved for checkpoint human_requested_pivot (research/sto_trl/decisions/0012_review4_pro_decision.json)",
     "2026-06-14T06:08:42+00:00: applied Pro decision pivot from research/sto_trl/decisions/0012_review4_pro_decision.json",
-    "2026-06-14T06:22:59+00:00: Pro decision saved for checkpoint local_pivot (research/sto_trl/decisions/0013_pro_decision.json)"
+    "2026-06-14T06:22:59+00:00: Pro decision saved for checkpoint local_pivot (research/sto_trl/decisions/0013_pro_decision.json)",
+    "2026-06-14T06:23:01+00:00: applied Pro decision pivot from research/sto_trl/decisions/0013_pro_decision.json"
   ],
-  "pending_checkpoint": {
-    "backend": "cdp",
-    "iteration_id": "0013",
-    "packet_path": "research/sto_trl/pro_packets/0013_PRO_REVIEW_PACKET.md",
-    "pro_decision_path": "research/sto_trl/decisions/0013_pro_decision.json",
-    "reason": "local_pivot",
-    "status": "pro_decision_ingested",
-    "type": "chatgpt_pro"
-  },
+  "pending_checkpoint": null,
   "pending_local_decision_path": null,
   "primary_metric": null,
-  "pro_review_count": 3,
+  "pro_review_count": 4,
   "protected_file_drift": false,
   "status": "active",
-  "weak_pass_streak": 1
+  "weak_pass_streak": 0
 }
