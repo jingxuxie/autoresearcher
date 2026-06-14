@@ -1,0 +1,14 @@
+{
+  "drift_detected": true,
+  "iteration": "0004",
+  "protected_paths": [
+    "autoresearcher.yaml"
+  ],
+  "status_lines": [
+    " M autoresearcher.yaml",
+    "?? research/reward_to_gcrl/artifacts/0004/",
+    "?? research/reward_to_gcrl/packets/0004_executor_packet.md",
+    "?? research/reward_to_gcrl/results/0004_result.json",
+    "?? research/reward_to_gcrl/results/0004_summary.md"
+  ]
+}
