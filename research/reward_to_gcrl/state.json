@@ -1,7 +1,7 @@
 {
   "best_primary_metric": null,
   "failure_streak": 0,
-  "human_review_required": true,
+  "human_review_required": false,
   "iteration": 1,
   "last_decision": "continue",
   "last_failure": null,
@@ -15,22 +15,14 @@
     "2026-06-14T09:27:51+00:00: resumed: Environment setup is ready after rerun; start requested by user.",
     "2026-06-14T09:40:04+00:00: Pro decision saved for checkpoint protected_file_drift (research/reward_to_gcrl/decisions/0001_pro_decision.json)",
     "2026-06-14T09:40:05+00:00: applied Pro decision continue from research/reward_to_gcrl/decisions/0001_pro_decision.json",
-    "2026-06-14T09:47:02+00:00: Pro checkpoint blocked (response_parse_failed); packet research/reward_to_gcrl/pro_packets/0002_PRO_REVIEW_PACKET.md"
+    "2026-06-14T09:47:02+00:00: Pro checkpoint blocked (response_parse_failed); packet research/reward_to_gcrl/pro_packets/0002_PRO_REVIEW_PACKET.md",
+    "2026-06-14T09:48:30+00:00: cleared stale protected_file_drift after committing/pushing a clean worktree"
   ],
-  "pending_checkpoint": {
-    "backend": "cdp",
-    "blocker_path": "research/reward_to_gcrl/decisions/0002_pro_blocker.json",
-    "iteration_id": "0002",
-    "manual_fallback": true,
-    "packet_path": "research/reward_to_gcrl/pro_packets/0002_PRO_REVIEW_PACKET.md",
-    "reason": "protected_file_drift",
-    "status": "blocked",
-    "type": "chatgpt_pro"
-  },
+  "pending_checkpoint": null,
   "pending_local_decision_path": null,
   "primary_metric": null,
   "pro_review_count": 1,
-  "protected_file_drift": true,
-  "status": "paused",
+  "protected_file_drift": false,
+  "status": "active",
   "weak_pass_streak": 1
 }
