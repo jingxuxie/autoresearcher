@@ -506,7 +506,7 @@ The expected value of this experiment is not an algorithm win. It should identif
   "pro_review_count": 1,
   "protected_file_drift": false,
   "status": "active",
-  "weak_pass_streak": 2
+  "weak_pass_streak": 0
 }
 ```
 
