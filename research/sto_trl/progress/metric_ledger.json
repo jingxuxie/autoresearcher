@@ -278,6 +278,41 @@
       ],
       "review_verdict": "weak_pass",
       "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "Posterior transition uncertainty plus log-space transitive propagation was tested against prior-matched transition-model DP on censored multi-step stochastic branch-chain diagnostics.",
+      "decision": "continue",
+      "important_metrics": {
+        "metrics.best_posterior_trl_candidate": "posterior_trl_log",
+        "metrics.chain_guard.start_exact_value": 0.38742048900000015,
+        "metrics.coverage_diagnostics.regimes.lucky_only_safe_optimal.label_coverage.risk_1|advance.censored_positive_labels": 0,
+        "metrics.coverage_diagnostics.regimes.lucky_only_safe_optimal.label_coverage.risk_1|advance.label_count_used": 4,
+        "metrics.coverage_diagnostics.regimes.lucky_only_safe_optimal.label_coverage.risk_1|advance.mean_used_label": 0.81,
+        "metrics.coverage_diagnostics.regimes.lucky_only_safe_optimal.label_coverage.risk_1|advance.positive_labels": 4,
+        "metrics.coverage_diagnostics.regimes.lucky_only_safe_optimal.label_coverage.risk_1|advance.total_occurrences": 4,
+        "metrics.coverage_diagnostics.regimes.lucky_only_safe_optimal.label_coverage.risk_1|advance.zero_labels": 0,
+        "metrics.coverage_diagnostics.regimes.lucky_only_safe_optimal.label_coverage.risk_2|advance.censored_positive_labels": 0,
+        "metrics.coverage_diagnostics.regimes.lucky_only_safe_optimal.label_coverage.risk_2|advance.label_count_used": 4,
+        "metrics.coverage_diagnostics.regimes.lucky_only_safe_optimal.label_coverage.risk_2|advance.mean_used_label": 0.9,
+        "metrics.coverage_diagnostics.regimes.lucky_only_safe_optimal.label_coverage.risk_2|advance.positive_labels": 4
+      },
+      "iteration": "0010",
+      "negative_signals": [
+        "Matched risk-optimal action preserved by posterior TRL candidates: True.",
+        "posterior_trl_log and posterior_mc_plus_trl_log were numerically equivalent to the prior-matched posterior mean model-DP baseline.",
+        "No distinct posterior transitive benefit over both TRL-log and prior-matched posterior model DP was detected.",
+        "Evidence is still a compact handcrafted tabular diagnostic with five regimes; it establishes a baseline, not a broad claim about stochastic TRL.",
+        "posterior_lower_q10_model_dp is conservative and does not preserve matched risk-optimal action, while posterior mean variants preserve matched risk but do not beat prior-matched model DP."
+      ],
+      "positive_signals": [
+        "Positive transitive evidence: False.",
+        "Posterior TRL candidates equivalent to posterior model DP: True.",
+        "MC-only heldout MSE minus TRL-log heldout MSE: 0.380607415380.",
+        "The multi-step branch-chain confirms that transitive backups recover censored long-horizon values better than MC-only, and posterior transition uncertainty changes the risky branch through the declared Beta prior. However, posterior_trl_log and posterior_mc_pl"
+      ],
+      "review_verdict": "pass",
+      "status": "completed"
     }
   ],
   "project": "sto_trl"
