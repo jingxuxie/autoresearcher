@@ -1,0 +1,34 @@
+{
+  "audit_complete": true,
+  "behaviors": {
+    "right_biased_random": {
+      "action_probabilities": [
+        0.25,
+        0.75
+      ],
+      "description": "non-oracle state-independent exploratory right bias",
+      "uses_exact_q": false
+    },
+    "uniform_random": {
+      "action_probabilities": [
+        0.5,
+        0.5
+      ],
+      "description": "non-oracle state-independent uniform random actions",
+      "uses_exact_q": false
+    }
+  },
+  "command": "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0006/run_riverswim_nonoracle.py --check-only",
+  "gammas": [
+    0.95,
+    0.99,
+    0.995
+  ],
+  "missing_fields": [],
+  "non_oracle_behaviors": true,
+  "scaled_soft_matches_q_norm": true,
+  "seed_count": 10,
+  "status": "passed",
+  "timestamp": "2026-06-14T21:42:13.499498+00:00",
+  "transition_budget": 150000
+}
