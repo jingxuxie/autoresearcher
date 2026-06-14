@@ -71,7 +71,7 @@ chatgpt_pro:
   cdp_response_timeout_seconds: 600
   cadence_iterations: 3
   allow_cadence_2_or_3: true
-  thread_url: "https://chatgpt.com/c/WEB:0b0c92fd-9c46-4180-816a-df258caa62dd"
+  thread_url: "https://chatgpt.com/g/g-p-6a291a9d9bfc81918d9afbe6753f101e/c/6a2e15c9-17e4-83e8-9293-f695d85d7905"
   use_existing_thread: true
   allow_new_thread: false
   existing_tab: true

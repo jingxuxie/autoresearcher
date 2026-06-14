@@ -110,14 +110,44 @@ def _safe_cdp_url(url: str) -> str:
     return url.rstrip("/")
 
 
+def _normalize_thread_url(url: str) -> str:
+    parsed = urllib.parse.urlparse(url.strip())
+    if not parsed.scheme or not parsed.netloc:
+        return url.strip().rstrip("/")
+    return urllib.parse.urlunparse((parsed.scheme, parsed.netloc, parsed.path.rstrip("/"), "", "", ""))
+
+
+def _conversation_id(url: str) -> Optional[str]:
+    parsed = urllib.parse.urlparse(url.strip())
+    parts = [urllib.parse.unquote(part) for part in parsed.path.split("/") if part]
+    for index, part in enumerate(parts):
+        if part == "c" and index + 1 < len(parts):
+            return parts[index + 1]
+    return None
+
+
+def _page_matches_thread(page_url: str, thread_url: str) -> bool:
+    if not thread_url:
+        return False
+    normalized_page = _normalize_thread_url(page_url)
+    normalized_thread = _normalize_thread_url(thread_url)
+    if normalized_page == normalized_thread:
+        return True
+    page_conversation = _conversation_id(normalized_page)
+    thread_conversation = _conversation_id(normalized_thread)
+    return bool(page_conversation and thread_conversation and page_conversation == thread_conversation)
+
+
 def _page_score(page: Dict[str, Any], thread_url: str) -> int:
     url = str(page.get("url") or "")
-    if url == thread_url:
-        return 100
-    if thread_url and url.startswith(thread_url):
-        return 90
+    if thread_url:
+        if _normalize_thread_url(url) == _normalize_thread_url(thread_url):
+            return 100
+        if _page_matches_thread(url, thread_url):
+            return 95
+        return 0
     if "chatgpt.com/c/" in url:
-        return 80
+        return 100
     if url.startswith(CHATGPT_ORIGIN):
         return 70
     return 0
@@ -154,7 +184,7 @@ def select_chatgpt_page(cdp_url: str, thread_url: str, allow_new_tab: bool = Tru
             return opened
     raise CdpError(
         "thread_unavailable",
-        "No ChatGPT tab is available through Chrome DevTools.",
+        "The configured ChatGPT thread is not available through Chrome DevTools.",
         {"cdp_url": cdp_url, "page_urls": [page.get("url") for page in pages]},
     )
 
@@ -186,11 +216,16 @@ STATE_SCRIPT = r"""
     return value === 'assistant' || node.matches('[data-testid="assistant-turn"]') || node.innerText.length > 50;
   });
   const latestAssistant = assistantNodes.length ? assistantNodes[assistantNodes.length - 1].innerText : "";
-  const generating = Boolean(document.querySelector([
-    'button[data-testid="stop-button"]',
-    'button[aria-label*="Stop"]',
-    'button[aria-label*="stop"]'
-  ].join(',')));
+  const generating = Boolean(document.querySelector('button[data-testid="stop-button"]')) ||
+    Array.from(document.querySelectorAll('button')).some((button) => {
+      const label = (button.getAttribute('aria-label') || button.innerText || '').trim().toLowerCase();
+      return [
+        'stop generating',
+        'stop streaming',
+        'stop response',
+        'stop responding'
+      ].includes(label);
+    });
   const loginRequired = /log in|sign up|continue with google|continue with microsoft/i.test(text) && !composer;
   const captcha = /captcha|verify you are human|checking your browser/i.test(text);
   const rateLimited = /too many requests|rate limit|try again later/i.test(text);
@@ -271,7 +306,7 @@ def connect_page(cdp_url: str, thread_url: str, allow_new_tab: bool = True) -> C
     client = CdpClient(websocket_url)
     client.call("Runtime.enable")
     client.call("Page.enable")
-    if thread_url and not str(page.get("url") or "").startswith(thread_url):
+    if thread_url and not _page_matches_thread(str(page.get("url") or ""), thread_url):
         client.call("Page.navigate", {"url": thread_url})
     return client
 
@@ -284,10 +319,12 @@ def wait_for_ready(client: CdpClient, timeout_seconds: int = 120) -> Dict[str, A
         latest_state = value if isinstance(value, dict) else {}
         if latest_state.get("captcha") or latest_state.get("rateLimited") or latest_state.get("loginRequired"):
             _require_ready(latest_state)
-        if latest_state.get("composerFound"):
+        if latest_state.get("composerFound") and not latest_state.get("generating"):
             return latest_state
         time.sleep(1)
     _require_ready(latest_state)
+    if latest_state.get("generating"):
+        raise CdpError("pro_backend_failed", "Timed out waiting for ChatGPT to finish the current response.", latest_state)
     raise CdpError("selector_drift", "Timed out waiting for ChatGPT composer.", latest_state)
 
 

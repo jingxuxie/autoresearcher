@@ -16,7 +16,7 @@ if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
 import autoresearcher  # noqa: E402
-from chatgpt_cdp_bridge import CdpResponse  # noqa: E402
+from chatgpt_cdp_bridge import CdpError, CdpResponse, select_chatgpt_page  # noqa: E402
 
 
 def write_json(path: Path, data: object) -> None:
@@ -292,6 +292,35 @@ class ProBridgeTests(unittest.TestCase):
             self.assertEqual(blocker["reason"], "login_required")
             state = json.loads((root / "state.json").read_text())
             self.assertEqual(state["status"], "paused")
+
+    def test_cdp_page_selection_requires_configured_thread(self) -> None:
+        pages = [
+            {
+                "type": "page",
+                "title": "Project Decision: Stop",
+                "url": "https://chatgpt.com/c/wrong-thread",
+                "webSocketDebuggerUrl": "ws://wrong",
+            }
+        ]
+        with patch("chatgpt_cdp_bridge._list_pages", return_value=pages):
+            with self.assertRaises(CdpError) as ctx:
+                select_chatgpt_page("http://127.0.0.1:9222", "https://chatgpt.com/c/right-thread", allow_new_tab=False)
+
+        self.assertEqual(ctx.exception.reason, "thread_unavailable")
+
+    def test_cdp_page_selection_matches_project_thread_conversation_id(self) -> None:
+        pages = [
+            {
+                "type": "page",
+                "title": "Transitive RL Research",
+                "url": "https://chatgpt.com/g/g-p-project/c/abc123?model=gpt-5",
+                "webSocketDebuggerUrl": "ws://right",
+            }
+        ]
+        with patch("chatgpt_cdp_bridge._list_pages", return_value=pages):
+            page = select_chatgpt_page("http://127.0.0.1:9222", "https://chatgpt.com/c/abc123", allow_new_tab=False)
+
+        self.assertEqual(page["webSocketDebuggerUrl"], "ws://right")
 
 
 if __name__ == "__main__":
