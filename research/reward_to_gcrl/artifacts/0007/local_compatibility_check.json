@@ -1,0 +1,53 @@
+{
+  "audit_complete": true,
+  "behaviors": {
+    "medium_right_bias": {
+      "action_probabilities": [
+        0.3,
+        0.7
+      ],
+      "description": "non-oracle state-independent medium exploratory right bias",
+      "uses_exact_q": false
+    },
+    "mild_right_bias": {
+      "action_probabilities": [
+        0.4,
+        0.6
+      ],
+      "description": "non-oracle state-independent mild exploratory right bias",
+      "uses_exact_q": false
+    },
+    "strong_right_bias": {
+      "action_probabilities": [
+        0.25,
+        0.75
+      ],
+      "description": "non-oracle state-independent strong exploratory right bias",
+      "uses_exact_q": false
+    },
+    "uniform_random": {
+      "action_probabilities": [
+        0.5,
+        0.5
+      ],
+      "description": "non-oracle state-independent uniform random actions",
+      "uses_exact_q": false
+    }
+  },
+  "command": "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0007/run_riverswim_coverage_dose_response.py --check-only",
+  "expected_transition_table_hash": "2e481565b49954b048469471863e55d38268fb628e07d8839b77f881ae07a2ed",
+  "gammas": [
+    0.95,
+    0.99,
+    0.995
+  ],
+  "missing_fields": [],
+  "non_oracle_behaviors": true,
+  "scaled_soft_matches_q_norm": true,
+  "seed_count": 10,
+  "status": "passed",
+  "timestamp": "2026-06-14T22:31:29.119202+00:00",
+  "transition_budget": 150000,
+  "transition_hash_matches_0005_0006": true,
+  "transition_table_hash": "2e481565b49954b048469471863e55d38268fb628e07d8839b77f881ae07a2ed"
+}

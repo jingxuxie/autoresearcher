@@ -1,0 +1,285 @@
+{
+  "action_mapping": [
+    {
+      "action": 0,
+      "name": "left"
+    },
+    {
+      "action": 1,
+      "name": "right"
+    }
+  ],
+  "behavior_oracle_restriction": "Behavior policies are fixed action-probability policies and do not use exact Q, exact DP, or learned value preferences for data generation.",
+  "behavior_policies": {
+    "medium_right_bias": {
+      "action_probabilities": [
+        0.3,
+        0.7
+      ],
+      "description": "non-oracle state-independent medium exploratory right bias",
+      "uses_exact_q": false
+    },
+    "mild_right_bias": {
+      "action_probabilities": [
+        0.4,
+        0.6
+      ],
+      "description": "non-oracle state-independent mild exploratory right bias",
+      "uses_exact_q": false
+    },
+    "strong_right_bias": {
+      "action_probabilities": [
+        0.25,
+        0.75
+      ],
+      "description": "non-oracle state-independent strong exploratory right bias",
+      "uses_exact_q": false
+    },
+    "uniform_random": {
+      "action_probabilities": [
+        0.5,
+        0.5
+      ],
+      "description": "non-oracle state-independent uniform random actions",
+      "uses_exact_q": false
+    }
+  },
+  "continuing_task": true,
+  "coverage_thresholds": {
+    "adequate_right_reward_events_per_10000_gte": 300.0,
+    "borderline_right_reward_events_per_10000_lt": 300.0,
+    "min_visited_state_action_pairs": 12,
+    "starved_right_reward_events_per_10000_lt": 50.0
+  },
+  "environment": "small_stochastic_riverswim",
+  "experiment_id": "0007",
+  "n_actions": 2,
+  "n_states": 6,
+  "reward_normalization": {
+    "affine_offset": 0.0,
+    "affine_scale": 1.0,
+    "all_other_rewards": 0.0,
+    "left_end_small_reward": 0.01,
+    "normalized_reward": "identity(raw_reward)",
+    "raw_rewards_in_[0,1]": true,
+    "right_end_sparse_reward": 1.0
+  },
+  "right_end_state": 5,
+  "sampled_augmented_target_semantics": {
+    "continued_target": "max_a M(s_next,a), no extra gamma factor",
+    "g_minus_target": 0.0,
+    "g_plus_target": 1.0,
+    "p_continue": "gamma",
+    "p_g_minus": "(1 - gamma) * (1 - r_bar)",
+    "p_g_plus": "(1 - gamma) * r_bar"
+  },
+  "start_state": 0,
+  "terminal_absorbing_handling": "No original RiverSwim states are terminal. Original-transition bootstraps are always active. Sampled g_plus/g_minus absorbing events do not bootstrap.",
+  "terminal_states": [],
+  "transition_records": [
+    {
+      "action": 0,
+      "action_name": "left",
+      "normalized_reward": 0.01,
+      "reward": 0.01,
+      "state": 0,
+      "transitions": [
+        {
+          "next_state": 0,
+          "probability": 1.0
+        }
+      ]
+    },
+    {
+      "action": 1,
+      "action_name": "right",
+      "normalized_reward": 0.0,
+      "reward": 0.0,
+      "state": 0,
+      "transitions": [
+        {
+          "next_state": 0,
+          "probability": 0.6
+        },
+        {
+          "next_state": 1,
+          "probability": 0.4
+        }
+      ]
+    },
+    {
+      "action": 0,
+      "action_name": "left",
+      "normalized_reward": 0.0,
+      "reward": 0.0,
+      "state": 1,
+      "transitions": [
+        {
+          "next_state": 0,
+          "probability": 1.0
+        }
+      ]
+    },
+    {
+      "action": 1,
+      "action_name": "right",
+      "normalized_reward": 0.0,
+      "reward": 0.0,
+      "state": 1,
+      "transitions": [
+        {
+          "next_state": 0,
+          "probability": 0.05
+        },
+        {
+          "next_state": 1,
+          "probability": 0.6
+        },
+        {
+          "next_state": 2,
+          "probability": 0.35
+        }
+      ]
+    },
+    {
+      "action": 0,
+      "action_name": "left",
+      "normalized_reward": 0.0,
+      "reward": 0.0,
+      "state": 2,
+      "transitions": [
+        {
+          "next_state": 1,
+          "probability": 1.0
+        }
+      ]
+    },
+    {
+      "action": 1,
+      "action_name": "right",
+      "normalized_reward": 0.0,
+      "reward": 0.0,
+      "state": 2,
+      "transitions": [
+        {
+          "next_state": 1,
+          "probability": 0.05
+        },
+        {
+          "next_state": 2,
+          "probability": 0.6
+        },
+        {
+          "next_state": 3,
+          "probability": 0.35
+        }
+      ]
+    },
+    {
+      "action": 0,
+      "action_name": "left",
+      "normalized_reward": 0.0,
+      "reward": 0.0,
+      "state": 3,
+      "transitions": [
+        {
+          "next_state": 2,
+          "probability": 1.0
+        }
+      ]
+    },
+    {
+      "action": 1,
+      "action_name": "right",
+      "normalized_reward": 0.0,
+      "reward": 0.0,
+      "state": 3,
+      "transitions": [
+        {
+          "next_state": 2,
+          "probability": 0.05
+        },
+        {
+          "next_state": 3,
+          "probability": 0.6
+        },
+        {
+          "next_state": 4,
+          "probability": 0.35
+        }
+      ]
+    },
+    {
+      "action": 0,
+      "action_name": "left",
+      "normalized_reward": 0.0,
+      "reward": 0.0,
+      "state": 4,
+      "transitions": [
+        {
+          "next_state": 3,
+          "probability": 1.0
+        }
+      ]
+    },
+    {
+      "action": 1,
+      "action_name": "right",
+      "normalized_reward": 0.0,
+      "reward": 0.0,
+      "state": 4,
+      "transitions": [
+        {
+          "next_state": 3,
+          "probability": 0.05
+        },
+        {
+          "next_state": 4,
+          "probability": 0.6
+        },
+        {
+          "next_state": 5,
+          "probability": 0.35
+        }
+      ]
+    },
+    {
+      "action": 0,
+      "action_name": "left",
+      "normalized_reward": 0.0,
+      "reward": 0.0,
+      "state": 5,
+      "transitions": [
+        {
+          "next_state": 4,
+          "probability": 1.0
+        }
+      ]
+    },
+    {
+      "action": 1,
+      "action_name": "right",
+      "normalized_reward": 1.0,
+      "reward": 1.0,
+      "state": 5,
+      "transitions": [
+        {
+          "next_state": 4,
+          "probability": 0.4
+        },
+        {
+          "next_state": 5,
+          "probability": 0.6
+        }
+      ]
+    }
+  ],
+  "transition_row_sums_max": 1.0,
+  "transition_row_sums_min": 1.0,
+  "transition_table_hash": "2e481565b49954b048469471863e55d38268fb628e07d8839b77f881ae07a2ed",
+  "transition_table_shape": [
+    6,
+    2,
+    6
+  ]
+}
