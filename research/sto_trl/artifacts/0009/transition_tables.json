@@ -1,0 +1,352 @@
+{
+  "ambiguous_risk_optimal_boundary": {
+    "absorbing_states": [
+      "goal",
+      "trap"
+    ],
+    "note": "True transition probabilities are recorded for evaluation/audit only; methods use observed counts.",
+    "safe_1|advance": [
+      {
+        "next_state": "safe_2",
+        "probability": 1.0
+      }
+    ],
+    "safe_2|advance": [
+      {
+        "next_state": "goal",
+        "probability": 1.0
+      }
+    ],
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_1",
+        "probability": 1.0
+      }
+    ],
+    "states": [
+      "start",
+      "safe_1",
+      "safe_2",
+      "goal",
+      "trap"
+    ]
+  },
+  "ambiguous_safe_optimal_boundary": {
+    "absorbing_states": [
+      "goal",
+      "trap"
+    ],
+    "note": "True transition probabilities are recorded for evaluation/audit only; methods use observed counts.",
+    "safe_1|advance": [
+      {
+        "next_state": "safe_2",
+        "probability": 1.0
+      }
+    ],
+    "safe_2|advance": [
+      {
+        "next_state": "goal",
+        "probability": 1.0
+      }
+    ],
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_1",
+        "probability": 1.0
+      }
+    ],
+    "states": [
+      "start",
+      "safe_1",
+      "safe_2",
+      "goal",
+      "trap"
+    ]
+  },
+  "matched_identifiable_safe_optimal": {
+    "absorbing_states": [
+      "goal",
+      "trap"
+    ],
+    "note": "True transition probabilities are recorded for evaluation/audit only; methods use observed counts.",
+    "safe_1|advance": [
+      {
+        "next_state": "safe_2",
+        "probability": 1.0
+      }
+    ],
+    "safe_2|advance": [
+      {
+        "next_state": "goal",
+        "probability": 1.0
+      }
+    ],
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_1",
+        "probability": 1.0
+      }
+    ],
+    "states": [
+      "start",
+      "safe_1",
+      "safe_2",
+      "goal",
+      "trap"
+    ]
+  },
+  "matched_risk_optimal_high_coverage": {
+    "absorbing_states": [
+      "goal",
+      "trap"
+    ],
+    "note": "True transition probabilities are recorded for evaluation/audit only; methods use observed counts.",
+    "safe_1|advance": [
+      {
+        "next_state": "safe_2",
+        "probability": 1.0
+      }
+    ],
+    "safe_2|advance": [
+      {
+        "next_state": "safe_3",
+        "probability": 1.0
+      }
+    ],
+    "safe_3|advance": [
+      {
+        "next_state": "goal",
+        "probability": 1.0
+      }
+    ],
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_1",
+        "probability": 1.0
+      }
+    ],
+    "states": [
+      "start",
+      "safe_1",
+      "safe_2",
+      "safe_3",
+      "goal",
+      "trap"
+    ]
+  },
+  "prior_dependent_safe_optimal": {
+    "absorbing_states": [
+      "goal",
+      "trap"
+    ],
+    "note": "True transition probabilities are recorded for evaluation/audit only; methods use observed counts.",
+    "safe_1|advance": [
+      {
+        "next_state": "safe_2",
+        "probability": 1.0
+      }
+    ],
+    "safe_2|advance": [
+      {
+        "next_state": "safe_3",
+        "probability": 1.0
+      }
+    ],
+    "safe_3|advance": [
+      {
+        "next_state": "goal",
+        "probability": 1.0
+      }
+    ],
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_1",
+        "probability": 1.0
+      }
+    ],
+    "states": [
+      "start",
+      "safe_1",
+      "safe_2",
+      "safe_3",
+      "goal",
+      "trap"
+    ]
+  },
+  "risk_no_success_stress": {
+    "absorbing_states": [
+      "goal",
+      "trap"
+    ],
+    "note": "True transition probabilities are recorded for evaluation/audit only; methods use observed counts.",
+    "safe_1|advance": [
+      {
+        "next_state": "safe_2",
+        "probability": 1.0
+      }
+    ],
+    "safe_2|advance": [
+      {
+        "next_state": "goal",
+        "probability": 1.0
+      }
+    ],
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_1",
+        "probability": 1.0
+      }
+    ],
+    "states": [
+      "start",
+      "safe_1",
+      "safe_2",
+      "goal",
+      "trap"
+    ]
+  },
+  "safe_lucky_only_stress": {
+    "absorbing_states": [
+      "goal",
+      "trap"
+    ],
+    "note": "True transition probabilities are recorded for evaluation/audit only; methods use observed counts.",
+    "safe_1|advance": [
+      {
+        "next_state": "safe_2",
+        "probability": 1.0
+      }
+    ],
+    "safe_2|advance": [
+      {
+        "next_state": "goal",
+        "probability": 1.0
+      }
+    ],
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_1",
+        "probability": 1.0
+      }
+    ],
+    "states": [
+      "start",
+      "safe_1",
+      "safe_2",
+      "goal",
+      "trap"
+    ]
+  },
+  "safe_no_success_identifiable": {
+    "absorbing_states": [
+      "goal",
+      "trap"
+    ],
+    "note": "True transition probabilities are recorded for evaluation/audit only; methods use observed counts.",
+    "safe_1|advance": [
+      {
+        "next_state": "safe_2",
+        "probability": 1.0
+      }
+    ],
+    "safe_2|advance": [
+      {
+        "next_state": "goal",
+        "probability": 1.0
+      }
+    ],
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_1",
+        "probability": 1.0
+      }
+    ],
+    "states": [
+      "start",
+      "safe_1",
+      "safe_2",
+      "goal",
+      "trap"
+    ]
+  }
+}

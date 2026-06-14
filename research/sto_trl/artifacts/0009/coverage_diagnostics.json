@@ -1,0 +1,72 @@
+{
+  "num_method_rows": 72,
+  "num_selected_cells": 8,
+  "regime_label_counts": {
+    "ambiguous_risk_optimal": 1,
+    "ambiguous_safe_optimal": 1,
+    "lucky_only_safe_optimal": 1,
+    "matched_identifiable_safe_optimal": 1,
+    "matched_risk_optimal": 1,
+    "no_success_risk_optimal": 1,
+    "no_success_safe_optimal": 1,
+    "prior_dependent_safe_optimal": 1
+  },
+  "risky_sample_counts": {
+    "ambiguous_risk_optimal_boundary": {
+      "observed_failures": 1,
+      "observed_success_rate": 0.75,
+      "observed_successes": 3
+    },
+    "ambiguous_safe_optimal_boundary": {
+      "observed_failures": 1,
+      "observed_success_rate": 0.75,
+      "observed_successes": 3
+    },
+    "matched_identifiable_safe_optimal": {
+      "observed_failures": 6,
+      "observed_success_rate": 0.25,
+      "observed_successes": 2
+    },
+    "matched_risk_optimal_high_coverage": {
+      "observed_failures": 1,
+      "observed_success_rate": 0.9375,
+      "observed_successes": 15
+    },
+    "prior_dependent_safe_optimal": {
+      "observed_failures": 1,
+      "observed_success_rate": 0.75,
+      "observed_successes": 3
+    },
+    "risk_no_success_stress": {
+      "observed_failures": 8,
+      "observed_success_rate": 0.0,
+      "observed_successes": 0
+    },
+    "safe_lucky_only_stress": {
+      "observed_failures": 0,
+      "observed_success_rate": 1.0,
+      "observed_successes": 4
+    },
+    "safe_no_success_identifiable": {
+      "observed_failures": 8,
+      "observed_success_rate": 0.0,
+      "observed_successes": 0
+    }
+  },
+  "tag_counts": {
+    "ambiguous": 5,
+    "identifiable": 3,
+    "lucky_only": 1,
+    "matched": 5,
+    "no_success": 2,
+    "prior_dependent": 4,
+    "risky_optimal": 3,
+    "safe_optimal": 5
+  },
+  "target_regime_labels_for_posterior_delta": [
+    "ambiguous_risk_optimal",
+    "ambiguous_safe_optimal",
+    "lucky_only_safe_optimal",
+    "prior_dependent_safe_optimal"
+  ]
+}

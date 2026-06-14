@@ -1,0 +1,176 @@
+{
+  "cells": [
+    {
+      "cell_id": "matched_identifiable_safe_optimal",
+      "classification_tags": [
+        "matched",
+        "identifiable",
+        "safe_optimal"
+      ],
+      "empirical_identifiable_by_confidence_set": true,
+      "exact_optimal_action": "safe",
+      "exact_q_risky": 0.225,
+      "exact_q_safe": 0.7290000000000001,
+      "observed_failures": 6,
+      "observed_success_rate": 0.25,
+      "observed_successes": 2,
+      "prior_dependent_by_quantiles": false,
+      "regime_label": "matched_identifiable_safe_optimal",
+      "risky_samples": 8,
+      "safe_length": 3,
+      "selection_reason": "Matched empirical rate and safe is exactly optimal.",
+      "true_risky_success_prob": 0.25
+    },
+    {
+      "cell_id": "matched_risk_optimal_high_coverage",
+      "classification_tags": [
+        "matched",
+        "ambiguous",
+        "risky_optimal"
+      ],
+      "empirical_identifiable_by_confidence_set": false,
+      "exact_optimal_action": "risky",
+      "exact_q_risky": 0.81,
+      "exact_q_safe": 0.6561,
+      "observed_failures": 1,
+      "observed_success_rate": 0.9375,
+      "observed_successes": 15,
+      "prior_dependent_by_quantiles": false,
+      "regime_label": "matched_risk_optimal",
+      "risky_samples": 16,
+      "safe_length": 4,
+      "selection_reason": "Matched high-success coverage checks that uncertainty baselines do not avoid true risk-optimal actions.",
+      "true_risky_success_prob": 0.9
+    },
+    {
+      "cell_id": "safe_lucky_only_stress",
+      "classification_tags": [
+        "lucky_only",
+        "ambiguous",
+        "prior_dependent",
+        "safe_optimal"
+      ],
+      "empirical_identifiable_by_confidence_set": false,
+      "exact_optimal_action": "safe",
+      "exact_q_risky": 0.225,
+      "exact_q_safe": 0.7290000000000001,
+      "observed_failures": 0,
+      "observed_success_rate": 1.0,
+      "observed_successes": 4,
+      "prior_dependent_by_quantiles": true,
+      "regime_label": "lucky_only_safe_optimal",
+      "risky_samples": 4,
+      "safe_length": 3,
+      "selection_reason": "Lucky-only failures expose raw and empirical optimism when the true risky action is suboptimal.",
+      "true_risky_success_prob": 0.25
+    },
+    {
+      "cell_id": "safe_no_success_identifiable",
+      "classification_tags": [
+        "no_success",
+        "identifiable",
+        "safe_optimal"
+      ],
+      "empirical_identifiable_by_confidence_set": true,
+      "exact_optimal_action": "safe",
+      "exact_q_risky": 0.225,
+      "exact_q_safe": 0.7290000000000001,
+      "observed_failures": 8,
+      "observed_success_rate": 0.0,
+      "observed_successes": 0,
+      "prior_dependent_by_quantiles": false,
+      "regime_label": "no_success_safe_optimal",
+      "risky_samples": 8,
+      "safe_length": 3,
+      "selection_reason": "No-success coverage where conservative estimates are correct because safe is truly optimal.",
+      "true_risky_success_prob": 0.25
+    },
+    {
+      "cell_id": "risk_no_success_stress",
+      "classification_tags": [
+        "no_success",
+        "identifiable",
+        "risky_optimal"
+      ],
+      "empirical_identifiable_by_confidence_set": true,
+      "exact_optimal_action": "risky",
+      "exact_q_risky": 0.81,
+      "exact_q_safe": 0.7290000000000001,
+      "observed_failures": 8,
+      "observed_success_rate": 0.0,
+      "observed_successes": 0,
+      "prior_dependent_by_quantiles": false,
+      "regime_label": "no_success_risk_optimal",
+      "risky_samples": 8,
+      "safe_length": 3,
+      "selection_reason": "No-success anti-conservatism check where finite data cannot justify the true risky action without priors.",
+      "true_risky_success_prob": 0.9
+    },
+    {
+      "cell_id": "ambiguous_safe_optimal_boundary",
+      "classification_tags": [
+        "matched",
+        "ambiguous",
+        "prior_dependent",
+        "safe_optimal"
+      ],
+      "empirical_identifiable_by_confidence_set": false,
+      "exact_optimal_action": "safe",
+      "exact_q_risky": 0.675,
+      "exact_q_safe": 0.7290000000000001,
+      "observed_failures": 1,
+      "observed_success_rate": 0.75,
+      "observed_successes": 3,
+      "prior_dependent_by_quantiles": true,
+      "regime_label": "ambiguous_safe_optimal",
+      "risky_samples": 4,
+      "safe_length": 3,
+      "selection_reason": "Boundary count where empirical estimates are close to the safe/risky threshold and safe is exactly optimal.",
+      "true_risky_success_prob": 0.75
+    },
+    {
+      "cell_id": "ambiguous_risk_optimal_boundary",
+      "classification_tags": [
+        "matched",
+        "ambiguous",
+        "prior_dependent",
+        "risky_optimal"
+      ],
+      "empirical_identifiable_by_confidence_set": false,
+      "exact_optimal_action": "risky",
+      "exact_q_risky": 0.81,
+      "exact_q_safe": 0.7290000000000001,
+      "observed_failures": 1,
+      "observed_success_rate": 0.75,
+      "observed_successes": 3,
+      "prior_dependent_by_quantiles": true,
+      "regime_label": "ambiguous_risk_optimal",
+      "risky_samples": 4,
+      "safe_length": 3,
+      "selection_reason": "Boundary count where empirical estimates are close to the threshold but risky is exactly optimal.",
+      "true_risky_success_prob": 0.9
+    },
+    {
+      "cell_id": "prior_dependent_safe_optimal",
+      "classification_tags": [
+        "matched",
+        "ambiguous",
+        "prior_dependent",
+        "safe_optimal"
+      ],
+      "empirical_identifiable_by_confidence_set": false,
+      "exact_optimal_action": "safe",
+      "exact_q_risky": 0.45,
+      "exact_q_safe": 0.6561,
+      "observed_failures": 1,
+      "observed_success_rate": 0.75,
+      "observed_successes": 3,
+      "prior_dependent_by_quantiles": true,
+      "regime_label": "prior_dependent_safe_optimal",
+      "risky_samples": 4,
+      "safe_length": 4,
+      "selection_reason": "Posterior lower and upper choices disagree, making the action prior-dependent.",
+      "true_risky_success_prob": 0.5
+    }
+  ]
+}

@@ -1,0 +1,882 @@
+{
+  "ambiguous_risk_optimal_boundary": {
+    "exact": {
+      "optimal_action": "risky",
+      "optimal_value": 0.81,
+      "q_risky": 0.81,
+      "q_safe": 0.7290000000000001,
+      "risky_success_threshold": 0.81
+    },
+    "methods": {
+      "empirical_model_dp": {
+        "action": "safe",
+        "matches_exact_action": false,
+        "policy_regret": 0.08099999999999996,
+        "q_risky_estimate": 0.675,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.135,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.135
+      },
+      "empirical_risky_value": {
+        "action": "safe",
+        "matches_exact_action": false,
+        "policy_regret": 0.08099999999999996,
+        "q_risky_estimate": 0.675,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.135,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.135
+      },
+      "posterior_lower_q10_dp_beta_1_1": {
+        "action": "safe",
+        "matches_exact_action": false,
+        "policy_regret": 0.08099999999999996,
+        "q_risky_estimate": 0.37455000000000005,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.43545,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.43545
+      },
+      "posterior_mean_dp_beta_1_1": {
+        "action": "safe",
+        "matches_exact_action": false,
+        "policy_regret": 0.08099999999999996,
+        "q_risky_estimate": 0.6,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.21000000000000008,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.21000000000000008
+      },
+      "posterior_upper_q90_dp_beta_1_1": {
+        "action": "risky",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.79905,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.010950000000000015,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.010950000000000015
+      },
+      "raw_trl": {
+        "action": "risky",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.9,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.08999999999999997,
+        "risky_value_overestimation": 0.08999999999999997,
+        "risky_value_underestimation": 0.0
+      },
+      "robust_lcb_dp_delta_0_2": {
+        "action": "safe",
+        "matches_exact_action": false,
+        "policy_regret": 0.08099999999999996,
+        "q_risky_estimate": 0.19215764408489688,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.6178423559151032,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.6178423559151032
+      },
+      "robust_ucb_dp_delta_0_2": {
+        "action": "risky",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.9,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.08999999999999997,
+        "risky_value_overestimation": 0.08999999999999997,
+        "risky_value_underestimation": 0.0
+      },
+      "trl_log": {
+        "action": "safe",
+        "matches_exact_action": false,
+        "policy_regret": 0.08099999999999996,
+        "q_risky_estimate": 0.675,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.135,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.135
+      }
+    }
+  },
+  "ambiguous_safe_optimal_boundary": {
+    "exact": {
+      "optimal_action": "safe",
+      "optimal_value": 0.7290000000000001,
+      "q_risky": 0.675,
+      "q_safe": 0.7290000000000001,
+      "risky_success_threshold": 0.81
+    },
+    "methods": {
+      "empirical_model_dp": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.675,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.0,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.0
+      },
+      "empirical_risky_value": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.675,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.0,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.0
+      },
+      "posterior_lower_q10_dp_beta_1_1": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.37455000000000005,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.30045,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.30045
+      },
+      "posterior_mean_dp_beta_1_1": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.6,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.07500000000000007,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.07500000000000007
+      },
+      "posterior_upper_q90_dp_beta_1_1": {
+        "action": "risky",
+        "matches_exact_action": false,
+        "policy_regret": 0.05400000000000005,
+        "q_risky_estimate": 0.79905,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.12405,
+        "risky_value_overestimation": 0.12405,
+        "risky_value_underestimation": 0.0
+      },
+      "raw_trl": {
+        "action": "risky",
+        "matches_exact_action": false,
+        "policy_regret": 0.05400000000000005,
+        "q_risky_estimate": 0.9,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.22499999999999998,
+        "risky_value_overestimation": 0.22499999999999998,
+        "risky_value_underestimation": 0.0
+      },
+      "robust_lcb_dp_delta_0_2": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.19215764408489688,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.48284235591510316,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.48284235591510316
+      },
+      "robust_ucb_dp_delta_0_2": {
+        "action": "risky",
+        "matches_exact_action": false,
+        "policy_regret": 0.05400000000000005,
+        "q_risky_estimate": 0.9,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.22499999999999998,
+        "risky_value_overestimation": 0.22499999999999998,
+        "risky_value_underestimation": 0.0
+      },
+      "trl_log": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.675,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.0,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.0
+      }
+    }
+  },
+  "matched_identifiable_safe_optimal": {
+    "exact": {
+      "optimal_action": "safe",
+      "optimal_value": 0.7290000000000001,
+      "q_risky": 0.225,
+      "q_safe": 0.7290000000000001,
+      "risky_success_threshold": 0.81
+    },
+    "methods": {
+      "empirical_model_dp": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.225,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.0,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.0
+      },
+      "empirical_risky_value": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.225,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.0,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.0
+      },
+      "posterior_lower_q10_dp_beta_1_1": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.11655,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.10845,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.10845
+      },
+      "posterior_mean_dp_beta_1_1": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.27,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.04500000000000001,
+        "risky_value_overestimation": 0.04500000000000001,
+        "risky_value_underestimation": 0.0
+      },
+      "posterior_upper_q90_dp_beta_1_1": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.441,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.216,
+        "risky_value_overestimation": 0.216,
+        "risky_value_underestimation": 0.0
+      },
+      "raw_trl": {
+        "action": "risky",
+        "matches_exact_action": false,
+        "policy_regret": 0.5040000000000001,
+        "q_risky_estimate": 0.9,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.675,
+        "risky_value_overestimation": 0.675,
+        "risky_value_underestimation": 0.0
+      },
+      "robust_lcb_dp_delta_0_2": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.0,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.225,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.225
+      },
+      "robust_ucb_dp_delta_0_2": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.566421104111658,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.34142110411165805,
+        "risky_value_overestimation": 0.34142110411165805,
+        "risky_value_underestimation": 0.0
+      },
+      "trl_log": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.225,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.0,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.0
+      }
+    }
+  },
+  "matched_risk_optimal_high_coverage": {
+    "exact": {
+      "optimal_action": "risky",
+      "optimal_value": 0.81,
+      "q_risky": 0.81,
+      "q_safe": 0.6561,
+      "risky_success_threshold": 0.7290000000000001
+    },
+    "methods": {
+      "empirical_model_dp": {
+        "action": "risky",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.84375,
+        "q_safe_estimate": 0.6561,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.03374999999999995,
+        "risky_value_overestimation": 0.03374999999999995,
+        "risky_value_underestimation": 0.0
+      },
+      "empirical_risky_value": {
+        "action": "risky",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.84375,
+        "q_safe_estimate": 0.6561,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.03374999999999995,
+        "risky_value_overestimation": 0.03374999999999995,
+        "risky_value_underestimation": 0.0
+      },
+      "posterior_lower_q10_dp_beta_1_1": {
+        "action": "risky",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.7108500000000001,
+        "q_safe_estimate": 0.6561,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.09914999999999996,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.09914999999999996
+      },
+      "posterior_mean_dp_beta_1_1": {
+        "action": "risky",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.7999999999999999,
+        "q_safe_estimate": 0.6561,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.01000000000000012,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.01000000000000012
+      },
+      "posterior_upper_q90_dp_beta_1_1": {
+        "action": "risky",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.8715,
+        "q_safe_estimate": 0.6561,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.0615,
+        "risky_value_overestimation": 0.0615,
+        "risky_value_underestimation": 0.0
+      },
+      "raw_trl": {
+        "action": "risky",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.9,
+        "q_safe_estimate": 0.6561,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.08999999999999997,
+        "risky_value_overestimation": 0.08999999999999997,
+        "risky_value_underestimation": 0.0
+      },
+      "robust_lcb_dp_delta_0_2": {
+        "action": "safe",
+        "matches_exact_action": false,
+        "policy_regret": 0.15390000000000004,
+        "q_risky_estimate": 0.6023288220424484,
+        "q_safe_estimate": 0.6561,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.20767117795755163,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.20767117795755163
+      },
+      "robust_ucb_dp_delta_0_2": {
+        "action": "risky",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.9,
+        "q_safe_estimate": 0.6561,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.08999999999999997,
+        "risky_value_overestimation": 0.08999999999999997,
+        "risky_value_underestimation": 0.0
+      },
+      "trl_log": {
+        "action": "risky",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.84375,
+        "q_safe_estimate": 0.6561,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.03374999999999995,
+        "risky_value_overestimation": 0.03374999999999995,
+        "risky_value_underestimation": 0.0
+      }
+    }
+  },
+  "prior_dependent_safe_optimal": {
+    "exact": {
+      "optimal_action": "safe",
+      "optimal_value": 0.6561,
+      "q_risky": 0.45,
+      "q_safe": 0.6561,
+      "risky_success_threshold": 0.7290000000000001
+    },
+    "methods": {
+      "empirical_model_dp": {
+        "action": "risky",
+        "matches_exact_action": false,
+        "policy_regret": 0.2061,
+        "q_risky_estimate": 0.675,
+        "q_safe_estimate": 0.6561,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.22500000000000003,
+        "risky_value_overestimation": 0.22500000000000003,
+        "risky_value_underestimation": 0.0
+      },
+      "empirical_risky_value": {
+        "action": "risky",
+        "matches_exact_action": false,
+        "policy_regret": 0.2061,
+        "q_risky_estimate": 0.675,
+        "q_safe_estimate": 0.6561,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.22500000000000003,
+        "risky_value_overestimation": 0.22500000000000003,
+        "risky_value_underestimation": 0.0
+      },
+      "posterior_lower_q10_dp_beta_1_1": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.37455000000000005,
+        "q_safe_estimate": 0.6561,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.07544999999999996,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.07544999999999996
+      },
+      "posterior_mean_dp_beta_1_1": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.6,
+        "q_safe_estimate": 0.6561,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.14999999999999997,
+        "risky_value_overestimation": 0.14999999999999997,
+        "risky_value_underestimation": 0.0
+      },
+      "posterior_upper_q90_dp_beta_1_1": {
+        "action": "risky",
+        "matches_exact_action": false,
+        "policy_regret": 0.2061,
+        "q_risky_estimate": 0.79905,
+        "q_safe_estimate": 0.6561,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.34905,
+        "risky_value_overestimation": 0.34905,
+        "risky_value_underestimation": 0.0
+      },
+      "raw_trl": {
+        "action": "risky",
+        "matches_exact_action": false,
+        "policy_regret": 0.2061,
+        "q_risky_estimate": 0.9,
+        "q_safe_estimate": 0.6561,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.45,
+        "risky_value_overestimation": 0.45,
+        "risky_value_underestimation": 0.0
+      },
+      "robust_lcb_dp_delta_0_2": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.19215764408489688,
+        "q_safe_estimate": 0.6561,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.2578423559151031,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.2578423559151031
+      },
+      "robust_ucb_dp_delta_0_2": {
+        "action": "risky",
+        "matches_exact_action": false,
+        "policy_regret": 0.2061,
+        "q_risky_estimate": 0.9,
+        "q_safe_estimate": 0.6561,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.45,
+        "risky_value_overestimation": 0.45,
+        "risky_value_underestimation": 0.0
+      },
+      "trl_log": {
+        "action": "risky",
+        "matches_exact_action": false,
+        "policy_regret": 0.2061,
+        "q_risky_estimate": 0.675,
+        "q_safe_estimate": 0.6561,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.22500000000000003,
+        "risky_value_overestimation": 0.22500000000000003,
+        "risky_value_underestimation": 0.0
+      }
+    }
+  },
+  "risk_no_success_stress": {
+    "exact": {
+      "optimal_action": "risky",
+      "optimal_value": 0.81,
+      "q_risky": 0.81,
+      "q_safe": 0.7290000000000001,
+      "risky_success_threshold": 0.81
+    },
+    "methods": {
+      "empirical_model_dp": {
+        "action": "safe",
+        "matches_exact_action": false,
+        "policy_regret": 0.08099999999999996,
+        "q_risky_estimate": 0.0,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.81,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.81
+      },
+      "empirical_risky_value": {
+        "action": "safe",
+        "matches_exact_action": false,
+        "policy_regret": 0.08099999999999996,
+        "q_risky_estimate": 0.0,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.81,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.81
+      },
+      "posterior_lower_q10_dp_beta_1_1": {
+        "action": "safe",
+        "matches_exact_action": false,
+        "policy_regret": 0.08099999999999996,
+        "q_risky_estimate": 0.0105,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.7995000000000001,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.7995000000000001
+      },
+      "posterior_mean_dp_beta_1_1": {
+        "action": "safe",
+        "matches_exact_action": false,
+        "policy_regret": 0.08099999999999996,
+        "q_risky_estimate": 0.09000000000000001,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.7200000000000001,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.7200000000000001
+      },
+      "posterior_upper_q90_dp_beta_1_1": {
+        "action": "safe",
+        "matches_exact_action": false,
+        "policy_regret": 0.08099999999999996,
+        "q_risky_estimate": 0.20325000000000001,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.60675,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.60675
+      },
+      "raw_trl": {
+        "action": "safe",
+        "matches_exact_action": false,
+        "policy_regret": 0.08099999999999996,
+        "q_risky_estimate": 0.0,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.81,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.81
+      },
+      "robust_lcb_dp_delta_0_2": {
+        "action": "safe",
+        "matches_exact_action": false,
+        "policy_regret": 0.08099999999999996,
+        "q_risky_estimate": 0.0,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.81,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.81
+      },
+      "robust_ucb_dp_delta_0_2": {
+        "action": "safe",
+        "matches_exact_action": false,
+        "policy_regret": 0.08099999999999996,
+        "q_risky_estimate": 0.34142110411165794,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.4685788958883421,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.4685788958883421
+      },
+      "trl_log": {
+        "action": "safe",
+        "matches_exact_action": false,
+        "policy_regret": 0.08099999999999996,
+        "q_risky_estimate": 0.0,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.81,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.81
+      }
+    }
+  },
+  "safe_lucky_only_stress": {
+    "exact": {
+      "optimal_action": "safe",
+      "optimal_value": 0.7290000000000001,
+      "q_risky": 0.225,
+      "q_safe": 0.7290000000000001,
+      "risky_success_threshold": 0.81
+    },
+    "methods": {
+      "empirical_model_dp": {
+        "action": "risky",
+        "matches_exact_action": false,
+        "policy_regret": 0.5040000000000001,
+        "q_risky_estimate": 0.9,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.675,
+        "risky_value_overestimation": 0.675,
+        "risky_value_underestimation": 0.0
+      },
+      "empirical_risky_value": {
+        "action": "risky",
+        "matches_exact_action": false,
+        "policy_regret": 0.5040000000000001,
+        "q_risky_estimate": 0.9,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.675,
+        "risky_value_overestimation": 0.675,
+        "risky_value_underestimation": 0.0
+      },
+      "posterior_lower_q10_dp_beta_1_1": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.5679000000000001,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.3429000000000001,
+        "risky_value_overestimation": 0.3429000000000001,
+        "risky_value_underestimation": 0.0
+      },
+      "posterior_mean_dp_beta_1_1": {
+        "action": "risky",
+        "matches_exact_action": false,
+        "policy_regret": 0.5040000000000001,
+        "q_risky_estimate": 0.75,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.525,
+        "risky_value_overestimation": 0.525,
+        "risky_value_underestimation": 0.0
+      },
+      "posterior_upper_q90_dp_beta_1_1": {
+        "action": "risky",
+        "matches_exact_action": false,
+        "policy_regret": 0.5040000000000001,
+        "q_risky_estimate": 0.88125,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.65625,
+        "risky_value_overestimation": 0.65625,
+        "risky_value_underestimation": 0.0
+      },
+      "raw_trl": {
+        "action": "risky",
+        "matches_exact_action": false,
+        "policy_regret": 0.5040000000000001,
+        "q_risky_estimate": 0.9,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.675,
+        "risky_value_overestimation": 0.675,
+        "risky_value_underestimation": 0.0
+      },
+      "robust_lcb_dp_delta_0_2": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.4171576440848969,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.1921576440848969,
+        "risky_value_overestimation": 0.1921576440848969,
+        "risky_value_underestimation": 0.0
+      },
+      "robust_ucb_dp_delta_0_2": {
+        "action": "risky",
+        "matches_exact_action": false,
+        "policy_regret": 0.5040000000000001,
+        "q_risky_estimate": 0.9,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.675,
+        "risky_value_overestimation": 0.675,
+        "risky_value_underestimation": 0.0
+      },
+      "trl_log": {
+        "action": "risky",
+        "matches_exact_action": false,
+        "policy_regret": 0.5040000000000001,
+        "q_risky_estimate": 0.9,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": true,
+        "risky_q_calibration_error": 0.675,
+        "risky_value_overestimation": 0.675,
+        "risky_value_underestimation": 0.0
+      }
+    }
+  },
+  "safe_no_success_identifiable": {
+    "exact": {
+      "optimal_action": "safe",
+      "optimal_value": 0.7290000000000001,
+      "q_risky": 0.225,
+      "q_safe": 0.7290000000000001,
+      "risky_success_threshold": 0.81
+    },
+    "methods": {
+      "empirical_model_dp": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.0,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.225,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.225
+      },
+      "empirical_risky_value": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.0,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.225,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.225
+      },
+      "posterior_lower_q10_dp_beta_1_1": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.0105,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.2145,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.2145
+      },
+      "posterior_mean_dp_beta_1_1": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.09000000000000001,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.135,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.135
+      },
+      "posterior_upper_q90_dp_beta_1_1": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.20325000000000001,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.02174999999999999,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.02174999999999999
+      },
+      "raw_trl": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.0,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.225,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.225
+      },
+      "robust_lcb_dp_delta_0_2": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.0,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.225,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.225
+      },
+      "robust_ucb_dp_delta_0_2": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.34142110411165794,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.11642110411165793,
+        "risky_value_overestimation": 0.11642110411165793,
+        "risky_value_underestimation": 0.0
+      },
+      "trl_log": {
+        "action": "safe",
+        "matches_exact_action": true,
+        "policy_regret": 0.0,
+        "q_risky_estimate": 0.0,
+        "q_safe_estimate": 0.7290000000000001,
+        "risky_action_selected": false,
+        "risky_q_calibration_error": 0.225,
+        "risky_value_overestimation": 0.0,
+        "risky_value_underestimation": 0.225
+      }
+    }
+  }
+}
