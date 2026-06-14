@@ -1,0 +1,36 @@
+{
+  "estimated_runtime_minutes": 20,
+  "experiment_id": "0002",
+  "failure_criteria": [
+    "Missing, invalid, or schema-incompatible result JSON or summary markdown.",
+    "Reward normalization, terminal masks, or CliffWalking transition semantics are ambiguous or omitted.",
+    "The result reports only training loss or returns and omits scaled value error and policy disagreement.",
+    "The soft learner fails to match normalized Q-learning in exact DP or paired tabular learning beyond predeclared tolerance.",
+    "The experiment includes sampled augmented baselines, auxiliary state goals, neural approximation, large environments, or expensive training before this equivalence gate passes.",
+    "Commands are hard-coded inaccurately or raw metrics/artifact paths are missing."
+  ],
+  "hypothesis": "On Gymnasium CliffWalking-v0 dynamics with a predeclared normalized reward, the terminal-only soft successor learner with target (1 - gamma) * r_bar + gamma * max_a M(s_next,a,g_plus) will match ordinary normalized-reward Q-learning after scaling M_plus by 1/(1 - gamma), and their greedy policies will have near-zero disagreement.",
+  "objective": "Run a CPU-only tabular CliffWalking equivalence diagnostic comparing ordinary normalized-reward Q-learning to the terminal-only soft successor g_plus learner.",
+  "required_outputs": [
+    "research/reward_to_gcrl/results/0002_result.json",
+    "research/reward_to_gcrl/results/0002_summary.md",
+    "research/reward_to_gcrl/artifacts/0002/"
+  ],
+  "success_criteria": [
+    "Creates research/reward_to_gcrl/results/0002_result.json and research/reward_to_gcrl/results/0002_summary.md.",
+    "Creates reproducible artifacts under research/reward_to_gcrl/artifacts/0002/.",
+    "Uses only tabular CPU methods on CliffWalking-v0; no neural models, vector state-goal learner, RiverSwim, FourRooms, large datasets, or GPU-dependent work.",
+    "Predeclares and saves the reward normalization, gamma values, alpha schedule, epsilon schedule, seeds, episode budget, terminal-mask behavior, and exact commands run.",
+    "Reports exact-DP oracle metrics for the declared normalized reward, including max_abs(M_plus/(1-gamma) - Q_norm) and greedy policy disagreement rate.",
+    "Reports paired-learning metrics over 10 seeds for gamma in {0.95, 0.99}, including final scaled value error, policy disagreement, average normalized return, original CliffWalking return, success rate, and any terminal-mask diagnostics.",
+    "Passes if exact-DP scaled value error is <= 1e-6, exact-DP policy disagreement is 0 or explained only by value ties, and paired-learning final scaled value error/policy disagreement are within predeclared tolerances."
+  ],
+  "tasks_for_codex": [
+    "Implement a standalone diagnostic script under research/reward_to_gcrl/artifacts/0002/ for Gymnasium CliffWalking-v0 using numpy/gymnasium only.",
+    "Build an exact transition model from the environment and solve both Q_norm_star and F_gplus_star by value iteration with terminal bootstraps masked.",
+    "Implement paired online tabular updates for ordinary Q-learning and terminal-only soft M_plus using identical sampled transitions for 10 seeds and gamma values 0.95 and 0.99.",
+    "Save raw per-seed and per-gamma metrics, DP oracle tables or summary arrays, and metadata under research/reward_to_gcrl/artifacts/0002/.",
+    "Validate research/reward_to_gcrl/results/0002_result.json against schemas/result.schema.json and validate declared artifact paths.",
+    "Write a concise summary that separates equivalence evidence from any original-CliffWalking return or success-rate observations."
+  ]
+}
