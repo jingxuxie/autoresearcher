@@ -1,0 +1,135 @@
+{
+  "artifacts": [
+    "research/sto_trl/artifacts/0008/identifiability_grid.py",
+    "research/sto_trl/artifacts/0008/raw_grid.json",
+    "research/sto_trl/artifacts/0008/metrics.csv",
+    "research/sto_trl/artifacts/0008/regret_heatmap.csv",
+    "research/sto_trl/artifacts/0008/action_choice_grid.csv",
+    "research/sto_trl/artifacts/0008/impossibility_cases.json",
+    "research/sto_trl/artifacts/0008/coverage_diagnostics.json",
+    "research/sto_trl/artifacts/0008/transition_tables.json",
+    "research/sto_trl/artifacts/0008/value_tables.json"
+  ],
+  "baseline_metrics": {
+    "empirical_transition_dp": {
+      "action_accuracy": 0.6903225806451613,
+      "mean_policy_regret": 0.07556516129032252
+    },
+    "posterior_mean_beta_1_1": {
+      "action_accuracy": 0.7419354838709677,
+      "mean_policy_regret": 0.05130387096774184
+    },
+    "trl_log": {
+      "action_accuracy": 0.6903225806451613,
+      "mean_policy_regret": 0.07556516129032252
+    }
+  },
+  "claim_tested": "A compact exact-DP tabular grid can distinguish risky-shortcut failures caused by finite stochastic coverage from failures of the TRL-log update itself.",
+  "commands_run": [
+    "mkdir -p research/sto_trl/artifacts/0008 research/sto_trl/results",
+    "conda run -n autoresearcher_sto_trl python research/sto_trl/artifacts/0008/identifiability_grid.py",
+    "conda run -n autoresearcher_sto_trl python scripts/validate_artifacts.py --repo-root . --json research/sto_trl/results/0008_result.json --schema schemas/result.schema.json --check-result-artifacts"
+  ],
+  "decision_relevant_findings": [
+    "Grid produced 285 ambiguous, lucky-only, no-success, or prior-dependent cells where action choice cannot be justified by empirical frequencies alone.",
+    "TRL-log is identical to empirical transition DP on this tabular grid, so failures in those cells are data-identifiability failures rather than implementation-specific TRL-log failures.",
+    "Posterior lower and upper choices intentionally disagree in prior-dependent cells, exposing where explicit priors are unavoidable."
+  ],
+  "experiment_id": "0008",
+  "failure_criteria_results": [
+    "No neural networks, continuous-control datasets, downloads, or broad sweeps were used.",
+    "Posterior and confidence methods used only observed counts; true probabilities were used only for exact-DP evaluation.",
+    "No algorithmic win was claimed; the result is an identifiability map."
+  ],
+  "interpretation": "The grid is useful as an identifiability map: it separates cells where empirical transition estimates match exact action choice from lucky-only, no-success, ambiguous, and prior-dependent cells where explicit priors are required.",
+  "known_failures": [],
+  "metric_deltas": {
+    "hoeffding_lcb_minus_trl_log_mean_regret": -0.05642903225806446,
+    "posterior_mean_minus_trl_log_mean_regret": -0.024261290322580682,
+    "raw_trl_minus_trl_log_mean_regret": 0.19579354838709756
+  },
+  "metrics": {
+    "chain_guard": {
+      "chain_length": 9,
+      "passed": true,
+      "raw_trl_max_abs_error": 0.0,
+      "trl_log_max_abs_error": 0.0
+    },
+    "classification_counts": {
+      "ambiguous": 95,
+      "identifiable": 136,
+      "lucky_only": 45,
+      "matched_identifiable": 44,
+      "no_success": 45,
+      "prior_dependent": 100
+    },
+    "method_summary": {
+      "empirical_risky_value": {
+        "action_accuracy": 0.6903225806451613,
+        "mean_policy_regret": 0.07556516129032252
+      },
+      "empirical_transition_dp": {
+        "action_accuracy": 0.6903225806451613,
+        "mean_policy_regret": 0.07556516129032252
+      },
+      "hoeffding_lcb_delta_0_2": {
+        "action_accuracy": 0.7978494623655914,
+        "mean_policy_regret": 0.019136129032258063
+      },
+      "hoeffding_ucb_delta_0_2": {
+        "action_accuracy": 0.5161290322580645,
+        "mean_policy_regret": 0.1573490322580649
+      },
+      "posterior_lower_q10_beta_1_1": {
+        "action_accuracy": 0.7870967741935484,
+        "mean_policy_regret": 0.026568387096774195
+      },
+      "posterior_mean_beta_1_1": {
+        "action_accuracy": 0.7419354838709677,
+        "mean_policy_regret": 0.05130387096774184
+      },
+      "posterior_upper_q90_beta_1_1": {
+        "action_accuracy": 0.6408602150537634,
+        "mean_policy_regret": 0.10117161290322614
+      },
+      "raw_trl": {
+        "action_accuracy": 0.25806451612903225,
+        "mean_policy_regret": 0.2713587096774201
+      },
+      "trl_log": {
+        "action_accuracy": 0.6903225806451613,
+        "mean_policy_regret": 0.07556516129032252
+      }
+    },
+    "num_cells": 465,
+    "num_method_rows": 4185,
+    "tag_counts": {
+      "ambiguous": 235,
+      "identifiable": 230,
+      "lucky_only": 45,
+      "matched": 129,
+      "no_success": 45,
+      "prior_dependent": 130
+    },
+    "useful_identifiability_map": true
+  },
+  "next_questions": [
+    "Which prior should be declared for lucky-only and no-success regimes before algorithm development continues?",
+    "Can future algorithms report identifiability status before choosing risky or safe?",
+    "Should finite-coverage diagnostics gate TRL-style transitive updates in stochastic offline data?"
+  ],
+  "resource_usage": {
+    "device": "cpu",
+    "num_cells": 465,
+    "num_method_rows": 4185
+  },
+  "runtime_seconds": 1.3928938940007356,
+  "status": "completed",
+  "success_criteria_results": [
+    "Created self-contained 0008 artifact.",
+    "Evaluated exact DP values and policy regret for every grid cell.",
+    "Included deterministic chain guard.",
+    "Saved per-cell raw metrics and heatmap-friendly CSVs.",
+    "Separated identifiable, ambiguous, lucky-only, no-success, and prior-dependent regimes."
+  ]
+}

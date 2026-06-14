@@ -1,0 +1,20 @@
+{
+  "classification_counts": {
+    "ambiguous": 95,
+    "identifiable": 136,
+    "lucky_only": 45,
+    "matched_identifiable": 44,
+    "no_success": 45,
+    "prior_dependent": 100
+  },
+  "num_cells": 465,
+  "num_impossibility_or_prior_dependent_cells": 285,
+  "tag_counts": {
+    "ambiguous": 235,
+    "identifiable": 230,
+    "lucky_only": 45,
+    "matched": 129,
+    "no_success": 45,
+    "prior_dependent": 130
+  }
+}

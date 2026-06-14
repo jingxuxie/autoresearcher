@@ -1,0 +1,8837 @@
+{
+  "cell_0001": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0002": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0003": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0004": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0005": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0006": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0007": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0008": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0009": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0010": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0011": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0012": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0013": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0014": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0015": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0016": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0017": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0018": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0019": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0020": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0021": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0022": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0023": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0024": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0025": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0026": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0027": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0028": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0029": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0030": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0031": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0032": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0033": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0034": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0035": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0036": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0037": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0038": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0039": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0040": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0041": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0042": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0043": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0044": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0045": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0046": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0047": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0048": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0049": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0050": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0051": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0052": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0053": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0054": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0055": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0056": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0057": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0058": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0059": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0060": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0061": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0062": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0063": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0064": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0065": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0066": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0067": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0068": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0069": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0070": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0071": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0072": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0073": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0074": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0075": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0076": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0077": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0078": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0079": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0080": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0081": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0082": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0083": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0084": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0085": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0086": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0087": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0088": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0089": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0090": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0091": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0092": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0093": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.1
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.9
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0094": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0095": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0096": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0097": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0098": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0099": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0100": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0101": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0102": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0103": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0104": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0105": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0106": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0107": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0108": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0109": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0110": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0111": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0112": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0113": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0114": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0115": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0116": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0117": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0118": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0119": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0120": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0121": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0122": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0123": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0124": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0125": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0126": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0127": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0128": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0129": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0130": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0131": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0132": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0133": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0134": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0135": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0136": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0137": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0138": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0139": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0140": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0141": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0142": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0143": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0144": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0145": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0146": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0147": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0148": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0149": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0150": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0151": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0152": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0153": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0154": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0155": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0156": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0157": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0158": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0159": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0160": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0161": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0162": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0163": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0164": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0165": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0166": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0167": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0168": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0169": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0170": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0171": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0172": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0173": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0174": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0175": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0176": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0177": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0178": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0179": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0180": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0181": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0182": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0183": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0184": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0185": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0186": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.25
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.75
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0187": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0188": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0189": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0190": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0191": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0192": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0193": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0194": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0195": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0196": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0197": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0198": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0199": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0200": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0201": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0202": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0203": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0204": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0205": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0206": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0207": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0208": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0209": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0210": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0211": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0212": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0213": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0214": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0215": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0216": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0217": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0218": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0219": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0220": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0221": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0222": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0223": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0224": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0225": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0226": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0227": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0228": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0229": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0230": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0231": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0232": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0233": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0234": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0235": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0236": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0237": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0238": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0239": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0240": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0241": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0242": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0243": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0244": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0245": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0246": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0247": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0248": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0249": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0250": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0251": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0252": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0253": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0254": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0255": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0256": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0257": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0258": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0259": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0260": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0261": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0262": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0263": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0264": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0265": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0266": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0267": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0268": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0269": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0270": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0271": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0272": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0273": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0274": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0275": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0276": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0277": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0278": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0279": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.5
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.5
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0280": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0281": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0282": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0283": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0284": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0285": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0286": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0287": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0288": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0289": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0290": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0291": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0292": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0293": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0294": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0295": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0296": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0297": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0298": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0299": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0300": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0301": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0302": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0303": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0304": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0305": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0306": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0307": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0308": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0309": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0310": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0311": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0312": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0313": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0314": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0315": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0316": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0317": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0318": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0319": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0320": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0321": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0322": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0323": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0324": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0325": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0326": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0327": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0328": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0329": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0330": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0331": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0332": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0333": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0334": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0335": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0336": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0337": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0338": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0339": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0340": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0341": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0342": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0343": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0344": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0345": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0346": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0347": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0348": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0349": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0350": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0351": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0352": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0353": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0354": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0355": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0356": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0357": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0358": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0359": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0360": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0361": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0362": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0363": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0364": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0365": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0366": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0367": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0368": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0369": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0370": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0371": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0372": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.75
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.25
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0373": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0374": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0375": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0376": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0377": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0378": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0379": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0380": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0381": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0382": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0383": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0384": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0385": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0386": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0387": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0388": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0389": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0390": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0391": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0392": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0393": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0394": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0395": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0396": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0397": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0398": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0399": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0400": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0401": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0402": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0403": {
+    "safe_path_length": 2,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0404": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0405": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0406": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0407": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0408": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0409": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0410": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0411": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0412": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0413": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0414": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0415": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0416": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0417": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0418": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0419": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0420": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0421": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0422": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0423": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0424": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0425": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0426": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0427": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0428": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0429": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0430": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0431": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0432": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0433": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0434": {
+    "safe_path_length": 3,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0435": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0436": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0437": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0438": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0439": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0440": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0441": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0442": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0443": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0444": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0445": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0446": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0447": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0448": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0449": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0450": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0451": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0452": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0453": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0454": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0455": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0456": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0457": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0458": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0459": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0460": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0461": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0462": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0463": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0464": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  },
+  "cell_0465": {
+    "safe_path_length": 4,
+    "start|risky": [
+      {
+        "next_state": "goal",
+        "probability": 0.9
+      },
+      {
+        "next_state": "trap",
+        "probability": 0.09999999999999998
+      }
+    ],
+    "start|safe": [
+      {
+        "next_state": "safe_path_1",
+        "probability": 1.0
+      }
+    ]
+  }
+}
