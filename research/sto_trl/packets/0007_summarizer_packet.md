@@ -106,25 +106,372 @@ The supervisor should propose exactly one small experiment for iteration 1:
 Do not optimize for benchmark performance in the first run. Optimize for a correct diagnostic that can reveal whether the idea has a real failure mode to target.
 
 
+## Project planning docs
+
+## research/sto_trl/charter.md
+
+```markdown
+# Stochastic TRL Charter
+
+## Research Goal
+
+Rapidly test whether a stochastic extension of Transitive RL is worth pursuing.
+
+The core question is whether calibrated stochastic successor distances plus TRL-style divide-and-conquer path relaxation can improve long-horizon offline goal-conditioned RL under stochastic dynamics, especially in environments with risky shortcuts or stochastic teleporters.
+
+The full prototype plan is in `research/sto_trl/stochastic_trl_fast_prototype_plan.md`. This charter is the compact source of truth for the autoresearcher loop.
+
+## Main Hypothesis
+
+A stochastic-calibrated log or successor-distance TRL variant can reduce optimistic bias on risky stochastic paths while preserving TRL-style horizon generalization.
+
+More concretely:
+
+- Raw deterministic-style TRL may overestimate lucky stochastic paths.
+- Log-space TRL should be numerically safer for long horizons than raw probability products.
+- Adding a calibrated stochastic distance or successor-distance term should improve value calibration at stochastic branch points.
+- A useful method should reduce overestimation without simply becoming conservative everywhere.
+
+## Initial Scope
+
+Start with tabular experiments only. Do not start with OGBench, PointMaze, AntMaze, or large neural-network training.
+
+The first autoresearcher iterations should implement and test:
+
+1. A deterministic chain sanity check.
+2. A risky shortcut versus safe route stochastic MDP.
+3. Exact DP ground truth for discounted reachability.
+4. Small offline trajectory generation with lucky and unlucky stochastic outcomes.
+5. Baselines: MC supervised, TRL-raw, TRL-log, and MC + TRL-log.
+
+Only after deterministic and stochastic tabular diagnostics are clean should later iterations consider learned tabular models, tiny MLPs, continuous point mazes, or OGBench teleport tasks.
+
+## Primary Metrics
+
+Use exact DP ground truth wherever possible.
+
+Primary metrics:
+
+- Overestimation error: mean `max(0, U_hat - U_star)`.
+- Policy regret versus exact DP policy.
+- Long-horizon value MSE.
+- Risky action selection rate.
+- Calibration error for discounted reachability.
+
+Secondary metrics:
+
+- Underestimation error.
+- Triangle violation rate for learned distance-like quantities.
+- Greedy policy success rate.
+- Median steps to goal.
+- Coverage diagnostics for states, actions, goals, and risky success/failure outcomes.
+
+## Success Criteria
+
+Early evidence is positive only if a small tabular experiment shows at least one of:
+
+- Raw TRL has a measurable overoptimism region on stochastic risky paths.
+- TRL-log or MC + TRL-log improves long-horizon estimates over MC-only without breaking deterministic sanity checks.
+- A stochastic-calibrated variant reduces risky-path overestimation while preserving safe-route value estimates.
+- The greedy policy improves regret or risky-action choice versus raw TRL under exact DP evaluation.
+
+The first iteration should be considered successful if it creates a reproducible tabular harness and produces a valid result table for at least the deterministic chain and one risky-shortcut configuration.
+
+## Failure Criteria
+
+Pause or stop before larger experiments if:
+
+- Raw/log TRL cannot recover deterministic shortest-path behavior in a simple chain.
+- There is no exact DP ground truth for the stochastic diagnostic.
+- The experiment only reports training loss and no value/policy calibration metrics.
+- The stochastic variant wins only by being conservative and avoiding all risky paths, including cases where risk is optimal.
+- The loop attempts OGBench, AntMaze, large downloads, or long training before tabular diagnostics pass.
+- The result omits exact commands, raw metrics, or coverage diagnostics.
+
+## Runtime And Compute Budget
+
+Initial experiments should complete in minutes on CPU or GPU.
+
+Use the project conda environment `autoresearcher_sto_trl`. JAX/GPU is allowed and preferred when available, but the first tabular experiments must remain small enough to run without expensive training.
+
+Treat step counts in offline diagnostics as optimizer/update steps unless the experiment explicitly reports environment rollouts. For this project, early runtime should mostly come from JAX/XLA compilation, repeated updates, pair sampling, and scoring rather than environment interaction.
+
+## First Experiment Guidance
+
+The supervisor should propose exactly one small experiment for iteration 1:
+
+- Build a minimal tabular prototype under `research/sto_trl/artifacts/0001/`.
+- Implement deterministic chain and risky shortcut MDPs.
+- Implement exact discounted reachability DP.
+- Compare MC supervised, TRL-raw, TRL-log, and MC + TRL-log on a tiny configuration.
+- Save raw metrics to JSON or CSV.
+- Produce `research/sto_trl/results/0001_result.json` and `research/sto_trl/results/0001_summary.md`.
+
+Do not optimize for benchmark performance in the first run. Optimize for a correct diagnostic that can reveal whether the idea has a real failure mode to target.
+```
+
+## research/sto_trl/stochastic_trl_fast_prototype_plan.md
+
+```markdown
+Source document is 34324 chars, exceeding max_source_doc_chars=12000.
+
+Headings:
+
+# Fast Prototyping Plan: Stochastic Transitive RL
+## 0. One-sentence project framing
+## 1. What should count as early evidence?
+## 2. Grounding in the current code and benchmarks
+## 3. Algorithm variants to prototype
+### Variant 0: `TRL-raw`
+### Variant 1: `TRL-log`
+### Variant 2: `MC-cal + TRL-log`
+### Variant 3: `Successor-distance + TRL-log`
+### Variant 4: `TMD + TRL-relax`
+## 4. Experiment ladder
+## 5. Stage A: deterministic tabular sanity check
+### Purpose
+### Environment A1: deterministic chain
+### Environment A2: deterministic two-room maze
+### Data
+### Baselines
+### Metrics
+### Pass criteria
+### Failure interpretation
+## 6. Stage B: stochastic tabular tests with exact ground truth
+### Shared ground truth
+### Environment B1: slip chain
+### Environment B2: risky shortcut vs safe route
+### Environment B3: stochastic teleporter maze
+### Environment B4: stochastic stitching graph
+## 7. Stage C: learned tabular offline experiments
+### Model classes
+### Offline dataset sizes
+### Losses to compare
+#### C0: MC supervised
+#### C1: raw TRL
+#### C2: log TRL
+#### C3: MC + log TRL
+#### C4: contrastive successor distance
+#### C5: contrastive successor distance + log TRL
+### Hyperparameter sweep
+### Core metrics
+### Minimum result table
+## 8. Stage D: tiny continuous control before OGBench
+### Environment D1: continuous point navigation with stochastic wind
+### Environment D2: continuous risky teleporter
+### Data
+### Metrics
+### Pass criteria
+## 9. Stage E: OGBench PointMaze teleport experiments
+### Why PointMaze first?
+### Recommended datasets
+### Fast-run settings
+### Baselines
+### Implementation fork
+#### `trl_log.py` changes
+#### `trl_stoch.py` additions
+### Screening metrics
+### Pass criteria
+## 10. Stage F: OGBench AntMaze teleport
+### Datasets
+### Baselines
+### Run protocol
+### Pass criteria
+## 11. Ablation checklist
+## 12. Diagnostics that prevent flawed conclusions
+### Coverage diagnostics
+### Calibration diagnostics
+### Optimism diagnostics
+### Policy diagnostics
+### Robustness diagnostics
+## 13. Milestone plan
+### Milestone 1: tabular harness and deterministic reproduction
+### Milestone 2: risky stochastic MDP failure test
+### Milestone 3: first stochastic-calibrated variant
+### Milestone 4: stochastic teleporter gridworld
+### Milestone 5: continuous tiny point maze
+### Milestone 6: OGBench PointMaze teleport screening
+### Milestone 7: TMD comparison/integration
+## 14. Practical commands and scaffolding
+### TRL setup
+### OGBench direct API smoke test
+### Suggested tabular run commands
+### Suggested result aggregation
+
+Inspect `research/sto_trl/stochastic_trl_fast_prototype_plan.md` for full text.
+```
+
+## research/sto_trl/sto_trl_next_steps_review_plan.md
+
+```markdown
+Source document is 25255 chars, exceeding max_source_doc_chars=12000.
+
+Headings:
+
+# Stochastic TRL: Results Review and Next-Step Plan
+## 1. Bottom line
+## 2. Evidence review
+### 2.1 Experiment setup quality
+### 2.2 What is genuinely positive
+### 2.3 What is negative or weak
+## 3. My answer: should you continue?
+### Continue if the project is reframed
+### Do not continue the original formulation unchanged
+## 4. Key conceptual pivot
+### A. Long-horizon propagation
+### B. Aleatoric stochasticity
+### C. Epistemic uncertainty / finite offline coverage
+## 5. Immediate next-step plan
+# Milestone 0 — Freeze current evidence and tighten success criteria
+# Milestone 1 — Identifiability and coverage grid
+## Question
+## Why this matters
+## MDP family
+## Required outputs
+## Metrics
+## Pass/fail interpretation
+# Milestone 2 — Transition-level posterior baseline
+## Question
+## Why this differs from 0007
+## Methods to implement
+### 1. Empirical model DP
+### 2. Bayesian posterior mean DP
+### 3. Posterior quantile DP
+### 4. Robust confidence-set DP
+## Baselines
+## Pass criteria
+## Expected decision after this milestone
+# Milestone 3 — Add transitive propagation to posterior transition models
+## Question
+## Design
+## Critical ablation
+## Pass criteria
+# Milestone 4 — Randomized MDP generalization suite
+## Question
+## Why this matters
+## MDP families
+### Family A: Branch-chain MDPs
+### Family B: Stochastic safe route
+### Family C: Multi-branch stochastic maze
+### Family D: Stochastic teleporter
+## Dataset regimes
+## Metrics
+## Pass criteria
+# Milestone 5 — One-hot neural tabular approximation
+## Question
+## Setup
+## Metrics
+## Pass criteria
+# Milestone 6 — Tiny stochastic gridworld / point maze
+## Question
+## Start with a hand-coded gridworld
+## Baselines
+## Pass criteria
+# Milestone 7 — OGBench/PointMaze teleport only after gates pass
+## 6. Specific algorithmic directions to test
+### Direction A — Keep log-TRL as a baseline, not the full method
+### Direction B — Transition-posterior TRL
+# Estimate transition uncertainty
+# Sample transition models
+# Use posterior mean or quantile for learning/action selection
+### Direction C — Robust TRL lower bound
+### Direction D — Bayesian risk-sensitive family
+## 7. What not to do next
+## 8. Recommended experiment order
+## 9. Proposed decision gates
+### Gate A — After Milestone 1
+### Gate B — After Milestone 2
+### Gate C — After Milestone 3
+### Gate D — After Milestone 4
+### Gate E — After Milestone 5
+## 10. Concrete result table template for future summaries
+## 11. Code hygiene recommendations
+## 12. Suggested next experiment prompt
+## 13. Final recommendation
+
+Inspect `research/sto_trl/sto_trl_next_steps_review_plan.md` for full text.
+```
+
+
+## Human pivot notes
+
+## research/sto_trl/progress/human_pivot_0008.md
+
+```markdown
+# Human Pivot 0008
+
+The automatic loop should continue only under a reframed stochastic TRL question:
+
+> Can transition-level stochastic uncertainty plus log-space transitive propagation produce calibrated long-horizon goal reachability under finite offline stochastic coverage?
+
+Current evidence to preserve:
+
+- Raw deterministic-style TRL has a real stochastic overoptimism failure mode.
+- Log-TRL is a useful long-horizon propagation baseline.
+- The current successor-distance plus TRL-log formulation is negative or not distinct from TRL-log.
+- The hand-shaped one-sided penalty is diagnostic, not a general method.
+- The generic count/Dirichlet-style uncertainty penalty reduced some Q overestimation but did not fix policy-level lucky-only regret.
+
+Future positive criteria:
+
+1. Preserve deterministic chain held-out MSE near zero.
+2. Preserve matched safe-optimal and matched risk-optimal action choices.
+3. Improve safe-optimal lucky-only policy regret versus TRL-log.
+4. Avoid simply choosing safe everywhere.
+5. Beat or match a simple empirical-transition-model DP baseline.
+6. Show a specific benefit from transitive/log-TRL beyond transition uncertainty alone.
+
+Recommended next experiment:
+
+Run an identifiability and coverage grid before adding more algorithms. Sweep true risky success probability, safe path length, risky sample count, and observed risky successes. Compare empirical risky value, posterior means/quantiles, lower/upper confidence choices, TRL-log, and raw TRL. Save the grid, regret heatmaps, impossibility cases, result JSON, and summary under iteration `0008`.
+
+The expected value of this experiment is not an algorithm win. It should identify which regimes are solvable from offline data and which require explicit priors or assumptions.
+```
+
+
 ## Current state
 
 ```json
 {
   "best_primary_metric": null,
   "failure_streak": 0,
-  "human_review_required": false,
+  "human_review_required": true,
   "iteration": 7,
   "last_decision": "stop",
   "last_failure": null,
   "last_pro_review_iteration": 0,
+  "last_pro_review_path": null,
+  "last_summary_iteration": 7,
+  "last_summary_path": "research/sto_trl/progress/0007_manual_summary.md",
   "no_progress_rounds": 0,
   "notes": [
     "2026-06-13T08:58:38+00:00: supervisor decision pivot",
     "2026-06-13T09:21:15+00:00: retryable failure 1/3: reviewer failed or timed out; see /home/eston/autoresearcher/research/sto_trl/reviews/0007_review_stderr.log",
-    "2026-06-13T09:29:31+00:00: supervisor decision needs_human"
+    "2026-06-13T09:29:31+00:00: supervisor decision needs_human",
+    "2026-06-14T00:48:41+00:00: Pro checkpoint blocked (browser_bridge_unavailable); packet research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md",
+    "2026-06-14T00:49:04+00:00: Pro checkpoint blocked (pro_backend_failed); packet research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md",
+    "2026-06-14T00:49:55+00:00: Pro checkpoint blocked (browser_bridge_unavailable); packet research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md",
+    "2026-06-14T00:56:09+00:00: Pro checkpoint blocked (browser_bridge_unavailable); packet research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md",
+    "2026-06-14T00:56:57+00:00: Pro checkpoint blocked (browser_bridge_unavailable); packet research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md",
+    "2026-06-14T01:08:34+00:00: Pro checkpoint blocked (browser_bridge_unavailable); packet research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md",
+    "2026-06-14T01:25:11+00:00: Pro checkpoint blocked (login_required); packet research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md"
   ],
+  "pending_checkpoint": {
+    "backend": "codex-chatgpt-control",
+    "blocker_path": "research/sto_trl/decisions/0008_pro_blocker.json",
+    "iteration_id": "0008",
+    "manual_fallback": true,
+    "packet_path": "research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md",
+    "reason": "local_stop",
+    "status": "blocked",
+    "type": "chatgpt_pro"
+  },
+  "pending_local_decision_path": null,
   "primary_metric": null,
-  "status": "stopped"
+  "pro_review_count": 0,
+  "protected_file_drift": false,
+  "status": "paused",
+  "weak_pass_streak": 0
 }
 ```
 
@@ -1002,7 +1349,8 @@ Do not optimize for benchmark performance in the first run. Optimize for a corre
 
 ## Existing progress summaries
 
-_None._
+- `research/sto_trl/progress/0007_manual_summary.md`
+- `research/sto_trl/progress/latest_summary.md`
 
 
 ## Full evidence paths
