@@ -1483,11 +1483,18 @@ class Orchestrator:
 
         status = state.get("status")
         last_decision = state.get("last_decision")
-        if status == "stopped" and not state.get("last_pro_review_path"):
+        current_iteration = int(state.get("iteration", 0) or 0)
+        last_pro_iteration = int(state.get("last_pro_review_iteration", 0) or 0)
+        pro_already_reviewed_current_state = bool(state.get("last_pro_review_path")) and last_pro_iteration >= current_iteration
+        if status == "stopped" and not pro_already_reviewed_current_state:
             return "local_stop"
-        if status == "paused" and bool(state.get("human_review_required")) and not state.get("last_pro_review_path"):
+        if status == "paused" and bool(state.get("human_review_required")) and not pro_already_reviewed_current_state:
             if last_decision in ("stop", "pivot", "needs_human"):
                 return f"local_{last_decision}"
+            last_failure = state.get("last_failure") if isinstance(state.get("last_failure"), dict) else {}
+            last_failure_note = str(last_failure.get("note") or "")
+            if last_failure_note.startswith("reviewer verdict "):
+                return last_failure_note.replace("reviewer verdict ", "review_", 1)
         return None
 
     def run(self, project: str, max_iters: int, skip_model_check: bool = False) -> int:
@@ -2054,6 +2061,18 @@ def apply_pro_decision(repo_root: Path, project: str) -> Path:
         if not isinstance(experiment, dict):
             mark_human_required(state, f"Pro decision {decision_kind} missing next_experiment", status="paused")
         else:
+            existing_result_path, existing_summary_path, _existing_artifact_dir = result_paths(
+                repo_root,
+                project,
+                iteration_id,
+            )
+            if existing_result_path.exists() or existing_summary_path.exists():
+                try:
+                    existing_result = load_json(existing_result_path)
+                except ValidationError:
+                    existing_result = {}
+                if existing_result.get("status") in {"timeout", "failed", "blocked"}:
+                    paths.extend(archive_existing_result_for_retry(repo_root, project, iteration_id, state))
             normalized = normalize_experiment_paths(project, iteration_id, experiment)
             plan_json, plan_md = write_plan(repo_root, project, iteration_id, normalized)
             paths.extend([plan_json, plan_md])

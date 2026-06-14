@@ -729,6 +729,31 @@ class StateAndLoopTests(unittest.TestCase):
             self.assertEqual(state["last_pro_review_path"], "research/project_001/decisions/0001_pro_decision.json")
             self.assertTrue((root / "pro_packets" / "0001_PRO_REVIEW_PACKET.md").exists())
 
+    def test_paused_reviewer_retry_limit_requests_pro_after_prior_pro(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            repo = make_repo(Path(td))
+            fake = make_fake_codex(Path(td))
+            config = autoresearcher.load_config(repo)
+            state = dict(autoresearcher.DEFAULT_STATE)
+            state["iteration"] = 1
+            state["status"] = "paused"
+            state["human_review_required"] = True
+            state["last_decision"] = "retryable_failure"
+            state["last_pro_review_iteration"] = 0
+            state["last_pro_review_path"] = "research/project_001/decisions/0001_pro_decision.json"
+            state["last_failure"] = {
+                "at": "2026-06-14T10:55:39+00:00",
+                "attempt": 3,
+                "max_attempts": 3,
+                "note": "reviewer verdict needs_human",
+            }
+
+            orchestrator = autoresearcher.Orchestrator(repo, config, codex_bin=str(fake))
+            self.assertEqual(orchestrator._inactive_checkpoint_reason(state), "review_needs_human")
+
+            state["last_pro_review_iteration"] = 1
+            self.assertIsNone(orchestrator._inactive_checkpoint_reason(state))
+
     def test_valid_unreviewed_result_is_reviewed_before_supervisor(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             repo = make_repo(Path(td))
@@ -1258,6 +1283,53 @@ class StateAndLoopTests(unittest.TestCase):
             self.assertFalse((root / "results" / "0002_summary.md").exists())
             manifest_data = json.loads(manifest.read_text())
             self.assertIn("research/project_001/results/0002_result.json", manifest_data["cleared_live_paths"])
+
+    def test_apply_pro_decision_archives_failed_live_result_before_replacement_plan(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            repo = make_repo(Path(td))
+            root = repo / "research" / "project_001"
+            state = dict(autoresearcher.DEFAULT_STATE)
+            state["iteration"] = 1
+            state["status"] = "paused"
+            state["human_review_required"] = True
+            state["last_decision"] = "retryable_failure"
+            state["failure_streak"] = 3
+            state["last_failure"] = {
+                "at": "2026-06-14T10:55:39+00:00",
+                "attempt": 3,
+                "max_attempts": 3,
+                "note": "reviewer verdict needs_human",
+            }
+            write_json(root / "state.json", state)
+            autoresearcher.write_timeout_result(repo, "project_001", "0002")
+            _raw_path, decision_path, _md_path = autoresearcher.pro_decision_paths(repo, "project_001", "0002")
+            write_json(decision_path, {
+                "decision": "pivot",
+                "confidence": 0.8,
+                "rationale": "Use the supported environment id.",
+                "evidence": ["CliffWalking-v0 is unavailable."],
+                "risks": ["Replacement semantics must be stated explicitly."],
+                "next_experiment": {
+                    "experiment_id": "0002",
+                    "objective": "Rerun with a supported CliffWalking id.",
+                    "hypothesis": "The supported id has equivalent deterministic dynamics.",
+                    "success_criteria": ["DP value error is small"],
+                    "failure_criteria": ["missing result JSON"],
+                    "tasks_for_codex": ["Run the replacement diagnostic."],
+                    "required_outputs": [],
+                    "estimated_runtime_minutes": 1,
+                },
+            })
+
+            autoresearcher.apply_pro_decision(repo, "project_001")
+
+            archived = root / "artifacts" / "0002" / "retry_attempts" / "attempt_03" / "0002_result.json"
+            self.assertTrue(archived.exists())
+            self.assertFalse((root / "results" / "0002_result.json").exists())
+            self.assertTrue((root / "plans" / "0002_plan.md").exists())
+            state = json.loads((root / "state.json").read_text())
+            self.assertEqual(state["last_decision"], "pivot")
+            self.assertFalse(state["human_review_required"])
 
 
 if __name__ == "__main__":
