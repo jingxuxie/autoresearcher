@@ -150,6 +150,7 @@ def make_fake_codex(tmp: Path) -> Path:
                     (result_dir / f"{iteration}_summary.md").write_text("# Summary\\n\\nCorrected method wins.\\n")
             elif name.endswith("_review.json"):
                 iteration = name.split("_", 1)[0]
+                should_escalate = os.environ.get("FAKE_REVIEW_ESCALATE") == "1"
                 output_path.write_text(json.dumps({
                     "experiment_id": iteration,
                     "verdict": os.environ.get("FAKE_REVIEW_VERDICT", "pass"),
@@ -161,8 +162,8 @@ def make_fake_codex(tmp: Path) -> Path:
                     "evidence_quality": "medium",
                     "success_criteria_satisfied": True,
                     "failure_criteria_triggered": False,
-                    "should_escalate_to_pro": False,
-                    "escalation_reason": None
+                    "should_escalate_to_pro": should_escalate,
+                    "escalation_reason": "fake reviewer requested Pro" if should_escalate else None
                 }))
             elif name.endswith("_summary.md") and output_path.parent.name == "progress":
                 output_path.write_text("# Progress Summary\\n\\nFake project progress summary.\\n")
@@ -690,6 +691,44 @@ class StateAndLoopTests(unittest.TestCase):
             self.assertTrue(state["human_review_required"])
             self.assertEqual(state["status"], "paused")
 
+    def test_reviewer_requested_pro_checkpoint_instead_of_retry(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            repo = make_repo(Path(td))
+            root = repo / "research" / "project_001"
+            fake = make_fake_codex(Path(td))
+            config = autoresearcher.load_config(repo)
+            old_env = {
+                "FAKE_REVIEW_VERDICT": os.environ.get("FAKE_REVIEW_VERDICT"),
+                "FAKE_REVIEW_ESCALATE": os.environ.get("FAKE_REVIEW_ESCALATE"),
+                "FAKE_CHATGPT_PRO": os.environ.get("FAKE_CHATGPT_PRO"),
+            }
+            os.environ["FAKE_REVIEW_VERDICT"] = "needs_human"
+            os.environ["FAKE_REVIEW_ESCALATE"] = "1"
+            os.environ["FAKE_CHATGPT_PRO"] = "continue"
+            try:
+                with redirect_stdout(StringIO()), redirect_stderr(StringIO()):
+                    rc = autoresearcher.Orchestrator(repo, config, codex_bin=str(fake)).run(
+                        "project_001",
+                        max_iters=1,
+                        skip_model_check=True,
+                    )
+            finally:
+                for key, value in old_env.items():
+                    if value is None:
+                        os.environ.pop(key, None)
+                    else:
+                        os.environ[key] = value
+
+            self.assertEqual(rc, 0)
+            state = json.loads((root / "state.json").read_text())
+            self.assertEqual(state["failure_streak"], 0)
+            self.assertFalse(state["human_review_required"])
+            self.assertEqual(state["status"], "active")
+            self.assertEqual(state["last_decision"], "continue")
+            self.assertIsNone(state["pending_checkpoint"])
+            self.assertEqual(state["last_pro_review_path"], "research/project_001/decisions/0001_pro_decision.json")
+            self.assertTrue((root / "pro_packets" / "0001_PRO_REVIEW_PACKET.md").exists())
+
     def test_valid_unreviewed_result_is_reviewed_before_supervisor(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             repo = make_repo(Path(td))
@@ -1192,6 +1231,33 @@ class StateAndLoopTests(unittest.TestCase):
             state = json.loads((root / "state.json").read_text())
             self.assertEqual(state["iteration"], 2)
             self.assertEqual(state["failure_streak"], 0)
+
+    def test_archive_existing_result_for_retry_clears_live_result_slot(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            repo = make_repo(Path(td))
+            root = repo / "research" / "project_001"
+            state = dict(autoresearcher.DEFAULT_STATE)
+            state["failure_streak"] = 1
+            state["last_decision"] = "retryable_failure"
+            state["last_failure"] = {
+                "at": "2026-06-14T10:19:58+00:00",
+                "attempt": 1,
+                "max_attempts": 3,
+                "note": "executor timeout",
+            }
+            autoresearcher.write_timeout_result(repo, "project_001", "0002")
+
+            written = autoresearcher.archive_existing_result_for_retry(repo, "project_001", "0002", state)
+
+            archived = root / "artifacts" / "0002" / "retry_attempts" / "attempt_01" / "0002_result.json"
+            manifest = root / "artifacts" / "0002" / "retry_attempts" / "attempt_01" / "manifest.json"
+            self.assertIn(archived, written)
+            self.assertIn(root / "results" / "0002_result.json", written)
+            self.assertTrue(archived.exists())
+            self.assertFalse((root / "results" / "0002_result.json").exists())
+            self.assertFalse((root / "results" / "0002_summary.md").exists())
+            manifest_data = json.loads(manifest.read_text())
+            self.assertIn("research/project_001/results/0002_result.json", manifest_data["cleared_live_paths"])
 
 
 if __name__ == "__main__":

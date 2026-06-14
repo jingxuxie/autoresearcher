@@ -29,7 +29,7 @@ if str(SCRIPT_DIR) not in sys.path:
 
 from build_context import ROLE_CHOICES, build_context  # noqa: E402
 from chatgpt_pro_bridge import write_pro_blocker  # noqa: E402
-from checkpoint_policy import pro_checkpoint_due, pro_review_due  # noqa: E402
+from checkpoint_policy import ESCALATING_REVIEW_VERDICTS, pro_checkpoint_due, pro_review_due  # noqa: E402
 from metrics_ledger import write_metric_ledger  # noqa: E402
 from supervisor_backends import SupervisorBackendResult, supervisor_backend_for_config  # noqa: E402
 from validate_artifacts import (  # noqa: E402
@@ -700,6 +700,10 @@ class GitManager:
         proc = self._git(["check-ignore", "-q", "--", rel_path])
         return proc.returncode == 0
 
+    def _is_tracked(self, rel_path: str) -> bool:
+        proc = self._git(["ls-files", "--error-unmatch", "--", rel_path])
+        return proc.returncode == 0
+
     def _trackable_rel_paths(self, paths: Iterable[Path]) -> List[str]:
         root = self.repo_root.resolve()
         rel_paths = []
@@ -717,6 +721,13 @@ class GitManager:
 
         for path in paths:
             if not path.exists():
+                try:
+                    rel_path = str(path.resolve().relative_to(root))
+                except ValueError:
+                    continue
+                if rel_path not in seen and self._is_tracked(rel_path):
+                    seen.add(rel_path)
+                    rel_paths.append(rel_path)
                 continue
             if path.is_dir():
                 for child in sorted(path.rglob("*")):
@@ -943,10 +954,14 @@ def archive_existing_result_for_retry(
         archived_result = archive_dir / result_path.name
         shutil.copy2(result_path, archived_result)
         written.append(archived_result)
+        result_path.unlink()
+        written.append(result_path)
     if summary_path.exists():
         archived_summary = archive_dir / summary_path.name
         shutil.copy2(summary_path, archived_summary)
         written.append(archived_summary)
+        summary_path.unlink()
+        written.append(summary_path)
 
     manifest_path = archive_dir / "manifest.json"
     manifest = {
@@ -955,7 +970,16 @@ def archive_existing_result_for_retry(
         "archived_at": utc_now_iso(),
         "reason": "retry_existing_result",
         "last_failure": last_failure,
-        "archived_paths": [str(path.relative_to(repo_root)) for path in written],
+        "archived_paths": [
+            str(path.relative_to(repo_root))
+            for path in written
+            if path.exists() and path.is_file() and path.parent == archive_dir
+        ],
+        "cleared_live_paths": [
+            str(path.relative_to(repo_root))
+            for path in (result_path, summary_path)
+            if not path.exists()
+        ],
     }
     json_dump(manifest_path, manifest)
     written.append(manifest_path)
@@ -1050,6 +1074,14 @@ def update_state_after_review(
     else:
         state["status"] = "active"
         state["human_review_required"] = False
+
+
+def reviewer_should_use_pro_checkpoint(review: Dict[str, Any], config: Dict[str, Any]) -> bool:
+    if bool(review.get("should_escalate_to_pro", False)):
+        return True
+    pro_cfg = config.get("chatgpt_pro", {}) if isinstance(config.get("chatgpt_pro"), dict) else {}
+    pro_available = bool(pro_cfg.get("enabled", False)) or os.environ.get("FAKE_CHATGPT_PRO") is not None
+    return pro_available and review.get("verdict") in ESCALATING_REVIEW_VERDICTS
 
 
 class Orchestrator:
@@ -1318,6 +1350,22 @@ class Orchestrator:
         self.git.commit([reviewer_packet_path, review_path, review_md], f"autoresearcher({project}): review {iteration_id}")
 
         verdict = review["verdict"]
+        if reviewer_should_use_pro_checkpoint(review, self.config):
+            try:
+                latest_result = load_json(result_path)
+            except ValidationError:
+                latest_result = {}
+            checkpoint, reason = pro_checkpoint_due(
+                state,
+                self.config,
+                local_decision=decision,
+                latest_review=review,
+                latest_result=latest_result,
+            )
+            if checkpoint:
+                self._handle_pro_checkpoint(project, state, reason)
+                return "checkpoint"
+
         if verdict in ("fail", "needs_human") or not bool(review.get("allows_auto_continue")):
             paused = self._record_retryable_failure(
                 project,
