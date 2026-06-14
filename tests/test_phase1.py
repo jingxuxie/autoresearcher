@@ -1018,6 +1018,63 @@ class StateAndLoopTests(unittest.TestCase):
             self.assertEqual(env_state["status"], "ready")
             self.assertFalse(state["human_review_required"])
 
+    def test_run_executes_existing_plan_without_overwriting_prior_decision(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            repo = make_repo(Path(td))
+            fake = make_fake_codex(Path(td))
+            root = repo / "research" / "project_001"
+            env_state = autoresearcher.default_env_state("project_001", "autoresearcher_project_001")
+            env_state["status"] = "ready"
+            write_json(root / "env_state.json", env_state)
+            state = dict(autoresearcher.DEFAULT_STATE)
+            state["iteration"] = 1
+            state["status"] = "active"
+            state["last_decision"] = "pivot"
+            write_json(root / "state.json", state)
+            old_decision = {
+                "decision": "stop",
+                "confidence": 0.7,
+                "progress_score": 2,
+                "rationale": "Prior terminal local decision.",
+                "evidence": ["old"],
+                "risks": [],
+                "checkpoint_recommended": False,
+                "checkpoint_reason": None,
+                "terminal_decision_requires_pro": True,
+                "next_experiment": None,
+            }
+            write_json(root / "decisions" / "0002_decision.json", old_decision)
+            experiment = autoresearcher.normalize_experiment_paths(
+                "project_001",
+                "0002",
+                {
+                    "experiment_id": "0002",
+                    "objective": "Execute existing approved plan.",
+                    "hypothesis": "The plan can be executed without a new supervisor decision.",
+                    "success_criteria": ["corrected_accuracy > baseline_accuracy"],
+                    "failure_criteria": ["missing result JSON"],
+                    "tasks_for_codex": ["Write fake result files."],
+                    "required_outputs": [],
+                    "estimated_runtime_minutes": 1,
+                },
+            )
+            autoresearcher.write_plan(repo, "project_001", "0002", experiment)
+
+            config = autoresearcher.load_config(repo)
+            with redirect_stdout(StringIO()), redirect_stderr(StringIO()):
+                rc = autoresearcher.Orchestrator(repo, config, codex_bin=str(fake)).run(
+                    "project_001",
+                    max_iters=1,
+                    skip_model_check=True,
+                )
+
+            self.assertEqual(rc, 0)
+            self.assertFalse((root / "packets" / "0002_supervisor_packet.md").exists())
+            self.assertEqual(json.loads((root / "decisions" / "0002_decision.json").read_text()), old_decision)
+            self.assertTrue((root / "results" / "0002_result.json").exists())
+            state = json.loads((root / "state.json").read_text())
+            self.assertEqual(state["iteration"], 2)
+
 
 if __name__ == "__main__":
     unittest.main()

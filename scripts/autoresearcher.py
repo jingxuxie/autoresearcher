@@ -803,6 +803,11 @@ def write_plan(repo_root: Path, project: str, iteration_id: str, experiment: Dic
     return plan_json, plan_md
 
 
+def plan_paths(repo_root: Path, project: str, iteration_id: str) -> Tuple[Path, Path]:
+    plans_dir = project_dir(repo_root, project) / "plans"
+    return plans_dir / f"{iteration_id}_plan.json", plans_dir / f"{iteration_id}_plan.md"
+
+
 def normalize_experiment_paths(project: str, iteration_id: str, experiment: Dict[str, Any]) -> Dict[str, Any]:
     normalized = dict(experiment)
     normalized["experiment_id"] = iteration_id
@@ -1416,94 +1421,118 @@ class Orchestrator:
                         return 1
                     continue
 
-            supervisor_packet = build_context(self.repo_root, project, "supervisor")
-            supervisor_packet += f"\n\n## Next experiment id\n\nUse `{iteration_id}` as the exact `next_experiment.experiment_id` if you choose continue or pivot.\n"
-            if int(state.get("iteration", 0)) == 0:
-                supervisor_packet += (
-                    "\n\n## First-iteration rule\n\n"
-                    "No prior result is expected for iteration 0. Do not choose needs_human solely because latest result, summary, and review are missing.\n"
-                )
-            supervisor_packet_path = write_packet(self.repo_root, project, iteration_id, "supervisor", supervisor_packet)
-            decision_path = project_dir(self.repo_root, project) / "decisions" / f"{iteration_id}_decision.json"
-            supervisor_result = self._run_role(project, "supervisor", iteration_id, supervisor_packet, decision_path)
-            if supervisor_result.timed_out or supervisor_result.return_code != 0:
-                print(
-                    f"supervisor failed or timed out; stderr log: {supervisor_result.stderr_log_path}",
-                    file=sys.stderr,
-                )
-                if supervisor_result.stderr_tail:
-                    print(supervisor_result.stderr_tail, file=sys.stderr)
-                self._reset_role_session_on_context_overflow(project, supervisor_result)
-                paused = self._record_retryable_failure(
-                    project,
-                    state,
-                    iteration_id,
-                    f"supervisor failed or timed out; see {supervisor_result.stderr_log_path}",
-                    [supervisor_packet_path, supervisor_result.jsonl_log_path, supervisor_result.stderr_log_path, decision_path],
-                )
-                if paused:
-                    return 1
-                continue
+            existing_plan_json, existing_plan_md = plan_paths(self.repo_root, project, iteration_id)
+            decision: Optional[Dict[str, Any]] = None
+            plan_md = existing_plan_md
+            if existing_plan_json.exists() and existing_plan_md.exists():
+                try:
+                    experiment = load_json(existing_plan_json)
+                    if not isinstance(experiment, dict):
+                        raise ValidationError(f"existing plan is not an object: {existing_plan_json}")
+                except ValidationError as exc:
+                    print(f"warning: ignoring invalid existing plan for {iteration_id}: {exc}", file=sys.stderr)
+                else:
+                    print(f"executing existing approved plan for {iteration_id}: {existing_plan_md.relative_to(self.repo_root)}")
+                    decision_kind = state.get("last_decision") if state.get("last_decision") in ("continue", "pivot") else "continue"
+                    decision = {
+                        "decision": decision_kind,
+                        "confidence": 1.0,
+                        "progress_score": 0,
+                        "rationale": "Executing an already approved plan for this iteration without rewriting prior decisions.",
+                        "evidence": [str(existing_plan_md.relative_to(self.repo_root))],
+                        "risks": ["Plan execution may still fail reviewer validation."],
+                        "next_experiment": experiment,
+                    }
 
-            try:
-                validate_json_schema(decision_path, self.repo_root / "schemas" / "decision.schema.json")
-                decision = load_json(decision_path)
-            except ValidationError as exc:
-                paused = self._record_retryable_failure(
-                    project,
-                    state,
-                    iteration_id,
-                    f"invalid supervisor decision: {exc}",
-                    [supervisor_packet_path, supervisor_result.jsonl_log_path, supervisor_result.stderr_log_path, decision_path],
-                )
-                if paused:
-                    return 1
-                continue
+            if decision is None:
+                supervisor_packet = build_context(self.repo_root, project, "supervisor")
+                supervisor_packet += f"\n\n## Next experiment id\n\nUse `{iteration_id}` as the exact `next_experiment.experiment_id` if you choose continue or pivot.\n"
+                if int(state.get("iteration", 0)) == 0:
+                    supervisor_packet += (
+                        "\n\n## First-iteration rule\n\n"
+                        "No prior result is expected for iteration 0. Do not choose needs_human solely because latest result, summary, and review are missing.\n"
+                    )
+                supervisor_packet_path = write_packet(self.repo_root, project, iteration_id, "supervisor", supervisor_packet)
+                decision_path = project_dir(self.repo_root, project) / "decisions" / f"{iteration_id}_decision.json"
+                supervisor_result = self._run_role(project, "supervisor", iteration_id, supervisor_packet, decision_path)
+                if supervisor_result.timed_out or supervisor_result.return_code != 0:
+                    print(
+                        f"supervisor failed or timed out; stderr log: {supervisor_result.stderr_log_path}",
+                        file=sys.stderr,
+                    )
+                    if supervisor_result.stderr_tail:
+                        print(supervisor_result.stderr_tail, file=sys.stderr)
+                    self._reset_role_session_on_context_overflow(project, supervisor_result)
+                    paused = self._record_retryable_failure(
+                        project,
+                        state,
+                        iteration_id,
+                        f"supervisor failed or timed out; see {supervisor_result.stderr_log_path}",
+                        [supervisor_packet_path, supervisor_result.jsonl_log_path, supervisor_result.stderr_log_path, decision_path],
+                    )
+                    if paused:
+                        return 1
+                    continue
 
-            decision_md = write_decision_markdown(self.repo_root, project, iteration_id, decision)
-            self.git.commit(
-                [supervisor_packet_path, decision_path, decision_md],
-                f"autoresearcher({project}): decision {iteration_id}",
-            )
+                try:
+                    validate_json_schema(decision_path, self.repo_root / "schemas" / "decision.schema.json")
+                    decision = load_json(decision_path)
+                except ValidationError as exc:
+                    paused = self._record_retryable_failure(
+                        project,
+                        state,
+                        iteration_id,
+                        f"invalid supervisor decision: {exc}",
+                        [supervisor_packet_path, supervisor_result.jsonl_log_path, supervisor_result.stderr_log_path, decision_path],
+                    )
+                    if paused:
+                        return 1
+                    continue
 
-            decision_kind = decision["decision"]
-            checkpoint, checkpoint_reason = pro_checkpoint_due(state, self.config, local_decision=decision)
-            if checkpoint:
-                self._handle_pro_checkpoint(project, state, checkpoint_reason, local_decision_path=decision_path)
-                break
-            if decision_kind == "stop":
-                state["last_decision"] = decision["decision"]
-                state["status"] = "stopped"
-                state_path = save_project_state(self.repo_root, project, state)
-                self.git.commit([decision_path, decision_md, state_path], f"autoresearcher({project}): pause {iteration_id}")
-                self._run_summary_agent(project, state, reason="final")
-                print(f"stopping: supervisor decision {decision_kind}")
-                break
-            if decision_kind == "needs_human" or (
-                decision_kind == "pivot" and bool(loop_cfg.get("require_human_for_pivot", False))
-            ):
-                state["last_decision"] = decision_kind
-                mark_human_required(state, f"supervisor decision {decision_kind}", status="paused")
-                state_path = save_project_state(self.repo_root, project, state)
-                self.git.commit([decision_path, decision_md, state_path], f"autoresearcher({project}): pause {iteration_id}")
-                print(f"stopping: supervisor decision {decision_kind}")
-                break
-
-            experiment = decision.get("next_experiment")
-            if not isinstance(experiment, dict):
-                paused = self._record_retryable_failure(
-                    project,
-                    state,
-                    iteration_id,
-                    f"{decision_kind} decision had no next_experiment",
+                decision_md = write_decision_markdown(self.repo_root, project, iteration_id, decision)
+                self.git.commit(
                     [supervisor_packet_path, decision_path, decision_md],
+                    f"autoresearcher({project}): decision {iteration_id}",
                 )
-                if paused:
-                    return 1
-                continue
-            experiment = normalize_experiment_paths(project, iteration_id, experiment)
-            plan_json, plan_md = write_plan(self.repo_root, project, iteration_id, experiment)
-            self.git.commit([plan_json, plan_md], f"autoresearcher({project}): plan {iteration_id}")
+
+                decision_kind = decision["decision"]
+                checkpoint, checkpoint_reason = pro_checkpoint_due(state, self.config, local_decision=decision)
+                if checkpoint:
+                    self._handle_pro_checkpoint(project, state, checkpoint_reason, local_decision_path=decision_path)
+                    break
+                if decision_kind == "stop":
+                    state["last_decision"] = decision["decision"]
+                    state["status"] = "stopped"
+                    state_path = save_project_state(self.repo_root, project, state)
+                    self.git.commit([decision_path, decision_md, state_path], f"autoresearcher({project}): pause {iteration_id}")
+                    self._run_summary_agent(project, state, reason="final")
+                    print(f"stopping: supervisor decision {decision_kind}")
+                    break
+                if decision_kind == "needs_human" or (
+                    decision_kind == "pivot" and bool(loop_cfg.get("require_human_for_pivot", False))
+                ):
+                    state["last_decision"] = decision_kind
+                    mark_human_required(state, f"supervisor decision {decision_kind}", status="paused")
+                    state_path = save_project_state(self.repo_root, project, state)
+                    self.git.commit([decision_path, decision_md, state_path], f"autoresearcher({project}): pause {iteration_id}")
+                    print(f"stopping: supervisor decision {decision_kind}")
+                    break
+
+                experiment = decision.get("next_experiment")
+                if not isinstance(experiment, dict):
+                    paused = self._record_retryable_failure(
+                        project,
+                        state,
+                        iteration_id,
+                        f"{decision_kind} decision had no next_experiment",
+                        [supervisor_packet_path, decision_path, decision_md],
+                    )
+                    if paused:
+                        return 1
+                    continue
+                experiment = normalize_experiment_paths(project, iteration_id, experiment)
+                _plan_json, plan_md = write_plan(self.repo_root, project, iteration_id, experiment)
+                self.git.commit([_plan_json, plan_md], f"autoresearcher({project}): plan {iteration_id}")
 
             executor_packet = build_context(self.repo_root, project, "executor", plan=plan_md)
             executor_packet_path = write_packet(self.repo_root, project, iteration_id, "executor", executor_packet)
