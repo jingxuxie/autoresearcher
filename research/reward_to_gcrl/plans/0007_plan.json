@@ -1,0 +1,39 @@
+{
+  "estimated_runtime_minutes": 25,
+  "experiment_id": "0007",
+  "failure_criteria": [
+    "Any behavior policy uses exact DP, exact Q, or reward-optimal action preferences to generate the logged stream.",
+    "The run does not produce both adequate-coverage and coverage-starved regimes, making the coverage caveat unresolved.",
+    "Target means are compared only to the sampled learner's own conditional expectation rather than the deterministic soft marginal target from the same transition and learner state.",
+    "Soft has worse value error than sampled in adequate-coverage runs without a clear explanation.",
+    "The summary makes an unconditional learning-superiority claim despite coverage-starved failures.",
+    "The experiment adds auxiliary goals, neural approximation, larger environments, GPU dependence, or expensive hyperparameter sweeps before this coverage gate is resolved."
+  ],
+  "hypothesis": "The deterministic soft update should consistently reduce terminal-sampling variance in all coverage regimes, but learning-performance advantages should appear mainly when right-reward and state-action coverage are adequate. In coverage-starved regimes, soft may lower Bellman residual without reliably lowering value error, so coverage should be treated as a prerequisite for learning-superiority claims.",
+  "objective": "Run a CPU-only tabular RiverSwim coverage dose-response experiment that uses several non-oracle behavior policies to create starved, borderline, and adequate coverage regimes, then quantify exactly when deterministic soft terminal marginalization improves Bellman residual, value error, and policy quality over sampled augmented updates.",
+  "required_outputs": [
+    "research/reward_to_gcrl/results/0007_result.json",
+    "research/reward_to_gcrl/results/0007_summary.md",
+    "research/reward_to_gcrl/artifacts/0007/"
+  ],
+  "success_criteria": [
+    "Use only CPU tabular code on the same audited 6-state RiverSwim semantics as 0005 and 0006.",
+    "Generate matched logged streams from at least four fixed non-oracle behavior policies, such as uniform random, mild right bias, strong right bias, and alternating or epsilon-cyclic exploration, with no exact-Q action guidance.",
+    "Predeclare coverage bins using right-reward events per 10000 transitions and visited state-action-pair counts, then report results separately for starved, borderline, and adequate coverage.",
+    "For every gamma-behavior-seed run, sampled target means must match deterministic soft marginal targets within predeclared Monte Carlo tolerance, and sampled terminal-sampling variance must exceed soft terminal-sampling variance.",
+    "On adequate-coverage runs, soft must have lower mean final Bellman residual and lower or statistically indistinguishable mean final value error than sampled.",
+    "On starved runs, the summary must explicitly avoid learning-superiority claims and report whether Bellman residual and value error disagree.",
+    "Include a simple coverage-performance regression or stratified table showing how soft-minus-sampled value error changes with right-reward event count and visited state-action coverage.",
+    "The final recommendation must state whether to move next to tabular auxiliary real-state goals or whether more estimator-only RiverSwim work is still needed."
+  ],
+  "tasks_for_codex": [
+    "Create research/reward_to_gcrl/artifacts/0007/run_riverswim_coverage_dose_response.py by extending the 0006 non-oracle RiverSwim script.",
+    "Reuse and verify the same 6-state RiverSwim transition hash, reward normalization, action mapping, and exact DP references from 0005 and 0006.",
+    "Implement at least four fixed non-oracle behavior policies that span expected coverage levels without consulting exact Q or exact DP for action selection.",
+    "Run gamma in {0.95, 0.99, 0.995} over 10 seeds per behavior with a CPU-tabular budget no larger than 0006 unless a smaller pilot shows adequate coverage is impossible.",
+    "Record direct sampled-vs-deterministic-soft target mean error, terminal-sampling variance, g_plus events, right-reward events, visited state-action pairs, Bellman residual, value error, policy disagreement, and greedy raw return.",
+    "Stratify outputs by coverage bin and compute soft-minus-sampled deltas for Bellman residual, value error, and greedy return.",
+    "Save research/reward_to_gcrl/results/0007_result.json with raw metrics, exact commands, behavior definitions, pass/fail flags, and coverage-bin summaries.",
+    "Save research/reward_to_gcrl/results/0007_summary.md with a conservative verdict on whether coverage is sufficiently bounded to proceed to tabular auxiliary state-goal experiments."
+  ]
+}
