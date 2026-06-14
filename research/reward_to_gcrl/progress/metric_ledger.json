@@ -92,7 +92,7 @@
       "status": "completed"
     },
     {
-      "allows_auto_continue": false,
+      "allows_auto_continue": true,
       "claim_tested": "In a nondegenerate tiny chain with identity reward normalization, sampled augmented g_plus updates are unbiased but higher variance, while deterministic soft terminal marginalization improves Bellman residual and preserves policy quality.",
       "decision": "needs_human",
       "important_metrics": {
@@ -111,11 +111,10 @@
       },
       "iteration": "0004",
       "negative_signals": [
-        "Protected file drift remains true in loop state without adjudication.",
-        "The prior 0004 result is being surfaced as completed learning-improvement evidence despite lacking the newly required drift_status field.",
-        "No audit identifies whether the previously flagged autoresearcher.yaml change can affect experiment logic or reporting.",
-        "Current git status suggests the protected-file modification may be stale, but this is not recorded in the experiment artifacts.",
-        "Write research/reward_to_gcrl/artifacts/0004/protected_file_drift_audit.json identifying affected protected files, hashes if available, current worktree status, impact assessment, and final drift_status."
+        "The latest plan text inconsistently references 0005 audit/result paths, while required outputs and actual evidence use 0004 paths.",
+        "drift_status and evidence_integrity_verdict are under metrics rather than top-level result fields.",
+        "The accepted learning-improvement evidence is still from a tiny 5-state chain with controlled matched streams; broader environments remain untested.",
+        "Current git status shows a modified reviewer packet, but no protected path is currently modified."
       ],
       "positive_signals": [
         "Identity reward normalization avoids the CliffWalking objective mismatch.",
@@ -124,7 +123,7 @@
         "The conservative verdict is learning-improvement.",
         "The repaired chain preserves the raw policy under identity normalization. Sampled targets match the deterministic soft marginal target within the predeclared Monte Carlo tolerance, have positive sampling variance, and the deterministic soft learner achieves lo"
       ],
-      "review_verdict": "fail",
+      "review_verdict": "weak_pass",
       "status": "completed"
     }
   ],
