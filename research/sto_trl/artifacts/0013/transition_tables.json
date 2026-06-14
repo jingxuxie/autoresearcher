@@ -1,0 +1,4657 @@
+{
+  "cue_insufficient_seed0": {
+    "history_empirical_transitions": {
+      "cue_x|cue_x>hub>safe|advance": [
+        {
+          "next_state": "cue_x|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|cue_x>hub>tele|advance": [
+        {
+          "next_state": "cue_x|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|cue_x>hub|safe": [
+        {
+          "next_state": "cue_x|cue_x>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|cue_x>hub|teleport": [
+        {
+          "next_state": "cue_x|cue_x>hub>tele",
+          "probability": 0.55
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.45
+        }
+      ],
+      "cue_x|enter": [
+        {
+          "next_state": "cue_x|cue_x>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_x|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "history_transition_counts": {
+      "cue_x|cue_x>hub>safe|advance": {
+        "cue_x|hub>safe>safe": 16
+      },
+      "cue_x|cue_x>hub>tele|advance": {
+        "cue_x|hub>tele>tele": 22
+      },
+      "cue_x|cue_x>hub|safe": {
+        "cue_x|cue_x>hub>safe": 16
+      },
+      "cue_x|cue_x>hub|teleport": {
+        "cue_x|cue_x>hub>tele": 22,
+        "trap": 18
+      },
+      "cue_x|enter": {
+        "cue_x|cue_x>hub": 56
+      },
+      "cue_x|hub>safe>safe|advance": {
+        "cue_x|safe>safe>safe": 16
+      },
+      "cue_x|hub>tele>tele|advance": {
+        "goal": 22
+      },
+      "cue_x|safe>safe>safe|advance": {
+        "goal": 16
+      }
+    },
+    "latent_true_transitions_for_evaluation_only": {
+      "cue_bad|enter": [
+        {
+          "next_state": "hub_bad",
+          "probability": 1.0
+        }
+      ],
+      "cue_good|enter": [
+        {
+          "next_state": "hub_good",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|safe": [
+        {
+          "next_state": "safe_bad_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|teleport": [
+        {
+          "next_state": "tele_bad_1",
+          "probability": 0.15
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.85
+        }
+      ],
+      "hub_good|safe": [
+        {
+          "next_state": "safe_good_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_good|teleport": [
+        {
+          "next_state": "tele_good_1",
+          "probability": 0.95
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.050000000000000044
+        }
+      ],
+      "safe_bad_1|advance": [
+        {
+          "next_state": "safe_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_2|advance": [
+        {
+          "next_state": "safe_bad_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_1|advance": [
+        {
+          "next_state": "safe_good_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_2|advance": [
+        {
+          "next_state": "safe_good_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_1|advance": [
+        {
+          "next_state": "tele_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_1|advance": [
+        {
+          "next_state": "tele_good_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "observation_empirical_transitions": {
+      "cue_x|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "hub|safe": [
+        {
+          "next_state": "safe",
+          "probability": 1.0
+        }
+      ],
+      "hub|teleport": [
+        {
+          "next_state": "tele",
+          "probability": 0.55
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.45
+        }
+      ],
+      "safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.3333333333333333
+        },
+        {
+          "next_state": "safe",
+          "probability": 0.6666666666666666
+        }
+      ],
+      "tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.5
+        },
+        {
+          "next_state": "tele",
+          "probability": 0.5
+        }
+      ]
+    },
+    "observation_transition_counts": {
+      "cue_x|enter": {
+        "hub": 56
+      },
+      "hub|safe": {
+        "safe": 16
+      },
+      "hub|teleport": {
+        "tele": 22,
+        "trap": 18
+      },
+      "safe|advance": {
+        "goal": 16,
+        "safe": 32
+      },
+      "tele|advance": {
+        "goal": 22,
+        "tele": 22
+      }
+    }
+  },
+  "cue_insufficient_seed1": {
+    "history_empirical_transitions": {
+      "cue_x|cue_x>hub>safe|advance": [
+        {
+          "next_state": "cue_x|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|cue_x>hub>tele|advance": [
+        {
+          "next_state": "cue_x|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|cue_x>hub|safe": [
+        {
+          "next_state": "cue_x|cue_x>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|cue_x>hub|teleport": [
+        {
+          "next_state": "cue_x|cue_x>hub>tele",
+          "probability": 0.55
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.45
+        }
+      ],
+      "cue_x|enter": [
+        {
+          "next_state": "cue_x|cue_x>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_x|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "history_transition_counts": {
+      "cue_x|cue_x>hub>safe|advance": {
+        "cue_x|hub>safe>safe": 16
+      },
+      "cue_x|cue_x>hub>tele|advance": {
+        "cue_x|hub>tele>tele": 22
+      },
+      "cue_x|cue_x>hub|safe": {
+        "cue_x|cue_x>hub>safe": 16
+      },
+      "cue_x|cue_x>hub|teleport": {
+        "cue_x|cue_x>hub>tele": 22,
+        "trap": 18
+      },
+      "cue_x|enter": {
+        "cue_x|cue_x>hub": 56
+      },
+      "cue_x|hub>safe>safe|advance": {
+        "cue_x|safe>safe>safe": 16
+      },
+      "cue_x|hub>tele>tele|advance": {
+        "goal": 22
+      },
+      "cue_x|safe>safe>safe|advance": {
+        "goal": 16
+      }
+    },
+    "latent_true_transitions_for_evaluation_only": {
+      "cue_bad|enter": [
+        {
+          "next_state": "hub_bad",
+          "probability": 1.0
+        }
+      ],
+      "cue_good|enter": [
+        {
+          "next_state": "hub_good",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|safe": [
+        {
+          "next_state": "safe_bad_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|teleport": [
+        {
+          "next_state": "tele_bad_1",
+          "probability": 0.15
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.85
+        }
+      ],
+      "hub_good|safe": [
+        {
+          "next_state": "safe_good_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_good|teleport": [
+        {
+          "next_state": "tele_good_1",
+          "probability": 0.95
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.050000000000000044
+        }
+      ],
+      "safe_bad_1|advance": [
+        {
+          "next_state": "safe_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_2|advance": [
+        {
+          "next_state": "safe_bad_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_1|advance": [
+        {
+          "next_state": "safe_good_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_2|advance": [
+        {
+          "next_state": "safe_good_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_1|advance": [
+        {
+          "next_state": "tele_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_1|advance": [
+        {
+          "next_state": "tele_good_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "observation_empirical_transitions": {
+      "cue_x|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "hub|safe": [
+        {
+          "next_state": "safe",
+          "probability": 1.0
+        }
+      ],
+      "hub|teleport": [
+        {
+          "next_state": "tele",
+          "probability": 0.55
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.45
+        }
+      ],
+      "safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.3333333333333333
+        },
+        {
+          "next_state": "safe",
+          "probability": 0.6666666666666666
+        }
+      ],
+      "tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.5
+        },
+        {
+          "next_state": "tele",
+          "probability": 0.5
+        }
+      ]
+    },
+    "observation_transition_counts": {
+      "cue_x|enter": {
+        "hub": 56
+      },
+      "hub|safe": {
+        "safe": 16
+      },
+      "hub|teleport": {
+        "tele": 22,
+        "trap": 18
+      },
+      "safe|advance": {
+        "goal": 16,
+        "safe": 32
+      },
+      "tele|advance": {
+        "goal": 22,
+        "tele": 22
+      }
+    }
+  },
+  "cue_insufficient_seed2": {
+    "history_empirical_transitions": {
+      "cue_x|cue_x>hub>safe|advance": [
+        {
+          "next_state": "cue_x|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|cue_x>hub>tele|advance": [
+        {
+          "next_state": "cue_x|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|cue_x>hub|safe": [
+        {
+          "next_state": "cue_x|cue_x>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|cue_x>hub|teleport": [
+        {
+          "next_state": "cue_x|cue_x>hub>tele",
+          "probability": 0.6
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.4
+        }
+      ],
+      "cue_x|enter": [
+        {
+          "next_state": "cue_x|cue_x>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_x|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "history_transition_counts": {
+      "cue_x|cue_x>hub>safe|advance": {
+        "cue_x|hub>safe>safe": 16
+      },
+      "cue_x|cue_x>hub>tele|advance": {
+        "cue_x|hub>tele>tele": 24
+      },
+      "cue_x|cue_x>hub|safe": {
+        "cue_x|cue_x>hub>safe": 16
+      },
+      "cue_x|cue_x>hub|teleport": {
+        "cue_x|cue_x>hub>tele": 24,
+        "trap": 16
+      },
+      "cue_x|enter": {
+        "cue_x|cue_x>hub": 56
+      },
+      "cue_x|hub>safe>safe|advance": {
+        "cue_x|safe>safe>safe": 16
+      },
+      "cue_x|hub>tele>tele|advance": {
+        "goal": 24
+      },
+      "cue_x|safe>safe>safe|advance": {
+        "goal": 16
+      }
+    },
+    "latent_true_transitions_for_evaluation_only": {
+      "cue_bad|enter": [
+        {
+          "next_state": "hub_bad",
+          "probability": 1.0
+        }
+      ],
+      "cue_good|enter": [
+        {
+          "next_state": "hub_good",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|safe": [
+        {
+          "next_state": "safe_bad_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|teleport": [
+        {
+          "next_state": "tele_bad_1",
+          "probability": 0.25
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.75
+        }
+      ],
+      "hub_good|safe": [
+        {
+          "next_state": "safe_good_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_good|teleport": [
+        {
+          "next_state": "tele_good_1",
+          "probability": 0.95
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.050000000000000044
+        }
+      ],
+      "safe_bad_1|advance": [
+        {
+          "next_state": "safe_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_2|advance": [
+        {
+          "next_state": "safe_bad_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_1|advance": [
+        {
+          "next_state": "safe_good_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_2|advance": [
+        {
+          "next_state": "safe_good_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_1|advance": [
+        {
+          "next_state": "tele_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_1|advance": [
+        {
+          "next_state": "tele_good_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "observation_empirical_transitions": {
+      "cue_x|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "hub|safe": [
+        {
+          "next_state": "safe",
+          "probability": 1.0
+        }
+      ],
+      "hub|teleport": [
+        {
+          "next_state": "tele",
+          "probability": 0.6
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.4
+        }
+      ],
+      "safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.3333333333333333
+        },
+        {
+          "next_state": "safe",
+          "probability": 0.6666666666666666
+        }
+      ],
+      "tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.5
+        },
+        {
+          "next_state": "tele",
+          "probability": 0.5
+        }
+      ]
+    },
+    "observation_transition_counts": {
+      "cue_x|enter": {
+        "hub": 56
+      },
+      "hub|safe": {
+        "safe": 16
+      },
+      "hub|teleport": {
+        "tele": 24,
+        "trap": 16
+      },
+      "safe|advance": {
+        "goal": 16,
+        "safe": 32
+      },
+      "tele|advance": {
+        "goal": 24,
+        "tele": 24
+      }
+    }
+  },
+  "cue_insufficient_seed3": {
+    "history_empirical_transitions": {
+      "cue_x|cue_x>hub>safe|advance": [
+        {
+          "next_state": "cue_x|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|cue_x>hub>tele|advance": [
+        {
+          "next_state": "cue_x|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|cue_x>hub|safe": [
+        {
+          "next_state": "cue_x|cue_x>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|cue_x>hub|teleport": [
+        {
+          "next_state": "cue_x|cue_x>hub>tele",
+          "probability": 0.55
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.45
+        }
+      ],
+      "cue_x|enter": [
+        {
+          "next_state": "cue_x|cue_x>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_x|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "history_transition_counts": {
+      "cue_x|cue_x>hub>safe|advance": {
+        "cue_x|hub>safe>safe": 16
+      },
+      "cue_x|cue_x>hub>tele|advance": {
+        "cue_x|hub>tele>tele": 22
+      },
+      "cue_x|cue_x>hub|safe": {
+        "cue_x|cue_x>hub>safe": 16
+      },
+      "cue_x|cue_x>hub|teleport": {
+        "cue_x|cue_x>hub>tele": 22,
+        "trap": 18
+      },
+      "cue_x|enter": {
+        "cue_x|cue_x>hub": 56
+      },
+      "cue_x|hub>safe>safe|advance": {
+        "cue_x|safe>safe>safe": 16
+      },
+      "cue_x|hub>tele>tele|advance": {
+        "goal": 22
+      },
+      "cue_x|safe>safe>safe|advance": {
+        "goal": 16
+      }
+    },
+    "latent_true_transitions_for_evaluation_only": {
+      "cue_bad|enter": [
+        {
+          "next_state": "hub_bad",
+          "probability": 1.0
+        }
+      ],
+      "cue_good|enter": [
+        {
+          "next_state": "hub_good",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|safe": [
+        {
+          "next_state": "safe_bad_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|teleport": [
+        {
+          "next_state": "tele_bad_1",
+          "probability": 0.15
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.85
+        }
+      ],
+      "hub_good|safe": [
+        {
+          "next_state": "safe_good_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_good|teleport": [
+        {
+          "next_state": "tele_good_1",
+          "probability": 0.95
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.050000000000000044
+        }
+      ],
+      "safe_bad_1|advance": [
+        {
+          "next_state": "safe_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_2|advance": [
+        {
+          "next_state": "safe_bad_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_1|advance": [
+        {
+          "next_state": "safe_good_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_2|advance": [
+        {
+          "next_state": "safe_good_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_1|advance": [
+        {
+          "next_state": "tele_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_1|advance": [
+        {
+          "next_state": "tele_good_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "observation_empirical_transitions": {
+      "cue_x|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "hub|safe": [
+        {
+          "next_state": "safe",
+          "probability": 1.0
+        }
+      ],
+      "hub|teleport": [
+        {
+          "next_state": "tele",
+          "probability": 0.55
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.45
+        }
+      ],
+      "safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.3333333333333333
+        },
+        {
+          "next_state": "safe",
+          "probability": 0.6666666666666666
+        }
+      ],
+      "tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.5
+        },
+        {
+          "next_state": "tele",
+          "probability": 0.5
+        }
+      ]
+    },
+    "observation_transition_counts": {
+      "cue_x|enter": {
+        "hub": 56
+      },
+      "hub|safe": {
+        "safe": 16
+      },
+      "hub|teleport": {
+        "tele": 22,
+        "trap": 18
+      },
+      "safe|advance": {
+        "goal": 16,
+        "safe": 32
+      },
+      "tele|advance": {
+        "goal": 22,
+        "tele": 22
+      }
+    }
+  },
+  "cue_insufficient_seed4": {
+    "history_empirical_transitions": {
+      "cue_x|cue_x>hub>safe|advance": [
+        {
+          "next_state": "cue_x|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|cue_x>hub>tele|advance": [
+        {
+          "next_state": "cue_x|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|cue_x>hub|safe": [
+        {
+          "next_state": "cue_x|cue_x>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|cue_x>hub|teleport": [
+        {
+          "next_state": "cue_x|cue_x>hub>tele",
+          "probability": 0.575
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.425
+        }
+      ],
+      "cue_x|enter": [
+        {
+          "next_state": "cue_x|cue_x>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_x|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_x|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "history_transition_counts": {
+      "cue_x|cue_x>hub>safe|advance": {
+        "cue_x|hub>safe>safe": 16
+      },
+      "cue_x|cue_x>hub>tele|advance": {
+        "cue_x|hub>tele>tele": 23
+      },
+      "cue_x|cue_x>hub|safe": {
+        "cue_x|cue_x>hub>safe": 16
+      },
+      "cue_x|cue_x>hub|teleport": {
+        "cue_x|cue_x>hub>tele": 23,
+        "trap": 17
+      },
+      "cue_x|enter": {
+        "cue_x|cue_x>hub": 56
+      },
+      "cue_x|hub>safe>safe|advance": {
+        "cue_x|safe>safe>safe": 16
+      },
+      "cue_x|hub>tele>tele|advance": {
+        "goal": 23
+      },
+      "cue_x|safe>safe>safe|advance": {
+        "goal": 16
+      }
+    },
+    "latent_true_transitions_for_evaluation_only": {
+      "cue_bad|enter": [
+        {
+          "next_state": "hub_bad",
+          "probability": 1.0
+        }
+      ],
+      "cue_good|enter": [
+        {
+          "next_state": "hub_good",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|safe": [
+        {
+          "next_state": "safe_bad_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|teleport": [
+        {
+          "next_state": "tele_bad_1",
+          "probability": 0.2
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.8
+        }
+      ],
+      "hub_good|safe": [
+        {
+          "next_state": "safe_good_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_good|teleport": [
+        {
+          "next_state": "tele_good_1",
+          "probability": 0.95
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.050000000000000044
+        }
+      ],
+      "safe_bad_1|advance": [
+        {
+          "next_state": "safe_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_2|advance": [
+        {
+          "next_state": "safe_bad_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_1|advance": [
+        {
+          "next_state": "safe_good_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_2|advance": [
+        {
+          "next_state": "safe_good_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_1|advance": [
+        {
+          "next_state": "tele_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_1|advance": [
+        {
+          "next_state": "tele_good_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "observation_empirical_transitions": {
+      "cue_x|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "hub|safe": [
+        {
+          "next_state": "safe",
+          "probability": 1.0
+        }
+      ],
+      "hub|teleport": [
+        {
+          "next_state": "tele",
+          "probability": 0.575
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.425
+        }
+      ],
+      "safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.3333333333333333
+        },
+        {
+          "next_state": "safe",
+          "probability": 0.6666666666666666
+        }
+      ],
+      "tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.5
+        },
+        {
+          "next_state": "tele",
+          "probability": 0.5
+        }
+      ]
+    },
+    "observation_transition_counts": {
+      "cue_x|enter": {
+        "hub": 56
+      },
+      "hub|safe": {
+        "safe": 16
+      },
+      "hub|teleport": {
+        "tele": 23,
+        "trap": 17
+      },
+      "safe|advance": {
+        "goal": 16,
+        "safe": 32
+      },
+      "tele|advance": {
+        "goal": 23,
+        "tele": 23
+      }
+    }
+  },
+  "cue_noisy_seed0": {
+    "history_empirical_transitions": {
+      "cue_b|cue_b>hub>safe|advance": [
+        {
+          "next_state": "cue_b|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub>tele|advance": [
+        {
+          "next_state": "cue_b|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub|safe": [
+        {
+          "next_state": "cue_b|cue_b>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub|teleport": [
+        {
+          "next_state": "cue_b|cue_b>hub>tele",
+          "probability": 0.75
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.25
+        }
+      ],
+      "cue_b|enter": [
+        {
+          "next_state": "cue_b|cue_b>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_b|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub>safe|advance": [
+        {
+          "next_state": "cue_g|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub>tele|advance": [
+        {
+          "next_state": "cue_g|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub|safe": [
+        {
+          "next_state": "cue_g|cue_g>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub|teleport": [
+        {
+          "next_state": "cue_g|cue_g>hub>tele",
+          "probability": 0.45
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.55
+        }
+      ],
+      "cue_g|enter": [
+        {
+          "next_state": "cue_g|cue_g>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_g|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "history_transition_counts": {
+      "cue_b|cue_b>hub>safe|advance": {
+        "cue_b|hub>safe>safe": 8
+      },
+      "cue_b|cue_b>hub>tele|advance": {
+        "cue_b|hub>tele>tele": 15
+      },
+      "cue_b|cue_b>hub|safe": {
+        "cue_b|cue_b>hub>safe": 8
+      },
+      "cue_b|cue_b>hub|teleport": {
+        "cue_b|cue_b>hub>tele": 15,
+        "trap": 5
+      },
+      "cue_b|enter": {
+        "cue_b|cue_b>hub": 28
+      },
+      "cue_b|hub>safe>safe|advance": {
+        "cue_b|safe>safe>safe": 8
+      },
+      "cue_b|hub>tele>tele|advance": {
+        "goal": 15
+      },
+      "cue_b|safe>safe>safe|advance": {
+        "goal": 8
+      },
+      "cue_g|cue_g>hub>safe|advance": {
+        "cue_g|hub>safe>safe": 8
+      },
+      "cue_g|cue_g>hub>tele|advance": {
+        "cue_g|hub>tele>tele": 9
+      },
+      "cue_g|cue_g>hub|safe": {
+        "cue_g|cue_g>hub>safe": 8
+      },
+      "cue_g|cue_g>hub|teleport": {
+        "cue_g|cue_g>hub>tele": 9,
+        "trap": 11
+      },
+      "cue_g|enter": {
+        "cue_g|cue_g>hub": 28
+      },
+      "cue_g|hub>safe>safe|advance": {
+        "cue_g|safe>safe>safe": 8
+      },
+      "cue_g|hub>tele>tele|advance": {
+        "goal": 9
+      },
+      "cue_g|safe>safe>safe|advance": {
+        "goal": 8
+      }
+    },
+    "latent_true_transitions_for_evaluation_only": {
+      "cue_bad|enter": [
+        {
+          "next_state": "hub_bad",
+          "probability": 1.0
+        }
+      ],
+      "cue_good|enter": [
+        {
+          "next_state": "hub_good",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|safe": [
+        {
+          "next_state": "safe_bad_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|teleport": [
+        {
+          "next_state": "tele_bad_1",
+          "probability": 0.25
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.75
+        }
+      ],
+      "hub_good|safe": [
+        {
+          "next_state": "safe_good_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_good|teleport": [
+        {
+          "next_state": "tele_good_1",
+          "probability": 0.95
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.050000000000000044
+        }
+      ],
+      "safe_bad_1|advance": [
+        {
+          "next_state": "safe_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_2|advance": [
+        {
+          "next_state": "safe_bad_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_1|advance": [
+        {
+          "next_state": "safe_good_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_2|advance": [
+        {
+          "next_state": "safe_good_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_1|advance": [
+        {
+          "next_state": "tele_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_1|advance": [
+        {
+          "next_state": "tele_good_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "observation_empirical_transitions": {
+      "cue_b|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "hub|safe": [
+        {
+          "next_state": "safe",
+          "probability": 1.0
+        }
+      ],
+      "hub|teleport": [
+        {
+          "next_state": "tele",
+          "probability": 0.6
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.4
+        }
+      ],
+      "safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.3333333333333333
+        },
+        {
+          "next_state": "safe",
+          "probability": 0.6666666666666666
+        }
+      ],
+      "tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.5
+        },
+        {
+          "next_state": "tele",
+          "probability": 0.5
+        }
+      ]
+    },
+    "observation_transition_counts": {
+      "cue_b|enter": {
+        "hub": 28
+      },
+      "cue_g|enter": {
+        "hub": 28
+      },
+      "hub|safe": {
+        "safe": 16
+      },
+      "hub|teleport": {
+        "tele": 24,
+        "trap": 16
+      },
+      "safe|advance": {
+        "goal": 16,
+        "safe": 32
+      },
+      "tele|advance": {
+        "goal": 24,
+        "tele": 24
+      }
+    }
+  },
+  "cue_noisy_seed1": {
+    "history_empirical_transitions": {
+      "cue_b|cue_b>hub>safe|advance": [
+        {
+          "next_state": "cue_b|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub>tele|advance": [
+        {
+          "next_state": "cue_b|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub|safe": [
+        {
+          "next_state": "cue_b|cue_b>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub|teleport": [
+        {
+          "next_state": "cue_b|cue_b>hub>tele",
+          "probability": 0.6
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.4
+        }
+      ],
+      "cue_b|enter": [
+        {
+          "next_state": "cue_b|cue_b>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_b|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub>safe|advance": [
+        {
+          "next_state": "cue_g|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub>tele|advance": [
+        {
+          "next_state": "cue_g|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub|safe": [
+        {
+          "next_state": "cue_g|cue_g>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub|teleport": [
+        {
+          "next_state": "cue_g|cue_g>hub>tele",
+          "probability": 0.6
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.4
+        }
+      ],
+      "cue_g|enter": [
+        {
+          "next_state": "cue_g|cue_g>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_g|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "history_transition_counts": {
+      "cue_b|cue_b>hub>safe|advance": {
+        "cue_b|hub>safe>safe": 8
+      },
+      "cue_b|cue_b>hub>tele|advance": {
+        "cue_b|hub>tele>tele": 12
+      },
+      "cue_b|cue_b>hub|safe": {
+        "cue_b|cue_b>hub>safe": 8
+      },
+      "cue_b|cue_b>hub|teleport": {
+        "cue_b|cue_b>hub>tele": 12,
+        "trap": 8
+      },
+      "cue_b|enter": {
+        "cue_b|cue_b>hub": 28
+      },
+      "cue_b|hub>safe>safe|advance": {
+        "cue_b|safe>safe>safe": 8
+      },
+      "cue_b|hub>tele>tele|advance": {
+        "goal": 12
+      },
+      "cue_b|safe>safe>safe|advance": {
+        "goal": 8
+      },
+      "cue_g|cue_g>hub>safe|advance": {
+        "cue_g|hub>safe>safe": 8
+      },
+      "cue_g|cue_g>hub>tele|advance": {
+        "cue_g|hub>tele>tele": 12
+      },
+      "cue_g|cue_g>hub|safe": {
+        "cue_g|cue_g>hub>safe": 8
+      },
+      "cue_g|cue_g>hub|teleport": {
+        "cue_g|cue_g>hub>tele": 12,
+        "trap": 8
+      },
+      "cue_g|enter": {
+        "cue_g|cue_g>hub": 28
+      },
+      "cue_g|hub>safe>safe|advance": {
+        "cue_g|safe>safe>safe": 8
+      },
+      "cue_g|hub>tele>tele|advance": {
+        "goal": 12
+      },
+      "cue_g|safe>safe>safe|advance": {
+        "goal": 8
+      }
+    },
+    "latent_true_transitions_for_evaluation_only": {
+      "cue_bad|enter": [
+        {
+          "next_state": "hub_bad",
+          "probability": 1.0
+        }
+      ],
+      "cue_good|enter": [
+        {
+          "next_state": "hub_good",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|safe": [
+        {
+          "next_state": "safe_bad_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|teleport": [
+        {
+          "next_state": "tele_bad_1",
+          "probability": 0.25
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.75
+        }
+      ],
+      "hub_good|safe": [
+        {
+          "next_state": "safe_good_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_good|teleport": [
+        {
+          "next_state": "tele_good_1",
+          "probability": 0.95
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.050000000000000044
+        }
+      ],
+      "safe_bad_1|advance": [
+        {
+          "next_state": "safe_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_2|advance": [
+        {
+          "next_state": "safe_bad_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_1|advance": [
+        {
+          "next_state": "safe_good_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_2|advance": [
+        {
+          "next_state": "safe_good_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_1|advance": [
+        {
+          "next_state": "tele_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_1|advance": [
+        {
+          "next_state": "tele_good_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "observation_empirical_transitions": {
+      "cue_b|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "hub|safe": [
+        {
+          "next_state": "safe",
+          "probability": 1.0
+        }
+      ],
+      "hub|teleport": [
+        {
+          "next_state": "tele",
+          "probability": 0.6
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.4
+        }
+      ],
+      "safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.3333333333333333
+        },
+        {
+          "next_state": "safe",
+          "probability": 0.6666666666666666
+        }
+      ],
+      "tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.5
+        },
+        {
+          "next_state": "tele",
+          "probability": 0.5
+        }
+      ]
+    },
+    "observation_transition_counts": {
+      "cue_b|enter": {
+        "hub": 28
+      },
+      "cue_g|enter": {
+        "hub": 28
+      },
+      "hub|safe": {
+        "safe": 16
+      },
+      "hub|teleport": {
+        "tele": 24,
+        "trap": 16
+      },
+      "safe|advance": {
+        "goal": 16,
+        "safe": 32
+      },
+      "tele|advance": {
+        "goal": 24,
+        "tele": 24
+      }
+    }
+  },
+  "cue_noisy_seed2": {
+    "history_empirical_transitions": {
+      "cue_b|cue_b>hub>safe|advance": [
+        {
+          "next_state": "cue_b|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub>tele|advance": [
+        {
+          "next_state": "cue_b|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub|safe": [
+        {
+          "next_state": "cue_b|cue_b>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub|teleport": [
+        {
+          "next_state": "cue_b|cue_b>hub>tele",
+          "probability": 0.4
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.6
+        }
+      ],
+      "cue_b|enter": [
+        {
+          "next_state": "cue_b|cue_b>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_b|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub>safe|advance": [
+        {
+          "next_state": "cue_g|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub>tele|advance": [
+        {
+          "next_state": "cue_g|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub|safe": [
+        {
+          "next_state": "cue_g|cue_g>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub|teleport": [
+        {
+          "next_state": "cue_g|cue_g>hub>tele",
+          "probability": 0.7
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.3
+        }
+      ],
+      "cue_g|enter": [
+        {
+          "next_state": "cue_g|cue_g>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_g|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "history_transition_counts": {
+      "cue_b|cue_b>hub>safe|advance": {
+        "cue_b|hub>safe>safe": 8
+      },
+      "cue_b|cue_b>hub>tele|advance": {
+        "cue_b|hub>tele>tele": 8
+      },
+      "cue_b|cue_b>hub|safe": {
+        "cue_b|cue_b>hub>safe": 8
+      },
+      "cue_b|cue_b>hub|teleport": {
+        "cue_b|cue_b>hub>tele": 8,
+        "trap": 12
+      },
+      "cue_b|enter": {
+        "cue_b|cue_b>hub": 28
+      },
+      "cue_b|hub>safe>safe|advance": {
+        "cue_b|safe>safe>safe": 8
+      },
+      "cue_b|hub>tele>tele|advance": {
+        "goal": 8
+      },
+      "cue_b|safe>safe>safe|advance": {
+        "goal": 8
+      },
+      "cue_g|cue_g>hub>safe|advance": {
+        "cue_g|hub>safe>safe": 8
+      },
+      "cue_g|cue_g>hub>tele|advance": {
+        "cue_g|hub>tele>tele": 14
+      },
+      "cue_g|cue_g>hub|safe": {
+        "cue_g|cue_g>hub>safe": 8
+      },
+      "cue_g|cue_g>hub|teleport": {
+        "cue_g|cue_g>hub>tele": 14,
+        "trap": 6
+      },
+      "cue_g|enter": {
+        "cue_g|cue_g>hub": 28
+      },
+      "cue_g|hub>safe>safe|advance": {
+        "cue_g|safe>safe>safe": 8
+      },
+      "cue_g|hub>tele>tele|advance": {
+        "goal": 14
+      },
+      "cue_g|safe>safe>safe|advance": {
+        "goal": 8
+      }
+    },
+    "latent_true_transitions_for_evaluation_only": {
+      "cue_bad|enter": [
+        {
+          "next_state": "hub_bad",
+          "probability": 1.0
+        }
+      ],
+      "cue_good|enter": [
+        {
+          "next_state": "hub_good",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|safe": [
+        {
+          "next_state": "safe_bad_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|teleport": [
+        {
+          "next_state": "tele_bad_1",
+          "probability": 0.15
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.85
+        }
+      ],
+      "hub_good|safe": [
+        {
+          "next_state": "safe_good_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_good|teleport": [
+        {
+          "next_state": "tele_good_1",
+          "probability": 0.95
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.050000000000000044
+        }
+      ],
+      "safe_bad_1|advance": [
+        {
+          "next_state": "safe_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_2|advance": [
+        {
+          "next_state": "safe_bad_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_1|advance": [
+        {
+          "next_state": "safe_good_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_2|advance": [
+        {
+          "next_state": "safe_good_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_1|advance": [
+        {
+          "next_state": "tele_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_1|advance": [
+        {
+          "next_state": "tele_good_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "observation_empirical_transitions": {
+      "cue_b|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "hub|safe": [
+        {
+          "next_state": "safe",
+          "probability": 1.0
+        }
+      ],
+      "hub|teleport": [
+        {
+          "next_state": "tele",
+          "probability": 0.55
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.45
+        }
+      ],
+      "safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.3333333333333333
+        },
+        {
+          "next_state": "safe",
+          "probability": 0.6666666666666666
+        }
+      ],
+      "tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.5
+        },
+        {
+          "next_state": "tele",
+          "probability": 0.5
+        }
+      ]
+    },
+    "observation_transition_counts": {
+      "cue_b|enter": {
+        "hub": 28
+      },
+      "cue_g|enter": {
+        "hub": 28
+      },
+      "hub|safe": {
+        "safe": 16
+      },
+      "hub|teleport": {
+        "tele": 22,
+        "trap": 18
+      },
+      "safe|advance": {
+        "goal": 16,
+        "safe": 32
+      },
+      "tele|advance": {
+        "goal": 22,
+        "tele": 22
+      }
+    }
+  },
+  "cue_noisy_seed3": {
+    "history_empirical_transitions": {
+      "cue_b|cue_b>hub>safe|advance": [
+        {
+          "next_state": "cue_b|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub>tele|advance": [
+        {
+          "next_state": "cue_b|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub|safe": [
+        {
+          "next_state": "cue_b|cue_b>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub|teleport": [
+        {
+          "next_state": "cue_b|cue_b>hub>tele",
+          "probability": 0.5
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.5
+        }
+      ],
+      "cue_b|enter": [
+        {
+          "next_state": "cue_b|cue_b>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_b|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub>safe|advance": [
+        {
+          "next_state": "cue_g|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub>tele|advance": [
+        {
+          "next_state": "cue_g|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub|safe": [
+        {
+          "next_state": "cue_g|cue_g>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub|teleport": [
+        {
+          "next_state": "cue_g|cue_g>hub>tele",
+          "probability": 0.6
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.4
+        }
+      ],
+      "cue_g|enter": [
+        {
+          "next_state": "cue_g|cue_g>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_g|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "history_transition_counts": {
+      "cue_b|cue_b>hub>safe|advance": {
+        "cue_b|hub>safe>safe": 8
+      },
+      "cue_b|cue_b>hub>tele|advance": {
+        "cue_b|hub>tele>tele": 10
+      },
+      "cue_b|cue_b>hub|safe": {
+        "cue_b|cue_b>hub>safe": 8
+      },
+      "cue_b|cue_b>hub|teleport": {
+        "cue_b|cue_b>hub>tele": 10,
+        "trap": 10
+      },
+      "cue_b|enter": {
+        "cue_b|cue_b>hub": 28
+      },
+      "cue_b|hub>safe>safe|advance": {
+        "cue_b|safe>safe>safe": 8
+      },
+      "cue_b|hub>tele>tele|advance": {
+        "goal": 10
+      },
+      "cue_b|safe>safe>safe|advance": {
+        "goal": 8
+      },
+      "cue_g|cue_g>hub>safe|advance": {
+        "cue_g|hub>safe>safe": 8
+      },
+      "cue_g|cue_g>hub>tele|advance": {
+        "cue_g|hub>tele>tele": 12
+      },
+      "cue_g|cue_g>hub|safe": {
+        "cue_g|cue_g>hub>safe": 8
+      },
+      "cue_g|cue_g>hub|teleport": {
+        "cue_g|cue_g>hub>tele": 12,
+        "trap": 8
+      },
+      "cue_g|enter": {
+        "cue_g|cue_g>hub": 28
+      },
+      "cue_g|hub>safe>safe|advance": {
+        "cue_g|safe>safe>safe": 8
+      },
+      "cue_g|hub>tele>tele|advance": {
+        "goal": 12
+      },
+      "cue_g|safe>safe>safe|advance": {
+        "goal": 8
+      }
+    },
+    "latent_true_transitions_for_evaluation_only": {
+      "cue_bad|enter": [
+        {
+          "next_state": "hub_bad",
+          "probability": 1.0
+        }
+      ],
+      "cue_good|enter": [
+        {
+          "next_state": "hub_good",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|safe": [
+        {
+          "next_state": "safe_bad_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|teleport": [
+        {
+          "next_state": "tele_bad_1",
+          "probability": 0.15
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.85
+        }
+      ],
+      "hub_good|safe": [
+        {
+          "next_state": "safe_good_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_good|teleport": [
+        {
+          "next_state": "tele_good_1",
+          "probability": 0.95
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.050000000000000044
+        }
+      ],
+      "safe_bad_1|advance": [
+        {
+          "next_state": "safe_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_2|advance": [
+        {
+          "next_state": "safe_bad_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_1|advance": [
+        {
+          "next_state": "safe_good_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_2|advance": [
+        {
+          "next_state": "safe_good_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_1|advance": [
+        {
+          "next_state": "tele_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_1|advance": [
+        {
+          "next_state": "tele_good_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "observation_empirical_transitions": {
+      "cue_b|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "hub|safe": [
+        {
+          "next_state": "safe",
+          "probability": 1.0
+        }
+      ],
+      "hub|teleport": [
+        {
+          "next_state": "tele",
+          "probability": 0.55
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.45
+        }
+      ],
+      "safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.3333333333333333
+        },
+        {
+          "next_state": "safe",
+          "probability": 0.6666666666666666
+        }
+      ],
+      "tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.5
+        },
+        {
+          "next_state": "tele",
+          "probability": 0.5
+        }
+      ]
+    },
+    "observation_transition_counts": {
+      "cue_b|enter": {
+        "hub": 28
+      },
+      "cue_g|enter": {
+        "hub": 28
+      },
+      "hub|safe": {
+        "safe": 16
+      },
+      "hub|teleport": {
+        "tele": 22,
+        "trap": 18
+      },
+      "safe|advance": {
+        "goal": 16,
+        "safe": 32
+      },
+      "tele|advance": {
+        "goal": 22,
+        "tele": 22
+      }
+    }
+  },
+  "cue_noisy_seed4": {
+    "history_empirical_transitions": {
+      "cue_b|cue_b>hub>safe|advance": [
+        {
+          "next_state": "cue_b|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub>tele|advance": [
+        {
+          "next_state": "cue_b|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub|safe": [
+        {
+          "next_state": "cue_b|cue_b>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub|teleport": [
+        {
+          "next_state": "cue_b|cue_b>hub>tele",
+          "probability": 0.75
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.25
+        }
+      ],
+      "cue_b|enter": [
+        {
+          "next_state": "cue_b|cue_b>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_b|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub>safe|advance": [
+        {
+          "next_state": "cue_g|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub>tele|advance": [
+        {
+          "next_state": "cue_g|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub|safe": [
+        {
+          "next_state": "cue_g|cue_g>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub|teleport": [
+        {
+          "next_state": "cue_g|cue_g>hub>tele",
+          "probability": 0.45
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.55
+        }
+      ],
+      "cue_g|enter": [
+        {
+          "next_state": "cue_g|cue_g>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_g|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "history_transition_counts": {
+      "cue_b|cue_b>hub>safe|advance": {
+        "cue_b|hub>safe>safe": 8
+      },
+      "cue_b|cue_b>hub>tele|advance": {
+        "cue_b|hub>tele>tele": 15
+      },
+      "cue_b|cue_b>hub|safe": {
+        "cue_b|cue_b>hub>safe": 8
+      },
+      "cue_b|cue_b>hub|teleport": {
+        "cue_b|cue_b>hub>tele": 15,
+        "trap": 5
+      },
+      "cue_b|enter": {
+        "cue_b|cue_b>hub": 28
+      },
+      "cue_b|hub>safe>safe|advance": {
+        "cue_b|safe>safe>safe": 8
+      },
+      "cue_b|hub>tele>tele|advance": {
+        "goal": 15
+      },
+      "cue_b|safe>safe>safe|advance": {
+        "goal": 8
+      },
+      "cue_g|cue_g>hub>safe|advance": {
+        "cue_g|hub>safe>safe": 8
+      },
+      "cue_g|cue_g>hub>tele|advance": {
+        "cue_g|hub>tele>tele": 9
+      },
+      "cue_g|cue_g>hub|safe": {
+        "cue_g|cue_g>hub>safe": 8
+      },
+      "cue_g|cue_g>hub|teleport": {
+        "cue_g|cue_g>hub>tele": 9,
+        "trap": 11
+      },
+      "cue_g|enter": {
+        "cue_g|cue_g>hub": 28
+      },
+      "cue_g|hub>safe>safe|advance": {
+        "cue_g|safe>safe>safe": 8
+      },
+      "cue_g|hub>tele>tele|advance": {
+        "goal": 9
+      },
+      "cue_g|safe>safe>safe|advance": {
+        "goal": 8
+      }
+    },
+    "latent_true_transitions_for_evaluation_only": {
+      "cue_bad|enter": [
+        {
+          "next_state": "hub_bad",
+          "probability": 1.0
+        }
+      ],
+      "cue_good|enter": [
+        {
+          "next_state": "hub_good",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|safe": [
+        {
+          "next_state": "safe_bad_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|teleport": [
+        {
+          "next_state": "tele_bad_1",
+          "probability": 0.25
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.75
+        }
+      ],
+      "hub_good|safe": [
+        {
+          "next_state": "safe_good_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_good|teleport": [
+        {
+          "next_state": "tele_good_1",
+          "probability": 0.95
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.050000000000000044
+        }
+      ],
+      "safe_bad_1|advance": [
+        {
+          "next_state": "safe_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_2|advance": [
+        {
+          "next_state": "safe_bad_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_1|advance": [
+        {
+          "next_state": "safe_good_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_2|advance": [
+        {
+          "next_state": "safe_good_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_1|advance": [
+        {
+          "next_state": "tele_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_1|advance": [
+        {
+          "next_state": "tele_good_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "observation_empirical_transitions": {
+      "cue_b|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "hub|safe": [
+        {
+          "next_state": "safe",
+          "probability": 1.0
+        }
+      ],
+      "hub|teleport": [
+        {
+          "next_state": "tele",
+          "probability": 0.6
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.4
+        }
+      ],
+      "safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.3333333333333333
+        },
+        {
+          "next_state": "safe",
+          "probability": 0.6666666666666666
+        }
+      ],
+      "tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.5
+        },
+        {
+          "next_state": "tele",
+          "probability": 0.5
+        }
+      ]
+    },
+    "observation_transition_counts": {
+      "cue_b|enter": {
+        "hub": 28
+      },
+      "cue_g|enter": {
+        "hub": 28
+      },
+      "hub|safe": {
+        "safe": 16
+      },
+      "hub|teleport": {
+        "tele": 24,
+        "trap": 16
+      },
+      "safe|advance": {
+        "goal": 16,
+        "safe": 32
+      },
+      "tele|advance": {
+        "goal": 24,
+        "tele": 24
+      }
+    }
+  },
+  "cue_sufficient_seed0": {
+    "history_empirical_transitions": {
+      "cue_b|cue_b>hub>safe|advance": [
+        {
+          "next_state": "cue_b|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub>tele|advance": [
+        {
+          "next_state": "cue_b|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub|safe": [
+        {
+          "next_state": "cue_b|cue_b>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub|teleport": [
+        {
+          "next_state": "cue_b|cue_b>hub>tele",
+          "probability": 0.2
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.8
+        }
+      ],
+      "cue_b|enter": [
+        {
+          "next_state": "cue_b|cue_b>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_b|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub>safe|advance": [
+        {
+          "next_state": "cue_g|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub>tele|advance": [
+        {
+          "next_state": "cue_g|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub|safe": [
+        {
+          "next_state": "cue_g|cue_g>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub|teleport": [
+        {
+          "next_state": "cue_g|cue_g>hub>tele",
+          "probability": 0.95
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.05
+        }
+      ],
+      "cue_g|enter": [
+        {
+          "next_state": "cue_g|cue_g>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_g|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "history_transition_counts": {
+      "cue_b|cue_b>hub>safe|advance": {
+        "cue_b|hub>safe>safe": 8
+      },
+      "cue_b|cue_b>hub>tele|advance": {
+        "cue_b|hub>tele>tele": 4
+      },
+      "cue_b|cue_b>hub|safe": {
+        "cue_b|cue_b>hub>safe": 8
+      },
+      "cue_b|cue_b>hub|teleport": {
+        "cue_b|cue_b>hub>tele": 4,
+        "trap": 16
+      },
+      "cue_b|enter": {
+        "cue_b|cue_b>hub": 28
+      },
+      "cue_b|hub>safe>safe|advance": {
+        "cue_b|safe>safe>safe": 8
+      },
+      "cue_b|hub>tele>tele|advance": {
+        "goal": 4
+      },
+      "cue_b|safe>safe>safe|advance": {
+        "goal": 8
+      },
+      "cue_g|cue_g>hub>safe|advance": {
+        "cue_g|hub>safe>safe": 8
+      },
+      "cue_g|cue_g>hub>tele|advance": {
+        "cue_g|hub>tele>tele": 19
+      },
+      "cue_g|cue_g>hub|safe": {
+        "cue_g|cue_g>hub>safe": 8
+      },
+      "cue_g|cue_g>hub|teleport": {
+        "cue_g|cue_g>hub>tele": 19,
+        "trap": 1
+      },
+      "cue_g|enter": {
+        "cue_g|cue_g>hub": 28
+      },
+      "cue_g|hub>safe>safe|advance": {
+        "cue_g|safe>safe>safe": 8
+      },
+      "cue_g|hub>tele>tele|advance": {
+        "goal": 19
+      },
+      "cue_g|safe>safe>safe|advance": {
+        "goal": 8
+      }
+    },
+    "latent_true_transitions_for_evaluation_only": {
+      "cue_bad|enter": [
+        {
+          "next_state": "hub_bad",
+          "probability": 1.0
+        }
+      ],
+      "cue_good|enter": [
+        {
+          "next_state": "hub_good",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|safe": [
+        {
+          "next_state": "safe_bad_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|teleport": [
+        {
+          "next_state": "tele_bad_1",
+          "probability": 0.2
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.8
+        }
+      ],
+      "hub_good|safe": [
+        {
+          "next_state": "safe_good_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_good|teleport": [
+        {
+          "next_state": "tele_good_1",
+          "probability": 0.95
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.050000000000000044
+        }
+      ],
+      "safe_bad_1|advance": [
+        {
+          "next_state": "safe_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_2|advance": [
+        {
+          "next_state": "safe_bad_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_1|advance": [
+        {
+          "next_state": "safe_good_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_2|advance": [
+        {
+          "next_state": "safe_good_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_1|advance": [
+        {
+          "next_state": "tele_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_1|advance": [
+        {
+          "next_state": "tele_good_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "observation_empirical_transitions": {
+      "cue_b|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "hub|safe": [
+        {
+          "next_state": "safe",
+          "probability": 1.0
+        }
+      ],
+      "hub|teleport": [
+        {
+          "next_state": "tele",
+          "probability": 0.575
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.425
+        }
+      ],
+      "safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.3333333333333333
+        },
+        {
+          "next_state": "safe",
+          "probability": 0.6666666666666666
+        }
+      ],
+      "tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.5
+        },
+        {
+          "next_state": "tele",
+          "probability": 0.5
+        }
+      ]
+    },
+    "observation_transition_counts": {
+      "cue_b|enter": {
+        "hub": 28
+      },
+      "cue_g|enter": {
+        "hub": 28
+      },
+      "hub|safe": {
+        "safe": 16
+      },
+      "hub|teleport": {
+        "tele": 23,
+        "trap": 17
+      },
+      "safe|advance": {
+        "goal": 16,
+        "safe": 32
+      },
+      "tele|advance": {
+        "goal": 23,
+        "tele": 23
+      }
+    }
+  },
+  "cue_sufficient_seed1": {
+    "history_empirical_transitions": {
+      "cue_b|cue_b>hub>safe|advance": [
+        {
+          "next_state": "cue_b|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub>tele|advance": [
+        {
+          "next_state": "cue_b|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub|safe": [
+        {
+          "next_state": "cue_b|cue_b>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub|teleport": [
+        {
+          "next_state": "cue_b|cue_b>hub>tele",
+          "probability": 0.2
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.8
+        }
+      ],
+      "cue_b|enter": [
+        {
+          "next_state": "cue_b|cue_b>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_b|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub>safe|advance": [
+        {
+          "next_state": "cue_g|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub>tele|advance": [
+        {
+          "next_state": "cue_g|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub|safe": [
+        {
+          "next_state": "cue_g|cue_g>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub|teleport": [
+        {
+          "next_state": "cue_g|cue_g>hub>tele",
+          "probability": 0.95
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.05
+        }
+      ],
+      "cue_g|enter": [
+        {
+          "next_state": "cue_g|cue_g>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_g|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "history_transition_counts": {
+      "cue_b|cue_b>hub>safe|advance": {
+        "cue_b|hub>safe>safe": 8
+      },
+      "cue_b|cue_b>hub>tele|advance": {
+        "cue_b|hub>tele>tele": 4
+      },
+      "cue_b|cue_b>hub|safe": {
+        "cue_b|cue_b>hub>safe": 8
+      },
+      "cue_b|cue_b>hub|teleport": {
+        "cue_b|cue_b>hub>tele": 4,
+        "trap": 16
+      },
+      "cue_b|enter": {
+        "cue_b|cue_b>hub": 28
+      },
+      "cue_b|hub>safe>safe|advance": {
+        "cue_b|safe>safe>safe": 8
+      },
+      "cue_b|hub>tele>tele|advance": {
+        "goal": 4
+      },
+      "cue_b|safe>safe>safe|advance": {
+        "goal": 8
+      },
+      "cue_g|cue_g>hub>safe|advance": {
+        "cue_g|hub>safe>safe": 8
+      },
+      "cue_g|cue_g>hub>tele|advance": {
+        "cue_g|hub>tele>tele": 19
+      },
+      "cue_g|cue_g>hub|safe": {
+        "cue_g|cue_g>hub>safe": 8
+      },
+      "cue_g|cue_g>hub|teleport": {
+        "cue_g|cue_g>hub>tele": 19,
+        "trap": 1
+      },
+      "cue_g|enter": {
+        "cue_g|cue_g>hub": 28
+      },
+      "cue_g|hub>safe>safe|advance": {
+        "cue_g|safe>safe>safe": 8
+      },
+      "cue_g|hub>tele>tele|advance": {
+        "goal": 19
+      },
+      "cue_g|safe>safe>safe|advance": {
+        "goal": 8
+      }
+    },
+    "latent_true_transitions_for_evaluation_only": {
+      "cue_bad|enter": [
+        {
+          "next_state": "hub_bad",
+          "probability": 1.0
+        }
+      ],
+      "cue_good|enter": [
+        {
+          "next_state": "hub_good",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|safe": [
+        {
+          "next_state": "safe_bad_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|teleport": [
+        {
+          "next_state": "tele_bad_1",
+          "probability": 0.2
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.8
+        }
+      ],
+      "hub_good|safe": [
+        {
+          "next_state": "safe_good_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_good|teleport": [
+        {
+          "next_state": "tele_good_1",
+          "probability": 0.95
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.050000000000000044
+        }
+      ],
+      "safe_bad_1|advance": [
+        {
+          "next_state": "safe_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_2|advance": [
+        {
+          "next_state": "safe_bad_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_1|advance": [
+        {
+          "next_state": "safe_good_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_2|advance": [
+        {
+          "next_state": "safe_good_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_1|advance": [
+        {
+          "next_state": "tele_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_1|advance": [
+        {
+          "next_state": "tele_good_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "observation_empirical_transitions": {
+      "cue_b|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "hub|safe": [
+        {
+          "next_state": "safe",
+          "probability": 1.0
+        }
+      ],
+      "hub|teleport": [
+        {
+          "next_state": "tele",
+          "probability": 0.575
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.425
+        }
+      ],
+      "safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.3333333333333333
+        },
+        {
+          "next_state": "safe",
+          "probability": 0.6666666666666666
+        }
+      ],
+      "tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.5
+        },
+        {
+          "next_state": "tele",
+          "probability": 0.5
+        }
+      ]
+    },
+    "observation_transition_counts": {
+      "cue_b|enter": {
+        "hub": 28
+      },
+      "cue_g|enter": {
+        "hub": 28
+      },
+      "hub|safe": {
+        "safe": 16
+      },
+      "hub|teleport": {
+        "tele": 23,
+        "trap": 17
+      },
+      "safe|advance": {
+        "goal": 16,
+        "safe": 32
+      },
+      "tele|advance": {
+        "goal": 23,
+        "tele": 23
+      }
+    }
+  },
+  "cue_sufficient_seed2": {
+    "history_empirical_transitions": {
+      "cue_b|cue_b>hub>safe|advance": [
+        {
+          "next_state": "cue_b|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub>tele|advance": [
+        {
+          "next_state": "cue_b|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub|safe": [
+        {
+          "next_state": "cue_b|cue_b>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub|teleport": [
+        {
+          "next_state": "cue_b|cue_b>hub>tele",
+          "probability": 0.25
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.75
+        }
+      ],
+      "cue_b|enter": [
+        {
+          "next_state": "cue_b|cue_b>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_b|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub>safe|advance": [
+        {
+          "next_state": "cue_g|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub>tele|advance": [
+        {
+          "next_state": "cue_g|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub|safe": [
+        {
+          "next_state": "cue_g|cue_g>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub|teleport": [
+        {
+          "next_state": "cue_g|cue_g>hub>tele",
+          "probability": 0.95
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.05
+        }
+      ],
+      "cue_g|enter": [
+        {
+          "next_state": "cue_g|cue_g>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_g|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "history_transition_counts": {
+      "cue_b|cue_b>hub>safe|advance": {
+        "cue_b|hub>safe>safe": 8
+      },
+      "cue_b|cue_b>hub>tele|advance": {
+        "cue_b|hub>tele>tele": 5
+      },
+      "cue_b|cue_b>hub|safe": {
+        "cue_b|cue_b>hub>safe": 8
+      },
+      "cue_b|cue_b>hub|teleport": {
+        "cue_b|cue_b>hub>tele": 5,
+        "trap": 15
+      },
+      "cue_b|enter": {
+        "cue_b|cue_b>hub": 28
+      },
+      "cue_b|hub>safe>safe|advance": {
+        "cue_b|safe>safe>safe": 8
+      },
+      "cue_b|hub>tele>tele|advance": {
+        "goal": 5
+      },
+      "cue_b|safe>safe>safe|advance": {
+        "goal": 8
+      },
+      "cue_g|cue_g>hub>safe|advance": {
+        "cue_g|hub>safe>safe": 8
+      },
+      "cue_g|cue_g>hub>tele|advance": {
+        "cue_g|hub>tele>tele": 19
+      },
+      "cue_g|cue_g>hub|safe": {
+        "cue_g|cue_g>hub>safe": 8
+      },
+      "cue_g|cue_g>hub|teleport": {
+        "cue_g|cue_g>hub>tele": 19,
+        "trap": 1
+      },
+      "cue_g|enter": {
+        "cue_g|cue_g>hub": 28
+      },
+      "cue_g|hub>safe>safe|advance": {
+        "cue_g|safe>safe>safe": 8
+      },
+      "cue_g|hub>tele>tele|advance": {
+        "goal": 19
+      },
+      "cue_g|safe>safe>safe|advance": {
+        "goal": 8
+      }
+    },
+    "latent_true_transitions_for_evaluation_only": {
+      "cue_bad|enter": [
+        {
+          "next_state": "hub_bad",
+          "probability": 1.0
+        }
+      ],
+      "cue_good|enter": [
+        {
+          "next_state": "hub_good",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|safe": [
+        {
+          "next_state": "safe_bad_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|teleport": [
+        {
+          "next_state": "tele_bad_1",
+          "probability": 0.25
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.75
+        }
+      ],
+      "hub_good|safe": [
+        {
+          "next_state": "safe_good_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_good|teleport": [
+        {
+          "next_state": "tele_good_1",
+          "probability": 0.95
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.050000000000000044
+        }
+      ],
+      "safe_bad_1|advance": [
+        {
+          "next_state": "safe_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_2|advance": [
+        {
+          "next_state": "safe_bad_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_1|advance": [
+        {
+          "next_state": "safe_good_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_2|advance": [
+        {
+          "next_state": "safe_good_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_1|advance": [
+        {
+          "next_state": "tele_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_1|advance": [
+        {
+          "next_state": "tele_good_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "observation_empirical_transitions": {
+      "cue_b|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "hub|safe": [
+        {
+          "next_state": "safe",
+          "probability": 1.0
+        }
+      ],
+      "hub|teleport": [
+        {
+          "next_state": "tele",
+          "probability": 0.6
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.4
+        }
+      ],
+      "safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.3333333333333333
+        },
+        {
+          "next_state": "safe",
+          "probability": 0.6666666666666666
+        }
+      ],
+      "tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.5
+        },
+        {
+          "next_state": "tele",
+          "probability": 0.5
+        }
+      ]
+    },
+    "observation_transition_counts": {
+      "cue_b|enter": {
+        "hub": 28
+      },
+      "cue_g|enter": {
+        "hub": 28
+      },
+      "hub|safe": {
+        "safe": 16
+      },
+      "hub|teleport": {
+        "tele": 24,
+        "trap": 16
+      },
+      "safe|advance": {
+        "goal": 16,
+        "safe": 32
+      },
+      "tele|advance": {
+        "goal": 24,
+        "tele": 24
+      }
+    }
+  },
+  "cue_sufficient_seed3": {
+    "history_empirical_transitions": {
+      "cue_b|cue_b>hub>safe|advance": [
+        {
+          "next_state": "cue_b|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub>tele|advance": [
+        {
+          "next_state": "cue_b|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub|safe": [
+        {
+          "next_state": "cue_b|cue_b>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub|teleport": [
+        {
+          "next_state": "cue_b|cue_b>hub>tele",
+          "probability": 0.15
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.85
+        }
+      ],
+      "cue_b|enter": [
+        {
+          "next_state": "cue_b|cue_b>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_b|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub>safe|advance": [
+        {
+          "next_state": "cue_g|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub>tele|advance": [
+        {
+          "next_state": "cue_g|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub|safe": [
+        {
+          "next_state": "cue_g|cue_g>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub|teleport": [
+        {
+          "next_state": "cue_g|cue_g>hub>tele",
+          "probability": 0.95
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.05
+        }
+      ],
+      "cue_g|enter": [
+        {
+          "next_state": "cue_g|cue_g>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_g|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "history_transition_counts": {
+      "cue_b|cue_b>hub>safe|advance": {
+        "cue_b|hub>safe>safe": 8
+      },
+      "cue_b|cue_b>hub>tele|advance": {
+        "cue_b|hub>tele>tele": 3
+      },
+      "cue_b|cue_b>hub|safe": {
+        "cue_b|cue_b>hub>safe": 8
+      },
+      "cue_b|cue_b>hub|teleport": {
+        "cue_b|cue_b>hub>tele": 3,
+        "trap": 17
+      },
+      "cue_b|enter": {
+        "cue_b|cue_b>hub": 28
+      },
+      "cue_b|hub>safe>safe|advance": {
+        "cue_b|safe>safe>safe": 8
+      },
+      "cue_b|hub>tele>tele|advance": {
+        "goal": 3
+      },
+      "cue_b|safe>safe>safe|advance": {
+        "goal": 8
+      },
+      "cue_g|cue_g>hub>safe|advance": {
+        "cue_g|hub>safe>safe": 8
+      },
+      "cue_g|cue_g>hub>tele|advance": {
+        "cue_g|hub>tele>tele": 19
+      },
+      "cue_g|cue_g>hub|safe": {
+        "cue_g|cue_g>hub>safe": 8
+      },
+      "cue_g|cue_g>hub|teleport": {
+        "cue_g|cue_g>hub>tele": 19,
+        "trap": 1
+      },
+      "cue_g|enter": {
+        "cue_g|cue_g>hub": 28
+      },
+      "cue_g|hub>safe>safe|advance": {
+        "cue_g|safe>safe>safe": 8
+      },
+      "cue_g|hub>tele>tele|advance": {
+        "goal": 19
+      },
+      "cue_g|safe>safe>safe|advance": {
+        "goal": 8
+      }
+    },
+    "latent_true_transitions_for_evaluation_only": {
+      "cue_bad|enter": [
+        {
+          "next_state": "hub_bad",
+          "probability": 1.0
+        }
+      ],
+      "cue_good|enter": [
+        {
+          "next_state": "hub_good",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|safe": [
+        {
+          "next_state": "safe_bad_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|teleport": [
+        {
+          "next_state": "tele_bad_1",
+          "probability": 0.15
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.85
+        }
+      ],
+      "hub_good|safe": [
+        {
+          "next_state": "safe_good_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_good|teleport": [
+        {
+          "next_state": "tele_good_1",
+          "probability": 0.95
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.050000000000000044
+        }
+      ],
+      "safe_bad_1|advance": [
+        {
+          "next_state": "safe_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_2|advance": [
+        {
+          "next_state": "safe_bad_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_1|advance": [
+        {
+          "next_state": "safe_good_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_2|advance": [
+        {
+          "next_state": "safe_good_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_1|advance": [
+        {
+          "next_state": "tele_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_1|advance": [
+        {
+          "next_state": "tele_good_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "observation_empirical_transitions": {
+      "cue_b|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "hub|safe": [
+        {
+          "next_state": "safe",
+          "probability": 1.0
+        }
+      ],
+      "hub|teleport": [
+        {
+          "next_state": "tele",
+          "probability": 0.55
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.45
+        }
+      ],
+      "safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.3333333333333333
+        },
+        {
+          "next_state": "safe",
+          "probability": 0.6666666666666666
+        }
+      ],
+      "tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.5
+        },
+        {
+          "next_state": "tele",
+          "probability": 0.5
+        }
+      ]
+    },
+    "observation_transition_counts": {
+      "cue_b|enter": {
+        "hub": 28
+      },
+      "cue_g|enter": {
+        "hub": 28
+      },
+      "hub|safe": {
+        "safe": 16
+      },
+      "hub|teleport": {
+        "tele": 22,
+        "trap": 18
+      },
+      "safe|advance": {
+        "goal": 16,
+        "safe": 32
+      },
+      "tele|advance": {
+        "goal": 22,
+        "tele": 22
+      }
+    }
+  },
+  "cue_sufficient_seed4": {
+    "history_empirical_transitions": {
+      "cue_b|cue_b>hub>safe|advance": [
+        {
+          "next_state": "cue_b|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub>tele|advance": [
+        {
+          "next_state": "cue_b|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub|safe": [
+        {
+          "next_state": "cue_b|cue_b>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|cue_b>hub|teleport": [
+        {
+          "next_state": "cue_b|cue_b>hub>tele",
+          "probability": 0.15
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.85
+        }
+      ],
+      "cue_b|enter": [
+        {
+          "next_state": "cue_b|cue_b>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_b|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_b|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub>safe|advance": [
+        {
+          "next_state": "cue_g|hub>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub>tele|advance": [
+        {
+          "next_state": "cue_g|hub>tele>tele",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub|safe": [
+        {
+          "next_state": "cue_g|cue_g>hub>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|cue_g>hub|teleport": [
+        {
+          "next_state": "cue_g|cue_g>hub>tele",
+          "probability": 0.95
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.05
+        }
+      ],
+      "cue_g|enter": [
+        {
+          "next_state": "cue_g|cue_g>hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|hub>safe>safe|advance": [
+        {
+          "next_state": "cue_g|safe>safe>safe",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|hub>tele>tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|safe>safe>safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "history_transition_counts": {
+      "cue_b|cue_b>hub>safe|advance": {
+        "cue_b|hub>safe>safe": 8
+      },
+      "cue_b|cue_b>hub>tele|advance": {
+        "cue_b|hub>tele>tele": 3
+      },
+      "cue_b|cue_b>hub|safe": {
+        "cue_b|cue_b>hub>safe": 8
+      },
+      "cue_b|cue_b>hub|teleport": {
+        "cue_b|cue_b>hub>tele": 3,
+        "trap": 17
+      },
+      "cue_b|enter": {
+        "cue_b|cue_b>hub": 28
+      },
+      "cue_b|hub>safe>safe|advance": {
+        "cue_b|safe>safe>safe": 8
+      },
+      "cue_b|hub>tele>tele|advance": {
+        "goal": 3
+      },
+      "cue_b|safe>safe>safe|advance": {
+        "goal": 8
+      },
+      "cue_g|cue_g>hub>safe|advance": {
+        "cue_g|hub>safe>safe": 8
+      },
+      "cue_g|cue_g>hub>tele|advance": {
+        "cue_g|hub>tele>tele": 19
+      },
+      "cue_g|cue_g>hub|safe": {
+        "cue_g|cue_g>hub>safe": 8
+      },
+      "cue_g|cue_g>hub|teleport": {
+        "cue_g|cue_g>hub>tele": 19,
+        "trap": 1
+      },
+      "cue_g|enter": {
+        "cue_g|cue_g>hub": 28
+      },
+      "cue_g|hub>safe>safe|advance": {
+        "cue_g|safe>safe>safe": 8
+      },
+      "cue_g|hub>tele>tele|advance": {
+        "goal": 19
+      },
+      "cue_g|safe>safe>safe|advance": {
+        "goal": 8
+      }
+    },
+    "latent_true_transitions_for_evaluation_only": {
+      "cue_bad|enter": [
+        {
+          "next_state": "hub_bad",
+          "probability": 1.0
+        }
+      ],
+      "cue_good|enter": [
+        {
+          "next_state": "hub_good",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|safe": [
+        {
+          "next_state": "safe_bad_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_bad|teleport": [
+        {
+          "next_state": "tele_bad_1",
+          "probability": 0.15
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.85
+        }
+      ],
+      "hub_good|safe": [
+        {
+          "next_state": "safe_good_1",
+          "probability": 1.0
+        }
+      ],
+      "hub_good|teleport": [
+        {
+          "next_state": "tele_good_1",
+          "probability": 0.95
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.050000000000000044
+        }
+      ],
+      "safe_bad_1|advance": [
+        {
+          "next_state": "safe_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_2|advance": [
+        {
+          "next_state": "safe_bad_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_bad_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_1|advance": [
+        {
+          "next_state": "safe_good_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_2|advance": [
+        {
+          "next_state": "safe_good_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_good_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_1|advance": [
+        {
+          "next_state": "tele_bad_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_bad_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_1|advance": [
+        {
+          "next_state": "tele_good_2",
+          "probability": 1.0
+        }
+      ],
+      "tele_good_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    },
+    "observation_empirical_transitions": {
+      "cue_b|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "cue_g|enter": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "hub|safe": [
+        {
+          "next_state": "safe",
+          "probability": 1.0
+        }
+      ],
+      "hub|teleport": [
+        {
+          "next_state": "tele",
+          "probability": 0.55
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.45
+        }
+      ],
+      "safe|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.3333333333333333
+        },
+        {
+          "next_state": "safe",
+          "probability": 0.6666666666666666
+        }
+      ],
+      "tele|advance": [
+        {
+          "next_state": "goal",
+          "probability": 0.5
+        },
+        {
+          "next_state": "tele",
+          "probability": 0.5
+        }
+      ]
+    },
+    "observation_transition_counts": {
+      "cue_b|enter": {
+        "hub": 28
+      },
+      "cue_g|enter": {
+        "hub": 28
+      },
+      "hub|safe": {
+        "safe": 16
+      },
+      "hub|teleport": {
+        "tele": 22,
+        "trap": 18
+      },
+      "safe|advance": {
+        "goal": 16,
+        "safe": 32
+      },
+      "tele|advance": {
+        "goal": 22,
+        "tele": 22
+      }
+    }
+  }
+}
