@@ -9,6 +9,7 @@
 | 0005 | completed | pass | continue | `metrics.aggregate.any_positive_successor_evidence`=False<br>`metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_00.equivalent_to_trl_log_all_main`=False<br>`metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_00.improves_vs_calibration_only`=False<br>`metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_00.lambda_tr`=0.0<br>`metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_00.main_mean_heldout_mse`=0.21524060774329223 |
 | 0006 | completed | weak_pass | pivot | `metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.chain_heldout_mse`=2.9347503914472164e-34<br>`metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.lucky_q_overestimation_reduced_vs_trl_log`=False<br>`metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.lucky_regret_reduced_vs_trl_log`=False<br>`metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.positive_uncertainty_evidence`=False<br>`metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.risk_optimal_matched_action`=risky |
 | 0007 | completed | weak_pass | needs_human | `metrics.aggregate.best_positive_method`=generic_dirichlet_unknown_prior_0_50_alpha_0_50<br>`metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.chain_heldout_mse`=2.9347503914472164e-34<br>`metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.lucky_policy_regret_delta_vs_one_sided_0006`=0.5040000000000001<br>`metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.lucky_policy_regret_delta_vs_trl_log`=0.0<br>`metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.lucky_q_overestimation_delta_vs_one_sided_0006`=0.18000000000000005 |
+| 0008 | completed | weak_pass | continue | `metrics.classification_counts.no_success`=45<br>`metrics.method_summary.empirical_risky_value.action_accuracy`=0.6903225806451613<br>`metrics.method_summary.empirical_risky_value.mean_policy_regret`=0.07556516129032252<br>`metrics.method_summary.empirical_transition_dp.mean_policy_regret`=0.07556516129032252<br>`metrics.method_summary.hoeffding_lcb_delta_0_2.mean_policy_regret`=0.019136129032258063 |
 
 ## Positive Signals
 
@@ -19,6 +20,8 @@
 - `0005`: The audit found negative successor-distance evidence: improving lambdas reduced held-out error by matching trl_log within the predeclared tolerance, so this variant is not yet distinct from trl_log on these tabular diagnostics.
 - `0006`: one_sided_conservative_log_trl_alpha_0_20 reduced the lucky-only safe-optimal failure versus trl_log while preserving the chain and selecting risky with zero regret in the matched risk-optimal scenario.
 - `0007`: generic_dirichlet_unknown_prior_0_50_alpha_0_50 reduced safe-optimal lucky-only overestimation versus trl_log while preserving the chain and selecting risky with zero regret in the matched risk-optimal scenario. The risk-optimal no-success stress status is rep
+- `0008`: Posterior lower and upper choices intentionally disagree in prior-dependent cells, exposing where explicit priors are unavoidable.
+- `0008`: The grid is useful as an identifiability map: it separates cells where empirical transition estimates match exact action choice from lucky-only, no-success, ambiguous, and prior-dependent cells where explicit priors are required.
 
 ## Negative Signals
 
@@ -42,3 +45,6 @@
 - `0007`: Do not treat 0007 as showing that the generic method fully replaces the 0006 one-sided rule; it only gives modest Q-overestimation reduction without fixing lucky-only policy regret.
 - `0007`: known_failures is empty despite risk_optimal_no_success_stress remaining unsolved; this is acceptable for continuation only because the limitation is explicit in metrics and summary.
 - `0007`: The current worktree has unrelated uncommitted modifications to scripts/autoresearcher.py, but the 0007 result commit did not include that protected file.
+- `0008`: Grid produced 285 ambiguous, lucky-only, no-success, or prior-dependent cells where action choice cannot be justified by empirical frequencies alone.
+- `0008`: TRL-log is identical to empirical transition DP on this tabular grid, so failures in those cells are data-identifiability failures rather than implementation-specific TRL-log failures.
+- `0008`: Do not use the method_summary rankings as probability-weighted performance claims; the sweep weights each possible observed success count equally.

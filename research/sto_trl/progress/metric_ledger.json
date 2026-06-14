@@ -211,6 +211,39 @@
       ],
       "review_verdict": "weak_pass",
       "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "A compact exact-DP tabular grid can distinguish risky-shortcut failures caused by finite stochastic coverage from failures of the TRL-log update itself.",
+      "decision": "continue",
+      "important_metrics": {
+        "metrics.classification_counts.no_success": 45,
+        "metrics.method_summary.empirical_risky_value.action_accuracy": 0.6903225806451613,
+        "metrics.method_summary.empirical_risky_value.mean_policy_regret": 0.07556516129032252,
+        "metrics.method_summary.empirical_transition_dp.mean_policy_regret": 0.07556516129032252,
+        "metrics.method_summary.hoeffding_lcb_delta_0_2.mean_policy_regret": 0.019136129032258063,
+        "metrics.method_summary.hoeffding_ucb_delta_0_2.mean_policy_regret": 0.1573490322580649,
+        "metrics.method_summary.posterior_lower_q10_beta_1_1.mean_policy_regret": 0.026568387096774195,
+        "metrics.method_summary.posterior_mean_beta_1_1.mean_policy_regret": 0.05130387096774184,
+        "metrics.method_summary.posterior_upper_q90_beta_1_1.mean_policy_regret": 0.10117161290322614,
+        "metrics.method_summary.raw_trl.mean_policy_regret": 0.2713587096774201,
+        "metrics.method_summary.trl_log.mean_policy_regret": 0.07556516129032252,
+        "metrics.tag_counts.no_success": 45
+      },
+      "iteration": "0008",
+      "negative_signals": [
+        "Grid produced 285 ambiguous, lucky-only, no-success, or prior-dependent cells where action choice cannot be justified by empirical frequencies alone.",
+        "TRL-log is identical to empirical transition DP on this tabular grid, so failures in those cells are data-identifiability failures rather than implementation-specific TRL-log failures.",
+        "Do not use the method_summary rankings as probability-weighted performance claims; the sweep weights each possible observed success count equally.",
+        "Do not treat all no-success or lucky-only primary cells as impossible without inspecting empirical_identifiable and prior_dependent tags.",
+        "The chain guard should be strengthened in a future experiment if deterministic long-horizon recovery is an important acceptance gate."
+      ],
+      "positive_signals": [
+        "Posterior lower and upper choices intentionally disagree in prior-dependent cells, exposing where explicit priors are unavoidable.",
+        "The grid is useful as an identifiability map: it separates cells where empirical transition estimates match exact action choice from lucky-only, no-success, ambiguous, and prior-dependent cells where explicit priors are required."
+      ],
+      "review_verdict": "weak_pass",
+      "status": "completed"
     }
   ],
   "project": "sto_trl"
