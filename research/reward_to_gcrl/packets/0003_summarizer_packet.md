@@ -270,12 +270,12 @@ _None._
   "failure_streak": 0,
   "human_review_required": false,
   "iteration": 3,
-  "last_decision": "continue",
+  "last_decision": "protected_file_drift",
   "last_failure": null,
-  "last_pro_review_iteration": 1,
-  "last_pro_review_path": "research/reward_to_gcrl/decisions/0002_review3_pro_decision.json",
+  "last_pro_review_iteration": 3,
+  "last_pro_review_path": "research/reward_to_gcrl/decisions/0004_review2_pro_decision.json",
   "last_summary_iteration": 3,
-  "last_summary_path": "research/reward_to_gcrl/progress/0003_pre_pro_weak_pass_streak_summary.md",
+  "last_summary_path": "research/reward_to_gcrl/progress/0003_pre_pro_local_needs_human_summary.md",
   "no_progress_rounds": 0,
   "notes": [
     "2026-06-14T09:16:58+00:00: setup_env failed or timed out; see /home/eston/autoresearcher/research/reward_to_gcrl/env_state_stderr.log",
@@ -292,15 +292,17 @@ _None._
     "2026-06-14T11:11:03+00:00: applied Pro decision continue from research/reward_to_gcrl/decisions/0002_review3_pro_decision.json",
     "2026-06-14T11:12:06+00:00: cleared retry failure state after applied Pro continuation",
     "2026-06-14T11:50:30+00:00: Pro checkpoint blocked (pro_backend_failed); packet research/reward_to_gcrl/pro_packets/0004_PRO_REVIEW_PACKET.md",
-    "2026-06-14T20:49:23+00:00: resumed: Retry Pro checkpoint after ChatGPT browser response finished"
+    "2026-06-14T20:49:23+00:00: resumed: Retry Pro checkpoint after ChatGPT browser response finished",
+    "2026-06-14T20:52:44+00:00: Pro decision saved for checkpoint local_needs_human (research/reward_to_gcrl/decisions/0004_review2_pro_decision.json)",
+    "2026-06-14T20:52:46+00:00: applied Pro decision pivot from research/reward_to_gcrl/decisions/0004_review2_pro_decision.json"
   ],
   "pending_checkpoint": null,
   "pending_local_decision_path": null,
   "primary_metric": null,
-  "pro_review_count": 2,
-  "protected_file_drift": false,
+  "pro_review_count": 3,
+  "protected_file_drift": true,
   "status": "active",
-  "weak_pass_streak": 2
+  "weak_pass_streak": 0
 }
 ```
 
@@ -553,73 +555,68 @@ _None._
 
 ```json
 {
-  "checkpoint_reason": "Human review should decide whether 0004 should be a stricter sampled-vs-soft repair/replication with nondegenerate reward normalization or a small RiverSwim long-horizon propagation test.",
-  "checkpoint_recommended": true,
-  "confidence": 0.91,
-  "decision": "needs_human",
+  "confidence": 0.83,
+  "decision": "pivot",
   "evidence": [
-    "0003_result.json reports status completed with commands, artifacts, raw per-seed metrics, and CPU-only tabular scope.",
-    "0003_review.json allows auto-continue and reports no triggered failure criteria, but grades evidence quality as medium with verdict weak_pass.",
-    "The strongest positive result is estimator variance: sampled conditional variance exceeds zero soft terminal-sampling variance in all 30 runs.",
-    "Learning-performance evidence is mixed: mean final soft value error is 0.0821131 versus sampled value error 0.0815604, so soft is slightly worse on mean final value error.",
-    "The reviewer flags soft value-error dominance as only 17/30 runs and only 4/10 at gamma 0.995.",
-    "Bellman residual is the stronger dominance signal, with soft lower in 26/30 runs, but that is narrower than the broader value-error wording.",
-    "The reviewer flags that sampled target means were compared to the sampled learner's conditional expected target, not the deterministic soft learner's recorded target.",
-    "All evaluated policies have raw return -200 and success rate 0 under the chosen normalization.",
-    "Current state records weak_pass_streak=2 and a blocked/resumed Pro checkpoint around 0004, so this is an appropriate human checkpoint."
+    "0001 weak-passed: sampled and soft terminal targets matched expected means, soft removed terminal-sampling variance, and rare g_plus events were exposed.",
+    "0002 weak-passed: an audited local deterministic CliffWalking table was used, exact DP scaling equivalence passed, and learned scaled M matched normalized Q on sufficiently visited pairs.",
+    "0003 weak-passed structurally: sampled conditional variance exceeded zero soft terminal-sampling variance in all 30 CPU-tabular runs, and soft had lower final Bellman residual in 26 of 30 runs.",
+    "The strongest 0003 learning-performance claim is mixed: mean final soft value error was slightly worse than sampled value error, soft value-error dominance was only 17 of 30 runs, and only 4 of 10 seeds at gamma 0.995.",
+    "The current CliffWalking normalization made raw task success uninformative: policies in 0002 and 0003 had raw return -200 and success rate 0.0.",
+    "0003 target-mean validation compared sampled targets to the sampled learner's conditional expectation rather than directly to the deterministic soft learner's recorded target, and sampled-vs-soft deterministic target means exceeded tolerance in 19 of 30 runs.",
+    "The latest local decision is needs_human because continuing automatically risks compounding overclaims from ambiguous 0003 evidence."
   ],
-  "next_experiment": null,
-  "progress_score": 4,
-  "rationale": "Do not auto-continue to a new experiment yet. Iteration 0003 is structurally valid but only a weak pass, and its main scientific interpretation is ambiguous: the sampled-vs-soft advantage is not consistently supported by value error, the target-mean check is not against the recorded deterministic soft learner target, and the CliffWalking normalization makes policy success uninformative.",
+  "next_experiment": {
+    "estimated_runtime_minutes": 25,
+    "experiment_id": "0004",
+    "failure_criteria": [
+      "The normalized objective does not preserve the raw optimal policy and the experiment does not explicitly label this as an objective-mismatch result.",
+      "The target comparison again validates sampled targets only against the sampled learner's own conditional expectation rather than the deterministic soft target from the same state.",
+      "Exact DP has mostly tie states, making policy disagreement uninformative.",
+      "Raw task success remains zero or uninformative for all learned policies.",
+      "Soft has worse mean final value error and no compensating Bellman-residual or policy-quality advantage.",
+      "The run adds neural networks, auxiliary goals, large environments, GPU dependence, or expensive hyperparameter sweeps."
+    ],
+    "hypothesis": "When reward normalization is audited so that the induced normalized objective does not create degenerate all-step rewards, the sampled augmented update remains unbiased but higher variance, while the deterministic soft update should achieve lower Bellman residual and at least non-worse value error and greedy policy quality under the same transition budget.",
+    "objective": "Repair the sampled-vs-soft comparison using a small nondegenerate tabular setting where the raw task objective remains meaningful, and directly test whether deterministic soft terminal marginalization improves Bellman residual, value error, and policy quality over sampled augmented updates under matched data.",
+    "required_outputs": [
+      "research/reward_to_gcrl/results/0004_result.json",
+      "research/reward_to_gcrl/results/0004_summary.md",
+      "research/reward_to_gcrl/artifacts/0004/"
+    ],
+    "success_criteria": [
+      "Include an explicit reward audit reporting raw rewards, normalized rewards, affine constants, terminal handling, and whether the normalized objective preserves the raw optimal policy under exact DP.",
+      "Use at least one tiny analytic counterexample or hand-built chain where raw task success is nondegenerate and exact DP has non-tie greedy actions.",
+      "Compute exact DP for raw Q, normalized Q, and soft g_plus, and report whether normalized Q and raw Q have the same greedy policy on non-terminal non-tie states.",
+      "Run matched-stream sampled augmented and deterministic soft updates for gamma in {0.95, 0.99, 0.995} over 10 seeds with CPU-tabular code only.",
+      "Compare sampled targets directly against the deterministic soft target computed from the same learner state and transition, with pass/fail tolerance stated before the run.",
+      "Soft must have lower mean final Bellman residual and lower or statistically indistinguishable mean final value error versus sampled across seeds; otherwise the result should be labeled variance-only, not learning-improvement evidence.",
+      "Evaluation must report raw return, normalized return, success rate, steps to goal, and policy disagreement against exact DP, with tie states separated."
+    ],
+    "tasks_for_codex": [
+      "Create research/reward_to_gcrl/artifacts/0004/run_repaired_sampled_vs_soft.py using CPU-only tabular code.",
+      "Implement a small nondegenerate chain or gridworld with audited raw rewards, normalized rewards, terminal states, and exact transition table.",
+      "Optionally include a repaired CliffWalking variant only if exact DP confirms the normalized objective has meaningful non-tie policies and nonzero success incentives.",
+      "Compute exact DP references for raw Q, normalized Q, and soft g_plus, including policy preservation checks.",
+      "Run matched-stream sampled augmented and deterministic soft learners with synchronized initialization, alpha, epsilon schedule, transition budget, gamma values, and seeds.",
+      "For every sampled update, record the deterministic soft target from the same learner state and transition so sampled-vs-soft target mean and variance are directly comparable.",
+      "Save raw metrics, target diagnostics, Bellman residuals, value errors, policy disagreement, evaluation returns, and pass/fail flags to research/reward_to_gcrl/results/0004_result.json.",
+      "Write research/reward_to_gcrl/results/0004_summary.md with a conservative verdict: variance-only, learning-improvement, objective-mismatch, or failed diagnostic."
+    ]
+  },
+  "rationale": "Pivot within the same research direction rather than stop. The project has made real but limited progress: 0001-0003 support the variance motivation and tabular scaling equivalence, but the current CliffWalking setup is scientifically too degenerate to justify moving to auxiliary goals or neural models. The main new evidence is not that soft successor learning is clearly better, but that naive normalized reward-to-goal conversion can preserve a scaled normalized objective while destroying useful raw-task incentives. The next experiment should repair this ambiguity by using a nondegenerate reward/task setting and directly comparing sampled targets to the deterministic soft target, not by continuing to collect weak CliffWalking evidence under the same normalization.",
   "risks": [
-    "Continuing automatically could compound an overclaim from 0003 into later experiments.",
-    "Moving to auxiliary goals or function approximation now would be premature.",
-    "Repeating CliffWalking without fixing reward normalization may keep producing degenerate policies and tie-heavy comparisons.",
-    "A RiverSwim experiment may be the right next step, but choosing it now is a scope decision after ambiguous evidence."
-  ],
-  "terminal_decision_requires_pro": false
+    "A repaired experiment may show that soft terminal marginalization mainly reduces estimator variance but does not improve learned value error under tabular control.",
+    "Changing the reward normalization could accidentally change the task again unless raw reward, normalized reward, and affine constants are explicitly audited.",
+    "Direct sampled-vs-soft target comparisons require matched state-action-next-state streams and synchronized learner states; otherwise differences may reflect policy/data drift rather than estimator variance.",
+    "If the experiment uses only CliffWalking again, policy ties and episodic-duration effects may remain confusing.",
+    "Moving to RiverSwim, auxiliary goals, or neural function approximation before resolving this ambiguity would make later failures hard to interpret."
+  ]
 }
 ```
 
 
 ## Recent decision summaries
-
-## 0002_review3_pro_decision.json
-
-```json
-{
-  "confidence": 0.84,
-  "decision": "continue",
-  "evidence": [
-    "latest_summary.md says 0001 is the only accepted experimental evidence so far and that the broader research goal remains unsolved.",
-    "0001 passed the planned one-state sampled-vs-soft diagnostic: all 16 gamma/r_bar settings were covered, sampled means passed the stricter 3-SE check, soft target variance was zero/negligible, and rare g_plus events were exposed at high gamma.",
-    "0001 also passed the tiny finite-MDP scaling check with max_abs_error_scaled_f_vs_q = 3.9475168023273e-08, below the 1e-6 threshold.",
-    "0002 is not accepted as equivalence evidence because the planned DP oracle and paired tabular-learning comparison did not run.",
-    "The 0002 blocker is specific: gym.make('CliffWalking-v0') raises gymnasium.error.DeprecatedEnv under Gymnasium 1.3.0, while no exact-DP scaled value error, greedy policy disagreement, or 10-seed paired-learning metrics were produced.",
-    "The local 0002 decision already identifies tabular CliffWalking equivalence as the required next charter gate before RiverSwim, FourRooms, sampled baselines, auxiliary goals, or neural approximation."
-  ],
-  "next_experiment": {
-    "estimated_runtime_minutes": 20,
-    "experiment_id": "0002",
-    "hypothesis": "For a deterministic 4x12 CliffWalking MDP with declared rewards, reset, cliff, and terminal semantics, the exact soft successor fixed point satisfies F_gplus_star/(1-gamma) = Q_norm_star, and paired tabular soft successor learning induces the same greedy policy as normalized Q-learning up to tie handling.",
-    "objective": "Rerun the blocked CliffWalking tabular equivalence test using a small local deterministic transition-table implementation with fully audited semantics, then compare exact-DP references, normalized Q-learning, and terminal-only soft successor g_plus learning.",
-    "required_outputs": [
-      "research/reward_to_gcrl/results/0002_result.json",
-      "research/reward_to_gcrl/results/0002_summary.md",
-      "research/reward_to_gcrl/artifacts/0002/"
-    ]
-  },
-  "progress_score": null,
-  "rationale": "Continue, but treat the current blocker as an experiment-infrastructure issue, not research evidence. The project has one accepted weak-pass result from 0001 showing the one-state variance/equivalence premise is plausible, while 0002 produced no DP oracle, no policy disagreement, and no paired tabular-learning evidence because CliffWalking-v0 was rejected by Gymnasium 1.3.0. The next step should unblock the same scientific gate with an explicit deterministic CliffWalking transition-table implementation, avoiding Gymnasium environment-id ambiguity entirely.",
-  "risks": [
-    "A hand-written CliffWalking transition table can accidentally encode the wrong cliff reset or terminal behavior unless every transition is audited.",
-    "Reward normalization in CliffWalking can obscure original-task performance, so normalized value equivalence and raw-return diagnostics must both be reported.",
-    "A paired learner comparison can falsely pass if both implementations share a bug; an independent exact-DP oracle is required.",
-    "Policy disagreement can be misleading under action-value ties, so ties must be separated from true disagreements.",
-    "Passing this experiment still only validates the base soft g_plus learner; it does not yet show auxiliary goals or GCRL structure improve learning."
-  ]
-}
-```
 
 ## 0003_decision.json
 
@@ -680,6 +677,44 @@ _None._
     "Moving to auxiliary goals or function approximation now would be premature.",
     "Repeating CliffWalking without fixing reward normalization may keep producing degenerate policies and tie-heavy comparisons.",
     "A RiverSwim experiment may be the right next step, but choosing it now is a scope decision after ambiguous evidence."
+  ]
+}
+```
+
+## 0004_review2_pro_decision.json
+
+```json
+{
+  "confidence": 0.83,
+  "decision": "pivot",
+  "evidence": [
+    "0001 weak-passed: sampled and soft terminal targets matched expected means, soft removed terminal-sampling variance, and rare g_plus events were exposed.",
+    "0002 weak-passed: an audited local deterministic CliffWalking table was used, exact DP scaling equivalence passed, and learned scaled M matched normalized Q on sufficiently visited pairs.",
+    "0003 weak-passed structurally: sampled conditional variance exceeded zero soft terminal-sampling variance in all 30 CPU-tabular runs, and soft had lower final Bellman residual in 26 of 30 runs.",
+    "The strongest 0003 learning-performance claim is mixed: mean final soft value error was slightly worse than sampled value error, soft value-error dominance was only 17 of 30 runs, and only 4 of 10 seeds at gamma 0.995.",
+    "The current CliffWalking normalization made raw task success uninformative: policies in 0002 and 0003 had raw return -200 and success rate 0.0.",
+    "0003 target-mean validation compared sampled targets to the sampled learner's conditional expectation rather than directly to the deterministic soft learner's recorded target, and sampled-vs-soft deterministic target means exceeded tolerance in 19 of 30 runs.",
+    "The latest local decision is needs_human because continuing automatically risks compounding overclaims from ambiguous 0003 evidence."
+  ],
+  "next_experiment": {
+    "estimated_runtime_minutes": 25,
+    "experiment_id": "0004",
+    "hypothesis": "When reward normalization is audited so that the induced normalized objective does not create degenerate all-step rewards, the sampled augmented update remains unbiased but higher variance, while the deterministic soft update should achieve lower Bellman residual and at least non-worse value error and greedy policy quality under the same transition budget.",
+    "objective": "Repair the sampled-vs-soft comparison using a small nondegenerate tabular setting where the raw task objective remains meaningful, and directly test whether deterministic soft terminal marginalization improves Bellman residual, value error, and policy quality over sampled augmented updates under matched data.",
+    "required_outputs": [
+      "research/reward_to_gcrl/results/0004_result.json",
+      "research/reward_to_gcrl/results/0004_summary.md",
+      "research/reward_to_gcrl/artifacts/0004/"
+    ]
+  },
+  "progress_score": null,
+  "rationale": "Pivot within the same research direction rather than stop. The project has made real but limited progress: 0001-0003 support the variance motivation and tabular scaling equivalence, but the current CliffWalking setup is scientifically too degenerate to justify moving to auxiliary goals or neural models. The main new evidence is not that soft successor learning is clearly better, but that naive normalized reward-to-goal conversion can preserve a scaled normalized objective while destroying useful raw-task incentives. The next experiment should repair this ambiguity by using a nondegenerate reward/task setting and directly comparing sampled targets to the deterministic soft target, not by continuing to collect weak CliffWalking evidence under the same normalization.",
+  "risks": [
+    "A repaired experiment may show that soft terminal marginalization mainly reduces estimator variance but does not improve learned value error under tabular control.",
+    "Changing the reward normalization could accidentally change the task again unless raw reward, normalized reward, and affine constants are explicitly audited.",
+    "Direct sampled-vs-soft target comparisons require matched state-action-next-state streams and synchronized learner states; otherwise differences may reflect policy/data drift rather than estimator variance.",
+    "If the experiment uses only CliffWalking again, policy ties and episodic-duration effects may remain confusing.",
+    "Moving to RiverSwim, auxiliary goals, or neural function approximation before resolving this ambiguity would make later failures hard to interpret."
   ]
 }
 ```
@@ -814,7 +849,7 @@ _None._
 
 ## Existing progress summaries
 
-- `research/reward_to_gcrl/progress/0001_pre_pro_review_needs_human_summary.md`
+- `research/reward_to_gcrl/progress/0003_pre_pro_local_needs_human_summary.md`
 - `research/reward_to_gcrl/progress/0003_pre_pro_weak_pass_streak_summary.md`
 - `research/reward_to_gcrl/progress/latest_summary.md`
 
@@ -824,12 +859,15 @@ _None._
 - `research/reward_to_gcrl/plans/0001_plan.md`
 - `research/reward_to_gcrl/plans/0002_plan.md`
 - `research/reward_to_gcrl/plans/0003_plan.md`
+- `research/reward_to_gcrl/plans/0004_plan.md`
 - `research/reward_to_gcrl/results/0001_summary.md`
 - `research/reward_to_gcrl/results/0002_summary.md`
 - `research/reward_to_gcrl/results/0003_summary.md`
+- `research/reward_to_gcrl/results/0004_summary.md`
 - `research/reward_to_gcrl/results/0001_result.json`
 - `research/reward_to_gcrl/results/0002_result.json`
 - `research/reward_to_gcrl/results/0003_result.json`
+- `research/reward_to_gcrl/results/0004_result.json`
 - `research/reward_to_gcrl/reviews/0001_review.md`
 - `research/reward_to_gcrl/reviews/0002_review.md`
 - `research/reward_to_gcrl/reviews/0003_review.md`
@@ -839,3 +877,4 @@ _None._
 - `research/reward_to_gcrl/decisions/0002_review3_pro_decision.md`
 - `research/reward_to_gcrl/decisions/0003_decision.md`
 - `research/reward_to_gcrl/decisions/0004_decision.md`
+- `research/reward_to_gcrl/decisions/0004_review2_pro_decision.md`
