@@ -7,8 +7,8 @@
   "last_failure": null,
   "last_pro_review_iteration": 6,
   "last_pro_review_path": "research/reward_to_gcrl/decisions/0007_pro_decision.json",
-  "last_summary_iteration": 6,
-  "last_summary_path": "research/reward_to_gcrl/progress/0006_pre_pro_cadence_summary.md",
+  "last_summary_iteration": 8,
+  "last_summary_path": "research/reward_to_gcrl/progress/0008_pre_pro_this_is_the_first_shared_parameter_function_approximation_milestone__keep_the_run_small__but_require_review_before_expanding_to_larger_sweeps__neural_frameworks__or_publishable_auxiliary_goal_claims_summary.md",
   "no_progress_rounds": 0,
   "notes": [
     "2026-06-14T09:16:58+00:00: setup_env failed or timed out; see /home/eston/autoresearcher/research/reward_to_gcrl/env_state_stderr.log",
