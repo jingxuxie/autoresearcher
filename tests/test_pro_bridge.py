@@ -17,6 +17,7 @@ if str(SCRIPTS) not in sys.path:
 
 import autoresearcher  # noqa: E402
 from chatgpt_cdp_bridge import CdpError, CdpResponse, select_chatgpt_page  # noqa: E402
+from chatgpt_pro_bridge import extract_fenced_json  # noqa: E402
 
 
 def write_json(path: Path, data: object) -> None:
@@ -155,6 +156,26 @@ class ProBridgeTests(unittest.TestCase):
             self.assertTrue((root / "decisions" / "0001_pro_raw_response.md").exists())
             blocker = json.loads((root / "decisions" / "0001_pro_blocker.json").read_text())
             self.assertEqual(blocker["reason"], "response_parse_failed")
+
+    def test_extract_pro_json_accepts_chatgpt_json_label_and_trailing_text(self) -> None:
+        raw = """JSON
+{
+  "decision": "continue",
+  "confidence": 0.78,
+  "rationale": "Continue with one strict small experiment.",
+  "evidence": ["The latest summary supports one more tabular check."],
+  "risks": ["The result may still be equivalent to a baseline."],
+  "next_experiment": null
+}
+
+Short supporting paragraph.
+"""
+
+        parsed = extract_fenced_json(raw)
+
+        self.assertEqual(parsed["decision"], "continue")
+        self.assertIsNone(parsed["next_experiment"])
+        self.assertEqual(autoresearcher.extract_fenced_json(raw)["decision"], "continue")
 
     def test_run_stopped_project_fake_continue_resumes_without_executor(self) -> None:
         with tempfile.TemporaryDirectory() as td, fake_pro("continue"):

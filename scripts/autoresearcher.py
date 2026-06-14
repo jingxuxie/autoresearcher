@@ -1683,11 +1683,26 @@ def pro_decision_markdown(decision: Dict[str, Any]) -> str:
 
 def extract_fenced_json(text: str) -> Dict[str, Any]:
     matches = re.findall(r"```(?:json)?\s*(\{.*?\})\s*```", text, flags=re.DOTALL | re.IGNORECASE)
-    candidates = matches or [text]
+    stripped = text.strip()
+    candidates = list(matches)
+    if stripped.lower().startswith("json\n"):
+        candidates.append(stripped.split("\n", 1)[1].strip())
+    candidates.append(stripped)
     errors: List[str] = []
     for candidate in candidates:
         try:
             parsed = json.loads(candidate)
+        except json.JSONDecodeError as exc:
+            errors.append(str(exc))
+            continue
+        if isinstance(parsed, dict):
+            return parsed
+    decoder = json.JSONDecoder()
+    for index, character in enumerate(stripped):
+        if character != "{":
+            continue
+        try:
+            parsed, _ = decoder.raw_decode(stripped[index:])
         except json.JSONDecodeError as exc:
             errors.append(str(exc))
             continue
