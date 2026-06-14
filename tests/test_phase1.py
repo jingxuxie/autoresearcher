@@ -910,7 +910,7 @@ class StateAndLoopTests(unittest.TestCase):
                 text,
             )
             self.assertIn("Choose exactly one: `continue`, `pivot`, or `stop`.", text)
-            self.assertIn("Do not return `needs_human`", text)
+            self.assertNotIn("needs_human", text)
             self.assertNotIn("Important source plan", text)
             self.assertNotIn("Important next-step plan", text)
             self.assertNotIn("Stopped for research reasons", text)

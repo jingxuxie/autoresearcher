@@ -710,8 +710,7 @@ def build_chatgpt_pro_context(repo_root: Path, project: str, reason: str = "manu
         "1. Choose exactly one: `continue`, `pivot`, or `stop`.",
         "2. If Codex is stopping or pivoting, independently decide whether to stop or propose a better direction.",
         "3. If choosing `continue` or `pivot`, propose small experiments runnable within 30 minutes.",
-        "4. Do not return `needs_human`; for this checkpoint you are acting as the human research advisor.",
-        "5. Return exactly one fenced JSON block matching `schemas/pro_decision.schema.json`, followed by at most one short paragraph.",
+        "4. Return exactly one fenced JSON block matching `schemas/pro_decision.schema.json`, followed by at most one short paragraph.",
         "",
         "",
     ]
