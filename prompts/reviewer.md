@@ -14,6 +14,6 @@ Check:
 - Is the interpretation too optimistic?
 - Is there any data leakage, seed issue, broken benchmark, or invalid comparison?
 - Should the supervisor be allowed to continue automatically?
+- If evidence is weak, ambiguous, terminal, or suggests larger compute, set the optional Pro escalation fields in the review JSON.
 
 Return JSON only matching `schemas/review.schema.json`.
-

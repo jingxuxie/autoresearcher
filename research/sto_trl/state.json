@@ -1,19 +1,41 @@
 {
   "best_primary_metric": null,
   "failure_streak": 0,
-  "human_review_required": false,
+  "human_review_required": true,
   "iteration": 7,
   "last_decision": "stop",
   "last_failure": null,
   "last_pro_review_iteration": 0,
+  "last_pro_review_path": null,
   "last_summary_iteration": 7,
   "last_summary_path": "research/sto_trl/progress/0007_manual_summary.md",
   "no_progress_rounds": 0,
   "notes": [
     "2026-06-13T08:58:38+00:00: supervisor decision pivot",
     "2026-06-13T09:21:15+00:00: retryable failure 1/3: reviewer failed or timed out; see /home/eston/autoresearcher/research/sto_trl/reviews/0007_review_stderr.log",
-    "2026-06-13T09:29:31+00:00: supervisor decision needs_human"
+    "2026-06-13T09:29:31+00:00: supervisor decision needs_human",
+    "2026-06-14T00:48:41+00:00: Pro checkpoint blocked (browser_bridge_unavailable); packet research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md",
+    "2026-06-14T00:49:04+00:00: Pro checkpoint blocked (pro_backend_failed); packet research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md",
+    "2026-06-14T00:49:55+00:00: Pro checkpoint blocked (browser_bridge_unavailable); packet research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md",
+    "2026-06-14T00:56:09+00:00: Pro checkpoint blocked (browser_bridge_unavailable); packet research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md",
+    "2026-06-14T00:56:57+00:00: Pro checkpoint blocked (browser_bridge_unavailable); packet research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md",
+    "2026-06-14T01:08:34+00:00: Pro checkpoint blocked (browser_bridge_unavailable); packet research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md",
+    "2026-06-14T01:25:11+00:00: Pro checkpoint blocked (login_required); packet research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md"
   ],
+  "pending_checkpoint": {
+    "backend": "codex-chatgpt-control",
+    "blocker_path": "research/sto_trl/decisions/0008_pro_blocker.json",
+    "iteration_id": "0008",
+    "manual_fallback": true,
+    "packet_path": "research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md",
+    "reason": "local_stop",
+    "status": "blocked",
+    "type": "chatgpt_pro"
+  },
+  "pending_local_decision_path": null,
   "primary_metric": null,
-  "status": "stopped"
+  "pro_review_count": 0,
+  "protected_file_drift": false,
+  "status": "paused",
+  "weak_pass_streak": 0
 }

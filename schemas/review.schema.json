@@ -24,6 +24,22 @@
     "risk_flags": {
       "type": "array",
       "items": { "type": "string" }
+    },
+    "evidence_quality": {
+      "type": "string",
+      "enum": ["strong", "medium", "weak", "invalid"]
+    },
+    "success_criteria_satisfied": {
+      "type": "boolean"
+    },
+    "failure_criteria_triggered": {
+      "type": "boolean"
+    },
+    "should_escalate_to_pro": {
+      "type": "boolean"
+    },
+    "escalation_reason": {
+      "type": ["string", "null"]
     }
   },
   "required": [
@@ -37,4 +53,3 @@
   ],
   "additionalProperties": false
 }
-

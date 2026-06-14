@@ -13,6 +13,7 @@ Rules:
 - Save raw metrics.
 - Save artifacts.
 - Write a machine-readable result JSON matching `schemas/result.schema.json`.
+- When feasible, fill optional decision-helping fields: `runtime_seconds`, `success_criteria_results`, `failure_criteria_results`, `metric_deltas`, and `decision_relevant_findings`.
 - Write a human-readable summary Markdown.
 - Do not delete previous results.
 - Do not change the research goal.

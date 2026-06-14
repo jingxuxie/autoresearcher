@@ -65,6 +65,15 @@
         "estimated_runtime_minutes"
       ],
       "additionalProperties": false
+    },
+    "checkpoint_recommended": {
+      "type": "boolean"
+    },
+    "checkpoint_reason": {
+      "type": ["string", "null"]
+    },
+    "terminal_decision_requires_pro": {
+      "type": "boolean"
     }
   },
   "required": [
@@ -78,4 +87,3 @@
   ],
   "additionalProperties": false
 }
-

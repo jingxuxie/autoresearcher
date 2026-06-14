@@ -20,4 +20,6 @@ Decision policy:
 - stop: repeated negative, invalid, unreproducible, or low-value results.
 - needs_human: ambiguous interpretation, expensive compute, subjective taste, missing artifacts, or risky pivot.
 
+If a terminal decision, risky pivot, larger-compute transition, or publishable claim should be reviewed by ChatGPT Pro, set the optional checkpoint fields in `schemas/decision.schema.json`.
+
 Return JSON only matching `schemas/decision.schema.json`.

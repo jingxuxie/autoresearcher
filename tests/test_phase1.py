@@ -19,9 +19,12 @@ if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
 import autoresearcher  # noqa: E402
+from checkpoint_policy import pro_checkpoint_due  # noqa: E402
 from build_context import build_context  # noqa: E402
 from kill_process_tree import run_with_timeout  # noqa: E402
+from metrics_ledger import build_metric_ledger, write_metric_ledger  # noqa: E402
 from validate_artifacts import validate_json_schema  # noqa: E402
+from worktree_guard import protected_file_drift, write_guard_report  # noqa: E402
 
 
 def write_json(path: Path, data: object) -> None:
@@ -34,7 +37,7 @@ def make_repo(tmp: Path, project: str = "project_001") -> Path:
     shutil.copytree(REPO_ROOT / "schemas", tmp / "schemas")
     (tmp / "autoresearcher.yaml").write_text(autoresearcher.DEFAULT_CONFIG_TEXT)
     root = tmp / "research" / project
-    for subdir in ("plans", "results", "reviews", "decisions", "packets", "artifacts", "setup_logs", "progress"):
+    for subdir in ("plans", "results", "reviews", "decisions", "packets", "pro_packets", "artifacts", "setup_logs", "progress"):
         (root / subdir).mkdir(parents=True, exist_ok=True)
     (root / "charter.md").write_text("# Charter\n\nTest charter includes synthetic accuracy.\n")
     write_json(root / "state.json", autoresearcher.DEFAULT_STATE)
@@ -162,6 +165,34 @@ def make_fake_codex(tmp: Path) -> Path:
     )
     script.chmod(script.stat().st_mode | stat.S_IXUSR)
     return script
+
+
+def fake_pro_response(path: Path, decision: str = "continue") -> None:
+    next_experiment = None
+    if decision in ("continue", "pivot"):
+        next_experiment = {
+            "experiment_id": "0001",
+            "objective": "Run one more tiny controlled experiment.",
+            "hypothesis": "The controlled experiment resolves the open question.",
+            "success_criteria": ["metric improves"],
+            "failure_criteria": ["required result missing"],
+            "tasks_for_codex": ["Write a tiny artifact and result JSON."],
+            "required_outputs": [
+                "research/project_001/results/0001_result.json",
+                "research/project_001/results/0001_summary.md",
+                "research/project_001/artifacts/0001/",
+            ],
+            "estimated_runtime_minutes": 1,
+        }
+    response = {
+        "decision": decision,
+        "confidence": 0.82,
+        "rationale": "Fake Pro decision for tests.",
+        "evidence": ["Reviewed packet evidence."],
+        "risks": ["Toy fake response."],
+        "next_experiment": next_experiment,
+    }
+    path.write_text("# ChatGPT Pro Decision\n\n```json\n" + json.dumps(response, indent=2) + "\n```\n")
 
 
 class ContextBuilderTests(unittest.TestCase):
@@ -648,7 +679,7 @@ class StateAndLoopTests(unittest.TestCase):
             self.assertEqual(state["iteration"], 1)
             self.assertEqual(state["failure_streak"], 0)
 
-    def test_auto_pivot_runs_when_human_pivot_gate_disabled(self) -> None:
+    def test_local_pivot_triggers_pro_checkpoint(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             repo = make_repo(Path(td))
             fake = make_fake_codex(Path(td))
@@ -670,10 +701,11 @@ class StateAndLoopTests(unittest.TestCase):
                     os.environ["FAKE_DECISION"] = old
             self.assertEqual(rc, 0)
             state = json.loads((repo / "research" / "project_001" / "state.json").read_text())
-            self.assertEqual(state["iteration"], 1)
-            self.assertEqual(state["last_decision"], "pivot")
-            self.assertFalse(state["human_review_required"])
-            self.assertEqual(state["status"], "active")
+            self.assertEqual(state["iteration"], 0)
+            self.assertTrue(state["human_review_required"])
+            self.assertEqual(state["status"], "paused")
+            self.assertEqual(state["pending_checkpoint"]["reason"], "local_pivot")
+            self.assertTrue((repo / "research" / "project_001" / "pro_packets" / "0001_PRO_REVIEW_PACKET.md").exists())
 
     def test_git_commit_skips_when_not_a_repo(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -767,6 +799,154 @@ class StateAndLoopTests(unittest.TestCase):
             state = json.loads((root / "state.json").read_text())
             self.assertEqual(state["last_summary_iteration"], 1)
             self.assertEqual(state["last_summary_path"], "research/project_001/progress/0001_manual_summary.md")
+
+    def test_checkpoint_policy_terminal_and_cadence(self) -> None:
+        state = dict(autoresearcher.DEFAULT_STATE)
+        self.assertEqual(pro_checkpoint_due(state, {}, local_decision={"decision": "stop"}), (True, "local_stop"))
+        self.assertEqual(pro_checkpoint_due(state, {}, local_decision={"decision": "pivot"}), (True, "local_pivot"))
+        self.assertEqual(pro_checkpoint_due(state, {}, latest_review={"verdict": "fail"}), (True, "review_fail"))
+        state["iteration"] = 3
+        config = {"chatgpt_pro": {"enabled": True, "cadence_iterations": 3, "allow_cadence_2_or_3": True}}
+        self.assertEqual(pro_checkpoint_due(state, config), (True, "cadence"))
+
+    def test_metric_ledger_extracts_scalar_metrics(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            repo = make_repo(Path(td))
+            root = repo / "research" / "project_001"
+            write_json(root / "results" / "0001_result.json", {
+                "experiment_id": "0001",
+                "status": "completed",
+                "claim_tested": "Risk regret audit.",
+                "commands_run": [],
+                "metrics": {
+                    "safe_optimal_lucky_only": {
+                        "policy_regret": 0.504,
+                        "q_overestimation": 0.675,
+                    },
+                    "best_positive_method": "generic",
+                },
+                "baseline_metrics": {"baseline_mse": 0.4},
+                "artifacts": [],
+                "interpretation": "Generic method helped Q calibration but not regret.",
+                "known_failures": ["policy regret unchanged"],
+                "next_questions": [],
+            })
+            write_json(root / "reviews" / "0001_review.json", {
+                "experiment_id": "0001",
+                "verdict": "weak_pass",
+                "allows_auto_continue": True,
+                "reasons": [],
+                "evidence_checked": [],
+                "required_fixes": [],
+                "risk_flags": ["Do not overclaim."],
+            })
+            ledger = build_metric_ledger(repo, "project_001")
+            row = ledger["iterations"][0]
+            self.assertIn("metrics.safe_optimal_lucky_only.policy_regret", row["important_metrics"])
+            self.assertIn("baseline_metrics.baseline_mse", row["important_metrics"])
+            json_path, md_path = write_metric_ledger(repo, "project_001")
+            self.assertTrue(json_path.exists())
+            self.assertTrue(md_path.exists())
+
+    def test_build_pro_packet_is_brief_github_summary_handoff(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            repo = make_repo(Path(td))
+            (repo / "autoresearcher.yaml").write_text(
+                autoresearcher.DEFAULT_CONFIG_TEXT
+                + "\ngithub:\n  repo_url: https://github.com/example/autoresearcher\n  branch: main\n"
+            )
+            root = repo / "research" / "project_001"
+            (root / "toy_prototype_plan.md").write_text("# Prototype Plan\n\nImportant source plan.\n")
+            (root / "progress" / "latest_summary.md").write_text("# Latest Summary\n\nStopped for research reasons.\n")
+            state = dict(autoresearcher.DEFAULT_STATE)
+            state["iteration"] = 1
+            state["status"] = "stopped"
+            write_json(root / "state.json", state)
+            write_json(root / "decisions" / "0002_decision.json", {
+                "decision": "stop",
+                "confidence": 0.7,
+                "progress_score": 6,
+                "rationale": "Local Codex recommends stop.",
+                "evidence": ["negative evidence"],
+                "risks": [],
+                "next_experiment": None,
+            })
+            path = autoresearcher.build_pro_packet(repo, "project_001", reason="local_stop")
+            text = path.read_text()
+            self.assertEqual(path.name, "0002_PRO_REVIEW_PACKET.md")
+            self.assertIn("`local_stop`", text)
+            self.assertIn("https://github.com/example/autoresearcher", text)
+            self.assertIn(
+                "https://github.com/example/autoresearcher/blob/main/research/project_001/progress/latest_summary.md",
+                text,
+            )
+            self.assertIn("Do not rely on this prompt for metrics or history", text)
+            self.assertNotIn("Important source plan", text)
+            self.assertNotIn("Stopped for research reasons", text)
+            self.assertNotIn("Local Codex recommends stop", text)
+            self.assertNotIn("Metric ledger", text)
+
+    def test_ingest_apply_pro_continue_and_resume(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            repo = make_repo(Path(td))
+            root = repo / "research" / "project_001"
+            state = dict(autoresearcher.DEFAULT_STATE)
+            state["iteration"] = 1
+            state["status"] = "paused"
+            state["human_review_required"] = True
+            write_json(root / "state.json", state)
+            response = Path(td) / "pro_response.md"
+            fake_pro_response(response, decision="continue")
+            decision_path, _ = autoresearcher.ingest_pro_response(repo, "project_001", response)
+            self.assertTrue(decision_path.exists())
+            self.assertTrue((root / "plans" / "0002_plan.md").exists())
+            autoresearcher.apply_pro_decision(repo, "project_001")
+            state = json.loads((root / "state.json").read_text())
+            self.assertEqual(state["status"], "active")
+            self.assertFalse(state["human_review_required"])
+            self.assertEqual(state["last_pro_review_iteration"], 1)
+            self.assertEqual(state["pro_review_count"], 1)
+
+            state["status"] = "paused"
+            state["human_review_required"] = True
+            write_json(root / "state.json", state)
+            autoresearcher.resume_project(repo, "project_001", "manual test resume")
+            state = json.loads((root / "state.json").read_text())
+            self.assertEqual(state["status"], "active")
+            self.assertFalse(state["human_review_required"])
+
+    def test_pro_decision_schema_rejects_bad_next_experiment(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            repo = make_repo(Path(td))
+            bad = Path(td) / "bad_pro.json"
+            write_json(bad, {
+                "decision": "continue",
+                "confidence": 0.5,
+                "rationale": "bad",
+                "evidence": [],
+                "risks": [],
+                "next_experiment": {"objective": "missing fields"},
+            })
+            with self.assertRaises(Exception):
+                validate_json_schema(bad, repo / "schemas" / "pro_decision.schema.json")
+
+    def test_worktree_guard_detects_protected_file_drift(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            repo = make_repo(Path(td))
+            subprocess.run(["git", "init"], cwd=repo, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            subprocess.run(["git", "config", "user.email", "test@example.com"], cwd=repo, check=True)
+            subprocess.run(["git", "config", "user.name", "Test User"], cwd=repo, check=True)
+            (repo / "scripts").mkdir(exist_ok=True)
+            (repo / "scripts" / "autoresearcher.py").write_text("clean\n")
+            subprocess.run(["git", "add", "."], cwd=repo, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            subprocess.run(["git", "commit", "-m", "baseline"], cwd=repo, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            (repo / "scripts" / "autoresearcher.py").write_text("dirty\n")
+            result = protected_file_drift(repo, "project_001")
+            self.assertTrue(result.drift_detected)
+            self.assertIn("scripts/autoresearcher.py", result.protected_paths)
+            json_path, md_path = write_guard_report(repo, "project_001", "0001", result)
+            self.assertTrue(json_path.exists())
+            self.assertTrue(md_path.exists())
 
     def test_pro_cadence_defaults_to_three(self) -> None:
         config = {"chatgpt_pro": {"enabled": True, "cadence_iterations": 3}}

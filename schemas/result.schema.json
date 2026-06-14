@@ -31,6 +31,29 @@
     "next_questions": {
       "type": "array",
       "items": { "type": "string" }
+    },
+    "runtime_seconds": {
+      "type": ["number", "null"]
+    },
+    "resource_usage": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "success_criteria_results": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "failure_criteria_results": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "metric_deltas": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "decision_relevant_findings": {
+      "type": "array",
+      "items": { "type": "string" }
     }
   },
   "required": [
@@ -47,4 +70,3 @@
   ],
   "additionalProperties": false
 }
-

@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import signal
 import subprocess
 import sys
@@ -26,6 +27,10 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 from build_context import ROLE_CHOICES, build_context  # noqa: E402
+from chatgpt_pro_bridge import write_pro_blocker  # noqa: E402
+from checkpoint_policy import pro_checkpoint_due, pro_review_due  # noqa: E402
+from metrics_ledger import write_metric_ledger  # noqa: E402
+from supervisor_backends import SupervisorBackendResult, supervisor_backend_for_config  # noqa: E402
 from validate_artifacts import (  # noqa: E402
     ValidationError,
     load_json,
@@ -33,6 +38,7 @@ from validate_artifacts import (  # noqa: E402
     validate_required_result_files,
     validate_result_artifact_paths,
 )
+from worktree_guard import protected_file_drift, write_guard_report  # noqa: E402
 
 
 ROLE_NAMES = ("setup_env", "supervisor", "executor", "reviewer", "summarizer")
@@ -50,8 +56,14 @@ DEFAULT_STATE: Dict[str, Any] = {
     "last_failure": None,
     "human_review_required": False,
     "last_pro_review_iteration": 0,
+    "last_pro_review_path": None,
+    "pro_review_count": 0,
+    "pending_checkpoint": None,
+    "pending_local_decision_path": None,
     "last_summary_iteration": 0,
     "last_summary_path": None,
+    "weak_pass_streak": 0,
+    "protected_file_drift": False,
     "notes": [],
 }
 
@@ -181,17 +193,34 @@ git:
 chatgpt_pro:
   enabled: false
   backend: codex-chatgpt-control
+  bridge_conda_env: python312
+  backend_command: null
+  backend_http_url: null
+  relay_script: null
+  cdp_url: http://127.0.0.1:9222
+  cdp_ready_timeout_seconds: 120
+  cdp_response_timeout_seconds: 600
   cadence_iterations: 3
   allow_cadence_2_or_3: true
   thread_url: null
+  use_existing_thread: true
+  allow_new_thread: false
   existing_tab: true
   require_visible_session: true
   require_user_approved_prompt: true
   require_model: GPT-5.5 Pro
-  require_thinking: Heavy
+  require_thinking: Extended
   fail_if_unavailable: true
   allow_model_fallback: false
   max_retries: 0
+
+context:
+  max_source_doc_chars: 12000
+  max_result_chars: 8000
+  recent_iterations_for_pro: 3
+
+safety:
+  allow_executor_to_modify_orchestrator: false
 
 environment:
   create_new_conda_env_per_project: true
@@ -263,7 +292,7 @@ def ensure_project_scaffold(repo_root: Path, project: str) -> None:
     env_prefix = str(env_cfg.get("env_name_prefix", "autoresearcher"))
     python_version = str(env_cfg.get("default_python", "3.11"))
     env_name = conda_env_name_for_project(project, prefix=env_prefix)
-    for subdir in ("plans", "results", "reviews", "decisions", "packets", "artifacts", "setup_logs", "progress"):
+    for subdir in ("plans", "results", "reviews", "decisions", "packets", "pro_packets", "artifacts", "setup_logs", "progress"):
         (root / subdir).mkdir(parents=True, exist_ok=True)
     charter = root / "charter.md"
     if not charter.exists():
@@ -913,6 +942,11 @@ def update_state_after_review(
     else:
         state["no_progress_rounds"] = int(state.get("no_progress_rounds", 0)) + 1
 
+    if verdict == "weak_pass" and bool(review.get("allows_auto_continue")):
+        state["weak_pass_streak"] = int(state.get("weak_pass_streak", 0) or 0) + 1
+    elif verdict == "pass":
+        state["weak_pass_streak"] = 0
+
     if verdict in ("fail", "needs_human") or not bool(review.get("allows_auto_continue")):
         mark_human_required(state, f"reviewer verdict {verdict}", status="paused")
     elif int(state.get("no_progress_rounds", 0)) >= max_no_progress_rounds:
@@ -920,18 +954,6 @@ def update_state_after_review(
     else:
         state["status"] = "active"
         state["human_review_required"] = False
-
-
-def pro_review_due(state: Dict[str, Any], config: Dict[str, Any]) -> bool:
-    pro_cfg = config.get("chatgpt_pro", {})
-    if not pro_cfg.get("enabled", False):
-        return False
-    cadence = int(pro_cfg.get("cadence_iterations", 3) or 3)
-    if cadence not in (2, 3) and pro_cfg.get("allow_cadence_2_or_3", True):
-        cadence = 3
-    completed = int(state.get("iteration", 0))
-    last = int(state.get("last_pro_review_iteration", 0))
-    return completed > 0 and completed - last >= cadence
 
 
 class Orchestrator:
@@ -1060,6 +1082,97 @@ class Orchestrator:
         print(f"wrote progress summary: {output_path.relative_to(self.repo_root)}")
         return output_path
 
+    def _block_pro_checkpoint_for_summary_failure(
+        self,
+        project: str,
+        state: Dict[str, Any],
+        reason: str,
+        message: str,
+        details: Optional[Dict[str, Any]] = None,
+    ) -> SupervisorBackendResult:
+        iteration_id = pro_iteration_id(state)
+        blocker_json, blocker_md = write_pro_blocker(
+            self.repo_root,
+            project,
+            iteration_id,
+            "summary_failed",
+            message,
+            details=details,
+        )
+        mark_human_required(state, message, status="paused")
+        state["pending_checkpoint"] = {
+            "type": "chatgpt_pro",
+            "reason": reason,
+            "iteration_id": iteration_id,
+            "status": "blocked",
+            "manual_fallback": True,
+            "blocker_path": str(blocker_json.relative_to(self.repo_root)),
+        }
+        state.setdefault("notes", []).append(f"{utc_now_iso()}: Pro checkpoint blocked before GPT call: {message}")
+        state_path = save_project_state(self.repo_root, project, state)
+        try:
+            self.git.commit(
+                [blocker_json, blocker_md, state_path],
+                f"autoresearcher({project}): Pro summary blocker {iteration_id}",
+            )
+        except RuntimeError as exc:
+            print(f"warning: failed to commit/push Pro summary blocker: {exc}", file=sys.stderr)
+        return SupervisorBackendResult(
+            status="blocked",
+            blocker_path=blocker_json,
+            blocker_markdown_path=blocker_md,
+            reason="summary_failed",
+        )
+
+    def _handle_pro_checkpoint(
+        self,
+        project: str,
+        state: Dict[str, Any],
+        reason: str,
+        local_decision_path: Optional[Path] = None,
+    ) -> SupervisorBackendResult:
+        if int(state.get("iteration", 0) or 0) > 0:
+            summary_reason = f"pre_pro_{reason}"
+            try:
+                summary_path = self._run_summary_agent(project, state, reason=summary_reason, force=True)
+            except RuntimeError as exc:
+                return self._block_pro_checkpoint_for_summary_failure(
+                    project,
+                    state,
+                    reason,
+                    "Pre-Pro summary could not be committed or pushed; not calling GPT-5.5-Pro.",
+                    details={"summary_reason": summary_reason, "error": str(exc)},
+                )
+            if summary_path is None:
+                return self._block_pro_checkpoint_for_summary_failure(
+                    project,
+                    state,
+                    reason,
+                    "Pre-Pro summary failed or was not written; not calling GPT-5.5-Pro.",
+                    details={"summary_reason": summary_reason},
+                )
+            print(f"pre-Pro summary ready: {summary_path.relative_to(self.repo_root)}")
+
+        result = run_pro_review(
+            self.repo_root,
+            project,
+            self.config,
+            reason=reason,
+            backend_override="auto",
+            local_decision_path=local_decision_path,
+        )
+        if result.status == "completed":
+            state_path = apply_pro_decision(self.repo_root, project)
+            state_after = load_project_state(self.repo_root, project)
+            print(
+                "Pro decision applied; "
+                f"state={state_after.get('status')} path={state_path.relative_to(self.repo_root)}"
+            )
+        else:
+            blocker = result.blocker_path.relative_to(self.repo_root) if result.blocker_path else "unknown"
+            print(f"stopping: Pro checkpoint blocked ({result.reason}); blocker: {blocker}")
+        return result
+
     def _review_iteration_result(
         self,
         project: str,
@@ -1128,6 +1241,22 @@ class Orchestrator:
         )
         state_path = save_project_state(self.repo_root, project, state)
         self.git.commit([state_path], f"autoresearcher({project}): state after {iteration_id}")
+        metric_json, metric_md = write_metric_ledger(self.repo_root, project)
+        self.git.commit([metric_json, metric_md], f"autoresearcher({project}): metric ledger after {iteration_id}")
+        try:
+            latest_result = load_json(result_path)
+        except ValidationError:
+            latest_result = {}
+        checkpoint, reason = pro_checkpoint_due(
+            state,
+            self.config,
+            local_decision=decision,
+            latest_review=review,
+            latest_result=latest_result,
+        )
+        if checkpoint:
+            self._handle_pro_checkpoint(project, state, reason)
+            return "checkpoint"
         self._run_summary_agent(project, state, reason="progress")
         return "completed"
 
@@ -1195,6 +1324,28 @@ class Orchestrator:
         print(f"environment ready: {env_state.get('conda_env_name')}")
         return 0
 
+    def _inactive_checkpoint_reason(self, state: Dict[str, Any]) -> Optional[str]:
+        pro_cfg = self.config.get("chatgpt_pro", {}) if isinstance(self.config.get("chatgpt_pro"), dict) else {}
+        backend_available = bool(pro_cfg.get("enabled", False)) or os.environ.get("FAKE_CHATGPT_PRO") is not None
+        pending = state.get("pending_checkpoint")
+        fake_available = os.environ.get("FAKE_CHATGPT_PRO") is not None
+        if (
+            isinstance(pending, dict)
+            and backend_available
+            and not pending.get("pro_decision_path")
+            and (fake_available or not pending.get("blocker_path"))
+        ):
+            return str(pending.get("reason") or "pending_checkpoint")
+
+        status = state.get("status")
+        last_decision = state.get("last_decision")
+        if status == "stopped" and not state.get("last_pro_review_path"):
+            return "local_stop"
+        if status == "paused" and bool(state.get("human_review_required")) and not state.get("last_pro_review_path"):
+            if last_decision in ("stop", "pivot", "needs_human"):
+                return f"local_{last_decision}"
+        return None
+
     def run(self, project: str, max_iters: int, skip_model_check: bool = False) -> int:
         ensure_project_scaffold(self.repo_root, project)
         if not skip_model_check:
@@ -1211,7 +1362,16 @@ class Orchestrator:
         while completed_this_run < max_iters:
             state = load_project_state(self.repo_root, project)
             loop_cfg = self.config.get("loop", {})
+            pending = state.get("pending_checkpoint")
+            if isinstance(pending, dict) and pending.get("pro_decision_path"):
+                state_path = apply_pro_decision(self.repo_root, project)
+                print(f"applied pending Pro decision: {state_path.relative_to(self.repo_root)}")
+                break
             if state.get("status") != "active":
+                checkpoint_reason = self._inactive_checkpoint_reason(state)
+                if checkpoint_reason:
+                    self._handle_pro_checkpoint(project, state, checkpoint_reason)
+                    break
                 print(f"stopping: project status is {state.get('status')}")
                 break
             if state.get("human_review_required"):
@@ -1221,10 +1381,7 @@ class Orchestrator:
                 print("stopping: configured max_iterations reached")
                 break
             if pro_review_due(state, self.config):
-                mark_human_required(state, "ChatGPT Pro review is due, but Phase 2 backend is not implemented.", status="paused")
-                state_path = save_project_state(self.repo_root, project, state)
-                self.git.commit([state_path], f"autoresearcher({project}): pro review due")
-                print("stopping: ChatGPT Pro review due; Phase 2 backend is not implemented")
+                self._handle_pro_checkpoint(project, state, "cadence")
                 break
 
             iteration = int(state.get("iteration", 0)) + 1
@@ -1253,6 +1410,8 @@ class Orchestrator:
                     )
                     if review_status == "completed":
                         completed_this_run += 1
+                    elif review_status == "checkpoint":
+                        break
                     elif review_status == "paused":
                         return 1
                     continue
@@ -1308,6 +1467,10 @@ class Orchestrator:
             )
 
             decision_kind = decision["decision"]
+            checkpoint, checkpoint_reason = pro_checkpoint_due(state, self.config, local_decision=decision)
+            if checkpoint:
+                self._handle_pro_checkpoint(project, state, checkpoint_reason, local_decision_path=decision_path)
+                break
             if decision_kind == "stop":
                 state["last_decision"] = decision["decision"]
                 state["status"] = "stopped"
@@ -1367,6 +1530,21 @@ class Orchestrator:
                     return 1
                 continue
 
+            safety_cfg = self.config.get("safety", {})
+            if not bool(safety_cfg.get("allow_executor_to_modify_orchestrator", False)):
+                guard = protected_file_drift(self.repo_root, project)
+                if guard.drift_detected:
+                    guard_json, guard_md = write_guard_report(self.repo_root, project, iteration_id, guard)
+                    state["protected_file_drift"] = True
+                    state["last_decision"] = "protected_file_drift"
+                    state_path = save_project_state(self.repo_root, project, state)
+                    self.git.commit(
+                        [guard_json, guard_md, state_path],
+                        f"autoresearcher({project}): protected drift {iteration_id}",
+                    )
+                    self._handle_pro_checkpoint(project, state, "protected_file_drift")
+                    break
+
             try:
                 validate_required_result_files(self.repo_root, project, iteration)
                 validate_json_schema(result_path, self.repo_root / "schemas" / "result.schema.json")
@@ -1409,6 +1587,8 @@ class Orchestrator:
             )
             if review_status == "completed":
                 completed_this_run += 1
+            elif review_status == "checkpoint":
+                break
             elif review_status == "paused":
                 return 1
 
@@ -1454,14 +1634,249 @@ def run_manual_summary(repo_root: Path, project: str, config: Dict[str, Any], co
     return 0
 
 
-def build_pro_packet(repo_root: Path, project: str) -> Path:
+def pro_iteration_id(state: Dict[str, Any]) -> str:
+    return f"{int(state.get('iteration', 0)) + 1:04d}"
+
+
+def pro_packet_path(repo_root: Path, project: str, iteration_id: str) -> Path:
+    return project_dir(repo_root, project) / "pro_packets" / f"{iteration_id}_PRO_REVIEW_PACKET.md"
+
+
+def pro_decision_paths(repo_root: Path, project: str, iteration_id: str) -> Tuple[Path, Path, Path]:
+    root = project_dir(repo_root, project) / "decisions"
+    return (
+        root / f"{iteration_id}_pro_raw_response.md",
+        root / f"{iteration_id}_pro_decision.json",
+        root / f"{iteration_id}_pro_decision.md",
+    )
+
+
+def pro_decision_markdown(decision: Dict[str, Any]) -> str:
+    lines = [
+        f"# ChatGPT Pro Decision: {decision['decision']}",
+        "",
+        f"Confidence: {decision['confidence']}",
+        "",
+        "## Rationale",
+        "",
+        decision["rationale"],
+        "",
+        "## Evidence",
+        "",
+    ]
+    lines.extend(f"- {item}" for item in decision.get("evidence", []))
+    lines.extend(["", "## Risks", ""])
+    lines.extend(f"- {item}" for item in decision.get("risks", []))
+    if decision.get("next_experiment"):
+        experiment = decision["next_experiment"]
+        lines.extend(
+            [
+                "",
+                "## Next experiment",
+                "",
+                f"- Experiment id: `{experiment['experiment_id']}`",
+                f"- Objective: {experiment['objective']}",
+            ]
+        )
+    return "\n".join(lines).rstrip() + "\n"
+
+
+def extract_fenced_json(text: str) -> Dict[str, Any]:
+    matches = re.findall(r"```(?:json)?\s*(\{.*?\})\s*```", text, flags=re.DOTALL | re.IGNORECASE)
+    candidates = matches or [text]
+    errors: List[str] = []
+    for candidate in candidates:
+        try:
+            parsed = json.loads(candidate)
+        except json.JSONDecodeError as exc:
+            errors.append(str(exc))
+            continue
+        if isinstance(parsed, dict):
+            return parsed
+    raise RuntimeError("no valid fenced JSON object found in Pro response: " + "; ".join(errors))
+
+
+def latest_pro_decision_path(repo_root: Path, project: str) -> Optional[Path]:
+    paths = sorted((project_dir(repo_root, project) / "decisions").glob("*_pro_decision.json"))
+    return paths[-1] if paths else None
+
+
+def build_pro_packet(repo_root: Path, project: str, reason: str = "manual") -> Path:
     ensure_project_scaffold(repo_root, project)
     state = load_project_state(repo_root, project)
-    iteration_id = f"{int(state.get('iteration', 0)) + 1:04d}"
-    packet = build_context(repo_root, project, "chatgpt_pro")
-    path = project_dir(repo_root, project) / "packets" / f"{iteration_id}_PRO_REVIEW_PACKET.md"
+    iteration_id = pro_iteration_id(state)
+    write_metric_ledger(repo_root, project)
+    packet = build_context(repo_root, project, "chatgpt_pro", reason=reason)
+    path = pro_packet_path(repo_root, project, iteration_id)
+    path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(packet)
     return path
+
+
+def run_pro_review(
+    repo_root: Path,
+    project: str,
+    config: Dict[str, Any],
+    reason: str = "manual",
+    backend_override: str = "auto",
+    local_decision_path: Optional[Path] = None,
+) -> SupervisorBackendResult:
+    ensure_project_scaffold(repo_root, project)
+    state = load_project_state(repo_root, project)
+    iteration_id = pro_iteration_id(state)
+    metric_json, metric_md = write_metric_ledger(repo_root, project)
+    packet_path = build_pro_packet(repo_root, project, reason=reason)
+    backend = supervisor_backend_for_config(config, backend_override=backend_override)
+    result = backend.decide(repo_root, project, config, packet_path, reason, iteration_id)
+
+    paths: List[Path] = [packet_path, metric_json, metric_md]
+    if local_decision_path is not None:
+        paths.append(local_decision_path)
+
+    state = load_project_state(repo_root, project)
+    checkpoint: Dict[str, Any] = {
+        "type": "chatgpt_pro",
+        "reason": reason,
+        "iteration_id": iteration_id,
+        "packet_path": str(packet_path.relative_to(repo_root)),
+        "backend": config.get("chatgpt_pro", {}).get("backend", "manual"),
+        "status": result.status,
+    }
+    if local_decision_path is not None:
+        state["pending_local_decision_path"] = str(local_decision_path.relative_to(repo_root))
+
+    if result.status == "completed" and result.decision_path is not None:
+        paths.extend(path for path in (result.raw_response_path, result.decision_path, result.markdown_path) if path)
+        decision = load_json(result.decision_path)
+        if isinstance(decision, dict) and isinstance(decision.get("next_experiment"), dict):
+            experiment = normalize_experiment_paths(project, iteration_id, decision["next_experiment"])
+            plan_json, plan_md = write_plan(repo_root, project, iteration_id, experiment)
+            paths.extend([plan_json, plan_md])
+        checkpoint["status"] = "pro_decision_ingested"
+        checkpoint["pro_decision_path"] = str(result.decision_path.relative_to(repo_root))
+        state["last_pro_review_path"] = str(result.decision_path.relative_to(repo_root))
+        state["pending_checkpoint"] = checkpoint
+        state.setdefault("notes", []).append(
+            f"{utc_now_iso()}: Pro decision saved for checkpoint {reason} ({result.decision_path.relative_to(repo_root)})"
+        )
+    else:
+        paths.extend(path for path in (result.blocker_path, result.blocker_markdown_path, result.raw_response_path) if path)
+        state["status"] = "paused"
+        state["human_review_required"] = True
+        checkpoint["manual_fallback"] = True
+        if result.blocker_path is not None:
+            checkpoint["blocker_path"] = str(result.blocker_path.relative_to(repo_root))
+        state["pending_checkpoint"] = checkpoint
+        state.setdefault("notes", []).append(
+            f"{utc_now_iso()}: Pro checkpoint blocked ({result.reason}); packet {packet_path.relative_to(repo_root)}"
+        )
+
+    state_path = save_project_state(repo_root, project, state)
+    paths.append(state_path)
+    GitManager(repo_root, config).commit(paths, f"autoresearcher({project}): Pro review {iteration_id}")
+    return result
+
+
+def ingest_pro_response(repo_root: Path, project: str, response_file: Path) -> Tuple[Path, Path]:
+    ensure_project_scaffold(repo_root, project)
+    state = load_project_state(repo_root, project)
+    iteration_id = pro_iteration_id(state)
+    raw_path, decision_path, decision_md_path = pro_decision_paths(repo_root, project, iteration_id)
+    raw_path.write_text(response_file.read_text())
+    decision = extract_fenced_json(raw_path.read_text())
+    json_dump(decision_path, decision)
+    validate_json_schema(decision_path, repo_root / "schemas" / "pro_decision.schema.json")
+    decision_md_path.write_text(pro_decision_markdown(decision))
+
+    written_paths = [raw_path, decision_path, decision_md_path]
+    if isinstance(decision.get("next_experiment"), dict):
+        experiment = normalize_experiment_paths(project, iteration_id, decision["next_experiment"])
+        plan_json, plan_md = write_plan(repo_root, project, iteration_id, experiment)
+        written_paths.extend([plan_json, plan_md])
+
+    state["pending_checkpoint"] = {
+        "status": "pro_decision_ingested",
+        "iteration_id": iteration_id,
+        "pro_decision_path": str(decision_path.relative_to(repo_root)),
+    }
+    state["last_pro_review_path"] = str(decision_path.relative_to(repo_root))
+    state_path = save_project_state(repo_root, project, state)
+    written_paths.append(state_path)
+    GitManager(repo_root, load_config(repo_root)).commit(written_paths, f"autoresearcher({project}): ingest Pro decision {iteration_id}")
+    return decision_path, decision_md_path
+
+
+def apply_pro_decision(repo_root: Path, project: str) -> Path:
+    ensure_project_scaffold(repo_root, project)
+    state = load_project_state(repo_root, project)
+    path = latest_pro_decision_path(repo_root, project)
+    if path is None:
+        raise RuntimeError(f"no Pro decision found for {project}")
+    validate_json_schema(path, repo_root / "schemas" / "pro_decision.schema.json")
+    decision = load_json(path)
+    if not isinstance(decision, dict):
+        raise RuntimeError(f"invalid Pro decision root in {path}")
+
+    iteration_id = pro_iteration_id(state)
+    paths: List[Path] = [path]
+    decision_kind = decision["decision"]
+    if decision_kind == "stop":
+        state["status"] = "stopped"
+        state["human_review_required"] = False
+        state["last_decision"] = "stop"
+    elif decision_kind == "needs_human":
+        mark_human_required(state, "Pro decision needs_human", status="paused")
+        state["last_decision"] = "needs_human"
+    elif decision_kind in ("continue", "pivot"):
+        experiment = decision.get("next_experiment")
+        if not isinstance(experiment, dict):
+            mark_human_required(state, f"Pro decision {decision_kind} missing next_experiment", status="paused")
+        else:
+            normalized = normalize_experiment_paths(project, iteration_id, experiment)
+            plan_json, plan_md = write_plan(repo_root, project, iteration_id, normalized)
+            paths.extend([plan_json, plan_md])
+            state["status"] = "active"
+            state["human_review_required"] = False
+            state["last_decision"] = decision_kind
+    else:
+        raise RuntimeError(f"unknown Pro decision kind {decision_kind!r}")
+
+    state["last_pro_review_iteration"] = int(state.get("iteration", 0) or 0)
+    state["last_pro_review_path"] = str(path.relative_to(repo_root))
+    state["pro_review_count"] = int(state.get("pro_review_count", 0) or 0) + 1
+    state["pending_checkpoint"] = None
+    state["pending_local_decision_path"] = None
+    state.setdefault("notes", []).append(f"{utc_now_iso()}: applied Pro decision {decision_kind} from {path.relative_to(repo_root)}")
+    state_path = save_project_state(repo_root, project, state)
+    paths.append(state_path)
+    GitManager(repo_root, load_config(repo_root)).commit(paths, f"autoresearcher({project}): apply Pro decision {iteration_id}")
+    return state_path
+
+
+def resume_project(repo_root: Path, project: str, note: str) -> Path:
+    if not note.strip():
+        raise RuntimeError("resume requires a non-empty note")
+    ensure_project_scaffold(repo_root, project)
+    state = load_project_state(repo_root, project)
+    state["status"] = "active"
+    state["human_review_required"] = False
+    state["pending_checkpoint"] = None
+    state["pending_local_decision_path"] = None
+    state.setdefault("notes", []).append(f"{utc_now_iso()}: resumed: {note.strip()}")
+    state_path = save_project_state(repo_root, project, state)
+    GitManager(repo_root, load_config(repo_root)).commit([state_path], f"autoresearcher({project}): resume")
+    return state_path
+
+
+def stop_project(repo_root: Path, project: str, note: str) -> Path:
+    ensure_project_scaffold(repo_root, project)
+    state = load_project_state(repo_root, project)
+    state["status"] = "stopped"
+    state["human_review_required"] = False
+    state.setdefault("notes", []).append(f"{utc_now_iso()}: stopped: {note.strip()}")
+    state_path = save_project_state(repo_root, project, state)
+    GitManager(repo_root, load_config(repo_root)).commit([state_path], f"autoresearcher({project}): stop")
+    return state_path
 
 
 def pro_smoke(repo_root: Path, project: str, config: Dict[str, Any]) -> int:
@@ -1469,7 +1884,7 @@ def pro_smoke(repo_root: Path, project: str, config: Dict[str, Any]) -> int:
     if not config.get("chatgpt_pro", {}).get("enabled", False):
         print("chatgpt_pro.enabled=false; Phase 1 does not require Pro bridge dependencies.")
         return 0
-    packet_path = build_pro_packet(repo_root, project)
+    packet_path = build_pro_packet(repo_root, project, reason="pro_smoke")
     blocker = project_dir(repo_root, project) / "decisions" / "pro_bridge_not_implemented_blocker.md"
     blocker.write_text(
         "# Pro Bridge Blocker\n\n"
@@ -1487,6 +1902,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     parser = argparse.ArgumentParser(description="Run the Codex-only autoresearcher loop.")
     parser.add_argument("--repo-root", type=Path, default=None)
     parser.add_argument("--codex-bin", default="codex")
+    parser.add_argument("--no-git", action="store_true", help="Do not auto-commit or push generated files for this command.")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     init_p = subparsers.add_parser("init", help="Create project scaffold and local state.")
@@ -1505,6 +1921,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     context_p.add_argument("--project", default=None)
     context_p.add_argument("--role", required=True, choices=ROLE_CHOICES)
     context_p.add_argument("--plan", type=Path)
+    context_p.add_argument("--reason", default="manual")
 
     reset_p = subparsers.add_parser("reset-role-session", help="Clear stored Codex session id for one role.")
     reset_p.add_argument("--project", default=None)
@@ -1520,12 +1937,38 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     pro_p = subparsers.add_parser("pro-smoke", help="Phase 2 stub: verify Pro is disabled or write blocker.")
     pro_p.add_argument("--project", default=None)
 
+    pro_review_p = subparsers.add_parser("pro-review", help="Run a ChatGPT Pro checkpoint review or write a structured blocker.")
+    pro_review_p.add_argument("--project", default=None)
+    pro_review_p.add_argument("--reason", default="manual")
+    pro_review_p.add_argument("--backend", choices=("auto", "manual", "live", "cdp"), default="auto")
+
     packet_p = subparsers.add_parser("build-pro-packet", help="Build a ChatGPT Pro review packet.")
     packet_p.add_argument("--project", default=None)
+    packet_p.add_argument("--reason", default="manual")
+
+    ingest_p = subparsers.add_parser("ingest-pro-response", help="Ingest a Markdown response containing fenced Pro decision JSON.")
+    ingest_p.add_argument("--project", default=None)
+    ingest_p.add_argument("--file", type=Path, required=True)
+
+    apply_p = subparsers.add_parser("apply-pro-decision", help="Apply the latest validated Pro decision to project state.")
+    apply_p.add_argument("--project", default=None)
+
+    resume_p = subparsers.add_parser("resume", help="Resume a paused or stopped project with a required note.")
+    resume_p.add_argument("--project", default=None)
+    resume_p.add_argument("--note", required=True)
+
+    stop_p = subparsers.add_parser("stop", help="Stop a project with an optional note.")
+    stop_p.add_argument("--project", default=None)
+    stop_p.add_argument("--note", default="")
 
     args = parser.parse_args(argv)
     repo_root = repo_root_from(args.repo_root).resolve() if args.repo_root else repo_root_from().resolve()
     config = load_config(repo_root)
+    if args.no_git:
+        config.setdefault("git", {})
+        config["git"]["enabled"] = False
+        config["git"]["commit"] = False
+        config["git"]["push"] = False
     project = getattr(args, "project", None) or str(config.get("project_default", "project_001"))
 
     if args.command == "init":
@@ -1546,7 +1989,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             skip_model_check=args.skip_model_check,
         )
     if args.command == "build-context":
-        print(build_context(repo_root, project, args.role, plan=args.plan), end="")
+        print(build_context(repo_root, project, args.role, plan=args.plan, reason=args.reason), end="")
         return 0
     if args.command == "reset-role-session":
         reset_role_session(repo_root, project, args.role)
@@ -1565,8 +2008,44 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         )
     if args.command == "pro-smoke":
         return pro_smoke(repo_root, project, config)
+    if args.command == "pro-review":
+        result = run_pro_review(
+            repo_root,
+            project,
+            config,
+            reason=args.reason,
+            backend_override=args.backend,
+        )
+        if result.status == "completed":
+            if result.decision_path:
+                print(result.decision_path)
+            if result.markdown_path:
+                print(result.markdown_path)
+            return 0
+        if result.blocker_path:
+            print(result.blocker_path)
+        if result.blocker_markdown_path:
+            print(result.blocker_markdown_path)
+        return 2 if result.status == "blocked" else 1
     if args.command == "build-pro-packet":
-        path = build_pro_packet(repo_root, project)
+        path = build_pro_packet(repo_root, project, reason=args.reason)
+        print(path)
+        return 0
+    if args.command == "ingest-pro-response":
+        decision_path, decision_md_path = ingest_pro_response(repo_root, project, args.file.resolve())
+        print(decision_path)
+        print(decision_md_path)
+        return 0
+    if args.command == "apply-pro-decision":
+        path = apply_pro_decision(repo_root, project)
+        print(path)
+        return 0
+    if args.command == "resume":
+        path = resume_project(repo_root, project, args.note)
+        print(path)
+        return 0
+    if args.command == "stop":
+        path = stop_project(repo_root, project, args.note)
         print(path)
         return 0
     parser.error(f"unknown command {args.command}")

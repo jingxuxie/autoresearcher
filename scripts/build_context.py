@@ -5,11 +5,25 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
+import subprocess
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional
 
+try:
+    import yaml  # type: ignore
+except ImportError:  # pragma: no cover
+    yaml = None
+
+from metrics_ledger import build_metric_ledger
+
 
 ROLE_CHOICES = ("setup_env", "supervisor", "executor", "reviewer", "summarizer", "chatgpt_pro")
+DEFAULT_CONTEXT_CONFIG = {
+    "max_source_doc_chars": 12000,
+    "max_result_chars": 8000,
+    "recent_iterations_for_pro": 3,
+}
 
 
 def repo_root_from(start: Optional[Path] = None) -> Path:
@@ -144,6 +158,144 @@ def compact_decision_summary(path: Path) -> str:
         "next_experiment": compact_experiment,
     }
     return json.dumps(summary, indent=2, sort_keys=True)
+
+
+def load_context_config(repo_root: Path) -> Dict[str, int]:
+    config = dict(DEFAULT_CONTEXT_CONFIG)
+    loaded = load_repo_config(repo_root)
+    context_cfg = loaded.get("context", {}) if isinstance(loaded, dict) else {}
+    if not isinstance(context_cfg, dict):
+        return config
+    for key, value in DEFAULT_CONTEXT_CONFIG.items():
+        raw = context_cfg.get(key, value)
+        try:
+            config[key] = int(raw)
+        except (TypeError, ValueError):
+            config[key] = value
+    return config
+
+
+def load_repo_config(repo_root: Path) -> Dict[str, Any]:
+    if yaml is None:
+        return {}
+    try:
+        loaded = yaml.safe_load((repo_root / "autoresearcher.yaml").read_text()) or {}
+    except (FileNotFoundError, AttributeError):
+        return {}
+    return loaded if isinstance(loaded, dict) else {}
+
+
+def git_output(repo_root: Path, args: List[str]) -> Optional[str]:
+    try:
+        result = subprocess.run(
+            ["git", *args],
+            cwd=str(repo_root),
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+            timeout=3,
+        )
+    except (FileNotFoundError, subprocess.TimeoutExpired):
+        return None
+    if result.returncode != 0:
+        return None
+    value = result.stdout.strip()
+    return value or None
+
+
+def normalize_github_repo_url(remote_url: str) -> Optional[str]:
+    value = remote_url.strip()
+    if not value:
+        return None
+    value = value.removesuffix(".git")
+    https_match = re.match(r"https://github\.com/([^/\s]+)/([^/\s]+)$", value)
+    if https_match:
+        return f"https://github.com/{https_match.group(1)}/{https_match.group(2)}"
+    ssh_match = re.match(r"git@github\.com:([^/\s]+)/([^/\s]+)$", value)
+    if ssh_match:
+        return f"https://github.com/{ssh_match.group(1)}/{ssh_match.group(2)}"
+    ssh_url_match = re.match(r"ssh://git@github\.com/([^/\s]+)/([^/\s]+)$", value)
+    if ssh_url_match:
+        return f"https://github.com/{ssh_url_match.group(1)}/{ssh_url_match.group(2)}"
+    return None
+
+
+def github_repo_url(repo_root: Path, config: Dict[str, Any]) -> Optional[str]:
+    github_cfg = config.get("github", {}) if isinstance(config.get("github"), dict) else {}
+    configured = github_cfg.get("repo_url")
+    if isinstance(configured, str):
+        normalized = normalize_github_repo_url(configured)
+        if normalized:
+            return normalized
+
+    git_cfg = config.get("git", {}) if isinstance(config.get("git"), dict) else {}
+    remote = str(git_cfg.get("remote") or "origin")
+    remote_url = git_output(repo_root, ["remote", "get-url", remote])
+    return normalize_github_repo_url(remote_url or "")
+
+
+def github_branch(repo_root: Path, config: Dict[str, Any]) -> str:
+    github_cfg = config.get("github", {}) if isinstance(config.get("github"), dict) else {}
+    for value in (github_cfg.get("branch"), (config.get("git", {}) or {}).get("branch") if isinstance(config.get("git"), dict) else None):
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+    return git_output(repo_root, ["branch", "--show-current"]) or "main"
+
+
+def github_file_url(repo_root: Path, config: Dict[str, Any], path: Path) -> Optional[str]:
+    repo_url = github_repo_url(repo_root, config)
+    if not repo_url:
+        return None
+    rel = path.relative_to(repo_root).as_posix()
+    return f"{repo_url}/blob/{github_branch(repo_root, config)}/{rel}"
+
+
+def discover_source_docs(root: Path) -> List[Path]:
+    patterns = [
+        "*_prototype_plan.md",
+        "*_plan.md",
+        "project_goal.md",
+        "research_goal.md",
+        "brief.md",
+        "background.md",
+    ]
+    docs: List[Path] = []
+    for pattern in patterns:
+        docs.extend(sorted(root.glob(pattern)))
+    charter = root / "charter.md"
+    if charter.exists():
+        docs.insert(0, charter)
+
+    seen = set()
+    unique: List[Path] = []
+    for path in docs:
+        key = path.resolve()
+        if key in seen or not path.is_file():
+            continue
+        seen.add(key)
+        unique.append(path)
+    return unique
+
+
+def markdown_headings(text: str) -> str:
+    headings = [line for line in text.splitlines() if line.lstrip().startswith("#")]
+    if not headings:
+        return "_No Markdown headings found._"
+    return "\n".join(headings[:80])
+
+
+def source_doc_section(path: Path, repo_root: Path, max_chars: int) -> str:
+    body = read_text(path)
+    label = path.relative_to(repo_root).as_posix()
+    if len(body) <= max_chars:
+        return fenced(label, body, "markdown")
+    summary = (
+        f"Source document is {len(body)} chars, exceeding max_source_doc_chars={max_chars}.\n\n"
+        "Headings:\n\n"
+        f"{markdown_headings(body)}\n\n"
+        f"Inspect `{label}` for full text."
+    )
+    return fenced(label, summary, "markdown")
 
 
 def first_sentence(text: Any, max_chars: int = 240) -> str:
@@ -341,6 +493,7 @@ def build_supervisor_context(repo_root: Path, project: str) -> str:
         latest_summary = None
         latest_review = None
     latest_decisions = last_matching_up_to(root / "decisions", "*_decision.json", completed_iteration, limit=3)
+    metric_ledger = build_metric_ledger(repo_root, project)
 
     sections = [
         f"# Supervisor Context: {project}",
@@ -351,6 +504,7 @@ def build_supervisor_context(repo_root: Path, project: str) -> str:
         fenced("Latest result summary", compact_result_summary(latest_result), "json"),
         "## Latest summary\n\n" + (truncate_text(read_text(latest_summary), 6000) if latest_summary else "_Missing._"),
         fenced("Latest review summary", compact_review_summary(latest_review), "json"),
+        fenced("Metric ledger", json.dumps(metric_ledger, indent=2, sort_keys=True), "json"),
         "## Last decision summaries\n\n" + "\n".join(fenced(path.name, compact_decision_summary(path), "json") for path in latest_decisions),
         "## Full evidence paths\n\n"
         + markdown_list(path.relative_to(repo_root) for path in [latest_result, latest_summary, latest_review] if path)
@@ -428,12 +582,15 @@ def build_reviewer_context(repo_root: Path, project: str) -> str:
 
 def build_summarizer_context(repo_root: Path, project: str) -> str:
     root = project_root(repo_root, project)
+    context_cfg = load_context_config(repo_root)
     state_obj = read_json_obj(root / "state.json")
     completed_iteration = int(state_obj.get("iteration", 0)) if isinstance(state_obj, dict) else 0
     latest_decision = latest_matching(root / "decisions", "*_decision.json")
     recent_decisions = last_matching(root / "decisions", "*_decision.json", limit=3)
     recent_reviews = last_matching(root / "reviews", "*_review.json", limit=3)
     progress_summaries = last_matching(root / "progress", "*_summary.md", limit=3)
+    planning_docs = discover_source_docs(root)
+    human_pivot_notes = last_matching(root / "progress", "human_pivot_*.md", limit=3)
 
     evidence_paths: List[Path] = []
     for directory, pattern in (
@@ -449,6 +606,24 @@ def build_summarizer_context(repo_root: Path, project: str) -> str:
         f"# Progress Summarizer Context: {project}",
         "## Requested action\n\nWrite a concise human-readable Markdown progress summary for this project. Use the evidence below; do not overclaim beyond reviewed results.\n",
         "## Project charter\n\n" + read_text(root / "charter.md"),
+        "## Project planning docs\n\n"
+        + (
+            "\n".join(
+                source_doc_section(path, repo_root, int(context_cfg.get("max_source_doc_chars", 12000)))
+                for path in planning_docs
+            )
+            if planning_docs
+            else "_None._"
+        ),
+        "## Human pivot notes\n\n"
+        + (
+            "\n".join(
+                source_doc_section(path, repo_root, int(context_cfg.get("max_source_doc_chars", 12000)))
+                for path in human_pivot_notes
+            )
+            if human_pivot_notes
+            else "_None._"
+        ),
         fenced("Current state", read_json_pretty(root / "state.json"), "json"),
         fenced("Environment state", read_json_pretty(root / "env_state.json"), "json"),
         fenced("Experiment ledger", compact_project_ledger(root, completed_iteration), "json"),
@@ -461,30 +636,44 @@ def build_summarizer_context(repo_root: Path, project: str) -> str:
     return "\n\n".join(sections).rstrip() + "\n"
 
 
-def build_chatgpt_pro_context(repo_root: Path, project: str) -> str:
+def build_chatgpt_pro_context(repo_root: Path, project: str, reason: str = "manual") -> str:
     root = project_root(repo_root, project)
-    latest_result = latest_matching(root / "results", "*_result.json")
-    latest_review = latest_matching(root / "reviews", "*_review.json")
-    recent = []
-    recent.extend(last_matching(root / "decisions", "*_decision.json", limit=3))
-    recent.extend(last_matching(root / "results", "*_result.json", limit=3))
-    recent.extend(last_matching(root / "reviews", "*_review.json", limit=3))
-    recent = sorted(recent)
+    config = load_repo_config(repo_root)
+    repo_url = github_repo_url(repo_root, config)
+    latest_summary = root / "progress" / "latest_summary.md"
+    latest_summary_url = github_file_url(repo_root, config, latest_summary)
+    charter_url = github_file_url(repo_root, config, root / "charter.md")
+    schema_url = github_file_url(repo_root, config, repo_root / "schemas" / "pro_decision.schema.json")
 
-    sections = [
+    def link_or_path(url: Optional[str], path: Path) -> str:
+        if url:
+            return url
+        return f"`{path.relative_to(repo_root).as_posix()}`"
+
+    lines = [
         f"# ChatGPT Pro Review Packet: {project}",
-        "## Explicit question\n\nGiven the evidence below, choose exactly one: continue, pivot, stop, or needs_human.\n",
-        "## Compact project charter\n\n" + read_text(root / "charter.md"),
-        fenced("Current state", read_json_pretty(root / "state.json"), "json"),
-        "## Last 2-3 iteration artifacts\n\n" + "\n".join(fenced(path.relative_to(repo_root).as_posix(), read_json_pretty(path), "json") for path in recent),
-        fenced("Latest result", read_json_pretty(latest_result) if latest_result else "_Missing._", "json"),
-        fenced("Latest review", read_json_pretty(latest_review) if latest_review else "_Missing._", "json"),
-        fenced("Required output JSON schema", read_text(repo_root / "schemas" / "pro_decision.schema.json"), "json"),
+        "",
+        f"Checkpoint reason: `{reason}`",
+        "",
+        "Please inspect the GitHub repository yourself, especially the summary generated by the autoresearcher summary agent.",
+        "",
+        f"- Repository: {repo_url or '_GitHub remote unavailable; inspect linked paths if available._'}",
+        f"- Latest progress summary: {link_or_path(latest_summary_url, latest_summary)}",
+        f"- Charter: {link_or_path(charter_url, root / 'charter.md')}",
+        f"- Required output schema: {link_or_path(schema_url, repo_root / 'schemas' / 'pro_decision.schema.json')}",
+        "",
+        "Return next-step guidance for the research loop:",
+        "",
+        "1. Choose exactly one: `continue`, `pivot`, `stop`, or `needs_human`.",
+        "2. If choosing `continue` or `pivot`, propose exactly one small experiment runnable within 30 minutes.",
+        "3. Return exactly one fenced JSON block matching `schemas/pro_decision.schema.json`, followed by at most one short paragraph.",
+        "",
+        "Do not rely on this prompt for metrics or history; use the GitHub summary and repository files.",
     ]
-    return "\n\n".join(sections).rstrip() + "\n"
+    return "\n".join(lines).rstrip() + "\n"
 
 
-def build_context(repo_root: Path, project: str, role: str, plan: Optional[Path] = None) -> str:
+def build_context(repo_root: Path, project: str, role: str, plan: Optional[Path] = None, reason: str = "manual") -> str:
     if role == "setup_env":
         return build_setup_env_context(repo_root, project)
     if role == "supervisor":
@@ -496,7 +685,7 @@ def build_context(repo_root: Path, project: str, role: str, plan: Optional[Path]
     if role == "summarizer":
         return build_summarizer_context(repo_root, project)
     if role == "chatgpt_pro":
-        return build_chatgpt_pro_context(repo_root, project)
+        return build_chatgpt_pro_context(repo_root, project, reason=reason)
     raise ValueError(f"unknown role: {role}")
 
 
@@ -505,11 +694,12 @@ def main() -> int:
     parser.add_argument("--project", required=True)
     parser.add_argument("--role", required=True, choices=ROLE_CHOICES)
     parser.add_argument("--plan", type=Path)
+    parser.add_argument("--reason", default="manual")
     parser.add_argument("--repo-root", type=Path)
     args = parser.parse_args()
 
     repo_root = (args.repo_root or repo_root_from()).resolve()
-    print(build_context(repo_root, args.project, args.role, args.plan), end="")
+    print(build_context(repo_root, args.project, args.role, args.plan, reason=args.reason), end="")
     return 0
 
 

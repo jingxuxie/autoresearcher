@@ -1,0 +1,217 @@
+{
+  "iterations": [
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "A tiny stochastic risky-shortcut MDP exposes overestimation by deterministic raw TRL backups, while log-space stochastic backups preserve deterministic-chain behavior and improve risky-action calibration relative to raw TRL.",
+      "decision": "continue",
+      "important_metrics": {
+        "metrics.mdps.deterministic_chain.coverage_diagnostics.risky_failure_count": 0,
+        "metrics.mdps.deterministic_chain.coverage_diagnostics.risky_success_count": 0,
+        "metrics.mdps.deterministic_chain.coverage_diagnostics.risky_success_rate_observed": null,
+        "metrics.mdps.deterministic_chain.methods.mc_plus_trl_log.calibration_error": 0.13193442000000005,
+        "metrics.mdps.deterministic_chain.methods.mc_plus_trl_log.eval_start_exact_q.right": 0.5904900000000002,
+        "metrics.mdps.deterministic_chain.methods.mc_plus_trl_log.eval_start_exact_value": 0.5904900000000002,
+        "metrics.mdps.deterministic_chain.methods.mc_plus_trl_log.long_horizon_value_mse": 0.0,
+        "metrics.mdps.deterministic_chain.methods.mc_plus_trl_log.max_policy_regret": 0.0,
+        "metrics.mdps.deterministic_chain.methods.mc_plus_trl_log.mean_policy_regret": 0.0,
+        "metrics.mdps.deterministic_chain.methods.mc_plus_trl_log.policy_regret": 0.0,
+        "metrics.mdps.deterministic_chain.methods.mc_plus_trl_log.q_calibration_error": 0.13193442000000005,
+        "metrics.mdps.deterministic_chain.methods.mc_plus_trl_log.q_overestimation_error": 0.0
+      },
+      "iteration": "0001",
+      "negative_signals": [
+        "Evidence is intentionally small-scale and balanced: risky outcome coverage exactly matches the true 0.25 success probability, so MC supervised is perfect here and the experiment mainly supports the raw-TRL overestimation...",
+        "/home/eston/autoresearcher is not a git repository, so unrelated modifications could not be audited with git status."
+      ],
+      "positive_signals": [
+        "The deterministic chain sanity check was recovered by both raw and log TRL. On the risky-shortcut MDP, raw deterministic-style TRL treated the observed lucky risky edge as reliable and selected risky with Q=0.900000 versus exact Q=0.225000. The empirical log b"
+      ],
+      "review_verdict": "pass",
+      "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "Raw TRL overestimation is support-driven under stochastic coverage, while empirical MC/log methods are calibrated only when observed risky branch frequencies match the true MDP; a risk-optimal setting tests for conservative avoidance.",
+      "decision": "continue",
+      "important_metrics": {
+        "metrics.aggregate.mc_supervised_mean_policy_regret": 0.0666,
+        "metrics.aggregate.num_risky_scenarios": 10,
+        "metrics.aggregate.raw_no_success_scenarios": 2,
+        "metrics.aggregate.raw_selected_risky_when_no_success_observed": 0,
+        "metrics.aggregate.raw_selected_risky_when_success_observed": 8,
+        "metrics.aggregate.raw_success_observed_scenarios": 8,
+        "metrics.aggregate.trl_log_mean_policy_regret": 0.0666,
+        "metrics.aggregate.trl_raw_mean_policy_regret": 0.20970000000000005,
+        "metrics.regime_specs.risk_optimal.lucky_biased.risky_failures": 0,
+        "metrics.regime_specs.risk_optimal.lucky_biased.risky_successes": 9,
+        "metrics.regime_specs.risk_optimal.lucky_only.risky_failures": 0,
+        "metrics.regime_specs.risk_optimal.lucky_only.risky_successes": 4
+      },
+      "iteration": "0002",
+      "negative_signals": [
+        "The Q overestimation and underestimation maxima are computed across all goals, not only the eval goal, so those headline error fields can reflect non-eval goals such as trap; eval-goal learned/exact Q columns mitigate th...",
+        "commands_run records setup, execution, and validation commands but not the manual edits that transformed the copied 0001 script into the 0002 harness.",
+        "git status only showed an untracked reviewer packet, but without committed baselines this review cannot fully prove no prior artifacts were modified."
+      ],
+      "positive_signals": [
+        "The chain guard still recovered exact discounted reachability for raw and log TRL. Across risky regimes, raw TRL selected risky in every scenario with at least one observed lucky risky transition and did not select risky when no lucky risky transition was obse"
+      ],
+      "review_verdict": "pass",
+      "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "Censoring long-horizon MC labels makes MC-only underpredict held-out discounted reachability, while log transitive backups recover longer horizons and keep matched risky-branch calibration.",
+      "decision": "continue",
+      "important_metrics": {
+        "metrics.aggregate.chain_mc_heldout_value_mse": 0.3917058232298766,
+        "metrics.aggregate.chain_mc_plus_trl_log_heldout_value_mse": 2.9347503914472164e-34,
+        "metrics.aggregate.chain_trl_log_heldout_value_mse": 2.9347503914472164e-34,
+        "metrics.aggregate.risky_mc_heldout_value_mse": 0.25401600000000013,
+        "metrics.aggregate.risky_mc_plus_trl_log_heldout_value_mse": 0.0,
+        "metrics.aggregate.risky_mc_plus_trl_log_policy_regret": 0.0,
+        "metrics.aggregate.risky_trl_log_heldout_value_mse": 0.0,
+        "metrics.aggregate.risky_trl_log_policy_regret": 0.0,
+        "metrics.aggregate.risky_trl_raw_policy_regret": 0.5040000000000001,
+        "metrics.scenarios.chain_len9.coverage_diagnostics.risky_failure_count": 0,
+        "metrics.scenarios.chain_len9.coverage_diagnostics.risky_success_count": 0,
+        "metrics.scenarios.chain_len9.coverage_diagnostics.risky_success_rate_observed": null
+      },
+      "iteration": "0003",
+      "negative_signals": [
+        "git status shows modified control files including scripts/autoresearcher.py, autoresearcher.yaml, tests/test_phase1.py, and research/sto_trl/state.json. Their mtimes precede the 0003 plan, so they appear pre-existing to...",
+        "commands_run records setup, execution, and validation commands, but not the manual edit operation that adapted the copied 0002 script into the 0003 harness.",
+        "TRL-log and raw TRL are transitive model-based tabular backups over observed transitions, so they do not consume the same supervised label budget as MC-only; this is intended by the plan but should be kept in mind when i..."
+      ],
+      "positive_signals": [
+        "With positive labels beyond horizon 2 censored, MC-supervised underpredicted held-out long-horizon reachability. TRL-log and MC+TRL-log propagated through observed transitions and reduced held-out value MSE on the longer chain and the matched risky MDP. In the"
+      ],
+      "review_verdict": "weak_pass",
+      "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "A self-normalized successor-distance calibration with log-space transitive relaxation improves held-out reachability versus calibration-only without increasing matched risky overestimation or avoiding truly optimal risky actions.",
+      "decision": "continue",
+      "important_metrics": {
+        "metrics.aggregate.risk_matched_successor_calibration_only_policy_regret": 0.0,
+        "metrics.aggregate.risk_matched_successor_distance_trl_log_policy_regret": 0.0,
+        "metrics.aggregate.safe_lucky_stress_successor_distance_action": "risky",
+        "metrics.aggregate.safe_matched_successor_calibration_only_policy_regret": 0.5040000000000001,
+        "metrics.aggregate.safe_matched_successor_distance_trl_log_policy_regret": 0.0,
+        "metrics.aggregate.successor_calibration_only_main_mean_heldout_mse": 0.21524060774329223,
+        "metrics.aggregate.successor_distance_trl_log_main_mean_heldout_mse": 9.782501304824055e-35,
+        "metrics.scenarios.chain_len9_holdout.coverage_diagnostics.risky_failure_count": 0,
+        "metrics.scenarios.chain_len9_holdout.coverage_diagnostics.risky_success_count": 0,
+        "metrics.scenarios.chain_len9_holdout.coverage_diagnostics.risky_success_rate_observed": null,
+        "metrics.scenarios.chain_len9_holdout.label_or_pair_coverage.censored_examples.0.positive_horizon": 3,
+        "metrics.scenarios.chain_len9_holdout.label_or_pair_coverage.censored_examples.1.positive_horizon": 4
+      },
+      "iteration": "0004",
+      "negative_signals": [
+        "successor_distance_trl_log is behaviorally identical or near-identical to trl_log in the saved main metrics, so the result supports the calibration-only versus transitive-relaxation ablation but not a clear advantage ove...",
+        "self_normalize_successor_scores divides by max([scores] + [1.0]), which is an identity transform for scores already in [0,1]; successor_calibration_only therefore matches mc_supervised in these runs.",
+        "git status still shows modified control/config/test files, including scripts/autoresearcher.py and autoresearcher.yaml. Their mtimes predate the 0004 artifact generation, but the dirty tree means the no-control-file-edit...",
+        "commands_run records the copy, execution, and validation commands but not the manual edits that adapted the copied 0003 script into the 0004 successor-distance harness."
+      ],
+      "positive_signals": [
+        "The successor-distance transitive relaxation improved main held-out long-horizon value MSE over calibration-only. On matched safe-optimal risky coverage it selected safe with no policy-regret increase versus calibration-only, and on matched risk-optimal covera"
+      ],
+      "review_verdict": "weak_pass",
+      "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "A successor-distance lambda sweep can reveal whether successor_distance_trl_log has a distinct effect beyond trl_log while retaining calibration and lower held-out error than calibration-only.",
+      "decision": "continue",
+      "important_metrics": {
+        "metrics.aggregate.any_positive_successor_evidence": false,
+        "metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_00.equivalent_to_trl_log_all_main": false,
+        "metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_00.improves_vs_calibration_only": false,
+        "metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_00.lambda_tr": 0.0,
+        "metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_00.main_mean_heldout_mse": 0.21524060774329223,
+        "metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_00.matched_no_policy_regret_increase_vs_calibration_only": true,
+        "metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_00.matched_no_q_overestimation_increase_vs_calibration_only": true,
+        "metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_00.non_equivalent_to_trl_log_any_main": true,
+        "metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_00.positive_successor_evidence": false,
+        "metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_00.risk_optimal_selects_risky": true,
+        "metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_25.equivalent_to_trl_log_all_main": true,
+        "metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_25.improves_vs_calibration_only": true
+      },
+      "iteration": "0005",
+      "negative_signals": [
+        "Working tree contains pre-existing modified control/config/test files, including scripts/autoresearcher.py, so the no-control-file-edit criterion cannot be proven from git status alone.",
+        "commands_run records copy, run, and validation commands, but not any manual edit steps used to adapt the copied 0004 script into the 0005 audit.",
+        "A generated __pycache__/ directory exists under artifacts/0005; harmless but extra artifact noise.",
+        "Supervisor should continue only treating 0005 as negative evidence for distinct successor-distance value, not as support for the prior positive 0004 interpretation."
+      ],
+      "positive_signals": [
+        "The audit found negative successor-distance evidence: improving lambdas reduced held-out error by matching trl_log within the predeclared tolerance, so this variant is not yet distinct from trl_log on these tabular diagnostics."
+      ],
+      "review_verdict": "pass",
+      "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "A one-sided count-based conservative log-TRL backup can reduce lucky-only risky overestimation without breaking deterministic recovery or matched risk-optimal action selection.",
+      "decision": "pivot",
+      "important_metrics": {
+        "metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.chain_heldout_mse": 2.9347503914472164e-34,
+        "metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.lucky_q_overestimation_reduced_vs_trl_log": false,
+        "metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.lucky_regret_reduced_vs_trl_log": false,
+        "metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.positive_uncertainty_evidence": false,
+        "metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.risk_optimal_matched_action": "risky",
+        "metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.risk_optimal_matched_ok": true,
+        "metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.risk_optimal_matched_policy_regret": 0.0,
+        "metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.safe_optimal_lucky_policy_regret": 0.5040000000000001,
+        "metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.safe_optimal_lucky_q_overestimation": 0.675,
+        "metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_20.chain_heldout_mse": 2.9347503914472164e-34,
+        "metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_20.lucky_q_overestimation_reduced_vs_trl_log": true,
+        "metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_20.lucky_regret_reduced_vs_trl_log": false
+      },
+      "iteration": "0006",
+      "negative_signals": [
+        "The aggregate labels one_sided_conservative_log_trl_alpha_0_20 as best_positive_method even though alpha 0.40 and 0.60 also eliminate lucky-only policy regret; this is a first-positive selection, not a best-by-regret sel...",
+        "The interpretation says alpha 0.20 reduced the lucky-only safe-optimal failure, but alpha 0.20 still selects risky with policy regret 0.504; the stronger claim should be limited to reduced overestimation/held-out MSE unl...",
+        "The risk_optimal_no_success_stress case remains a biased-coverage failure for trl_log and all conservative alpha values: they select safe with regret 0.081 despite the true risky optimum.",
+        "The penalty eligibility rule is hand-shaped around direct-goal single-branch shortcut actions at multi-action states, so evidence may not generalize beyond these toy diagnostics."
+      ],
+      "positive_signals": [
+        "one_sided_conservative_log_trl_alpha_0_20 reduced the lucky-only safe-optimal failure versus trl_log while preserving the chain and selecting risky with zero regret in the matched risk-optimal scenario."
+      ],
+      "review_verdict": "weak_pass",
+      "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "A generic count-based posterior branch-uncertainty penalty can replace the hand-shaped 0006 shortcut rule while reducing lucky-only overestimation and preserving matched risk-optimal behavior.",
+      "decision": "needs_human",
+      "important_metrics": {
+        "metrics.aggregate.best_positive_method": "generic_dirichlet_unknown_prior_0_50_alpha_0_50",
+        "metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.chain_heldout_mse": 2.9347503914472164e-34,
+        "metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.lucky_policy_regret_delta_vs_one_sided_0006": 0.5040000000000001,
+        "metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.lucky_policy_regret_delta_vs_trl_log": 0.0,
+        "metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.lucky_q_overestimation_delta_vs_one_sided_0006": 0.18000000000000005,
+        "metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.lucky_q_overestimation_delta_vs_trl_log": 0.0,
+        "metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.positive_generic_uncertainty_evidence": false,
+        "metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.risk_no_success_policy_regret_delta_vs_one_sided_0006": 0.0,
+        "metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.risk_no_success_policy_regret_delta_vs_trl_log": 0.0,
+        "metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.risk_optimal_matched_action": "risky",
+        "metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.risk_optimal_matched_ok": true,
+        "metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.risk_optimal_matched_policy_regret": 0.0
+      },
+      "iteration": "0007",
+      "negative_signals": [
+        "Do not treat 0007 as showing that the generic method fully replaces the 0006 one-sided rule; it only gives modest Q-overestimation reduction without fixing lucky-only policy regret.",
+        "known_failures is empty despite risk_optimal_no_success_stress remaining unsolved; this is acceptable for continuation only because the limitation is explicit in metrics and summary.",
+        "The current worktree has unrelated uncommitted modifications to scripts/autoresearcher.py, but the 0007 result commit did not include that protected file."
+      ],
+      "positive_signals": [
+        "generic_dirichlet_unknown_prior_0_50_alpha_0_50 reduced safe-optimal lucky-only overestimation versus trl_log while preserving the chain and selecting risky with zero regret in the matched risk-optimal scenario. The risk-optimal no-success stress status is rep"
+      ],
+      "review_verdict": "weak_pass",
+      "status": "completed"
+    }
+  ],
+  "project": "sto_trl"
+}

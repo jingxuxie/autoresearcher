@@ -60,19 +60,36 @@ git:
   branch: main
 
 chatgpt_pro:
-  enabled: false
-  backend: codex-chatgpt-control
+  enabled: true
+  backend: cdp
+  bridge_conda_env: python312
+  backend_command: null
+  backend_http_url: null
+  relay_script: null
+  cdp_url: http://172.17.240.1:9223
+  cdp_ready_timeout_seconds: 120
+  cdp_response_timeout_seconds: 600
   cadence_iterations: 3
   allow_cadence_2_or_3: true
-  thread_url: null
+  thread_url: "https://chatgpt.com/c/WEB:0b0c92fd-9c46-4180-816a-df258caa62dd"
+  use_existing_thread: true
+  allow_new_thread: false
   existing_tab: true
   require_visible_session: true
   require_user_approved_prompt: true
   require_model: GPT-5.5 Pro
-  require_thinking: Heavy
+  require_thinking: Extended
   fail_if_unavailable: true
   allow_model_fallback: false
   max_retries: 0
+
+context:
+  max_source_doc_chars: 12000
+  max_result_chars: 8000
+  recent_iterations_for_pro: 3
+
+safety:
+  allow_executor_to_modify_orchestrator: false
 
 environment:
   create_new_conda_env_per_project: true

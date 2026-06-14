@@ -1,0 +1,29 @@
+{
+  "details": {
+    "assistantCount": 0,
+    "bodySample": "Recommend a dish\n\nto brin\u200b\u25cf\n\nLog in to start chatting\n\nWrite, plan, learn, and create with ChatGPT\n\nContinue with Google\nContinue with Apple\nContinue with phone\nOR\nContinue\nChatGPT\nTerms of use\n|\nPrivacy policy",
+    "captcha": false,
+    "composerFound": false,
+    "generating": false,
+    "href": "https://chatgpt.com/auth/login?next=%2Fc%2F6a2df9eb-80c8-83e8-800f-84e0e587a6bf",
+    "latestAssistant": "",
+    "loginRequired": true,
+    "rateLimited": false,
+    "sendDisabled": false,
+    "sendFound": true,
+    "title": "Get started | ChatGPT"
+  },
+  "failed_command": [
+    "python",
+    "scripts/chatgpt_cdp_bridge.py",
+    "probe",
+    "--cdp-url",
+    "http://172.17.240.1:9223",
+    "--thread-url",
+    "https://chatgpt.com/c/6a2df9eb-80c8-83e8-800f-84e0e587a6bf"
+  ],
+  "iteration_id": "0008",
+  "message": "The visible ChatGPT tab is not logged in.",
+  "packet_path": "research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md",
+  "reason": "login_required"
+}
