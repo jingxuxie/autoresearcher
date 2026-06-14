@@ -2,7 +2,7 @@
   "best_primary_metric": null,
   "failure_streak": 0,
   "human_review_required": false,
-  "iteration": 12,
+  "iteration": 13,
   "last_decision": "pivot",
   "last_failure": null,
   "last_pro_review_iteration": 12,
@@ -43,5 +43,5 @@
   "pro_review_count": 4,
   "protected_file_drift": false,
   "status": "active",
-  "weak_pass_streak": 0
+  "weak_pass_streak": 1
 }
