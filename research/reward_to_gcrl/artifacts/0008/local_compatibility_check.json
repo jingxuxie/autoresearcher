@@ -1,0 +1,15 @@
+{
+  "audit_complete": true,
+  "command": "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0008/run_fourrooms_vector_ssm.py --check-only",
+  "exact_scaled_gplus_matches_q_norm": true,
+  "gammas": [
+    0.95,
+    0.99
+  ],
+  "goal_count_total": 41,
+  "missing_fields": [],
+  "open_cell_count": 40,
+  "status": "passed",
+  "timestamp": "2026-06-14T22:47:55.660126+00:00",
+  "transition_table_hash": "83e1f22232f65efd7c194f0e75ee92546b395520656f2336819472ef1b95d3de"
+}

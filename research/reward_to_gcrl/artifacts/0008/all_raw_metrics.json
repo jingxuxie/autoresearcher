@@ -1,0 +1,4848 @@
+{
+  "environment_audit": {
+    "action_mapping": [
+      {
+        "action": 0,
+        "arrow": "^",
+        "delta": [
+          -1,
+          0
+        ],
+        "name": "up"
+      },
+      {
+        "action": 1,
+        "arrow": ">",
+        "delta": [
+          0,
+          1
+        ],
+        "name": "right"
+      },
+      {
+        "action": 2,
+        "arrow": "v",
+        "delta": [
+          1,
+          0
+        ],
+        "name": "down"
+      },
+      {
+        "action": 3,
+        "arrow": "<",
+        "delta": [
+          0,
+          -1
+        ],
+        "name": "left"
+      }
+    ],
+    "doorway_cells": [
+      [
+        1,
+        3
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        5,
+        3
+      ]
+    ],
+    "environment": "tiny_deterministic_fourrooms",
+    "experiment_id": "0008",
+    "gammas": [
+      0.95,
+      0.99
+    ],
+    "goal_indexing": {
+      "g_plus_index": 40,
+      "goal_count_total": 41,
+      "real_state_goal_indices": "0..n_states-1, matching state indices"
+    },
+    "grid_shape": [
+      7,
+      7
+    ],
+    "open_cell_count": 40,
+    "reward_normalization": {
+      "affine_offset": 0.0,
+      "affine_scale": 1.0,
+      "normalized_reward": "identity(raw_reward)",
+      "raw_rewards_in_[0,1]": true
+    },
+    "reward_task": {
+      "raw_reward": "1 when a nonterminal transition enters reward_goal_state, otherwise 0",
+      "reward_goal_cell": [
+        6,
+        6
+      ],
+      "reward_goal_state": 39,
+      "terminal_mask": "g_plus slice treats reward_goal_state as terminal; no bootstrap when current or next state is reward_goal_state"
+    },
+    "state_indexing": [
+      {
+        "cell": [
+          0,
+          0
+        ],
+        "state": 0
+      },
+      {
+        "cell": [
+          0,
+          1
+        ],
+        "state": 1
+      },
+      {
+        "cell": [
+          0,
+          2
+        ],
+        "state": 2
+      },
+      {
+        "cell": [
+          0,
+          4
+        ],
+        "state": 3
+      },
+      {
+        "cell": [
+          0,
+          5
+        ],
+        "state": 4
+      },
+      {
+        "cell": [
+          0,
+          6
+        ],
+        "state": 5
+      },
+      {
+        "cell": [
+          1,
+          0
+        ],
+        "state": 6
+      },
+      {
+        "cell": [
+          1,
+          1
+        ],
+        "state": 7
+      },
+      {
+        "cell": [
+          1,
+          2
+        ],
+        "state": 8
+      },
+      {
+        "cell": [
+          1,
+          3
+        ],
+        "state": 9
+      },
+      {
+        "cell": [
+          1,
+          4
+        ],
+        "state": 10
+      },
+      {
+        "cell": [
+          1,
+          5
+        ],
+        "state": 11
+      },
+      {
+        "cell": [
+          1,
+          6
+        ],
+        "state": 12
+      },
+      {
+        "cell": [
+          2,
+          0
+        ],
+        "state": 13
+      },
+      {
+        "cell": [
+          2,
+          1
+        ],
+        "state": 14
+      },
+      {
+        "cell": [
+          2,
+          2
+        ],
+        "state": 15
+      },
+      {
+        "cell": [
+          2,
+          4
+        ],
+        "state": 16
+      },
+      {
+        "cell": [
+          2,
+          5
+        ],
+        "state": 17
+      },
+      {
+        "cell": [
+          2,
+          6
+        ],
+        "state": 18
+      },
+      {
+        "cell": [
+          3,
+          1
+        ],
+        "state": 19
+      },
+      {
+        "cell": [
+          3,
+          5
+        ],
+        "state": 20
+      },
+      {
+        "cell": [
+          4,
+          0
+        ],
+        "state": 21
+      },
+      {
+        "cell": [
+          4,
+          1
+        ],
+        "state": 22
+      },
+      {
+        "cell": [
+          4,
+          2
+        ],
+        "state": 23
+      },
+      {
+        "cell": [
+          4,
+          4
+        ],
+        "state": 24
+      },
+      {
+        "cell": [
+          4,
+          5
+        ],
+        "state": 25
+      },
+      {
+        "cell": [
+          4,
+          6
+        ],
+        "state": 26
+      },
+      {
+        "cell": [
+          5,
+          0
+        ],
+        "state": 27
+      },
+      {
+        "cell": [
+          5,
+          1
+        ],
+        "state": 28
+      },
+      {
+        "cell": [
+          5,
+          2
+        ],
+        "state": 29
+      },
+      {
+        "cell": [
+          5,
+          3
+        ],
+        "state": 30
+      },
+      {
+        "cell": [
+          5,
+          4
+        ],
+        "state": 31
+      },
+      {
+        "cell": [
+          5,
+          5
+        ],
+        "state": 32
+      },
+      {
+        "cell": [
+          5,
+          6
+        ],
+        "state": 33
+      },
+      {
+        "cell": [
+          6,
+          0
+        ],
+        "state": 34
+      },
+      {
+        "cell": [
+          6,
+          1
+        ],
+        "state": 35
+      },
+      {
+        "cell": [
+          6,
+          2
+        ],
+        "state": 36
+      },
+      {
+        "cell": [
+          6,
+          4
+        ],
+        "state": 37
+      },
+      {
+        "cell": [
+          6,
+          5
+        ],
+        "state": 38
+      },
+      {
+        "cell": [
+          6,
+          6
+        ],
+        "state": 39
+      }
+    ],
+    "terminal_masks": {
+      "g_plus_slice": "terminal current state s==reward_goal_state and no bootstrap on transitions with next_state==reward_goal_state",
+      "real_state_goal_slice": "slice g has terminal current state s==g and no bootstrap on transitions with next_state==g"
+    },
+    "transition_records": [
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          0,
+          0
+        ],
+        "next_cell": [
+          0,
+          0
+        ],
+        "next_state": 0,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 0,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          0,
+          0
+        ],
+        "next_cell": [
+          0,
+          1
+        ],
+        "next_state": 1,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 0,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          0,
+          0
+        ],
+        "next_cell": [
+          1,
+          0
+        ],
+        "next_state": 6,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 0,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          0,
+          0
+        ],
+        "next_cell": [
+          0,
+          0
+        ],
+        "next_state": 0,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 0,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          0,
+          1
+        ],
+        "next_cell": [
+          0,
+          1
+        ],
+        "next_state": 1,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 1,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          0,
+          1
+        ],
+        "next_cell": [
+          0,
+          2
+        ],
+        "next_state": 2,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 1,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          0,
+          1
+        ],
+        "next_cell": [
+          1,
+          1
+        ],
+        "next_state": 7,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 1,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          0,
+          1
+        ],
+        "next_cell": [
+          0,
+          0
+        ],
+        "next_state": 0,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 1,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          0,
+          2
+        ],
+        "next_cell": [
+          0,
+          2
+        ],
+        "next_state": 2,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 2,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          0,
+          2
+        ],
+        "next_cell": [
+          0,
+          2
+        ],
+        "next_state": 2,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 2,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          0,
+          2
+        ],
+        "next_cell": [
+          1,
+          2
+        ],
+        "next_state": 8,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 2,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          0,
+          2
+        ],
+        "next_cell": [
+          0,
+          1
+        ],
+        "next_state": 1,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 2,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          0,
+          4
+        ],
+        "next_cell": [
+          0,
+          4
+        ],
+        "next_state": 3,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 3,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          0,
+          4
+        ],
+        "next_cell": [
+          0,
+          5
+        ],
+        "next_state": 4,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 3,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          0,
+          4
+        ],
+        "next_cell": [
+          1,
+          4
+        ],
+        "next_state": 10,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 3,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          0,
+          4
+        ],
+        "next_cell": [
+          0,
+          4
+        ],
+        "next_state": 3,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 3,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          0,
+          5
+        ],
+        "next_cell": [
+          0,
+          5
+        ],
+        "next_state": 4,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 4,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          0,
+          5
+        ],
+        "next_cell": [
+          0,
+          6
+        ],
+        "next_state": 5,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 4,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          0,
+          5
+        ],
+        "next_cell": [
+          1,
+          5
+        ],
+        "next_state": 11,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 4,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          0,
+          5
+        ],
+        "next_cell": [
+          0,
+          4
+        ],
+        "next_state": 3,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 4,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          0,
+          6
+        ],
+        "next_cell": [
+          0,
+          6
+        ],
+        "next_state": 5,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 5,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          0,
+          6
+        ],
+        "next_cell": [
+          0,
+          6
+        ],
+        "next_state": 5,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 5,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          0,
+          6
+        ],
+        "next_cell": [
+          1,
+          6
+        ],
+        "next_state": 12,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 5,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          0,
+          6
+        ],
+        "next_cell": [
+          0,
+          5
+        ],
+        "next_state": 4,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 5,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          1,
+          0
+        ],
+        "next_cell": [
+          0,
+          0
+        ],
+        "next_state": 0,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 6,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          1,
+          0
+        ],
+        "next_cell": [
+          1,
+          1
+        ],
+        "next_state": 7,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 6,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          1,
+          0
+        ],
+        "next_cell": [
+          2,
+          0
+        ],
+        "next_state": 13,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 6,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          1,
+          0
+        ],
+        "next_cell": [
+          1,
+          0
+        ],
+        "next_state": 6,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 6,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          1,
+          1
+        ],
+        "next_cell": [
+          0,
+          1
+        ],
+        "next_state": 1,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 7,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          1,
+          1
+        ],
+        "next_cell": [
+          1,
+          2
+        ],
+        "next_state": 8,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 7,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          1,
+          1
+        ],
+        "next_cell": [
+          2,
+          1
+        ],
+        "next_state": 14,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 7,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          1,
+          1
+        ],
+        "next_cell": [
+          1,
+          0
+        ],
+        "next_state": 6,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 7,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          1,
+          2
+        ],
+        "next_cell": [
+          0,
+          2
+        ],
+        "next_state": 2,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 8,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          1,
+          2
+        ],
+        "next_cell": [
+          1,
+          3
+        ],
+        "next_state": 9,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 8,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          1,
+          2
+        ],
+        "next_cell": [
+          2,
+          2
+        ],
+        "next_state": 15,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 8,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          1,
+          2
+        ],
+        "next_cell": [
+          1,
+          1
+        ],
+        "next_state": 7,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 8,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          1,
+          3
+        ],
+        "next_cell": [
+          1,
+          3
+        ],
+        "next_state": 9,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 9,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          1,
+          3
+        ],
+        "next_cell": [
+          1,
+          4
+        ],
+        "next_state": 10,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 9,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          1,
+          3
+        ],
+        "next_cell": [
+          1,
+          3
+        ],
+        "next_state": 9,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 9,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          1,
+          3
+        ],
+        "next_cell": [
+          1,
+          2
+        ],
+        "next_state": 8,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 9,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          1,
+          4
+        ],
+        "next_cell": [
+          0,
+          4
+        ],
+        "next_state": 3,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 10,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          1,
+          4
+        ],
+        "next_cell": [
+          1,
+          5
+        ],
+        "next_state": 11,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 10,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          1,
+          4
+        ],
+        "next_cell": [
+          2,
+          4
+        ],
+        "next_state": 16,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 10,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          1,
+          4
+        ],
+        "next_cell": [
+          1,
+          3
+        ],
+        "next_state": 9,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 10,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          1,
+          5
+        ],
+        "next_cell": [
+          0,
+          5
+        ],
+        "next_state": 4,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 11,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          1,
+          5
+        ],
+        "next_cell": [
+          1,
+          6
+        ],
+        "next_state": 12,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 11,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          1,
+          5
+        ],
+        "next_cell": [
+          2,
+          5
+        ],
+        "next_state": 17,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 11,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          1,
+          5
+        ],
+        "next_cell": [
+          1,
+          4
+        ],
+        "next_state": 10,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 11,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          1,
+          6
+        ],
+        "next_cell": [
+          0,
+          6
+        ],
+        "next_state": 5,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 12,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          1,
+          6
+        ],
+        "next_cell": [
+          1,
+          6
+        ],
+        "next_state": 12,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 12,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          1,
+          6
+        ],
+        "next_cell": [
+          2,
+          6
+        ],
+        "next_state": 18,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 12,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          1,
+          6
+        ],
+        "next_cell": [
+          1,
+          5
+        ],
+        "next_state": 11,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 12,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          2,
+          0
+        ],
+        "next_cell": [
+          1,
+          0
+        ],
+        "next_state": 6,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 13,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          2,
+          0
+        ],
+        "next_cell": [
+          2,
+          1
+        ],
+        "next_state": 14,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 13,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          2,
+          0
+        ],
+        "next_cell": [
+          2,
+          0
+        ],
+        "next_state": 13,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 13,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          2,
+          0
+        ],
+        "next_cell": [
+          2,
+          0
+        ],
+        "next_state": 13,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 13,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          2,
+          1
+        ],
+        "next_cell": [
+          1,
+          1
+        ],
+        "next_state": 7,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 14,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          2,
+          1
+        ],
+        "next_cell": [
+          2,
+          2
+        ],
+        "next_state": 15,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 14,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          2,
+          1
+        ],
+        "next_cell": [
+          3,
+          1
+        ],
+        "next_state": 19,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 14,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          2,
+          1
+        ],
+        "next_cell": [
+          2,
+          0
+        ],
+        "next_state": 13,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 14,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          2,
+          2
+        ],
+        "next_cell": [
+          1,
+          2
+        ],
+        "next_state": 8,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 15,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          2,
+          2
+        ],
+        "next_cell": [
+          2,
+          2
+        ],
+        "next_state": 15,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 15,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          2,
+          2
+        ],
+        "next_cell": [
+          2,
+          2
+        ],
+        "next_state": 15,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 15,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          2,
+          2
+        ],
+        "next_cell": [
+          2,
+          1
+        ],
+        "next_state": 14,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 15,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          2,
+          4
+        ],
+        "next_cell": [
+          1,
+          4
+        ],
+        "next_state": 10,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 16,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          2,
+          4
+        ],
+        "next_cell": [
+          2,
+          5
+        ],
+        "next_state": 17,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 16,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          2,
+          4
+        ],
+        "next_cell": [
+          2,
+          4
+        ],
+        "next_state": 16,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 16,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          2,
+          4
+        ],
+        "next_cell": [
+          2,
+          4
+        ],
+        "next_state": 16,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 16,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          2,
+          5
+        ],
+        "next_cell": [
+          1,
+          5
+        ],
+        "next_state": 11,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 17,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          2,
+          5
+        ],
+        "next_cell": [
+          2,
+          6
+        ],
+        "next_state": 18,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 17,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          2,
+          5
+        ],
+        "next_cell": [
+          3,
+          5
+        ],
+        "next_state": 20,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 17,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          2,
+          5
+        ],
+        "next_cell": [
+          2,
+          4
+        ],
+        "next_state": 16,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 17,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          2,
+          6
+        ],
+        "next_cell": [
+          1,
+          6
+        ],
+        "next_state": 12,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 18,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          2,
+          6
+        ],
+        "next_cell": [
+          2,
+          6
+        ],
+        "next_state": 18,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 18,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          2,
+          6
+        ],
+        "next_cell": [
+          2,
+          6
+        ],
+        "next_state": 18,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 18,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          2,
+          6
+        ],
+        "next_cell": [
+          2,
+          5
+        ],
+        "next_state": 17,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 18,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          3,
+          1
+        ],
+        "next_cell": [
+          2,
+          1
+        ],
+        "next_state": 14,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 19,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          3,
+          1
+        ],
+        "next_cell": [
+          3,
+          1
+        ],
+        "next_state": 19,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 19,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          3,
+          1
+        ],
+        "next_cell": [
+          4,
+          1
+        ],
+        "next_state": 22,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 19,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          3,
+          1
+        ],
+        "next_cell": [
+          3,
+          1
+        ],
+        "next_state": 19,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 19,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          3,
+          5
+        ],
+        "next_cell": [
+          2,
+          5
+        ],
+        "next_state": 17,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 20,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          3,
+          5
+        ],
+        "next_cell": [
+          3,
+          5
+        ],
+        "next_state": 20,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 20,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          3,
+          5
+        ],
+        "next_cell": [
+          4,
+          5
+        ],
+        "next_state": 25,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 20,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          3,
+          5
+        ],
+        "next_cell": [
+          3,
+          5
+        ],
+        "next_state": 20,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 20,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          4,
+          0
+        ],
+        "next_cell": [
+          4,
+          0
+        ],
+        "next_state": 21,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 21,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          4,
+          0
+        ],
+        "next_cell": [
+          4,
+          1
+        ],
+        "next_state": 22,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 21,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          4,
+          0
+        ],
+        "next_cell": [
+          5,
+          0
+        ],
+        "next_state": 27,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 21,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          4,
+          0
+        ],
+        "next_cell": [
+          4,
+          0
+        ],
+        "next_state": 21,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 21,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          4,
+          1
+        ],
+        "next_cell": [
+          3,
+          1
+        ],
+        "next_state": 19,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 22,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          4,
+          1
+        ],
+        "next_cell": [
+          4,
+          2
+        ],
+        "next_state": 23,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 22,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          4,
+          1
+        ],
+        "next_cell": [
+          5,
+          1
+        ],
+        "next_state": 28,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 22,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          4,
+          1
+        ],
+        "next_cell": [
+          4,
+          0
+        ],
+        "next_state": 21,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 22,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          4,
+          2
+        ],
+        "next_cell": [
+          4,
+          2
+        ],
+        "next_state": 23,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 23,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          4,
+          2
+        ],
+        "next_cell": [
+          4,
+          2
+        ],
+        "next_state": 23,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 23,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          4,
+          2
+        ],
+        "next_cell": [
+          5,
+          2
+        ],
+        "next_state": 29,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 23,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          4,
+          2
+        ],
+        "next_cell": [
+          4,
+          1
+        ],
+        "next_state": 22,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 23,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          4,
+          4
+        ],
+        "next_cell": [
+          4,
+          4
+        ],
+        "next_state": 24,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 24,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          4,
+          4
+        ],
+        "next_cell": [
+          4,
+          5
+        ],
+        "next_state": 25,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 24,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          4,
+          4
+        ],
+        "next_cell": [
+          5,
+          4
+        ],
+        "next_state": 31,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 24,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          4,
+          4
+        ],
+        "next_cell": [
+          4,
+          4
+        ],
+        "next_state": 24,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 24,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          4,
+          5
+        ],
+        "next_cell": [
+          3,
+          5
+        ],
+        "next_state": 20,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 25,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          4,
+          5
+        ],
+        "next_cell": [
+          4,
+          6
+        ],
+        "next_state": 26,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 25,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          4,
+          5
+        ],
+        "next_cell": [
+          5,
+          5
+        ],
+        "next_state": 32,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 25,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          4,
+          5
+        ],
+        "next_cell": [
+          4,
+          4
+        ],
+        "next_state": 24,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 25,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          4,
+          6
+        ],
+        "next_cell": [
+          4,
+          6
+        ],
+        "next_state": 26,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 26,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          4,
+          6
+        ],
+        "next_cell": [
+          4,
+          6
+        ],
+        "next_state": 26,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 26,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          4,
+          6
+        ],
+        "next_cell": [
+          5,
+          6
+        ],
+        "next_state": 33,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 26,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          4,
+          6
+        ],
+        "next_cell": [
+          4,
+          5
+        ],
+        "next_state": 25,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 26,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          5,
+          0
+        ],
+        "next_cell": [
+          4,
+          0
+        ],
+        "next_state": 21,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 27,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          5,
+          0
+        ],
+        "next_cell": [
+          5,
+          1
+        ],
+        "next_state": 28,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 27,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          5,
+          0
+        ],
+        "next_cell": [
+          6,
+          0
+        ],
+        "next_state": 34,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 27,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          5,
+          0
+        ],
+        "next_cell": [
+          5,
+          0
+        ],
+        "next_state": 27,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 27,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          5,
+          1
+        ],
+        "next_cell": [
+          4,
+          1
+        ],
+        "next_state": 22,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 28,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          5,
+          1
+        ],
+        "next_cell": [
+          5,
+          2
+        ],
+        "next_state": 29,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 28,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          5,
+          1
+        ],
+        "next_cell": [
+          6,
+          1
+        ],
+        "next_state": 35,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 28,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          5,
+          1
+        ],
+        "next_cell": [
+          5,
+          0
+        ],
+        "next_state": 27,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 28,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          5,
+          2
+        ],
+        "next_cell": [
+          4,
+          2
+        ],
+        "next_state": 23,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 29,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          5,
+          2
+        ],
+        "next_cell": [
+          5,
+          3
+        ],
+        "next_state": 30,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 29,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          5,
+          2
+        ],
+        "next_cell": [
+          6,
+          2
+        ],
+        "next_state": 36,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 29,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          5,
+          2
+        ],
+        "next_cell": [
+          5,
+          1
+        ],
+        "next_state": 28,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 29,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          5,
+          3
+        ],
+        "next_cell": [
+          5,
+          3
+        ],
+        "next_state": 30,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 30,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          5,
+          3
+        ],
+        "next_cell": [
+          5,
+          4
+        ],
+        "next_state": 31,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 30,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          5,
+          3
+        ],
+        "next_cell": [
+          5,
+          3
+        ],
+        "next_state": 30,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 30,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          5,
+          3
+        ],
+        "next_cell": [
+          5,
+          2
+        ],
+        "next_state": 29,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 30,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          5,
+          4
+        ],
+        "next_cell": [
+          4,
+          4
+        ],
+        "next_state": 24,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 31,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          5,
+          4
+        ],
+        "next_cell": [
+          5,
+          5
+        ],
+        "next_state": 32,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 31,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          5,
+          4
+        ],
+        "next_cell": [
+          6,
+          4
+        ],
+        "next_state": 37,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 31,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          5,
+          4
+        ],
+        "next_cell": [
+          5,
+          3
+        ],
+        "next_state": 30,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 31,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          5,
+          5
+        ],
+        "next_cell": [
+          4,
+          5
+        ],
+        "next_state": 25,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 32,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          5,
+          5
+        ],
+        "next_cell": [
+          5,
+          6
+        ],
+        "next_state": 33,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 32,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          5,
+          5
+        ],
+        "next_cell": [
+          6,
+          5
+        ],
+        "next_state": 38,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 32,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          5,
+          5
+        ],
+        "next_cell": [
+          5,
+          4
+        ],
+        "next_state": 31,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 32,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          5,
+          6
+        ],
+        "next_cell": [
+          4,
+          6
+        ],
+        "next_state": 26,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 33,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          5,
+          6
+        ],
+        "next_cell": [
+          5,
+          6
+        ],
+        "next_state": 33,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 33,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          5,
+          6
+        ],
+        "next_cell": [
+          6,
+          6
+        ],
+        "next_state": 39,
+        "normalized_reward": 1.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 1.0,
+        "state": 33,
+        "task_terminal_on_next": true
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          5,
+          6
+        ],
+        "next_cell": [
+          5,
+          5
+        ],
+        "next_state": 32,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 33,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          6,
+          0
+        ],
+        "next_cell": [
+          5,
+          0
+        ],
+        "next_state": 27,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 34,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          6,
+          0
+        ],
+        "next_cell": [
+          6,
+          1
+        ],
+        "next_state": 35,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 34,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          6,
+          0
+        ],
+        "next_cell": [
+          6,
+          0
+        ],
+        "next_state": 34,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 34,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          6,
+          0
+        ],
+        "next_cell": [
+          6,
+          0
+        ],
+        "next_state": 34,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 34,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          6,
+          1
+        ],
+        "next_cell": [
+          5,
+          1
+        ],
+        "next_state": 28,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 35,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          6,
+          1
+        ],
+        "next_cell": [
+          6,
+          2
+        ],
+        "next_state": 36,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 35,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          6,
+          1
+        ],
+        "next_cell": [
+          6,
+          1
+        ],
+        "next_state": 35,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 35,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          6,
+          1
+        ],
+        "next_cell": [
+          6,
+          0
+        ],
+        "next_state": 34,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 35,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          6,
+          2
+        ],
+        "next_cell": [
+          5,
+          2
+        ],
+        "next_state": 29,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 36,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          6,
+          2
+        ],
+        "next_cell": [
+          6,
+          2
+        ],
+        "next_state": 36,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 36,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          6,
+          2
+        ],
+        "next_cell": [
+          6,
+          2
+        ],
+        "next_state": 36,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 36,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          6,
+          2
+        ],
+        "next_cell": [
+          6,
+          1
+        ],
+        "next_state": 35,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 36,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          6,
+          4
+        ],
+        "next_cell": [
+          5,
+          4
+        ],
+        "next_state": 31,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 37,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          6,
+          4
+        ],
+        "next_cell": [
+          6,
+          5
+        ],
+        "next_state": 38,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 37,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          6,
+          4
+        ],
+        "next_cell": [
+          6,
+          4
+        ],
+        "next_state": 37,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 37,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          6,
+          4
+        ],
+        "next_cell": [
+          6,
+          4
+        ],
+        "next_state": 37,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 37,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          6,
+          5
+        ],
+        "next_cell": [
+          5,
+          5
+        ],
+        "next_state": 32,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 38,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          6,
+          5
+        ],
+        "next_cell": [
+          6,
+          6
+        ],
+        "next_state": 39,
+        "normalized_reward": 1.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 1.0,
+        "state": 38,
+        "task_terminal_on_next": true
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          6,
+          5
+        ],
+        "next_cell": [
+          6,
+          5
+        ],
+        "next_state": 38,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 38,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          6,
+          5
+        ],
+        "next_cell": [
+          6,
+          4
+        ],
+        "next_state": 37,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 38,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 0,
+        "action_name": "up",
+        "cell": [
+          6,
+          6
+        ],
+        "next_cell": [
+          5,
+          6
+        ],
+        "next_state": 33,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 39,
+        "task_terminal_on_next": false
+      },
+      {
+        "action": 1,
+        "action_name": "right",
+        "cell": [
+          6,
+          6
+        ],
+        "next_cell": [
+          6,
+          6
+        ],
+        "next_state": 39,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 39,
+        "task_terminal_on_next": true
+      },
+      {
+        "action": 2,
+        "action_name": "down",
+        "cell": [
+          6,
+          6
+        ],
+        "next_cell": [
+          6,
+          6
+        ],
+        "next_state": 39,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": true,
+        "raw_reward": 0.0,
+        "state": 39,
+        "task_terminal_on_next": true
+      },
+      {
+        "action": 3,
+        "action_name": "left",
+        "cell": [
+          6,
+          6
+        ],
+        "next_cell": [
+          6,
+          5
+        ],
+        "next_state": 38,
+        "normalized_reward": 0.0,
+        "off_grid_or_wall_stay": false,
+        "raw_reward": 0.0,
+        "state": 39,
+        "task_terminal_on_next": false
+      }
+    ],
+    "transition_table_hash": "83e1f22232f65efd7c194f0e75ee92546b395520656f2336819472ef1b95d3de",
+    "transition_table_shape": [
+      40,
+      4
+    ],
+    "update_procedure": {
+      "g_plus_immediate": "immediate[g_plus] += (1-gamma) * r_bar",
+      "goal_coupling": "independent slices; each goal slice has its own terminal mask",
+      "max_iterations": 200000,
+      "method": "synchronous deterministic full-sweep tabular backups to convergence",
+      "real_goal_immediate": "immediate[next_state] += (1-gamma)",
+      "tolerance": 1e-12
+    },
+    "wall_cells": [
+      [
+        0,
+        3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        6,
+        3
+      ]
+    ]
+  },
+  "learning": {
+    "heatmap_arrow_artifacts": {
+      "csv": "research/reward_to_gcrl/artifacts/0008/goal_heatmap_arrow_data.csv",
+      "json": "research/reward_to_gcrl/artifacts/0008/goal_heatmap_arrow_data.json",
+      "selected_goal_count": 4
+    },
+    "metadata": {
+      "equivalence_tolerance": 1e-10,
+      "experiment_id": "0008",
+      "gammas": [
+        0.95,
+        0.99
+      ],
+      "transition_table_hash": "83e1f22232f65efd7c194f0e75ee92546b395520656f2336819472ef1b95d3de",
+      "value_error_tolerance": 1e-10
+    },
+    "per_goal_rows": [
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          0,
+          0
+        ],
+        "goal_state": 0,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          0,
+          1
+        ],
+        "goal_state": 1,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          0,
+          2
+        ],
+        "goal_state": 2,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          0,
+          4
+        ],
+        "goal_state": 3,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          0,
+          5
+        ],
+        "goal_state": 4,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          0,
+          6
+        ],
+        "goal_state": 5,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          1,
+          0
+        ],
+        "goal_state": 6,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          1,
+          1
+        ],
+        "goal_state": 7,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          1,
+          2
+        ],
+        "goal_state": 8,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          1,
+          3
+        ],
+        "goal_state": 9,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          1,
+          4
+        ],
+        "goal_state": 10,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          1,
+          5
+        ],
+        "goal_state": 11,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          1,
+          6
+        ],
+        "goal_state": 12,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          2,
+          0
+        ],
+        "goal_state": 13,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          2,
+          1
+        ],
+        "goal_state": 14,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          2,
+          2
+        ],
+        "goal_state": 15,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          2,
+          4
+        ],
+        "goal_state": 16,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          2,
+          5
+        ],
+        "goal_state": 17,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          2,
+          6
+        ],
+        "goal_state": 18,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          3,
+          1
+        ],
+        "goal_state": 19,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          3,
+          5
+        ],
+        "goal_state": 20,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          4,
+          0
+        ],
+        "goal_state": 21,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          4,
+          1
+        ],
+        "goal_state": 22,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          4,
+          2
+        ],
+        "goal_state": 23,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          4,
+          4
+        ],
+        "goal_state": 24,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          4,
+          5
+        ],
+        "goal_state": 25,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          4,
+          6
+        ],
+        "goal_state": 26,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          5,
+          0
+        ],
+        "goal_state": 27,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          5,
+          1
+        ],
+        "goal_state": 28,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          5,
+          2
+        ],
+        "goal_state": 29,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          5,
+          3
+        ],
+        "goal_state": 30,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          5,
+          4
+        ],
+        "goal_state": 31,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          5,
+          5
+        ],
+        "goal_state": 32,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          5,
+          6
+        ],
+        "goal_state": 33,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          6,
+          0
+        ],
+        "goal_state": 34,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          6,
+          1
+        ],
+        "goal_state": 35,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          6,
+          2
+        ],
+        "goal_state": 36,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          6,
+          4
+        ],
+        "goal_state": 37,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          6,
+          5
+        ],
+        "goal_state": 38,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.95,
+        "goal_cell": [
+          6,
+          6
+        ],
+        "goal_state": 39,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          0,
+          0
+        ],
+        "goal_state": 0,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          0,
+          1
+        ],
+        "goal_state": 1,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          0,
+          2
+        ],
+        "goal_state": 2,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          0,
+          4
+        ],
+        "goal_state": 3,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          0,
+          5
+        ],
+        "goal_state": 4,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          0,
+          6
+        ],
+        "goal_state": 5,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          1,
+          0
+        ],
+        "goal_state": 6,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          1,
+          1
+        ],
+        "goal_state": 7,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          1,
+          2
+        ],
+        "goal_state": 8,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          1,
+          3
+        ],
+        "goal_state": 9,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          1,
+          4
+        ],
+        "goal_state": 10,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          1,
+          5
+        ],
+        "goal_state": 11,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          1,
+          6
+        ],
+        "goal_state": 12,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          2,
+          0
+        ],
+        "goal_state": 13,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          2,
+          1
+        ],
+        "goal_state": 14,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          2,
+          2
+        ],
+        "goal_state": 15,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          2,
+          4
+        ],
+        "goal_state": 16,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          2,
+          5
+        ],
+        "goal_state": 17,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          2,
+          6
+        ],
+        "goal_state": 18,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          3,
+          1
+        ],
+        "goal_state": 19,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          3,
+          5
+        ],
+        "goal_state": 20,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          4,
+          0
+        ],
+        "goal_state": 21,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          4,
+          1
+        ],
+        "goal_state": 22,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          4,
+          2
+        ],
+        "goal_state": 23,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          4,
+          4
+        ],
+        "goal_state": 24,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          4,
+          5
+        ],
+        "goal_state": 25,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          4,
+          6
+        ],
+        "goal_state": 26,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          5,
+          0
+        ],
+        "goal_state": 27,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          5,
+          1
+        ],
+        "goal_state": 28,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          5,
+          2
+        ],
+        "goal_state": 29,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          5,
+          3
+        ],
+        "goal_state": 30,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          5,
+          4
+        ],
+        "goal_state": 31,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          5,
+          5
+        ],
+        "goal_state": 32,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          5,
+          6
+        ],
+        "goal_state": 33,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          6,
+          0
+        ],
+        "goal_state": 34,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          6,
+          1
+        ],
+        "goal_state": 35,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          6,
+          2
+        ],
+        "goal_state": 36,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          6,
+          4
+        ],
+        "goal_state": 37,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 23,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 16
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          6,
+          5
+        ],
+        "goal_state": 38,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      },
+      {
+        "gamma": 0.99,
+        "goal_cell": [
+          6,
+          6
+        ],
+        "goal_state": 39,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "success_rate": 1.0
+      }
+    ],
+    "rows": [
+      {
+        "gamma": 0.95,
+        "goal_reaching": {
+          "goal_count": 40,
+          "max_policy_disagreement_rate_vs_exact": 0.0,
+          "mean_first_step_shortest_path_distance_reduction": 1.0,
+          "mean_goal_success_rate": 1.0,
+          "mean_policy_disagreement_rate_vs_exact": 0.0,
+          "min_goal_success_rate": 1.0
+        },
+        "max_abs_real_goal_value_error": 0.0,
+        "max_abs_terminal_only_scaled_minus_q_norm": 1.1102230246251565e-16,
+        "max_abs_vector_gplus_minus_terminal_only": 0.0,
+        "max_abs_vector_gplus_scaled_minus_q_norm": 1.1102230246251565e-16,
+        "mean_abs_real_goal_value_error": 0.0,
+        "reward_policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "reward_policy_disagreement_vs_terminal_only": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "terminal_only_final_delta": 0.0,
+        "terminal_only_iterations": 14,
+        "vector_final_delta": 0.0,
+        "vector_iterations": 14
+      },
+      {
+        "gamma": 0.99,
+        "goal_reaching": {
+          "goal_count": 40,
+          "max_policy_disagreement_rate_vs_exact": 0.0,
+          "mean_first_step_shortest_path_distance_reduction": 1.0,
+          "mean_goal_success_rate": 1.0,
+          "mean_policy_disagreement_rate_vs_exact": 0.0,
+          "min_goal_success_rate": 1.0
+        },
+        "max_abs_real_goal_value_error": 0.0,
+        "max_abs_terminal_only_scaled_minus_q_norm": 1.1102230246251565e-16,
+        "max_abs_vector_gplus_minus_terminal_only": 0.0,
+        "max_abs_vector_gplus_scaled_minus_q_norm": 1.1102230246251565e-16,
+        "mean_abs_real_goal_value_error": 0.0,
+        "reward_policy_disagreement_vs_exact": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "reward_policy_disagreement_vs_terminal_only": {
+          "comparable_non_tie_state_count": 22,
+          "disagreement_count": 0,
+          "disagreement_rate": 0.0,
+          "skipped_state_count": 1,
+          "state_count_total": 40,
+          "tie_state_count": 17
+        },
+        "terminal_only_final_delta": 0.0,
+        "terminal_only_iterations": 14,
+        "vector_final_delta": 0.0,
+        "vector_iterations": 14
+      }
+    ]
+  },
+  "metadata": {
+    "created_at": "2026-06-14T22:48:16.749438+00:00",
+    "experiment_id": "0008",
+    "transition_table_hash": "83e1f22232f65efd7c194f0e75ee92546b395520656f2336819472ef1b95d3de"
+  }
+}

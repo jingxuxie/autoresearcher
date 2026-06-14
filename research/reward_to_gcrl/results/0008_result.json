@@ -1,0 +1,315 @@
+{
+  "artifacts": [
+    "research/reward_to_gcrl/artifacts/0008/run_fourrooms_vector_ssm.py",
+    "research/reward_to_gcrl/artifacts/0008/local_compatibility_check.json",
+    "research/reward_to_gcrl/artifacts/0008/environment_audit.json",
+    "research/reward_to_gcrl/artifacts/0008/exact_dp_references.json",
+    "research/reward_to_gcrl/artifacts/0008/raw_metrics.json",
+    "research/reward_to_gcrl/artifacts/0008/all_raw_metrics.json",
+    "research/reward_to_gcrl/artifacts/0008/per_goal_metrics.json",
+    "research/reward_to_gcrl/artifacts/0008/per_goal_metrics.csv",
+    "research/reward_to_gcrl/artifacts/0008/goal_heatmap_arrow_data.json",
+    "research/reward_to_gcrl/artifacts/0008/goal_heatmap_arrow_data.csv",
+    "research/reward_to_gcrl/artifacts/0008/progress.jsonl"
+  ],
+  "baseline_metrics": {
+    "baseline_name": "terminal_only_soft_gplus",
+    "max_abs_terminal_only_scaled_minus_q_norm": 1.1102230246251565e-16,
+    "max_reward_policy_disagreement_vs_exact": 0.0
+  },
+  "claim_tested": "Adding real-state goal slices to a tabular vector successor measure should leave the g_plus reward-success slice equivalent to the terminal-only soft learner while learning correct real-state goal reachability maps.",
+  "commands_run": [
+    "mkdir -p research/reward_to_gcrl/artifacts/0008 research/reward_to_gcrl/results",
+    "conda run -n autoresearcher_reward_to_gcrl python --version",
+    "conda run -n autoresearcher_reward_to_gcrl python -m py_compile research/reward_to_gcrl/artifacts/0008/run_fourrooms_vector_ssm.py",
+    "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0008/run_fourrooms_vector_ssm.py --check-only",
+    "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0008/run_fourrooms_vector_ssm.py",
+    "conda run -n autoresearcher_reward_to_gcrl python -m jsonschema -i research/reward_to_gcrl/results/0008_result.json schemas/result.schema.json",
+    "conda run -n autoresearcher_reward_to_gcrl python scripts/validate_artifacts.py --repo-root . --json research/reward_to_gcrl/results/0008_result.json --schema schemas/result.schema.json --check-result-artifacts"
+  ],
+  "decision_relevant_findings": [
+    "Independent tabular real-state goal slices did not perturb the g_plus reward-success slice.",
+    "The g_plus slice remains a direct scaled normalized-Q reference under the audited terminal mask.",
+    "Real-state goals solve the deterministic reachability sanity check, so future reward changes require shared parameters or coupling to be meaningful."
+  ],
+  "experiment_id": "0008",
+  "failure_criteria_results": [
+    "NOT_TRIGGERED: result JSON and summary validate after generation.",
+    "NOT_TRIGGERED: exact commands, raw metrics, artifact paths, environment audit, reward normalization, goal indexing, and terminal masks are recorded.",
+    "NOT_TRIGGERED: vector update does not couple goals and does not change the g_plus slice beyond tolerance.",
+    "NOT_TRIGGERED: real-state goal diagnostics include exact value error and goal-reaching metrics.",
+    "NOT_TRIGGERED: no auxiliary-goal reward improvement claim is made in tabular independent-slice mode.",
+    "NOT_TRIGGERED: no neural approximation, low-rank factorization, sampled augmented baseline, larger environment, large download, GPU work, or long training was added."
+  ],
+  "interpretation": "The vector SSM slices are numerically independent in this tabular FourRooms check: the g_plus slice matches terminal-only soft learning, scaled g_plus matches normalized Q, and real-state goal slices match exact reachability references with successful greedy goal reaching.",
+  "known_failures": [],
+  "metric_deltas": {
+    "max_abs_real_goal_value_error": 0.0,
+    "max_abs_vector_gplus_minus_terminal_only": 0.0,
+    "max_abs_vector_gplus_scaled_minus_q_norm": 1.1102230246251565e-16,
+    "mean_first_step_shortest_path_distance_reduction": 1.0,
+    "min_goal_success_rate": 1.0
+  },
+  "metrics": {
+    "config": {
+      "equivalence_tolerance": 1e-10,
+      "gammas": [
+        0.95,
+        0.99
+      ],
+      "goal_success_threshold": 0.99,
+      "grid_shape": [
+        7,
+        7
+      ],
+      "reward_normalization": {
+        "affine_offset": 0.0,
+        "affine_scale": 1.0,
+        "normalized_reward": "identity(raw_reward)",
+        "raw_rewards_in_[0,1]": true
+      },
+      "terminal_masks": {
+        "g_plus_slice": "terminal current state s==reward_goal_state and no bootstrap on transitions with next_state==reward_goal_state",
+        "real_state_goal_slice": "slice g has terminal current state s==g and no bootstrap on transitions with next_state==g"
+      },
+      "update_procedure": {
+        "g_plus_immediate": "immediate[g_plus] += (1-gamma) * r_bar",
+        "goal_coupling": "independent slices; each goal slice has its own terminal mask",
+        "max_iterations": 200000,
+        "method": "synchronous deterministic full-sweep tabular backups to convergence",
+        "real_goal_immediate": "immediate[next_state] += (1-gamma)",
+        "tolerance": 1e-12
+      },
+      "value_error_tolerance": 1e-10
+    },
+    "environment_audit": {
+      "complete": true,
+      "doorway_cells": [
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "goal_indexing": {
+        "g_plus_index": 40,
+        "goal_count_total": 41,
+        "real_state_goal_indices": "0..n_states-1, matching state indices"
+      },
+      "missing_fields": [],
+      "open_cell_count": 40,
+      "reward_task": {
+        "raw_reward": "1 when a nonterminal transition enters reward_goal_state, otherwise 0",
+        "reward_goal_cell": [
+          6,
+          6
+        ],
+        "reward_goal_state": 39,
+        "terminal_mask": "g_plus slice treats reward_goal_state as terminal; no bootstrap when current or next state is reward_goal_state"
+      },
+      "transition_table_hash": "83e1f22232f65efd7c194f0e75ee92546b395520656f2336819472ef1b95d3de",
+      "wall_cells": [
+        [
+          0,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          6,
+          3
+        ]
+      ]
+    },
+    "exact_dp": {
+      "rows": [
+        {
+          "gamma": 0.95,
+          "gplus_final_delta": 0.0,
+          "gplus_iterations": 14,
+          "max_abs_scaled_gplus_minus_q_norm": 1.1102230246251565e-16,
+          "q_final_delta": 0.0,
+          "q_iterations": 14,
+          "real_goal_final_delta": 0.0,
+          "real_goal_iterations": 14
+        },
+        {
+          "gamma": 0.99,
+          "gplus_final_delta": 0.0,
+          "gplus_iterations": 14,
+          "max_abs_scaled_gplus_minus_q_norm": 1.1102230246251565e-16,
+          "q_final_delta": 0.0,
+          "q_iterations": 14,
+          "real_goal_final_delta": 0.0,
+          "real_goal_iterations": 14
+        }
+      ],
+      "scaled_gplus_matches_q_norm": true
+    },
+    "pass_flags": {
+      "cpu_tabular_tiny_fourrooms_only": true,
+      "environment_audit_complete": true,
+      "exact_dp_references_computed": true,
+      "goal_policy_disagreement_zero_or_ties": true,
+      "heatmap_arrow_artifacts_saved": true,
+      "real_goal_success_rate_high": true,
+      "real_goal_value_error_within_tolerance": true,
+      "reward_policy_disagreement_zero_or_ties": true,
+      "vector_gplus_matches_terminal_only": true,
+      "vector_gplus_scaled_matches_q_norm": true
+    },
+    "vector_ssm": {
+      "aggregate": {
+        "gamma_count": 2,
+        "max_abs_real_goal_value_error": 0.0,
+        "max_abs_terminal_only_scaled_minus_q_norm": 1.1102230246251565e-16,
+        "max_abs_vector_gplus_minus_terminal_only": 0.0,
+        "max_abs_vector_gplus_scaled_minus_q_norm": 1.1102230246251565e-16,
+        "max_goal_policy_disagreement_rate_vs_exact": 0.0,
+        "max_reward_policy_disagreement_vs_exact": 0.0,
+        "max_reward_policy_disagreement_vs_terminal_only": 0.0,
+        "mean_abs_real_goal_value_error": 0.0,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "mean_goal_success_rate": 1.0,
+        "min_goal_success_rate": 1.0
+      },
+      "rows": [
+        {
+          "gamma": 0.95,
+          "goal_reaching": {
+            "goal_count": 40,
+            "max_policy_disagreement_rate_vs_exact": 0.0,
+            "mean_first_step_shortest_path_distance_reduction": 1.0,
+            "mean_goal_success_rate": 1.0,
+            "mean_policy_disagreement_rate_vs_exact": 0.0,
+            "min_goal_success_rate": 1.0
+          },
+          "max_abs_real_goal_value_error": 0.0,
+          "max_abs_terminal_only_scaled_minus_q_norm": 1.1102230246251565e-16,
+          "max_abs_vector_gplus_minus_terminal_only": 0.0,
+          "max_abs_vector_gplus_scaled_minus_q_norm": 1.1102230246251565e-16,
+          "mean_abs_real_goal_value_error": 0.0,
+          "reward_policy_disagreement_vs_exact": {
+            "comparable_non_tie_state_count": 22,
+            "disagreement_count": 0,
+            "disagreement_rate": 0.0,
+            "skipped_state_count": 1,
+            "state_count_total": 40,
+            "tie_state_count": 17
+          },
+          "reward_policy_disagreement_vs_terminal_only": {
+            "comparable_non_tie_state_count": 22,
+            "disagreement_count": 0,
+            "disagreement_rate": 0.0,
+            "skipped_state_count": 1,
+            "state_count_total": 40,
+            "tie_state_count": 17
+          },
+          "terminal_only_final_delta": 0.0,
+          "terminal_only_iterations": 14,
+          "vector_final_delta": 0.0,
+          "vector_iterations": 14
+        },
+        {
+          "gamma": 0.99,
+          "goal_reaching": {
+            "goal_count": 40,
+            "max_policy_disagreement_rate_vs_exact": 0.0,
+            "mean_first_step_shortest_path_distance_reduction": 1.0,
+            "mean_goal_success_rate": 1.0,
+            "mean_policy_disagreement_rate_vs_exact": 0.0,
+            "min_goal_success_rate": 1.0
+          },
+          "max_abs_real_goal_value_error": 0.0,
+          "max_abs_terminal_only_scaled_minus_q_norm": 1.1102230246251565e-16,
+          "max_abs_vector_gplus_minus_terminal_only": 0.0,
+          "max_abs_vector_gplus_scaled_minus_q_norm": 1.1102230246251565e-16,
+          "mean_abs_real_goal_value_error": 0.0,
+          "reward_policy_disagreement_vs_exact": {
+            "comparable_non_tie_state_count": 22,
+            "disagreement_count": 0,
+            "disagreement_rate": 0.0,
+            "skipped_state_count": 1,
+            "state_count_total": 40,
+            "tie_state_count": 17
+          },
+          "reward_policy_disagreement_vs_terminal_only": {
+            "comparable_non_tie_state_count": 22,
+            "disagreement_count": 0,
+            "disagreement_rate": 0.0,
+            "skipped_state_count": 1,
+            "state_count_total": 40,
+            "tie_state_count": 17
+          },
+          "terminal_only_final_delta": 0.0,
+          "terminal_only_iterations": 14,
+          "vector_final_delta": 0.0,
+          "vector_iterations": 14
+        }
+      ]
+    }
+  },
+  "next_questions": [
+    "Should the next tabular check add shared parameters or low-rank coupling after this independent-slice gate?",
+    "Which FourRooms goal subset should be used first when moving beyond full tabular exact backups?"
+  ],
+  "resource_usage": {
+    "actions": 4,
+    "device": "cpu",
+    "gammas": 2,
+    "goal_slices": 41,
+    "gpu_used": false,
+    "large_datasets_downloaded": false,
+    "large_dependencies_installed": false,
+    "states": 40
+  },
+  "runtime_seconds": 0.1732882329961285,
+  "status": "completed",
+  "success_criteria_results": [
+    "PASS: result JSON, summary Markdown, and 0008 artifacts were created.",
+    "PASS: CPU-only tabular tiny deterministic FourRooms code was used.",
+    "PASS: grid layout, walls, doorways, state indexing, actions, rewards, normalization, and terminal masks are audited.",
+    "PASS: exact DP references were computed for normalized Q, terminal-only g_plus, and real-state goal slices.",
+    "PASS: vector g_plus matches terminal-only soft within tolerance.",
+    "PASS: scaled vector g_plus matches normalized Q within tolerance.",
+    "PASS: real-state goal slices match exact reachability references and achieve high greedy success.",
+    "PASS: heatmap and arrow data artifacts were saved."
+  ]
+}
