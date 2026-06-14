@@ -1,7 +1,7 @@
 {
   "best_primary_metric": null,
   "failure_streak": 0,
-  "human_review_required": false,
+  "human_review_required": true,
   "iteration": 9,
   "last_decision": "continue",
   "last_failure": null,
@@ -25,13 +25,23 @@
     "2026-06-14T02:48:15+00:00: retryable failure 1/3: supervisor failed or timed out; see /home/eston/autoresearcher/research/sto_trl/decisions/0008_decision_stderr.log",
     "2026-06-14T02:48:22+00:00: retryable failure 2/3: supervisor failed or timed out; see /home/eston/autoresearcher/research/sto_trl/decisions/0008_decision_stderr.log",
     "2026-06-14T02:48:28+00:00: retry limit reached after 3/3 failures: supervisor failed or timed out; see /home/eston/autoresearcher/research/sto_trl/decisions/0008_decision_stderr.log",
-    "2026-06-14T02:51:00+00:00: resumed after fixing strict structured-output schema requirements"
+    "2026-06-14T02:51:00+00:00: resumed after fixing strict structured-output schema requirements",
+    "2026-06-14T03:26:20+00:00: Pro checkpoint blocked (response_parse_failed); packet research/sto_trl/pro_packets/0010_PRO_REVIEW_PACKET.md"
   ],
-  "pending_checkpoint": null,
-  "pending_local_decision_path": null,
+  "pending_checkpoint": {
+    "backend": "cdp",
+    "blocker_path": "research/sto_trl/decisions/0010_pro_blocker.json",
+    "iteration_id": "0010",
+    "manual_fallback": true,
+    "packet_path": "research/sto_trl/pro_packets/0010_PRO_REVIEW_PACKET.md",
+    "reason": "weak_pass_streak",
+    "status": "blocked",
+    "type": "chatgpt_pro"
+  },
+  "pending_local_decision_path": "research/sto_trl/decisions/0010_decision.json",
   "primary_metric": null,
   "pro_review_count": 0,
   "protected_file_drift": false,
-  "status": "active",
+  "status": "paused",
   "weak_pass_streak": 2
 }
