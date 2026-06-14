@@ -384,6 +384,42 @@
       ],
       "review_verdict": "weak_pass",
       "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "A randomized aliased-POMDP suite tested whether bounded observation history generalizes the 0012 context pivot and whether MC+TRL-log adds value beyond history-model DP.",
+      "decision": null,
+      "important_metrics": {
+        "metrics.cue_sufficient_history_mc_plus_improvement_fraction_vs_mc_only": 1.0,
+        "metrics.cue_sufficient_summary.history_mc_only.mean_calibration_error": 0.5358150000000002,
+        "metrics.cue_sufficient_summary.history_mc_only.mean_heldout_long_horizon_value_mse": 0.34012224,
+        "metrics.cue_sufficient_summary.history_mc_only.mean_policy_regret": 0.018224999999999936,
+        "metrics.cue_sufficient_summary.history_mc_only.mean_teleport_q_overestimation": 0.0,
+        "metrics.cue_sufficient_summary.history_mc_plus_trl_log.mean_calibration_error": 1.9567680809018384e-16,
+        "metrics.cue_sufficient_summary.history_mc_plus_trl_log.mean_heldout_long_horizon_value_mse": 5.242381308622056e-32,
+        "metrics.cue_sufficient_summary.history_mc_plus_trl_log.mean_policy_regret": 0.0,
+        "metrics.cue_sufficient_summary.history_mc_plus_trl_log.mean_teleport_q_overestimation": 1.6930901125533636e-16,
+        "metrics.cue_sufficient_summary.history_model_dp.mean_calibration_error": 0.0,
+        "metrics.cue_sufficient_summary.history_model_dp.mean_heldout_long_horizon_value_mse": 0.0,
+        "metrics.cue_sufficient_summary.history_model_dp.mean_policy_regret": 0.0
+      },
+      "iteration": "0013",
+      "negative_signals": [
+        "history-model DP fully matches history MC+TRL-log gains, so this is boundary/negative for distinct TRL algorithmic value.",
+        "History-model DP exactly explains the history MC+TRL-log gains, so continuing this line as an algorithmic TRL win would be invalid.",
+        "The positive cue-sufficient cases rely on observed cue tokens that disambiguate context; this is allowed by the plan but mainly demonstrates representation sufficiency rather than a new learning mechanism.",
+        "The generated true transition probabilities are tied to the constructed offline success counts, simplifying stochastic estimation and limiting external validity.",
+        "The suite is still tiny and synthetic, so evidence quality is medium rather than strong."
+      ],
+      "positive_signals": [
+        "Cue-sufficient MC+TRL improvement fraction: 1.000000.",
+        "Model DP explains all gains: True.",
+        "Overall history MC+TRL minus history-model-DP heldout MSE: 0.000000000000.",
+        "The viable direction is context representation; no distinct TRL component was isolated.",
+        "Observation-only methods fail under aliasing, and bounded history improves strongly when cues are sufficient. Cue-noisy and cue-insufficient families separate representation sufficiency from oracle disambiguation. History MC+TRL-log improves over MC-only, but "
+      ],
+      "review_verdict": "weak_pass",
+      "status": "completed"
     }
   ],
   "project": "sto_trl"
