@@ -83,6 +83,9 @@ def make_fake_codex(tmp: Path) -> Path:
                     "rationale": "Run the tiny positive-control experiment.",
                     "evidence": ["Project charter asks for a toy positive control."],
                     "risks": ["Toy result may not generalize."],
+                    "checkpoint_recommended": False,
+                    "checkpoint_reason": None,
+                    "terminal_decision_requires_pro": False,
                     "next_experiment": {
                         "experiment_id": "0001",
                         "objective": "Compare a weak baseline to a corrected method.",
@@ -154,7 +157,12 @@ def make_fake_codex(tmp: Path) -> Path:
                     "reasons": ["Required files and metrics are present."],
                     "evidence_checked": ["result JSON", "metrics artifact"],
                     "required_fixes": [],
-                    "risk_flags": []
+                    "risk_flags": [],
+                    "evidence_quality": "medium",
+                    "success_criteria_satisfied": True,
+                    "failure_criteria_triggered": False,
+                    "should_escalate_to_pro": False,
+                    "escalation_reason": None
                 }))
             elif name.endswith("_summary.md") and output_path.parent.name == "progress":
                 output_path.write_text("# Progress Summary\\n\\nFake project progress summary.\\n")
@@ -465,6 +473,9 @@ class ValidationAndPlanTests(unittest.TestCase):
                 "rationale": "r",
                 "evidence": [],
                 "risks": [],
+                "checkpoint_recommended": False,
+                "checkpoint_reason": None,
+                "terminal_decision_requires_pro": False,
                 "next_experiment": {
                     "experiment_id": "0001",
                     "objective": "o",

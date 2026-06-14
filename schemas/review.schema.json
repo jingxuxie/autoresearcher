@@ -49,7 +49,12 @@
     "reasons",
     "evidence_checked",
     "required_fixes",
-    "risk_flags"
+    "risk_flags",
+    "evidence_quality",
+    "success_criteria_satisfied",
+    "failure_criteria_triggered",
+    "should_escalate_to_pro",
+    "escalation_reason"
   ],
   "additionalProperties": false
 }

@@ -83,7 +83,10 @@
     "rationale",
     "evidence",
     "risks",
-    "next_experiment"
+    "next_experiment",
+    "checkpoint_recommended",
+    "checkpoint_reason",
+    "terminal_decision_requires_pro"
   ],
   "additionalProperties": false
 }
