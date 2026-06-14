@@ -1,26 +1,118 @@
 {
   "artifacts": [
-    "research/reward_to_gcrl/artifacts/0002/timeout_diagnostics.md"
+    "research/reward_to_gcrl/artifacts/0002/check_cliffwalking_v0_compatibility.py",
+    "research/reward_to_gcrl/artifacts/0002/compatibility_check.json",
+    "research/reward_to_gcrl/artifacts/0002/progress.jsonl"
   ],
   "baseline_metrics": {},
-  "claim_tested": "Executor timed out before completing the experiment.",
+  "claim_tested": "CPU-only tabular CliffWalking-v0 equivalence between ordinary normalized-reward Q-learning and terminal-only soft successor g_plus learning.",
   "commands_run": [
-    "python scripts/autoresearcher.py run --project reward_to_gcrl --max-iters 20",
-    "sed -n '1,260p' research/reward_to_gcrl/plans/0002_plan.json 2>/dev/null || true",
-    "sed -n '1,220p' research/reward_to_gcrl/plans/0002_plan.md 2>/dev/null || true",
-    "git status --short research/reward_to_gcrl | sed -n '1,120p'",
-    "conda run -n autoresearcher_reward_to_gcrl python -c \"import gymnasium as gym; print([k for k in gym.envs.registry.keys() if 'CliffWalking' in k])\"",
-    "conda run -n autoresearcher_reward_to_gcrl python -c \"import gymnasium as gym; env=gym.make('CliffWalking-v1'); u=env.unwrapped; print('nS', u.observation_space.n, 'nA', u.action_space.n); print('shape', getattr(u,'shape',None)); for s in [36,37,46,47,35]: print('state', s)\"",
-    "mkdir -p research/reward_to_gcrl/artifacts/0002 research/reward_to_gcrl/results"
+    "mkdir -p research/reward_to_gcrl/artifacts/0002 research/reward_to_gcrl/results",
+    "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0002/check_cliffwalking_v0_compatibility.py",
+    "conda run -n autoresearcher_reward_to_gcrl python -m jsonschema -i research/reward_to_gcrl/results/0002_result.json schemas/result.schema.json",
+    "conda run -n autoresearcher_reward_to_gcrl python scripts/validate_artifacts.py --repo-root . --json research/reward_to_gcrl/results/0002_result.json --schema schemas/result.schema.json --check-result-artifacts"
+  ],
+  "decision_relevant_findings": [
+    "The installed Gymnasium version exposes CliffWalking-v1 and tabular/CliffWalking-v0, but gym.make('CliffWalking-v0') raises a DeprecatedEnv exception.",
+    "Because the plan names CliffWalking-v0 exactly, this iteration should be treated as a compatibility failure rather than evidence for or against soft successor equivalence."
   ],
   "experiment_id": "0002",
-  "interpretation": "The executor exceeded the configured timeout. Treat this as a failed or blocked small-scale experiment.",
+  "failure_criteria_results": [
+    "PASS: failed result JSON is schema-compatible.",
+    "TRIGGERED: CliffWalking-v0 transition semantics are unavailable through gym.make in this environment, so running the plan would be ambiguous.",
+    "TRIGGERED: scaled value error and policy disagreement are omitted because no learning run occurred after compatibility failure.",
+    "NOT_EVALUATED: soft learner equivalence was not tested.",
+    "PASS: no sampled augmented baselines, auxiliary state goals, neural approximation, large environments, or expensive training were run.",
+    "PASS: commands are recorded and declared artifact paths exist."
+  ],
+  "interpretation": "Experiment 0002 did not run the DP or paired-learning phases. The compatibility check failed because Gymnasium rejected CliffWalking-v0 in this environment (Environment version v0 for `CliffWalking` is deprecated. Please use `CliffWalking-v1` instead.). Since the plan specifically requires CliffWalking-v0, using CliffWalking-v1 or a direct class fallback would change the supplied plan.",
   "known_failures": [
-    "Executor timeout"
+    "gym.make('CliffWalking-v0') failed in the ready project environment.",
+    "No exact-DP oracle metrics or paired-learning metrics were produced because the compatibility gate failed before the experiment could run as written."
   ],
-  "metrics": {},
+  "metric_deltas": {},
+  "metrics": {
+    "compatibility_status": "failed",
+    "dp_oracle_metrics_available": false,
+    "gym_make_cliffwalking_v0": {
+      "exception_module": "gymnasium.error",
+      "exception_type": "DeprecatedEnv",
+      "message": "Environment version v0 for `CliffWalking` is deprecated. Please use `CliffWalking-v1` instead.",
+      "status": "failed",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/eston/autoresearcher/research/reward_to_gcrl/artifacts/0002/check_cliffwalking_v0_compatibility.py\", line 69, in check_cliffwalking_v0\n    env = gym.make(\"CliffWalking-v0\")\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/eston/anaconda3/envs/autoresearcher_reward_to_gcrl/lib/python3.11/site-packages/gymnasium/envs/registration.py\", line 682, in make\n    env_spec = _find_spec(id)\n               ^^^^^^^^^^^^^^\n  File \"/home/eston/anaconda3/envs/autoresearcher_reward_to_gcrl/lib/python3.11/site-packages/gymnasium/envs/registration.py\", line 527, in _find_spec\n    _check_version_exists(ns, name, version)\n  File \"/home/eston/anaconda3/envs/autoresearcher_reward_to_gcrl/lib/python3.11/site-packages/gymnasium/envs/registration.py\", line 427, in _check_version_exists\n    raise error.DeprecatedEnv(\ngymnasium.error.DeprecatedEnv: Environment version v0 for `CliffWalking` is deprecated. Please use `CliffWalking-v1` instead.\n"
+    },
+    "gymnasium_version": "1.3.0",
+    "paired_learning_metrics_available": false,
+    "plan_can_run_as_written": false,
+    "planned_alpha_schedule": "constant alpha=0.5 for both paired learners",
+    "planned_episode_budget": 5000,
+    "planned_epsilon_schedule": "epsilon starts at 0.2 and linearly decays to 0.02 over the episode budget",
+    "planned_gamma_values": [
+      0.95,
+      0.99
+    ],
+    "planned_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "predeclared_tolerances": {
+      "exact_dp_policy_disagreement_rate": 0.0,
+      "exact_dp_scaled_value_error": 1e-06,
+      "paired_policy_disagreement_rate": 0.0,
+      "paired_scaled_value_error_between_learners": 1e-10
+    },
+    "reason_experiment_not_run": "The installed Gymnasium raises an exception for gym.make('CliffWalking-v0'). The plan explicitly requires CliffWalking-v0, and the executor rule says to write a failed or blocked result immediately when compatibility checks show the plan cannot run as written.",
+    "registry_cliffwalking_ids": [
+      "CliffWalking-v1",
+      "CliffWalkingSlippery-v1",
+      "tabular/CliffWalking-v0"
+    ],
+    "requested_env_id": "CliffWalking-v0",
+    "reward_normalization_predeclared_for_unrun_plan": {
+      "mapped_values": {
+        "cliff_-100": 0.0,
+        "step_or_goal_-1": 1.0
+      },
+      "normalization_formula": "r_bar = (original_reward + 100) / 99",
+      "note": "Saved for audit only; no experiment was run because v0 could not be instantiated.",
+      "original_reward_range": "CliffWalking rewards are -100 for cliff and -1 otherwise."
+    },
+    "terminal_mask_behavior_predeclared_for_unrun_plan": "Bootstrap would be set to 0.0 whenever Gymnasium returns terminated=True; truncated would not occur in the transition-table DP."
+  },
   "next_questions": [
-    "Can the experiment be reduced to a smaller validation?"
+    "Should the next plan explicitly permit Gymnasium CliffWalking-v1 or direct CliffWalkingEnv(is_slippery=False) as equivalent semantics?",
+    "Should JAX be added only if the tabular/CliffWalking-v0 registry alias is required by a future plan?"
   ],
-  "status": "timeout"
+  "resource_usage": {
+    "device": "cpu",
+    "experiment_phases_run": [
+      "compatibility_check"
+    ],
+    "experiment_phases_skipped": [
+      "exact_dp_value_iteration",
+      "paired_online_tabular_learning"
+    ],
+    "gpu_used": false,
+    "large_datasets_downloaded": false,
+    "large_dependencies_installed": false
+  },
+  "runtime_seconds": 0.0010150630041607656,
+  "status": "failed",
+  "success_criteria_results": [
+    "PASS: created research/reward_to_gcrl/results/0002_result.json and research/reward_to_gcrl/results/0002_summary.md.",
+    "PASS: created reproducible artifacts under research/reward_to_gcrl/artifacts/0002/.",
+    "FAIL: did not run tabular CliffWalking-v0 methods because CliffWalking-v0 could not be instantiated.",
+    "PARTIAL: saved planned reward normalization, gamma values, schedules, seeds, episode budget, terminal-mask behavior, and exact commands; they were not executed beyond the compatibility gate.",
+    "FAIL: exact-DP oracle metrics were not produced because the compatibility gate failed.",
+    "FAIL: paired-learning metrics over 10 seeds were not produced because the compatibility gate failed.",
+    "FAIL: pass criteria were not evaluated because the required environment id failed to instantiate."
+  ]
 }

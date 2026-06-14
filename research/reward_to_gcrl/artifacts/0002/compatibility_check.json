@@ -1,0 +1,17 @@
+{
+  "gym_make_cliffwalking_v0": {
+    "exception_module": "gymnasium.error",
+    "exception_type": "DeprecatedEnv",
+    "message": "Environment version v0 for `CliffWalking` is deprecated. Please use `CliffWalking-v1` instead.",
+    "status": "failed",
+    "traceback": "Traceback (most recent call last):\n  File \"/home/eston/autoresearcher/research/reward_to_gcrl/artifacts/0002/check_cliffwalking_v0_compatibility.py\", line 69, in check_cliffwalking_v0\n    env = gym.make(\"CliffWalking-v0\")\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/eston/anaconda3/envs/autoresearcher_reward_to_gcrl/lib/python3.11/site-packages/gymnasium/envs/registration.py\", line 682, in make\n    env_spec = _find_spec(id)\n               ^^^^^^^^^^^^^^\n  File \"/home/eston/anaconda3/envs/autoresearcher_reward_to_gcrl/lib/python3.11/site-packages/gymnasium/envs/registration.py\", line 527, in _find_spec\n    _check_version_exists(ns, name, version)\n  File \"/home/eston/anaconda3/envs/autoresearcher_reward_to_gcrl/lib/python3.11/site-packages/gymnasium/envs/registration.py\", line 427, in _check_version_exists\n    raise error.DeprecatedEnv(\ngymnasium.error.DeprecatedEnv: Environment version v0 for `CliffWalking` is deprecated. Please use `CliffWalking-v1` instead.\n"
+  },
+  "gymnasium_version": "1.3.0",
+  "plan_can_run_as_written": false,
+  "registry_cliffwalking_ids": [
+    "CliffWalking-v1",
+    "CliffWalkingSlippery-v1",
+    "tabular/CliffWalking-v0"
+  ],
+  "requested_env_id": "CliffWalking-v0"
+}
