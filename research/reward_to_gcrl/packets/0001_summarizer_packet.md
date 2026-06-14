@@ -267,28 +267,38 @@ _None._
 ```json
 {
   "best_primary_metric": null,
-  "failure_streak": 0,
-  "human_review_required": false,
+  "failure_streak": 3,
+  "human_review_required": true,
   "iteration": 1,
-  "last_decision": "continue",
-  "last_failure": null,
+  "last_decision": "retryable_failure",
+  "last_failure": {
+    "at": "2026-06-14T10:55:39+00:00",
+    "attempt": 3,
+    "max_attempts": 3,
+    "note": "reviewer verdict needs_human"
+  },
   "last_pro_review_iteration": 0,
   "last_pro_review_path": "research/reward_to_gcrl/decisions/0001_pro_decision.json",
-  "last_summary_iteration": 0,
-  "last_summary_path": null,
+  "last_summary_iteration": 1,
+  "last_summary_path": "research/reward_to_gcrl/progress/0001_pre_pro_protected_file_drift_summary.md",
   "no_progress_rounds": 0,
   "notes": [
     "2026-06-14T09:16:58+00:00: setup_env failed or timed out; see /home/eston/autoresearcher/research/reward_to_gcrl/env_state_stderr.log",
     "2026-06-14T09:27:51+00:00: resumed: Environment setup is ready after rerun; start requested by user.",
     "2026-06-14T09:40:04+00:00: Pro decision saved for checkpoint protected_file_drift (research/reward_to_gcrl/decisions/0001_pro_decision.json)",
-    "2026-06-14T09:40:05+00:00: applied Pro decision continue from research/reward_to_gcrl/decisions/0001_pro_decision.json"
+    "2026-06-14T09:40:05+00:00: applied Pro decision continue from research/reward_to_gcrl/decisions/0001_pro_decision.json",
+    "2026-06-14T09:47:02+00:00: Pro checkpoint blocked (response_parse_failed); packet research/reward_to_gcrl/pro_packets/0002_PRO_REVIEW_PACKET.md",
+    "2026-06-14T09:48:30+00:00: cleared stale protected_file_drift after committing/pushing a clean worktree",
+    "2026-06-14T10:19:58+00:00: retryable failure 1/3: executor timeout",
+    "2026-06-14T10:51:56+00:00: retryable failure 2/3: reviewer verdict needs_human",
+    "2026-06-14T10:55:39+00:00: retry limit reached after 3/3 failures: reviewer verdict needs_human"
   ],
   "pending_checkpoint": null,
   "pending_local_decision_path": null,
   "primary_metric": null,
   "pro_review_count": 1,
-  "protected_file_drift": true,
-  "status": "active",
+  "protected_file_drift": false,
+  "status": "paused",
   "weak_pass_streak": 1
 }
 ```
@@ -428,54 +438,62 @@ _None._
 
 ```json
 {
-  "confidence": 0.74,
+  "checkpoint_reason": null,
+  "checkpoint_recommended": false,
+  "confidence": 0.86,
   "decision": "continue",
   "evidence": [
-    "The project charter defines the goal as testing whether soft successor-measure reward-to-goal conversion preserves equivalence while avoiding sparse high-variance terminal sampling.",
-    "The charter states the main hypothesis: the g_plus head trained with expected terminal mass should match normalized Q-learning in tabular sanity checks while avoiding sampled terminal event variance.",
-    "The current repository state has iteration 0, no last summary path, no primary metric, and no best primary metric, so there is not yet recorded experimental evidence of progress.",
-    "The local Codex decision chose continue and identified experiment 0001 as the one-state terminal-target variance sanity check.",
-    "The charter explicitly prohibits MuJoCo, AntMaze, OGBench, large downloads, or long neural training before tabular diagnostics pass."
+    "research/reward_to_gcrl/results/0001_result.json is present and records status completed, exact commands, raw per-setting metrics, and artifacts.",
+    "The 0001 review allows auto-continue and reports no triggered failure criteria, while flagging only medium-quality evidence and minor reporting risks.",
+    "0001 passed the one-state diagnostic: sampled and soft target means matched within tolerance across all 16 gamma/r_bar settings, soft variance was zero, and sampled g_plus events became rare at high gamma and low r_bar.",
+    "0001 also included a tiny finite-MDP fixed-point check with max_abs_error_scaled_f_vs_q 3.9475e-08 below the 1e-6 tolerance, supporting the scaling relationship in a minimal setting.",
+    "The charter explicitly requires tabular CliffWalking equivalence and low policy disagreement before moving to larger or neural experiments."
   ],
   "next_experiment": {
-    "estimated_runtime_minutes": 10,
-    "experiment_id": "0001",
+    "estimated_runtime_minutes": 20,
+    "experiment_id": "0002",
     "failure_criteria": [
-      "Reward normalization, gamma placement, or terminal target definitions are ambiguous.",
-      "Empirical means/variances do not match analytic values and the discrepancy is not explained by sample size.",
-      "The finite-MDP equivalence check fails above 1e-6.",
-      "The output reports only plots or training loss without raw mean, variance, event-count, and equivalence metrics.",
-      "The experiment introduces neural function approximation, large environments, or GPU dependence before this gate passes."
+      "Missing, invalid, or schema-incompatible result JSON or summary markdown.",
+      "Reward normalization, terminal masks, or CliffWalking transition semantics are ambiguous or omitted.",
+      "The result reports only training loss or returns and omits scaled value error and policy disagreement.",
+      "The soft learner fails to match normalized Q-learning in exact DP or paired tabular learning beyond predeclared tolerance.",
+      "The experiment includes sampled augmented baselines, auxiliary state goals, neural approximation, large environments, or expensive training before this equivalence gate passes.",
+      "Commands are hard-coded inaccurately or raw metrics/artifact paths are missing."
     ],
-    "hypothesis": "For each gamma and normalized reward r_bar, the sampled Bernoulli terminal target has mean (1 - gamma) * r_bar and variance p * (1 - p), where p = (1 - gamma) * r_bar, while the soft target has the same mean and zero terminal-sampling variance; in a tiny finite MDP, F_gplus_star / (1 - gamma) should match Q_norm_star within numerical tolerance.",
-    "objective": "Create a reproducible CPU-only diagnostic that verifies the sampled augmented terminal target and the deterministic soft terminal target have the same expectation, quantifies the sampled target variance and g_plus rarity, and confirms the soft g_plus Bellman fixed point equals normalized Q-learning up to the (1 - gamma) scaling in a tiny finite MDP.",
+    "hypothesis": "On Gymnasium CliffWalking-v0 dynamics with a predeclared normalized reward, the terminal-only soft successor learner with target (1 - gamma) * r_bar + gamma * max_a M(s_next,a,g_plus) will match ordinary normalized-reward Q-learning after scaling M_plus by 1/(1 - gamma), and their greedy policies will have near-zero disagreement.",
+    "objective": "Run a CPU-only tabular CliffWalking equivalence diagnostic comparing ordinary normalized-reward Q-learning to the terminal-only soft successor g_plus learner.",
     "required_outputs": [
-      "research/reward_to_gcrl/results/0001_result.json",
-      "research/reward_to_gcrl/results/0001_summary.md",
-      "research/reward_to_gcrl/artifacts/0001/"
+      "research/reward_to_gcrl/results/0002_result.json",
+      "research/reward_to_gcrl/results/0002_summary.md",
+      "research/reward_to_gcrl/artifacts/0002/ with diagnostic script, raw metrics, metadata, and DP/policy comparison artifacts"
     ],
     "success_criteria": [
-      "For all gamma in {0.90, 0.95, 0.99, 0.995} and r_bar in {0.01, 0.1, 0.5, 1.0}, empirical sampled means are within 3 standard errors of analytic p = (1 - gamma) * r_bar.",
-      "Reported sampled variances match p * (1 - p) within a clear Monte Carlo tolerance, and soft-target terminal variance is exactly zero by construction.",
-      "The report includes g_plus event counts per 10000 samples and shows rarity worsening as gamma approaches 1.",
-      "On a tiny finite MDP, max_abs_error(F_gplus_star / (1 - gamma) - Q_norm_star) is less than 1e-6.",
-      "Artifacts include exact command, config, raw JSON metrics, and a short markdown summary with pass/fail interpretation."
+      "Creates research/reward_to_gcrl/results/0002_result.json and research/reward_to_gcrl/results/0002_summary.md.",
+      "Creates reproducible artifacts under research/reward_to_gcrl/artifacts/0002/.",
+      "Uses only tabular CPU methods on CliffWalking-v0; no neural models, vector state-goal learner, RiverSwim, FourRooms, large datasets, or GPU-dependent work.",
+      "Predeclares and saves the reward normalization, gamma values, alpha schedule, epsilon schedule, seeds, episode budget, terminal-mask behavior, and exact commands run.",
+      "Reports exact-DP oracle metrics for the declared normalized reward, including max_abs(M_plus/(1-gamma) - Q_norm) and greedy policy disagreement rate.",
+      "Reports paired-learning metrics over 10 seeds for gamma in {0.95, 0.99}, including final scaled value error, policy disagreement, average normalized return, original CliffWalking return, success rate, and any terminal-mask diagnostics.",
+      "Passes if exact-DP scaled value error is <= 1e-6, exact-DP policy disagreement is 0 or explained only by value ties, and paired-learning final scaled value error/policy disagreement are within predeclared tolerances."
     ],
     "tasks_for_codex": [
-      "Add a script under research/reward_to_gcrl/artifacts/0001/ that computes analytic and Monte Carlo sampled-vs-soft terminal target statistics for the specified gamma and r_bar sweep.",
-      "Add a tiny finite-MDP value-iteration check comparing Q_norm_star to F_gplus_star / (1 - gamma).",
-      "Save research/reward_to_gcrl/results/0001_result.json with raw metrics, tolerances, pass/fail flags, and exact command.",
-      "Save research/reward_to_gcrl/results/0001_summary.md with a compact table and interpretation.",
-      "Do not implement neural models, CliffWalking, RiverSwim, or auxiliary state goals in this iteration."
+      "Implement a standalone diagnostic script under research/reward_to_gcrl/artifacts/0002/ for Gymnasium CliffWalking-v0 using numpy/gymnasium only.",
+      "Build an exact transition model from the environment and solve both Q_norm_star and F_gplus_star by value iteration with terminal bootstraps masked.",
+      "Implement paired online tabular updates for ordinary Q-learning and terminal-only soft M_plus using identical sampled transitions for 10 seeds and gamma values 0.95 and 0.99.",
+      "Save raw per-seed and per-gamma metrics, DP oracle tables or summary arrays, and metadata under research/reward_to_gcrl/artifacts/0002/.",
+      "Validate research/reward_to_gcrl/results/0002_result.json against schemas/result.schema.json and validate declared artifact paths.",
+      "Write a concise summary that separates equivalence evidence from any original-CliffWalking return or success-rate observations."
     ]
   },
-  "rationale": "Continue, but treat the project as still pre-evidence rather than making any positive research claim. The available repository state shows iteration 0 with no recorded latest summary or primary metric, while the charter and local decision specify a cheap first diagnostic that directly tests the estimator-variance premise. The missing latest_summary.md means I cannot credit unverified progress, so the next step should be the smallest reproducible variance-and-equivalence diagnostic, not neural learners or larger environments.",
+  "progress_score": 2,
+  "rationale": "Experiment 0001 provides enough validated evidence to move to the next charter gate, but not enough to make a broader positive claim. The highest-value next test is the required small tabular CliffWalking equivalence check: terminal-only soft successor learning must match normalized Q-learning before sampled baselines, auxiliary goals, RiverSwim, or neural approximation are worth running.",
   "risks": [
-    "The latest progress summary path supplied by the user was not found, so reported results cannot be evaluated from the repository evidence.",
-    "The soft g_plus head alone may reduce to normalized Q-learning up to scaling, so it is not a research contribution unless later experiments show auxiliary goals, transfer, variance reduction, or diagnostics add value.",
-    "A variance sanity check can prove the sampled estimator is noisy but cannot prove the full method improves GCRL or reward learning.",
-    "Moving to neural function approximation before exact/tabular equivalence is verified would create ambiguous failures."
-  ]
+    "Reward normalization in CliffWalking can change the task; the executor must predeclare the exact normalized reward and treat original-environment return as diagnostic, not as the equivalence pass/fail criterion.",
+    "A paired-learning implementation could appear to pass because both learners share the same bug; include an exact dynamic-programming oracle for the declared normalized reward.",
+    "Terminal handling is a known failure mode: bootstrapping after the goal terminal state would invalidate the result.",
+    "The prior 0001 tolerance/reporting issues should not be copied forward; commands should reflect the actual invocation and pass/fail tolerances should be explicit."
+  ],
+  "terminal_decision_requires_pro": false
 }
 ```
 
@@ -550,6 +568,41 @@ _None._
 }
 ```
 
+## 0002_decision.json
+
+```json
+{
+  "confidence": 0.86,
+  "decision": "continue",
+  "evidence": [
+    "research/reward_to_gcrl/results/0001_result.json is present and records status completed, exact commands, raw per-setting metrics, and artifacts.",
+    "The 0001 review allows auto-continue and reports no triggered failure criteria, while flagging only medium-quality evidence and minor reporting risks.",
+    "0001 passed the one-state diagnostic: sampled and soft target means matched within tolerance across all 16 gamma/r_bar settings, soft variance was zero, and sampled g_plus events became rare at high gamma and low r_bar.",
+    "0001 also included a tiny finite-MDP fixed-point check with max_abs_error_scaled_f_vs_q 3.9475e-08 below the 1e-6 tolerance, supporting the scaling relationship in a minimal setting.",
+    "The charter explicitly requires tabular CliffWalking equivalence and low policy disagreement before moving to larger or neural experiments."
+  ],
+  "next_experiment": {
+    "estimated_runtime_minutes": 20,
+    "experiment_id": "0002",
+    "hypothesis": "On Gymnasium CliffWalking-v0 dynamics with a predeclared normalized reward, the terminal-only soft successor learner with target (1 - gamma) * r_bar + gamma * max_a M(s_next,a,g_plus) will match ordinary normalized-reward Q-learning after scaling M_plus by 1/(1 - gamma), and their greedy policies will have near-zero disagreement.",
+    "objective": "Run a CPU-only tabular CliffWalking equivalence diagnostic comparing ordinary normalized-reward Q-learning to the terminal-only soft successor g_plus learner.",
+    "required_outputs": [
+      "research/reward_to_gcrl/results/0002_result.json",
+      "research/reward_to_gcrl/results/0002_summary.md",
+      "research/reward_to_gcrl/artifacts/0002/ with diagnostic script, raw metrics, metadata, and DP/policy comparison artifacts"
+    ]
+  },
+  "progress_score": 2,
+  "rationale": "Experiment 0001 provides enough validated evidence to move to the next charter gate, but not enough to make a broader positive claim. The highest-value next test is the required small tabular CliffWalking equivalence check: terminal-only soft successor learning must match normalized Q-learning before sampled baselines, auxiliary goals, RiverSwim, or neural approximation are worth running.",
+  "risks": [
+    "Reward normalization in CliffWalking can change the task; the executor must predeclare the exact normalized reward and treat original-environment return as diagnostic, not as the equivalence pass/fail criterion.",
+    "A paired-learning implementation could appear to pass because both learners share the same bug; include an exact dynamic-programming oracle for the declared normalized reward.",
+    "Terminal handling is a known failure mode: bootstrapping after the goal terminal state would invalidate the result.",
+    "The prior 0001 tolerance/reporting issues should not be copied forward; commands should reflect the actual invocation and pass/fail tolerances should be explicit."
+  ]
+}
+```
+
 
 ## Recent review summaries
 
@@ -592,17 +645,67 @@ _None._
 }
 ```
 
+## 0002_review.json
+
+```json
+{
+  "allows_auto_continue": false,
+  "escalation_reason": "Terminal plan ambiguity: the exact CliffWalking-v0 id is rejected, but possible semantic substitutes exist. A higher-level decision is needed before automatic continuation.",
+  "evidence_checked": [
+    "research/reward_to_gcrl/results/0002_result.json",
+    "research/reward_to_gcrl/results/0002_summary.md",
+    "research/reward_to_gcrl/artifacts/0002/check_cliffwalking_v0_compatibility.py",
+    "research/reward_to_gcrl/artifacts/0002/compatibility_check.json",
+    "research/reward_to_gcrl/artifacts/0002/progress.jsonl",
+    "schemas/result.schema.json",
+    "scripts/validate_artifacts.py"
+  ],
+  "evidence_quality": "invalid",
+  "experiment_id": "0002",
+  "failure_criteria_triggered": true,
+  "reasons": [
+    "Required result JSON, summary markdown, and artifact directory exist for iteration 0002.",
+    "Result JSON validates against schemas/result.schema.json, and declared artifact paths validate successfully.",
+    "The planned DP oracle and paired tabular-learning comparison did not run; the result is only a compatibility failure report.",
+    "The compatibility artifact confirms gym.make('CliffWalking-v0') raises gymnasium.error.DeprecatedEnv under Gymnasium 1.3.0.",
+    "No exact-DP scaled value error, greedy policy disagreement, or 10-seed paired-learning metrics were produced, so the core success criteria are not satisfied.",
+    "The interpretation is appropriately conservative and does not claim evidence for or against the soft successor equivalence hypothesis."
+  ],
+  "required_fixes": [
+    "Do not accept this iteration as evidence for equivalence; rerun a full DP oracle and paired tabular-learning diagnostic after resolving the CliffWalking environment id.",
+    "The next plan must explicitly permit the chosen semantics: CliffWalking-v1, direct CliffWalkingEnv(is_slippery=False), or tabular/CliffWalking-v0 with approved dependency handling.",
+    "Include exact-DP value error and policy disagreement plus 10-seed paired-learning metrics in the rerun."
+  ],
+  "risk_flags": [
+    "No baseline/proposed comparison occurred; baseline_metrics is empty by necessity.",
+    "The artifact directory contains timeout and retry-attempt files that are not listed in the final result artifacts.",
+    "The registry contains tabular/CliffWalking-v0, so the blocker is specifically the unnamespaced CliffWalking-v0 id, not absence of all CliffWalking environments.",
+    "commands_run is hard-coded in the compatibility script, though progress and validation artifacts are consistent with the recorded commands.",
+    "Seed, leakage, and benchmark-validity checks are not applicable because the learning experiment did not run."
+  ],
+  "should_escalate_to_pro": true,
+  "success_criteria_satisfied": false,
+  "verdict": "needs_human"
+}
+```
+
 
 ## Existing progress summaries
 
-_None._
+- `research/reward_to_gcrl/progress/0001_pre_pro_protected_file_drift_summary.md`
+- `research/reward_to_gcrl/progress/latest_summary.md`
 
 
 ## Full evidence paths
 
 - `research/reward_to_gcrl/plans/0001_plan.md`
+- `research/reward_to_gcrl/plans/0002_plan.md`
 - `research/reward_to_gcrl/results/0001_summary.md`
+- `research/reward_to_gcrl/results/0002_summary.md`
 - `research/reward_to_gcrl/results/0001_result.json`
+- `research/reward_to_gcrl/results/0002_result.json`
 - `research/reward_to_gcrl/reviews/0001_review.md`
+- `research/reward_to_gcrl/reviews/0002_review.md`
 - `research/reward_to_gcrl/decisions/0001_decision.md`
 - `research/reward_to_gcrl/decisions/0001_pro_decision.md`
+- `research/reward_to_gcrl/decisions/0002_decision.md`
