@@ -2,8 +2,8 @@
   "best_primary_metric": null,
   "failure_streak": 0,
   "human_review_required": false,
-  "iteration": 3,
-  "last_decision": "drift_audited",
+  "iteration": 4,
+  "last_decision": "continue",
   "last_failure": null,
   "last_pro_review_iteration": 3,
   "last_pro_review_path": "research/reward_to_gcrl/decisions/0004_review5_pro_decision.json",
@@ -42,5 +42,5 @@
   "pro_review_count": 6,
   "protected_file_drift": false,
   "status": "active",
-  "weak_pass_streak": 0
+  "weak_pass_streak": 1
 }
