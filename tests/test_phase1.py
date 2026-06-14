@@ -1315,7 +1315,11 @@ class StateAndLoopTests(unittest.TestCase):
                     "hypothesis": "The supported id has equivalent deterministic dynamics.",
                     "success_criteria": ["DP value error is small"],
                     "failure_criteria": ["missing result JSON"],
-                    "tasks_for_codex": ["Run the replacement diagnostic."],
+                    "tasks_for_codex": [
+                        "Create research/project_001/artifacts/0003/replacement.py.",
+                        "Save research/project_001/results/0003_result.json.",
+                        "Save research/project_001/results/0003_summary.md.",
+                    ],
                     "required_outputs": [],
                     "estimated_runtime_minutes": 1,
                 },
@@ -1327,8 +1331,14 @@ class StateAndLoopTests(unittest.TestCase):
             self.assertTrue(archived.exists())
             self.assertFalse((root / "results" / "0002_result.json").exists())
             self.assertTrue((root / "plans" / "0002_plan.md").exists())
+            plan_text = (root / "plans" / "0002_plan.md").read_text()
+            self.assertIn("research/project_001/artifacts/0002/replacement.py", plan_text)
+            self.assertIn("research/project_001/results/0002_result.json", plan_text)
+            self.assertNotIn("research/project_001/results/0003_result.json", plan_text)
             state = json.loads((root / "state.json").read_text())
             self.assertEqual(state["last_decision"], "pivot")
+            self.assertEqual(state["failure_streak"], 0)
+            self.assertIsNone(state["last_failure"])
             self.assertFalse(state["human_review_required"])
 
 

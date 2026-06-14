@@ -25,12 +25,12 @@
     "Result JSON contains explicit pass/fail flags for environment audit, exact-DP scaling equivalence, learned value agreement, policy disagreement, and evaluation agreement."
   ],
   "tasks_for_codex": [
-    "Create research/reward_to_gcrl/artifacts/0003/run_local_cliffwalking_equivalence.py with a local deterministic tabular CliffWalking transition table and no Gymnasium dependency for the environment.",
-    "Write research/reward_to_gcrl/artifacts/0003/environment_audit.json containing the full transition semantics and a transition table hash.",
+    "Create research/reward_to_gcrl/artifacts/0002/run_local_cliffwalking_equivalence.py with a local deterministic tabular CliffWalking transition table and no Gymnasium dependency for the environment.",
+    "Write research/reward_to_gcrl/artifacts/0002/environment_audit.json containing the full transition semantics and a transition table hash.",
     "Implement exact value iteration for normalized Q_star and exact soft F_gplus_star from the same transition table.",
     "Implement paired tabular normalized Q-learning and terminal-only soft successor learning with matched alpha, epsilon schedule, gamma values, episode budget, and seeds.",
     "Compute exact-DP scaling error, learned value-scaling error, Bellman residuals, visitation coverage, tie-aware greedy policy disagreement, raw evaluation return, steps to goal, cliff-fall count, and success rate.",
-    "Save research/reward_to_gcrl/results/0003_result.json with raw metrics, exact command, config, artifact paths, and pass/fail flags.",
-    "Save research/reward_to_gcrl/results/0003_summary.md with a compact verdict explaining whether the blocked 0002 gate is now satisfied."
+    "Save research/reward_to_gcrl/results/0002_result.json with raw metrics, exact command, config, artifact paths, and pass/fail flags.",
+    "Save research/reward_to_gcrl/results/0002_summary.md with a compact verdict explaining whether the blocked 0002 gate is now satisfied."
   ]
 }

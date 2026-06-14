@@ -861,6 +861,25 @@ def plan_paths(repo_root: Path, project: str, iteration_id: str) -> Tuple[Path, 
 def normalize_experiment_paths(project: str, iteration_id: str, experiment: Dict[str, Any]) -> Dict[str, Any]:
     normalized = dict(experiment)
     normalized["experiment_id"] = iteration_id
+    result_pattern = rf"research/{re.escape(project)}/results/[0-9]{{4}}[A-Za-z0-9_-]*_(result|summary)\.json"
+    summary_pattern = rf"research/{re.escape(project)}/results/[0-9]{{4}}[A-Za-z0-9_-]*_summary\.md"
+    artifact_pattern = rf"research/{re.escape(project)}/artifacts/[0-9]{{4}}[A-Za-z0-9_-]*(?=/)"
+
+    def normalize_text(value: str) -> str:
+        value = re.sub(
+            result_pattern,
+            lambda match: f"research/{project}/results/{iteration_id}_{match.group(1)}.json",
+            value,
+        )
+        value = re.sub(summary_pattern, f"research/{project}/results/{iteration_id}_summary.md", value)
+        value = re.sub(artifact_pattern, f"research/{project}/artifacts/{iteration_id}", value)
+        return value
+
+    if isinstance(normalized.get("tasks_for_codex"), list):
+        normalized["tasks_for_codex"] = [
+            normalize_text(item) if isinstance(item, str) else item
+            for item in normalized["tasks_for_codex"]
+        ]
     normalized["required_outputs"] = [
         f"research/{project}/results/{iteration_id}_result.json",
         f"research/{project}/results/{iteration_id}_summary.md",
@@ -2079,6 +2098,7 @@ def apply_pro_decision(repo_root: Path, project: str) -> Path:
             state["status"] = "active"
             state["human_review_required"] = False
             state["last_decision"] = decision_kind
+            reset_failure_streak(state)
     else:
         raise RuntimeError(f"unknown Pro decision kind {decision_kind!r}")
 
