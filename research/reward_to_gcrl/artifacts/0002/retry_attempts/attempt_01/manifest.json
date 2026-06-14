@@ -1,0 +1,16 @@
+{
+  "archived_at": "2026-06-14T10:34:57+00:00",
+  "archived_paths": [
+    "research/reward_to_gcrl/artifacts/0002/retry_attempts/attempt_01/0002_result.json",
+    "research/reward_to_gcrl/artifacts/0002/retry_attempts/attempt_01/0002_summary.md"
+  ],
+  "iteration_id": "0002",
+  "last_failure": {
+    "at": "2026-06-14T10:19:58+00:00",
+    "attempt": 1,
+    "max_attempts": 3,
+    "note": "executor timeout"
+  },
+  "project": "reward_to_gcrl",
+  "reason": "retry_existing_result"
+}
