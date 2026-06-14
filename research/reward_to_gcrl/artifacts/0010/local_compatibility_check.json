@@ -1,0 +1,60 @@
+{
+  "audit_complete": true,
+  "command": "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0010/run_fourrooms_lowrank_aux_diagnostic.py --check-only",
+  "exact_scaled_gplus_matches_q_norm": true,
+  "missing_fields": [],
+  "model_form": "M_hat(s,a,g)=sigmoid(u_sa dot v_g + b_g)",
+  "rank": 4,
+  "replay_transitions": 5000,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "status": "passed",
+  "timestamp": "2026-06-14T23:34:14.605649+00:00",
+  "verified_against_0008": {
+    "audit_path": "/home/eston/autoresearcher/research/reward_to_gcrl/artifacts/0008/environment_audit.json",
+    "transition_hash_0008": "83e1f22232f65efd7c194f0e75ee92546b395520656f2336819472ef1b95d3de",
+    "transition_hash_matches_0008": true
+  },
+  "verified_against_0009": {
+    "aggregate": {
+      "adequate_coverage_count": 10,
+      "coverage_limited_count": 0,
+      "mean_bellman_residual_delta_combined_minus_terminal": 0.035458099349646194,
+      "mean_combined_goal_success_rate": 0.003717948717948718,
+      "mean_combined_gplus_bellman_residual": 0.03641394796016472,
+      "mean_combined_gplus_scaled_value_error": 16.89386841611688,
+      "mean_combined_real_goal_value_error": 0.9191108638578482,
+      "mean_combined_reward_success_rate": 0.0,
+      "mean_reward_policy_disagreement_delta": 0.52633658008658,
+      "mean_terminal_gplus_bellman_residual": 0.0009558486105185331,
+      "mean_terminal_gplus_scaled_value_error": 0.0731219458562512,
+      "mean_terminal_reward_success_rate": 0.5384615384615384,
+      "mean_value_error_delta_combined_minus_terminal": 16.820746470260634,
+      "policy_not_worse": false,
+      "relative_bellman_residual_improvement": -37.09593648978651,
+      "relative_value_error_improvement": -230.03690989471423,
+      "residual_non_worse_or_indistinguishable": false,
+      "run_count": 10,
+      "sem_bellman_residual_delta": 0.0018914558909937625,
+      "sem_value_error_delta": 0.8008537486297672,
+      "value_non_worse_or_indistinguishable": false,
+      "verdict": "negative_transfer"
+    },
+    "rank": 4,
+    "replay_transitions": 5000,
+    "result_path": "/home/eston/autoresearcher/research/reward_to_gcrl/results/0009_result.json",
+    "status": "completed",
+    "transition_hash_matches": true,
+    "verdict": "negative_transfer"
+  }
+}
