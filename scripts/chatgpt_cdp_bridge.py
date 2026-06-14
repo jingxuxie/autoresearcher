@@ -401,7 +401,12 @@ def submit_prompt(client: CdpClient, prompt: str) -> Dict[str, Any]:
     raise CdpError("selector_drift", "Could not click the ChatGPT send button.", {"click": click_result})
 
 
-def wait_for_response(client: CdpClient, previous_assistant: str, timeout_seconds: int = 600) -> str:
+def wait_for_response(
+    client: CdpClient,
+    previous_assistant: str,
+    timeout_seconds: int = 600,
+    previous_assistant_count: int = 0,
+) -> str:
     deadline = time.monotonic() + timeout_seconds
     stable_since: Optional[float] = None
     latest_text = ""
@@ -413,12 +418,18 @@ def wait_for_response(client: CdpClient, previous_assistant: str, timeout_second
         candidate = str(latest_state.get("latestAssistant") or "")
         if PROMPT_MARKER in candidate:
             candidate = ""
-        changed = candidate.strip() and candidate != previous_assistant and candidate != latest_text
+        try:
+            assistant_count = int(latest_state.get("assistantCount") or 0)
+        except (TypeError, ValueError):
+            assistant_count = 0
+        new_message_seen = assistant_count > previous_assistant_count or candidate != previous_assistant
+        changed = candidate.strip() and new_message_seen and candidate != latest_text
         if changed:
             latest_text = candidate
             stable_since = time.monotonic()
         elif latest_text and not latest_state.get("generating") and stable_since is not None:
-            if time.monotonic() - stable_since >= 4:
+            plausible_complete_response = len(latest_text.strip()) >= 20 or "```" in latest_text or "{" in latest_text
+            if plausible_complete_response and time.monotonic() - stable_since >= 4:
                 return latest_text
         time.sleep(1)
     raise CdpError("pro_backend_failed", "Timed out waiting for a ChatGPT assistant response.", latest_state)
@@ -446,8 +457,17 @@ def run_cdp_review(
         client = connect_page(cdp_url, thread_url, allow_new_tab=allow_new_tab)
         state = wait_for_ready(client, timeout_seconds=ready_timeout_seconds)
         previous = str(state.get("latestAssistant") or "")
+        try:
+            previous_count = int(state.get("assistantCount") or 0)
+        except (TypeError, ValueError):
+            previous_count = 0
         submit_prompt(client, build_visible_prompt(instructions, packet, reason))
-        raw_text = wait_for_response(client, previous, timeout_seconds=response_timeout_seconds)
+        raw_text = wait_for_response(
+            client,
+            previous,
+            timeout_seconds=response_timeout_seconds,
+            previous_assistant_count=previous_count,
+        )
         return CdpResponse(status="completed", raw_text=raw_text)
     except CdpError as exc:
         return CdpResponse(status="blocked", reason=exc.reason, message=str(exc), details=exc.details)

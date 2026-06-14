@@ -16,7 +16,7 @@ if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
 import autoresearcher  # noqa: E402
-from chatgpt_cdp_bridge import CdpClient, CdpError, CdpResponse, build_visible_prompt, connect_page, select_chatgpt_page  # noqa: E402
+from chatgpt_cdp_bridge import CdpClient, CdpError, CdpResponse, build_visible_prompt, connect_page, select_chatgpt_page, wait_for_response  # noqa: E402
 from chatgpt_pro_bridge import effective_thread_url, extract_fenced_json  # noqa: E402
 
 
@@ -456,6 +456,34 @@ Short supporting paragraph.
         self.assertIn("## Standing Advisor Instructions", prompt)
         self.assertIn("## Current Pointer Packet", prompt)
         self.assertIn("Checkpoint reason: local_stop", prompt)
+
+    def test_cdp_wait_for_response_ignores_short_partial_text(self) -> None:
+        class FakeClient:
+            def __init__(self) -> None:
+                self.calls = 0
+
+            def evaluate(self, _script: str) -> dict:
+                self.calls += 1
+                if self.calls <= 2:
+                    return {
+                        "composerFound": True,
+                        "generating": False,
+                        "assistantCount": 2,
+                        "latestAssistant": "I",
+                    }
+                return {
+                    "composerFound": True,
+                    "generating": False,
+                    "assistantCount": 2,
+                    "latestAssistant": "```json\n{\"decision\":\"continue\"}\n```",
+                }
+
+        ticks = iter(range(100))
+        with patch("chatgpt_cdp_bridge.time.monotonic", side_effect=lambda: next(ticks)):
+            with patch("chatgpt_cdp_bridge.time.sleep", return_value=None):
+                text = wait_for_response(FakeClient(), "", timeout_seconds=20, previous_assistant_count=1)
+
+        self.assertIn('"decision":"continue"', text)
 
     def test_cdp_page_selection_requires_configured_thread(self) -> None:
         pages = [
