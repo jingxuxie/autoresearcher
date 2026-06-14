@@ -55,6 +55,41 @@
       ],
       "review_verdict": "weak_pass",
       "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "On the audited local CliffWalking transition table, sampled augmented g_plus learning is an unbiased but higher-variance estimator of the terminal-only soft successor target and reduces error more slowly under the same original transition budget.",
+      "decision": "continue",
+      "important_metrics": {
+        "metrics.exact_soft_dp.rows.0.bellman_residual_max_decision": 9.103828801926284e-14,
+        "metrics.exact_soft_dp.rows.0.final_delta": 9.581224702515101e-14,
+        "metrics.exact_soft_dp.rows.0.gamma": 0.95,
+        "metrics.exact_soft_dp.rows.0.iterations": 527,
+        "metrics.exact_soft_dp.rows.0.max_value": 0.999999999998179,
+        "metrics.exact_soft_dp.rows.0.min_value": 0.0,
+        "metrics.exact_soft_dp.rows.1.bellman_residual_max_decision": 9.814371537686384e-14,
+        "metrics.exact_soft_dp.rows.1.final_delta": 9.914291609902648e-14,
+        "metrics.exact_soft_dp.rows.1.gamma": 0.99,
+        "metrics.exact_soft_dp.rows.1.iterations": 2522,
+        "metrics.exact_soft_dp.rows.1.max_value": 0.9999999999901835,
+        "metrics.exact_soft_dp.rows.1.min_value": 0.0
+      },
+      "iteration": "0003",
+      "negative_signals": [
+        "The target-mean pass compares sampled targets to the sampled learner's conditional expected target, not to the deterministic soft learner's recorded target; sampled-vs-soft-deterministic target means exceed the recorded...",
+        "The summary claims lower/faster value-error dominance, but mean final soft value error is slightly worse overall than sampled value error, and soft value-error dominance is only 17 of 30 runs.",
+        "At gamma 0.995, soft value-error dominance is only 4 of 10 seeds, so the value-error evidence does not strengthen as gamma approaches 1.",
+        "The stronger dominance evidence is Bellman residual, where soft is lower in 26 of 30 runs; this should be preferred over the weaker value-error wording."
+      ],
+      "positive_signals": [
+        "The local transition table hash matches the audited 0002 table.",
+        "The sampled update uses p(g_plus)=(1-gamma)r_bar, p(g_minus)=(1-gamma)(1-r_bar), and p(continue)=gamma.",
+        "Continued sampled targets use max_a M(s_next,a) directly, without an extra gamma factor.",
+        "The raw CliffWalking policy returns remain diagnostic because the normalized reward maps ordinary steps and goal transitions to the same reward.",
+        "The sampled augmented target is unbiased within the predeclared Monte Carlo tolerance in all gamma/seed runs, but its terminal sampling variance is strictly positive while the deterministic soft target has zero terminal sampling variance. Under the matched tra"
+      ],
+      "review_verdict": "weak_pass",
+      "status": "completed"
     }
   ],
   "project": "reward_to_gcrl"
