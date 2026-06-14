@@ -1,0 +1,201 @@
+# Executor Context: sto_trl
+
+## Current experiment plan
+
+# Experiment 0010
+
+## Objective
+
+Test whether posterior transition uncertainty plus log-space transitive propagation adds value beyond transition-model DP on a small multi-step tabular stochastic branch-chain diagnostic.
+
+## Hypothesis
+
+On a multi-step stochastic branch-chain with censored long-horizon labels, posterior transition uncertainty can reduce risky-path overestimation while log-space transitive propagation preserves long-horizon reachability. If posterior TRL-log is equivalent to posterior model DP, or only improves through the same prior, then there is no distinct posterior transitive benefit yet.
+
+## Success criteria
+
+- Creates a self-contained artifact under research/sto_trl/artifacts/0010/ without editing prior results, schemas, AGENTS.md, scripts/autoresearcher.py, or environment files.
+- Uses exact DP ground truth for every evaluated tabular MDP and keeps runtime under 30 minutes.
+- Includes a deterministic chain guard with real raw TRL and TRL-log execution if practical.
+- Includes at least one multi-step stochastic branch-chain or stochastic stitching graph where long-horizon labels are censored and transitive propagation could differ from one-step empirical transition scoring.
+- Compares mc_supervised, trl_raw, trl_log, empirical model DP, posterior mean model DP, posterior quantile or robust model DP, posterior_trl_log, and posterior_mc_plus_trl_log under matched priors.
+- Reports held-out long-horizon value MSE, calibration error, Q overestimation and underestimation, policy regret, risky action selection rate, and coverage diagnostics by regime.
+- Counts positive evidence only if posterior_trl_log or posterior_mc_plus_trl_log improves long-horizon or policy metrics versus both trl_log and the prior-matched posterior model DP without losing matched risk-optimal action choice.
+- Counts equivalence to posterior model DP, or improvement only from prior choice, as negative or boundary evidence rather than a stochastic TRL win.
+- Produces valid research/sto_trl/results/0010_result.json and research/sto_trl/results/0010_summary.md with exact commands run.
+
+## Failure criteria
+
+- The experiment omits prior-matched posterior model DP baselines, making transitive propagation effects impossible to isolate.
+- Exact DP values or true transition probabilities are used as training or decision inputs rather than evaluation ground truth.
+- The scenario is only a one-step risky shortcut where 0008 and 0009 already showed TRL-log is equivalent to empirical model DP.
+- The result reports aggregate averages without per-regime or coverage-stratified diagnostics.
+- The method appears successful only by choosing safe in matched risk-optimal regimes or by being conservative everywhere.
+- The run expands to neural networks, continuous control, OGBench, large downloads, broad sweeps, or exceeds 30 minutes.
+
+## Estimated runtime
+
+<= 25 minutes
+
+## Tasks for Codex
+
+- Create research/sto_trl/artifacts/0010/ and implement a small posterior_transitive_ablation.py script reusing prior tabular helpers where practical.
+- Define a compact deterministic chain guard and a multi-step stochastic branch-chain or stitching MDP with exact DP ground truth, finite offline coverage, and long-horizon label censoring.
+- Implement prior-matched empirical and posterior model-DP baselines plus posterior_trl_log and posterior_mc_plus_trl_log variants.
+- Evaluate methods on matched safe-optimal, matched risk-optimal, lucky-only safe-optimal, no-success risk-optimal, and at least one ambiguous or prior-dependent multi-step regime.
+- Save raw_metrics.json, metrics.csv, regime_summary.csv, posterior_transitive_diagnostics.json, coverage_diagnostics.json, offline_datasets.json, transition_tables.json, and value_tables.json under research/sto_trl/artifacts/0010/.
+- Write research/sto_trl/results/0010_result.json and research/sto_trl/results/0010_summary.md, then validate the result JSON with scripts/validate_artifacts.py and artifact checks.
+
+## Required outputs
+
+- `research/sto_trl/results/0010_result.json`
+- `research/sto_trl/results/0010_summary.md`
+- `research/sto_trl/artifacts/0010/`
+
+
+## Environment YAML
+
+```yaml
+name: autoresearcher_sto_trl
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pyyaml
+  - jsonschema
+  - pip:
+      - "jax[cuda12]"
+```
+
+
+## Environment state
+
+```json
+{
+  "blocker": null,
+  "commands_run": [
+    "conda env create -f research/sto_trl/environment.yaml",
+    "nvidia-smi -L",
+    "conda run -n autoresearcher_sto_trl python scripts/probe_jax_gpu.py --require-gpu --output research/sto_trl/setup_logs/jax_gpu_probe.json",
+    "conda run -n autoresearcher_sto_trl python -c \"import sys, yaml, jsonschema, jax; print(sys.version.split()[0]); print(yaml.__version__); print(jsonschema.__version__); print(jax.__version__)\""
+  ],
+  "conda_env_name": "autoresearcher_sto_trl",
+  "conda_env_path": "/home/eston/anaconda3/envs/autoresearcher_sto_trl",
+  "environment_file": "research/sto_trl/environment.yaml",
+  "gpu_available": true,
+  "gpu_checks": [
+    "nvidia-smi -L reported GPU 0: NVIDIA GeForce RTX 4090",
+    "JAX default_backend reported gpu",
+    "JAX devices reported cuda:0",
+    "Tiny JAX compute returned 140.0"
+  ],
+  "gpu_requested": true,
+  "packages_verified": [
+    "python 3.11.15",
+    "pyyaml 6.0.3",
+    "jsonschema 4.26.0",
+    "jax 0.10.1",
+    "jaxlib 0.10.1",
+    "jax[cuda12]"
+  ],
+  "project": "sto_trl",
+  "status": "ready",
+  "summary": "Conda environment autoresearcher_sto_trl was created from environment.yaml. JAX imports successfully, sees cuda:0, uses gpu as the default backend, and completed a tiny GPU computation."
+}
+```
+
+
+## Result schema
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "experiment_id": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["completed", "failed", "blocked", "timeout"]
+    },
+    "claim_tested": { "type": "string" },
+    "commands_run": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "baseline_metrics": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "artifacts": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "interpretation": { "type": "string" },
+    "known_failures": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "next_questions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "runtime_seconds": {
+      "type": ["number", "null"]
+    },
+    "resource_usage": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "success_criteria_results": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "failure_criteria_results": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "metric_deltas": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "decision_relevant_findings": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "required": [
+    "experiment_id",
+    "status",
+    "claim_tested",
+    "commands_run",
+    "metrics",
+    "baseline_metrics",
+    "artifacts",
+    "interpretation",
+    "known_failures",
+    "next_questions"
+  ],
+  "additionalProperties": false
+}
+```
+
+
+## Required output paths
+
+- `research/sto_trl/results/0010_result.json`
+- `research/sto_trl/results/0010_summary.md`
+- `research/sto_trl/artifacts/0010/`
+
+
+## Timeout and environment warning
+
+The orchestrator enforces the configured timeout externally. Run experiment commands inside the project conda environment, normally with `conda run -n <env> ...`. Keep the experiment small and write a failed result JSON if the plan is impossible.
+
+
+## Existing code pointers
+
+This starter repository has no project code yet. Create only the tiny files needed under the experiment artifact directory unless the plan explicitly asks for repo code changes.

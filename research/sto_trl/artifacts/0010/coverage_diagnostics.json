@@ -1,0 +1,360 @@
+{
+  "label_horizon_cutoff": 2,
+  "regimes": {
+    "lucky_only_safe_optimal": {
+      "label_coverage": {
+        "risk_1|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.81,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "risk_2|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.9,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_1|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_2|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.81,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_3|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.9,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "start|risky": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "start|safe": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        }
+      },
+      "risky_outcome_counts": {
+        "failures": 0,
+        "observed_success_rate": 1.0,
+        "samples": 4,
+        "successes": 4
+      },
+      "tags": [
+        "lucky_only",
+        "safe_optimal",
+        "biased_coverage"
+      ]
+    },
+    "matched_risk_optimal": {
+      "label_coverage": {
+        "risk_1|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 19,
+          "mean_used_label": 0.8100000000000004,
+          "positive_labels": 19,
+          "total_occurrences": 19,
+          "zero_labels": 0
+        },
+        "risk_2|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 19,
+          "mean_used_label": 0.9,
+          "positive_labels": 19,
+          "total_occurrences": 19,
+          "zero_labels": 0
+        },
+        "safe_1|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_2|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.81,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_3|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.9,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "start|risky": {
+          "censored_positive_labels": 19,
+          "label_count_used": 1,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 20,
+          "zero_labels": 1
+        },
+        "start|safe": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        }
+      },
+      "risky_outcome_counts": {
+        "failures": 1,
+        "observed_success_rate": 0.95,
+        "samples": 20,
+        "successes": 19
+      },
+      "tags": [
+        "matched",
+        "risk_optimal"
+      ]
+    },
+    "matched_safe_optimal": {
+      "label_coverage": {
+        "risk_1|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 5,
+          "mean_used_label": 0.8100000000000002,
+          "positive_labels": 5,
+          "total_occurrences": 5,
+          "zero_labels": 0
+        },
+        "risk_2|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 5,
+          "mean_used_label": 0.9,
+          "positive_labels": 5,
+          "total_occurrences": 5,
+          "zero_labels": 0
+        },
+        "safe_1|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_2|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.81,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_3|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.9,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "start|risky": {
+          "censored_positive_labels": 5,
+          "label_count_used": 5,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 10,
+          "zero_labels": 5
+        },
+        "start|safe": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        }
+      },
+      "risky_outcome_counts": {
+        "failures": 5,
+        "observed_success_rate": 0.5,
+        "samples": 10,
+        "successes": 5
+      },
+      "tags": [
+        "matched",
+        "safe_optimal"
+      ]
+    },
+    "no_success_risk_optimal": {
+      "label_coverage": {
+        "safe_1|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_2|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.81,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_3|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.9,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "start|risky": {
+          "censored_positive_labels": 0,
+          "label_count_used": 8,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 8,
+          "zero_labels": 8
+        },
+        "start|safe": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        }
+      },
+      "risky_outcome_counts": {
+        "failures": 8,
+        "observed_success_rate": 0.0,
+        "samples": 8,
+        "successes": 0
+      },
+      "tags": [
+        "no_success",
+        "risk_optimal",
+        "biased_coverage"
+      ]
+    },
+    "prior_dependent_risk_optimal": {
+      "label_coverage": {
+        "risk_1|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 3,
+          "mean_used_label": 0.81,
+          "positive_labels": 3,
+          "total_occurrences": 3,
+          "zero_labels": 0
+        },
+        "risk_2|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 3,
+          "mean_used_label": 0.9,
+          "positive_labels": 3,
+          "total_occurrences": 3,
+          "zero_labels": 0
+        },
+        "safe_1|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_2|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_3|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.81,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_4|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.9,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "start|risky": {
+          "censored_positive_labels": 3,
+          "label_count_used": 1,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 1
+        },
+        "start|safe": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        }
+      },
+      "risky_outcome_counts": {
+        "failures": 1,
+        "observed_success_rate": 0.75,
+        "samples": 4,
+        "successes": 3
+      },
+      "tags": [
+        "ambiguous",
+        "prior_dependent",
+        "risk_optimal"
+      ]
+    }
+  },
+  "tag_counts": {
+    "ambiguous": 1,
+    "biased_coverage": 2,
+    "lucky_only": 1,
+    "matched": 2,
+    "no_success": 1,
+    "prior_dependent": 1,
+    "risk_optimal": 3,
+    "safe_optimal": 2
+  }
+}

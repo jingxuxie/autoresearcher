@@ -1,0 +1,419 @@
+{
+  "lucky_only_safe_optimal": {
+    "horizons_to_goal_if_successful": {
+      "risk_1|advance": 2,
+      "risk_2|advance": 1,
+      "safe_1|advance": 3,
+      "safe_2|advance": 2,
+      "safe_3|advance": 1,
+      "start|risky": 3,
+      "start|safe": 4
+    },
+    "observed_transition_counts": {
+      "risk_1|advance": {
+        "risk_2": 4
+      },
+      "risk_2|advance": {
+        "goal": 4
+      },
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "risk_1": 4
+      },
+      "start|safe": {
+        "safe_1": 4
+      }
+    },
+    "true_transitions_for_evaluation_only": {
+      "risk_1|advance": [
+        {
+          "next_state": "risk_2",
+          "probability": 1.0
+        }
+      ],
+      "risk_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_1|advance": [
+        {
+          "next_state": "safe_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_2|advance": [
+        {
+          "next_state": "safe_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "start|risky": [
+        {
+          "next_state": "risk_1",
+          "probability": 0.5
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.5
+        }
+      ],
+      "start|safe": [
+        {
+          "next_state": "safe_1",
+          "probability": 1.0
+        }
+      ]
+    }
+  },
+  "matched_risk_optimal": {
+    "horizons_to_goal_if_successful": {
+      "risk_1|advance": 2,
+      "risk_2|advance": 1,
+      "safe_1|advance": 3,
+      "safe_2|advance": 2,
+      "safe_3|advance": 1,
+      "start|risky": 3,
+      "start|safe": 4
+    },
+    "observed_transition_counts": {
+      "risk_1|advance": {
+        "risk_2": 19
+      },
+      "risk_2|advance": {
+        "goal": 19
+      },
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "risk_1": 19,
+        "trap": 1
+      },
+      "start|safe": {
+        "safe_1": 4
+      }
+    },
+    "true_transitions_for_evaluation_only": {
+      "risk_1|advance": [
+        {
+          "next_state": "risk_2",
+          "probability": 1.0
+        }
+      ],
+      "risk_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_1|advance": [
+        {
+          "next_state": "safe_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_2|advance": [
+        {
+          "next_state": "safe_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "start|risky": [
+        {
+          "next_state": "risk_1",
+          "probability": 0.95
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.050000000000000044
+        }
+      ],
+      "start|safe": [
+        {
+          "next_state": "safe_1",
+          "probability": 1.0
+        }
+      ]
+    }
+  },
+  "matched_safe_optimal": {
+    "horizons_to_goal_if_successful": {
+      "risk_1|advance": 2,
+      "risk_2|advance": 1,
+      "safe_1|advance": 3,
+      "safe_2|advance": 2,
+      "safe_3|advance": 1,
+      "start|risky": 3,
+      "start|safe": 4
+    },
+    "observed_transition_counts": {
+      "risk_1|advance": {
+        "risk_2": 5
+      },
+      "risk_2|advance": {
+        "goal": 5
+      },
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "risk_1": 5,
+        "trap": 5
+      },
+      "start|safe": {
+        "safe_1": 4
+      }
+    },
+    "true_transitions_for_evaluation_only": {
+      "risk_1|advance": [
+        {
+          "next_state": "risk_2",
+          "probability": 1.0
+        }
+      ],
+      "risk_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_1|advance": [
+        {
+          "next_state": "safe_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_2|advance": [
+        {
+          "next_state": "safe_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "start|risky": [
+        {
+          "next_state": "risk_1",
+          "probability": 0.5
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.5
+        }
+      ],
+      "start|safe": [
+        {
+          "next_state": "safe_1",
+          "probability": 1.0
+        }
+      ]
+    }
+  },
+  "no_success_risk_optimal": {
+    "horizons_to_goal_if_successful": {
+      "risk_1|advance": 2,
+      "risk_2|advance": 1,
+      "safe_1|advance": 3,
+      "safe_2|advance": 2,
+      "safe_3|advance": 1,
+      "start|risky": 3,
+      "start|safe": 4
+    },
+    "observed_transition_counts": {
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "trap": 8
+      },
+      "start|safe": {
+        "safe_1": 4
+      }
+    },
+    "true_transitions_for_evaluation_only": {
+      "risk_1|advance": [
+        {
+          "next_state": "risk_2",
+          "probability": 1.0
+        }
+      ],
+      "risk_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_1|advance": [
+        {
+          "next_state": "safe_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_2|advance": [
+        {
+          "next_state": "safe_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "start|risky": [
+        {
+          "next_state": "risk_1",
+          "probability": 0.95
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.050000000000000044
+        }
+      ],
+      "start|safe": [
+        {
+          "next_state": "safe_1",
+          "probability": 1.0
+        }
+      ]
+    }
+  },
+  "prior_dependent_risk_optimal": {
+    "horizons_to_goal_if_successful": {
+      "risk_1|advance": 2,
+      "risk_2|advance": 1,
+      "safe_1|advance": 4,
+      "safe_2|advance": 3,
+      "safe_3|advance": 2,
+      "safe_4|advance": 1,
+      "start|risky": 3,
+      "start|safe": 5
+    },
+    "observed_transition_counts": {
+      "risk_1|advance": {
+        "risk_2": 3
+      },
+      "risk_2|advance": {
+        "goal": 3
+      },
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "safe_4": 4
+      },
+      "safe_4|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "risk_1": 3,
+        "trap": 1
+      },
+      "start|safe": {
+        "safe_1": 4
+      }
+    },
+    "true_transitions_for_evaluation_only": {
+      "risk_1|advance": [
+        {
+          "next_state": "risk_2",
+          "probability": 1.0
+        }
+      ],
+      "risk_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_1|advance": [
+        {
+          "next_state": "safe_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_2|advance": [
+        {
+          "next_state": "safe_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_3|advance": [
+        {
+          "next_state": "safe_4",
+          "probability": 1.0
+        }
+      ],
+      "safe_4|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "start|risky": [
+        {
+          "next_state": "risk_1",
+          "probability": 0.82
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.18000000000000005
+        }
+      ],
+      "start|safe": [
+        {
+          "next_state": "safe_1",
+          "probability": 1.0
+        }
+      ]
+    }
+  }
+}

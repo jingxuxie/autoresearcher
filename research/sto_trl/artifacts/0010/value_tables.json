@@ -1,0 +1,436 @@
+{
+  "lucky_only_safe_optimal": {
+    "exact_q": {
+      "risk_1|advance": 0.81,
+      "risk_2|advance": 0.9,
+      "safe_1|advance": 0.7290000000000001,
+      "safe_2|advance": 0.81,
+      "safe_3|advance": 0.9,
+      "start|risky": 0.36450000000000005,
+      "start|safe": 0.6561000000000001
+    },
+    "method_q": {
+      "empirical_model_dp": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.6561000000000001
+      },
+      "mc_supervised": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.0,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.0
+      },
+      "posterior_lower_q10_model_dp": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.45999900000000005,
+        "start|safe": 0.6561000000000001
+      },
+      "posterior_mc_plus_trl_log": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.6075,
+        "start|safe": 0.6561000000000001
+      },
+      "posterior_mean_model_dp": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.6075,
+        "start|safe": 0.6561000000000001
+      },
+      "posterior_trl_log": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.6075,
+        "start|safe": 0.6561000000000001
+      },
+      "trl_log": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.6561000000000001
+      },
+      "trl_raw": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.6561000000000001
+      }
+    }
+  },
+  "matched_risk_optimal": {
+    "exact_q": {
+      "risk_1|advance": 0.81,
+      "risk_2|advance": 0.9,
+      "safe_1|advance": 0.7290000000000001,
+      "safe_2|advance": 0.81,
+      "safe_3|advance": 0.9,
+      "start|risky": 0.69255,
+      "start|safe": 0.6561000000000001
+    },
+    "method_q": {
+      "empirical_model_dp": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.69255,
+        "start|safe": 0.6561000000000001
+      },
+      "mc_supervised": {
+        "risk_1|advance": 0.8100000000000004,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.0,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.0
+      },
+      "posterior_lower_q10_model_dp": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.602883,
+        "start|safe": 0.6561000000000001
+      },
+      "posterior_mc_plus_trl_log": {
+        "risk_1|advance": 0.8100000000000004,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.662727272727273,
+        "start|safe": 0.6561000000000001
+      },
+      "posterior_mean_model_dp": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.6627272727272728,
+        "start|safe": 0.6561000000000001
+      },
+      "posterior_trl_log": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.6627272727272728,
+        "start|safe": 0.6561000000000001
+      },
+      "trl_log": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.69255,
+        "start|safe": 0.6561000000000001
+      },
+      "trl_raw": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.6561000000000001
+      }
+    }
+  },
+  "matched_safe_optimal": {
+    "exact_q": {
+      "risk_1|advance": 0.81,
+      "risk_2|advance": 0.9,
+      "safe_1|advance": 0.7290000000000001,
+      "safe_2|advance": 0.81,
+      "safe_3|advance": 0.9,
+      "start|risky": 0.36450000000000005,
+      "start|safe": 0.6561000000000001
+    },
+    "method_q": {
+      "empirical_model_dp": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.36450000000000005,
+        "start|safe": 0.6561000000000001
+      },
+      "mc_supervised": {
+        "risk_1|advance": 0.8100000000000002,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.0,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.0
+      },
+      "posterior_lower_q10_model_dp": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.23157899999999998,
+        "start|safe": 0.6561000000000001
+      },
+      "posterior_mc_plus_trl_log": {
+        "risk_1|advance": 0.8100000000000002,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.3645000000000001,
+        "start|safe": 0.6561000000000001
+      },
+      "posterior_mean_model_dp": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.36450000000000005,
+        "start|safe": 0.6561000000000001
+      },
+      "posterior_trl_log": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.36450000000000005,
+        "start|safe": 0.6561000000000001
+      },
+      "trl_log": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.36450000000000005,
+        "start|safe": 0.6561000000000001
+      },
+      "trl_raw": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.6561000000000001
+      }
+    }
+  },
+  "no_success_risk_optimal": {
+    "exact_q": {
+      "risk_1|advance": 0.81,
+      "risk_2|advance": 0.9,
+      "safe_1|advance": 0.7290000000000001,
+      "safe_2|advance": 0.81,
+      "safe_3|advance": 0.9,
+      "start|risky": 0.69255,
+      "start|safe": 0.6561000000000001
+    },
+    "method_q": {
+      "empirical_model_dp": {
+        "risk_1|advance": 0.0,
+        "risk_2|advance": 0.0,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.6561000000000001
+      },
+      "mc_supervised": {
+        "risk_1|advance": 0.0,
+        "risk_2|advance": 0.0,
+        "safe_1|advance": 0.0,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.0
+      },
+      "posterior_lower_q10_model_dp": {
+        "risk_1|advance": 0.0,
+        "risk_2|advance": 0.0,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.6561000000000001
+      },
+      "posterior_mc_plus_trl_log": {
+        "risk_1|advance": 0.0,
+        "risk_2|advance": 0.0,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.6561000000000001
+      },
+      "posterior_mean_model_dp": {
+        "risk_1|advance": 0.0,
+        "risk_2|advance": 0.0,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.6561000000000001
+      },
+      "posterior_trl_log": {
+        "risk_1|advance": 0.0,
+        "risk_2|advance": 0.0,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.6561000000000001
+      },
+      "trl_log": {
+        "risk_1|advance": 0.0,
+        "risk_2|advance": 0.0,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.6561000000000001
+      },
+      "trl_raw": {
+        "risk_1|advance": 0.0,
+        "risk_2|advance": 0.0,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.6561000000000001
+      }
+    }
+  },
+  "prior_dependent_risk_optimal": {
+    "exact_q": {
+      "risk_1|advance": 0.81,
+      "risk_2|advance": 0.9,
+      "safe_1|advance": 0.6561000000000001,
+      "safe_2|advance": 0.7290000000000001,
+      "safe_3|advance": 0.81,
+      "safe_4|advance": 0.9,
+      "start|risky": 0.59778,
+      "start|safe": 0.5904900000000002
+    },
+    "method_q": {
+      "empirical_model_dp": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.5467500000000001,
+        "start|safe": 0.5904900000000002
+      },
+      "mc_supervised": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.0,
+        "safe_2|advance": 0.0,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.0
+      },
+      "posterior_lower_q10_model_dp": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.30338550000000003,
+        "start|safe": 0.5904900000000002
+      },
+      "posterior_mc_plus_trl_log": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.48600000000000004,
+        "start|safe": 0.5904900000000002
+      },
+      "posterior_mean_model_dp": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.48600000000000004,
+        "start|safe": 0.5904900000000002
+      },
+      "posterior_trl_log": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.48600000000000004,
+        "start|safe": 0.5904900000000002
+      },
+      "trl_log": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.5467500000000001,
+        "start|safe": 0.5904900000000002
+      },
+      "trl_raw": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.5904900000000002
+      }
+    }
+  }
+}

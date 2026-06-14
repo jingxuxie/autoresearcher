@@ -1,0 +1,1873 @@
+{
+  "lucky_only_safe_optimal": {
+    "label_coverage": {
+      "risk_1|advance": {
+        "censored_positive_labels": 0,
+        "label_count_used": 4,
+        "mean_used_label": 0.81,
+        "positive_labels": 4,
+        "total_occurrences": 4,
+        "zero_labels": 0
+      },
+      "risk_2|advance": {
+        "censored_positive_labels": 0,
+        "label_count_used": 4,
+        "mean_used_label": 0.9,
+        "positive_labels": 4,
+        "total_occurrences": 4,
+        "zero_labels": 0
+      },
+      "safe_1|advance": {
+        "censored_positive_labels": 4,
+        "label_count_used": 0,
+        "mean_used_label": 0.0,
+        "positive_labels": 0,
+        "total_occurrences": 4,
+        "zero_labels": 0
+      },
+      "safe_2|advance": {
+        "censored_positive_labels": 0,
+        "label_count_used": 4,
+        "mean_used_label": 0.81,
+        "positive_labels": 4,
+        "total_occurrences": 4,
+        "zero_labels": 0
+      },
+      "safe_3|advance": {
+        "censored_positive_labels": 0,
+        "label_count_used": 4,
+        "mean_used_label": 0.9,
+        "positive_labels": 4,
+        "total_occurrences": 4,
+        "zero_labels": 0
+      },
+      "start|risky": {
+        "censored_positive_labels": 4,
+        "label_count_used": 0,
+        "mean_used_label": 0.0,
+        "positive_labels": 0,
+        "total_occurrences": 4,
+        "zero_labels": 0
+      },
+      "start|safe": {
+        "censored_positive_labels": 4,
+        "label_count_used": 0,
+        "mean_used_label": 0.0,
+        "positive_labels": 0,
+        "total_occurrences": 4,
+        "zero_labels": 0
+      }
+    },
+    "risky_outcome_counts": {
+      "failures": 0,
+      "observed_success_rate": 1.0,
+      "samples": 4,
+      "successes": 4
+    },
+    "spec": {
+      "observed_successes": 4,
+      "regime_id": "lucky_only_safe_optimal",
+      "risk_tail_steps": 2,
+      "risky_samples": 4,
+      "safe_length": 4,
+      "safe_trajectories": 4,
+      "tags": [
+        "lucky_only",
+        "safe_optimal",
+        "biased_coverage"
+      ],
+      "true_risky_success_prob": 0.5
+    },
+    "trajectories": [
+      {
+        "outcome": "safe_success",
+        "trajectory_id": "lucky_only_safe_optimal_safe_0",
+        "transitions": [
+          {
+            "action": "safe",
+            "next_state": "safe_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_2",
+            "state": "safe_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_3",
+            "state": "safe_2"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "safe_3"
+          }
+        ]
+      },
+      {
+        "outcome": "safe_success",
+        "trajectory_id": "lucky_only_safe_optimal_safe_1",
+        "transitions": [
+          {
+            "action": "safe",
+            "next_state": "safe_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_2",
+            "state": "safe_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_3",
+            "state": "safe_2"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "safe_3"
+          }
+        ]
+      },
+      {
+        "outcome": "safe_success",
+        "trajectory_id": "lucky_only_safe_optimal_safe_2",
+        "transitions": [
+          {
+            "action": "safe",
+            "next_state": "safe_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_2",
+            "state": "safe_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_3",
+            "state": "safe_2"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "safe_3"
+          }
+        ]
+      },
+      {
+        "outcome": "safe_success",
+        "trajectory_id": "lucky_only_safe_optimal_safe_3",
+        "transitions": [
+          {
+            "action": "safe",
+            "next_state": "safe_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_2",
+            "state": "safe_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_3",
+            "state": "safe_2"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "safe_3"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "lucky_only_safe_optimal_risky_success_0",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "lucky_only_safe_optimal_risky_success_1",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "lucky_only_safe_optimal_risky_success_2",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "lucky_only_safe_optimal_risky_success_3",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      }
+    ],
+    "transition_counts": {
+      "risk_1|advance": {
+        "risk_2": 4
+      },
+      "risk_2|advance": {
+        "goal": 4
+      },
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "risk_1": 4
+      },
+      "start|safe": {
+        "safe_1": 4
+      }
+    }
+  },
+  "matched_risk_optimal": {
+    "label_coverage": {
+      "risk_1|advance": {
+        "censored_positive_labels": 0,
+        "label_count_used": 19,
+        "mean_used_label": 0.8100000000000004,
+        "positive_labels": 19,
+        "total_occurrences": 19,
+        "zero_labels": 0
+      },
+      "risk_2|advance": {
+        "censored_positive_labels": 0,
+        "label_count_used": 19,
+        "mean_used_label": 0.9,
+        "positive_labels": 19,
+        "total_occurrences": 19,
+        "zero_labels": 0
+      },
+      "safe_1|advance": {
+        "censored_positive_labels": 4,
+        "label_count_used": 0,
+        "mean_used_label": 0.0,
+        "positive_labels": 0,
+        "total_occurrences": 4,
+        "zero_labels": 0
+      },
+      "safe_2|advance": {
+        "censored_positive_labels": 0,
+        "label_count_used": 4,
+        "mean_used_label": 0.81,
+        "positive_labels": 4,
+        "total_occurrences": 4,
+        "zero_labels": 0
+      },
+      "safe_3|advance": {
+        "censored_positive_labels": 0,
+        "label_count_used": 4,
+        "mean_used_label": 0.9,
+        "positive_labels": 4,
+        "total_occurrences": 4,
+        "zero_labels": 0
+      },
+      "start|risky": {
+        "censored_positive_labels": 19,
+        "label_count_used": 1,
+        "mean_used_label": 0.0,
+        "positive_labels": 0,
+        "total_occurrences": 20,
+        "zero_labels": 1
+      },
+      "start|safe": {
+        "censored_positive_labels": 4,
+        "label_count_used": 0,
+        "mean_used_label": 0.0,
+        "positive_labels": 0,
+        "total_occurrences": 4,
+        "zero_labels": 0
+      }
+    },
+    "risky_outcome_counts": {
+      "failures": 1,
+      "observed_success_rate": 0.95,
+      "samples": 20,
+      "successes": 19
+    },
+    "spec": {
+      "observed_successes": 19,
+      "regime_id": "matched_risk_optimal",
+      "risk_tail_steps": 2,
+      "risky_samples": 20,
+      "safe_length": 4,
+      "safe_trajectories": 4,
+      "tags": [
+        "matched",
+        "risk_optimal"
+      ],
+      "true_risky_success_prob": 0.95
+    },
+    "trajectories": [
+      {
+        "outcome": "safe_success",
+        "trajectory_id": "matched_risk_optimal_safe_0",
+        "transitions": [
+          {
+            "action": "safe",
+            "next_state": "safe_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_2",
+            "state": "safe_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_3",
+            "state": "safe_2"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "safe_3"
+          }
+        ]
+      },
+      {
+        "outcome": "safe_success",
+        "trajectory_id": "matched_risk_optimal_safe_1",
+        "transitions": [
+          {
+            "action": "safe",
+            "next_state": "safe_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_2",
+            "state": "safe_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_3",
+            "state": "safe_2"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "safe_3"
+          }
+        ]
+      },
+      {
+        "outcome": "safe_success",
+        "trajectory_id": "matched_risk_optimal_safe_2",
+        "transitions": [
+          {
+            "action": "safe",
+            "next_state": "safe_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_2",
+            "state": "safe_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_3",
+            "state": "safe_2"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "safe_3"
+          }
+        ]
+      },
+      {
+        "outcome": "safe_success",
+        "trajectory_id": "matched_risk_optimal_safe_3",
+        "transitions": [
+          {
+            "action": "safe",
+            "next_state": "safe_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_2",
+            "state": "safe_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_3",
+            "state": "safe_2"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "safe_3"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "matched_risk_optimal_risky_success_0",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "matched_risk_optimal_risky_success_1",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "matched_risk_optimal_risky_success_2",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "matched_risk_optimal_risky_success_3",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "matched_risk_optimal_risky_success_4",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "matched_risk_optimal_risky_success_5",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "matched_risk_optimal_risky_success_6",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "matched_risk_optimal_risky_success_7",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "matched_risk_optimal_risky_success_8",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "matched_risk_optimal_risky_success_9",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "matched_risk_optimal_risky_success_10",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "matched_risk_optimal_risky_success_11",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "matched_risk_optimal_risky_success_12",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "matched_risk_optimal_risky_success_13",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "matched_risk_optimal_risky_success_14",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "matched_risk_optimal_risky_success_15",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "matched_risk_optimal_risky_success_16",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "matched_risk_optimal_risky_success_17",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "matched_risk_optimal_risky_success_18",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_failure",
+        "trajectory_id": "matched_risk_optimal_risky_failure_0",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "trap",
+            "state": "start"
+          }
+        ]
+      }
+    ],
+    "transition_counts": {
+      "risk_1|advance": {
+        "risk_2": 19
+      },
+      "risk_2|advance": {
+        "goal": 19
+      },
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "risk_1": 19,
+        "trap": 1
+      },
+      "start|safe": {
+        "safe_1": 4
+      }
+    }
+  },
+  "matched_safe_optimal": {
+    "label_coverage": {
+      "risk_1|advance": {
+        "censored_positive_labels": 0,
+        "label_count_used": 5,
+        "mean_used_label": 0.8100000000000002,
+        "positive_labels": 5,
+        "total_occurrences": 5,
+        "zero_labels": 0
+      },
+      "risk_2|advance": {
+        "censored_positive_labels": 0,
+        "label_count_used": 5,
+        "mean_used_label": 0.9,
+        "positive_labels": 5,
+        "total_occurrences": 5,
+        "zero_labels": 0
+      },
+      "safe_1|advance": {
+        "censored_positive_labels": 4,
+        "label_count_used": 0,
+        "mean_used_label": 0.0,
+        "positive_labels": 0,
+        "total_occurrences": 4,
+        "zero_labels": 0
+      },
+      "safe_2|advance": {
+        "censored_positive_labels": 0,
+        "label_count_used": 4,
+        "mean_used_label": 0.81,
+        "positive_labels": 4,
+        "total_occurrences": 4,
+        "zero_labels": 0
+      },
+      "safe_3|advance": {
+        "censored_positive_labels": 0,
+        "label_count_used": 4,
+        "mean_used_label": 0.9,
+        "positive_labels": 4,
+        "total_occurrences": 4,
+        "zero_labels": 0
+      },
+      "start|risky": {
+        "censored_positive_labels": 5,
+        "label_count_used": 5,
+        "mean_used_label": 0.0,
+        "positive_labels": 0,
+        "total_occurrences": 10,
+        "zero_labels": 5
+      },
+      "start|safe": {
+        "censored_positive_labels": 4,
+        "label_count_used": 0,
+        "mean_used_label": 0.0,
+        "positive_labels": 0,
+        "total_occurrences": 4,
+        "zero_labels": 0
+      }
+    },
+    "risky_outcome_counts": {
+      "failures": 5,
+      "observed_success_rate": 0.5,
+      "samples": 10,
+      "successes": 5
+    },
+    "spec": {
+      "observed_successes": 5,
+      "regime_id": "matched_safe_optimal",
+      "risk_tail_steps": 2,
+      "risky_samples": 10,
+      "safe_length": 4,
+      "safe_trajectories": 4,
+      "tags": [
+        "matched",
+        "safe_optimal"
+      ],
+      "true_risky_success_prob": 0.5
+    },
+    "trajectories": [
+      {
+        "outcome": "safe_success",
+        "trajectory_id": "matched_safe_optimal_safe_0",
+        "transitions": [
+          {
+            "action": "safe",
+            "next_state": "safe_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_2",
+            "state": "safe_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_3",
+            "state": "safe_2"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "safe_3"
+          }
+        ]
+      },
+      {
+        "outcome": "safe_success",
+        "trajectory_id": "matched_safe_optimal_safe_1",
+        "transitions": [
+          {
+            "action": "safe",
+            "next_state": "safe_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_2",
+            "state": "safe_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_3",
+            "state": "safe_2"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "safe_3"
+          }
+        ]
+      },
+      {
+        "outcome": "safe_success",
+        "trajectory_id": "matched_safe_optimal_safe_2",
+        "transitions": [
+          {
+            "action": "safe",
+            "next_state": "safe_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_2",
+            "state": "safe_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_3",
+            "state": "safe_2"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "safe_3"
+          }
+        ]
+      },
+      {
+        "outcome": "safe_success",
+        "trajectory_id": "matched_safe_optimal_safe_3",
+        "transitions": [
+          {
+            "action": "safe",
+            "next_state": "safe_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_2",
+            "state": "safe_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_3",
+            "state": "safe_2"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "safe_3"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "matched_safe_optimal_risky_success_0",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "matched_safe_optimal_risky_success_1",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "matched_safe_optimal_risky_success_2",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "matched_safe_optimal_risky_success_3",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "matched_safe_optimal_risky_success_4",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_failure",
+        "trajectory_id": "matched_safe_optimal_risky_failure_0",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "trap",
+            "state": "start"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_failure",
+        "trajectory_id": "matched_safe_optimal_risky_failure_1",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "trap",
+            "state": "start"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_failure",
+        "trajectory_id": "matched_safe_optimal_risky_failure_2",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "trap",
+            "state": "start"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_failure",
+        "trajectory_id": "matched_safe_optimal_risky_failure_3",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "trap",
+            "state": "start"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_failure",
+        "trajectory_id": "matched_safe_optimal_risky_failure_4",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "trap",
+            "state": "start"
+          }
+        ]
+      }
+    ],
+    "transition_counts": {
+      "risk_1|advance": {
+        "risk_2": 5
+      },
+      "risk_2|advance": {
+        "goal": 5
+      },
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "risk_1": 5,
+        "trap": 5
+      },
+      "start|safe": {
+        "safe_1": 4
+      }
+    }
+  },
+  "no_success_risk_optimal": {
+    "label_coverage": {
+      "safe_1|advance": {
+        "censored_positive_labels": 4,
+        "label_count_used": 0,
+        "mean_used_label": 0.0,
+        "positive_labels": 0,
+        "total_occurrences": 4,
+        "zero_labels": 0
+      },
+      "safe_2|advance": {
+        "censored_positive_labels": 0,
+        "label_count_used": 4,
+        "mean_used_label": 0.81,
+        "positive_labels": 4,
+        "total_occurrences": 4,
+        "zero_labels": 0
+      },
+      "safe_3|advance": {
+        "censored_positive_labels": 0,
+        "label_count_used": 4,
+        "mean_used_label": 0.9,
+        "positive_labels": 4,
+        "total_occurrences": 4,
+        "zero_labels": 0
+      },
+      "start|risky": {
+        "censored_positive_labels": 0,
+        "label_count_used": 8,
+        "mean_used_label": 0.0,
+        "positive_labels": 0,
+        "total_occurrences": 8,
+        "zero_labels": 8
+      },
+      "start|safe": {
+        "censored_positive_labels": 4,
+        "label_count_used": 0,
+        "mean_used_label": 0.0,
+        "positive_labels": 0,
+        "total_occurrences": 4,
+        "zero_labels": 0
+      }
+    },
+    "risky_outcome_counts": {
+      "failures": 8,
+      "observed_success_rate": 0.0,
+      "samples": 8,
+      "successes": 0
+    },
+    "spec": {
+      "observed_successes": 0,
+      "regime_id": "no_success_risk_optimal",
+      "risk_tail_steps": 2,
+      "risky_samples": 8,
+      "safe_length": 4,
+      "safe_trajectories": 4,
+      "tags": [
+        "no_success",
+        "risk_optimal",
+        "biased_coverage"
+      ],
+      "true_risky_success_prob": 0.95
+    },
+    "trajectories": [
+      {
+        "outcome": "safe_success",
+        "trajectory_id": "no_success_risk_optimal_safe_0",
+        "transitions": [
+          {
+            "action": "safe",
+            "next_state": "safe_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_2",
+            "state": "safe_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_3",
+            "state": "safe_2"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "safe_3"
+          }
+        ]
+      },
+      {
+        "outcome": "safe_success",
+        "trajectory_id": "no_success_risk_optimal_safe_1",
+        "transitions": [
+          {
+            "action": "safe",
+            "next_state": "safe_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_2",
+            "state": "safe_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_3",
+            "state": "safe_2"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "safe_3"
+          }
+        ]
+      },
+      {
+        "outcome": "safe_success",
+        "trajectory_id": "no_success_risk_optimal_safe_2",
+        "transitions": [
+          {
+            "action": "safe",
+            "next_state": "safe_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_2",
+            "state": "safe_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_3",
+            "state": "safe_2"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "safe_3"
+          }
+        ]
+      },
+      {
+        "outcome": "safe_success",
+        "trajectory_id": "no_success_risk_optimal_safe_3",
+        "transitions": [
+          {
+            "action": "safe",
+            "next_state": "safe_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_2",
+            "state": "safe_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_3",
+            "state": "safe_2"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "safe_3"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_failure",
+        "trajectory_id": "no_success_risk_optimal_risky_failure_0",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "trap",
+            "state": "start"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_failure",
+        "trajectory_id": "no_success_risk_optimal_risky_failure_1",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "trap",
+            "state": "start"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_failure",
+        "trajectory_id": "no_success_risk_optimal_risky_failure_2",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "trap",
+            "state": "start"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_failure",
+        "trajectory_id": "no_success_risk_optimal_risky_failure_3",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "trap",
+            "state": "start"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_failure",
+        "trajectory_id": "no_success_risk_optimal_risky_failure_4",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "trap",
+            "state": "start"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_failure",
+        "trajectory_id": "no_success_risk_optimal_risky_failure_5",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "trap",
+            "state": "start"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_failure",
+        "trajectory_id": "no_success_risk_optimal_risky_failure_6",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "trap",
+            "state": "start"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_failure",
+        "trajectory_id": "no_success_risk_optimal_risky_failure_7",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "trap",
+            "state": "start"
+          }
+        ]
+      }
+    ],
+    "transition_counts": {
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "trap": 8
+      },
+      "start|safe": {
+        "safe_1": 4
+      }
+    }
+  },
+  "prior_dependent_risk_optimal": {
+    "label_coverage": {
+      "risk_1|advance": {
+        "censored_positive_labels": 0,
+        "label_count_used": 3,
+        "mean_used_label": 0.81,
+        "positive_labels": 3,
+        "total_occurrences": 3,
+        "zero_labels": 0
+      },
+      "risk_2|advance": {
+        "censored_positive_labels": 0,
+        "label_count_used": 3,
+        "mean_used_label": 0.9,
+        "positive_labels": 3,
+        "total_occurrences": 3,
+        "zero_labels": 0
+      },
+      "safe_1|advance": {
+        "censored_positive_labels": 4,
+        "label_count_used": 0,
+        "mean_used_label": 0.0,
+        "positive_labels": 0,
+        "total_occurrences": 4,
+        "zero_labels": 0
+      },
+      "safe_2|advance": {
+        "censored_positive_labels": 4,
+        "label_count_used": 0,
+        "mean_used_label": 0.0,
+        "positive_labels": 0,
+        "total_occurrences": 4,
+        "zero_labels": 0
+      },
+      "safe_3|advance": {
+        "censored_positive_labels": 0,
+        "label_count_used": 4,
+        "mean_used_label": 0.81,
+        "positive_labels": 4,
+        "total_occurrences": 4,
+        "zero_labels": 0
+      },
+      "safe_4|advance": {
+        "censored_positive_labels": 0,
+        "label_count_used": 4,
+        "mean_used_label": 0.9,
+        "positive_labels": 4,
+        "total_occurrences": 4,
+        "zero_labels": 0
+      },
+      "start|risky": {
+        "censored_positive_labels": 3,
+        "label_count_used": 1,
+        "mean_used_label": 0.0,
+        "positive_labels": 0,
+        "total_occurrences": 4,
+        "zero_labels": 1
+      },
+      "start|safe": {
+        "censored_positive_labels": 4,
+        "label_count_used": 0,
+        "mean_used_label": 0.0,
+        "positive_labels": 0,
+        "total_occurrences": 4,
+        "zero_labels": 0
+      }
+    },
+    "risky_outcome_counts": {
+      "failures": 1,
+      "observed_success_rate": 0.75,
+      "samples": 4,
+      "successes": 3
+    },
+    "spec": {
+      "observed_successes": 3,
+      "regime_id": "prior_dependent_risk_optimal",
+      "risk_tail_steps": 2,
+      "risky_samples": 4,
+      "safe_length": 5,
+      "safe_trajectories": 4,
+      "tags": [
+        "ambiguous",
+        "prior_dependent",
+        "risk_optimal"
+      ],
+      "true_risky_success_prob": 0.82
+    },
+    "trajectories": [
+      {
+        "outcome": "safe_success",
+        "trajectory_id": "prior_dependent_risk_optimal_safe_0",
+        "transitions": [
+          {
+            "action": "safe",
+            "next_state": "safe_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_2",
+            "state": "safe_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_3",
+            "state": "safe_2"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_4",
+            "state": "safe_3"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "safe_4"
+          }
+        ]
+      },
+      {
+        "outcome": "safe_success",
+        "trajectory_id": "prior_dependent_risk_optimal_safe_1",
+        "transitions": [
+          {
+            "action": "safe",
+            "next_state": "safe_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_2",
+            "state": "safe_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_3",
+            "state": "safe_2"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_4",
+            "state": "safe_3"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "safe_4"
+          }
+        ]
+      },
+      {
+        "outcome": "safe_success",
+        "trajectory_id": "prior_dependent_risk_optimal_safe_2",
+        "transitions": [
+          {
+            "action": "safe",
+            "next_state": "safe_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_2",
+            "state": "safe_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_3",
+            "state": "safe_2"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_4",
+            "state": "safe_3"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "safe_4"
+          }
+        ]
+      },
+      {
+        "outcome": "safe_success",
+        "trajectory_id": "prior_dependent_risk_optimal_safe_3",
+        "transitions": [
+          {
+            "action": "safe",
+            "next_state": "safe_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_2",
+            "state": "safe_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_3",
+            "state": "safe_2"
+          },
+          {
+            "action": "advance",
+            "next_state": "safe_4",
+            "state": "safe_3"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "safe_4"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "prior_dependent_risk_optimal_risky_success_0",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "prior_dependent_risk_optimal_risky_success_1",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_success",
+        "trajectory_id": "prior_dependent_risk_optimal_risky_success_2",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "risk_1",
+            "state": "start"
+          },
+          {
+            "action": "advance",
+            "next_state": "risk_2",
+            "state": "risk_1"
+          },
+          {
+            "action": "advance",
+            "next_state": "goal",
+            "state": "risk_2"
+          }
+        ]
+      },
+      {
+        "outcome": "risky_failure",
+        "trajectory_id": "prior_dependent_risk_optimal_risky_failure_0",
+        "transitions": [
+          {
+            "action": "risky",
+            "next_state": "trap",
+            "state": "start"
+          }
+        ]
+      }
+    ],
+    "transition_counts": {
+      "risk_1|advance": {
+        "risk_2": 3
+      },
+      "risk_2|advance": {
+        "goal": 3
+      },
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "safe_4": 4
+      },
+      "safe_4|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "risk_1": 3,
+        "trap": 1
+      },
+      "start|safe": {
+        "safe_1": 4
+      }
+    }
+  }
+}
