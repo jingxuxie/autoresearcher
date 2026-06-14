@@ -12,6 +12,7 @@
 | 0008 | completed | pass | continue | `metrics.config.goal_success_threshold`=0.99<br>`metrics.exact_dp.rows.0.gamma`=0.95<br>`metrics.exact_dp.rows.0.gplus_final_delta`=0.0<br>`metrics.exact_dp.rows.0.gplus_iterations`=14<br>`metrics.exact_dp.rows.0.max_abs_scaled_gplus_minus_q_norm`=1.1102230246251565e-16 |
 | 0009 | completed | weak_pass | continue | `metrics.config.improvement_threshold`=0.1<br>`metrics.config.replay_behavior.uses_exact_q_or_dp`=False<br>`metrics.exact_dp.gamma`=0.95<br>`metrics.exact_dp.goal_iterations`=14<br>`metrics.exact_dp.gplus_iterations`=14 |
 | 0010 | completed | weak_pass | None | `metrics.config.improvement_threshold`=0.1<br>`metrics.config.replay_behavior.uses_exact_q_or_dp`=False<br>`metrics.environment_audit.verified_against_0009_where_available.aggregate.mean_combined_goal_success_rate`=0.003717948717948718<br>`metrics.environment_audit.verified_against_0009_where_available.aggregate.mean_combined_reward_success_rate`=0.0<br>`metrics.environment_audit.verified_against_0009_where_available.aggregate.mean_terminal_reward_success_rate`=0.5384615384615384 |
+| 0011 | completed | pass | None | _None extracted_ |
 
 ## Positive Signals
 
@@ -44,6 +45,9 @@
 - `0010`: Conservative verdict: auxiliary_unsupported_for_lowrank.
 - `0010`: The low-rank model genuinely shares state-action factors across real-state goals and g_plus.
 - `0010`: Original negative transfer reproduced, and neither repaired variant matched terminal-only on g_plus value error and Bellman residual. Auxiliary real-state goals should be paused for this low-rank architecture.
+- `0011`: Soft terminal marginalization has supported small-tabular estimator/equivalence evidence.
+- `0011`: Low-rank rank-4 FourRooms auxiliary training is unsupported after reproduction and repair diagnostics.
+- `0011`: The evidence supports soft terminal marginalization as a small-tabular estimator/equivalence mechanism with coverage-qualified RiverSwim learning advantages. It does not support low-rank shared real-state auxiliary goals for the tested FourRooms setup; pause t
 
 ## Negative Signals
 
@@ -77,3 +81,6 @@
 - `0010`: Exact tabular references are used only for evaluation, not behavior generation or target labels.
 - `0010`: Auxiliary reward-task benefit should not be claimed unless the verdict is repaired_auxiliary_promising.
 - `0010`: repaired_variant_promising
+- `0011`: RiverSwim learning advantages are coverage-qualified; starved runs are not learning-superiority evidence.
+- `0011`: Independent tabular real-state goals are a correctness sanity check, not an auxiliary reward-improvement result.
+- `0011`: lowrank_auxiliary_gplus_benefit_unsupported_for_tested_rank4_fourrooms_setup

@@ -331,6 +331,27 @@
       ],
       "review_verdict": "weak_pass",
       "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "Synthesize 0001-0010 evidence to separate supported soft-terminal estimator claims from unsupported low-rank auxiliary-goal claims, without running new learning compute.",
+      "decision": null,
+      "important_metrics": {},
+      "iteration": "0011",
+      "negative_signals": [
+        "RiverSwim learning advantages are coverage-qualified; starved runs are not learning-superiority evidence.",
+        "Independent tabular real-state goals are a correctness sanity check, not an auxiliary reward-improvement result.",
+        "lowrank_auxiliary_gplus_benefit_unsupported_for_tested_rank4_fourrooms_setup",
+        "neural_larger_environment_online_auxiliary_claims_unsupported",
+        "This iteration adds synthesis and decision framing only; it is not new empirical evidence."
+      ],
+      "positive_signals": [
+        "Soft terminal marginalization has supported small-tabular estimator/equivalence evidence.",
+        "Low-rank rank-4 FourRooms auxiliary training is unsupported after reproduction and repair diagnostics.",
+        "The evidence supports soft terminal marginalization as a small-tabular estimator/equivalence mechanism with coverage-qualified RiverSwim learning advantages. It does not support low-rank shared real-state auxiliary goals for the tested FourRooms setup; pause t"
+      ],
+      "review_verdict": "pass",
+      "status": "completed"
     }
   ],
   "project": "reward_to_gcrl"
