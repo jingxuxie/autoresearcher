@@ -471,16 +471,11 @@ The expected value of this experiment is not an algorithm win. It should identif
 ```json
 {
   "best_primary_metric": null,
-  "failure_streak": 2,
+  "failure_streak": 0,
   "human_review_required": false,
   "iteration": 7,
-  "last_decision": "retryable_failure",
-  "last_failure": {
-    "at": "2026-06-14T02:48:22+00:00",
-    "attempt": 2,
-    "max_attempts": 3,
-    "note": "supervisor failed or timed out; see /home/eston/autoresearcher/research/sto_trl/decisions/0008_decision_stderr.log"
-  },
+  "last_decision": "continue",
+  "last_failure": null,
   "last_pro_review_iteration": 7,
   "last_pro_review_path": null,
   "last_summary_iteration": 7,
@@ -499,7 +494,9 @@ The expected value of this experiment is not an algorithm win. It should identif
     "2026-06-14T01:25:11+00:00: Pro checkpoint blocked (login_required); packet research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md",
     "2026-06-14T02:45:00+00:00: resumed from human-approved stochastic TRL next-step plan; GPT-Pro cadence reset to after iteration 7",
     "2026-06-14T02:48:15+00:00: retryable failure 1/3: supervisor failed or timed out; see /home/eston/autoresearcher/research/sto_trl/decisions/0008_decision_stderr.log",
-    "2026-06-14T02:48:22+00:00: retryable failure 2/3: supervisor failed or timed out; see /home/eston/autoresearcher/research/sto_trl/decisions/0008_decision_stderr.log"
+    "2026-06-14T02:48:22+00:00: retryable failure 2/3: supervisor failed or timed out; see /home/eston/autoresearcher/research/sto_trl/decisions/0008_decision_stderr.log",
+    "2026-06-14T02:48:28+00:00: retry limit reached after 3/3 failures: supervisor failed or timed out; see /home/eston/autoresearcher/research/sto_trl/decisions/0008_decision_stderr.log",
+    "2026-06-14T02:51:00+00:00: resumed after fixing strict structured-output schema requirements"
   ],
   "pending_checkpoint": null,
   "pending_local_decision_path": null,
