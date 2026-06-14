@@ -6,7 +6,7 @@
   "last_decision": "protected_file_drift",
   "last_failure": null,
   "last_pro_review_iteration": 3,
-  "last_pro_review_path": "research/reward_to_gcrl/decisions/0004_review2_pro_decision.json",
+  "last_pro_review_path": "research/reward_to_gcrl/decisions/0004_review3_pro_decision.json",
   "last_summary_iteration": 3,
   "last_summary_path": "research/reward_to_gcrl/progress/0003_pre_pro_protected_file_drift_summary.md",
   "no_progress_rounds": 0,
@@ -27,9 +27,18 @@
     "2026-06-14T11:50:30+00:00: Pro checkpoint blocked (pro_backend_failed); packet research/reward_to_gcrl/pro_packets/0004_PRO_REVIEW_PACKET.md",
     "2026-06-14T20:49:23+00:00: resumed: Retry Pro checkpoint after ChatGPT browser response finished",
     "2026-06-14T20:52:44+00:00: Pro decision saved for checkpoint local_needs_human (research/reward_to_gcrl/decisions/0004_review2_pro_decision.json)",
-    "2026-06-14T20:52:46+00:00: applied Pro decision pivot from research/reward_to_gcrl/decisions/0004_review2_pro_decision.json"
+    "2026-06-14T20:52:46+00:00: applied Pro decision pivot from research/reward_to_gcrl/decisions/0004_review2_pro_decision.json",
+    "2026-06-14T21:06:17+00:00: Pro decision saved for checkpoint protected_file_drift (research/reward_to_gcrl/decisions/0004_review3_pro_decision.json)"
   ],
-  "pending_checkpoint": null,
+  "pending_checkpoint": {
+    "backend": "cdp",
+    "iteration_id": "0004_review3",
+    "packet_path": "research/reward_to_gcrl/pro_packets/0004_review3_PRO_REVIEW_PACKET.md",
+    "pro_decision_path": "research/reward_to_gcrl/decisions/0004_review3_pro_decision.json",
+    "reason": "protected_file_drift",
+    "status": "pro_decision_ingested",
+    "type": "chatgpt_pro"
+  },
   "pending_local_decision_path": null,
   "primary_metric": null,
   "pro_review_count": 3,

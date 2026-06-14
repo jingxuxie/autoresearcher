@@ -5,6 +5,7 @@
 | 0001 | completed | weak_pass | continue | _None extracted_ |
 | 0002 | completed | weak_pass | continue | `metrics.config.exact_scaling_tolerance`=1e-06<br>`metrics.exact_dp.max_abs_error_scaled_f_vs_q`=9.711982329463353e-10<br>`metrics.exact_dp.max_policy_disagreement_rate`=0.0<br>`metrics.exact_dp.rows.0.f_final_delta`=9.581224702515101e-14<br>`metrics.exact_dp.rows.0.f_value_iteration_steps`=527 |
 | 0003 | completed | weak_pass | continue | `metrics.exact_soft_dp.rows.0.bellman_residual_max_decision`=9.103828801926284e-14<br>`metrics.exact_soft_dp.rows.0.final_delta`=9.581224702515101e-14<br>`metrics.exact_soft_dp.rows.0.gamma`=0.95<br>`metrics.exact_soft_dp.rows.0.iterations`=527<br>`metrics.exact_soft_dp.rows.0.max_value`=0.999999999998179 |
+| 0004 | completed | None | needs_human | `metrics.environment_audit.reward_audit.non_success_reward`=0.0<br>`metrics.environment_audit.reward_audit.success_reward`=1.0<br>`metrics.exact_dp.non_tie_policy_informative`=True<br>`metrics.exact_dp.raw_normalized_policy_preserved`=True<br>`metrics.exact_dp.rows.0.gamma`=0.95 |
 
 ## Positive Signals
 
@@ -17,6 +18,9 @@
 - `0003`: The local transition table hash matches the audited 0002 table.
 - `0003`: The sampled update uses p(g_plus)=(1-gamma)r_bar, p(g_minus)=(1-gamma)(1-r_bar), and p(continue)=gamma.
 - `0003`: Continued sampled targets use max_a M(s_next,a) directly, without an extra gamma factor.
+- `0004`: Identity reward normalization avoids the CliffWalking objective mismatch.
+- `0004`: The hand-built chain has three decision states, all with non-tie exact greedy actions.
+- `0004`: The sampled target is compared to a deterministic soft target computed from the same sampled learner table before each update.
 
 ## Negative Signals
 

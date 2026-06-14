@@ -90,6 +90,36 @@
       ],
       "review_verdict": "weak_pass",
       "status": "completed"
+    },
+    {
+      "allows_auto_continue": null,
+      "claim_tested": "In a nondegenerate tiny chain with identity reward normalization, sampled augmented g_plus updates are unbiased but higher variance, while deterministic soft terminal marginalization improves Bellman residual and preserves policy quality.",
+      "decision": "needs_human",
+      "important_metrics": {
+        "metrics.environment_audit.reward_audit.non_success_reward": 0.0,
+        "metrics.environment_audit.reward_audit.success_reward": 1.0,
+        "metrics.exact_dp.non_tie_policy_informative": true,
+        "metrics.exact_dp.raw_normalized_policy_preserved": true,
+        "metrics.exact_dp.rows.0.gamma": 0.95,
+        "metrics.exact_dp.rows.0.max_abs_scaled_soft_minus_normalized_q": 1.1102230246251565e-16,
+        "metrics.exact_dp.rows.0.non_tie_decision_state_fraction": 1.0,
+        "metrics.exact_dp.rows.0.normalized_final_delta": 0.0,
+        "metrics.exact_dp.rows.0.normalized_q.0.0": 0.8573749999999999,
+        "metrics.exact_dp.rows.0.normalized_q.0.1": 0.9025,
+        "metrics.exact_dp.rows.0.normalized_q.1.0": 0.8573749999999999,
+        "metrics.exact_dp.rows.0.normalized_q.1.1": 0.95
+      },
+      "iteration": "0004",
+      "negative_signals": [],
+      "positive_signals": [
+        "Identity reward normalization avoids the CliffWalking objective mismatch.",
+        "The hand-built chain has three decision states, all with non-tie exact greedy actions.",
+        "The sampled target is compared to a deterministic soft target computed from the same sampled learner table before each update.",
+        "The conservative verdict is learning-improvement.",
+        "The repaired chain preserves the raw policy under identity normalization. Sampled targets match the deterministic soft marginal target within the predeclared Monte Carlo tolerance, have positive sampling variance, and the deterministic soft learner achieves lo"
+      ],
+      "review_verdict": null,
+      "status": "completed"
     }
   ],
   "project": "reward_to_gcrl"
