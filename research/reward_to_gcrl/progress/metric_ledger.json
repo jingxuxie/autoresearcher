@@ -92,7 +92,7 @@
       "status": "completed"
     },
     {
-      "allows_auto_continue": null,
+      "allows_auto_continue": false,
       "claim_tested": "In a nondegenerate tiny chain with identity reward normalization, sampled augmented g_plus updates are unbiased but higher variance, while deterministic soft terminal marginalization improves Bellman residual and preserves policy quality.",
       "decision": "needs_human",
       "important_metrics": {
@@ -110,7 +110,13 @@
         "metrics.exact_dp.rows.0.normalized_q.1.1": 0.95
       },
       "iteration": "0004",
-      "negative_signals": [],
+      "negative_signals": [
+        "Protected file drift remains unresolved in loop metadata despite current git status not showing tracked protected-path modifications.",
+        "The 0004 result omits the required drift status even though the plan explicitly required it.",
+        "The behavior stream is oracle-guided by exact normalized Q with epsilon, so the result tests matched-stream estimator quality rather than fully online learner-induced exploration.",
+        "The environment is a very small 5-state chain; it is decisive for the repaired tabular gate but not sufficient evidence for larger grid or long-horizon tasks.",
+        "Clear or explicitly adjudicate protected_file_drift before treating 0004 as accepted evidence."
+      ],
       "positive_signals": [
         "Identity reward normalization avoids the CliffWalking objective mismatch.",
         "The hand-built chain has three decision states, all with non-tie exact greedy actions.",
@@ -118,7 +124,7 @@
         "The conservative verdict is learning-improvement.",
         "The repaired chain preserves the raw policy under identity normalization. Sampled targets match the deterministic soft marginal target within the predeclared Monte Carlo tolerance, have positive sampling variance, and the deterministic soft learner achieves lo"
       ],
-      "review_verdict": null,
+      "review_verdict": "needs_human",
       "status": "completed"
     }
   ],

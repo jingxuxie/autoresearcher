@@ -1,0 +1,64 @@
+JSON
+{
+  "decision": "continue",
+  "confidence": 0.88,
+  "rationale": "Continue, but do not start a new scientific experiment yet. The project appears to have made meaningful progress: 0001-0003 give accepted weak evidence for variance reduction and tabular scaling equivalence, and 0004 appears scientifically stronger because it uses a nondegenerate 5-state chain where soft succeeds and sampled fails. However, 0004 is not accepted evidence because protected_file_drift remains unresolved and the required drift audit was omitted. The next direction is therefore an evidence-integrity gate: adjudicate drift, validate or rerun 0004 if needed, and only then decide whether to move to RiverSwim.",
+  "evidence": [
+    "Accepted reviewed evidence from 0001 shows sampled and soft targets matched means while soft removed terminal-sampling variance and exposed rare g_plus events.",
+    "Accepted reviewed evidence from 0002 shows exact DP scaling equivalence and paired tabular agreement between scaled soft M and normalized Q in audited CliffWalking.",
+    "Accepted reviewed evidence from 0003 shows sampled conditional variance exceeded zero soft terminal-sampling variance in all 30 runs and soft had lower Bellman residual in 26 of 30 runs, but value-error and policy evidence were mixed.",
+    "The latest summary reports that 0004 uses a nondegenerate 5-state chain with identity reward normalization, preserved raw/normalized exact-DP policies, exact soft scaling, passing target mean and variance checks, lower soft Bellman residual and value error, and nondegenerate evaluation where soft succeeds while sampled fails.",
+    "The same summary states that 0004 is not accepted yet because protected_file_drift remains unresolved and the 0004 result omitted the required drift_status.",
+    "The current state still reports protected_file_drift true, and a prior guard file reports protected drift on autoresearcher.yaml.",
+    "The summary explicitly recommends not using 0004 as evidence and not proceeding to RiverSwim, auxiliary goals, or neural approximation until the drift gate is resolved."
+  ],
+  "risks": [
+    "Accepting 0004 before resolving protected_file_drift could contaminate the evidence chain.",
+    "If drift reflects a real protected-file change, 0004 may need to be rerun or revalidated before any scientific claim is made.",
+    "Even if accepted, 0004 is still a tiny 5-state chain and does not establish generality to RiverSwim, larger grids, auxiliary goals, or function approximation.",
+    "0004 behavior streams are oracle-guided, so it supports matched-stream estimator quality more than fully online exploration robustness.",
+    "Moving directly to RiverSwim or auxiliary goals would overinterpret a promising but still narrow result."
+  ],
+  "next_experiment": {
+    "experiment_id": "0005_drift_adjudication_and_0004_acceptance_gate",
+    "objective": "Resolve protected_file_drift and determine whether 0004 can be accepted as valid evidence. If drift is stale or harmless, add an explicit drift audit and review 0004 without new learning compute. If drift is real or unclear, rerun the 0004 nondegenerate 5-state chain diagnostic after clearing drift.",
+    "hypothesis": "The 0004 scientific result is likely useful but cannot be trusted until evidence integrity is restored. After drift adjudication, either the existing 0004 artifacts will be accepted as a stronger tabular matched-stream result, or a clean rerun will reproduce the same qualitative outcome: deterministic soft targets have zero terminal-sampling variance, lower Bellman/value error, and better nondegenerate policy evaluation than sampled augmented updates.",
+    "success_criteria": [
+      "A protected-file drift audit is written and explicitly states whether drift is stale, harmless, real, or unresolved.",
+      "The audit identifies the exact protected file or files involved, including autoresearcher.yaml if still flagged, and records whether they affect the reward_to_gcrl experiment logic or reporting.",
+      "If drift is stale or harmless, existing 0004 result and summary are revalidated against schemas and artifact paths, and a reviewed acceptance note records drift_status.",
+      "If drift is real or unresolved, 0004 is rerun from a clean state with the same CPU-only tabular scope and a new result JSON containing drift_status.",
+      "Accepted or rerun evidence must include direct sampled-vs-deterministic-soft target comparison, sampled variance versus soft variance, Bellman residual, value error, raw return, success rate, and policy diagnostics.",
+      "The final verdict labels 0004 as one of: accepted_evidence, superseded_by_clean_rerun, rejected_due_to_drift, or inconclusive.",
+      "No RiverSwim, auxiliary goals, neural approximation, GPU use, or larger environments are started before this gate passes."
+    ],
+    "failure_criteria": [
+      "protected_file_drift remains true without adjudication.",
+      "0004 is treated as accepted evidence without a drift_status field or equivalent audit artifact.",
+      "The drift audit does not identify which protected file changed or whether the change can affect the experiment.",
+      "A rerun changes the scientific setup without documenting differences from 0004.",
+      "The rerun fails to reproduce the main 0004 qualitative claims and the summary does not downgrade the evidence accordingly.",
+      "The next step proceeds to RiverSwim, auxiliary goals, or neural approximation before resolving evidence integrity."
+    ],
+    "tasks_for_codex": [
+      "Inspect research/reward_to_gcrl/state.json and the worktree guard artifact to determine why protected_file_drift is true.",
+      "Write research/reward_to_gcrl/artifacts/0005/protected_file_drift_audit.json with affected files, hashes if available, impact assessment, and final drift_status.",
+      "Validate existing research/reward_to_gcrl/results/0004_result.json, research/reward_to_gcrl/results/0004_summary.md, and declared artifacts if drift is judged stale or harmless.",
+      "If drift is real or unclear, rerun the 0004 repaired sampled-vs-soft diagnostic in a clean state using the same nondegenerate 5-state chain, seeds, gammas, and CPU-only tabular budget.",
+      "Write research/reward_to_gcrl/results/0005_result.json containing drift_status, whether 0004 was accepted or superseded, schema validation status, key scientific metrics, and pass/fail flags.",
+      "Write research/reward_to_gcrl/results/0005_summary.md with a conservative recommendation: move to RiverSwim if 0004 is accepted or reproduced; otherwise repair the nondegenerate diagnostic again."
+    ],
+    "required_outputs": [
+      "research/reward_to_gcrl/artifacts/0005/protected_file_drift_audit.json",
+      "research/reward_to_gcrl/results/0005_result.json",
+      "research/reward_to_gcrl/results/0005_summary.md",
+      "Exact command used for audit and validation or rerun",
+      "drift_status field with stale, harmless, real, or unresolved",
+      "Explicit verdict on 0004: accepted_evidence, superseded_by_clean_rerun, rejected_due_to_drift, or inconclusive",
+      "If rerun occurs, direct sampled-vs-deterministic-soft target metrics, Bellman residuals, value errors, raw returns, and success rates"
+    ],
+    "estimated_runtime_minutes": 15
+  }
+}
+
+You are making real progress, but the next step is evidence hygiene rather than more RL: clear the drift blocker, then either accept 0004 as the first strong nondegenerate result or rerun it cleanly.
