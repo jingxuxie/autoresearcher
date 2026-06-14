@@ -280,7 +280,7 @@ _None._
   "last_pro_review_iteration": 0,
   "last_pro_review_path": "research/reward_to_gcrl/decisions/0001_pro_decision.json",
   "last_summary_iteration": 1,
-  "last_summary_path": "research/reward_to_gcrl/progress/0001_pre_pro_protected_file_drift_summary.md",
+  "last_summary_path": "research/reward_to_gcrl/progress/0001_pre_pro_review_needs_human_summary.md",
   "no_progress_rounds": 0,
   "notes": [
     "2026-06-14T09:16:58+00:00: setup_env failed or timed out; see /home/eston/autoresearcher/research/reward_to_gcrl/env_state_stderr.log",
@@ -291,9 +291,19 @@ _None._
     "2026-06-14T09:48:30+00:00: cleared stale protected_file_drift after committing/pushing a clean worktree",
     "2026-06-14T10:19:58+00:00: retryable failure 1/3: executor timeout",
     "2026-06-14T10:51:56+00:00: retryable failure 2/3: reviewer verdict needs_human",
-    "2026-06-14T10:55:39+00:00: retry limit reached after 3/3 failures: reviewer verdict needs_human"
+    "2026-06-14T10:55:39+00:00: retry limit reached after 3/3 failures: reviewer verdict needs_human",
+    "2026-06-14T11:05:19+00:00: Pro checkpoint blocked (response_parse_failed); packet research/reward_to_gcrl/pro_packets/0002_review2_PRO_REVIEW_PACKET.md"
   ],
-  "pending_checkpoint": null,
+  "pending_checkpoint": {
+    "backend": "cdp",
+    "blocker_path": "research/reward_to_gcrl/decisions/0002_review2_pro_blocker.json",
+    "iteration_id": "0002_review2",
+    "manual_fallback": true,
+    "packet_path": "research/reward_to_gcrl/pro_packets/0002_review2_PRO_REVIEW_PACKET.md",
+    "reason": "review_needs_human",
+    "status": "blocked",
+    "type": "chatgpt_pro"
+  },
   "pending_local_decision_path": null,
   "primary_metric": null,
   "pro_review_count": 1,
@@ -693,6 +703,7 @@ _None._
 ## Existing progress summaries
 
 - `research/reward_to_gcrl/progress/0001_pre_pro_protected_file_drift_summary.md`
+- `research/reward_to_gcrl/progress/0001_pre_pro_review_needs_human_summary.md`
 - `research/reward_to_gcrl/progress/latest_summary.md`
 
 
