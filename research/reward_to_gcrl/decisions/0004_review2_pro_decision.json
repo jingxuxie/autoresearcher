@@ -1,0 +1,59 @@
+{
+  "confidence": 0.83,
+  "decision": "pivot",
+  "evidence": [
+    "0001 weak-passed: sampled and soft terminal targets matched expected means, soft removed terminal-sampling variance, and rare g_plus events were exposed.",
+    "0002 weak-passed: an audited local deterministic CliffWalking table was used, exact DP scaling equivalence passed, and learned scaled M matched normalized Q on sufficiently visited pairs.",
+    "0003 weak-passed structurally: sampled conditional variance exceeded zero soft terminal-sampling variance in all 30 CPU-tabular runs, and soft had lower final Bellman residual in 26 of 30 runs.",
+    "The strongest 0003 learning-performance claim is mixed: mean final soft value error was slightly worse than sampled value error, soft value-error dominance was only 17 of 30 runs, and only 4 of 10 seeds at gamma 0.995.",
+    "The current CliffWalking normalization made raw task success uninformative: policies in 0002 and 0003 had raw return -200 and success rate 0.0.",
+    "0003 target-mean validation compared sampled targets to the sampled learner's conditional expectation rather than directly to the deterministic soft learner's recorded target, and sampled-vs-soft deterministic target means exceeded tolerance in 19 of 30 runs.",
+    "The latest local decision is needs_human because continuing automatically risks compounding overclaims from ambiguous 0003 evidence."
+  ],
+  "next_experiment": {
+    "estimated_runtime_minutes": 25,
+    "experiment_id": "0004",
+    "failure_criteria": [
+      "The normalized objective does not preserve the raw optimal policy and the experiment does not explicitly label this as an objective-mismatch result.",
+      "The target comparison again validates sampled targets only against the sampled learner's own conditional expectation rather than the deterministic soft target from the same state.",
+      "Exact DP has mostly tie states, making policy disagreement uninformative.",
+      "Raw task success remains zero or uninformative for all learned policies.",
+      "Soft has worse mean final value error and no compensating Bellman-residual or policy-quality advantage.",
+      "The run adds neural networks, auxiliary goals, large environments, GPU dependence, or expensive hyperparameter sweeps."
+    ],
+    "hypothesis": "When reward normalization is audited so that the induced normalized objective does not create degenerate all-step rewards, the sampled augmented update remains unbiased but higher variance, while the deterministic soft update should achieve lower Bellman residual and at least non-worse value error and greedy policy quality under the same transition budget.",
+    "objective": "Repair the sampled-vs-soft comparison using a small nondegenerate tabular setting where the raw task objective remains meaningful, and directly test whether deterministic soft terminal marginalization improves Bellman residual, value error, and policy quality over sampled augmented updates under matched data.",
+    "required_outputs": [
+      "research/reward_to_gcrl/results/0004_result.json",
+      "research/reward_to_gcrl/results/0004_summary.md",
+      "research/reward_to_gcrl/artifacts/0004/"
+    ],
+    "success_criteria": [
+      "Include an explicit reward audit reporting raw rewards, normalized rewards, affine constants, terminal handling, and whether the normalized objective preserves the raw optimal policy under exact DP.",
+      "Use at least one tiny analytic counterexample or hand-built chain where raw task success is nondegenerate and exact DP has non-tie greedy actions.",
+      "Compute exact DP for raw Q, normalized Q, and soft g_plus, and report whether normalized Q and raw Q have the same greedy policy on non-terminal non-tie states.",
+      "Run matched-stream sampled augmented and deterministic soft updates for gamma in {0.95, 0.99, 0.995} over 10 seeds with CPU-tabular code only.",
+      "Compare sampled targets directly against the deterministic soft target computed from the same learner state and transition, with pass/fail tolerance stated before the run.",
+      "Soft must have lower mean final Bellman residual and lower or statistically indistinguishable mean final value error versus sampled across seeds; otherwise the result should be labeled variance-only, not learning-improvement evidence.",
+      "Evaluation must report raw return, normalized return, success rate, steps to goal, and policy disagreement against exact DP, with tie states separated."
+    ],
+    "tasks_for_codex": [
+      "Create research/reward_to_gcrl/artifacts/0004/run_repaired_sampled_vs_soft.py using CPU-only tabular code.",
+      "Implement a small nondegenerate chain or gridworld with audited raw rewards, normalized rewards, terminal states, and exact transition table.",
+      "Optionally include a repaired CliffWalking variant only if exact DP confirms the normalized objective has meaningful non-tie policies and nonzero success incentives.",
+      "Compute exact DP references for raw Q, normalized Q, and soft g_plus, including policy preservation checks.",
+      "Run matched-stream sampled augmented and deterministic soft learners with synchronized initialization, alpha, epsilon schedule, transition budget, gamma values, and seeds.",
+      "For every sampled update, record the deterministic soft target from the same learner state and transition so sampled-vs-soft target mean and variance are directly comparable.",
+      "Save raw metrics, target diagnostics, Bellman residuals, value errors, policy disagreement, evaluation returns, and pass/fail flags to research/reward_to_gcrl/results/0004_result.json.",
+      "Write research/reward_to_gcrl/results/0004_summary.md with a conservative verdict: variance-only, learning-improvement, objective-mismatch, or failed diagnostic."
+    ]
+  },
+  "rationale": "Pivot within the same research direction rather than stop. The project has made real but limited progress: 0001-0003 support the variance motivation and tabular scaling equivalence, but the current CliffWalking setup is scientifically too degenerate to justify moving to auxiliary goals or neural models. The main new evidence is not that soft successor learning is clearly better, but that naive normalized reward-to-goal conversion can preserve a scaled normalized objective while destroying useful raw-task incentives. The next experiment should repair this ambiguity by using a nondegenerate reward/task setting and directly comparing sampled targets to the deterministic soft target, not by continuing to collect weak CliffWalking evidence under the same normalization.",
+  "risks": [
+    "A repaired experiment may show that soft terminal marginalization mainly reduces estimator variance but does not improve learned value error under tabular control.",
+    "Changing the reward normalization could accidentally change the task again unless raw reward, normalized reward, and affine constants are explicitly audited.",
+    "Direct sampled-vs-soft target comparisons require matched state-action-next-state streams and synchronized learner states; otherwise differences may reflect policy/data drift rather than estimator variance.",
+    "If the experiment uses only CliffWalking again, policy ties and episodic-duration effects may remain confusing.",
+    "Moving to RiverSwim, auxiliary goals, or neural function approximation before resolving this ambiguity would make later failures hard to interpret."
+  ]
+}

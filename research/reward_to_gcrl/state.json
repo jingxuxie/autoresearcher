@@ -6,7 +6,7 @@
   "last_decision": "continue",
   "last_failure": null,
   "last_pro_review_iteration": 1,
-  "last_pro_review_path": "research/reward_to_gcrl/decisions/0002_review3_pro_decision.json",
+  "last_pro_review_path": "research/reward_to_gcrl/decisions/0004_review2_pro_decision.json",
   "last_summary_iteration": 3,
   "last_summary_path": "research/reward_to_gcrl/progress/0003_pre_pro_local_needs_human_summary.md",
   "no_progress_rounds": 0,
@@ -25,10 +25,19 @@
     "2026-06-14T11:11:03+00:00: applied Pro decision continue from research/reward_to_gcrl/decisions/0002_review3_pro_decision.json",
     "2026-06-14T11:12:06+00:00: cleared retry failure state after applied Pro continuation",
     "2026-06-14T11:50:30+00:00: Pro checkpoint blocked (pro_backend_failed); packet research/reward_to_gcrl/pro_packets/0004_PRO_REVIEW_PACKET.md",
-    "2026-06-14T20:49:23+00:00: resumed: Retry Pro checkpoint after ChatGPT browser response finished"
+    "2026-06-14T20:49:23+00:00: resumed: Retry Pro checkpoint after ChatGPT browser response finished",
+    "2026-06-14T20:52:44+00:00: Pro decision saved for checkpoint local_needs_human (research/reward_to_gcrl/decisions/0004_review2_pro_decision.json)"
   ],
-  "pending_checkpoint": null,
-  "pending_local_decision_path": null,
+  "pending_checkpoint": {
+    "backend": "cdp",
+    "iteration_id": "0004_review2",
+    "packet_path": "research/reward_to_gcrl/pro_packets/0004_review2_PRO_REVIEW_PACKET.md",
+    "pro_decision_path": "research/reward_to_gcrl/decisions/0004_review2_pro_decision.json",
+    "reason": "local_needs_human",
+    "status": "pro_decision_ingested",
+    "type": "chatgpt_pro"
+  },
+  "pending_local_decision_path": "research/reward_to_gcrl/decisions/0004_decision.json",
   "primary_metric": null,
   "pro_review_count": 2,
   "protected_file_drift": false,
