@@ -244,6 +244,40 @@
       ],
       "review_verdict": "weak_pass",
       "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "Transition-level empirical, Bayesian, quantile, and robust model-DP baselines can explain which representative finite-coverage risky-shortcut regimes are recoverable before adding posterior TRL variants.",
+      "decision": "continue",
+      "important_metrics": {
+        "metrics.best_transition_uncertainty_method": "posterior_lower_q10_dp_beta_1_1",
+        "metrics.best_transition_uncertainty_target_regret_delta_vs_trl_log": -0.17752500000000004,
+        "metrics.chain_guard.by_distance.1.exact": 0.9,
+        "metrics.chain_guard.by_distance.2.exact": 0.81,
+        "metrics.chain_guard.by_distance.3.exact": 0.7290000000000001,
+        "metrics.chain_guard.by_distance.4.exact": 0.6561,
+        "metrics.chain_guard.by_distance.5.exact": 0.5904900000000001,
+        "metrics.chain_guard.by_distance.6.exact": 0.531441,
+        "metrics.chain_guard.by_distance.7.exact": 0.4782969000000001,
+        "metrics.chain_guard.by_distance.8.exact": 0.4304672100000001,
+        "metrics.coverage_diagnostics.regime_label_counts.ambiguous_risk_optimal": 1,
+        "metrics.coverage_diagnostics.regime_label_counts.matched_risk_optimal": 1
+      },
+      "iteration": "0009",
+      "negative_signals": [
+        "TRL-log, empirical risky value, and empirical model DP are numerically equivalent for these one-step risky shortcut decisions.",
+        "No evaluated transition baseline solved risk_optimal_no_success; explicit priors or additional coverage remain necessary.",
+        "Risk-optimal no-success remains unsolved from counts alone.",
+        "The positive transition-baseline evidence rests on four target cells and an 8-cell handpicked subset, so it should set a baseline rather than support a broad generalization.",
+        "The best method, posterior_lower_q10_dp_beta_1_1, is conservative: it fixes lucky-only and prior-dependent safe cases but fails ambiguous_risk_optimal and no_success_risk_optimal; robust_lcb also fails matched risk-optim..."
+      ],
+      "positive_signals": [
+        "Best target-regime transition uncertainty baseline: posterior_lower_q10_dp_beta_1_1 with regret delta -0.177525000000 versus TRL-log.",
+        "Posterior lower/mean baselines reduce safe lucky-only and safe prior-dependent regret without selecting safe everywhere.",
+        "On the representative 0008 subset, transition-level uncertainty baselines explain the recoverable finite-coverage behavior: posterior_lower_q10_dp_beta_1_1 reduces mean target-regime regret versus TRL-log by -0.177525000000, while at least one posterior baseli"
+      ],
+      "review_verdict": "weak_pass",
+      "status": "completed"
     }
   ],
   "project": "sto_trl"

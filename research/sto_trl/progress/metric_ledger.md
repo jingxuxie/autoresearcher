@@ -10,6 +10,7 @@
 | 0006 | completed | weak_pass | pivot | `metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.chain_heldout_mse`=2.9347503914472164e-34<br>`metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.lucky_q_overestimation_reduced_vs_trl_log`=False<br>`metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.lucky_regret_reduced_vs_trl_log`=False<br>`metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.positive_uncertainty_evidence`=False<br>`metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.risk_optimal_matched_action`=risky |
 | 0007 | completed | weak_pass | needs_human | `metrics.aggregate.best_positive_method`=generic_dirichlet_unknown_prior_0_50_alpha_0_50<br>`metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.chain_heldout_mse`=2.9347503914472164e-34<br>`metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.lucky_policy_regret_delta_vs_one_sided_0006`=0.5040000000000001<br>`metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.lucky_policy_regret_delta_vs_trl_log`=0.0<br>`metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.lucky_q_overestimation_delta_vs_one_sided_0006`=0.18000000000000005 |
 | 0008 | completed | weak_pass | continue | `metrics.classification_counts.no_success`=45<br>`metrics.method_summary.empirical_risky_value.action_accuracy`=0.6903225806451613<br>`metrics.method_summary.empirical_risky_value.mean_policy_regret`=0.07556516129032252<br>`metrics.method_summary.empirical_transition_dp.mean_policy_regret`=0.07556516129032252<br>`metrics.method_summary.hoeffding_lcb_delta_0_2.mean_policy_regret`=0.019136129032258063 |
+| 0009 | completed | weak_pass | continue | `metrics.best_transition_uncertainty_method`=posterior_lower_q10_dp_beta_1_1<br>`metrics.best_transition_uncertainty_target_regret_delta_vs_trl_log`=-0.17752500000000004<br>`metrics.chain_guard.by_distance.1.exact`=0.9<br>`metrics.chain_guard.by_distance.2.exact`=0.81<br>`metrics.chain_guard.by_distance.3.exact`=0.7290000000000001 |
 
 ## Positive Signals
 
@@ -22,6 +23,9 @@
 - `0007`: generic_dirichlet_unknown_prior_0_50_alpha_0_50 reduced safe-optimal lucky-only overestimation versus trl_log while preserving the chain and selecting risky with zero regret in the matched risk-optimal scenario. The risk-optimal no-success stress status is rep
 - `0008`: Posterior lower and upper choices intentionally disagree in prior-dependent cells, exposing where explicit priors are unavoidable.
 - `0008`: The grid is useful as an identifiability map: it separates cells where empirical transition estimates match exact action choice from lucky-only, no-success, ambiguous, and prior-dependent cells where explicit priors are required.
+- `0009`: Best target-regime transition uncertainty baseline: posterior_lower_q10_dp_beta_1_1 with regret delta -0.177525000000 versus TRL-log.
+- `0009`: Posterior lower/mean baselines reduce safe lucky-only and safe prior-dependent regret without selecting safe everywhere.
+- `0009`: On the representative 0008 subset, transition-level uncertainty baselines explain the recoverable finite-coverage behavior: posterior_lower_q10_dp_beta_1_1 reduces mean target-regime regret versus TRL-log by -0.177525000000, while at least one posterior baseli
 
 ## Negative Signals
 
@@ -48,3 +52,6 @@
 - `0008`: Grid produced 285 ambiguous, lucky-only, no-success, or prior-dependent cells where action choice cannot be justified by empirical frequencies alone.
 - `0008`: TRL-log is identical to empirical transition DP on this tabular grid, so failures in those cells are data-identifiability failures rather than implementation-specific TRL-log failures.
 - `0008`: Do not use the method_summary rankings as probability-weighted performance claims; the sweep weights each possible observed success count equally.
+- `0009`: TRL-log, empirical risky value, and empirical model DP are numerically equivalent for these one-step risky shortcut decisions.
+- `0009`: No evaluated transition baseline solved risk_optimal_no_success; explicit priors or additional coverage remain necessary.
+- `0009`: Risk-optimal no-success remains unsolved from counts alone.
