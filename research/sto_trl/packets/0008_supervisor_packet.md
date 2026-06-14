@@ -2,7 +2,7 @@
 
 ## Requested action
 
-Choose continue, pivot, stop, or needs_human. If this is iteration 0 with no prior result, propose the first small experiment when the charter is specific enough. If continuing, propose exactly one small experiment.
+Choose continue, pivot, stop, or needs_human. If this is iteration 0 with no prior result, propose the first small experiment when the charter is specific enough. If continuing, propose exactly one small experiment. If a human pivot note or next-step review plan exists, treat it as approved human direction and normally choose continue with the next small experiment from that plan, unless it is unsafe or impossible.
 
 
 ## Project charter
@@ -106,6 +106,329 @@ The supervisor should propose exactly one small experiment for iteration 1:
 Do not optimize for benchmark performance in the first run. Optimize for a correct diagnostic that can reveal whether the idea has a real failure mode to target.
 
 
+## Project planning docs
+
+## research/sto_trl/charter.md
+
+```markdown
+# Stochastic TRL Charter
+
+## Research Goal
+
+Rapidly test whether a stochastic extension of Transitive RL is worth pursuing.
+
+The core question is whether calibrated stochastic successor distances plus TRL-style divide-and-conquer path relaxation can improve long-horizon offline goal-conditioned RL under stochastic dynamics, especially in environments with risky shortcuts or stochastic teleporters.
+
+The full prototype plan is in `research/sto_trl/stochastic_trl_fast_prototype_plan.md`. This charter is the compact source of truth for the autoresearcher loop.
+
+## Main Hypothesis
+
+A stochastic-calibrated log or successor-distance TRL variant can reduce optimistic bias on risky stochastic paths while preserving TRL-style horizon generalization.
+
+More concretely:
+
+- Raw deterministic-style TRL may overestimate lucky stochastic paths.
+- Log-space TRL should be numerically safer for long horizons than raw probability products.
+- Adding a calibrated stochastic distance or successor-distance term should improve value calibration at stochastic branch points.
+- A useful method should reduce overestimation without simply becoming conservative everywhere.
+
+## Initial Scope
+
+Start with tabular experiments only. Do not start with OGBench, PointMaze, AntMaze, or large neural-network training.
+
+The first autoresearcher iterations should implement and test:
+
+1. A deterministic chain sanity check.
+2. A risky shortcut versus safe route stochastic MDP.
+3. Exact DP ground truth for discounted reachability.
+4. Small offline trajectory generation with lucky and unlucky stochastic outcomes.
+5. Baselines: MC supervised, TRL-raw, TRL-log, and MC + TRL-log.
+
+Only after deterministic and stochastic tabular diagnostics are clean should later iterations consider learned tabular models, tiny MLPs, continuous point mazes, or OGBench teleport tasks.
+
+## Primary Metrics
+
+Use exact DP ground truth wherever possible.
+
+Primary metrics:
+
+- Overestimation error: mean `max(0, U_hat - U_star)`.
+- Policy regret versus exact DP policy.
+- Long-horizon value MSE.
+- Risky action selection rate.
+- Calibration error for discounted reachability.
+
+Secondary metrics:
+
+- Underestimation error.
+- Triangle violation rate for learned distance-like quantities.
+- Greedy policy success rate.
+- Median steps to goal.
+- Coverage diagnostics for states, actions, goals, and risky success/failure outcomes.
+
+## Success Criteria
+
+Early evidence is positive only if a small tabular experiment shows at least one of:
+
+- Raw TRL has a measurable overoptimism region on stochastic risky paths.
+- TRL-log or MC + TRL-log improves long-horizon estimates over MC-only without breaking deterministic sanity checks.
+- A stochastic-calibrated variant reduces risky-path overestimation while preserving safe-route value estimates.
+- The greedy policy improves regret or risky-action choice versus raw TRL under exact DP evaluation.
+
+The first iteration should be considered successful if it creates a reproducible tabular harness and produces a valid result table for at least the deterministic chain and one risky-shortcut configuration.
+
+## Failure Criteria
+
+Pause or stop before larger experiments if:
+
+- Raw/log TRL cannot recover deterministic shortest-path behavior in a simple chain.
+- There is no exact DP ground truth for the stochastic diagnostic.
+- The experiment only reports training loss and no value/policy calibration metrics.
+- The stochastic variant wins only by being conservative and avoiding all risky paths, including cases where risk is optimal.
+- The loop attempts OGBench, AntMaze, large downloads, or long training before tabular diagnostics pass.
+- The result omits exact commands, raw metrics, or coverage diagnostics.
+
+## Runtime And Compute Budget
+
+Initial experiments should complete in minutes on CPU or GPU.
+
+Use the project conda environment `autoresearcher_sto_trl`. JAX/GPU is allowed and preferred when available, but the first tabular experiments must remain small enough to run without expensive training.
+
+Treat step counts in offline diagnostics as optimizer/update steps unless the experiment explicitly reports environment rollouts. For this project, early runtime should mostly come from JAX/XLA compilation, repeated updates, pair sampling, and scoring rather than environment interaction.
+
+## First Experiment Guidance
+
+The supervisor should propose exactly one small experiment for iteration 1:
+
+- Build a minimal tabular prototype under `research/sto_trl/artifacts/0001/`.
+- Implement deterministic chain and risky shortcut MDPs.
+- Implement exact discounted reachability DP.
+- Compare MC supervised, TRL-raw, TRL-log, and MC + TRL-log on a tiny configuration.
+- Save raw metrics to JSON or CSV.
+- Produce `research/sto_trl/results/0001_result.json` and `research/sto_trl/results/0001_summary.md`.
+
+Do not optimize for benchmark performance in the first run. Optimize for a correct diagnostic that can reveal whether the idea has a real failure mode to target.
+```
+
+## research/sto_trl/stochastic_trl_fast_prototype_plan.md
+
+```markdown
+Source document is 34324 chars, exceeding max_source_doc_chars=12000.
+
+Headings:
+
+# Fast Prototyping Plan: Stochastic Transitive RL
+## 0. One-sentence project framing
+## 1. What should count as early evidence?
+## 2. Grounding in the current code and benchmarks
+## 3. Algorithm variants to prototype
+### Variant 0: `TRL-raw`
+### Variant 1: `TRL-log`
+### Variant 2: `MC-cal + TRL-log`
+### Variant 3: `Successor-distance + TRL-log`
+### Variant 4: `TMD + TRL-relax`
+## 4. Experiment ladder
+## 5. Stage A: deterministic tabular sanity check
+### Purpose
+### Environment A1: deterministic chain
+### Environment A2: deterministic two-room maze
+### Data
+### Baselines
+### Metrics
+### Pass criteria
+### Failure interpretation
+## 6. Stage B: stochastic tabular tests with exact ground truth
+### Shared ground truth
+### Environment B1: slip chain
+### Environment B2: risky shortcut vs safe route
+### Environment B3: stochastic teleporter maze
+### Environment B4: stochastic stitching graph
+## 7. Stage C: learned tabular offline experiments
+### Model classes
+### Offline dataset sizes
+### Losses to compare
+#### C0: MC supervised
+#### C1: raw TRL
+#### C2: log TRL
+#### C3: MC + log TRL
+#### C4: contrastive successor distance
+#### C5: contrastive successor distance + log TRL
+### Hyperparameter sweep
+### Core metrics
+### Minimum result table
+## 8. Stage D: tiny continuous control before OGBench
+### Environment D1: continuous point navigation with stochastic wind
+### Environment D2: continuous risky teleporter
+### Data
+### Metrics
+### Pass criteria
+## 9. Stage E: OGBench PointMaze teleport experiments
+### Why PointMaze first?
+### Recommended datasets
+### Fast-run settings
+### Baselines
+### Implementation fork
+#### `trl_log.py` changes
+#### `trl_stoch.py` additions
+### Screening metrics
+### Pass criteria
+## 10. Stage F: OGBench AntMaze teleport
+### Datasets
+### Baselines
+### Run protocol
+### Pass criteria
+## 11. Ablation checklist
+## 12. Diagnostics that prevent flawed conclusions
+### Coverage diagnostics
+### Calibration diagnostics
+### Optimism diagnostics
+### Policy diagnostics
+### Robustness diagnostics
+## 13. Milestone plan
+### Milestone 1: tabular harness and deterministic reproduction
+### Milestone 2: risky stochastic MDP failure test
+### Milestone 3: first stochastic-calibrated variant
+### Milestone 4: stochastic teleporter gridworld
+### Milestone 5: continuous tiny point maze
+### Milestone 6: OGBench PointMaze teleport screening
+### Milestone 7: TMD comparison/integration
+## 14. Practical commands and scaffolding
+### TRL setup
+### OGBench direct API smoke test
+### Suggested tabular run commands
+### Suggested result aggregation
+
+Inspect `research/sto_trl/stochastic_trl_fast_prototype_plan.md` for full text.
+```
+
+## research/sto_trl/sto_trl_next_steps_review_plan.md
+
+```markdown
+Source document is 25255 chars, exceeding max_source_doc_chars=12000.
+
+Headings:
+
+# Stochastic TRL: Results Review and Next-Step Plan
+## 1. Bottom line
+## 2. Evidence review
+### 2.1 Experiment setup quality
+### 2.2 What is genuinely positive
+### 2.3 What is negative or weak
+## 3. My answer: should you continue?
+### Continue if the project is reframed
+### Do not continue the original formulation unchanged
+## 4. Key conceptual pivot
+### A. Long-horizon propagation
+### B. Aleatoric stochasticity
+### C. Epistemic uncertainty / finite offline coverage
+## 5. Immediate next-step plan
+# Milestone 0 — Freeze current evidence and tighten success criteria
+# Milestone 1 — Identifiability and coverage grid
+## Question
+## Why this matters
+## MDP family
+## Required outputs
+## Metrics
+## Pass/fail interpretation
+# Milestone 2 — Transition-level posterior baseline
+## Question
+## Why this differs from 0007
+## Methods to implement
+### 1. Empirical model DP
+### 2. Bayesian posterior mean DP
+### 3. Posterior quantile DP
+### 4. Robust confidence-set DP
+## Baselines
+## Pass criteria
+## Expected decision after this milestone
+# Milestone 3 — Add transitive propagation to posterior transition models
+## Question
+## Design
+## Critical ablation
+## Pass criteria
+# Milestone 4 — Randomized MDP generalization suite
+## Question
+## Why this matters
+## MDP families
+### Family A: Branch-chain MDPs
+### Family B: Stochastic safe route
+### Family C: Multi-branch stochastic maze
+### Family D: Stochastic teleporter
+## Dataset regimes
+## Metrics
+## Pass criteria
+# Milestone 5 — One-hot neural tabular approximation
+## Question
+## Setup
+## Metrics
+## Pass criteria
+# Milestone 6 — Tiny stochastic gridworld / point maze
+## Question
+## Start with a hand-coded gridworld
+## Baselines
+## Pass criteria
+# Milestone 7 — OGBench/PointMaze teleport only after gates pass
+## 6. Specific algorithmic directions to test
+### Direction A — Keep log-TRL as a baseline, not the full method
+### Direction B — Transition-posterior TRL
+# Estimate transition uncertainty
+# Sample transition models
+# Use posterior mean or quantile for learning/action selection
+### Direction C — Robust TRL lower bound
+### Direction D — Bayesian risk-sensitive family
+## 7. What not to do next
+## 8. Recommended experiment order
+## 9. Proposed decision gates
+### Gate A — After Milestone 1
+### Gate B — After Milestone 2
+### Gate C — After Milestone 3
+### Gate D — After Milestone 4
+### Gate E — After Milestone 5
+## 10. Concrete result table template for future summaries
+## 11. Code hygiene recommendations
+## 12. Suggested next experiment prompt
+## 13. Final recommendation
+
+Inspect `research/sto_trl/sto_trl_next_steps_review_plan.md` for full text.
+```
+
+
+## Human pivot notes
+
+## research/sto_trl/progress/human_pivot_0008.md
+
+```markdown
+# Human Pivot 0008
+
+The automatic loop should continue only under a reframed stochastic TRL question:
+
+> Can transition-level stochastic uncertainty plus log-space transitive propagation produce calibrated long-horizon goal reachability under finite offline stochastic coverage?
+
+Current evidence to preserve:
+
+- Raw deterministic-style TRL has a real stochastic overoptimism failure mode.
+- Log-TRL is a useful long-horizon propagation baseline.
+- The current successor-distance plus TRL-log formulation is negative or not distinct from TRL-log.
+- The hand-shaped one-sided penalty is diagnostic, not a general method.
+- The generic count/Dirichlet-style uncertainty penalty reduced some Q overestimation but did not fix policy-level lucky-only regret.
+
+Future positive criteria:
+
+1. Preserve deterministic chain held-out MSE near zero.
+2. Preserve matched safe-optimal and matched risk-optimal action choices.
+3. Improve safe-optimal lucky-only policy regret versus TRL-log.
+4. Avoid simply choosing safe everywhere.
+5. Beat or match a simple empirical-transition-model DP baseline.
+6. Show a specific benefit from transitive/log-TRL beyond transition uncertainty alone.
+
+Recommended next experiment:
+
+Run an identifiability and coverage grid before adding more algorithms. Sweep true risky success probability, safe path length, risky sample count, and observed risky successes. Compare empirical risky value, posterior means/quantiles, lower/upper confidence choices, TRL-log, and raw TRL. Save the grid, regret heatmaps, impossibility cases, result JSON, and summary under iteration `0008`.
+
+The expected value of this experiment is not an algorithm win. It should identify which regimes are solvable from offline data and which require explicit priors or assumptions.
+```
+
+
 ## Environment state
 
 ```json
@@ -153,15 +476,31 @@ Do not optimize for benchmark performance in the first run. Optimize for a corre
   "iteration": 7,
   "last_decision": "continue",
   "last_failure": null,
-  "last_pro_review_iteration": 0,
+  "last_pro_review_iteration": 7,
+  "last_pro_review_path": null,
+  "last_summary_iteration": 7,
+  "last_summary_path": "research/sto_trl/progress/0007_pre_pro_local_stop_summary.md",
   "no_progress_rounds": 0,
   "notes": [
     "2026-06-13T08:58:38+00:00: supervisor decision pivot",
     "2026-06-13T09:21:15+00:00: retryable failure 1/3: reviewer failed or timed out; see /home/eston/autoresearcher/research/sto_trl/reviews/0007_review_stderr.log",
-    "2026-06-13T09:29:31+00:00: supervisor decision needs_human"
+    "2026-06-13T09:29:31+00:00: supervisor decision needs_human",
+    "2026-06-14T00:48:41+00:00: Pro checkpoint blocked (browser_bridge_unavailable); packet research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md",
+    "2026-06-14T00:49:04+00:00: Pro checkpoint blocked (pro_backend_failed); packet research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md",
+    "2026-06-14T00:49:55+00:00: Pro checkpoint blocked (browser_bridge_unavailable); packet research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md",
+    "2026-06-14T00:56:09+00:00: Pro checkpoint blocked (browser_bridge_unavailable); packet research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md",
+    "2026-06-14T00:56:57+00:00: Pro checkpoint blocked (browser_bridge_unavailable); packet research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md",
+    "2026-06-14T01:08:34+00:00: Pro checkpoint blocked (browser_bridge_unavailable); packet research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md",
+    "2026-06-14T01:25:11+00:00: Pro checkpoint blocked (login_required); packet research/sto_trl/pro_packets/0008_PRO_REVIEW_PACKET.md",
+    "2026-06-14T02:45:00+00:00: resumed from human-approved stochastic TRL next-step plan; GPT-Pro cadence reset to after iteration 7"
   ],
+  "pending_checkpoint": null,
+  "pending_local_decision_path": null,
   "primary_metric": null,
-  "status": "active"
+  "pro_review_count": 0,
+  "protected_file_drift": false,
+  "status": "active",
+  "weak_pass_streak": 0
 }
 ```
 
@@ -531,6 +870,229 @@ _Trimmed to 6000 chars; inspect the source file for full text._
     "The current worktree has unrelated uncommitted modifications to scripts/autoresearcher.py, but the 0007 result commit did not include that protected file."
   ],
   "verdict": "weak_pass"
+}
+```
+
+
+## Metric ledger
+
+```json
+{
+  "iterations": [
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "A tiny stochastic risky-shortcut MDP exposes overestimation by deterministic raw TRL backups, while log-space stochastic backups preserve deterministic-chain behavior and improve risky-action calibration relative to raw TRL.",
+      "decision": "continue",
+      "important_metrics": {
+        "metrics.mdps.deterministic_chain.coverage_diagnostics.risky_failure_count": 0,
+        "metrics.mdps.deterministic_chain.coverage_diagnostics.risky_success_count": 0,
+        "metrics.mdps.deterministic_chain.coverage_diagnostics.risky_success_rate_observed": null,
+        "metrics.mdps.deterministic_chain.methods.mc_plus_trl_log.calibration_error": 0.13193442000000005,
+        "metrics.mdps.deterministic_chain.methods.mc_plus_trl_log.eval_start_exact_q.right": 0.5904900000000002,
+        "metrics.mdps.deterministic_chain.methods.mc_plus_trl_log.eval_start_exact_value": 0.5904900000000002,
+        "metrics.mdps.deterministic_chain.methods.mc_plus_trl_log.long_horizon_value_mse": 0.0,
+        "metrics.mdps.deterministic_chain.methods.mc_plus_trl_log.max_policy_regret": 0.0,
+        "metrics.mdps.deterministic_chain.methods.mc_plus_trl_log.mean_policy_regret": 0.0,
+        "metrics.mdps.deterministic_chain.methods.mc_plus_trl_log.policy_regret": 0.0,
+        "metrics.mdps.deterministic_chain.methods.mc_plus_trl_log.q_calibration_error": 0.13193442000000005,
+        "metrics.mdps.deterministic_chain.methods.mc_plus_trl_log.q_overestimation_error": 0.0
+      },
+      "iteration": "0001",
+      "negative_signals": [
+        "Evidence is intentionally small-scale and balanced: risky outcome coverage exactly matches the true 0.25 success probability, so MC supervised is perfect here and the experiment mainly supports the raw-TRL overestimation...",
+        "/home/eston/autoresearcher is not a git repository, so unrelated modifications could not be audited with git status."
+      ],
+      "positive_signals": [
+        "The deterministic chain sanity check was recovered by both raw and log TRL. On the risky-shortcut MDP, raw deterministic-style TRL treated the observed lucky risky edge as reliable and selected risky with Q=0.900000 versus exact Q=0.225000. The empirical log b"
+      ],
+      "review_verdict": "pass",
+      "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "Raw TRL overestimation is support-driven under stochastic coverage, while empirical MC/log methods are calibrated only when observed risky branch frequencies match the true MDP; a risk-optimal setting tests for conservative avoidance.",
+      "decision": "continue",
+      "important_metrics": {
+        "metrics.aggregate.mc_supervised_mean_policy_regret": 0.0666,
+        "metrics.aggregate.num_risky_scenarios": 10,
+        "metrics.aggregate.raw_no_success_scenarios": 2,
+        "metrics.aggregate.raw_selected_risky_when_no_success_observed": 0,
+        "metrics.aggregate.raw_selected_risky_when_success_observed": 8,
+        "metrics.aggregate.raw_success_observed_scenarios": 8,
+        "metrics.aggregate.trl_log_mean_policy_regret": 0.0666,
+        "metrics.aggregate.trl_raw_mean_policy_regret": 0.20970000000000005,
+        "metrics.regime_specs.risk_optimal.lucky_biased.risky_failures": 0,
+        "metrics.regime_specs.risk_optimal.lucky_biased.risky_successes": 9,
+        "metrics.regime_specs.risk_optimal.lucky_only.risky_failures": 0,
+        "metrics.regime_specs.risk_optimal.lucky_only.risky_successes": 4
+      },
+      "iteration": "0002",
+      "negative_signals": [
+        "The Q overestimation and underestimation maxima are computed across all goals, not only the eval goal, so those headline error fields can reflect non-eval goals such as trap; eval-goal learned/exact Q columns mitigate th...",
+        "commands_run records setup, execution, and validation commands but not the manual edits that transformed the copied 0001 script into the 0002 harness.",
+        "git status only showed an untracked reviewer packet, but without committed baselines this review cannot fully prove no prior artifacts were modified."
+      ],
+      "positive_signals": [
+        "The chain guard still recovered exact discounted reachability for raw and log TRL. Across risky regimes, raw TRL selected risky in every scenario with at least one observed lucky risky transition and did not select risky when no lucky risky transition was obse"
+      ],
+      "review_verdict": "pass",
+      "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "Censoring long-horizon MC labels makes MC-only underpredict held-out discounted reachability, while log transitive backups recover longer horizons and keep matched risky-branch calibration.",
+      "decision": "continue",
+      "important_metrics": {
+        "metrics.aggregate.chain_mc_heldout_value_mse": 0.3917058232298766,
+        "metrics.aggregate.chain_mc_plus_trl_log_heldout_value_mse": 2.9347503914472164e-34,
+        "metrics.aggregate.chain_trl_log_heldout_value_mse": 2.9347503914472164e-34,
+        "metrics.aggregate.risky_mc_heldout_value_mse": 0.25401600000000013,
+        "metrics.aggregate.risky_mc_plus_trl_log_heldout_value_mse": 0.0,
+        "metrics.aggregate.risky_mc_plus_trl_log_policy_regret": 0.0,
+        "metrics.aggregate.risky_trl_log_heldout_value_mse": 0.0,
+        "metrics.aggregate.risky_trl_log_policy_regret": 0.0,
+        "metrics.aggregate.risky_trl_raw_policy_regret": 0.5040000000000001,
+        "metrics.scenarios.chain_len9.coverage_diagnostics.risky_failure_count": 0,
+        "metrics.scenarios.chain_len9.coverage_diagnostics.risky_success_count": 0,
+        "metrics.scenarios.chain_len9.coverage_diagnostics.risky_success_rate_observed": null
+      },
+      "iteration": "0003",
+      "negative_signals": [
+        "git status shows modified control files including scripts/autoresearcher.py, autoresearcher.yaml, tests/test_phase1.py, and research/sto_trl/state.json. Their mtimes precede the 0003 plan, so they appear pre-existing to...",
+        "commands_run records setup, execution, and validation commands, but not the manual edit operation that adapted the copied 0002 script into the 0003 harness.",
+        "TRL-log and raw TRL are transitive model-based tabular backups over observed transitions, so they do not consume the same supervised label budget as MC-only; this is intended by the plan but should be kept in mind when i..."
+      ],
+      "positive_signals": [
+        "With positive labels beyond horizon 2 censored, MC-supervised underpredicted held-out long-horizon reachability. TRL-log and MC+TRL-log propagated through observed transitions and reduced held-out value MSE on the longer chain and the matched risky MDP. In the"
+      ],
+      "review_verdict": "weak_pass",
+      "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "A self-normalized successor-distance calibration with log-space transitive relaxation improves held-out reachability versus calibration-only without increasing matched risky overestimation or avoiding truly optimal risky actions.",
+      "decision": "continue",
+      "important_metrics": {
+        "metrics.aggregate.risk_matched_successor_calibration_only_policy_regret": 0.0,
+        "metrics.aggregate.risk_matched_successor_distance_trl_log_policy_regret": 0.0,
+        "metrics.aggregate.safe_lucky_stress_successor_distance_action": "risky",
+        "metrics.aggregate.safe_matched_successor_calibration_only_policy_regret": 0.5040000000000001,
+        "metrics.aggregate.safe_matched_successor_distance_trl_log_policy_regret": 0.0,
+        "metrics.aggregate.successor_calibration_only_main_mean_heldout_mse": 0.21524060774329223,
+        "metrics.aggregate.successor_distance_trl_log_main_mean_heldout_mse": 9.782501304824055e-35,
+        "metrics.scenarios.chain_len9_holdout.coverage_diagnostics.risky_failure_count": 0,
+        "metrics.scenarios.chain_len9_holdout.coverage_diagnostics.risky_success_count": 0,
+        "metrics.scenarios.chain_len9_holdout.coverage_diagnostics.risky_success_rate_observed": null,
+        "metrics.scenarios.chain_len9_holdout.label_or_pair_coverage.censored_examples.0.positive_horizon": 3,
+        "metrics.scenarios.chain_len9_holdout.label_or_pair_coverage.censored_examples.1.positive_horizon": 4
+      },
+      "iteration": "0004",
+      "negative_signals": [
+        "successor_distance_trl_log is behaviorally identical or near-identical to trl_log in the saved main metrics, so the result supports the calibration-only versus transitive-relaxation ablation but not a clear advantage ove...",
+        "self_normalize_successor_scores divides by max([scores] + [1.0]), which is an identity transform for scores already in [0,1]; successor_calibration_only therefore matches mc_supervised in these runs.",
+        "git status still shows modified control/config/test files, including scripts/autoresearcher.py and autoresearcher.yaml. Their mtimes predate the 0004 artifact generation, but the dirty tree means the no-control-file-edit...",
+        "commands_run records the copy, execution, and validation commands but not the manual edits that adapted the copied 0003 script into the 0004 successor-distance harness."
+      ],
+      "positive_signals": [
+        "The successor-distance transitive relaxation improved main held-out long-horizon value MSE over calibration-only. On matched safe-optimal risky coverage it selected safe with no policy-regret increase versus calibration-only, and on matched risk-optimal covera"
+      ],
+      "review_verdict": "weak_pass",
+      "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "A successor-distance lambda sweep can reveal whether successor_distance_trl_log has a distinct effect beyond trl_log while retaining calibration and lower held-out error than calibration-only.",
+      "decision": "continue",
+      "important_metrics": {
+        "metrics.aggregate.any_positive_successor_evidence": false,
+        "metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_00.equivalent_to_trl_log_all_main": false,
+        "metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_00.improves_vs_calibration_only": false,
+        "metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_00.lambda_tr": 0.0,
+        "metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_00.main_mean_heldout_mse": 0.21524060774329223,
+        "metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_00.matched_no_policy_regret_increase_vs_calibration_only": true,
+        "metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_00.matched_no_q_overestimation_increase_vs_calibration_only": true,
+        "metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_00.non_equivalent_to_trl_log_any_main": true,
+        "metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_00.positive_successor_evidence": false,
+        "metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_00.risk_optimal_selects_risky": true,
+        "metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_25.equivalent_to_trl_log_all_main": true,
+        "metrics.aggregate.lambda_summaries.successor_distance_trl_log_lambda_0_25.improves_vs_calibration_only": true
+      },
+      "iteration": "0005",
+      "negative_signals": [
+        "Working tree contains pre-existing modified control/config/test files, including scripts/autoresearcher.py, so the no-control-file-edit criterion cannot be proven from git status alone.",
+        "commands_run records copy, run, and validation commands, but not any manual edit steps used to adapt the copied 0004 script into the 0005 audit.",
+        "A generated __pycache__/ directory exists under artifacts/0005; harmless but extra artifact noise.",
+        "Supervisor should continue only treating 0005 as negative evidence for distinct successor-distance value, not as support for the prior positive 0004 interpretation."
+      ],
+      "positive_signals": [
+        "The audit found negative successor-distance evidence: improving lambdas reduced held-out error by matching trl_log within the predeclared tolerance, so this variant is not yet distinct from trl_log on these tabular diagnostics."
+      ],
+      "review_verdict": "pass",
+      "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "A one-sided count-based conservative log-TRL backup can reduce lucky-only risky overestimation without breaking deterministic recovery or matched risk-optimal action selection.",
+      "decision": "pivot",
+      "important_metrics": {
+        "metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.chain_heldout_mse": 2.9347503914472164e-34,
+        "metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.lucky_q_overestimation_reduced_vs_trl_log": false,
+        "metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.lucky_regret_reduced_vs_trl_log": false,
+        "metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.positive_uncertainty_evidence": false,
+        "metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.risk_optimal_matched_action": "risky",
+        "metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.risk_optimal_matched_ok": true,
+        "metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.risk_optimal_matched_policy_regret": 0.0,
+        "metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.safe_optimal_lucky_policy_regret": 0.5040000000000001,
+        "metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_00.safe_optimal_lucky_q_overestimation": 0.675,
+        "metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_20.chain_heldout_mse": 2.9347503914472164e-34,
+        "metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_20.lucky_q_overestimation_reduced_vs_trl_log": true,
+        "metrics.aggregate.alpha_summaries.one_sided_conservative_log_trl_alpha_0_20.lucky_regret_reduced_vs_trl_log": false
+      },
+      "iteration": "0006",
+      "negative_signals": [
+        "The aggregate labels one_sided_conservative_log_trl_alpha_0_20 as best_positive_method even though alpha 0.40 and 0.60 also eliminate lucky-only policy regret; this is a first-positive selection, not a best-by-regret sel...",
+        "The interpretation says alpha 0.20 reduced the lucky-only safe-optimal failure, but alpha 0.20 still selects risky with policy regret 0.504; the stronger claim should be limited to reduced overestimation/held-out MSE unl...",
+        "The risk_optimal_no_success_stress case remains a biased-coverage failure for trl_log and all conservative alpha values: they select safe with regret 0.081 despite the true risky optimum.",
+        "The penalty eligibility rule is hand-shaped around direct-goal single-branch shortcut actions at multi-action states, so evidence may not generalize beyond these toy diagnostics."
+      ],
+      "positive_signals": [
+        "one_sided_conservative_log_trl_alpha_0_20 reduced the lucky-only safe-optimal failure versus trl_log while preserving the chain and selecting risky with zero regret in the matched risk-optimal scenario."
+      ],
+      "review_verdict": "weak_pass",
+      "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "A generic count-based posterior branch-uncertainty penalty can replace the hand-shaped 0006 shortcut rule while reducing lucky-only overestimation and preserving matched risk-optimal behavior.",
+      "decision": "needs_human",
+      "important_metrics": {
+        "metrics.aggregate.best_positive_method": "generic_dirichlet_unknown_prior_0_50_alpha_0_50",
+        "metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.chain_heldout_mse": 2.9347503914472164e-34,
+        "metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.lucky_policy_regret_delta_vs_one_sided_0006": 0.5040000000000001,
+        "metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.lucky_policy_regret_delta_vs_trl_log": 0.0,
+        "metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.lucky_q_overestimation_delta_vs_one_sided_0006": 0.18000000000000005,
+        "metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.lucky_q_overestimation_delta_vs_trl_log": 0.0,
+        "metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.positive_generic_uncertainty_evidence": false,
+        "metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.risk_no_success_policy_regret_delta_vs_one_sided_0006": 0.0,
+        "metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.risk_no_success_policy_regret_delta_vs_trl_log": 0.0,
+        "metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.risk_optimal_matched_action": "risky",
+        "metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.risk_optimal_matched_ok": true,
+        "metrics.aggregate.generic_summaries.generic_dirichlet_unknown_prior_0_50_alpha_0_00.risk_optimal_matched_policy_regret": 0.0
+      },
+      "iteration": "0007",
+      "negative_signals": [
+        "Do not treat 0007 as showing that the generic method fully replaces the 0006 one-sided rule; it only gives modest Q-overestimation reduction without fixing lucky-only policy regret.",
+        "known_failures is empty despite risk_optimal_no_success_stress remaining unsolved; this is acceptable for continuation only because the limitation is explicit in metrics and summary.",
+        "The current worktree has unrelated uncommitted modifications to scripts/autoresearcher.py, but the 0007 result commit did not include that protected file."
+      ],
+      "positive_signals": [
+        "generic_dirichlet_unknown_prior_0_50_alpha_0_50 reduced safe-optimal lucky-only overestimation versus trl_log while preserving the chain and selecting risky with zero regret in the matched risk-optimal scenario. The risk-optimal no-success stress status is rep"
+      ],
+      "review_verdict": "weak_pass",
+      "status": "completed"
+    }
+  ],
+  "project": "sto_trl"
 }
 ```
 
