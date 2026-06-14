@@ -1,0 +1,1376 @@
+{
+  "branch_chain_seed0": {
+    "exact_q": {
+      "risk_1|advance": 0.81,
+      "risk_2|advance": 0.9,
+      "safe_1|advance": 0.7290000000000001,
+      "safe_2|advance": 0.81,
+      "safe_3|advance": 0.9,
+      "start|risky": 0.4835821929122932,
+      "start|safe": 0.6561000000000001
+    },
+    "method_q": {
+      "empirical_model_dp": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.48600000000000004,
+        "start|safe": 0.6561000000000001
+      },
+      "mc_supervised": {
+        "risk_1|advance": 0.8100000000000003,
+        "risk_2|advance": 0.9000000000000001,
+        "safe_1|advance": 0.0,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.0
+      },
+      "posterior_lower_q10_model_dp": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.34744140000000007,
+        "start|safe": 0.6561000000000001
+      },
+      "posterior_mc_plus_trl_log": {
+        "risk_1|advance": 0.8100000000000003,
+        "risk_2|advance": 0.9000000000000001,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.4686428571428573,
+        "start|safe": 0.6561000000000001
+      },
+      "posterior_mean_model_dp": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.46864285714285725,
+        "start|safe": 0.6561000000000001
+      },
+      "posterior_trl_log": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.46864285714285725,
+        "start|safe": 0.6561000000000001
+      },
+      "trl_log": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.48600000000000004,
+        "start|safe": 0.6561000000000001
+      },
+      "trl_raw": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.6561000000000001
+      }
+    }
+  },
+  "branch_chain_seed1": {
+    "exact_q": {
+      "risk_1|advance": 0.81,
+      "risk_2|advance": 0.9,
+      "safe_1|advance": 0.6561000000000001,
+      "safe_2|advance": 0.7290000000000001,
+      "safe_3|advance": 0.81,
+      "safe_4|advance": 0.9,
+      "start|risky": 0.6785861410573489,
+      "start|safe": 0.5904900000000002
+    },
+    "method_q": {
+      "empirical_model_dp": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.69255,
+        "start|safe": 0.5904900000000002
+      },
+      "mc_supervised": {
+        "risk_1|advance": 0.8100000000000004,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.0,
+        "safe_2|advance": 0.0,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.0
+      },
+      "posterior_lower_q10_model_dp": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.602883,
+        "start|safe": 0.5904900000000002
+      },
+      "posterior_mc_plus_trl_log": {
+        "risk_1|advance": 0.8100000000000004,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.662727272727273,
+        "start|safe": 0.5904900000000002
+      },
+      "posterior_mean_model_dp": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.6627272727272728,
+        "start|safe": 0.5904900000000002
+      },
+      "posterior_trl_log": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.6627272727272728,
+        "start|safe": 0.5904900000000002
+      },
+      "trl_log": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.69255,
+        "start|safe": 0.5904900000000002
+      },
+      "trl_raw": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.5904900000000002
+      }
+    }
+  },
+  "branch_chain_seed2": {
+    "exact_q": {
+      "risk_1|advance": 0.81,
+      "risk_2|advance": 0.9,
+      "safe_1|advance": 0.7290000000000001,
+      "safe_2|advance": 0.81,
+      "safe_3|advance": 0.9,
+      "start|risky": 0.38073170553870206,
+      "start|safe": 0.6561000000000001
+    },
+    "method_q": {
+      "empirical_model_dp": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.6561000000000001
+      },
+      "mc_supervised": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.0,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.0
+      },
+      "posterior_lower_q10_model_dp": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.45999900000000005,
+        "start|safe": 0.6561000000000001
+      },
+      "posterior_mc_plus_trl_log": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.6075,
+        "start|safe": 0.6561000000000001
+      },
+      "posterior_mean_model_dp": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.6075,
+        "start|safe": 0.6561000000000001
+      },
+      "posterior_trl_log": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.6075,
+        "start|safe": 0.6561000000000001
+      },
+      "trl_log": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.6561000000000001
+      },
+      "trl_raw": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.6561000000000001
+      }
+    }
+  },
+  "branch_chain_seed3": {
+    "exact_q": {
+      "risk_1|advance": 0.81,
+      "risk_2|advance": 0.9,
+      "safe_1|advance": 0.7290000000000001,
+      "safe_2|advance": 0.81,
+      "safe_3|advance": 0.9,
+      "start|risky": 0.6925963501445107,
+      "start|safe": 0.6561000000000001
+    },
+    "method_q": {
+      "empirical_model_dp": {
+        "risk_1|advance": 0.0,
+        "risk_2|advance": 0.0,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.6561000000000001
+      },
+      "mc_supervised": {
+        "risk_1|advance": 0.0,
+        "risk_2|advance": 0.0,
+        "safe_1|advance": 0.0,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.0
+      },
+      "posterior_lower_q10_model_dp": {
+        "risk_1|advance": 0.0,
+        "risk_2|advance": 0.0,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.6561000000000001
+      },
+      "posterior_mc_plus_trl_log": {
+        "risk_1|advance": 0.0,
+        "risk_2|advance": 0.0,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.6561000000000001
+      },
+      "posterior_mean_model_dp": {
+        "risk_1|advance": 0.0,
+        "risk_2|advance": 0.0,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.6561000000000001
+      },
+      "posterior_trl_log": {
+        "risk_1|advance": 0.0,
+        "risk_2|advance": 0.0,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.6561000000000001
+      },
+      "trl_log": {
+        "risk_1|advance": 0.0,
+        "risk_2|advance": 0.0,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.6561000000000001
+      },
+      "trl_raw": {
+        "risk_1|advance": 0.0,
+        "risk_2|advance": 0.0,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.6561000000000001
+      }
+    }
+  },
+  "branch_chain_seed4": {
+    "exact_q": {
+      "risk_1|advance": 0.81,
+      "risk_2|advance": 0.9,
+      "safe_1|advance": 0.6561000000000001,
+      "safe_2|advance": 0.7290000000000001,
+      "safe_3|advance": 0.81,
+      "safe_4|advance": 0.9,
+      "start|risky": 0.6051831878397231,
+      "start|safe": 0.5904900000000002
+    },
+    "method_q": {
+      "empirical_model_dp": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.5467500000000001,
+        "start|safe": 0.5904900000000002
+      },
+      "mc_supervised": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.0,
+        "safe_2|advance": 0.0,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.0
+      },
+      "posterior_lower_q10_model_dp": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.30340980000000006,
+        "start|safe": 0.5904900000000002
+      },
+      "posterior_mc_plus_trl_log": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.48600000000000004,
+        "start|safe": 0.5904900000000002
+      },
+      "posterior_mean_model_dp": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.48600000000000004,
+        "start|safe": 0.5904900000000002
+      },
+      "posterior_trl_log": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.48600000000000004,
+        "start|safe": 0.5904900000000002
+      },
+      "trl_log": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.5467500000000001,
+        "start|safe": 0.5904900000000002
+      },
+      "trl_raw": {
+        "risk_1|advance": 0.81,
+        "risk_2|advance": 0.9,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.5904900000000002
+      }
+    }
+  },
+  "stochastic_stitching_seed0": {
+    "exact_q": {
+      "demo_start|stitch": 0.7290000000000001,
+      "hub|advance": 0.81,
+      "safe_1|advance": 0.7290000000000001,
+      "safe_2|advance": 0.81,
+      "safe_3|advance": 0.9,
+      "start|risky": 0.4933727738702126,
+      "start|safe": 0.6561000000000001,
+      "stitch_1|advance": 0.9
+    },
+    "method_q": {
+      "empirical_model_dp": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.48600000000000004,
+        "start|safe": 0.6561000000000001,
+        "stitch_1|advance": 0.9
+      },
+      "mc_supervised": {
+        "demo_start|stitch": 0.0,
+        "hub|advance": 0.8100000000000003,
+        "safe_1|advance": 0.0,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.0,
+        "stitch_1|advance": 0.9000000000000001
+      },
+      "posterior_lower_q10_model_dp": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.34744140000000007,
+        "start|safe": 0.6561000000000001,
+        "stitch_1|advance": 0.9
+      },
+      "posterior_mc_plus_trl_log": {
+        "demo_start|stitch": 0.7290000000000003,
+        "hub|advance": 0.8100000000000003,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.4686428571428573,
+        "start|safe": 0.6561000000000001,
+        "stitch_1|advance": 0.9000000000000001
+      },
+      "posterior_mean_model_dp": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.46864285714285725,
+        "start|safe": 0.6561000000000001,
+        "stitch_1|advance": 0.9
+      },
+      "posterior_trl_log": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.46864285714285725,
+        "start|safe": 0.6561000000000001,
+        "stitch_1|advance": 0.9
+      },
+      "trl_log": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.48600000000000004,
+        "start|safe": 0.6561000000000001,
+        "stitch_1|advance": 0.9
+      },
+      "trl_raw": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.6561000000000001,
+        "stitch_1|advance": 0.9
+      }
+    }
+  },
+  "stochastic_stitching_seed1": {
+    "exact_q": {
+      "demo_start|stitch": 0.7290000000000001,
+      "hub|advance": 0.81,
+      "safe_1|advance": 0.6561000000000001,
+      "safe_2|advance": 0.7290000000000001,
+      "safe_3|advance": 0.81,
+      "safe_4|advance": 0.9,
+      "start|risky": 0.6711439161376523,
+      "start|safe": 0.5904900000000002,
+      "stitch_1|advance": 0.9
+    },
+    "method_q": {
+      "empirical_model_dp": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.6561000000000001,
+        "start|safe": 0.5904900000000002,
+        "stitch_1|advance": 0.9
+      },
+      "mc_supervised": {
+        "demo_start|stitch": 0.0,
+        "hub|advance": 0.8100000000000003,
+        "safe_1|advance": 0.0,
+        "safe_2|advance": 0.0,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.0,
+        "stitch_1|advance": 0.9
+      },
+      "posterior_lower_q10_model_dp": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.5584140000000001,
+        "start|safe": 0.5904900000000002,
+        "stitch_1|advance": 0.9
+      },
+      "posterior_mc_plus_trl_log": {
+        "demo_start|stitch": 0.7290000000000003,
+        "hub|advance": 0.8100000000000003,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.6295909090909093,
+        "start|safe": 0.5904900000000002,
+        "stitch_1|advance": 0.9
+      },
+      "posterior_mean_model_dp": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.6295909090909091,
+        "start|safe": 0.5904900000000002,
+        "stitch_1|advance": 0.9
+      },
+      "posterior_trl_log": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.6295909090909091,
+        "start|safe": 0.5904900000000002,
+        "stitch_1|advance": 0.9
+      },
+      "trl_log": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.6561000000000001,
+        "start|safe": 0.5904900000000002,
+        "stitch_1|advance": 0.9
+      },
+      "trl_raw": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.5904900000000002,
+        "stitch_1|advance": 0.9
+      }
+    }
+  },
+  "stochastic_stitching_seed2": {
+    "exact_q": {
+      "demo_start|stitch": 0.7290000000000001,
+      "hub|advance": 0.81,
+      "safe_1|advance": 0.7290000000000001,
+      "safe_2|advance": 0.81,
+      "safe_3|advance": 0.9,
+      "start|risky": 0.40059768881684354,
+      "start|safe": 0.6561000000000001,
+      "stitch_1|advance": 0.9
+    },
+    "method_q": {
+      "empirical_model_dp": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.6561000000000001,
+        "stitch_1|advance": 0.9
+      },
+      "mc_supervised": {
+        "demo_start|stitch": 0.0,
+        "hub|advance": 0.8100000000000002,
+        "safe_1|advance": 0.0,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.0,
+        "stitch_1|advance": 0.9
+      },
+      "posterior_lower_q10_model_dp": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.45999900000000005,
+        "start|safe": 0.6561000000000001,
+        "stitch_1|advance": 0.9
+      },
+      "posterior_mc_plus_trl_log": {
+        "demo_start|stitch": 0.7290000000000002,
+        "hub|advance": 0.8100000000000002,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.6075000000000002,
+        "start|safe": 0.6561000000000001,
+        "stitch_1|advance": 0.9
+      },
+      "posterior_mean_model_dp": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.6075,
+        "start|safe": 0.6561000000000001,
+        "stitch_1|advance": 0.9
+      },
+      "posterior_trl_log": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.6075,
+        "start|safe": 0.6561000000000001,
+        "stitch_1|advance": 0.9
+      },
+      "trl_log": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.6561000000000001,
+        "stitch_1|advance": 0.9
+      },
+      "trl_raw": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.6561000000000001,
+        "stitch_1|advance": 0.9
+      }
+    }
+  },
+  "stochastic_stitching_seed3": {
+    "exact_q": {
+      "demo_start|stitch": 0.7290000000000001,
+      "hub|advance": 0.81,
+      "safe_1|advance": 0.7290000000000001,
+      "safe_2|advance": 0.81,
+      "safe_3|advance": 0.9,
+      "start|risky": 0.7127505596515402,
+      "start|safe": 0.6561000000000001,
+      "stitch_1|advance": 0.9
+    },
+    "method_q": {
+      "empirical_model_dp": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.6561000000000001,
+        "stitch_1|advance": 0.9
+      },
+      "mc_supervised": {
+        "demo_start|stitch": 0.0,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.0,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.0,
+        "stitch_1|advance": 0.9
+      },
+      "posterior_lower_q10_model_dp": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0086022,
+        "start|safe": 0.6561000000000001,
+        "stitch_1|advance": 0.9
+      },
+      "posterior_mc_plus_trl_log": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.07290000000000002,
+        "start|safe": 0.6561000000000001,
+        "stitch_1|advance": 0.9
+      },
+      "posterior_mean_model_dp": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.07290000000000002,
+        "start|safe": 0.6561000000000001,
+        "stitch_1|advance": 0.9
+      },
+      "posterior_trl_log": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.07290000000000002,
+        "start|safe": 0.6561000000000001,
+        "stitch_1|advance": 0.9
+      },
+      "trl_log": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.6561000000000001,
+        "stitch_1|advance": 0.9
+      },
+      "trl_raw": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.6561000000000001,
+        "stitch_1|advance": 0.9
+      }
+    }
+  },
+  "stochastic_stitching_seed4": {
+    "exact_q": {
+      "demo_start|stitch": 0.7290000000000001,
+      "hub|advance": 0.81,
+      "safe_1|advance": 0.6561000000000001,
+      "safe_2|advance": 0.7290000000000001,
+      "safe_3|advance": 0.81,
+      "safe_4|advance": 0.9,
+      "start|risky": 0.6034319037712444,
+      "start|safe": 0.5904900000000002,
+      "stitch_1|advance": 0.9
+    },
+    "method_q": {
+      "empirical_model_dp": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.5467500000000001,
+        "start|safe": 0.5904900000000002,
+        "stitch_1|advance": 0.9
+      },
+      "mc_supervised": {
+        "demo_start|stitch": 0.0,
+        "hub|advance": 0.8100000000000002,
+        "safe_1|advance": 0.0,
+        "safe_2|advance": 0.0,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.0,
+        "stitch_1|advance": 0.9
+      },
+      "posterior_lower_q10_model_dp": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.30340980000000006,
+        "start|safe": 0.5904900000000002,
+        "stitch_1|advance": 0.9
+      },
+      "posterior_mc_plus_trl_log": {
+        "demo_start|stitch": 0.7290000000000002,
+        "hub|advance": 0.8100000000000002,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.48600000000000004,
+        "start|safe": 0.5904900000000002,
+        "stitch_1|advance": 0.9
+      },
+      "posterior_mean_model_dp": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.48600000000000004,
+        "start|safe": 0.5904900000000002,
+        "stitch_1|advance": 0.9
+      },
+      "posterior_trl_log": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.48600000000000004,
+        "start|safe": 0.5904900000000002,
+        "stitch_1|advance": 0.9
+      },
+      "trl_log": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.5467500000000001,
+        "start|safe": 0.5904900000000002,
+        "stitch_1|advance": 0.9
+      },
+      "trl_raw": {
+        "demo_start|stitch": 0.7290000000000001,
+        "hub|advance": 0.81,
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.5904900000000002,
+        "stitch_1|advance": 0.9
+      }
+    }
+  },
+  "teleporter_seed0": {
+    "exact_q": {
+      "safe_1|advance": 0.6561000000000001,
+      "safe_2|advance": 0.7290000000000001,
+      "safe_3|advance": 0.81,
+      "safe_4|advance": 0.9,
+      "start|risky": 0.42508435155205754,
+      "start|safe": 0.5904900000000002,
+      "tele_1|advance": 0.9,
+      "teleport_pad|advance": 0.81
+    },
+    "method_q": {
+      "empirical_model_dp": {
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.4252500000000001,
+        "start|safe": 0.5904900000000002,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      },
+      "mc_supervised": {
+        "safe_1|advance": 0.0,
+        "safe_2|advance": 0.0,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.0,
+        "tele_1|advance": 0.9000000000000001,
+        "teleport_pad|advance": 0.8100000000000003
+      },
+      "posterior_lower_q10_model_dp": {
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.2929122,
+        "start|safe": 0.5904900000000002,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      },
+      "posterior_mc_plus_trl_log": {
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.4165714285714287,
+        "start|safe": 0.5904900000000002,
+        "tele_1|advance": 0.9000000000000001,
+        "teleport_pad|advance": 0.8100000000000003
+      },
+      "posterior_mean_model_dp": {
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.4165714285714286,
+        "start|safe": 0.5904900000000002,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      },
+      "posterior_trl_log": {
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.4165714285714286,
+        "start|safe": 0.5904900000000002,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      },
+      "trl_log": {
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.4252500000000001,
+        "start|safe": 0.5904900000000002,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      },
+      "trl_raw": {
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.5904900000000002,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      }
+    }
+  },
+  "teleporter_seed1": {
+    "exact_q": {
+      "safe_1|advance": 0.7290000000000001,
+      "safe_2|advance": 0.81,
+      "safe_3|advance": 0.9,
+      "start|risky": 0.71442,
+      "start|safe": 0.6561000000000001,
+      "tele_1|advance": 0.9,
+      "teleport_pad|advance": 0.81
+    },
+    "method_q": {
+      "empirical_model_dp": {
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.6561000000000001,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      },
+      "mc_supervised": {
+        "safe_1|advance": 0.0,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.0,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.8100000000000003
+      },
+      "posterior_lower_q10_model_dp": {
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.6531840000000001,
+        "start|safe": 0.6561000000000001,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      },
+      "posterior_mc_plus_trl_log": {
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.6958636363636367,
+        "start|safe": 0.6561000000000001,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.8100000000000003
+      },
+      "posterior_mean_model_dp": {
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.6958636363636365,
+        "start|safe": 0.6561000000000001,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      },
+      "posterior_trl_log": {
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.6958636363636365,
+        "start|safe": 0.6561000000000001,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      },
+      "trl_log": {
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.6561000000000001,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      },
+      "trl_raw": {
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.6561000000000001,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      }
+    }
+  },
+  "teleporter_seed2": {
+    "exact_q": {
+      "safe_1|advance": 0.7290000000000001,
+      "safe_2|advance": 0.81,
+      "safe_3|advance": 0.9,
+      "start|risky": 0.3546299224194068,
+      "start|safe": 0.6561000000000001,
+      "tele_1|advance": 0.9,
+      "teleport_pad|advance": 0.81
+    },
+    "method_q": {
+      "empirical_model_dp": {
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.6561000000000001,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      },
+      "mc_supervised": {
+        "safe_1|advance": 0.0,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.0,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      },
+      "posterior_lower_q10_model_dp": {
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.45999900000000005,
+        "start|safe": 0.6561000000000001,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      },
+      "posterior_mc_plus_trl_log": {
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.6075,
+        "start|safe": 0.6561000000000001,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      },
+      "posterior_mean_model_dp": {
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.6075,
+        "start|safe": 0.6561000000000001,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      },
+      "posterior_trl_log": {
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.6075,
+        "start|safe": 0.6561000000000001,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      },
+      "trl_log": {
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.6561000000000001,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      },
+      "trl_raw": {
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.6561000000000001,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      }
+    }
+  },
+  "teleporter_seed3": {
+    "exact_q": {
+      "safe_1|advance": 0.7290000000000001,
+      "safe_2|advance": 0.81,
+      "safe_3|advance": 0.9,
+      "start|risky": 0.6939768882448124,
+      "start|safe": 0.6561000000000001,
+      "tele_1|advance": 0.9,
+      "teleport_pad|advance": 0.81
+    },
+    "method_q": {
+      "empirical_model_dp": {
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.6561000000000001,
+        "tele_1|advance": 0.0,
+        "teleport_pad|advance": 0.0
+      },
+      "mc_supervised": {
+        "safe_1|advance": 0.0,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.0,
+        "tele_1|advance": 0.0,
+        "teleport_pad|advance": 0.0
+      },
+      "posterior_lower_q10_model_dp": {
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.6561000000000001,
+        "tele_1|advance": 0.0,
+        "teleport_pad|advance": 0.0
+      },
+      "posterior_mc_plus_trl_log": {
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.6561000000000001,
+        "tele_1|advance": 0.0,
+        "teleport_pad|advance": 0.0
+      },
+      "posterior_mean_model_dp": {
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.6561000000000001,
+        "tele_1|advance": 0.0,
+        "teleport_pad|advance": 0.0
+      },
+      "posterior_trl_log": {
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.6561000000000001,
+        "tele_1|advance": 0.0,
+        "teleport_pad|advance": 0.0
+      },
+      "trl_log": {
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.6561000000000001,
+        "tele_1|advance": 0.0,
+        "teleport_pad|advance": 0.0
+      },
+      "trl_raw": {
+        "safe_1|advance": 0.7290000000000001,
+        "safe_2|advance": 0.81,
+        "safe_3|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.6561000000000001,
+        "tele_1|advance": 0.0,
+        "teleport_pad|advance": 0.0
+      }
+    }
+  },
+  "teleporter_seed4": {
+    "exact_q": {
+      "safe_1|advance": 0.6561000000000001,
+      "safe_2|advance": 0.7290000000000001,
+      "safe_3|advance": 0.81,
+      "safe_4|advance": 0.9,
+      "start|risky": 0.6255906788532596,
+      "start|safe": 0.5904900000000002,
+      "tele_1|advance": 0.9,
+      "teleport_pad|advance": 0.81
+    },
+    "method_q": {
+      "empirical_model_dp": {
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.5467500000000001,
+        "start|safe": 0.5904900000000002,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      },
+      "mc_supervised": {
+        "safe_1|advance": 0.0,
+        "safe_2|advance": 0.0,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.0,
+        "start|safe": 0.0,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      },
+      "posterior_lower_q10_model_dp": {
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.30340980000000006,
+        "start|safe": 0.5904900000000002,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      },
+      "posterior_mc_plus_trl_log": {
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.48600000000000004,
+        "start|safe": 0.5904900000000002,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      },
+      "posterior_mean_model_dp": {
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.48600000000000004,
+        "start|safe": 0.5904900000000002,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      },
+      "posterior_trl_log": {
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.48600000000000004,
+        "start|safe": 0.5904900000000002,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      },
+      "trl_log": {
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.5467500000000001,
+        "start|safe": 0.5904900000000002,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      },
+      "trl_raw": {
+        "safe_1|advance": 0.6561000000000001,
+        "safe_2|advance": 0.7290000000000001,
+        "safe_3|advance": 0.81,
+        "safe_4|advance": 0.9,
+        "start|risky": 0.7290000000000001,
+        "start|safe": 0.5904900000000002,
+        "tele_1|advance": 0.9,
+        "teleport_pad|advance": 0.81
+      }
+    }
+  }
+}

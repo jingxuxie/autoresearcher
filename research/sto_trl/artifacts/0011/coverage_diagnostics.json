@@ -1,0 +1,1207 @@
+{
+  "families": [
+    "branch_chain",
+    "stochastic_stitching",
+    "teleporter"
+  ],
+  "label_horizon_cutoff": 2,
+  "mdps": {
+    "branch_chain_seed0": {
+      "dataset_summary": {
+        "num_trajectories": 16,
+        "observed_failures": 4,
+        "observed_success_rate": 0.6666666666666666,
+        "observed_successes": 8,
+        "risky_samples": 12
+      },
+      "family": "branch_chain",
+      "label_coverage": {
+        "risk_1|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 8,
+          "mean_used_label": 0.8100000000000003,
+          "positive_labels": 8,
+          "total_occurrences": 8,
+          "zero_labels": 0
+        },
+        "risk_2|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 8,
+          "mean_used_label": 0.9000000000000001,
+          "positive_labels": 8,
+          "total_occurrences": 8,
+          "zero_labels": 0
+        },
+        "safe_1|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_2|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.81,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_3|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.9,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "start|risky": {
+          "censored_positive_labels": 8,
+          "label_count_used": 4,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 12,
+          "zero_labels": 4
+        },
+        "start|safe": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        }
+      },
+      "regime": "matched_safe_optimal",
+      "seed": 0,
+      "tags": [
+        "matched",
+        "safe_optimal"
+      ]
+    },
+    "branch_chain_seed1": {
+      "dataset_summary": {
+        "num_trajectories": 24,
+        "observed_failures": 1,
+        "observed_success_rate": 0.95,
+        "observed_successes": 19,
+        "risky_samples": 20
+      },
+      "family": "branch_chain",
+      "label_coverage": {
+        "risk_1|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 19,
+          "mean_used_label": 0.8100000000000004,
+          "positive_labels": 19,
+          "total_occurrences": 19,
+          "zero_labels": 0
+        },
+        "risk_2|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 19,
+          "mean_used_label": 0.9,
+          "positive_labels": 19,
+          "total_occurrences": 19,
+          "zero_labels": 0
+        },
+        "safe_1|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_2|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_3|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.81,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_4|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.9,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "start|risky": {
+          "censored_positive_labels": 19,
+          "label_count_used": 1,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 20,
+          "zero_labels": 1
+        },
+        "start|safe": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        }
+      },
+      "regime": "matched_risk_optimal",
+      "seed": 1,
+      "tags": [
+        "matched",
+        "risk_optimal"
+      ]
+    },
+    "branch_chain_seed2": {
+      "dataset_summary": {
+        "num_trajectories": 8,
+        "observed_failures": 0,
+        "observed_success_rate": 1.0,
+        "observed_successes": 4,
+        "risky_samples": 4
+      },
+      "family": "branch_chain",
+      "label_coverage": {
+        "risk_1|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.81,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "risk_2|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.9,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_1|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_2|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.81,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_3|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.9,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "start|risky": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "start|safe": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        }
+      },
+      "regime": "lucky_only_safe_optimal",
+      "seed": 2,
+      "tags": [
+        "lucky_only",
+        "safe_optimal",
+        "biased_coverage"
+      ]
+    },
+    "branch_chain_seed3": {
+      "dataset_summary": {
+        "num_trajectories": 12,
+        "observed_failures": 8,
+        "observed_success_rate": 0.0,
+        "observed_successes": 0,
+        "risky_samples": 8
+      },
+      "family": "branch_chain",
+      "label_coverage": {
+        "safe_1|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_2|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.81,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_3|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.9,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "start|risky": {
+          "censored_positive_labels": 0,
+          "label_count_used": 8,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 8,
+          "zero_labels": 8
+        },
+        "start|safe": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        }
+      },
+      "regime": "no_success_risk_optimal",
+      "seed": 3,
+      "tags": [
+        "no_success",
+        "risk_optimal",
+        "biased_coverage"
+      ]
+    },
+    "branch_chain_seed4": {
+      "dataset_summary": {
+        "num_trajectories": 8,
+        "observed_failures": 1,
+        "observed_success_rate": 0.75,
+        "observed_successes": 3,
+        "risky_samples": 4
+      },
+      "family": "branch_chain",
+      "label_coverage": {
+        "risk_1|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 3,
+          "mean_used_label": 0.81,
+          "positive_labels": 3,
+          "total_occurrences": 3,
+          "zero_labels": 0
+        },
+        "risk_2|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 3,
+          "mean_used_label": 0.9,
+          "positive_labels": 3,
+          "total_occurrences": 3,
+          "zero_labels": 0
+        },
+        "safe_1|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_2|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_3|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.81,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_4|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.9,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "start|risky": {
+          "censored_positive_labels": 3,
+          "label_count_used": 1,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 1
+        },
+        "start|safe": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        }
+      },
+      "regime": "sparse_prior_dependent_risk_optimal",
+      "seed": 4,
+      "tags": [
+        "ambiguous",
+        "prior_dependent",
+        "risk_optimal",
+        "sparse_coverage"
+      ]
+    },
+    "stochastic_stitching_seed0": {
+      "dataset_summary": {
+        "num_trajectories": 18,
+        "observed_failures": 4,
+        "observed_success_rate": 0.6666666666666666,
+        "observed_successes": 8,
+        "risky_samples": 12
+      },
+      "family": "stochastic_stitching",
+      "label_coverage": {
+        "demo_start|stitch": {
+          "censored_positive_labels": 2,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 2,
+          "zero_labels": 0
+        },
+        "hub|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 10,
+          "mean_used_label": 0.8100000000000003,
+          "positive_labels": 10,
+          "total_occurrences": 10,
+          "zero_labels": 0
+        },
+        "safe_1|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_2|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.81,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_3|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.9,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "start|risky": {
+          "censored_positive_labels": 8,
+          "label_count_used": 4,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 12,
+          "zero_labels": 4
+        },
+        "start|safe": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "stitch_1|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 10,
+          "mean_used_label": 0.9000000000000001,
+          "positive_labels": 10,
+          "total_occurrences": 10,
+          "zero_labels": 0
+        }
+      },
+      "regime": "matched_safe_optimal",
+      "seed": 0,
+      "tags": [
+        "matched",
+        "safe_optimal"
+      ]
+    },
+    "stochastic_stitching_seed1": {
+      "dataset_summary": {
+        "num_trajectories": 26,
+        "observed_failures": 2,
+        "observed_success_rate": 0.9,
+        "observed_successes": 18,
+        "risky_samples": 20
+      },
+      "family": "stochastic_stitching",
+      "label_coverage": {
+        "demo_start|stitch": {
+          "censored_positive_labels": 2,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 2,
+          "zero_labels": 0
+        },
+        "hub|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 20,
+          "mean_used_label": 0.8100000000000003,
+          "positive_labels": 20,
+          "total_occurrences": 20,
+          "zero_labels": 0
+        },
+        "safe_1|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_2|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_3|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.81,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_4|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.9,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "start|risky": {
+          "censored_positive_labels": 18,
+          "label_count_used": 2,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 20,
+          "zero_labels": 2
+        },
+        "start|safe": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "stitch_1|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 20,
+          "mean_used_label": 0.9,
+          "positive_labels": 20,
+          "total_occurrences": 20,
+          "zero_labels": 0
+        }
+      },
+      "regime": "matched_risk_optimal",
+      "seed": 1,
+      "tags": [
+        "matched",
+        "risk_optimal"
+      ]
+    },
+    "stochastic_stitching_seed2": {
+      "dataset_summary": {
+        "num_trajectories": 10,
+        "observed_failures": 0,
+        "observed_success_rate": 1.0,
+        "observed_successes": 4,
+        "risky_samples": 4
+      },
+      "family": "stochastic_stitching",
+      "label_coverage": {
+        "demo_start|stitch": {
+          "censored_positive_labels": 2,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 2,
+          "zero_labels": 0
+        },
+        "hub|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 6,
+          "mean_used_label": 0.8100000000000002,
+          "positive_labels": 6,
+          "total_occurrences": 6,
+          "zero_labels": 0
+        },
+        "safe_1|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_2|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.81,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_3|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.9,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "start|risky": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "start|safe": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "stitch_1|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 6,
+          "mean_used_label": 0.9,
+          "positive_labels": 6,
+          "total_occurrences": 6,
+          "zero_labels": 0
+        }
+      },
+      "regime": "lucky_only_safe_optimal",
+      "seed": 2,
+      "tags": [
+        "lucky_only",
+        "safe_optimal",
+        "biased_coverage"
+      ]
+    },
+    "stochastic_stitching_seed3": {
+      "dataset_summary": {
+        "num_trajectories": 14,
+        "observed_failures": 8,
+        "observed_success_rate": 0.0,
+        "observed_successes": 0,
+        "risky_samples": 8
+      },
+      "family": "stochastic_stitching",
+      "label_coverage": {
+        "demo_start|stitch": {
+          "censored_positive_labels": 2,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 2,
+          "zero_labels": 0
+        },
+        "hub|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 2,
+          "mean_used_label": 0.81,
+          "positive_labels": 2,
+          "total_occurrences": 2,
+          "zero_labels": 0
+        },
+        "safe_1|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_2|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.81,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_3|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.9,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "start|risky": {
+          "censored_positive_labels": 0,
+          "label_count_used": 8,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 8,
+          "zero_labels": 8
+        },
+        "start|safe": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "stitch_1|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 2,
+          "mean_used_label": 0.9,
+          "positive_labels": 2,
+          "total_occurrences": 2,
+          "zero_labels": 0
+        }
+      },
+      "regime": "no_success_risk_optimal",
+      "seed": 3,
+      "tags": [
+        "no_success",
+        "risk_optimal",
+        "biased_coverage"
+      ]
+    },
+    "stochastic_stitching_seed4": {
+      "dataset_summary": {
+        "num_trajectories": 10,
+        "observed_failures": 1,
+        "observed_success_rate": 0.75,
+        "observed_successes": 3,
+        "risky_samples": 4
+      },
+      "family": "stochastic_stitching",
+      "label_coverage": {
+        "demo_start|stitch": {
+          "censored_positive_labels": 2,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 2,
+          "zero_labels": 0
+        },
+        "hub|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 5,
+          "mean_used_label": 0.8100000000000002,
+          "positive_labels": 5,
+          "total_occurrences": 5,
+          "zero_labels": 0
+        },
+        "safe_1|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_2|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_3|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.81,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_4|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.9,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "start|risky": {
+          "censored_positive_labels": 3,
+          "label_count_used": 1,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 1
+        },
+        "start|safe": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "stitch_1|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 5,
+          "mean_used_label": 0.9,
+          "positive_labels": 5,
+          "total_occurrences": 5,
+          "zero_labels": 0
+        }
+      },
+      "regime": "sparse_prior_dependent_risk_optimal",
+      "seed": 4,
+      "tags": [
+        "ambiguous",
+        "prior_dependent",
+        "risk_optimal",
+        "sparse_coverage"
+      ]
+    },
+    "teleporter_seed0": {
+      "dataset_summary": {
+        "num_trajectories": 16,
+        "observed_failures": 5,
+        "observed_success_rate": 0.5833333333333334,
+        "observed_successes": 7,
+        "risky_samples": 12
+      },
+      "family": "teleporter",
+      "label_coverage": {
+        "safe_1|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_2|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_3|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.81,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_4|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.9,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "start|risky": {
+          "censored_positive_labels": 7,
+          "label_count_used": 5,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 12,
+          "zero_labels": 5
+        },
+        "start|safe": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "tele_1|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 7,
+          "mean_used_label": 0.9000000000000001,
+          "positive_labels": 7,
+          "total_occurrences": 7,
+          "zero_labels": 0
+        },
+        "teleport_pad|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 7,
+          "mean_used_label": 0.8100000000000003,
+          "positive_labels": 7,
+          "total_occurrences": 7,
+          "zero_labels": 0
+        }
+      },
+      "regime": "matched_safe_optimal",
+      "seed": 0,
+      "tags": [
+        "matched",
+        "safe_optimal"
+      ]
+    },
+    "teleporter_seed1": {
+      "dataset_summary": {
+        "num_trajectories": 24,
+        "observed_failures": 0,
+        "observed_success_rate": 1.0,
+        "observed_successes": 20,
+        "risky_samples": 20
+      },
+      "family": "teleporter",
+      "label_coverage": {
+        "safe_1|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_2|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.81,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_3|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.9,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "start|risky": {
+          "censored_positive_labels": 20,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 20,
+          "zero_labels": 0
+        },
+        "start|safe": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "tele_1|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 20,
+          "mean_used_label": 0.9,
+          "positive_labels": 20,
+          "total_occurrences": 20,
+          "zero_labels": 0
+        },
+        "teleport_pad|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 20,
+          "mean_used_label": 0.8100000000000003,
+          "positive_labels": 20,
+          "total_occurrences": 20,
+          "zero_labels": 0
+        }
+      },
+      "regime": "matched_risk_optimal",
+      "seed": 1,
+      "tags": [
+        "matched",
+        "risk_optimal"
+      ]
+    },
+    "teleporter_seed2": {
+      "dataset_summary": {
+        "num_trajectories": 8,
+        "observed_failures": 0,
+        "observed_success_rate": 1.0,
+        "observed_successes": 4,
+        "risky_samples": 4
+      },
+      "family": "teleporter",
+      "label_coverage": {
+        "safe_1|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_2|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.81,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_3|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.9,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "start|risky": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "start|safe": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "tele_1|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.9,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "teleport_pad|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.81,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        }
+      },
+      "regime": "lucky_only_safe_optimal",
+      "seed": 2,
+      "tags": [
+        "lucky_only",
+        "safe_optimal",
+        "biased_coverage"
+      ]
+    },
+    "teleporter_seed3": {
+      "dataset_summary": {
+        "num_trajectories": 12,
+        "observed_failures": 8,
+        "observed_success_rate": 0.0,
+        "observed_successes": 0,
+        "risky_samples": 8
+      },
+      "family": "teleporter",
+      "label_coverage": {
+        "safe_1|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_2|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.81,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_3|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.9,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "start|risky": {
+          "censored_positive_labels": 0,
+          "label_count_used": 8,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 8,
+          "zero_labels": 8
+        },
+        "start|safe": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        }
+      },
+      "regime": "no_success_risk_optimal",
+      "seed": 3,
+      "tags": [
+        "no_success",
+        "risk_optimal",
+        "biased_coverage"
+      ]
+    },
+    "teleporter_seed4": {
+      "dataset_summary": {
+        "num_trajectories": 8,
+        "observed_failures": 1,
+        "observed_success_rate": 0.75,
+        "observed_successes": 3,
+        "risky_samples": 4
+      },
+      "family": "teleporter",
+      "label_coverage": {
+        "safe_1|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_2|advance": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_3|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.81,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "safe_4|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 4,
+          "mean_used_label": 0.9,
+          "positive_labels": 4,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "start|risky": {
+          "censored_positive_labels": 3,
+          "label_count_used": 1,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 1
+        },
+        "start|safe": {
+          "censored_positive_labels": 4,
+          "label_count_used": 0,
+          "mean_used_label": 0.0,
+          "positive_labels": 0,
+          "total_occurrences": 4,
+          "zero_labels": 0
+        },
+        "tele_1|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 3,
+          "mean_used_label": 0.9,
+          "positive_labels": 3,
+          "total_occurrences": 3,
+          "zero_labels": 0
+        },
+        "teleport_pad|advance": {
+          "censored_positive_labels": 0,
+          "label_count_used": 3,
+          "mean_used_label": 0.81,
+          "positive_labels": 3,
+          "total_occurrences": 3,
+          "zero_labels": 0
+        }
+      },
+      "regime": "sparse_prior_dependent_risk_optimal",
+      "seed": 4,
+      "tags": [
+        "ambiguous",
+        "prior_dependent",
+        "risk_optimal",
+        "sparse_coverage"
+      ]
+    }
+  },
+  "num_mdps": 15,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "tag_counts": {
+    "ambiguous": 3,
+    "biased_coverage": 6,
+    "lucky_only": 3,
+    "matched": 6,
+    "no_success": 3,
+    "prior_dependent": 3,
+    "risk_optimal": 9,
+    "safe_optimal": 6,
+    "sparse_coverage": 3
+  }
+}

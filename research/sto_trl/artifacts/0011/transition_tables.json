@@ -1,0 +1,1338 @@
+{
+  "branch_chain_seed0": {
+    "horizons_to_goal_if_successful": {
+      "risk_1|advance": 2,
+      "risk_2|advance": 1,
+      "safe_1|advance": 3,
+      "safe_2|advance": 2,
+      "safe_3|advance": 1,
+      "start|risky": 3,
+      "start|safe": 4
+    },
+    "observed_transition_counts": {
+      "risk_1|advance": {
+        "risk_2": 8
+      },
+      "risk_2|advance": {
+        "goal": 8
+      },
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "risk_1": 8,
+        "trap": 4
+      },
+      "start|safe": {
+        "safe_1": 4
+      }
+    },
+    "true_transitions_for_evaluation_only": {
+      "risk_1|advance": [
+        {
+          "next_state": "risk_2",
+          "probability": 1.0
+        }
+      ],
+      "risk_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_1|advance": [
+        {
+          "next_state": "safe_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_2|advance": [
+        {
+          "next_state": "safe_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "start|risky": [
+        {
+          "next_state": "risk_1",
+          "probability": 0.6633500588645997
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.33664994113540025
+        }
+      ],
+      "start|safe": [
+        {
+          "next_state": "safe_1",
+          "probability": 1.0
+        }
+      ]
+    }
+  },
+  "branch_chain_seed1": {
+    "horizons_to_goal_if_successful": {
+      "risk_1|advance": 2,
+      "risk_2|advance": 1,
+      "safe_1|advance": 4,
+      "safe_2|advance": 3,
+      "safe_3|advance": 2,
+      "safe_4|advance": 1,
+      "start|risky": 3,
+      "start|safe": 5
+    },
+    "observed_transition_counts": {
+      "risk_1|advance": {
+        "risk_2": 19
+      },
+      "risk_2|advance": {
+        "goal": 19
+      },
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "safe_4": 4
+      },
+      "safe_4|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "risk_1": 19,
+        "trap": 1
+      },
+      "start|safe": {
+        "safe_1": 4
+      }
+    },
+    "true_transitions_for_evaluation_only": {
+      "risk_1|advance": [
+        {
+          "next_state": "risk_2",
+          "probability": 1.0
+        }
+      ],
+      "risk_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_1|advance": [
+        {
+          "next_state": "safe_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_2|advance": [
+        {
+          "next_state": "safe_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_3|advance": [
+        {
+          "next_state": "safe_4",
+          "probability": 1.0
+        }
+      ],
+      "safe_4|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "start|risky": [
+        {
+          "next_state": "risk_1",
+          "probability": 0.9308451866355951
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.06915481336440488
+        }
+      ],
+      "start|safe": [
+        {
+          "next_state": "safe_1",
+          "probability": 1.0
+        }
+      ]
+    }
+  },
+  "branch_chain_seed2": {
+    "horizons_to_goal_if_successful": {
+      "risk_1|advance": 2,
+      "risk_2|advance": 1,
+      "safe_1|advance": 3,
+      "safe_2|advance": 2,
+      "safe_3|advance": 1,
+      "start|risky": 3,
+      "start|safe": 4
+    },
+    "observed_transition_counts": {
+      "risk_1|advance": {
+        "risk_2": 4
+      },
+      "risk_2|advance": {
+        "goal": 4
+      },
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "risk_1": 4
+      },
+      "start|safe": {
+        "safe_1": 4
+      }
+    },
+    "true_transitions_for_evaluation_only": {
+      "risk_1|advance": [
+        {
+          "next_state": "risk_2",
+          "probability": 1.0
+        }
+      ],
+      "risk_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_1|advance": [
+        {
+          "next_state": "safe_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_2|advance": [
+        {
+          "next_state": "safe_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "start|risky": [
+        {
+          "next_state": "risk_1",
+          "probability": 0.5222657140448588
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.4777342859551412
+        }
+      ],
+      "start|safe": [
+        {
+          "next_state": "safe_1",
+          "probability": 1.0
+        }
+      ]
+    }
+  },
+  "branch_chain_seed3": {
+    "horizons_to_goal_if_successful": {
+      "risk_1|advance": 2,
+      "risk_2|advance": 1,
+      "safe_1|advance": 3,
+      "safe_2|advance": 2,
+      "safe_3|advance": 1,
+      "start|risky": 3,
+      "start|safe": 4
+    },
+    "observed_transition_counts": {
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "trap": 8
+      },
+      "start|safe": {
+        "safe_1": 4
+      }
+    },
+    "true_transitions_for_evaluation_only": {
+      "risk_1|advance": [
+        {
+          "next_state": "risk_2",
+          "probability": 1.0
+        }
+      ],
+      "risk_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_1|advance": [
+        {
+          "next_state": "safe_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_2|advance": [
+        {
+          "next_state": "safe_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "start|risky": [
+        {
+          "next_state": "risk_1",
+          "probability": 0.9500635804451448
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.04993641955485517
+        }
+      ],
+      "start|safe": [
+        {
+          "next_state": "safe_1",
+          "probability": 1.0
+        }
+      ]
+    }
+  },
+  "branch_chain_seed4": {
+    "horizons_to_goal_if_successful": {
+      "risk_1|advance": 2,
+      "risk_2|advance": 1,
+      "safe_1|advance": 4,
+      "safe_2|advance": 3,
+      "safe_3|advance": 2,
+      "safe_4|advance": 1,
+      "start|risky": 3,
+      "start|safe": 5
+    },
+    "observed_transition_counts": {
+      "risk_1|advance": {
+        "risk_2": 3
+      },
+      "risk_2|advance": {
+        "goal": 3
+      },
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "safe_4": 4
+      },
+      "safe_4|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "risk_1": 3,
+        "trap": 1
+      },
+      "start|safe": {
+        "safe_1": 4
+      }
+    },
+    "true_transitions_for_evaluation_only": {
+      "risk_1|advance": [
+        {
+          "next_state": "risk_2",
+          "probability": 1.0
+        }
+      ],
+      "risk_2|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "safe_1|advance": [
+        {
+          "next_state": "safe_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_2|advance": [
+        {
+          "next_state": "safe_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_3|advance": [
+        {
+          "next_state": "safe_4",
+          "probability": 1.0
+        }
+      ],
+      "safe_4|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "start|risky": [
+        {
+          "next_state": "risk_1",
+          "probability": 0.8301552645263691
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.16984473547363088
+        }
+      ],
+      "start|safe": [
+        {
+          "next_state": "safe_1",
+          "probability": 1.0
+        }
+      ]
+    }
+  },
+  "stochastic_stitching_seed0": {
+    "horizons_to_goal_if_successful": {
+      "demo_start|stitch": 3,
+      "hub|advance": 2,
+      "safe_1|advance": 3,
+      "safe_2|advance": 2,
+      "safe_3|advance": 1,
+      "start|risky": 3,
+      "start|safe": 4,
+      "stitch_1|advance": 1
+    },
+    "observed_transition_counts": {
+      "demo_start|stitch": {
+        "hub": 2
+      },
+      "hub|advance": {
+        "stitch_1": 10
+      },
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "hub": 8,
+        "trap": 4
+      },
+      "start|safe": {
+        "safe_1": 4
+      },
+      "stitch_1|advance": {
+        "goal": 10
+      }
+    },
+    "true_transitions_for_evaluation_only": {
+      "demo_start|stitch": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "hub|advance": [
+        {
+          "next_state": "stitch_1",
+          "probability": 1.0
+        }
+      ],
+      "safe_1|advance": [
+        {
+          "next_state": "safe_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_2|advance": [
+        {
+          "next_state": "safe_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "start|risky": [
+        {
+          "next_state": "hub",
+          "probability": 0.6767802110702504
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.32321978892974956
+        }
+      ],
+      "start|safe": [
+        {
+          "next_state": "safe_1",
+          "probability": 1.0
+        }
+      ],
+      "stitch_1|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    }
+  },
+  "stochastic_stitching_seed1": {
+    "horizons_to_goal_if_successful": {
+      "demo_start|stitch": 3,
+      "hub|advance": 2,
+      "safe_1|advance": 4,
+      "safe_2|advance": 3,
+      "safe_3|advance": 2,
+      "safe_4|advance": 1,
+      "start|risky": 3,
+      "start|safe": 5,
+      "stitch_1|advance": 1
+    },
+    "observed_transition_counts": {
+      "demo_start|stitch": {
+        "hub": 2
+      },
+      "hub|advance": {
+        "stitch_1": 20
+      },
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "safe_4": 4
+      },
+      "safe_4|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "hub": 18,
+        "trap": 2
+      },
+      "start|safe": {
+        "safe_1": 4
+      },
+      "stitch_1|advance": {
+        "goal": 20
+      }
+    },
+    "true_transitions_for_evaluation_only": {
+      "demo_start|stitch": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "hub|advance": [
+        {
+          "next_state": "stitch_1",
+          "probability": 1.0
+        }
+      ],
+      "safe_1|advance": [
+        {
+          "next_state": "safe_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_2|advance": [
+        {
+          "next_state": "safe_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_3|advance": [
+        {
+          "next_state": "safe_4",
+          "probability": 1.0
+        }
+      ],
+      "safe_4|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "start|risky": [
+        {
+          "next_state": "hub",
+          "probability": 0.9206363733026781
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.07936362669732189
+        }
+      ],
+      "start|safe": [
+        {
+          "next_state": "safe_1",
+          "probability": 1.0
+        }
+      ],
+      "stitch_1|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    }
+  },
+  "stochastic_stitching_seed2": {
+    "horizons_to_goal_if_successful": {
+      "demo_start|stitch": 3,
+      "hub|advance": 2,
+      "safe_1|advance": 3,
+      "safe_2|advance": 2,
+      "safe_3|advance": 1,
+      "start|risky": 3,
+      "start|safe": 4,
+      "stitch_1|advance": 1
+    },
+    "observed_transition_counts": {
+      "demo_start|stitch": {
+        "hub": 2
+      },
+      "hub|advance": {
+        "stitch_1": 6
+      },
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "hub": 4
+      },
+      "start|safe": {
+        "safe_1": 4
+      },
+      "stitch_1|advance": {
+        "goal": 6
+      }
+    },
+    "true_transitions_for_evaluation_only": {
+      "demo_start|stitch": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "hub|advance": [
+        {
+          "next_state": "stitch_1",
+          "probability": 1.0
+        }
+      ],
+      "safe_1|advance": [
+        {
+          "next_state": "safe_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_2|advance": [
+        {
+          "next_state": "safe_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "start|risky": [
+        {
+          "next_state": "hub",
+          "probability": 0.5495167199133656
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.4504832800866344
+        }
+      ],
+      "start|safe": [
+        {
+          "next_state": "safe_1",
+          "probability": 1.0
+        }
+      ],
+      "stitch_1|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    }
+  },
+  "stochastic_stitching_seed3": {
+    "horizons_to_goal_if_successful": {
+      "demo_start|stitch": 3,
+      "hub|advance": 2,
+      "safe_1|advance": 3,
+      "safe_2|advance": 2,
+      "safe_3|advance": 1,
+      "start|risky": 3,
+      "start|safe": 4,
+      "stitch_1|advance": 1
+    },
+    "observed_transition_counts": {
+      "demo_start|stitch": {
+        "hub": 2
+      },
+      "hub|advance": {
+        "stitch_1": 2
+      },
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "trap": 8
+      },
+      "start|safe": {
+        "safe_1": 4
+      },
+      "stitch_1|advance": {
+        "goal": 2
+      }
+    },
+    "true_transitions_for_evaluation_only": {
+      "demo_start|stitch": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "hub|advance": [
+        {
+          "next_state": "stitch_1",
+          "probability": 1.0
+        }
+      ],
+      "safe_1|advance": [
+        {
+          "next_state": "safe_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_2|advance": [
+        {
+          "next_state": "safe_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "start|risky": [
+        {
+          "next_state": "hub",
+          "probability": 0.9777099583697396
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.022290041630260382
+        }
+      ],
+      "start|safe": [
+        {
+          "next_state": "safe_1",
+          "probability": 1.0
+        }
+      ],
+      "stitch_1|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    }
+  },
+  "stochastic_stitching_seed4": {
+    "horizons_to_goal_if_successful": {
+      "demo_start|stitch": 3,
+      "hub|advance": 2,
+      "safe_1|advance": 4,
+      "safe_2|advance": 3,
+      "safe_3|advance": 2,
+      "safe_4|advance": 1,
+      "start|risky": 3,
+      "start|safe": 5,
+      "stitch_1|advance": 1
+    },
+    "observed_transition_counts": {
+      "demo_start|stitch": {
+        "hub": 2
+      },
+      "hub|advance": {
+        "stitch_1": 5
+      },
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "safe_4": 4
+      },
+      "safe_4|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "hub": 3,
+        "trap": 1
+      },
+      "start|safe": {
+        "safe_1": 4
+      },
+      "stitch_1|advance": {
+        "goal": 5
+      }
+    },
+    "true_transitions_for_evaluation_only": {
+      "demo_start|stitch": [
+        {
+          "next_state": "hub",
+          "probability": 1.0
+        }
+      ],
+      "hub|advance": [
+        {
+          "next_state": "stitch_1",
+          "probability": 1.0
+        }
+      ],
+      "safe_1|advance": [
+        {
+          "next_state": "safe_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_2|advance": [
+        {
+          "next_state": "safe_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_3|advance": [
+        {
+          "next_state": "safe_4",
+          "probability": 1.0
+        }
+      ],
+      "safe_4|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "start|risky": [
+        {
+          "next_state": "hub",
+          "probability": 0.8277529544187165
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.17224704558128345
+        }
+      ],
+      "start|safe": [
+        {
+          "next_state": "safe_1",
+          "probability": 1.0
+        }
+      ],
+      "stitch_1|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ]
+    }
+  },
+  "teleporter_seed0": {
+    "horizons_to_goal_if_successful": {
+      "safe_1|advance": 4,
+      "safe_2|advance": 3,
+      "safe_3|advance": 2,
+      "safe_4|advance": 1,
+      "start|risky": 3,
+      "start|safe": 5,
+      "tele_1|advance": 1,
+      "teleport_pad|advance": 2
+    },
+    "observed_transition_counts": {
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "safe_4": 4
+      },
+      "safe_4|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "teleport_pad": 7,
+        "trap": 5
+      },
+      "start|safe": {
+        "safe_1": 4
+      },
+      "tele_1|advance": {
+        "goal": 7
+      },
+      "teleport_pad|advance": {
+        "tele_1": 7
+      }
+    },
+    "true_transitions_for_evaluation_only": {
+      "safe_1|advance": [
+        {
+          "next_state": "safe_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_2|advance": [
+        {
+          "next_state": "safe_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_3|advance": [
+        {
+          "next_state": "safe_4",
+          "probability": 1.0
+        }
+      ],
+      "safe_4|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "start|risky": [
+        {
+          "next_state": "teleport_pad",
+          "probability": 0.5831061063814231
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.41689389361857687
+        }
+      ],
+      "start|safe": [
+        {
+          "next_state": "safe_1",
+          "probability": 1.0
+        }
+      ],
+      "tele_1|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "teleport_pad|advance": [
+        {
+          "next_state": "tele_1",
+          "probability": 1.0
+        }
+      ]
+    }
+  },
+  "teleporter_seed1": {
+    "horizons_to_goal_if_successful": {
+      "safe_1|advance": 3,
+      "safe_2|advance": 2,
+      "safe_3|advance": 1,
+      "start|risky": 3,
+      "start|safe": 4,
+      "tele_1|advance": 1,
+      "teleport_pad|advance": 2
+    },
+    "observed_transition_counts": {
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "teleport_pad": 20
+      },
+      "start|safe": {
+        "safe_1": 4
+      },
+      "tele_1|advance": {
+        "goal": 20
+      },
+      "teleport_pad|advance": {
+        "tele_1": 20
+      }
+    },
+    "true_transitions_for_evaluation_only": {
+      "safe_1|advance": [
+        {
+          "next_state": "safe_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_2|advance": [
+        {
+          "next_state": "safe_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "start|risky": [
+        {
+          "next_state": "teleport_pad",
+          "probability": 0.98
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.020000000000000018
+        }
+      ],
+      "start|safe": [
+        {
+          "next_state": "safe_1",
+          "probability": 1.0
+        }
+      ],
+      "tele_1|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "teleport_pad|advance": [
+        {
+          "next_state": "tele_1",
+          "probability": 1.0
+        }
+      ]
+    }
+  },
+  "teleporter_seed2": {
+    "horizons_to_goal_if_successful": {
+      "safe_1|advance": 3,
+      "safe_2|advance": 2,
+      "safe_3|advance": 1,
+      "start|risky": 3,
+      "start|safe": 4,
+      "tele_1|advance": 1,
+      "teleport_pad|advance": 2
+    },
+    "observed_transition_counts": {
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "teleport_pad": 4
+      },
+      "start|safe": {
+        "safe_1": 4
+      },
+      "tele_1|advance": {
+        "goal": 4
+      },
+      "teleport_pad|advance": {
+        "tele_1": 4
+      }
+    },
+    "true_transitions_for_evaluation_only": {
+      "safe_1|advance": [
+        {
+          "next_state": "safe_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_2|advance": [
+        {
+          "next_state": "safe_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "start|risky": [
+        {
+          "next_state": "teleport_pad",
+          "probability": 0.48646079892922733
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.5135392010707727
+        }
+      ],
+      "start|safe": [
+        {
+          "next_state": "safe_1",
+          "probability": 1.0
+        }
+      ],
+      "tele_1|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "teleport_pad|advance": [
+        {
+          "next_state": "tele_1",
+          "probability": 1.0
+        }
+      ]
+    }
+  },
+  "teleporter_seed3": {
+    "horizons_to_goal_if_successful": {
+      "safe_1|advance": 3,
+      "safe_2|advance": 2,
+      "safe_3|advance": 1,
+      "start|risky": 3,
+      "start|safe": 4,
+      "tele_1|advance": 1,
+      "teleport_pad|advance": 2
+    },
+    "observed_transition_counts": {
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "trap": 8
+      },
+      "start|safe": {
+        "safe_1": 4
+      }
+    },
+    "true_transitions_for_evaluation_only": {
+      "safe_1|advance": [
+        {
+          "next_state": "safe_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_2|advance": [
+        {
+          "next_state": "safe_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_3|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "start|risky": [
+        {
+          "next_state": "teleport_pad",
+          "probability": 0.9519573226952159
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.048042677304784065
+        }
+      ],
+      "start|safe": [
+        {
+          "next_state": "safe_1",
+          "probability": 1.0
+        }
+      ],
+      "tele_1|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "teleport_pad|advance": [
+        {
+          "next_state": "tele_1",
+          "probability": 1.0
+        }
+      ]
+    }
+  },
+  "teleporter_seed4": {
+    "horizons_to_goal_if_successful": {
+      "safe_1|advance": 4,
+      "safe_2|advance": 3,
+      "safe_3|advance": 2,
+      "safe_4|advance": 1,
+      "start|risky": 3,
+      "start|safe": 5,
+      "tele_1|advance": 1,
+      "teleport_pad|advance": 2
+    },
+    "observed_transition_counts": {
+      "safe_1|advance": {
+        "safe_2": 4
+      },
+      "safe_2|advance": {
+        "safe_3": 4
+      },
+      "safe_3|advance": {
+        "safe_4": 4
+      },
+      "safe_4|advance": {
+        "goal": 4
+      },
+      "start|risky": {
+        "teleport_pad": 3,
+        "trap": 1
+      },
+      "start|safe": {
+        "safe_1": 4
+      },
+      "tele_1|advance": {
+        "goal": 3
+      },
+      "teleport_pad|advance": {
+        "tele_1": 3
+      }
+    },
+    "true_transitions_for_evaluation_only": {
+      "safe_1|advance": [
+        {
+          "next_state": "safe_2",
+          "probability": 1.0
+        }
+      ],
+      "safe_2|advance": [
+        {
+          "next_state": "safe_3",
+          "probability": 1.0
+        }
+      ],
+      "safe_3|advance": [
+        {
+          "next_state": "safe_4",
+          "probability": 1.0
+        }
+      ],
+      "safe_4|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "start|risky": [
+        {
+          "next_state": "teleport_pad",
+          "probability": 0.8581490793597524
+        },
+        {
+          "next_state": "trap",
+          "probability": 0.14185092064024762
+        }
+      ],
+      "start|safe": [
+        {
+          "next_state": "safe_1",
+          "probability": 1.0
+        }
+      ],
+      "tele_1|advance": [
+        {
+          "next_state": "goal",
+          "probability": 1.0
+        }
+      ],
+      "teleport_pad|advance": [
+        {
+          "next_state": "tele_1",
+          "probability": 1.0
+        }
+      ]
+    }
+  }
+}

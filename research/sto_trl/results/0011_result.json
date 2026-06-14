@@ -1,0 +1,261 @@
+{
+  "artifacts": [
+    "research/sto_trl/artifacts/0011/randomized_equivalence_audit.py",
+    "research/sto_trl/artifacts/0011/raw_metrics.json",
+    "research/sto_trl/artifacts/0011/metrics.csv",
+    "research/sto_trl/artifacts/0011/family_summary.csv",
+    "research/sto_trl/artifacts/0011/regime_summary.csv",
+    "research/sto_trl/artifacts/0011/equivalence_diagnostics.json",
+    "research/sto_trl/artifacts/0011/coverage_diagnostics.json",
+    "research/sto_trl/artifacts/0011/offline_datasets.json",
+    "research/sto_trl/artifacts/0011/transition_tables.json",
+    "research/sto_trl/artifacts/0011/value_tables.json"
+  ],
+  "baseline_metrics": {
+    "empirical_model_dp": {
+      "action_accuracy": 0.4,
+      "mean_all_pair_value_mse": 0.04481289688774978,
+      "mean_heldout_long_horizon_value_mse": 0.03765166954543893,
+      "mean_policy_regret": 0.06840668344867584,
+      "mean_risky_q_calibration_error": 0.22652428374775355,
+      "mean_risky_q_overestimation": 0.07214453318022322,
+      "mean_risky_q_underestimation": 0.15437975056753034,
+      "num_rows": 15,
+      "risky_action_selection_rate": 0.4
+    },
+    "mc_supervised": {
+      "action_accuracy": 0.4,
+      "mean_all_pair_value_mse": 0.23531227403396845,
+      "mean_heldout_long_horizon_value_mse": 0.432704401392902,
+      "mean_policy_regret": 0.028055308380006028,
+      "mean_risky_q_calibration_error": 0.5690452173873072,
+      "mean_risky_q_overestimation": 0.0,
+      "mean_risky_q_underestimation": 0.5690452173873072,
+      "num_rows": 15,
+      "risky_action_selection_rate": 0.0
+    },
+    "posterior_lower_q10_model_dp": {
+      "action_accuracy": 0.4666666666666667,
+      "mean_all_pair_value_mse": 0.04437558018198091,
+      "mean_heldout_long_horizon_value_mse": 0.03592521474547472,
+      "mean_policy_regret": 0.02218223230951611,
+      "mean_risky_q_calibration_error": 0.2615099351506468,
+      "mean_risky_q_overestimation": 0.01626917888166985,
+      "mean_risky_q_underestimation": 0.245240756268977,
+      "num_rows": 15,
+      "risky_action_selection_rate": 0.06666666666666667
+    },
+    "posterior_mean_model_dp": {
+      "action_accuracy": 0.6,
+      "mean_all_pair_value_mse": 0.0423569966153239,
+      "mean_heldout_long_horizon_value_mse": 0.032259348981387076,
+      "mean_policy_regret": 0.012917304567005971,
+      "mean_risky_q_calibration_error": 0.21422137774804942,
+      "mean_risky_q_overestimation": 0.045769378881669855,
+      "mean_risky_q_underestimation": 0.16845199886637957,
+      "num_rows": 15,
+      "risky_action_selection_rate": 0.2
+    },
+    "trl_log": {
+      "action_accuracy": 0.4,
+      "mean_all_pair_value_mse": 0.04481289688774978,
+      "mean_heldout_long_horizon_value_mse": 0.03765166954543893,
+      "mean_policy_regret": 0.06840668344867584,
+      "mean_risky_q_calibration_error": 0.22652428374775355,
+      "mean_risky_q_overestimation": 0.07214453318022322,
+      "mean_risky_q_underestimation": 0.15437975056753034,
+      "num_rows": 15,
+      "risky_action_selection_rate": 0.4
+    }
+  },
+  "claim_tested": "A fixed tiny randomized suite tested whether posterior TRL-log has distinct value over prior-matched posterior model DP beyond handcrafted branch-chain regimes.",
+  "commands_run": [
+    "mkdir -p research/sto_trl/artifacts/0011 research/sto_trl/results",
+    "conda run -n autoresearcher_sto_trl python research/sto_trl/artifacts/0011/randomized_equivalence_audit.py",
+    "conda run -n autoresearcher_sto_trl python scripts/validate_artifacts.py --repo-root . --json research/sto_trl/results/0011_result.json --schema schemas/result.schema.json --check-result-artifacts"
+  ],
+  "decision_relevant_findings": [
+    "Positive evidence: False.",
+    "Near-equivalence to posterior model DP: True.",
+    "Max posterior_trl_log value difference vs posterior model DP: 0.",
+    "Action disagreement rate vs posterior model DP: 0.",
+    "Matched risk-optimal preserved: True."
+  ],
+  "experiment_id": "0011",
+  "failure_criteria_results": [
+    "Prior-matched posterior model-DP baselines and direct equivalence diagnostics were included.",
+    "Transition-model DP used the same observed transition counts and priors as posterior TRL; it was not made unavailable or misspecified.",
+    "Exact DP values and true probabilities were used only for evaluation/audit artifacts.",
+    "No neural networks, continuous-control environments, downloads, broad sweeps, or expensive training were used.",
+    "No method is claimed successful by safe-everywhere behavior or by failing matched risk-optimal action selection."
+  ],
+  "interpretation": "The randomized tiny-suite audit supports the 0010 boundary result: posterior TRL-log variants match the prior-matched posterior mean model-DP baseline within numerical tolerance across branch-chain, stochastic stitching, and teleporter families. Any aggregate improvement over plain TRL-log is explained by the shared posterior transition prior, not by a distinct transitive posterior TRL effect.",
+  "known_failures": [
+    "posterior_trl_log and posterior_mc_plus_trl_log were near-equivalent to prior-matched posterior mean model DP across the randomized suite.",
+    "No credible posterior TRL benefit over both TRL-log and prior-matched posterior model DP was detected."
+  ],
+  "metric_deltas": {
+    "mc_supervised_minus_trl_log_heldout_mse": 0.3950527318474631,
+    "posterior_mc_plus_minus_posterior_model_heldout_mse": -6.938893903907228e-18,
+    "posterior_trl_log_minus_posterior_model_heldout_mse": 0.0,
+    "posterior_trl_log_minus_posterior_model_policy_regret": 0.0,
+    "posterior_trl_log_minus_trl_log_heldout_mse": -0.005392320564051853,
+    "posterior_trl_log_minus_trl_log_policy_regret": -0.05548937888166987
+  },
+  "metrics": {
+    "coverage_diagnostics": {
+      "label_horizon_cutoff": 2,
+      "tag_counts": {
+        "ambiguous": 3,
+        "biased_coverage": 6,
+        "lucky_only": 3,
+        "matched": 6,
+        "no_success": 3,
+        "prior_dependent": 3,
+        "risk_optimal": 9,
+        "safe_optimal": 6,
+        "sparse_coverage": 3
+      }
+    },
+    "equivalence_aggregate": {
+      "action_disagreement_rate_posterior_mc_plus_vs_model": 0.0,
+      "action_disagreement_rate_posterior_trl_log_vs_model": 0.0,
+      "best_candidate": "posterior_mc_plus_trl_log",
+      "candidate_improves_vs_prior_matched_model_dp": false,
+      "candidate_improves_vs_trl_log": true,
+      "matched_risk_optimal_preserved": true,
+      "max_abs_value_diff_posterior_mc_plus_vs_model": 3.3306690738754696e-16,
+      "max_abs_value_diff_posterior_trl_log_vs_model": 0.0,
+      "not_safe_everywhere": true,
+      "positive_evidence": false,
+      "posterior_trl_near_equivalent_to_prior_matched_model_dp": true
+    },
+    "families": [
+      "branch_chain",
+      "stochastic_stitching",
+      "teleporter"
+    ],
+    "matched_risk_optimal_preserved": true,
+    "method_summary": {
+      "empirical_model_dp": {
+        "action_accuracy": 0.4,
+        "mean_all_pair_value_mse": 0.04481289688774978,
+        "mean_heldout_long_horizon_value_mse": 0.03765166954543893,
+        "mean_policy_regret": 0.06840668344867584,
+        "mean_risky_q_calibration_error": 0.22652428374775355,
+        "mean_risky_q_overestimation": 0.07214453318022322,
+        "mean_risky_q_underestimation": 0.15437975056753034,
+        "num_rows": 15,
+        "risky_action_selection_rate": 0.4
+      },
+      "mc_supervised": {
+        "action_accuracy": 0.4,
+        "mean_all_pair_value_mse": 0.23531227403396845,
+        "mean_heldout_long_horizon_value_mse": 0.432704401392902,
+        "mean_policy_regret": 0.028055308380006028,
+        "mean_risky_q_calibration_error": 0.5690452173873072,
+        "mean_risky_q_overestimation": 0.0,
+        "mean_risky_q_underestimation": 0.5690452173873072,
+        "num_rows": 15,
+        "risky_action_selection_rate": 0.0
+      },
+      "posterior_lower_q10_model_dp": {
+        "action_accuracy": 0.4666666666666667,
+        "mean_all_pair_value_mse": 0.04437558018198091,
+        "mean_heldout_long_horizon_value_mse": 0.03592521474547472,
+        "mean_policy_regret": 0.02218223230951611,
+        "mean_risky_q_calibration_error": 0.2615099351506468,
+        "mean_risky_q_overestimation": 0.01626917888166985,
+        "mean_risky_q_underestimation": 0.245240756268977,
+        "num_rows": 15,
+        "risky_action_selection_rate": 0.06666666666666667
+      },
+      "posterior_mc_plus_trl_log": {
+        "action_accuracy": 0.6,
+        "mean_all_pair_value_mse": 0.0423569966153239,
+        "mean_heldout_long_horizon_value_mse": 0.03225934898138707,
+        "mean_policy_regret": 0.012917304567005971,
+        "mean_risky_q_calibration_error": 0.2142213777480494,
+        "mean_risky_q_overestimation": 0.045769378881669855,
+        "mean_risky_q_underestimation": 0.16845199886637954,
+        "num_rows": 15,
+        "risky_action_selection_rate": 0.2
+      },
+      "posterior_mean_model_dp": {
+        "action_accuracy": 0.6,
+        "mean_all_pair_value_mse": 0.0423569966153239,
+        "mean_heldout_long_horizon_value_mse": 0.032259348981387076,
+        "mean_policy_regret": 0.012917304567005971,
+        "mean_risky_q_calibration_error": 0.21422137774804942,
+        "mean_risky_q_overestimation": 0.045769378881669855,
+        "mean_risky_q_underestimation": 0.16845199886637957,
+        "num_rows": 15,
+        "risky_action_selection_rate": 0.2
+      },
+      "posterior_trl_log": {
+        "action_accuracy": 0.6,
+        "mean_all_pair_value_mse": 0.0423569966153239,
+        "mean_heldout_long_horizon_value_mse": 0.032259348981387076,
+        "mean_policy_regret": 0.012917304567005971,
+        "mean_risky_q_calibration_error": 0.21422137774804942,
+        "mean_risky_q_overestimation": 0.045769378881669855,
+        "mean_risky_q_underestimation": 0.16845199886637957,
+        "num_rows": 15,
+        "risky_action_selection_rate": 0.2
+      },
+      "trl_log": {
+        "action_accuracy": 0.4,
+        "mean_all_pair_value_mse": 0.04481289688774978,
+        "mean_heldout_long_horizon_value_mse": 0.03765166954543893,
+        "mean_policy_regret": 0.06840668344867584,
+        "mean_risky_q_calibration_error": 0.22652428374775355,
+        "mean_risky_q_overestimation": 0.07214453318022322,
+        "mean_risky_q_underestimation": 0.15437975056753034,
+        "num_rows": 15,
+        "risky_action_selection_rate": 0.4
+      },
+      "trl_raw": {
+        "action_accuracy": 0.4,
+        "mean_all_pair_value_mse": 0.04689066502483722,
+        "mean_heldout_long_horizon_value_mse": 0.04197517030732846,
+        "mean_policy_regret": 0.09760101086208989,
+        "mean_risky_q_calibration_error": 0.2940646223514747,
+        "mean_risky_q_overestimation": 0.15410970248208378,
+        "mean_risky_q_underestimation": 0.13995491986939088,
+        "num_rows": 15,
+        "risky_action_selection_rate": 0.8
+      }
+    },
+    "num_mdps": 15,
+    "num_method_rows": 120,
+    "positive_evidence": false,
+    "posterior_trl_near_equivalent_to_prior_matched_model_dp": true,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "next_questions": [
+    "Can a future posterior TRL method beat posterior model DP only when state aliases or partial observability make model DP insufficient?",
+    "Should posterior TRL audits require model-DP equivalence checks by default?",
+    "Which explicit priors should be predeclared for no-success risk-optimal regimes?"
+  ],
+  "resource_usage": {
+    "device": "cpu",
+    "label_horizon_cutoff": 2,
+    "num_mdps": 15,
+    "num_method_rows": 120
+  },
+  "runtime_seconds": 5.5122668059993885,
+  "status": "completed",
+  "success_criteria_results": [
+    "Created a self-contained 0011 artifact without editing prior results, schemas, control scripts, AGENTS.md, or environment files.",
+    "Generated a predeclared tiny suite of 3 families x 5 fixed seeds with exact DP evaluation for every MDP.",
+    "Included matched, lucky-only, no-success, ambiguous/prior-dependent, and sparse long-horizon label-censoring regimes.",
+    "Compared MC supervised, raw TRL, TRL-log, empirical model DP, posterior model DP, posterior lower model DP, posterior_trl_log, and posterior_mc_plus_trl_log.",
+    "Saved raw metrics plus family, regime, coverage, transition, value, and equivalence diagnostics."
+  ]
+}
