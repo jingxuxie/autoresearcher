@@ -50,29 +50,48 @@ class CdpClient:
                 "Python package websocket-client is required for the CDP backend.",
                 {"import_error": str(exc)},
             ) from exc
-        self._ws = create_connection(websocket_url, timeout=timeout, suppress_origin=True)
+        try:
+            self._ws = create_connection(websocket_url, timeout=timeout, suppress_origin=True)
+        except Exception as exc:  # websocket-client raises its own exception hierarchy.
+            raise CdpError(
+                "browser_bridge_unavailable",
+                f"Could not connect to the Chrome DevTools page WebSocket: {exc}",
+                {"websocket_url": websocket_url, "error": str(exc)},
+            ) from exc
         self._next_id = 0
 
     def close(self) -> None:
-        self._ws.close()
+        try:
+            self._ws.close()
+        except Exception:
+            pass
 
     def call(self, method: str, params: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         self._next_id += 1
         message_id = self._next_id
-        self._ws.send(json.dumps({"id": message_id, "method": method, "params": params or {}}))
-        while True:
-            raw = self._ws.recv()
-            payload = json.loads(raw)
-            if payload.get("id") != message_id:
-                continue
-            if "error" in payload:
-                raise CdpError(
-                    "pro_backend_failed",
-                    f"CDP call {method} failed: {payload['error']}",
-                    {"method": method, "error": payload["error"]},
-                )
-            result = payload.get("result")
-            return result if isinstance(result, dict) else {}
+        try:
+            self._ws.send(json.dumps({"id": message_id, "method": method, "params": params or {}}))
+            while True:
+                raw = self._ws.recv()
+                payload = json.loads(raw)
+                if payload.get("id") != message_id:
+                    continue
+                if "error" in payload:
+                    raise CdpError(
+                        "pro_backend_failed",
+                        f"CDP call {method} failed: {payload['error']}",
+                        {"method": method, "error": payload["error"]},
+                    )
+                result = payload.get("result")
+                return result if isinstance(result, dict) else {}
+        except CdpError:
+            raise
+        except Exception as exc:  # websocket-client disconnects are not OSError subclasses.
+            raise CdpError(
+                "browser_bridge_unavailable",
+                f"Chrome DevTools WebSocket connection failed during {method}: {exc}",
+                {"method": method, "error": str(exc)},
+            ) from exc
 
     def evaluate(self, expression: str, timeout_ms: int = 30000) -> Any:
         result = self.call(

@@ -16,7 +16,7 @@ if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
 import autoresearcher  # noqa: E402
-from chatgpt_cdp_bridge import CdpError, CdpResponse, select_chatgpt_page  # noqa: E402
+from chatgpt_cdp_bridge import CdpClient, CdpError, CdpResponse, select_chatgpt_page  # noqa: E402
 from chatgpt_pro_bridge import extract_fenced_json  # noqa: E402
 
 
@@ -319,6 +319,27 @@ Short supporting paragraph.
             self.assertEqual(blocker["reason"], "login_required")
             state = json.loads((root / "state.json").read_text())
             self.assertEqual(state["status"], "paused")
+
+    def test_cdp_client_wraps_websocket_disconnects(self) -> None:
+        class ClosedWebSocket:
+            def send(self, _payload: str) -> None:
+                return None
+
+            def recv(self) -> str:
+                raise RuntimeError("Connection is already closed.")
+
+            def close(self) -> None:
+                return None
+
+        client = object.__new__(CdpClient)
+        client._ws = ClosedWebSocket()
+        client._next_id = 0
+
+        with self.assertRaises(CdpError) as ctx:
+            client.call("Runtime.enable")
+
+        self.assertEqual(ctx.exception.reason, "browser_bridge_unavailable")
+        self.assertEqual(ctx.exception.details["method"], "Runtime.enable")
 
     def test_cdp_page_selection_requires_configured_thread(self) -> None:
         pages = [
