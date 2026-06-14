@@ -1,0 +1,54 @@
+JSON
+{
+  "decision": "continue",
+  "confidence": 0.74,
+  "rationale": "Continue, but treat the project as still pre-evidence rather than making any positive research claim. The available repository state shows iteration 0 with no recorded latest summary or primary metric, while the charter and local decision specify a cheap first diagnostic that directly tests the estimator-variance premise. The missing latest_summary.md means I cannot credit unverified progress, so the next step should be the smallest reproducible variance-and-equivalence diagnostic, not neural learners or larger environments.",
+  "evidence": [
+    "The project charter defines the goal as testing whether soft successor-measure reward-to-goal conversion preserves equivalence while avoiding sparse high-variance terminal sampling.",
+    "The charter states the main hypothesis: the g_plus head trained with expected terminal mass should match normalized Q-learning in tabular sanity checks while avoiding sampled terminal event variance.",
+    "The current repository state has iteration 0, no last summary path, no primary metric, and no best primary metric, so there is not yet recorded experimental evidence of progress.",
+    "The local Codex decision chose continue and identified experiment 0001 as the one-state terminal-target variance sanity check.",
+    "The charter explicitly prohibits MuJoCo, AntMaze, OGBench, large downloads, or long neural training before tabular diagnostics pass."
+  ],
+  "risks": [
+    "The latest progress summary path supplied by the user was not found, so reported results cannot be evaluated from the repository evidence.",
+    "The soft g_plus head alone may reduce to normalized Q-learning up to scaling, so it is not a research contribution unless later experiments show auxiliary goals, transfer, variance reduction, or diagnostics add value.",
+    "A variance sanity check can prove the sampled estimator is noisy but cannot prove the full method improves GCRL or reward learning.",
+    "Moving to neural function approximation before exact/tabular equivalence is verified would create ambiguous failures."
+  ],
+  "next_experiment": {
+    "experiment_id": "0001_variance_and_exact_equivalence_gate",
+    "objective": "Create a reproducible CPU-only diagnostic that verifies the sampled augmented terminal target and the deterministic soft terminal target have the same expectation, quantifies the sampled target variance and g_plus rarity, and confirms the soft g_plus Bellman fixed point equals normalized Q-learning up to the (1 - gamma) scaling in a tiny finite MDP.",
+    "hypothesis": "For each gamma and normalized reward r_bar, the sampled Bernoulli terminal target has mean (1 - gamma) * r_bar and variance p * (1 - p), where p = (1 - gamma) * r_bar, while the soft target has the same mean and zero terminal-sampling variance; in a tiny finite MDP, F_gplus_star / (1 - gamma) should match Q_norm_star within numerical tolerance.",
+    "success_criteria": [
+      "For all gamma in {0.90, 0.95, 0.99, 0.995} and r_bar in {0.01, 0.1, 0.5, 1.0}, empirical sampled means are within 3 standard errors of analytic p = (1 - gamma) * r_bar.",
+      "Reported sampled variances match p * (1 - p) within a clear Monte Carlo tolerance, and soft-target terminal variance is exactly zero by construction.",
+      "The report includes g_plus event counts per 10000 samples and shows rarity worsening as gamma approaches 1.",
+      "On a tiny finite MDP, max_abs_error(F_gplus_star / (1 - gamma) - Q_norm_star) is less than 1e-6.",
+      "Artifacts include exact command, config, raw JSON metrics, and a short markdown summary with pass/fail interpretation."
+    ],
+    "failure_criteria": [
+      "Reward normalization, gamma placement, or terminal target definitions are ambiguous.",
+      "Empirical means/variances do not match analytic values and the discrepancy is not explained by sample size.",
+      "The finite-MDP equivalence check fails above 1e-6.",
+      "The output reports only plots or training loss without raw mean, variance, event-count, and equivalence metrics.",
+      "The experiment introduces neural function approximation, large environments, or GPU dependence before this gate passes."
+    ],
+    "tasks_for_codex": [
+      "Add a script under research/reward_to_gcrl/artifacts/0001/ that computes analytic and Monte Carlo sampled-vs-soft terminal target statistics for the specified gamma and r_bar sweep.",
+      "Add a tiny finite-MDP value-iteration check comparing Q_norm_star to F_gplus_star / (1 - gamma).",
+      "Save research/reward_to_gcrl/results/0001_result.json with raw metrics, tolerances, pass/fail flags, and exact command.",
+      "Save research/reward_to_gcrl/results/0001_summary.md with a compact table and interpretation.",
+      "Do not implement neural models, CliffWalking, RiverSwim, or auxiliary state goals in this iteration."
+    ],
+    "required_outputs": [
+      "research/reward_to_gcrl/results/0001_result.json",
+      "research/reward_to_gcrl/results/0001_summary.md",
+      "Exact command used to run the experiment",
+      "A pass/fail field for the variance diagnostic and the exact Bellman equivalence check"
+    ],
+    "estimated_runtime_minutes": 10
+  }
+}
+
+You are making process progress, but not yet research evidence progress: the repo evidence I could access shows a ready charter/env and local continue decision, but no recorded latest summary or metrics yet. The right move is to continue with the first hard gate, because the charter’s small diagnostic directly tests the central premise and stays within the CPU-scale scope.

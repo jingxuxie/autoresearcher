@@ -1,0 +1,21 @@
+{
+  "iterations": [
+    {
+      "allows_auto_continue": null,
+      "claim_tested": "In a one-state normalized-reward augmented transition model, sampled Bernoulli g_plus terminal targets and deterministic soft expected-mass targets have the same mean, while sampled targets retain Bernoulli variance and increasingly rare g_plus events as gamma approaches 1.",
+      "decision": "continue",
+      "important_metrics": {},
+      "iteration": "0001",
+      "negative_signals": [],
+      "positive_signals": [
+        "The soft terminal-mass target removes the sampled terminal-event variance source in this isolated one-step diagnostic.",
+        "For gamma=0.995 and r_bar=0.01, the analytic expected g_plus rate is only 0.5 per 10000 transitions, so sampled conversion can make dense reward supervision extremely sparse.",
+        "The largest analytic single-target coefficient of variation is 141.418, showing relative noise grows sharply for rare terminal mass.",
+        "The deterministic soft target exactly equals the analytic expected terminal mass and has zero variance. The sampled Bernoulli estimator matched that mean within the predeclared Monte Carlo tolerance at all 16 sweep points, but retained nonzero target variance "
+      ],
+      "review_verdict": null,
+      "status": "completed"
+    }
+  ],
+  "project": "reward_to_gcrl"
+}
