@@ -1,0 +1,2065 @@
+{
+  "artifacts": [
+    "research/reward_to_gcrl/artifacts/0009/run_fourrooms_lowrank_auxiliary.py",
+    "research/reward_to_gcrl/artifacts/0009/local_compatibility_check.json",
+    "research/reward_to_gcrl/artifacts/0009/environment_audit.json",
+    "research/reward_to_gcrl/artifacts/0009/exact_dp_references.json",
+    "research/reward_to_gcrl/artifacts/0009/per_seed_metrics.json",
+    "research/reward_to_gcrl/artifacts/0009/per_seed_summary.csv",
+    "research/reward_to_gcrl/artifacts/0009/replay_datasets.npz",
+    "research/reward_to_gcrl/artifacts/0009/raw_metrics.json",
+    "research/reward_to_gcrl/artifacts/0009/progress.jsonl"
+  ],
+  "baseline_metrics": {
+    "baseline_name": "terminal_only_gplus_lowrank",
+    "mean_gplus_bellman_residual": 0.0009558486105185331,
+    "mean_gplus_scaled_value_error": 0.0731219458562512,
+    "mean_reward_success_rate": 0.5384615384615384
+  },
+  "claim_tested": "A shared rank-4 NumPy low-rank FourRooms successor-measure model trained with real-state auxiliary goals should improve the g_plus reward-success slice versus terminal-only g_plus training under matched adequate offline replay, or the auxiliary benefit should not be claimed.",
+  "commands_run": [
+    "mkdir -p research/reward_to_gcrl/artifacts/0009 research/reward_to_gcrl/results",
+    "conda run -n autoresearcher_reward_to_gcrl python --version",
+    "conda run -n autoresearcher_reward_to_gcrl python -m py_compile research/reward_to_gcrl/artifacts/0009/run_fourrooms_lowrank_auxiliary.py",
+    "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0009/run_fourrooms_lowrank_auxiliary.py --check-only",
+    "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0009/run_fourrooms_lowrank_auxiliary.py",
+    "conda run -n autoresearcher_reward_to_gcrl python -m jsonschema -i research/reward_to_gcrl/results/0009_result.json schemas/result.schema.json",
+    "conda run -n autoresearcher_reward_to_gcrl python scripts/validate_artifacts.py --repo-root . --json research/reward_to_gcrl/results/0009_result.json --schema schemas/result.schema.json --check-result-artifacts"
+  ],
+  "decision_relevant_findings": [
+    "Conservative verdict: negative_transfer.",
+    "The low-rank model genuinely shares state-action factors across real-state goals and g_plus.",
+    "Exact tabular references are used only for evaluation, not behavior generation or target labels.",
+    "Auxiliary reward-task benefit should not be claimed unless the verdict is auxiliary_helped_gplus."
+  ],
+  "experiment_id": "0009",
+  "failure_criteria_results": [
+    "NOT_TRIGGERED: model shares u_sa factors between real-state goals and g_plus in the combined variant.",
+    "NOT_TRIGGERED: this is not independent tabular slicing; the model is rank-limited and shared.",
+    "NOT_TRIGGERED: replay coverage is adequate for all seeds.",
+    "NOT_TRIGGERED: result is not mislabeled as auxiliary-helped when criteria are unmet.",
+    "NOT_TRIGGERED: no rank, loss, auxiliary-weight, or optimizer sweep was run.",
+    "NOT_TRIGGERED: no neural framework, GPU, larger environment, or large dependency was used."
+  ],
+  "interpretation": "Combined auxiliary training worsened a g_plus metric or reward-policy disagreement under adequate replay coverage; auxiliary-goal benefit is not supported.",
+  "known_failures": [
+    "reward_policy_not_worse",
+    "auxiliary_helped_gplus_criterion"
+  ],
+  "metric_deltas": {
+    "mean_bellman_residual_delta_combined_minus_terminal": 0.035458099349646194,
+    "mean_reward_policy_disagreement_delta": 0.52633658008658,
+    "mean_value_error_delta_combined_minus_terminal": 16.820746470260634,
+    "relative_bellman_residual_improvement": -37.09593648978651,
+    "relative_value_error_improvement": -230.03690989471423,
+    "verdict": "negative_transfer"
+  },
+  "metrics": {
+    "config": {
+      "coverage_thresholds": {
+        "goal_label_fraction": 0.95,
+        "min_state_action_count": 5,
+        "reward_event_count": 20,
+        "visited_state_action_fraction": 1.0
+      },
+      "gamma": 0.95,
+      "improvement_threshold": 0.1,
+      "indistinguishable_z": 1.96,
+      "model": {
+        "form": "M_hat(s,a,g)=sigmoid(u_sa dot v_g + b_g)",
+        "learning_rate": 0.05,
+        "optimizer": "Adam",
+        "rank": 4,
+        "shared_parameters": "u_sa is shared by real-state goals and g_plus in the combined model"
+      },
+      "rank": 4,
+      "replay_behavior": {
+        "description": "Each replay transition samples an open state uniformly and an action uniformly, then applies the audited deterministic transition table.",
+        "name": "uniform_random_state_action_reset",
+        "uses_exact_q_or_dp": false,
+        "uses_reward_optimal_preferences": false
+      },
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "training_config": {
+        "aux_goals_per_transition": 4,
+        "auxiliary_weight": 1.0,
+        "batch_size": 256,
+        "gamma": 0.95,
+        "optimizer_steps": 4000,
+        "replay_transitions": 5000,
+        "seeds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    },
+    "environment_audit": {
+      "complete": true,
+      "goal_indexing": {
+        "g_plus_index": 40,
+        "goal_count_total": 41,
+        "real_state_goal_indices": "0..n_states-1, matching state indices"
+      },
+      "missing_fields": [],
+      "reward_normalization": {
+        "affine_offset": 0.0,
+        "affine_scale": 1.0,
+        "normalized_reward": "identity(raw_reward)",
+        "raw_rewards_in_[0,1]": true
+      },
+      "terminal_masks": {
+        "g_plus_slice": "terminal current state s==reward_goal_state and no bootstrap on transitions with next_state==reward_goal_state",
+        "real_state_goal_slice": "slice g has terminal current state s==g and no bootstrap on transitions with next_state==g"
+      },
+      "transition_table_hash": "83e1f22232f65efd7c194f0e75ee92546b395520656f2336819472ef1b95d3de",
+      "verified_against_0008_where_available": {
+        "audit_path": "/home/eston/autoresearcher/research/reward_to_gcrl/artifacts/0008/environment_audit.json",
+        "transition_hash_0008": "83e1f22232f65efd7c194f0e75ee92546b395520656f2336819472ef1b95d3de",
+        "transition_hash_matches_0008": true
+      }
+    },
+    "exact_dp": {
+      "gamma": 0.95,
+      "goal_iterations": 14,
+      "gplus_iterations": 14,
+      "max_abs_scaled_gplus_minus_q_norm": 1.1102230246251565e-16,
+      "q_iterations": 14
+    },
+    "lowrank_auxiliary": {
+      "aggregate": {
+        "adequate_coverage_count": 10,
+        "coverage_limited_count": 0,
+        "mean_bellman_residual_delta_combined_minus_terminal": 0.035458099349646194,
+        "mean_combined_goal_success_rate": 0.003717948717948718,
+        "mean_combined_gplus_bellman_residual": 0.03641394796016472,
+        "mean_combined_gplus_scaled_value_error": 16.89386841611688,
+        "mean_combined_real_goal_value_error": 0.9191108638578482,
+        "mean_combined_reward_success_rate": 0.0,
+        "mean_reward_policy_disagreement_delta": 0.52633658008658,
+        "mean_terminal_gplus_bellman_residual": 0.0009558486105185331,
+        "mean_terminal_gplus_scaled_value_error": 0.0731219458562512,
+        "mean_terminal_reward_success_rate": 0.5384615384615384,
+        "mean_value_error_delta_combined_minus_terminal": 16.820746470260634,
+        "policy_not_worse": false,
+        "relative_bellman_residual_improvement": -37.09593648978651,
+        "relative_value_error_improvement": -230.03690989471423,
+        "residual_non_worse_or_indistinguishable": false,
+        "run_count": 10,
+        "sem_bellman_residual_delta": 0.0018914558909937625,
+        "sem_value_error_delta": 0.8008537486297672,
+        "value_non_worse_or_indistinguishable": false,
+        "verdict": "negative_transfer"
+      },
+      "rows": [
+        {
+          "adequate_coverage": true,
+          "combined_auxiliary": {
+            "gplus_max_bellman_residual": 0.0884758501194981,
+            "gplus_max_scaled_value_error": 19.275067852154017,
+            "gplus_mean_bellman_residual": 0.027257880894678333,
+            "gplus_mean_scaled_value_error": 16.37277608850379,
+            "real_goal_diagnostics": {
+              "max_goal_policy_disagreement_rate": 1.0,
+              "max_state_goal_value_error": 1.0,
+              "mean_first_step_shortest_path_distance_reduction": -0.052564102564102565,
+              "mean_goal_policy_disagreement_rate": 0.8346880447983391,
+              "mean_goal_success_rate": 0.0019230769230769232,
+              "mean_state_goal_value_error": 0.9187893160343847,
+              "min_goal_success_rate": 0.0
+            },
+            "reward_evaluation": {
+              "evaluated_start_states": 39,
+              "mean_raw_return": 0.0,
+              "success_rate": 0.0
+            },
+            "reward_policy_disagreement_vs_exact": {
+              "comparable_non_tie_state_count": 22,
+              "disagreement_count": 13,
+              "disagreement_rate": 0.5909090909090909,
+              "skipped_state_count": 1,
+              "state_count_total": 40,
+              "tie_state_count": 17
+            },
+            "training_info": {
+              "curves": [
+                {
+                  "loss": 3.108877417687966e-05,
+                  "step": 1,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.01499363224738261,
+                  "step": 500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.012945975983915347,
+                  "step": 1000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.005876277401304693,
+                  "step": 1500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.00374972631239832,
+                  "step": 2000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.006067722672583225,
+                  "step": 2500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.0036138036782565218,
+                  "step": 3000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.0036481507989821376,
+                  "step": 3500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.003448248821921125,
+                  "step": 4000,
+                  "variant": "combined_auxiliary"
+                }
+              ],
+              "goal_label_coverage_count": 41,
+              "goal_label_coverage_fraction": 1.0,
+              "shares_state_action_factors": true,
+              "variant": "combined_auxiliary"
+            },
+            "variant": "combined_auxiliary"
+          },
+          "coverage": {
+            "adequate_replay_coverage": true,
+            "behavior": "uniform_random_state_action_reset",
+            "max_state_action_count": 47,
+            "min_state_action_count": 20,
+            "reward_event_count": 62,
+            "total_state_action_pairs": 160,
+            "transition_count": 5000,
+            "visited_state_action_fraction": 1.0,
+            "visited_state_action_pairs": 160
+          },
+          "deltas_combined_minus_terminal": {
+            "gplus_mean_bellman_residual": 0.025122288449755985,
+            "gplus_mean_scaled_value_error": 15.929244883308677,
+            "reward_policy_disagreement_rate": 0.045454545454545525,
+            "reward_success_rate": 0.0
+          },
+          "seed": 0,
+          "terminal_only": {
+            "gplus_max_bellman_residual": 0.008870985337452487,
+            "gplus_max_scaled_value_error": 0.7329437620391154,
+            "gplus_mean_bellman_residual": 0.002135592444922349,
+            "gplus_mean_scaled_value_error": 0.44353120519511435,
+            "real_goal_diagnostics": {
+              "max_goal_policy_disagreement_rate": 0.9565217391304348,
+              "max_state_goal_value_error": 0.03567120099710119,
+              "mean_first_step_shortest_path_distance_reduction": 0.06025641025641025,
+              "mean_goal_policy_disagreement_rate": 0.6864624505928854,
+              "mean_goal_success_rate": 0.026923076923076928,
+              "mean_state_goal_value_error": 0.018102281237496905,
+              "min_goal_success_rate": 0.0
+            },
+            "reward_evaluation": {
+              "evaluated_start_states": 39,
+              "mean_raw_return": 0.0,
+              "success_rate": 0.0
+            },
+            "reward_policy_disagreement_vs_exact": {
+              "comparable_non_tie_state_count": 22,
+              "disagreement_count": 12,
+              "disagreement_rate": 0.5454545454545454,
+              "skipped_state_count": 1,
+              "state_count_total": 40,
+              "tie_state_count": 17
+            },
+            "training_info": {
+              "curves": [
+                {
+                  "loss": 3.753069194696877e-05,
+                  "step": 1,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 0.001172080821990138,
+                  "step": 500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 3.2230858092133348e-06,
+                  "step": 1000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 3.9507396570122754e-07,
+                  "step": 1500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 4.712151479576817e-08,
+                  "step": 2000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 1.7927857496772605e-08,
+                  "step": 2500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 1.0716868948229416e-08,
+                  "step": 3000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 1.1104969033461311e-08,
+                  "step": 3500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 8.148520184836202e-06,
+                  "step": 4000,
+                  "variant": "terminal_only"
+                }
+              ],
+              "goal_label_coverage_count": 1,
+              "goal_label_coverage_fraction": 0.024390243902439025,
+              "shares_state_action_factors": true,
+              "variant": "terminal_only"
+            },
+            "variant": "terminal_only"
+          }
+        },
+        {
+          "adequate_coverage": true,
+          "combined_auxiliary": {
+            "gplus_max_bellman_residual": 0.06666587410268929,
+            "gplus_max_scaled_value_error": 19.454423542726733,
+            "gplus_mean_bellman_residual": 0.03316758565048915,
+            "gplus_mean_scaled_value_error": 17.649002264416232,
+            "real_goal_diagnostics": {
+              "max_goal_policy_disagreement_rate": 1.0,
+              "max_state_goal_value_error": 1.0,
+              "mean_first_step_shortest_path_distance_reduction": -0.048717948717948725,
+              "mean_goal_policy_disagreement_rate": 0.7830510747422512,
+              "mean_goal_success_rate": 0.001282051282051282,
+              "mean_state_goal_value_error": 0.918046819358635,
+              "min_goal_success_rate": 0.0
+            },
+            "reward_evaluation": {
+              "evaluated_start_states": 39,
+              "mean_raw_return": 0.0,
+              "success_rate": 0.0
+            },
+            "reward_policy_disagreement_vs_exact": {
+              "comparable_non_tie_state_count": 22,
+              "disagreement_count": 16,
+              "disagreement_rate": 0.7272727272727273,
+              "skipped_state_count": 1,
+              "state_count_total": 40,
+              "tie_state_count": 17
+            },
+            "training_info": {
+              "curves": [
+                {
+                  "loss": 2.3928323234255255e-05,
+                  "step": 1,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.010463195006763884,
+                  "step": 500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.0056156306257794854,
+                  "step": 1000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.004222528708995759,
+                  "step": 1500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.0026327980360669303,
+                  "step": 2000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.00425145755309222,
+                  "step": 2500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.004347641845759036,
+                  "step": 3000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.006627296970793295,
+                  "step": 3500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.004178952075832773,
+                  "step": 4000,
+                  "variant": "combined_auxiliary"
+                }
+              ],
+              "goal_label_coverage_count": 41,
+              "goal_label_coverage_fraction": 1.0,
+              "shares_state_action_factors": true,
+              "variant": "combined_auxiliary"
+            },
+            "variant": "combined_auxiliary"
+          },
+          "coverage": {
+            "adequate_replay_coverage": true,
+            "behavior": "uniform_random_state_action_reset",
+            "max_state_action_count": 46,
+            "min_state_action_count": 17,
+            "reward_event_count": 56,
+            "total_state_action_pairs": 160,
+            "transition_count": 5000,
+            "visited_state_action_fraction": 1.0,
+            "visited_state_action_pairs": 160
+          },
+          "deltas_combined_minus_terminal": {
+            "gplus_mean_bellman_residual": 0.03268367447177098,
+            "gplus_mean_scaled_value_error": 17.63689718063446,
+            "reward_policy_disagreement_rate": 0.7272727272727273,
+            "reward_success_rate": -1.0
+          },
+          "seed": 1,
+          "terminal_only": {
+            "gplus_max_bellman_residual": 0.0022606728891611527,
+            "gplus_max_scaled_value_error": 0.04162017850682509,
+            "gplus_mean_bellman_residual": 0.0004839111787181688,
+            "gplus_mean_scaled_value_error": 0.01210508378177425,
+            "real_goal_diagnostics": {
+              "max_goal_policy_disagreement_rate": 0.9130434782608695,
+              "max_state_goal_value_error": 0.05864572356293659,
+              "mean_first_step_shortest_path_distance_reduction": 0.005769230769230771,
+              "mean_goal_policy_disagreement_rate": 0.7074604743083004,
+              "mean_goal_success_rate": 0.05769230769230769,
+              "mean_state_goal_value_error": 0.01866566062227057,
+              "min_goal_success_rate": 0.0
+            },
+            "reward_evaluation": {
+              "evaluated_start_states": 39,
+              "mean_raw_return": 1.0,
+              "success_rate": 1.0
+            },
+            "reward_policy_disagreement_vs_exact": {
+              "comparable_non_tie_state_count": 22,
+              "disagreement_count": 0,
+              "disagreement_rate": 0.0,
+              "skipped_state_count": 1,
+              "state_count_total": 40,
+              "tie_state_count": 17
+            },
+            "training_info": {
+              "curves": [
+                {
+                  "loss": 2.2046381188696912e-05,
+                  "step": 1,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 0.0015883217748311148,
+                  "step": 500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 0.0007972848734269548,
+                  "step": 1000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 9.058162764488232e-07,
+                  "step": 1500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 1.4217163149692823e-07,
+                  "step": 2000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 1.2155828470492154e-08,
+                  "step": 2500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 6.540949652871606e-09,
+                  "step": 3000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 1.3436421349309278e-08,
+                  "step": 3500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 3.542171290032115e-07,
+                  "step": 4000,
+                  "variant": "terminal_only"
+                }
+              ],
+              "goal_label_coverage_count": 1,
+              "goal_label_coverage_fraction": 0.024390243902439025,
+              "shares_state_action_factors": true,
+              "variant": "terminal_only"
+            },
+            "variant": "terminal_only"
+          }
+        },
+        {
+          "adequate_coverage": true,
+          "combined_auxiliary": {
+            "gplus_max_bellman_residual": 0.07220817373794064,
+            "gplus_max_scaled_value_error": 19.450023834254242,
+            "gplus_mean_bellman_residual": 0.037753440819548366,
+            "gplus_mean_scaled_value_error": 18.134778277607115,
+            "real_goal_diagnostics": {
+              "max_goal_policy_disagreement_rate": 1.0,
+              "max_state_goal_value_error": 1.0,
+              "mean_first_step_shortest_path_distance_reduction": -0.06730769230769232,
+              "mean_goal_policy_disagreement_rate": 0.7590423547041194,
+              "mean_goal_success_rate": 0.0038461538461538455,
+              "mean_state_goal_value_error": 0.9209796449582464,
+              "min_goal_success_rate": 0.0
+            },
+            "reward_evaluation": {
+              "evaluated_start_states": 39,
+              "mean_raw_return": 0.0,
+              "success_rate": 0.0
+            },
+            "reward_policy_disagreement_vs_exact": {
+              "comparable_non_tie_state_count": 22,
+              "disagreement_count": 16,
+              "disagreement_rate": 0.7272727272727273,
+              "skipped_state_count": 1,
+              "state_count_total": 40,
+              "tie_state_count": 17
+            },
+            "training_info": {
+              "curves": [
+                {
+                  "loss": 2.5341110250449256e-05,
+                  "step": 1,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.013784549459711793,
+                  "step": 500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.01144099553379746,
+                  "step": 1000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.0039066944012098575,
+                  "step": 1500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.0040942848707145475,
+                  "step": 2000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.005311513611235953,
+                  "step": 2500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.005059921491846224,
+                  "step": 3000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.004029998847247357,
+                  "step": 3500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.005302833483599901,
+                  "step": 4000,
+                  "variant": "combined_auxiliary"
+                }
+              ],
+              "goal_label_coverage_count": 41,
+              "goal_label_coverage_fraction": 1.0,
+              "shares_state_action_factors": true,
+              "variant": "combined_auxiliary"
+            },
+            "variant": "combined_auxiliary"
+          },
+          "coverage": {
+            "adequate_replay_coverage": true,
+            "behavior": "uniform_random_state_action_reset",
+            "max_state_action_count": 46,
+            "min_state_action_count": 15,
+            "reward_event_count": 74,
+            "total_state_action_pairs": 160,
+            "transition_count": 5000,
+            "visited_state_action_fraction": 1.0,
+            "visited_state_action_pairs": 160
+          },
+          "deltas_combined_minus_terminal": {
+            "gplus_mean_bellman_residual": 0.037627442276543674,
+            "gplus_mean_scaled_value_error": 18.13060021815407,
+            "reward_policy_disagreement_rate": 0.7272727272727273,
+            "reward_success_rate": -1.0
+          },
+          "seed": 2,
+          "terminal_only": {
+            "gplus_max_bellman_residual": 0.0005506101557002331,
+            "gplus_max_scaled_value_error": 0.012489042221006774,
+            "gplus_mean_bellman_residual": 0.00012599854300469356,
+            "gplus_mean_scaled_value_error": 0.004178059453048267,
+            "real_goal_diagnostics": {
+              "max_goal_policy_disagreement_rate": 0.9565217391304348,
+              "max_state_goal_value_error": 0.04253839708588282,
+              "mean_first_step_shortest_path_distance_reduction": 0.06153846153846154,
+              "mean_goal_policy_disagreement_rate": 0.6694169960474309,
+              "mean_goal_success_rate": 0.058333333333333334,
+              "mean_state_goal_value_error": 0.01810658453745057,
+              "min_goal_success_rate": 0.0
+            },
+            "reward_evaluation": {
+              "evaluated_start_states": 39,
+              "mean_raw_return": 1.0,
+              "success_rate": 1.0
+            },
+            "reward_policy_disagreement_vs_exact": {
+              "comparable_non_tie_state_count": 22,
+              "disagreement_count": 0,
+              "disagreement_rate": 0.0,
+              "skipped_state_count": 1,
+              "state_count_total": 40,
+              "tie_state_count": 17
+            },
+            "training_info": {
+              "curves": [
+                {
+                  "loss": 2.0943918688636685e-05,
+                  "step": 1,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 0.0008327141131358934,
+                  "step": 500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 4.5496383175131965e-06,
+                  "step": 1000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 8.392387656210889e-07,
+                  "step": 1500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 2.580089898739074e-08,
+                  "step": 2000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 1.1164895455055802e-08,
+                  "step": 2500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 4.7133499632008485e-09,
+                  "step": 3000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 6.590257530225613e-09,
+                  "step": 3500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 2.532182869361556e-08,
+                  "step": 4000,
+                  "variant": "terminal_only"
+                }
+              ],
+              "goal_label_coverage_count": 1,
+              "goal_label_coverage_fraction": 0.024390243902439025,
+              "shares_state_action_factors": true,
+              "variant": "terminal_only"
+            },
+            "variant": "terminal_only"
+          }
+        },
+        {
+          "adequate_coverage": true,
+          "combined_auxiliary": {
+            "gplus_max_bellman_residual": 0.127278713890834,
+            "gplus_max_scaled_value_error": 18.502711184312947,
+            "gplus_mean_bellman_residual": 0.02937304188382982,
+            "gplus_mean_scaled_value_error": 14.537205827330714,
+            "real_goal_diagnostics": {
+              "max_goal_policy_disagreement_rate": 1.0,
+              "max_state_goal_value_error": 1.0,
+              "mean_first_step_shortest_path_distance_reduction": -0.07499999999999998,
+              "mean_goal_policy_disagreement_rate": 0.8521931691496908,
+              "mean_goal_success_rate": 0.001282051282051282,
+              "mean_state_goal_value_error": 0.9223466168203737,
+              "min_goal_success_rate": 0.0
+            },
+            "reward_evaluation": {
+              "evaluated_start_states": 39,
+              "mean_raw_return": 0.0,
+              "success_rate": 0.0
+            },
+            "reward_policy_disagreement_vs_exact": {
+              "comparable_non_tie_state_count": 22,
+              "disagreement_count": 15,
+              "disagreement_rate": 0.6818181818181818,
+              "skipped_state_count": 1,
+              "state_count_total": 40,
+              "tie_state_count": 17
+            },
+            "training_info": {
+              "curves": [
+                {
+                  "loss": 3.359658468221945e-05,
+                  "step": 1,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.011623841863591057,
+                  "step": 500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.009612639821155894,
+                  "step": 1000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.0077138139950126226,
+                  "step": 1500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.004233483574322831,
+                  "step": 2000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.003671795321418964,
+                  "step": 2500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.011287486850458446,
+                  "step": 3000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.004347690748401913,
+                  "step": 3500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.0046314146986722714,
+                  "step": 4000,
+                  "variant": "combined_auxiliary"
+                }
+              ],
+              "goal_label_coverage_count": 41,
+              "goal_label_coverage_fraction": 1.0,
+              "shares_state_action_factors": true,
+              "variant": "combined_auxiliary"
+            },
+            "variant": "combined_auxiliary"
+          },
+          "coverage": {
+            "adequate_replay_coverage": true,
+            "behavior": "uniform_random_state_action_reset",
+            "max_state_action_count": 50,
+            "min_state_action_count": 19,
+            "reward_event_count": 70,
+            "total_state_action_pairs": 160,
+            "transition_count": 5000,
+            "visited_state_action_fraction": 1.0,
+            "visited_state_action_pairs": 160
+          },
+          "deltas_combined_minus_terminal": {
+            "gplus_mean_bellman_residual": 0.029359430528556864,
+            "gplus_mean_scaled_value_error": 14.536895741113756,
+            "reward_policy_disagreement_rate": 0.6818181818181818,
+            "reward_success_rate": -1.0
+          },
+          "seed": 3,
+          "terminal_only": {
+            "gplus_max_bellman_residual": 0.00044300175929024575,
+            "gplus_max_scaled_value_error": 0.008860035185804907,
+            "gplus_mean_bellman_residual": 1.3611355272955673e-05,
+            "gplus_mean_scaled_value_error": 0.0003100862169570915,
+            "real_goal_diagnostics": {
+              "max_goal_policy_disagreement_rate": 0.8636363636363636,
+              "max_state_goal_value_error": 0.04235151556725292,
+              "mean_first_step_shortest_path_distance_reduction": 0.07692307692307693,
+              "mean_goal_policy_disagreement_rate": 0.6541501976284585,
+              "mean_goal_success_rate": 0.04935897435897436,
+              "mean_state_goal_value_error": 0.018421168093925785,
+              "min_goal_success_rate": 0.0
+            },
+            "reward_evaluation": {
+              "evaluated_start_states": 39,
+              "mean_raw_return": 1.0,
+              "success_rate": 1.0
+            },
+            "reward_policy_disagreement_vs_exact": {
+              "comparable_non_tie_state_count": 22,
+              "disagreement_count": 0,
+              "disagreement_rate": 0.0,
+              "skipped_state_count": 1,
+              "state_count_total": 40,
+              "tie_state_count": 17
+            },
+            "training_info": {
+              "curves": [
+                {
+                  "loss": 2.4301333983263056e-05,
+                  "step": 1,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 0.00122238248299215,
+                  "step": 500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 3.2866072746968734e-06,
+                  "step": 1000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 3.7052654452105103e-07,
+                  "step": 1500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 2.156949186899932e-08,
+                  "step": 2000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 1.9075922643746687e-08,
+                  "step": 2500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 9.884560817905512e-09,
+                  "step": 3000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 3.835125548600068e-09,
+                  "step": 3500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 2.350021049592992e-09,
+                  "step": 4000,
+                  "variant": "terminal_only"
+                }
+              ],
+              "goal_label_coverage_count": 1,
+              "goal_label_coverage_fraction": 0.024390243902439025,
+              "shares_state_action_factors": true,
+              "variant": "terminal_only"
+            },
+            "variant": "terminal_only"
+          }
+        },
+        {
+          "adequate_coverage": true,
+          "combined_auxiliary": {
+            "gplus_max_bellman_residual": 0.05097960193601159,
+            "gplus_max_scaled_value_error": 19.459639904294722,
+            "gplus_mean_bellman_residual": 0.04020354833586361,
+            "gplus_mean_scaled_value_error": 18.335440990942168,
+            "real_goal_diagnostics": {
+              "max_goal_policy_disagreement_rate": 1.0,
+              "max_state_goal_value_error": 1.0,
+              "mean_first_step_shortest_path_distance_reduction": -0.008333333333333337,
+              "mean_goal_policy_disagreement_rate": 0.7398723693896329,
+              "mean_goal_success_rate": 0.005128205128205128,
+              "mean_state_goal_value_error": 0.9195018521798554,
+              "min_goal_success_rate": 0.0
+            },
+            "reward_evaluation": {
+              "evaluated_start_states": 39,
+              "mean_raw_return": 0.0,
+              "success_rate": 0.0
+            },
+            "reward_policy_disagreement_vs_exact": {
+              "comparable_non_tie_state_count": 16,
+              "disagreement_count": 9,
+              "disagreement_rate": 0.5625,
+              "skipped_state_count": 1,
+              "state_count_total": 40,
+              "tie_state_count": 23
+            },
+            "training_info": {
+              "curves": [
+                {
+                  "loss": 2.0693276008798394e-05,
+                  "step": 1,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.012083096497233308,
+                  "step": 500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.006064712581208007,
+                  "step": 1000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.006466920608656765,
+                  "step": 1500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.008155944526532396,
+                  "step": 2000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.0029595578547440804,
+                  "step": 2500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.005778545306226594,
+                  "step": 3000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.006013420204807084,
+                  "step": 3500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.006677786117591828,
+                  "step": 4000,
+                  "variant": "combined_auxiliary"
+                }
+              ],
+              "goal_label_coverage_count": 41,
+              "goal_label_coverage_fraction": 1.0,
+              "shares_state_action_factors": true,
+              "variant": "combined_auxiliary"
+            },
+            "variant": "combined_auxiliary"
+          },
+          "coverage": {
+            "adequate_replay_coverage": true,
+            "behavior": "uniform_random_state_action_reset",
+            "max_state_action_count": 48,
+            "min_state_action_count": 15,
+            "reward_event_count": 68,
+            "total_state_action_pairs": 160,
+            "transition_count": 5000,
+            "visited_state_action_fraction": 1.0,
+            "visited_state_action_pairs": 160
+          },
+          "deltas_combined_minus_terminal": {
+            "gplus_mean_bellman_residual": 0.039115507960147955,
+            "gplus_mean_scaled_value_error": 18.28044474712708,
+            "reward_policy_disagreement_rate": 0.5170454545454546,
+            "reward_success_rate": -0.7948717948717948
+          },
+          "seed": 4,
+          "terminal_only": {
+            "gplus_max_bellman_residual": 0.006451719108276695,
+            "gplus_max_scaled_value_error": 0.10713738054574928,
+            "gplus_mean_bellman_residual": 0.0010880403757156606,
+            "gplus_mean_scaled_value_error": 0.05499624381508672,
+            "real_goal_diagnostics": {
+              "max_goal_policy_disagreement_rate": 0.9090909090909091,
+              "max_state_goal_value_error": 0.049604632681700796,
+              "mean_first_step_shortest_path_distance_reduction": 0.09102564102564101,
+              "mean_goal_policy_disagreement_rate": 0.6519762845849802,
+              "mean_goal_success_rate": 0.0532051282051282,
+              "mean_state_goal_value_error": 0.0181831402853785,
+              "min_goal_success_rate": 0.0
+            },
+            "reward_evaluation": {
+              "evaluated_start_states": 39,
+              "mean_raw_return": 0.7948717948717948,
+              "success_rate": 0.7948717948717948
+            },
+            "reward_policy_disagreement_vs_exact": {
+              "comparable_non_tie_state_count": 22,
+              "disagreement_count": 1,
+              "disagreement_rate": 0.045454545454545456,
+              "skipped_state_count": 1,
+              "state_count_total": 40,
+              "tie_state_count": 17
+            },
+            "training_info": {
+              "curves": [
+                {
+                  "loss": 9.062213323697307e-06,
+                  "step": 1,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 0.000824754282059292,
+                  "step": 500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 1.8581187076457828e-06,
+                  "step": 1000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 8.753087490482587e-08,
+                  "step": 1500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 3.31041483663894e-08,
+                  "step": 2000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 4.697539750904476e-08,
+                  "step": 2500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 3.93664279513579e-06,
+                  "step": 3000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 4.165165489749559e-06,
+                  "step": 3500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 2.239835346590811e-06,
+                  "step": 4000,
+                  "variant": "terminal_only"
+                }
+              ],
+              "goal_label_coverage_count": 1,
+              "goal_label_coverage_fraction": 0.024390243902439025,
+              "shares_state_action_factors": true,
+              "variant": "terminal_only"
+            },
+            "variant": "terminal_only"
+          }
+        },
+        {
+          "adequate_coverage": true,
+          "combined_auxiliary": {
+            "gplus_max_bellman_residual": 0.07542663060685029,
+            "gplus_max_scaled_value_error": 19.45963990839904,
+            "gplus_mean_bellman_residual": 0.04457771800620326,
+            "gplus_mean_scaled_value_error": 18.43406684165729,
+            "real_goal_diagnostics": {
+              "max_goal_policy_disagreement_rate": 1.0,
+              "max_state_goal_value_error": 0.999999999744668,
+              "mean_first_step_shortest_path_distance_reduction": -0.0858974358974359,
+              "mean_goal_policy_disagreement_rate": 0.8023128260628262,
+              "mean_goal_success_rate": 0.000641025641025641,
+              "mean_state_goal_value_error": 0.9183247108788638,
+              "min_goal_success_rate": 0.0
+            },
+            "reward_evaluation": {
+              "evaluated_start_states": 39,
+              "mean_raw_return": 0.0,
+              "success_rate": 0.0
+            },
+            "reward_policy_disagreement_vs_exact": {
+              "comparable_non_tie_state_count": 7,
+              "disagreement_count": 5,
+              "disagreement_rate": 0.7142857142857143,
+              "skipped_state_count": 1,
+              "state_count_total": 40,
+              "tie_state_count": 32
+            },
+            "training_info": {
+              "curves": [
+                {
+                  "loss": 2.0882140211789276e-05,
+                  "step": 1,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.01045895075740402,
+                  "step": 500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.004488341452159701,
+                  "step": 1000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.003637046948015625,
+                  "step": 1500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.0023268353720108555,
+                  "step": 2000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.0032187615731182257,
+                  "step": 2500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.0026240829818554947,
+                  "step": 3000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.004242258137519053,
+                  "step": 3500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.004591487838148033,
+                  "step": 4000,
+                  "variant": "combined_auxiliary"
+                }
+              ],
+              "goal_label_coverage_count": 41,
+              "goal_label_coverage_fraction": 1.0,
+              "shares_state_action_factors": true,
+              "variant": "combined_auxiliary"
+            },
+            "variant": "combined_auxiliary"
+          },
+          "coverage": {
+            "adequate_replay_coverage": true,
+            "behavior": "uniform_random_state_action_reset",
+            "max_state_action_count": 53,
+            "min_state_action_count": 18,
+            "reward_event_count": 76,
+            "total_state_action_pairs": 160,
+            "transition_count": 5000,
+            "visited_state_action_fraction": 1.0,
+            "visited_state_action_pairs": 160
+          },
+          "deltas_combined_minus_terminal": {
+            "gplus_mean_bellman_residual": 0.043240821765163126,
+            "gplus_mean_scaled_value_error": 18.400863270389483,
+            "reward_policy_disagreement_rate": 0.3961038961038961,
+            "reward_success_rate": -0.28205128205128205
+          },
+          "seed": 5,
+          "terminal_only": {
+            "gplus_max_bellman_residual": 0.004686304277392035,
+            "gplus_max_scaled_value_error": 0.09951557197613503,
+            "gplus_mean_bellman_residual": 0.0013368962410401396,
+            "gplus_mean_scaled_value_error": 0.03320357126780739,
+            "real_goal_diagnostics": {
+              "max_goal_policy_disagreement_rate": 0.8695652173913043,
+              "max_state_goal_value_error": 0.037271486540136255,
+              "mean_first_step_shortest_path_distance_reduction": 0.10961538461538463,
+              "mean_goal_policy_disagreement_rate": 0.6774209486166007,
+              "mean_goal_success_rate": 0.06346153846153846,
+              "mean_state_goal_value_error": 0.01818243796995434,
+              "min_goal_success_rate": 0.0
+            },
+            "reward_evaluation": {
+              "evaluated_start_states": 39,
+              "mean_raw_return": 0.28205128205128205,
+              "success_rate": 0.28205128205128205
+            },
+            "reward_policy_disagreement_vs_exact": {
+              "comparable_non_tie_state_count": 22,
+              "disagreement_count": 7,
+              "disagreement_rate": 0.3181818181818182,
+              "skipped_state_count": 1,
+              "state_count_total": 40,
+              "tie_state_count": 17
+            },
+            "training_info": {
+              "curves": [
+                {
+                  "loss": 2.2668191024144508e-05,
+                  "step": 1,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 0.001223898621073137,
+                  "step": 500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 4.332480984115205e-06,
+                  "step": 1000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 2.624886882959478e-07,
+                  "step": 1500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 3.5804484104433554e-08,
+                  "step": 2000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 2.5449833803501637e-08,
+                  "step": 2500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 1.203656035572684e-08,
+                  "step": 3000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 8.761244126591286e-07,
+                  "step": 3500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 2.6345546413500582e-06,
+                  "step": 4000,
+                  "variant": "terminal_only"
+                }
+              ],
+              "goal_label_coverage_count": 1,
+              "goal_label_coverage_fraction": 0.024390243902439025,
+              "shares_state_action_factors": true,
+              "variant": "terminal_only"
+            },
+            "variant": "terminal_only"
+          }
+        },
+        {
+          "adequate_coverage": true,
+          "combined_auxiliary": {
+            "gplus_max_bellman_residual": 0.050026886303160656,
+            "gplus_max_scaled_value_error": 19.459639912330225,
+            "gplus_mean_bellman_residual": 0.04373577161309779,
+            "gplus_mean_scaled_value_error": 18.441528192274927,
+            "real_goal_diagnostics": {
+              "max_goal_policy_disagreement_rate": 1.0,
+              "max_state_goal_value_error": 1.0,
+              "mean_first_step_shortest_path_distance_reduction": -0.0891025641025641,
+              "mean_goal_policy_disagreement_rate": 0.8335360178326929,
+              "mean_goal_success_rate": 0.000641025641025641,
+              "mean_state_goal_value_error": 0.9204612910099264,
+              "min_goal_success_rate": 0.0
+            },
+            "reward_evaluation": {
+              "evaluated_start_states": 39,
+              "mean_raw_return": 0.0,
+              "success_rate": 0.0
+            },
+            "reward_policy_disagreement_vs_exact": {
+              "comparable_non_tie_state_count": 11,
+              "disagreement_count": 8,
+              "disagreement_rate": 0.7272727272727273,
+              "skipped_state_count": 1,
+              "state_count_total": 40,
+              "tie_state_count": 28
+            },
+            "training_info": {
+              "curves": [
+                {
+                  "loss": 2.069243470349283e-05,
+                  "step": 1,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.012896965977253861,
+                  "step": 500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.005517650003946371,
+                  "step": 1000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.0025764934131985865,
+                  "step": 1500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.00256409485818238,
+                  "step": 2000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.0022475439749904784,
+                  "step": 2500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.004330722569014156,
+                  "step": 3000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.010275203464738227,
+                  "step": 3500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.0037237155933366795,
+                  "step": 4000,
+                  "variant": "combined_auxiliary"
+                }
+              ],
+              "goal_label_coverage_count": 41,
+              "goal_label_coverage_fraction": 1.0,
+              "shares_state_action_factors": true,
+              "variant": "combined_auxiliary"
+            },
+            "variant": "combined_auxiliary"
+          },
+          "coverage": {
+            "adequate_replay_coverage": true,
+            "behavior": "uniform_random_state_action_reset",
+            "max_state_action_count": 47,
+            "min_state_action_count": 17,
+            "reward_event_count": 62,
+            "total_state_action_pairs": 160,
+            "transition_count": 5000,
+            "visited_state_action_fraction": 1.0,
+            "visited_state_action_pairs": 160
+          },
+          "deltas_combined_minus_terminal": {
+            "gplus_mean_bellman_residual": 0.042972030326807,
+            "gplus_mean_scaled_value_error": 18.419290292413173,
+            "reward_policy_disagreement_rate": 0.6818181818181819,
+            "reward_success_rate": -0.9487179487179487
+          },
+          "seed": 6,
+          "terminal_only": {
+            "gplus_max_bellman_residual": 0.0028687478067361202,
+            "gplus_max_scaled_value_error": 0.07917203887327096,
+            "gplus_mean_bellman_residual": 0.0007637412862907888,
+            "gplus_mean_scaled_value_error": 0.022237899861752508,
+            "real_goal_diagnostics": {
+              "max_goal_policy_disagreement_rate": 0.9565217391304348,
+              "max_state_goal_value_error": 0.03365173087782902,
+              "mean_first_step_shortest_path_distance_reduction": -0.03076923076923077,
+              "mean_goal_policy_disagreement_rate": 0.7428853754940711,
+              "mean_goal_success_rate": 0.04038461538461539,
+              "mean_state_goal_value_error": 0.018622203329293187,
+              "min_goal_success_rate": 0.0
+            },
+            "reward_evaluation": {
+              "evaluated_start_states": 39,
+              "mean_raw_return": 0.9487179487179487,
+              "success_rate": 0.9487179487179487
+            },
+            "reward_policy_disagreement_vs_exact": {
+              "comparable_non_tie_state_count": 22,
+              "disagreement_count": 1,
+              "disagreement_rate": 0.045454545454545456,
+              "skipped_state_count": 1,
+              "state_count_total": 40,
+              "tie_state_count": 17
+            },
+            "training_info": {
+              "curves": [
+                {
+                  "loss": 1.1057039825781046e-05,
+                  "step": 1,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 0.0011064073827929915,
+                  "step": 500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 7.441975752675226e-06,
+                  "step": 1000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 3.606267562106527e-07,
+                  "step": 1500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 1.487354886023601e-07,
+                  "step": 2000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 3.243477237759324e-06,
+                  "step": 2500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 3.316969443506944e-06,
+                  "step": 3000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 9.637012381242429e-06,
+                  "step": 3500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 8.934028214539327e-07,
+                  "step": 4000,
+                  "variant": "terminal_only"
+                }
+              ],
+              "goal_label_coverage_count": 1,
+              "goal_label_coverage_fraction": 0.024390243902439025,
+              "shares_state_action_factors": true,
+              "variant": "terminal_only"
+            },
+            "variant": "terminal_only"
+          }
+        },
+        {
+          "adequate_coverage": true,
+          "combined_auxiliary": {
+            "gplus_max_bellman_residual": 0.05088192016262394,
+            "gplus_max_scaled_value_error": 19.45830744998023,
+            "gplus_mean_bellman_residual": 0.03565362954607456,
+            "gplus_mean_scaled_value_error": 18.075726737414453,
+            "real_goal_diagnostics": {
+              "max_goal_policy_disagreement_rate": 1.0,
+              "max_state_goal_value_error": 1.0,
+              "mean_first_step_shortest_path_distance_reduction": -0.03653846153846154,
+              "mean_goal_policy_disagreement_rate": 0.7984555722055722,
+              "mean_goal_success_rate": 0.01346153846153846,
+              "mean_state_goal_value_error": 0.9204117461033635,
+              "min_goal_success_rate": 0.0
+            },
+            "reward_evaluation": {
+              "evaluated_start_states": 39,
+              "mean_raw_return": 0.0,
+              "success_rate": 0.0
+            },
+            "reward_policy_disagreement_vs_exact": {
+              "comparable_non_tie_state_count": 21,
+              "disagreement_count": 12,
+              "disagreement_rate": 0.5714285714285714,
+              "skipped_state_count": 1,
+              "state_count_total": 40,
+              "tie_state_count": 18
+            },
+            "training_info": {
+              "curves": [
+                {
+                  "loss": 2.9283558589914016e-05,
+                  "step": 1,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.009607579850485295,
+                  "step": 500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.010086081324513177,
+                  "step": 1000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.008235689054812359,
+                  "step": 1500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.0052297746161120385,
+                  "step": 2000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.004363917438536863,
+                  "step": 2500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.005676464876774641,
+                  "step": 3000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.007316148985270647,
+                  "step": 3500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.0057451476427486025,
+                  "step": 4000,
+                  "variant": "combined_auxiliary"
+                }
+              ],
+              "goal_label_coverage_count": 41,
+              "goal_label_coverage_fraction": 1.0,
+              "shares_state_action_factors": true,
+              "variant": "combined_auxiliary"
+            },
+            "variant": "combined_auxiliary"
+          },
+          "coverage": {
+            "adequate_replay_coverage": true,
+            "behavior": "uniform_random_state_action_reset",
+            "max_state_action_count": 45,
+            "min_state_action_count": 18,
+            "reward_event_count": 63,
+            "total_state_action_pairs": 160,
+            "transition_count": 5000,
+            "visited_state_action_fraction": 1.0,
+            "visited_state_action_pairs": 160
+          },
+          "deltas_combined_minus_terminal": {
+            "gplus_mean_bellman_residual": 0.034479952707123465,
+            "gplus_mean_scaled_value_error": 18.057387898442496,
+            "reward_policy_disagreement_rate": 0.48051948051948046,
+            "reward_success_rate": -0.10256410256410256
+          },
+          "seed": 7,
+          "terminal_only": {
+            "gplus_max_bellman_residual": 0.004540204162934339,
+            "gplus_max_scaled_value_error": 0.07496574855610139,
+            "gplus_mean_bellman_residual": 0.001173676838951092,
+            "gplus_mean_scaled_value_error": 0.018338838971957858,
+            "real_goal_diagnostics": {
+              "max_goal_policy_disagreement_rate": 0.9130434782608695,
+              "max_state_goal_value_error": 0.04194332516331729,
+              "mean_first_step_shortest_path_distance_reduction": 0.016025641025641028,
+              "mean_goal_policy_disagreement_rate": 0.7230731225296443,
+              "mean_goal_success_rate": 0.05128205128205128,
+              "mean_state_goal_value_error": 0.018082572077399526,
+              "min_goal_success_rate": 0.0
+            },
+            "reward_evaluation": {
+              "evaluated_start_states": 39,
+              "mean_raw_return": 0.10256410256410256,
+              "success_rate": 0.10256410256410256
+            },
+            "reward_policy_disagreement_vs_exact": {
+              "comparable_non_tie_state_count": 22,
+              "disagreement_count": 2,
+              "disagreement_rate": 0.09090909090909091,
+              "skipped_state_count": 1,
+              "state_count_total": 40,
+              "tie_state_count": 17
+            },
+            "training_info": {
+              "curves": [
+                {
+                  "loss": 2.3954287887483575e-05,
+                  "step": 1,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 0.0011472091090913494,
+                  "step": 500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 0.0009418009392198161,
+                  "step": 1000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 1.137008187664036e-06,
+                  "step": 1500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 5.676760654310436e-08,
+                  "step": 2000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 1.9047348012377805e-08,
+                  "step": 2500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 7.699436287061127e-09,
+                  "step": 3000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 1.0621235522688466e-08,
+                  "step": 3500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 2.0739833408018116e-06,
+                  "step": 4000,
+                  "variant": "terminal_only"
+                }
+              ],
+              "goal_label_coverage_count": 1,
+              "goal_label_coverage_fraction": 0.024390243902439025,
+              "shares_state_action_factors": true,
+              "variant": "terminal_only"
+            },
+            "variant": "terminal_only"
+          }
+        },
+        {
+          "adequate_coverage": true,
+          "combined_auxiliary": {
+            "gplus_max_bellman_residual": 0.1587193125673308,
+            "gplus_max_scaled_value_error": 13.47608656297918,
+            "gplus_mean_bellman_residual": 0.03196247582672254,
+            "gplus_mean_scaled_value_error": 10.64407100310681,
+            "real_goal_diagnostics": {
+              "max_goal_policy_disagreement_rate": 1.0,
+              "max_state_goal_value_error": 1.0,
+              "mean_first_step_shortest_path_distance_reduction": -0.16282051282051282,
+              "mean_goal_policy_disagreement_rate": 0.8033536153389095,
+              "mean_goal_success_rate": 0.0057692307692307696,
+              "mean_state_goal_value_error": 0.9149429806015812,
+              "min_goal_success_rate": 0.0
+            },
+            "reward_evaluation": {
+              "evaluated_start_states": 39,
+              "mean_raw_return": 0.0,
+              "success_rate": 0.0
+            },
+            "reward_policy_disagreement_vs_exact": {
+              "comparable_non_tie_state_count": 22,
+              "disagreement_count": 14,
+              "disagreement_rate": 0.6363636363636364,
+              "skipped_state_count": 1,
+              "state_count_total": 40,
+              "tie_state_count": 17
+            },
+            "training_info": {
+              "curves": [
+                {
+                  "loss": 2.854244143773778e-05,
+                  "step": 1,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.009587746200703223,
+                  "step": 500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.006121557627644113,
+                  "step": 1000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.003910789419591995,
+                  "step": 1500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.003470427390134771,
+                  "step": 2000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.004528541897369313,
+                  "step": 2500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.005705750412015544,
+                  "step": 3000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.003495842195370145,
+                  "step": 3500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.008136437418545481,
+                  "step": 4000,
+                  "variant": "combined_auxiliary"
+                }
+              ],
+              "goal_label_coverage_count": 41,
+              "goal_label_coverage_fraction": 1.0,
+              "shares_state_action_factors": true,
+              "variant": "combined_auxiliary"
+            },
+            "variant": "combined_auxiliary"
+          },
+          "coverage": {
+            "adequate_replay_coverage": true,
+            "behavior": "uniform_random_state_action_reset",
+            "max_state_action_count": 46,
+            "min_state_action_count": 19,
+            "reward_event_count": 55,
+            "total_state_action_pairs": 160,
+            "transition_count": 5000,
+            "visited_state_action_fraction": 1.0,
+            "visited_state_action_pairs": 160
+          },
+          "deltas_combined_minus_terminal": {
+            "gplus_mean_bellman_residual": 0.030881605346377603,
+            "gplus_mean_scaled_value_error": 10.6016843039084,
+            "reward_policy_disagreement_rate": 0.40909090909090906,
+            "reward_success_rate": -0.2564102564102564
+          },
+          "seed": 8,
+          "terminal_only": {
+            "gplus_max_bellman_residual": 0.0029180200021662814,
+            "gplus_max_scaled_value_error": 0.08452890539531299,
+            "gplus_mean_bellman_residual": 0.0010808704803449373,
+            "gplus_mean_scaled_value_error": 0.04238669919840975,
+            "real_goal_diagnostics": {
+              "max_goal_policy_disagreement_rate": 0.8636363636363636,
+              "max_state_goal_value_error": 0.038540416740380945,
+              "mean_first_step_shortest_path_distance_reduction": 0.04807692307692308,
+              "mean_goal_policy_disagreement_rate": 0.700197628458498,
+              "mean_goal_success_rate": 0.044230769230769226,
+              "mean_state_goal_value_error": 0.0180666752333668,
+              "min_goal_success_rate": 0.0
+            },
+            "reward_evaluation": {
+              "evaluated_start_states": 39,
+              "mean_raw_return": 0.2564102564102564,
+              "success_rate": 0.2564102564102564
+            },
+            "reward_policy_disagreement_vs_exact": {
+              "comparable_non_tie_state_count": 22,
+              "disagreement_count": 5,
+              "disagreement_rate": 0.22727272727272727,
+              "skipped_state_count": 1,
+              "state_count_total": 40,
+              "tie_state_count": 17
+            },
+            "training_info": {
+              "curves": [
+                {
+                  "loss": 2.434836137643098e-05,
+                  "step": 1,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 0.0010813295496227937,
+                  "step": 500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 4.185800639457517e-06,
+                  "step": 1000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 4.691907902379239e-07,
+                  "step": 1500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 2.411173126120141e-08,
+                  "step": 2000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 2.282264879426583e-08,
+                  "step": 2500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 5.616668211946267e-07,
+                  "step": 3000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 1.7662078833556797e-05,
+                  "step": 3500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 1.6477318563474532e-06,
+                  "step": 4000,
+                  "variant": "terminal_only"
+                }
+              ],
+              "goal_label_coverage_count": 1,
+              "goal_label_coverage_fraction": 0.024390243902439025,
+              "shares_state_action_factors": true,
+              "variant": "terminal_only"
+            },
+            "variant": "terminal_only"
+          }
+        },
+        {
+          "adequate_coverage": true,
+          "combined_auxiliary": {
+            "gplus_max_bellman_residual": 0.09302789447537974,
+            "gplus_max_scaled_value_error": 19.459639912337344,
+            "gplus_mean_bellman_residual": 0.040454387025139746,
+            "gplus_mean_scaled_value_error": 18.31408793791533,
+            "real_goal_diagnostics": {
+              "max_goal_policy_disagreement_rate": 1.0,
+              "max_state_goal_value_error": 1.0,
+              "mean_first_step_shortest_path_distance_reduction": -0.08974358974358973,
+              "mean_goal_policy_disagreement_rate": 0.8322389416139415,
+              "mean_goal_success_rate": 0.003205128205128205,
+              "mean_state_goal_value_error": 0.9173036606332527,
+              "min_goal_success_rate": 0.0
+            },
+            "reward_evaluation": {
+              "evaluated_start_states": 39,
+              "mean_raw_return": 0.0,
+              "success_rate": 0.0
+            },
+            "reward_policy_disagreement_vs_exact": {
+              "comparable_non_tie_state_count": 15,
+              "disagreement_count": 11,
+              "disagreement_rate": 0.7333333333333333,
+              "skipped_state_count": 1,
+              "state_count_total": 40,
+              "tie_state_count": 24
+            },
+            "training_info": {
+              "curves": [
+                {
+                  "loss": 2.399119172311652e-05,
+                  "step": 1,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.012769303979244917,
+                  "step": 500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.00497576113684578,
+                  "step": 1000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.004690747072411804,
+                  "step": 1500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.0022042235886003464,
+                  "step": 2000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.0035404154253733783,
+                  "step": 2500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.006512525017282313,
+                  "step": 3000,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.006639996933656936,
+                  "step": 3500,
+                  "variant": "combined_auxiliary"
+                },
+                {
+                  "loss": 0.002148638990763207,
+                  "step": 4000,
+                  "variant": "combined_auxiliary"
+                }
+              ],
+              "goal_label_coverage_count": 41,
+              "goal_label_coverage_fraction": 1.0,
+              "shares_state_action_factors": true,
+              "variant": "combined_auxiliary"
+            },
+            "variant": "combined_auxiliary"
+          },
+          "coverage": {
+            "adequate_replay_coverage": true,
+            "behavior": "uniform_random_state_action_reset",
+            "max_state_action_count": 58,
+            "min_state_action_count": 16,
+            "reward_event_count": 62,
+            "total_state_action_pairs": 160,
+            "transition_count": 5000,
+            "visited_state_action_fraction": 1.0,
+            "visited_state_action_pairs": 160
+          },
+          "deltas_combined_minus_terminal": {
+            "gplus_mean_bellman_residual": 0.039098239664215204,
+            "gplus_mean_scaled_value_error": 18.214156167114723,
+            "reward_policy_disagreement_rate": 0.5969696969696969,
+            "reward_success_rate": 0.0
+          },
+          "seed": 9,
+          "terminal_only": {
+            "gplus_max_bellman_residual": 0.004314716750151847,
+            "gplus_max_scaled_value_error": 0.19293404157705718,
+            "gplus_mean_bellman_residual": 0.0013561473609245448,
+            "gplus_mean_scaled_value_error": 0.09993177080060384,
+            "real_goal_diagnostics": {
+              "max_goal_policy_disagreement_rate": 0.9130434782608695,
+              "max_state_goal_value_error": 0.0775953059645814,
+              "mean_first_step_shortest_path_distance_reduction": 0.0717948717948718,
+              "mean_goal_policy_disagreement_rate": 0.6756422924901185,
+              "mean_goal_success_rate": 0.06794871794871796,
+              "mean_state_goal_value_error": 0.018762170611528267,
+              "min_goal_success_rate": 0.0
+            },
+            "reward_evaluation": {
+              "evaluated_start_states": 39,
+              "mean_raw_return": 0.0,
+              "success_rate": 0.0
+            },
+            "reward_policy_disagreement_vs_exact": {
+              "comparable_non_tie_state_count": 22,
+              "disagreement_count": 3,
+              "disagreement_rate": 0.13636363636363635,
+              "skipped_state_count": 1,
+              "state_count_total": 40,
+              "tie_state_count": 17
+            },
+            "training_info": {
+              "curves": [
+                {
+                  "loss": 1.6003427294122034e-05,
+                  "step": 1,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 0.0010394615867922747,
+                  "step": 500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 4.621016250381894e-06,
+                  "step": 1000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 5.071594609303796e-07,
+                  "step": 1500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 9.651110120658706e-07,
+                  "step": 2000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 2.5874310288602673e-06,
+                  "step": 2500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 1.4118887820631975e-06,
+                  "step": 3000,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 3.6902205634055124e-06,
+                  "step": 3500,
+                  "variant": "terminal_only"
+                },
+                {
+                  "loss": 2.6120755923371775e-06,
+                  "step": 4000,
+                  "variant": "terminal_only"
+                }
+              ],
+              "goal_label_coverage_count": 1,
+              "goal_label_coverage_fraction": 0.024390243902439025,
+              "shares_state_action_factors": true,
+              "variant": "terminal_only"
+            },
+            "variant": "terminal_only"
+          }
+        }
+      ],
+      "verdict": "negative_transfer"
+    },
+    "pass_flags": {
+      "adequate_coverage_all_seeds": true,
+      "auxiliary_helped_gplus_criterion": false,
+      "cpu_numpy_only": true,
+      "environment_audit_complete": true,
+      "matched_replay_and_optimizer_schedule": true,
+      "real_goal_auxiliary_diagnostics_reported": true,
+      "reward_policy_not_worse": false,
+      "shared_low_rank_model_used": true,
+      "verified_fourrooms_semantics_against_0008": true
+    }
+  },
+  "next_questions": [
+    "Should the low-rank checkpoint be repeated with a slightly different optimizer seed or lower learning rate?",
+    "If auxiliary remains neutral or negative, should auxiliary-goal claims stop until a reviewed shared-parameter design is available?"
+  ],
+  "resource_usage": {
+    "actions": 4,
+    "device": "cpu",
+    "gpu_used": false,
+    "large_datasets_downloaded": false,
+    "large_dependencies_installed": false,
+    "numpy_only": true,
+    "optimizer_steps_per_variant_seed": 4000,
+    "rank": 4,
+    "seeds": 10,
+    "states": 40
+  },
+  "runtime_seconds": 25.620382344990503,
+  "status": "completed",
+  "success_criteria_results": [
+    "PASS: result JSON, summary Markdown, and 0009 artifacts were created.",
+    "PASS: CPU-only NumPy code was used; no neural framework or GPU work was added.",
+    "PASS: 0008 FourRooms transition semantics, reward normalization, terminal masks, and goal indexing were verified where available.",
+    "PASS: terminal-only and combined auxiliary variants use the same shared low-rank model form, initialization seeds, replay datasets, batch schedule, and optimizer budget.",
+    "PASS: replay coverage, state-action coverage, reward events, and goal-label coverage are reported per seed.",
+    "FAIL: combined auxiliary training verdict is negative_transfer, so g_plus auxiliary benefit is not supported.",
+    "PASS: real-state auxiliary goal predictions are evaluated against exact references with goal-reaching diagnostics."
+  ]
+}

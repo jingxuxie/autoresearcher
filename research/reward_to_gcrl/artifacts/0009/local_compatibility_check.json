@@ -1,0 +1,28 @@
+{
+  "audit_complete": true,
+  "command": "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0009/run_fourrooms_lowrank_auxiliary.py --check-only",
+  "exact_scaled_gplus_matches_q_norm": true,
+  "missing_fields": [],
+  "model_form": "M_hat(s,a,g)=sigmoid(u_sa dot v_g + b_g)",
+  "rank": 4,
+  "replay_transitions": 5000,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "status": "passed",
+  "timestamp": "2026-06-14T23:15:06.126033+00:00",
+  "verified_against_0008": {
+    "audit_path": "/home/eston/autoresearcher/research/reward_to_gcrl/artifacts/0008/environment_audit.json",
+    "transition_hash_0008": "83e1f22232f65efd7c194f0e75ee92546b395520656f2336819472ef1b95d3de",
+    "transition_hash_matches_0008": true
+  }
+}
