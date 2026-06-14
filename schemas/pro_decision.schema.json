@@ -3,7 +3,7 @@
   "properties": {
     "decision": {
       "type": "string",
-      "enum": ["continue", "pivot", "stop", "needs_human"]
+      "enum": ["continue", "pivot", "stop"]
     },
     "confidence": {
       "type": "number",

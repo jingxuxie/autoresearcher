@@ -1090,7 +1090,7 @@ class Orchestrator:
         message: str,
         details: Optional[Dict[str, Any]] = None,
     ) -> SupervisorBackendResult:
-        iteration_id = pro_iteration_id(state)
+        iteration_id = next_pro_review_id(self.repo_root, project, state)
         blocker_json, blocker_md = write_pro_blocker(
             self.repo_root,
             project,
@@ -1638,6 +1638,28 @@ def pro_iteration_id(state: Dict[str, Any]) -> str:
     return f"{int(state.get('iteration', 0)) + 1:04d}"
 
 
+def pro_review_artifact_paths(repo_root: Path, project: str, review_id: str) -> List[Path]:
+    raw_path, decision_path, decision_md_path = pro_decision_paths(repo_root, project, review_id)
+    decisions = project_dir(repo_root, project) / "decisions"
+    return [
+        pro_packet_path(repo_root, project, review_id),
+        raw_path,
+        decision_path,
+        decision_md_path,
+        decisions / f"{review_id}_pro_blocker.json",
+        decisions / f"{review_id}_pro_blocker.md",
+    ]
+
+
+def next_pro_review_id(repo_root: Path, project: str, state: Dict[str, Any]) -> str:
+    base_id = pro_iteration_id(state)
+    for attempt in range(1, 100):
+        review_id = base_id if attempt == 1 else f"{base_id}_review{attempt}"
+        if not any(path.exists() for path in pro_review_artifact_paths(repo_root, project, review_id)):
+            return review_id
+    raise RuntimeError(f"could not find an unused Pro review id for next experiment {base_id}")
+
+
 def pro_packet_path(repo_root: Path, project: str, iteration_id: str) -> Path:
     return project_dir(repo_root, project) / "pro_packets" / f"{iteration_id}_PRO_REVIEW_PACKET.md"
 
@@ -1719,7 +1741,7 @@ def latest_pro_decision_path(repo_root: Path, project: str) -> Optional[Path]:
 def build_pro_packet(repo_root: Path, project: str, reason: str = "manual") -> Path:
     ensure_project_scaffold(repo_root, project)
     state = load_project_state(repo_root, project)
-    iteration_id = pro_iteration_id(state)
+    iteration_id = next_pro_review_id(repo_root, project, state)
     write_metric_ledger(repo_root, project)
     packet = build_context(repo_root, project, "chatgpt_pro", reason=reason)
     path = pro_packet_path(repo_root, project, iteration_id)
@@ -1738,9 +1760,13 @@ def run_pro_review(
 ) -> SupervisorBackendResult:
     ensure_project_scaffold(repo_root, project)
     state = load_project_state(repo_root, project)
-    iteration_id = pro_iteration_id(state)
+    iteration_id = next_pro_review_id(repo_root, project, state)
+    next_experiment_id = pro_iteration_id(state)
     metric_json, metric_md = write_metric_ledger(repo_root, project)
-    packet_path = build_pro_packet(repo_root, project, reason=reason)
+    packet = build_context(repo_root, project, "chatgpt_pro", reason=reason)
+    packet_path = pro_packet_path(repo_root, project, iteration_id)
+    packet_path.parent.mkdir(parents=True, exist_ok=True)
+    packet_path.write_text(packet)
     backend = supervisor_backend_for_config(config, backend_override=backend_override)
     result = backend.decide(repo_root, project, config, packet_path, reason, iteration_id)
 
@@ -1764,8 +1790,12 @@ def run_pro_review(
         paths.extend(path for path in (result.raw_response_path, result.decision_path, result.markdown_path) if path)
         decision = load_json(result.decision_path)
         if isinstance(decision, dict) and isinstance(decision.get("next_experiment"), dict):
-            experiment = normalize_experiment_paths(project, iteration_id, decision["next_experiment"])
-            plan_json, plan_md = write_plan(repo_root, project, iteration_id, experiment)
+            experiment = normalize_experiment_paths(project, next_experiment_id, decision["next_experiment"])
+            decision["next_experiment"] = experiment
+            json_dump(result.decision_path, decision)
+            if result.markdown_path is not None:
+                result.markdown_path.write_text(pro_decision_markdown(decision))
+            plan_json, plan_md = write_plan(repo_root, project, next_experiment_id, experiment)
             paths.extend([plan_json, plan_md])
         checkpoint["status"] = "pro_decision_ingested"
         checkpoint["pro_decision_path"] = str(result.decision_path.relative_to(repo_root))
@@ -1795,18 +1825,21 @@ def run_pro_review(
 def ingest_pro_response(repo_root: Path, project: str, response_file: Path) -> Tuple[Path, Path]:
     ensure_project_scaffold(repo_root, project)
     state = load_project_state(repo_root, project)
-    iteration_id = pro_iteration_id(state)
+    iteration_id = next_pro_review_id(repo_root, project, state)
+    next_experiment_id = pro_iteration_id(state)
     raw_path, decision_path, decision_md_path = pro_decision_paths(repo_root, project, iteration_id)
     raw_path.write_text(response_file.read_text())
     decision = extract_fenced_json(raw_path.read_text())
+    if isinstance(decision.get("next_experiment"), dict):
+        decision["next_experiment"] = normalize_experiment_paths(project, next_experiment_id, decision["next_experiment"])
     json_dump(decision_path, decision)
     validate_json_schema(decision_path, repo_root / "schemas" / "pro_decision.schema.json")
     decision_md_path.write_text(pro_decision_markdown(decision))
 
     written_paths = [raw_path, decision_path, decision_md_path]
     if isinstance(decision.get("next_experiment"), dict):
-        experiment = normalize_experiment_paths(project, iteration_id, decision["next_experiment"])
-        plan_json, plan_md = write_plan(repo_root, project, iteration_id, experiment)
+        experiment = normalize_experiment_paths(project, next_experiment_id, decision["next_experiment"])
+        plan_json, plan_md = write_plan(repo_root, project, next_experiment_id, experiment)
         written_paths.extend([plan_json, plan_md])
 
     state["pending_checkpoint"] = {
@@ -1839,9 +1872,6 @@ def apply_pro_decision(repo_root: Path, project: str) -> Path:
         state["status"] = "stopped"
         state["human_review_required"] = False
         state["last_decision"] = "stop"
-    elif decision_kind == "needs_human":
-        mark_human_required(state, "Pro decision needs_human", status="paused")
-        state["last_decision"] = "needs_human"
     elif decision_kind in ("continue", "pivot"):
         experiment = decision.get("next_experiment")
         if not isinstance(experiment, dict):

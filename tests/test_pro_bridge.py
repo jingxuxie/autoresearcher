@@ -128,6 +128,50 @@ class ProBridgeTests(unittest.TestCase):
             state = json.loads((root / "state.json").read_text())
             self.assertEqual(state["pro_review_count"], 1)
 
+    def test_followup_pro_review_does_not_overwrite_prior_stop_decision(self) -> None:
+        with tempfile.TemporaryDirectory() as td, fake_pro("continue"):
+            repo = make_repo(Path(td))
+            root = repo / "research" / "project_001"
+            state = dict(autoresearcher.DEFAULT_STATE)
+            state["iteration"] = 1
+            state["status"] = "stopped"
+            state["last_decision"] = "stop"
+            state["last_pro_review_path"] = "research/project_001/decisions/0002_pro_decision.json"
+            write_json(root / "state.json", state)
+            old_stop = {
+                "decision": "stop",
+                "confidence": 0.8,
+                "rationale": "Prior stop decision.",
+                "evidence": ["Prior evidence."],
+                "risks": [],
+                "next_experiment": None,
+            }
+            write_json(root / "decisions" / "0002_pro_decision.json", old_stop)
+
+            result = autoresearcher.run_pro_review(
+                repo,
+                "project_001",
+                autoresearcher.load_config(repo),
+                reason="human_requested_pivot",
+            )
+
+            self.assertEqual(result.status, "completed")
+            self.assertTrue((root / "decisions" / "0002_review2_pro_decision.json").exists())
+            self.assertEqual(json.loads((root / "decisions" / "0002_pro_decision.json").read_text())["decision"], "stop")
+            followup = json.loads((root / "decisions" / "0002_review2_pro_decision.json").read_text())
+            self.assertEqual(followup["next_experiment"]["experiment_id"], "0002")
+            self.assertTrue((root / "plans" / "0002_plan.md").exists())
+            state = json.loads((root / "state.json").read_text())
+            self.assertEqual(
+                state["pending_checkpoint"]["pro_decision_path"],
+                "research/project_001/decisions/0002_review2_pro_decision.json",
+            )
+
+            autoresearcher.apply_pro_decision(repo, "project_001")
+            state = json.loads((root / "state.json").read_text())
+            self.assertEqual(state["status"], "active")
+            self.assertEqual(state["last_pro_review_path"], "research/project_001/decisions/0002_review2_pro_decision.json")
+
     def test_fake_blocker_pauses_with_structured_blocker(self) -> None:
         with tempfile.TemporaryDirectory() as td, fake_pro("blocker:login_required"):
             repo = make_repo(Path(td))

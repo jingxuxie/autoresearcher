@@ -689,11 +689,11 @@ def build_chatgpt_pro_context(repo_root: Path, project: str, reason: str = "manu
         return lines
 
     lines = [
-        f"# ChatGPT Pro Advisor Check-In: {project}",
+        f"# Check-In: {project}",
         "",
         f"Checkpoint reason: `{reason}`",
         "",
-        "This is a short pointer for the existing ChatGPT project thread. Continue from the thread's memory and use GitHub for the current evidence and broader project docs.",
+        "Continue from this existing advisor thread and use GitHub for the current evidence and broader project docs.",
         "",
         f"- Repository: {repo_url or '_GitHub remote unavailable; inspect linked paths if available._'}",
         f"- Latest progress summary: {link_or_path(latest_summary_url, latest_summary)}",
@@ -707,12 +707,13 @@ def build_chatgpt_pro_context(repo_root: Path, project: str, reason: str = "manu
         "",
         "Decide the next research direction as the human advisor for this loop:",
         "",
-        "1. Choose exactly one: `continue`, `pivot`, `stop`, or `needs_human`.",
-        "2. If Codex is stopping or pivoting, independently decide whether to stop, propose a better pivot, or request human input.",
-        "3. If choosing `continue` or `pivot`, propose exactly one small experiment runnable within 30 minutes.",
-        "4. Return exactly one fenced JSON block matching `schemas/pro_decision.schema.json`, followed by at most one short paragraph.",
+        "1. Choose exactly one: `continue`, `pivot`, or `stop`.",
+        "2. If Codex is stopping or pivoting, independently decide whether to stop or propose a better direction.",
+        "3. If choosing `continue` or `pivot`, propose small experiments runnable within 30 minutes.",
+        "4. Do not return `needs_human`; for this checkpoint you are acting as the human research advisor.",
+        "5. Return exactly one fenced JSON block matching `schemas/pro_decision.schema.json`, followed by at most one short paragraph.",
         "",
-        "Do not expect this packet to contain full metrics, history, or research background. Use the existing thread memory plus the linked GitHub files.",
+        "",
     ]
     return "\n".join(lines).rstrip() + "\n"
 

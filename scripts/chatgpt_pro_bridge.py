@@ -266,7 +266,7 @@ def fake_pro_response(project: str, iteration_id: str, mode: str) -> Dict[str, A
             "status": "completed",
             "raw_text": "```json\n{\"decision\":\"continue\",\"confidence\":0.5}\n```",
         }
-    if mode not in ("continue", "pivot", "stop", "needs_human"):
+    if mode not in ("continue", "pivot", "stop"):
         mode = "continue"
     decision = fake_pro_decision(project, iteration_id, mode)
     raw = "# ChatGPT Pro Decision\n\n```json\n" + json.dumps(decision, indent=2, sort_keys=True) + "\n```\n"
