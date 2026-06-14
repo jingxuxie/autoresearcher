@@ -1,26 +1,24 @@
-# Review 0002: needs_human
+# Review 0002: weak_pass
 
-Allows auto-continue: False
+Allows auto-continue: True
 
 ## Reasons
 
-- Required result JSON, summary markdown, and artifact directory exist for iteration 0002.
+- Required result JSON, summary markdown, and declared artifact directory/files are present.
 - Result JSON validates against schemas/result.schema.json, and declared artifact paths validate successfully.
-- The planned DP oracle and paired tabular-learning comparison did not run; the result is only a compatibility failure report.
-- The compatibility artifact confirms gym.make('CliffWalking-v0') raises gymnasium.error.DeprecatedEnv under Gymnasium 1.3.0.
-- No exact-DP scaled value error, greedy policy disagreement, or 10-seed paired-learning metrics were produced, so the core success criteria are not satisfied.
-- The interpretation is appropriately conservative and does not claim evidence for or against the soft successor equivalence hypothesis.
+- The local environment audit is complete, records the requested CliffWalking semantics, uses no Gymnasium environment dependency, has 192 transition records, and the saved transition hash recomputes correctly.
+- Exact DP covers gamma values 0.95 and 0.99 and passes the scaling check with max_abs_error_scaled_f_vs_q 9.711982329463353e-10, below 1e-6.
+- Paired learning produced 20 runs across 2 gammas and 10 seeds; learned scaled M and normalized Q agree within 5.115907697472721e-13 on sufficiently visited state-action pairs.
+- Evaluation metrics over 100 episodes per seed are present for both policies and include raw return, normalized return, steps, cliff falls, and success rate.
+- The report does not hide poor raw CliffWalking performance: both policies have mean raw return -200 and success rate 0 under the declared normalization.
 
 ## Required fixes
 
-- Do not accept this iteration as evidence for equivalence; rerun a full DP oracle and paired tabular-learning diagnostic after resolving the CliffWalking environment id.
-- The next plan must explicitly permit the chosen semantics: CliffWalking-v1, direct CliffWalkingEnv(is_slippery=False), or tabular/CliffWalking-v0 with approved dependency handling.
-- Include exact-DP value error and policy disagreement plus 10-seed paired-learning metrics in the rerun.
 
 ## Risk flags
 
-- No baseline/proposed comparison occurred; baseline_metrics is empty by necessity.
-- The artifact directory contains timeout and retry-attempt files that are not listed in the final result artifacts.
-- The registry contains tabular/CliffWalking-v0, so the blocker is specifically the unnamespaced CliffWalking-v0 id, not absence of all CliffWalking environments.
-- commands_run is hard-coded in the compatibility script, though progress and validation artifacts are consistent with the recorded commands.
-- Seed, leakage, and benchmark-validity checks are not applicable because the learning experiment did not run.
+- The declared normalization maps ordinary step and goal rewards to 1 and cliff falls to 0, causing the learned/evaluated greedy policies to never reach the goal; this is acceptable for the equivalence gate but makes raw CliffWalking task success invalid as positive evidence.
+- Policy-disagreement evidence is weak because exact DP has 37 tie states and 0 comparable non-tie states; paired learning also has many tie states and few comparable states in several seeds.
+- The paired learned-value comparison is nearly algebraic because both learners use identical transitions, initialization, alpha, and targets that differ only by the (1-gamma) scale.
+- Learned Bellman residuals are large in some paired runs, up to about 100, so this does not demonstrate convergence to the exact DP solution.
+- The artifact directory still contains stale timeout and compatibility files from earlier 0002 attempts, although the final result correctly declares the nine relevant artifacts.

@@ -6,30 +6,29 @@
 
 ## Objective
 
-Run a CPU-only tabular CliffWalking equivalence diagnostic comparing ordinary normalized-reward Q-learning to the terminal-only soft successor g_plus learner.
+Rerun the blocked CliffWalking tabular equivalence test using a small local deterministic transition-table implementation with fully audited semantics, then compare exact-DP references, normalized Q-learning, and terminal-only soft successor g_plus learning.
 
 ## Hypothesis
 
-On Gymnasium CliffWalking-v0 dynamics with a predeclared normalized reward, the terminal-only soft successor learner with target (1 - gamma) * r_bar + gamma * max_a M(s_next,a,g_plus) will match ordinary normalized-reward Q-learning after scaling M_plus by 1/(1 - gamma), and their greedy policies will have near-zero disagreement.
+For a deterministic 4x12 CliffWalking MDP with declared rewards, reset, cliff, and terminal semantics, the exact soft successor fixed point satisfies F_gplus_star/(1-gamma) = Q_norm_star, and paired tabular soft successor learning induces the same greedy policy as normalized Q-learning up to tie handling.
 
 ## Success criteria
 
-- Creates research/reward_to_gcrl/results/0002_result.json and research/reward_to_gcrl/results/0002_summary.md.
-- Creates reproducible artifacts under research/reward_to_gcrl/artifacts/0002/.
-- Uses only tabular CPU methods on CliffWalking-v0; no neural models, vector state-goal learner, RiverSwim, FourRooms, large datasets, or GPU-dependent work.
-- Predeclares and saves the reward normalization, gamma values, alpha schedule, epsilon schedule, seeds, episode budget, terminal-mask behavior, and exact commands run.
-- Reports exact-DP oracle metrics for the declared normalized reward, including max_abs(M_plus/(1-gamma) - Q_norm) and greedy policy disagreement rate.
-- Reports paired-learning metrics over 10 seeds for gamma in {0.95, 0.99}, including final scaled value error, policy disagreement, average normalized return, original CliffWalking return, success rate, and any terminal-mask diagnostics.
-- Passes if exact-DP scaled value error is <= 1e-6, exact-DP policy disagreement is 0 or explained only by value ties, and paired-learning final scaled value error/policy disagreement are within predeclared tolerances.
+- The local CliffWalking environment audit explicitly records grid size, start state, goal state, cliff states, action mapping, off-grid behavior, cliff transition behavior, terminal behavior, raw rewards, normalized rewards, and transition table hash.
+- Exact value iteration produces max_abs_error(F_gplus_star/(1-gamma) - Q_norm_star) < 1e-6 for gamma in {0.95, 0.99}.
+- Across 10 paired seeds, learned M_plus/(1-gamma) and learned normalized Q values agree within a predeclared tolerance on sufficiently visited non-terminal state-action pairs.
+- Greedy policy disagreement between paired learners is below 1 percent on non-terminal non-tie states, with tie states and insufficiently visited states reported separately.
+- Evaluation over at least 100 episodes per seed reports raw return, normalized return, steps to goal, cliff-fall count, and success rate for both policies.
+- Result JSON contains explicit pass/fail flags for environment audit, exact-DP scaling equivalence, learned value agreement, policy disagreement, and evaluation agreement.
 
 ## Failure criteria
 
-- Missing, invalid, or schema-incompatible result JSON or summary markdown.
-- Reward normalization, terminal masks, or CliffWalking transition semantics are ambiguous or omitted.
-- The result reports only training loss or returns and omits scaled value error and policy disagreement.
-- The soft learner fails to match normalized Q-learning in exact DP or paired tabular learning beyond predeclared tolerance.
-- The experiment includes sampled augmented baselines, auxiliary state goals, neural approximation, large environments, or expensive training before this equivalence gate passes.
-- Commands are hard-coded inaccurately or raw metrics/artifact paths are missing.
+- The local transition-table audit is missing or incomplete.
+- Exact-DP scaling equivalence fails above 1e-6.
+- No paired 10-seed learning metrics are produced.
+- Reward normalization or terminal-mask handling is ambiguous.
+- True greedy policy disagreement exceeds 5 percent on non-terminal non-tie states after sufficient visitation.
+- The experiment adds RiverSwim, FourRooms, auxiliary goals, neural models, sampled baselines, GPU use, or large dependencies before this gate passes.
 
 ## Estimated runtime
 
@@ -37,12 +36,13 @@ On Gymnasium CliffWalking-v0 dynamics with a predeclared normalized reward, the 
 
 ## Tasks for Codex
 
-- Implement a standalone diagnostic script under research/reward_to_gcrl/artifacts/0002/ for Gymnasium CliffWalking-v0 using numpy/gymnasium only.
-- Build an exact transition model from the environment and solve both Q_norm_star and F_gplus_star by value iteration with terminal bootstraps masked.
-- Implement paired online tabular updates for ordinary Q-learning and terminal-only soft M_plus using identical sampled transitions for 10 seeds and gamma values 0.95 and 0.99.
-- Save raw per-seed and per-gamma metrics, DP oracle tables or summary arrays, and metadata under research/reward_to_gcrl/artifacts/0002/.
-- Validate research/reward_to_gcrl/results/0002_result.json against schemas/result.schema.json and validate declared artifact paths.
-- Write a concise summary that separates equivalence evidence from any original-CliffWalking return or success-rate observations.
+- Create research/reward_to_gcrl/artifacts/0002/run_local_cliffwalking_equivalence.py with a local deterministic tabular CliffWalking transition table and no Gymnasium dependency for the environment.
+- Write research/reward_to_gcrl/artifacts/0002/environment_audit.json containing the full transition semantics and a transition table hash.
+- Implement exact value iteration for normalized Q_star and exact soft F_gplus_star from the same transition table.
+- Implement paired tabular normalized Q-learning and terminal-only soft successor learning with matched alpha, epsilon schedule, gamma values, episode budget, and seeds.
+- Compute exact-DP scaling error, learned value-scaling error, Bellman residuals, visitation coverage, tie-aware greedy policy disagreement, raw evaluation return, steps to goal, cliff-fall count, and success rate.
+- Save research/reward_to_gcrl/results/0002_result.json with raw metrics, exact command, config, artifact paths, and pass/fail flags.
+- Save research/reward_to_gcrl/results/0002_summary.md with a compact verdict explaining whether the blocked 0002 gate is now satisfied.
 
 ## Required outputs
 
@@ -58,36 +58,36 @@ On Gymnasium CliffWalking-v0 dynamics with a predeclared normalized reward, the 
   "estimated_runtime_minutes": 20,
   "experiment_id": "0002",
   "failure_criteria": [
-    "Missing, invalid, or schema-incompatible result JSON or summary markdown.",
-    "Reward normalization, terminal masks, or CliffWalking transition semantics are ambiguous or omitted.",
-    "The result reports only training loss or returns and omits scaled value error and policy disagreement.",
-    "The soft learner fails to match normalized Q-learning in exact DP or paired tabular learning beyond predeclared tolerance.",
-    "The experiment includes sampled augmented baselines, auxiliary state goals, neural approximation, large environments, or expensive training before this equivalence gate passes.",
-    "Commands are hard-coded inaccurately or raw metrics/artifact paths are missing."
+    "The local transition-table audit is missing or incomplete.",
+    "Exact-DP scaling equivalence fails above 1e-6.",
+    "No paired 10-seed learning metrics are produced.",
+    "Reward normalization or terminal-mask handling is ambiguous.",
+    "True greedy policy disagreement exceeds 5 percent on non-terminal non-tie states after sufficient visitation.",
+    "The experiment adds RiverSwim, FourRooms, auxiliary goals, neural models, sampled baselines, GPU use, or large dependencies before this gate passes."
   ],
-  "hypothesis": "On Gymnasium CliffWalking-v0 dynamics with a predeclared normalized reward, the terminal-only soft successor learner with target (1 - gamma) * r_bar + gamma * max_a M(s_next,a,g_plus) will match ordinary normalized-reward Q-learning after scaling M_plus by 1/(1 - gamma), and their greedy policies will have near-zero disagreement.",
-  "objective": "Run a CPU-only tabular CliffWalking equivalence diagnostic comparing ordinary normalized-reward Q-learning to the terminal-only soft successor g_plus learner.",
+  "hypothesis": "For a deterministic 4x12 CliffWalking MDP with declared rewards, reset, cliff, and terminal semantics, the exact soft successor fixed point satisfies F_gplus_star/(1-gamma) = Q_norm_star, and paired tabular soft successor learning induces the same greedy policy as normalized Q-learning up to tie handling.",
+  "objective": "Rerun the blocked CliffWalking tabular equivalence test using a small local deterministic transition-table implementation with fully audited semantics, then compare exact-DP references, normalized Q-learning, and terminal-only soft successor g_plus learning.",
   "required_outputs": [
     "research/reward_to_gcrl/results/0002_result.json",
     "research/reward_to_gcrl/results/0002_summary.md",
     "research/reward_to_gcrl/artifacts/0002/"
   ],
   "success_criteria": [
-    "Creates research/reward_to_gcrl/results/0002_result.json and research/reward_to_gcrl/results/0002_summary.md.",
-    "Creates reproducible artifacts under research/reward_to_gcrl/artifacts/0002/.",
-    "Uses only tabular CPU methods on CliffWalking-v0; no neural models, vector state-goal learner, RiverSwim, FourRooms, large datasets, or GPU-dependent work.",
-    "Predeclares and saves the reward normalization, gamma values, alpha schedule, epsilon schedule, seeds, episode budget, terminal-mask behavior, and exact commands run.",
-    "Reports exact-DP oracle metrics for the declared normalized reward, including max_abs(M_plus/(1-gamma) - Q_norm) and greedy policy disagreement rate.",
-    "Reports paired-learning metrics over 10 seeds for gamma in {0.95, 0.99}, including final scaled value error, policy disagreement, average normalized return, original CliffWalking return, success rate, and any terminal-mask diagnostics.",
-    "Passes if exact-DP scaled value error is <= 1e-6, exact-DP policy disagreement is 0 or explained only by value ties, and paired-learning final scaled value error/policy disagreement are within predeclared tolerances."
+    "The local CliffWalking environment audit explicitly records grid size, start state, goal state, cliff states, action mapping, off-grid behavior, cliff transition behavior, terminal behavior, raw rewards, normalized rewards, and transition table hash.",
+    "Exact value iteration produces max_abs_error(F_gplus_star/(1-gamma) - Q_norm_star) < 1e-6 for gamma in {0.95, 0.99}.",
+    "Across 10 paired seeds, learned M_plus/(1-gamma) and learned normalized Q values agree within a predeclared tolerance on sufficiently visited non-terminal state-action pairs.",
+    "Greedy policy disagreement between paired learners is below 1 percent on non-terminal non-tie states, with tie states and insufficiently visited states reported separately.",
+    "Evaluation over at least 100 episodes per seed reports raw return, normalized return, steps to goal, cliff-fall count, and success rate for both policies.",
+    "Result JSON contains explicit pass/fail flags for environment audit, exact-DP scaling equivalence, learned value agreement, policy disagreement, and evaluation agreement."
   ],
   "tasks_for_codex": [
-    "Implement a standalone diagnostic script under research/reward_to_gcrl/artifacts/0002/ for Gymnasium CliffWalking-v0 using numpy/gymnasium only.",
-    "Build an exact transition model from the environment and solve both Q_norm_star and F_gplus_star by value iteration with terminal bootstraps masked.",
-    "Implement paired online tabular updates for ordinary Q-learning and terminal-only soft M_plus using identical sampled transitions for 10 seeds and gamma values 0.95 and 0.99.",
-    "Save raw per-seed and per-gamma metrics, DP oracle tables or summary arrays, and metadata under research/reward_to_gcrl/artifacts/0002/.",
-    "Validate research/reward_to_gcrl/results/0002_result.json against schemas/result.schema.json and validate declared artifact paths.",
-    "Write a concise summary that separates equivalence evidence from any original-CliffWalking return or success-rate observations."
+    "Create research/reward_to_gcrl/artifacts/0002/run_local_cliffwalking_equivalence.py with a local deterministic tabular CliffWalking transition table and no Gymnasium dependency for the environment.",
+    "Write research/reward_to_gcrl/artifacts/0002/environment_audit.json containing the full transition semantics and a transition table hash.",
+    "Implement exact value iteration for normalized Q_star and exact soft F_gplus_star from the same transition table.",
+    "Implement paired tabular normalized Q-learning and terminal-only soft successor learning with matched alpha, epsilon schedule, gamma values, episode budget, and seeds.",
+    "Compute exact-DP scaling error, learned value-scaling error, Bellman residuals, visitation coverage, tie-aware greedy policy disagreement, raw evaluation return, steps to goal, cliff-fall count, and success rate.",
+    "Save research/reward_to_gcrl/results/0002_result.json with raw metrics, exact command, config, artifact paths, and pass/fail flags.",
+    "Save research/reward_to_gcrl/results/0002_summary.md with a compact verdict explaining whether the blocked 0002 gate is now satisfied."
   ]
 }
 ```
@@ -98,81 +98,138 @@ On Gymnasium CliffWalking-v0 dynamics with a predeclared normalized reward, the 
 ```json
 {
   "_source": "/home/eston/autoresearcher/research/reward_to_gcrl/results/0002_result.json",
-  "artifacts": [
-    "research/reward_to_gcrl/artifacts/0002/check_cliffwalking_v0_compatibility.py",
-    "research/reward_to_gcrl/artifacts/0002/compatibility_check.json",
-    "research/reward_to_gcrl/artifacts/0002/progress.jsonl"
-  ],
-  "baseline_metrics": {},
-  "claim_tested": "CPU-only tabular CliffWalking-v0 equivalence between ordinary normalized-reward Q-learning and terminal-only soft successor g_plus learning.",
+  "artifacts": {
+    "_type": "list",
+    "first_items": [
+      "research/reward_to_gcrl/artifacts/0002/run_local_cliffwalking_equivalence.py",
+      "research/reward_to_gcrl/artifacts/0002/local_compatibility_check.json",
+      "research/reward_to_gcrl/artifacts/0002/environment_audit.json"
+    ],
+    "length": 9
+  },
+  "baseline_metrics": {
+    "baseline_name": "tabular_normalized_reward_q_learning",
+    "evaluation_episodes_per_seed": 100,
+    "max_learned_bellman_residual": 99.9999999999978,
+    "mean_normalized_return": 200.0,
+    "mean_raw_return": -200.0,
+    "mean_success_rate": 0.0
+  },
+  "claim_tested": "For a fully audited local deterministic 4x12 CliffWalking transition table, the terminal-only soft successor g_plus Bellman fixed point and paired tabular learner match normalized-reward Q-learning after division by (1 - gamma).",
   "experiment_id": "0002",
-  "interpretation": "Experiment 0002 did not run the DP or paired-learning phases. The compatibility check failed because Gymnasium rejected CliffWalking-v0 in this environment (Environment version v0 for `CliffWalking` is deprecated. Please use `CliffWalking-v1` instead.). Since the plan specifically requires CliffWalking-v0, using CliffWalking-v1 or a direct class fallback would change the supplied plan.",
-  "known_failures": [
-    "gym.make('CliffWalking-v0') failed in the ready project environment.",
-    "No exact-DP oracle metrics or paired-learning metrics were produced because the compatibility gate failed before the experiment could run as written."
-  ],
+  "interpretation": "The local deterministic CliffWalking table resolves the previous Gymnasium compatibility blocker. Exact DP passes the scaled soft-successor equivalence with max error 9.71198e-10. Paired tabular learners preserve the same values after scaling and have zero tie-aware greedy-policy disagreement on comparable learned states. The raw CliffWalking evaluation is diagnostic: with the declared normalization, the paired policies agree exactly even though the normalized objective can prefer continuing rew... [trimmed]",
+  "known_failures": [],
   "metrics": {
-    "compatibility_status": "failed",
-    "dp_oracle_metrics_available": false,
-    "gym_make_cliffwalking_v0": {
-      "exception_module": "gymnasium.error",
-      "exception_type": "DeprecatedEnv",
-      "message": "Environment version v0 for `CliffWalking` is deprecated. Please use `CliffWalking-v1` instead.",
-      "status": "failed",
-      "traceback": "Traceback (most recent call last):\n  File \"/home/eston/autoresearcher/research/reward_to_gcrl/artifacts/0002/check_cliffwalking_v0_compatibility.py\", line 69, in check_cliffwalking_v0\n    env = gym.make(\"CliffWalking-v0\")\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/eston/anaconda3/envs/autoresearcher_reward_to_gcrl/lib/python3.11/site-packages/gymnasium/envs/registration.py\", line 682, in make\n    env_spec = _find_spec(id)\n               ^^^^^^^^^^^^^^\n  File \"/home/eston/anaconda3/envs/... [trimmed]"
+    "config": {
+      "alpha": 0.5,
+      "episodes": 5000,
+      "epsilon_end": 0.02,
+      "epsilon_start": 0.2,
+      "eval_episodes": 100,
+      "exact_scaling_tolerance": 1e-06,
+      "gammas": {
+        "_type": "list",
+        "length": 2
+      },
+      "learned_scaling_tolerance": 1e-08,
+      "max_eval_steps": 200,
+      "max_train_steps": 200,
+      "min_pair_visits": 5,
+      "seeds": {
+        "_type": "list",
+        "length": 10
+      },
+      "tie_tolerance": 1e-10
     },
-    "gymnasium_version": "1.3.0",
-    "paired_learning_metrics_available": false,
-    "plan_can_run_as_written": false,
-    "planned_alpha_schedule": "constant alpha=0.5 for both paired learners",
-    "planned_episode_budget": 5000,
-    "planned_epsilon_schedule": "epsilon starts at 0.2 and linearly decays to 0.02 over the episode budget",
-    "planned_gamma_values": [
-      0.95,
-      0.99
-    ],
-    "planned_seeds": {
-      "_type": "list",
-      "first_items": [
-        0,
-        1,
-        2
-      ],
-      "length": 10
-    },
-    "predeclared_tolerances": {
-      "exact_dp_policy_disagreement_rate": 0.0,
-      "exact_dp_scaled_value_error": 1e-06,
-      "paired_policy_disagreement_rate": 0.0,
-      "paired_scaled_value_error_between_learners": 1e-10
-    },
-    "reason_experiment_not_run": "The installed Gymnasium raises an exception for gym.make('CliffWalking-v0'). The plan explicitly requires CliffWalking-v0, and the executor rule says to write a failed or blocked result immediately when compatibility checks show the plan cannot run as written.",
-    "registry_cliffwalking_ids": [
-      "CliffWalking-v1",
-      "CliffWalkingSlippery-v1",
-      "tabular/CliffWalking-v0"
-    ],
-    "requested_env_id": "CliffWalking-v0",
-    "reward_normalization_predeclared_for_unrun_plan": {
-      "mapped_values": {
+    "environment_audit": {
+      "cliff_state_count": 10,
+      "complete": true,
+      "goal_state": {
+        "_type": "object",
+        "key_count": 3,
+        "keys": [
+          "col",
+          "row",
+          "state"
+        ]
+      },
+      "grid_size": {
         "_type": "object",
         "key_count": 2,
         "keys": [
-          "cliff_-100",
-          "step_or_goal_-1"
+          "cols",
+          "rows"
         ]
       },
-      "normalization_formula": "r_bar = (original_reward + 100) / 99",
-      "note": "Saved for audit only; no experiment was run because v0 could not be instantiated.",
-      "original_reward_range": "CliffWalking rewards are -100 for cliff and -1 otherwise."
+      "missing_fields": {
+        "_type": "list",
+        "length": 0
+      },
+      "start_state": {
+        "_type": "object",
+        "key_count": 3,
+        "keys": [
+          "col",
+          "row",
+          "state"
+        ]
+      },
+      "transition_table_hash": "f6fa1c509349d50f18e13b6309b3f051c6cef9a8fcdab25f1332537f521d40a2",
+      "transition_table_record_count": 192
     },
-    "terminal_mask_behavior_predeclared_for_unrun_plan": "Bootstrap would be set to 0.0 whenever Gymnasium returns terminated=True; truncated would not occur in the transition-table DP."
+    "exact_dp": {
+      "max_abs_error_scaled_f_vs_q": 9.711982329463353e-10,
+      "max_policy_disagreement_rate": 0.0,
+      "rows": {
+        "_type": "list",
+        "length": 2
+      }
+    },
+    "paired_learning": {
+      "aggregate": {
+        "_type": "object",
+        "key_count": 21,
+        "keys": [
+          "gamma_count",
+          "max_abs_eval_normalized_return_delta_m_minus_q",
+          "max_abs_eval_raw_return_delta_m_minus_q",
+          "max_abs_eval_success_rate_delta_m_minus_q",
+          "max_abs_scaled_m_minus_q_all_decision",
+          "max_abs_scaled_m_minus_q_sufficient",
+          "max_learned_q_bellman_residual",
+          "max_learned_scaled_m_bellman_residual",
+          "max_policy_disagreement_count",
+          "max_policy_disagreement_rate",
+          "max_policy_insufficient_state_count",
+          "max_policy_tie_state_count",
+          "mean_m_policy_normalized_return",
+          "mean_m_policy_raw_return",
+          "mean_m_policy_success_rate",
+          "mean_q_policy_normalized_return",
+          "mean_q_policy_raw_return",
+          "mean_q_policy_success_rate",
+          "min_sufficiently_visited_decision_state_action_pairs",
+          "run_count"
+        ]
+      },
+      "per_seed_metric_path": "research/reward_to_gcrl/artifacts/0002/paired_learning_metrics.json"
+    },
+    "pass_flags": {
+      "all_gate_criteria_satisfied": true,
+      "environment_audit_complete": true,
+      "evaluation_agreement_between_paired_policies": true,
+      "exact_dp_scaling_equivalence": true,
+      "learned_value_agreement": true,
+      "no_forbidden_expansions_added": true,
+      "paired_10_seed_learning_metrics_produced": true,
+      "tie_aware_policy_disagreement_below_1_percent": true
+    }
   },
   "next_questions": [
-    "Should the next plan explicitly permit Gymnasium CliffWalking-v1 or direct CliffWalkingEnv(is_slippery=False) as equivalent semantics?",
-    "Should JAX be added only if the tabular/CliffWalking-v0 registry alias is required by a future plan?"
+    "Should the next gate test whether an affine or sign-preserving reward transform keeps the raw CliffWalking objective aligned with goal reaching?",
+    "After this tabular equivalence gate, should auxiliary real-state successor goals be tested separately as the next source of possible research value?"
   ],
-  "status": "failed"
+  "status": "completed"
 }
 ```
 
@@ -181,43 +238,48 @@ On Gymnasium CliffWalking-v0 dynamics with a predeclared normalized reward, the 
 
 # Experiment 0002 Summary
 
-## Compatibility Gate
+## Verdict
 
-Status: `failed`.
+The blocked 0002 gate is **satisfied** for the stated equivalence test.
 
-The supplied plan requires `gym.make("CliffWalking-v0")`. In the ready project environment, Gymnasium `1.3.0` rejected that environment id with `DeprecatedEnv`:
+## Key Metrics
 
-```text
-Environment version v0 for `CliffWalking` is deprecated. Please use `CliffWalking-v1` instead.
-```
+- Transition table hash: `f6fa1c509349d50f18e13b6309b3f051c6cef9a8fcdab25f1332537f521d40a2`
+- Exact DP max `abs(F_gplus_star / (1 - gamma) - Q_norm_star)`: `9.71198232946e-10`
+- Paired learning runs: `20` across `2` gamma values and `10` seeds
+- Learned max scaled value error on sufficiently visited pairs: `5.11590769747e-13`
+- Max tie-aware greedy policy disagreement rate: `0`
+- Mean raw return, Q policy: `-200`
+- Mean raw return, scaled `g_plus` policy: `-200`
+- Mean success rate, Q policy: `0`
+- Mean success rate, scaled `g_plus` policy: `0`
 
-Per the executor rule for compatibility failures, the DP and paired-learning phases were not run and no fallback to `CliffWalking-v1` or `CliffWalkingEnv(is_slippery=False)` was used.
+## Interpretation
+
+The local deterministic CliffWalking table resolves the previous Gymnasium compatibility blocker. Exact DP passes the scaled soft-successor equivalence with max error 9.71198e-10. Paired tabular learners preserve the same values after scaling and have zero tie-aware greedy-policy disagreement on comparable learned states. The raw CliffWalking evaluation is diagnostic: with the declared normalization, the paired policies agree exactly even though the normalized objective can prefer continuing reward over reaching the raw task goal.
+
+The local audit records the grid, start, goal, cliff cells, action mapping, off-grid behavior, cliff reset behavior, terminal behavior, raw rewards, normalized rewards, terminal mask, and full transition table hash. No Gymnasium environment was used for the transition semantics.
 
 ## Commands Run
 
 ```bash
 mkdir -p research/reward_to_gcrl/artifacts/0002 research/reward_to_gcrl/results
-conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0002/check_cliffwalking_v0_compatibility.py
+conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0002/run_local_cliffwalking_equivalence.py --check-only
+conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0002/run_local_cliffwalking_equivalence.py
 conda run -n autoresearcher_reward_to_gcrl python -m jsonschema -i research/reward_to_gcrl/results/0002_result.json schemas/result.schema.json
 conda run -n autoresearcher_reward_to_gcrl python scripts/validate_artifacts.py --repo-root . --json research/reward_to_gcrl/results/0002_result.json --schema schemas/result.schema.json --check-result-artifacts
 ```
 
-## Planned But Not Run
-
-- Reward normalization: `r_bar = (original_reward + 100) / 99`, mapping cliff `-100` to `0.0` and step/goal `-1` to `1.0`.
-- Terminal mask: bootstrap would be zero when `terminated=True`.
-- Gamma values: `[0.95, 0.99]`.
-- Seeds: `[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]`.
-- Episode budget: `5000`.
-
-## Outcome
-
-This is a failed compatibility result, not evidence against the soft successor equivalence hypothesis. The next plan should explicitly allow `CliffWalking-v1` or the direct non-slippery `CliffWalkingEnv` class if those semantics are acceptable.
-
 ## Artifacts
 
-- `research/reward_to_gcrl/artifacts/0002/check_cliffwalking_v0_compatibility.py`
-- `research/reward_to_gcrl/artifacts/0002/compatibility_check.json`
+- `research/reward_to_gcrl/artifacts/0002/run_local_cliffwalking_equivalence.py`
+- `research/reward_to_gcrl/artifacts/0002/local_compatibility_check.json`
+- `research/reward_to_gcrl/artifacts/0002/environment_audit.json`
+- `research/reward_to_gcrl/artifacts/0002/exact_dp_metrics.json`
+- `research/reward_to_gcrl/artifacts/0002/exact_value_tables.json`
+- `research/reward_to_gcrl/artifacts/0002/paired_learning_metrics.json`
+- `research/reward_to_gcrl/artifacts/0002/paired_seed_metrics.csv`
+- `research/reward_to_gcrl/artifacts/0002/raw_metrics.json`
 - `research/reward_to_gcrl/artifacts/0002/progress.jsonl`
 
 
