@@ -1,0 +1,91 @@
+{
+  "claims": [
+    {
+      "claim": "Soft terminal marginalization removes terminal-sampling variance in small tabular diagnostics.",
+      "evidence": [
+        "0001: soft target variance is negligible while sampled variance is positive; max sampled variance 0.0904013.",
+        "0003/0005/0006/0007: sampled_variance_exceeds_soft_rate = 1.0."
+      ],
+      "limitations": [
+        "Tabular CPU settings only; matched-stream or controlled behavior settings."
+      ],
+      "status": "supported"
+    },
+    {
+      "claim": "The soft g_plus fixed point scales to normalized Q in audited small tabular MDPs.",
+      "evidence": [
+        "0001 finite-MDP max scaled error 3.94752e-08.",
+        "0002 CliffWalking exact-DP max scaled error 9.71198e-10.",
+        "0008 FourRooms vector g_plus scaled-minus-Q error 1.11022e-16."
+      ],
+      "limitations": [
+        "Depends on declared reward normalization and terminal masks being audited."
+      ],
+      "status": "supported"
+    },
+    {
+      "claim": "Deterministic soft updates improve learning metrics under adequate tabular coverage.",
+      "evidence": [
+        "0004: nondegenerate chain verdict learning-improvement; soft-minus-sampled Bellman residual -0.00586335.",
+        "0007 adequate coverage bin: soft-minus-sampled value error -0.0614823 and Bellman residual -0.00535871."
+      ],
+      "limitations": [
+        "0007 starved bin has lower residual but worse value error, so coverage is a prerequisite."
+      ],
+      "status": "partially_supported"
+    },
+    {
+      "claim": "Soft updates reliably improve learning in coverage-starved settings.",
+      "evidence": [
+        "0007 starved bin: soft-minus-sampled value error 0.0401128 despite lower Bellman residual -0.00277697."
+      ],
+      "limitations": [
+        "Coverage-starved results are diagnostic only and not learning-superiority evidence."
+      ],
+      "status": "unsupported"
+    },
+    {
+      "claim": "Independent tabular real-state goal slices can be added without perturbing g_plus.",
+      "evidence": [
+        "0008: max_abs_vector_gplus_minus_terminal_only = 0.",
+        "0008: min real-goal greedy success rate = 1."
+      ],
+      "limitations": [
+        "This is a sanity check with independent tabular slices, not evidence of reward-task improvement."
+      ],
+      "status": "supported"
+    },
+    {
+      "claim": "Rank-4 shared low-rank real-state auxiliary training improves g_plus in tiny FourRooms.",
+      "evidence": [
+        "0009: verdict negative_transfer; combined-minus-terminal value error 16.8207 and residual 0.0354581.",
+        "0010: reproduction passed, repaired variants were not promising; verdict auxiliary_unsupported_for_lowrank."
+      ],
+      "limitations": [
+        "Contradicts only this rank-4 low-rank setup with the tested replay and loss variants."
+      ],
+      "status": "contradicted"
+    },
+    {
+      "claim": "Real-state auxiliary goals are generally impossible or useless.",
+      "evidence": [
+        "0009/0010 are scoped to one tiny FourRooms rank-4 architecture and replay construction."
+      ],
+      "limitations": [
+        "A different architecture or principled loss design would require a new human-approved hypothesis."
+      ],
+      "status": "unsupported"
+    },
+    {
+      "claim": "Neural auxiliary benefit, larger-environment generality, or online exploration robustness.",
+      "evidence": [
+        "No PyTorch/JAX neural runs, larger environments, GPU runs, or broad online robustness tests were performed."
+      ],
+      "limitations": [
+        "Must not be claimed from the current evidence."
+      ],
+      "status": "unsupported"
+    }
+  ],
+  "experiment_id": "0011"
+}

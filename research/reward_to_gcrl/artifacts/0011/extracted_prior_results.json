@@ -1,0 +1,485 @@
+{
+  "experiment_id": "0011",
+  "new_learning_compute_run": false,
+  "prior_results": [
+    {
+      "decision_relevant_findings": [
+        "The soft terminal-mass target removes the sampled terminal-event variance source in this isolated one-step diagnostic.",
+        "The tiny finite-MDP check confirms the soft g_plus Bellman fixed point matches normalized Q-learning after division by (1 - gamma).",
+        "For gamma=0.995 and r_bar=0.01, the analytic expected g_plus rate is only 0.5 per 10000 transitions, so sampled conversion can make dense reward supervision extremely sparse.",
+        "The largest analytic single-target coefficient of variation is 141.418, showing relative noise grows sharply for rare terminal mass."
+      ],
+      "experiment_id": "0001",
+      "interpretation": "The deterministic soft target exactly equals the analytic expected terminal mass and has zero variance. The sampled Bernoulli estimator matched that mean within the predeclared Monte Carlo tolerance at all 16 sweep points, but retained nonzero target variance up to 0.0904013. The rarest observed g_plus rate was 0.48 per 10000 transitions, exposing the sparse-event issue for high gamma and low r_bar. The finite-MDP scaled soft successor check passed with max_abs_error 3.94752e-08.",
+      "known_failures": [],
+      "metric_deltas": {
+        "finite_mdp_max_abs_error_scaled_f_vs_q": 3.9475168023273e-08,
+        "max_abs_sampled_minus_soft_mean": 0.0005020000000000163,
+        "max_sampled_minus_soft_variance": 0.090401347996,
+        "sampled_minus_soft_mean_by_setting": [
+          {
+            "gamma": 0.9,
+            "monte_carlo_abs_tolerance": 0.0001896417675513493,
+            "r_bar": 0.01,
+            "sampled_minus_soft_mean": -3.8999999999999755e-05
+          },
+          {
+            "gamma": 0.9,
+            "monte_carlo_abs_tolerance": 0.0005969924622639719,
+            "r_bar": 0.1,
+            "sampled_minus_soft_mean": 0.00019400000000000146
+          },
+          {
+            "gamma": 0.9,
+            "monte_carlo_abs_tolerance": 0.0013076696830622019,
+            "r_bar": 0.5,
+            "sampled_minus_soft_mean": -0.00012399999999999217
+          },
+          {
+            "gamma": 0.9,
+            "monte_carlo_abs_tolerance": 0.0018,
+            "r_bar": 1.0,
+            "sampled_minus_soft_mean": 0.0005020000000000163
+          },
+          {
+            "gamma": 0.95,
+            "monte_carlo_abs_tolerance": 0.000134130533436649,
+            "r_bar": 0.01,
+            "sampled_minus_soft_mean": -2.1000000000000456e-05
+          },
+          {
+            "gamma": 0.95,
+            "monte_carlo_abs_tolerance": 0.00042320207938997676,
+            "r_bar": 0.1,
+            "sampled_minus_soft_mean": 8.59999999999958e-05
+          },
+          {
+            "gamma": 0.95,
+            "monte_carlo_abs_tolerance": 0.0009367496997597602,
+            "r_bar": 0.5,
+            "sampled_minus_soft_mean": 0.00021699999999997763
+          },
+          {
+            "gamma": 0.95,
+            "monte_carlo_abs_tolerance": 0.0013076696830622027,
+            "r_bar": 1.0,
+            "sampled_minus_soft_mean": 2.4999999999955613e-05
+          },
+          {
+            "gamma": 0.99,
+            "monte_carlo_abs_tolerance": 5.999699992499628e-05,
+            "r_bar": 0.01,
+            "sampled_minus_soft_mean": 8.99999999999992e-06
+          },
+          {
+            "gamma": 0.99,
+            "monte_carlo_abs_tolerance": 0.0001896417675513494,
+            "r_bar": 0.1,
+            "sampled_minus_soft_mean": -3.000000000000832e-06
+          },
+          {
+            "gamma": 0.99,
+            "monte_carlo_abs_tolerance": 0.00042320207938997676,
+            "r_bar": 0.5,
+            "sampled_minus_soft_mean": 2.5999999999995645e-05
+          },
+          {
+            "gamma": 0.99,
+            "monte_carlo_abs_tolerance": 0.0005969924622639723,
+            "r_bar": 1.0,
+            "sampled_minus_soft_mean": -0.00022000000000000838
+          },
+          {
+            "gamma": 0.995,
+            "monte_carlo_abs_tolerance": 4.24253461977625e-05,
+            "r_bar": 0.01,
+            "sampled_minus_soft_mean": -2.000000000000042e-06
+          },
+          {
+            "gamma": 0.995,
+            "monte_carlo_abs_tolerance": 0.000134130533436649,
+            "r_bar": 0.1,
+            "sampled_minus_soft_mean": -2.1000000000000456e-05
+          },
+          {
+            "gamma": 0.995,
+            "monte_carlo_abs_tolerance": 0.0002996247653315728,
+            "r_bar": 0.5,
+            "sampled_minus_soft_mean": 4.899999999999783e-05
+          },
+          {
+            "gamma": 0.995,
+            "monte_carlo_abs_tolerance": 0.00042320207938997676,
+            "r_bar": 1.0,
+            "sampled_minus_soft_mean": 9.999999999995256e-06
+          }
+        ],
+        "sampled_minus_soft_variance_by_setting": [
+          {
+            "gamma": 0.9,
+            "r_bar": 0.01,
+            "sampled_minus_soft_variance": 0.0009600764790000001
+          },
+          {
+            "gamma": 0.9,
+            "r_bar": 0.1,
+            "sampled_minus_soft_variance": 0.010090082363999999
+          },
+          {
+            "gamma": 0.9,
+            "r_bar": 0.5,
+            "sampled_minus_soft_variance": 0.047388384623999996
+          },
+          {
+            "gamma": 0.9,
+            "r_bar": 1.0,
+            "sampled_minus_soft_variance": 0.090401347996
+          },
+          {
+            "gamma": 0.95,
+            "r_bar": 0.01,
+            "sampled_minus_soft_variance": 0.000478770559
+          },
+          {
+            "gamma": 0.95,
+            "r_bar": 0.1,
+            "sampled_minus_soft_variance": 0.005060132604
+          },
+          {
+            "gamma": 0.95,
+            "r_bar": 0.5,
+            "sampled_minus_soft_variance": 0.024581102910999998
+          },
+          {
+            "gamma": 0.95,
+            "r_bar": 1.0,
+            "sampled_minus_soft_variance": 0.047522499375
+          },
+          {
+            "gamma": 0.99,
+            "r_bar": 0.01,
+            "sampled_minus_soft_variance": 0.000108988119
+          },
+          {
+            "gamma": 0.99,
+            "r_bar": 0.1,
+            "sampled_minus_soft_variance": 0.000996005991
+          },
+          {
+            "gamma": 0.99,
+            "r_bar": 0.5,
+            "sampled_minus_soft_variance": 0.005000739324
+          },
+          {
+            "gamma": 0.99,
+            "r_bar": 1.0,
+            "sampled_minus_soft_variance": 0.0096843516
+          },
+          {
+            "gamma": 0.995,
+            "r_bar": 0.01,
+            "sampled_minus_soft_variance": 4.7997696e-05
+          },
+          {
+            "gamma": 0.995,
+            "r_bar": 0.1,
+            "sampled_minus_soft_variance": 0.000478770559
+          },
+          {
+            "gamma": 0.995,
+            "r_bar": 0.5,
+            "sampled_minus_soft_variance": 0.002542502599
+          },
+          {
+            "gamma": 0.995,
+            "r_bar": 1.0,
+            "sampled_minus_soft_variance": 0.0049848999
+          }
+        ]
+      },
+      "role": "One-step terminal marginalization and finite-MDP scaling equivalence.",
+      "status": "completed"
+    },
+    {
+      "decision_relevant_findings": [
+        "The previous Gymnasium CliffWalking-v0 blocker is avoided by a local deterministic transition table with a saved SHA-256 hash.",
+        "The exact soft g_plus fixed point is numerically identical to normalized Q_star after division by (1 - gamma) for both tested gamma values.",
+        "Paired online learning preserves the scaling relation under identical experience, so final greedy policies agree up to tie handling.",
+        "The declared normalization maps ordinary step and goal rewards to 1 and cliff falls to 0, so raw goal-reaching performance is only a diagnostic and can be poor even when equivalence passes."
+      ],
+      "experiment_id": "0002",
+      "interpretation": "The local deterministic CliffWalking table resolves the previous Gymnasium compatibility blocker. Exact DP passes the scaled soft-successor equivalence with max error 9.71198e-10. Paired tabular learners preserve the same values after scaling and have zero tie-aware greedy-policy disagreement on comparable learned states. The raw CliffWalking evaluation is diagnostic: with the declared normalization, the paired policies agree exactly even though the normalized objective can prefer continuing reward over reaching the raw task goal.",
+      "known_failures": [],
+      "metric_deltas": {
+        "exact_dp_max_abs_error_scaled_f_vs_q": 9.711982329463353e-10,
+        "learned_max_abs_scaled_m_minus_q_sufficient": 5.115907697472721e-13,
+        "learned_max_policy_disagreement_rate": 0.0,
+        "max_abs_eval_normalized_return_delta_m_minus_q": 0.0,
+        "max_abs_eval_raw_return_delta_m_minus_q": 0.0,
+        "max_abs_eval_success_rate_delta_m_minus_q": 0.0
+      },
+      "role": "Audited local CliffWalking exact-DP and paired-learning equivalence.",
+      "status": "completed"
+    },
+    {
+      "decision_relevant_findings": [
+        "The local transition table hash matches the audited 0002 table.",
+        "The sampled update uses p(g_plus)=(1-gamma)r_bar, p(g_minus)=(1-gamma)(1-r_bar), and p(continue)=gamma.",
+        "Continued sampled targets use max_a M(s_next,a) directly, without an extra gamma factor.",
+        "The raw CliffWalking policy returns remain diagnostic because the normalized reward maps ordinary steps and goal transitions to the same reward."
+      ],
+      "experiment_id": "0003",
+      "interpretation": "The sampled augmented target is unbiased within the predeclared Monte Carlo tolerance in all gamma/seed runs, but its terminal sampling variance is strictly positive while the deterministic soft target has zero terminal sampling variance. Under the matched transition stream, the soft learner has lower final or earlier-threshold value error in most runs.",
+      "known_failures": [],
+      "metric_deltas": {
+        "mean_final_sampled_bellman_residual_sufficient": 0.04124613525377317,
+        "mean_final_sampled_value_error_sufficient": 0.08156038291965984,
+        "mean_final_soft_bellman_residual_sufficient": 0.03875043674884314,
+        "mean_final_soft_value_error_sufficient": 0.08211314819103989,
+        "mean_g_plus_events_per_10000": 212.67000000000002,
+        "sampled_variance_exceeds_soft_rate": 1.0,
+        "soft_dominance_rate": 0.5666666666666667,
+        "target_mean_match_rate": 1.0
+      },
+      "role": "CliffWalking sampled-vs-soft under matched streams, with reward-normalization caveat.",
+      "status": "completed"
+    },
+    {
+      "decision_relevant_findings": [
+        "Identity reward normalization avoids the CliffWalking objective mismatch.",
+        "The hand-built chain has three decision states, all with non-tie exact greedy actions.",
+        "The sampled target is compared to a deterministic soft target computed from the same sampled learner table before each update.",
+        "The conservative verdict is learning-improvement.",
+        "Protected-file drift from autoresearcher.yaml was adjudicated as harmless/stale after the speed setting change was committed and pushed.",
+        "The 0004 result is marked accepted_evidence for the repaired nondegenerate tabular gate, subject to post-audit schema and artifact validation."
+      ],
+      "experiment_id": "0004",
+      "interpretation": "The repaired chain preserves the raw policy under identity normalization. Sampled targets match the deterministic soft marginal target within the predeclared Monte Carlo tolerance, have positive sampling variance, and the deterministic soft learner achieves lower mean final Bellman residual with statistically non-worse value error and policy quality. Protected-file drift was subsequently audited as harmless/stale: the only flagged protected change was autoresearcher.yaml speed configuration, now committed and pushed, with no effect on the 0004 experiment code, metrics, schemas, or artifact validation.",
+      "known_failures": [],
+      "metric_deltas": {
+        "sampled_variance_exceeds_soft_rate": 1.0,
+        "soft_minus_sampled_mean_final_bellman_residual": -0.005863347048562949,
+        "soft_minus_sampled_mean_final_value_error": -0.028406430871095113,
+        "soft_minus_sampled_policy_disagreement": -0.55,
+        "soft_minus_sampled_success_rate": 1.0,
+        "target_mean_match_rate": 1.0
+      },
+      "role": "Nondegenerate chain repair with direct sampled target comparison.",
+      "status": "completed"
+    },
+    {
+      "decision_relevant_findings": [
+        "The RiverSwim transition table is stochastic, continuing, and has rewards already normalized to [0,1].",
+        "Sampled continued targets use max_a M(s_next,a) directly, without an extra gamma factor.",
+        "Right-end occupancy and reward-event counts are saved so sparse reward coverage is auditable.",
+        "The primary pass flag combines target unbiasedness, positive sampled variance, interpretable coverage, and soft residual dominance in most runs."
+      ],
+      "experiment_id": "0005",
+      "interpretation": "The RiverSwim diagnostic supports the hypothesis: sampled targets match the deterministic soft marginal target within Monte Carlo tolerance while retaining higher terminal-sampling variance, and the deterministic soft learner has lower or faster Bellman residual reduction in most matched-stream runs.",
+      "known_failures": [],
+      "metric_deltas": {
+        "mean_right_end_occupancy_rate": 0.326288,
+        "mean_right_reward_events_per_10000": 3060.0950000000003,
+        "sampled_variance_exceeds_soft_rate": 1.0,
+        "soft_dominance_rate": 1.0,
+        "soft_minus_sampled_greedy_raw_return": 21.212999999999987,
+        "soft_minus_sampled_mean_final_bellman_residual": -0.009929061273886293,
+        "soft_minus_sampled_mean_final_value_error": -0.10889653428226308,
+        "soft_minus_sampled_policy_disagreement": -0.07222222222222224,
+        "target_mean_match_rate": 1.0
+      },
+      "role": "6-state RiverSwim sampled-vs-soft with sparse right-end rewards.",
+      "status": "completed"
+    },
+    {
+      "decision_relevant_findings": [
+        "Data generation used fixed action probabilities only; exact DP was not consulted by behavior policies.",
+        "Coverage thresholds are predeclared using right reward events per 10000 transitions and visited state-action pairs.",
+        "Estimator claims are separated from learning claims on coverage-starved runs.",
+        "The same 6-state RiverSwim transition semantics as 0005 were recreated and freshly audited."
+      ],
+      "experiment_id": "0006",
+      "interpretation": "With non-oracle behavior streams, sampled targets remain unbiased within tolerance and higher variance. Coverage is explicitly split by the predeclared right-reward threshold; on adequately covered runs, soft retains the residual/value advantage.",
+      "known_failures": [],
+      "metric_deltas": {
+        "adequate_coverage_count": 30,
+        "coverage_starved_count": 30,
+        "sampled_variance_exceeds_soft_rate": 1.0,
+        "soft_minus_sampled_greedy_raw_return": 56.42416666666665,
+        "soft_minus_sampled_mean_final_bellman_residual": -0.004207352461513391,
+        "soft_minus_sampled_mean_final_value_error": -0.010094215684100738,
+        "target_mean_match_rate": 1.0
+      },
+      "role": "RiverSwim non-oracle behavior streams with adequate/starved coverage split.",
+      "status": "completed"
+    },
+    {
+      "decision_relevant_findings": [
+        "Data generation used fixed action probabilities only; exact DP was not consulted by behavior policies.",
+        "Coverage bins are predeclared using right reward events per 10000 transitions and visited state-action pairs.",
+        "Estimator claims are separated from learning claims on coverage-starved runs.",
+        "The same 6-state RiverSwim transition hash as 0005 and 0006 was recreated and verified.",
+        "Final recommendation: move_next_to_tabular_auxiliary_real_state_goals."
+      ],
+      "experiment_id": "0007",
+      "interpretation": "Coverage dose response completed: sampled targets match deterministic soft marginal targets within tolerance and have higher terminal-sampling variance in every run. Soft learning advantages are supported on adequate-coverage runs only; starved runs are reported as coverage-limited diagnostics rather than learning-superiority evidence.",
+      "known_failures": [],
+      "metric_deltas": {
+        "adequate_coverage_count": 35,
+        "borderline_coverage_count": 55,
+        "by_coverage_bin": {
+          "adequate": {
+            "run_count": 35,
+            "soft_minus_sampled_mean_final_bellman_residual": -0.005358710791709285,
+            "soft_minus_sampled_mean_final_value_error": -0.06148229477674819,
+            "soft_minus_sampled_mean_greedy_raw_return": 54.056571428571424
+          },
+          "borderline": {
+            "run_count": 55,
+            "soft_minus_sampled_mean_final_bellman_residual": -0.004780206983448757,
+            "soft_minus_sampled_mean_final_value_error": -0.003174117153414798,
+            "soft_minus_sampled_mean_greedy_raw_return": 45.71854545454546
+          },
+          "starved": {
+            "run_count": 30,
+            "soft_minus_sampled_mean_final_bellman_residual": -0.002776971737170603,
+            "soft_minus_sampled_mean_final_value_error": 0.04011280505290292,
+            "soft_minus_sampled_mean_greedy_raw_return": 49.926333333333325
+          }
+        },
+        "coverage_starved_count": 30,
+        "sampled_variance_exceeds_soft_rate": 1.0,
+        "soft_minus_sampled_greedy_raw_return": 49.20241666666665,
+        "soft_minus_sampled_mean_final_bellman_residual": -0.0044481284492885395,
+        "soft_minus_sampled_mean_final_value_error": -0.009358938408640938,
+        "target_mean_match_rate": 1.0
+      },
+      "role": "RiverSwim coverage dose-response over four non-oracle behavior policies.",
+      "status": "completed"
+    },
+    {
+      "decision_relevant_findings": [
+        "Independent tabular real-state goal slices did not perturb the g_plus reward-success slice.",
+        "The g_plus slice remains a direct scaled normalized-Q reference under the audited terminal mask.",
+        "Real-state goals solve the deterministic reachability sanity check, so future reward changes require shared parameters or coupling to be meaningful."
+      ],
+      "experiment_id": "0008",
+      "interpretation": "The vector SSM slices are numerically independent in this tabular FourRooms check: the g_plus slice matches terminal-only soft learning, scaled g_plus matches normalized Q, and real-state goal slices match exact reachability references with successful greedy goal reaching.",
+      "known_failures": [],
+      "metric_deltas": {
+        "max_abs_real_goal_value_error": 0.0,
+        "max_abs_vector_gplus_minus_terminal_only": 0.0,
+        "max_abs_vector_gplus_scaled_minus_q_norm": 1.1102230246251565e-16,
+        "mean_first_step_shortest_path_distance_reduction": 1.0,
+        "min_goal_success_rate": 1.0
+      },
+      "role": "Independent tabular FourRooms vector SSM sanity check.",
+      "status": "completed"
+    },
+    {
+      "decision_relevant_findings": [
+        "Conservative verdict: negative_transfer.",
+        "The low-rank model genuinely shares state-action factors across real-state goals and g_plus.",
+        "Exact tabular references are used only for evaluation, not behavior generation or target labels.",
+        "Auxiliary reward-task benefit should not be claimed unless the verdict is auxiliary_helped_gplus."
+      ],
+      "experiment_id": "0009",
+      "interpretation": "Combined auxiliary training worsened a g_plus metric or reward-policy disagreement under adequate replay coverage; auxiliary-goal benefit is not supported.",
+      "known_failures": [
+        "reward_policy_not_worse",
+        "auxiliary_helped_gplus_criterion"
+      ],
+      "metric_deltas": {
+        "mean_bellman_residual_delta_combined_minus_terminal": 0.035458099349646194,
+        "mean_reward_policy_disagreement_delta": 0.52633658008658,
+        "mean_value_error_delta_combined_minus_terminal": 16.820746470260634,
+        "relative_bellman_residual_improvement": -37.09593648978651,
+        "relative_value_error_improvement": -230.03690989471423,
+        "verdict": "negative_transfer"
+      },
+      "role": "Rank-4 shared low-rank FourRooms auxiliary-goal first test.",
+      "status": "completed"
+    },
+    {
+      "decision_relevant_findings": [
+        "Conservative verdict: auxiliary_unsupported_for_lowrank.",
+        "The low-rank model genuinely shares state-action factors across real-state goals and g_plus.",
+        "Exact tabular references are used only for evaluation, not behavior generation or target labels.",
+        "Auxiliary reward-task benefit should not be claimed unless the verdict is repaired_auxiliary_promising."
+      ],
+      "experiment_id": "0010",
+      "interpretation": "Original negative transfer reproduced, and neither repaired variant matched terminal-only on g_plus value error and Bellman residual. Auxiliary real-state goals should be paused for this low-rank architecture.",
+      "known_failures": [
+        "repaired_variant_promising"
+      ],
+      "metric_deltas": {
+        "auxiliary_gradient_dominance": {
+          "combined_lambda_1_reproduction": 4.3423814050417855,
+          "combined_loss_balanced": 451.2730071367794,
+          "staged_real_goal_pretrain_then_gplus_finetune": 0.0
+        },
+        "deltas_vs_terminal": {
+          "combined_lambda_1_reproduction": {
+            "matches_terminal_gplus_metrics": false,
+            "mean_bellman_residual_delta": 0.035458099349646194,
+            "mean_policy_disagreement_delta": 0.52633658008658,
+            "mean_reward_success_delta": -0.5384615384615384,
+            "mean_value_error_delta": 16.820746470260634,
+            "policy_not_worse": false,
+            "promising": false,
+            "real_goal_error_improved_vs_terminal": false,
+            "relative_bellman_residual_improvement": -37.09593648978651,
+            "relative_value_error_improvement": -230.03690989471423,
+            "residual_non_worse_or_indistinguishable": false,
+            "sem_bellman_residual_delta": 0.0018914558909937625,
+            "sem_value_error_delta": 0.8008537486297672,
+            "value_non_worse_or_indistinguishable": false
+          },
+          "combined_loss_balanced": {
+            "matches_terminal_gplus_metrics": false,
+            "mean_bellman_residual_delta": 0.016952669290025393,
+            "mean_policy_disagreement_delta": 0.5099134199134199,
+            "mean_reward_success_delta": -0.517948717948718,
+            "mean_value_error_delta": 7.303919731598175,
+            "policy_not_worse": false,
+            "promising": false,
+            "real_goal_error_improved_vs_terminal": false,
+            "relative_bellman_residual_improvement": -17.73572624730691,
+            "relative_value_error_improvement": -99.88683487658804,
+            "residual_non_worse_or_indistinguishable": false,
+            "sem_bellman_residual_delta": 0.006962806750883463,
+            "sem_value_error_delta": 2.947140978798398,
+            "value_non_worse_or_indistinguishable": false
+          },
+          "staged_real_goal_pretrain_then_gplus_finetune": {
+            "matches_terminal_gplus_metrics": false,
+            "mean_bellman_residual_delta": 0.049859035125426956,
+            "mean_policy_disagreement_delta": 0.5112967914438503,
+            "mean_reward_success_delta": -0.5384615384615384,
+            "mean_value_error_delta": 18.506636448251033,
+            "policy_not_worse": false,
+            "promising": false,
+            "real_goal_error_improved_vs_terminal": false,
+            "relative_bellman_residual_improvement": -52.16206267055114,
+            "relative_value_error_improvement": -253.09277852961972,
+            "residual_non_worse_or_indistinguishable": false,
+            "sem_bellman_residual_delta": 0.005802554432603176,
+            "sem_value_error_delta": 0.13933755118006041,
+            "value_non_worse_or_indistinguishable": false
+          }
+        },
+        "reproduction_checks": {
+          "available": true,
+          "original_combined_bellman_residual_matches": true,
+          "original_combined_value_error_matches": true,
+          "qualitatively_matches_0009": true,
+          "terminal_bellman_residual_matches": true,
+          "terminal_value_error_matches": true
+        },
+        "verdict": "auxiliary_unsupported_for_lowrank"
+      },
+      "role": "Rank-4 low-rank auxiliary repair diagnostic.",
+      "status": "completed"
+    }
+  ]
+}
