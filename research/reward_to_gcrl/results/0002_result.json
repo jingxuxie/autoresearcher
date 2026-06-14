@@ -1,0 +1,216 @@
+{
+  "artifacts": [
+    "research/reward_to_gcrl/artifacts/0002/run_local_cliffwalking_equivalence.py",
+    "research/reward_to_gcrl/artifacts/0002/local_compatibility_check.json",
+    "research/reward_to_gcrl/artifacts/0002/environment_audit.json",
+    "research/reward_to_gcrl/artifacts/0002/exact_dp_metrics.json",
+    "research/reward_to_gcrl/artifacts/0002/exact_value_tables.json",
+    "research/reward_to_gcrl/artifacts/0002/paired_learning_metrics.json",
+    "research/reward_to_gcrl/artifacts/0002/paired_seed_metrics.csv",
+    "research/reward_to_gcrl/artifacts/0002/raw_metrics.json",
+    "research/reward_to_gcrl/artifacts/0002/progress.jsonl"
+  ],
+  "baseline_metrics": {
+    "baseline_name": "tabular_normalized_reward_q_learning",
+    "evaluation_episodes_per_seed": 100,
+    "max_learned_bellman_residual": 99.9999999999978,
+    "mean_normalized_return": 200.0,
+    "mean_raw_return": -200.0,
+    "mean_success_rate": 0.0
+  },
+  "claim_tested": "For a fully audited local deterministic 4x12 CliffWalking transition table, the terminal-only soft successor g_plus Bellman fixed point and paired tabular learner match normalized-reward Q-learning after division by (1 - gamma).",
+  "commands_run": [
+    "mkdir -p research/reward_to_gcrl/artifacts/0002 research/reward_to_gcrl/results",
+    "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0002/run_local_cliffwalking_equivalence.py --check-only",
+    "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0002/run_local_cliffwalking_equivalence.py",
+    "conda run -n autoresearcher_reward_to_gcrl python -m jsonschema -i research/reward_to_gcrl/results/0002_result.json schemas/result.schema.json",
+    "conda run -n autoresearcher_reward_to_gcrl python scripts/validate_artifacts.py --repo-root . --json research/reward_to_gcrl/results/0002_result.json --schema schemas/result.schema.json --check-result-artifacts"
+  ],
+  "decision_relevant_findings": [
+    "The previous Gymnasium CliffWalking-v0 blocker is avoided by a local deterministic transition table with a saved SHA-256 hash.",
+    "The exact soft g_plus fixed point is numerically identical to normalized Q_star after division by (1 - gamma) for both tested gamma values.",
+    "Paired online learning preserves the scaling relation under identical experience, so final greedy policies agree up to tie handling.",
+    "The declared normalization maps ordinary step and goal rewards to 1 and cliff falls to 0, so raw goal-reaching performance is only a diagnostic and can be poor even when equivalence passes."
+  ],
+  "experiment_id": "0002",
+  "failure_criteria_results": [
+    "NOT_TRIGGERED: local transition-table audit is complete.",
+    "NOT_TRIGGERED: exact-DP scaling equivalence is below 1e-6.",
+    "NOT_TRIGGERED: paired metrics were produced for 10 seeds and both gamma values.",
+    "NOT_TRIGGERED: reward normalization and terminal-mask handling are explicit in the audit and config.",
+    "NOT_TRIGGERED: true greedy policy disagreement is below 5 percent on non-terminal non-tie comparable states.",
+    "NOT_TRIGGERED: no RiverSwim, FourRooms, auxiliary goals, neural models, sampled baselines, GPU use, or large dependencies were added."
+  ],
+  "interpretation": "The local deterministic CliffWalking table resolves the previous Gymnasium compatibility blocker. Exact DP passes the scaled soft-successor equivalence with max error 9.71198e-10. Paired tabular learners preserve the same values after scaling and have zero tie-aware greedy-policy disagreement on comparable learned states. The raw CliffWalking evaluation is diagnostic: with the declared normalization, the paired policies agree exactly even though the normalized objective can prefer continuing reward over reaching the raw task goal.",
+  "known_failures": [],
+  "metric_deltas": {
+    "exact_dp_max_abs_error_scaled_f_vs_q": 9.711982329463353e-10,
+    "learned_max_abs_scaled_m_minus_q_sufficient": 5.115907697472721e-13,
+    "learned_max_policy_disagreement_rate": 0.0,
+    "max_abs_eval_normalized_return_delta_m_minus_q": 0.0,
+    "max_abs_eval_raw_return_delta_m_minus_q": 0.0,
+    "max_abs_eval_success_rate_delta_m_minus_q": 0.0
+  },
+  "metrics": {
+    "config": {
+      "alpha": 0.5,
+      "episodes": 5000,
+      "epsilon_end": 0.02,
+      "epsilon_start": 0.2,
+      "eval_episodes": 100,
+      "exact_scaling_tolerance": 1e-06,
+      "gammas": [
+        0.95,
+        0.99
+      ],
+      "learned_scaling_tolerance": 1e-08,
+      "max_eval_steps": 200,
+      "max_train_steps": 200,
+      "min_pair_visits": 5,
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tie_tolerance": 1e-10
+    },
+    "environment_audit": {
+      "cliff_state_count": 10,
+      "complete": true,
+      "goal_state": {
+        "col": 11,
+        "row": 3,
+        "state": 47
+      },
+      "grid_size": {
+        "cols": 12,
+        "rows": 4
+      },
+      "missing_fields": [],
+      "start_state": {
+        "col": 0,
+        "row": 3,
+        "state": 36
+      },
+      "transition_table_hash": "f6fa1c509349d50f18e13b6309b3f051c6cef9a8fcdab25f1332537f521d40a2",
+      "transition_table_record_count": 192
+    },
+    "exact_dp": {
+      "max_abs_error_scaled_f_vs_q": 9.711982329463353e-10,
+      "max_policy_disagreement_rate": 0.0,
+      "rows": [
+        {
+          "f_final_delta": 9.581224702515101e-14,
+          "f_value_iteration_steps": 527,
+          "gamma": 0.95,
+          "max_abs_error_scaled_f_vs_q": 3.4564351381050074e-11,
+          "passes_exact_scaling_tolerance": true,
+          "policy_comparison": {
+            "comparable_non_tie_state_count": 0,
+            "disagreement_count": 0,
+            "disagreement_examples": [],
+            "disagreement_rate": 0.0,
+            "insufficient_state_count": 0,
+            "min_pair_visits": null,
+            "state_count_total": 37,
+            "tie_state_count": 37,
+            "tie_tolerance": 1e-10
+          },
+          "q_bellman_residual": 9.237055564881302e-14,
+          "q_final_delta": 9.947598300641403e-14,
+          "q_value_iteration_steps": 585,
+          "scaled_f_bellman_residual": 1.822542117224657e-12
+        },
+        {
+          "f_final_delta": 9.914291609902648e-14,
+          "f_value_iteration_steps": 2522,
+          "gamma": 0.99,
+          "max_abs_error_scaled_f_vs_q": 9.711982329463353e-10,
+          "passes_exact_scaling_tolerance": true,
+          "policy_comparison": {
+            "comparable_non_tie_state_count": 0,
+            "disagreement_count": 0,
+            "disagreement_examples": [],
+            "disagreement_rate": 0.0,
+            "insufficient_state_count": 0,
+            "min_pair_visits": null,
+            "state_count_total": 37,
+            "tie_state_count": 37,
+            "tie_tolerance": 1e-10
+          },
+          "q_bellman_residual": 9.947598300641403e-14,
+          "q_final_delta": 9.947598300641403e-14,
+          "q_value_iteration_steps": 2974,
+          "scaled_f_bellman_residual": 9.819700608204585e-12
+        }
+      ]
+    },
+    "paired_learning": {
+      "aggregate": {
+        "gamma_count": 2,
+        "max_abs_eval_normalized_return_delta_m_minus_q": 0.0,
+        "max_abs_eval_raw_return_delta_m_minus_q": 0.0,
+        "max_abs_eval_success_rate_delta_m_minus_q": 0.0,
+        "max_abs_scaled_m_minus_q_all_decision": 5.115907697472721e-13,
+        "max_abs_scaled_m_minus_q_sufficient": 5.115907697472721e-13,
+        "max_learned_q_bellman_residual": 99.9999999999978,
+        "max_learned_scaled_m_bellman_residual": 99.99999999999828,
+        "max_policy_disagreement_count": 0,
+        "max_policy_disagreement_rate": 0.0,
+        "max_policy_insufficient_state_count": 7,
+        "max_policy_tie_state_count": 37,
+        "mean_m_policy_normalized_return": 200.0,
+        "mean_m_policy_raw_return": -200.0,
+        "mean_m_policy_success_rate": 0.0,
+        "mean_q_policy_normalized_return": 200.0,
+        "mean_q_policy_raw_return": -200.0,
+        "mean_q_policy_success_rate": 0.0,
+        "min_sufficiently_visited_decision_state_action_pairs": 126,
+        "run_count": 20,
+        "seed_count": 10
+      },
+      "per_seed_metric_path": "research/reward_to_gcrl/artifacts/0002/paired_learning_metrics.json"
+    },
+    "pass_flags": {
+      "all_gate_criteria_satisfied": true,
+      "environment_audit_complete": true,
+      "evaluation_agreement_between_paired_policies": true,
+      "exact_dp_scaling_equivalence": true,
+      "learned_value_agreement": true,
+      "no_forbidden_expansions_added": true,
+      "paired_10_seed_learning_metrics_produced": true,
+      "tie_aware_policy_disagreement_below_1_percent": true
+    }
+  },
+  "next_questions": [
+    "Should the next gate test whether an affine or sign-preserving reward transform keeps the raw CliffWalking objective aligned with goal reaching?",
+    "After this tabular equivalence gate, should auxiliary real-state successor goals be tested separately as the next source of possible research value?"
+  ],
+  "resource_usage": {
+    "device": "cpu",
+    "gpu_used": false,
+    "large_datasets_downloaded": false,
+    "large_dependencies_installed": false,
+    "paired_learning_runs": 20,
+    "transition_table_actions": 4,
+    "transition_table_states": 48
+  },
+  "runtime_seconds": 253.3560763150017,
+  "status": "completed",
+  "success_criteria_results": [
+    "PASS: local environment audit records grid, start, goal, cliffs, actions, off-grid behavior, cliff behavior, terminal behavior, rewards, normalization, and transition hash.",
+    "PASS: exact DP scaling error is below 1e-6 for gamma in {0.95, 0.99}.",
+    "PASS: all 20 paired gamma/seed learning runs produced value-agreement metrics.",
+    "PASS: learned M_plus/(1-gamma) and Q values agree within the predeclared tolerance on sufficiently visited pairs.",
+    "PASS: tie-aware greedy policy disagreement is below 1 percent on comparable states.",
+    "PASS: evaluation over 100 episodes per seed reports raw return, normalized return, steps, cliff falls, and success rate for both policies.",
+    "PASS: result JSON includes explicit pass/fail flags for audit, exact DP, learned values, policy disagreement, and evaluation agreement."
+  ]
+}

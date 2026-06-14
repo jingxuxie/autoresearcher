@@ -1,0 +1,10 @@
+{
+  "audit_complete": true,
+  "command": "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0002/run_local_cliffwalking_equivalence.py --check-only",
+  "gymnasium_dependency_used_for_environment": false,
+  "missing_fields": [],
+  "status": "passed",
+  "timestamp": "2026-06-14T11:21:24.730374+00:00",
+  "transition_table_hash": "f6fa1c509349d50f18e13b6309b3f051c6cef9a8fcdab25f1332537f521d40a2",
+  "transition_table_record_count": 192
+}
