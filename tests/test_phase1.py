@@ -868,6 +868,7 @@ class StateAndLoopTests(unittest.TestCase):
             )
             root = repo / "research" / "project_001"
             (root / "toy_prototype_plan.md").write_text("# Prototype Plan\n\nImportant source plan.\n")
+            (root / "toy_next_steps_review_plan.md").write_text("# Next Steps\n\nImportant next-step plan.\n")
             (root / "progress" / "latest_summary.md").write_text("# Latest Summary\n\nStopped for research reasons.\n")
             state = dict(autoresearcher.DEFAULT_STATE)
             state["iteration"] = 1
@@ -882,6 +883,7 @@ class StateAndLoopTests(unittest.TestCase):
                 "risks": [],
                 "next_experiment": None,
             })
+            (root / "decisions" / "0003_pro_decision.md").write_text("# Pro Decision\n\nShould not be the local decision link.\n")
             path = autoresearcher.build_pro_packet(repo, "project_001", reason="local_stop")
             text = path.read_text()
             self.assertEqual(path.name, "0002_PRO_REVIEW_PACKET.md")
@@ -897,8 +899,19 @@ class StateAndLoopTests(unittest.TestCase):
                 "https://github.com/example/autoresearcher/blob/main/research/project_001/decisions/0002_decision.json",
                 text,
             )
-            self.assertIn("Do not expect this packet to contain full metrics or history", text)
+            self.assertNotIn("0003_pro_decision.md", text)
+            self.assertIn("## Broader Project Context", text)
+            self.assertIn(
+                "https://github.com/example/autoresearcher/blob/main/research/project_001/toy_prototype_plan.md",
+                text,
+            )
+            self.assertIn(
+                "https://github.com/example/autoresearcher/blob/main/research/project_001/toy_next_steps_review_plan.md",
+                text,
+            )
+            self.assertIn("Do not expect this packet to contain full metrics, history, or research background", text)
             self.assertNotIn("Important source plan", text)
+            self.assertNotIn("Important next-step plan", text)
             self.assertNotIn("Stopped for research reasons", text)
             self.assertNotIn("Local Codex recommends stop", text)
             self.assertNotIn("Metric ledger", text)

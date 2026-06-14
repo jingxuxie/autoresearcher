@@ -662,7 +662,11 @@ def build_chatgpt_pro_context(repo_root: Path, project: str, reason: str = "manu
     config = load_repo_config(repo_root)
     repo_url = github_repo_url(repo_root, config)
     latest_summary = root / "progress" / "latest_summary.md"
-    latest_decision = latest_matching(root / "decisions", "*_decision.md") or latest_matching(root / "decisions", "*_decision.json")
+    latest_decision = latest_matching(root / "decisions", "[0-9][0-9][0-9][0-9]_decision.md") or latest_matching(
+        root / "decisions",
+        "[0-9][0-9][0-9][0-9]_decision.json",
+    )
+    project_docs = [path for path in discover_source_docs(root) if path.name != "charter.md"]
     latest_summary_url = github_file_url(repo_root, config, latest_summary)
     latest_decision_url = github_file_url(repo_root, config, latest_decision) if latest_decision else None
     charter_url = github_file_url(repo_root, config, root / "charter.md")
@@ -673,18 +677,33 @@ def build_chatgpt_pro_context(repo_root: Path, project: str, reason: str = "manu
             return url
         return f"`{path.relative_to(repo_root).as_posix()}`"
 
+    def project_doc_links() -> List[str]:
+        if not project_docs:
+            return ["- _No broader project planning docs found._"]
+        lines: List[str] = []
+        for path in project_docs[:8]:
+            url = github_file_url(repo_root, config, path)
+            lines.append(f"- {path.name}: {link_or_path(url, path)}")
+        if len(project_docs) > 8:
+            lines.append(f"- _{len(project_docs) - 8} more project docs omitted from this short packet; inspect the repository if needed._")
+        return lines
+
     lines = [
         f"# ChatGPT Pro Advisor Check-In: {project}",
         "",
         f"Checkpoint reason: `{reason}`",
         "",
-        "This is a short pointer for the existing ChatGPT project thread. Continue from the thread's memory and use GitHub for the current evidence.",
+        "This is a short pointer for the existing ChatGPT project thread. Continue from the thread's memory and use GitHub for the current evidence and broader project docs.",
         "",
         f"- Repository: {repo_url or '_GitHub remote unavailable; inspect linked paths if available._'}",
         f"- Latest progress summary: {link_or_path(latest_summary_url, latest_summary)}",
         f"- Latest local Codex decision: {link_or_path(latest_decision_url, latest_decision) if latest_decision else '_Missing._'}",
         f"- Charter: {link_or_path(charter_url, root / 'charter.md')}",
         f"- Required output schema: {link_or_path(schema_url, repo_root / 'schemas' / 'pro_decision.schema.json')}",
+        "",
+        "## Broader Project Context",
+        "",
+        *project_doc_links(),
         "",
         "Decide the next research direction as the human advisor for this loop:",
         "",
@@ -693,7 +712,7 @@ def build_chatgpt_pro_context(repo_root: Path, project: str, reason: str = "manu
         "3. If choosing `continue` or `pivot`, propose exactly one small experiment runnable within 30 minutes.",
         "4. Return exactly one fenced JSON block matching `schemas/pro_decision.schema.json`, followed by at most one short paragraph.",
         "",
-        "Do not expect this packet to contain full metrics or history. Use the existing thread memory plus the linked GitHub files.",
+        "Do not expect this packet to contain full metrics, history, or research background. Use the existing thread memory plus the linked GitHub files.",
     ]
     return "\n".join(lines).rstrip() + "\n"
 
