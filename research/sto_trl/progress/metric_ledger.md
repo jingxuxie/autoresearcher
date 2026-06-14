@@ -13,6 +13,7 @@
 | 0009 | completed | weak_pass | continue | `metrics.best_transition_uncertainty_method`=posterior_lower_q10_dp_beta_1_1<br>`metrics.best_transition_uncertainty_target_regret_delta_vs_trl_log`=-0.17752500000000004<br>`metrics.chain_guard.by_distance.1.exact`=0.9<br>`metrics.chain_guard.by_distance.2.exact`=0.81<br>`metrics.chain_guard.by_distance.3.exact`=0.7290000000000001 |
 | 0010 | completed | pass | continue | `metrics.best_posterior_trl_candidate`=posterior_trl_log<br>`metrics.chain_guard.start_exact_value`=0.38742048900000015<br>`metrics.coverage_diagnostics.regimes.lucky_only_safe_optimal.label_coverage.risk_1|advance.censored_positive_labels`=0<br>`metrics.coverage_diagnostics.regimes.lucky_only_safe_optimal.label_coverage.risk_1|advance.label_count_used`=4<br>`metrics.coverage_diagnostics.regimes.lucky_only_safe_optimal.label_coverage.risk_1|advance.mean_used_label`=0.81 |
 | 0011 | completed | pass | continue | `metrics.coverage_diagnostics.tag_counts.no_success`=3<br>`metrics.coverage_diagnostics.tag_counts.risk_optimal`=9<br>`metrics.equivalence_aggregate.best_candidate`=posterior_mc_plus_trl_log<br>`metrics.equivalence_aggregate.matched_risk_optimal_preserved`=True<br>`metrics.equivalence_aggregate.positive_evidence`=False |
+| 0012 | completed | weak_pass | stop | `metrics.alias_diagnostics.history_mc_plus_improves_policy_regret_vs_observation_trl_log`=True<br>`metrics.alias_diagnostics.history_mc_plus_mse_improvement_fraction_vs_history_mc_only`=1.0<br>`metrics.method_summary.history_mc_only.mean_calibration_error`=0.5376375000000001<br>`metrics.method_summary.history_mc_only.mean_heldout_long_horizon_value_mse`=0.3404543906250001<br>`metrics.method_summary.history_mc_only.mean_policy_regret`=0.018224999999999936 |
 
 ## Positive Signals
 
@@ -34,6 +35,9 @@
 - `0011`: Positive evidence: False.
 - `0011`: Near-equivalence to posterior model DP: True.
 - `0011`: Max posterior_trl_log value difference vs posterior model DP: 0.
+- `0012`: History MC+TRL-log improves heldout MSE over history MC-only by 1.000000.
+- `0012`: Observation TRL-log policy regret minus history MC+TRL-log policy regret: 0.018225000000.
+- `0012`: The measured gain is explained by bounded history representation plus model-style propagation.
 
 ## Negative Signals
 
@@ -69,3 +73,6 @@
 - `0011`: posterior_trl_log and posterior_mc_plus_trl_log were near-equivalent to prior-matched posterior mean model DP across the randomized suite.
 - `0011`: No credible posterior TRL benefit over both TRL-log and prior-matched posterior model DP was detected.
 - `0011`: The suite is intentionally tiny and tabular; it is suitable for this loop but should not be generalized beyond these toy MDP families.
+- `0012`: history_model_dp fully explains the history-keyed MC+TRL-log gain, so this is representation/context evidence rather than a distinct TRL algorithm win.
+- `0012`: Only one tiny hand-constructed POMDP with two evaluated alias regimes; generalization evidence is limited.
+- `0012`: The bounded history key includes the cue observation, which nearly disambiguates the latent hub by construction, so the result is mainly a representation/context sanity check.

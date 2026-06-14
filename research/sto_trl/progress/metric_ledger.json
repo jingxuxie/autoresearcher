@@ -349,6 +349,41 @@
       ],
       "review_verdict": "pass",
       "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "Short observation history plus log-space transitive propagation was tested in a tiny aliased-observation stochastic POMDP without latent-state training inputs.",
+      "decision": "stop",
+      "important_metrics": {
+        "metrics.alias_diagnostics.history_mc_plus_improves_policy_regret_vs_observation_trl_log": true,
+        "metrics.alias_diagnostics.history_mc_plus_mse_improvement_fraction_vs_history_mc_only": 1.0,
+        "metrics.method_summary.history_mc_only.mean_calibration_error": 0.5376375000000001,
+        "metrics.method_summary.history_mc_only.mean_heldout_long_horizon_value_mse": 0.3404543906250001,
+        "metrics.method_summary.history_mc_only.mean_policy_regret": 0.018224999999999936,
+        "metrics.method_summary.history_mc_only.mean_teleport_q_overestimation": 0.0,
+        "metrics.method_summary.history_mc_plus_trl_log.mean_calibration_error": 1.942890293094024e-16,
+        "metrics.method_summary.history_mc_plus_trl_log.mean_heldout_long_horizon_value_mse": 5.238529448733282e-32,
+        "metrics.method_summary.history_mc_plus_trl_log.mean_policy_regret": 0.0,
+        "metrics.method_summary.history_mc_plus_trl_log.mean_teleport_q_overestimation": 1.6653345369377348e-16,
+        "metrics.method_summary.history_model_dp.mean_calibration_error": 0.0,
+        "metrics.method_summary.history_model_dp.mean_heldout_long_horizon_value_mse": 0.0
+      },
+      "iteration": "0012",
+      "negative_signals": [
+        "history_model_dp fully explains the history-keyed MC+TRL-log gain, so this is representation/context evidence rather than a distinct TRL algorithm win.",
+        "Only one tiny hand-constructed POMDP with two evaluated alias regimes; generalization evidence is limited.",
+        "The bounded history key includes the cue observation, which nearly disambiguates the latent hub by construction, so the result is mainly a representation/context sanity check.",
+        "history_model_dp and history_trl_log/MC+TRL-log essentially solve the same history-state problem; no distinct non-model TRL advantage is demonstrated.",
+        "Latent states are present in offline_trajectories for audit, so future extensions should keep explicit checks that training/evaluation code paths do not accidentally consume them."
+      ],
+      "positive_signals": [
+        "History MC+TRL-log improves heldout MSE over history MC-only by 1.000000.",
+        "Observation TRL-log policy regret minus history MC+TRL-log policy regret: 0.018225000000.",
+        "The measured gain is explained by bounded history representation plus model-style propagation.",
+        "Observation-only model DP and TRL-log fail on the aliased hub because good and bad hidden states share observation 'hub'. Bounded history keys using only the previous cue observation disambiguate the hubs, and history-keyed MC+TRL-log greatly improves censored"
+      ],
+      "review_verdict": "weak_pass",
+      "status": "completed"
     }
   ],
   "project": "sto_trl"
