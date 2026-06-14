@@ -6,7 +6,7 @@
   "last_decision": "continue",
   "last_failure": null,
   "last_pro_review_iteration": 6,
-  "last_pro_review_path": "research/reward_to_gcrl/decisions/0007_pro_decision.json",
+  "last_pro_review_path": "research/reward_to_gcrl/decisions/0009_pro_decision.json",
   "last_summary_iteration": 8,
   "last_summary_path": "research/reward_to_gcrl/progress/0008_pre_pro_this_is_the_first_shared_parameter_function_approximation_milestone__keep_the_run_small__but_require_review_before_expanding_to_larger_sweeps__neural_frameworks__or_publishable_auxiliary_goal_claims_summary.md",
   "no_progress_rounds": 0,
@@ -36,10 +36,19 @@
     "2026-06-14T21:17:20+00:00: applied Pro decision continue from research/reward_to_gcrl/decisions/0004_review5_pro_decision.json",
     "2026-06-14T21:18:53+00:00: cleared protected_file_drift after audit research/reward_to_gcrl/artifacts/0004/protected_file_drift_audit.json; status=harmless accepted_evidence",
     "2026-06-14T21:52:09+00:00: Pro decision saved for checkpoint cadence (research/reward_to_gcrl/decisions/0007_pro_decision.json)",
-    "2026-06-14T21:52:11+00:00: applied Pro decision continue from research/reward_to_gcrl/decisions/0007_pro_decision.json"
+    "2026-06-14T21:52:11+00:00: applied Pro decision continue from research/reward_to_gcrl/decisions/0007_pro_decision.json",
+    "2026-06-14T22:55:15+00:00: Pro decision saved for checkpoint This is the first shared-parameter function-approximation milestone. Keep the run small, but require review before expanding to larger sweeps, neural frameworks, or publishable auxiliary-goal claims. (research/reward_to_gcrl/decisions/0009_pro_decision.json)"
   ],
-  "pending_checkpoint": null,
-  "pending_local_decision_path": null,
+  "pending_checkpoint": {
+    "backend": "cdp",
+    "iteration_id": "0009",
+    "packet_path": "research/reward_to_gcrl/pro_packets/0009_PRO_REVIEW_PACKET.md",
+    "pro_decision_path": "research/reward_to_gcrl/decisions/0009_pro_decision.json",
+    "reason": "This is the first shared-parameter function-approximation milestone. Keep the run small, but require review before expanding to larger sweeps, neural frameworks, or publishable auxiliary-goal claims.",
+    "status": "pro_decision_ingested",
+    "type": "chatgpt_pro"
+  },
+  "pending_local_decision_path": "research/reward_to_gcrl/decisions/0009_decision.json",
   "primary_metric": null,
   "pro_review_count": 7,
   "protected_file_drift": false,

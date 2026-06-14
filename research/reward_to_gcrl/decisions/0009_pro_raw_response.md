@@ -1,0 +1,76 @@
+JSON
+{
+  "decision": "continue",
+  "confidence": 0.86,
+  "rationale": "Continue to the first shared-parameter milestone, but keep it explicitly as a small checkpointed pilot rather than a publishable auxiliary-goal claim. The repository evidence now supports the core tabular estimator story: soft terminal marginalization preserves normalized-Q scaling, removes terminal-sampling variance, works in small nondegenerate chains, and has RiverSwim evidence under controlled and non-oracle coverage regimes. The latest 0008 result also validated vector SSM indexing on tiny FourRooms, including real-state goal slices that do not perturb g_plus. The next unresolved question is whether auxiliary real-state goals help when parameters are actually shared. A CPU-only NumPy low-rank factorized FourRooms experiment is the right next step.",
+  "evidence": [
+    "The latest summary reports no current blocker and protected_file_drift false.",
+    "Reviewed evidence reaches 0008, with strong small-tabular support for the estimator story: deterministic soft terminal marginalization preserves normalized-Q scaling while removing terminal-sampling variance.",
+    "0004 repaired the degenerate CliffWalking issue with a nondegenerate 5-state chain and showed soft improved Bellman/value error and policy success over sampled.",
+    "0005 and 0006 extended the estimator story to 6-state RiverSwim, including non-oracle behavior streams, while exposing coverage as a key condition.",
+    "0007 ran a RiverSwim coverage dose-response and found adequate-coverage runs favored soft on mean Bellman residual and value error, while starved runs remained coverage-limited.",
+    "0008 passed the tabular vector SSM implementation gate: max_abs_vector_gplus_minus_terminal_only was 0, scaled vector g_plus matched normalized Q within 1.1102230246251565e-16, and real-state goal slices had zero value error and min greedy goal success rate 1.0.",
+    "The 0008 review explicitly warns that independent tabular slices do not test sampled learning, low-rank coupling, or auxiliary representation benefit.",
+    "The latest local decision 0009 recommends a CPU-only low-rank factorized SSM on tiny FourRooms comparing terminal-only g_plus training against combined real-state-plus-g_plus auxiliary training under limited offline replay."
+  ],
+  "risks": [
+    "A positive low-rank FourRooms result would be early shared-parameter evidence only, not a general GCRL or neural-function-approximation claim.",
+    "Auxiliary state-goal losses may hurt the g_plus reward head through negative transfer, especially if the auxiliary weight is too high.",
+    "Low-rank NumPy optimization can be sensitive to initialization, rank, target scaling, replay coverage, and step size; raw per-seed metrics must be saved.",
+    "If the replay dataset is coverage-starved, a failure may reflect data coverage rather than auxiliary-goal interference.",
+    "If too many hyperparameters are swept, the result will look like tuning rather than a clean first shared-parameter checkpoint.",
+    "Moving to PyTorch, JAX, GPU, larger FourRooms variants, or publishable auxiliary-goal claims before review would overrun the evidence."
+  ],
+  "next_experiment": {
+    "experiment_id": "0009_lowrank_fourrooms_auxiliary_checkpoint",
+    "objective": "Run the first CPU-only NumPy shared-parameter test on tiny FourRooms using a low-rank factorized soft successor-measure model, comparing terminal-only g_plus training against combined g_plus plus real-state auxiliary-goal training under matched limited offline replay.",
+    "hypothesis": "If real-state auxiliary goals provide useful shared representation signal, then under a low-rank bottleneck and adequate replay coverage, combined auxiliary training should reduce g_plus value error and Bellman residual versus terminal-only g_plus training without increasing reward-policy disagreement. If it does not, then auxiliary-goal benefit is not yet supported and should not be claimed.",
+    "success_criteria": [
+      "Use only CPU NumPy code on the already-audited tiny FourRooms environment; no PyTorch, JAX, GPU, larger environments, or large dependencies.",
+      "Reuse or verify the 0008 FourRooms transition semantics, reward normalization, terminal masks, goal indexing, and exact tabular references for g_plus and real-state goals.",
+      "Train a genuinely shared low-rank model, such as M_hat(s,a,g) = sigmoid(u_{s,a} dot v_g + b_g) or a documented bounded equivalent, so real-state goals and g_plus share state-action factors.",
+      "Compare at minimum terminal-only g_plus training versus combined g_plus plus real-state auxiliary training on identical replay datasets, seeds, rank, optimizer step budget, target construction, and evaluation protocol.",
+      "Use a small predeclared configuration only, for example rank 4, 10 seeds, one replay budget, and at most one auxiliary weight plus a terminal-only baseline.",
+      "Report replay coverage, visited state-action coverage, goal-label coverage, and whether each seed meets an adequate-coverage threshold before interpreting learning metrics.",
+      "Combined auxiliary training must improve mean g_plus value error or Bellman residual by at least 10 percent on adequate-coverage seeds, or improve one while being statistically indistinguishable on the other, without increasing tie-aware reward-policy disagreement.",
+      "Real-state auxiliary goal predictions must be evaluated against exact references, including mean state-goal value error and a greedy goal-reaching diagnostic, but these are auxiliary diagnostics rather than reward-task success criteria.",
+      "The summary must explicitly label the result as one of: auxiliary_helped_gplus, auxiliary_neutral, negative_transfer, coverage_limited, or optimizer_failed."
+    ],
+    "failure_criteria": [
+      "The model does not actually share parameters between real-state goals and g_plus.",
+      "The experiment uses independent tabular slices again, which would duplicate 0008 rather than testing shared representation.",
+      "Replay coverage is inadequate and the summary still makes auxiliary-benefit claims.",
+      "Auxiliary training improves real-state goal metrics but worsens g_plus value error, Bellman residual, or reward-policy disagreement without being labeled negative transfer.",
+      "The run sweeps many ranks, losses, auxiliary weights, or optimizers and then selects the best without predeclared criteria.",
+      "The experiment installs neural frameworks, uses GPU, expands to larger environments, or makes publishable auxiliary-goal claims before review."
+    ],
+    "tasks_for_codex": [
+      "Create research/reward_to_gcrl/artifacts/0009/run_fourrooms_lowrank_auxiliary.py using CPU-only NumPy.",
+      "Write an environment audit that verifies the FourRooms transition table, state indexing, wall/door layout, action mapping, reward normalization, terminal masks, and goal indexing against 0008 where possible.",
+      "Generate a fixed offline replay dataset from a simple non-oracle behavior policy or small mixture of documented non-oracle policies, and save replay coverage diagnostics.",
+      "Implement exact target computation from replay for g_plus and sampled real-state goals, using exact tabular references only for evaluation, not for behavior or training targets beyond normal bootstrapped target construction.",
+      "Implement terminal-only and combined auxiliary low-rank SSM variants with matched initialization seeds, optimizer steps, batch schedule, learning rate, rank, and target-network or fitted-iteration protocol.",
+      "Evaluate g_plus scaled value error, Bellman residual, tie-aware reward-policy disagreement, raw reward-task return/success, real-state goal value error, greedy goal-reaching success, and negative-transfer diagnostics.",
+      "Save research/reward_to_gcrl/results/0009_result.json with raw per-seed metrics, pass/fail flags, exact commands, model configuration, replay coverage, and conservative verdict.",
+      "Save research/reward_to_gcrl/results/0009_summary.md with a short review-oriented interpretation and a recommendation on whether to repeat the low-rank checkpoint, move to a slightly larger sweep, or stop auxiliary-goal claims for now."
+    ],
+    "required_outputs": [
+      "research/reward_to_gcrl/artifacts/0009/run_fourrooms_lowrank_auxiliary.py",
+      "research/reward_to_gcrl/artifacts/0009/environment_audit.json",
+      "research/reward_to_gcrl/artifacts/0009/replay_dataset_audit.json",
+      "research/reward_to_gcrl/artifacts/0009/model_config.json",
+      "research/reward_to_gcrl/artifacts/0009/exact_reference_metrics.json",
+      "research/reward_to_gcrl/results/0009_result.json",
+      "research/reward_to_gcrl/results/0009_summary.md",
+      "Exact command used to run the experiment",
+      "Raw per-seed terminal-only versus auxiliary metrics",
+      "Coverage diagnostics",
+      "g_plus value error, Bellman residual, reward-policy disagreement, and reward-task return/success metrics",
+      "Real-state goal value error and goal-reaching diagnostics",
+      "Final verdict: auxiliary_helped_gplus, auxiliary_neutral, negative_transfer, coverage_limited, or optimizer_failed"
+    ],
+    "estimated_runtime_minutes": 25
+  }
+}
+
+You are making progress, and this is the right time to test shared parameters—but only as a small NumPy checkpoint. Treat any positive result as permission for a reviewed follow-up, not as a publishable auxiliary-goal conclusion yet.
