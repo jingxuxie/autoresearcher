@@ -1,0 +1,7 @@
+{
+  "history_mc_plus_improves_policy_regret_vs_observation_trl_log": true,
+  "history_mc_plus_mse_improvement_fraction_vs_history_mc_only": 1.0,
+  "history_model_dp_fully_explains_history_mc_plus_gain": true,
+  "obs_alias_failure": true,
+  "training_inputs": "observation keys and bounded cue-plus-last-three-observation history keys only; latent states are stored only for audit/evaluation."
+}

@@ -1,0 +1,202 @@
+{
+  "artifacts": [
+    "research/sto_trl/artifacts/0012/aliased_pomdp_context_audit.py",
+    "research/sto_trl/artifacts/0012/raw_metrics.json",
+    "research/sto_trl/artifacts/0012/metrics.csv",
+    "research/sto_trl/artifacts/0012/alias_summary.csv",
+    "research/sto_trl/artifacts/0012/coverage_diagnostics.json",
+    "research/sto_trl/artifacts/0012/offline_trajectories.json",
+    "research/sto_trl/artifacts/0012/transition_tables.json",
+    "research/sto_trl/artifacts/0012/value_tables.json",
+    "research/sto_trl/artifacts/0012/alias_diagnostics.json"
+  ],
+  "baseline_metrics": {
+    "history_mc_only": {
+      "action_disagreement_rate": 0.5,
+      "mean_calibration_error": 0.5376375000000001,
+      "mean_heldout_long_horizon_value_mse": 0.3404543906250001,
+      "mean_policy_regret": 0.018224999999999936,
+      "mean_teleport_q_overestimation": 0.0,
+      "mean_teleport_q_underestimation": 0.419175,
+      "num_rows": 2,
+      "teleport_action_rate": 0.0
+    },
+    "history_model_dp": {
+      "action_disagreement_rate": 0.0,
+      "mean_calibration_error": 0.0,
+      "mean_heldout_long_horizon_value_mse": 0.0,
+      "mean_policy_regret": 0.0,
+      "mean_teleport_q_overestimation": 0.0,
+      "mean_teleport_q_underestimation": 0.0,
+      "num_rows": 2,
+      "teleport_action_rate": 0.5
+    },
+    "latent_oracle_dp": {
+      "action_disagreement_rate": 0.0,
+      "mean_calibration_error": 0.0,
+      "mean_heldout_long_horizon_value_mse": 0.0,
+      "mean_policy_regret": 0.0,
+      "mean_teleport_q_overestimation": 0.0,
+      "mean_teleport_q_underestimation": 0.0,
+      "num_rows": 2,
+      "teleport_action_rate": 0.5
+    },
+    "observation_empirical_model_dp": {
+      "action_disagreement_rate": 0.5,
+      "mean_calibration_error": 0.14613749999999995,
+      "mean_heldout_long_horizon_value_mse": 0.037554514075413215,
+      "mean_policy_regret": 0.018224999999999936,
+      "mean_teleport_q_overestimation": 0.1388045454545454,
+      "mean_teleport_q_underestimation": 0.13457045454545458,
+      "num_rows": 2,
+      "teleport_action_rate": 0.0
+    },
+    "observation_trl_log": {
+      "action_disagreement_rate": 0.5,
+      "mean_calibration_error": 0.14613749999999995,
+      "mean_heldout_long_horizon_value_mse": 0.037554514075413215,
+      "mean_policy_regret": 0.018224999999999936,
+      "mean_teleport_q_overestimation": 0.1388045454545454,
+      "mean_teleport_q_underestimation": 0.13457045454545458,
+      "num_rows": 2,
+      "teleport_action_rate": 0.0
+    }
+  },
+  "claim_tested": "Short observation history plus log-space transitive propagation was tested in a tiny aliased-observation stochastic POMDP without latent-state training inputs.",
+  "commands_run": [
+    "mkdir -p research/sto_trl/artifacts/0012 research/sto_trl/results",
+    "conda run -n autoresearcher_sto_trl python research/sto_trl/artifacts/0012/aliased_pomdp_context_audit.py",
+    "conda run -n autoresearcher_sto_trl python scripts/validate_artifacts.py --repo-root . --json research/sto_trl/results/0012_result.json --schema schemas/result.schema.json --check-result-artifacts"
+  ],
+  "decision_relevant_findings": [
+    "History MC+TRL-log improves heldout MSE over history MC-only by 1.000000.",
+    "Observation TRL-log policy regret minus history MC+TRL-log policy regret: 0.018225000000.",
+    "The measured gain is explained by bounded history representation plus model-style propagation."
+  ],
+  "experiment_id": "0012",
+  "failure_criteria_results": [
+    "History MC+TRL-log was better than history MC-only on heldout MSE.",
+    "Observation-only, history-keyed, and latent-oracle baselines were all included.",
+    "No true latent state, exact DP label, true transition probability, or future observation was used by training methods.",
+    "No neural networks, continuous-control environments, large downloads, or expensive training were used."
+  ],
+  "interpretation": "Observation-only model DP and TRL-log fail on the aliased hub because good and bad hidden states share observation 'hub'. Bounded history keys using only the previous cue observation disambiguate the hubs, and history-keyed MC+TRL-log greatly improves censored long-horizon MSE over history-keyed MC-only. The gain is fully matched by history-model DP, so the result supports representation/context value rather than a distinct TRL algorithmic advantage.",
+  "known_failures": [
+    "history_model_dp fully explains the history-keyed MC+TRL-log gain, so this is representation/context evidence rather than a distinct TRL algorithm win."
+  ],
+  "metric_deltas": {
+    "history_mc_plus_minus_history_mc_only_heldout_mse": -0.3404543906250001,
+    "history_mc_plus_minus_history_model_dp_heldout_mse": 5.238529448733282e-32,
+    "history_mc_plus_mse_improvement_fraction_vs_history_mc_only": 1.0,
+    "observation_trl_log_minus_history_mc_plus_policy_regret": 0.018224999999999936,
+    "observation_trl_log_minus_latent_oracle_heldout_mse": 0.037554514075413215
+  },
+  "metrics": {
+    "alias_diagnostics": {
+      "history_mc_plus_improves_policy_regret_vs_observation_trl_log": true,
+      "history_mc_plus_mse_improvement_fraction_vs_history_mc_only": 1.0,
+      "history_model_dp_fully_explains_history_mc_plus_gain": true,
+      "obs_alias_failure": true,
+      "training_inputs": "observation keys and bounded cue-plus-last-three-observation history keys only; latent states are stored only for audit/evaluation."
+    },
+    "label_horizon_cutoff": 2,
+    "method_summary": {
+      "history_mc_only": {
+        "action_disagreement_rate": 0.5,
+        "mean_calibration_error": 0.5376375000000001,
+        "mean_heldout_long_horizon_value_mse": 0.3404543906250001,
+        "mean_policy_regret": 0.018224999999999936,
+        "mean_teleport_q_overestimation": 0.0,
+        "mean_teleport_q_underestimation": 0.419175,
+        "num_rows": 2,
+        "teleport_action_rate": 0.0
+      },
+      "history_mc_plus_trl_log": {
+        "action_disagreement_rate": 0.0,
+        "mean_calibration_error": 1.942890293094024e-16,
+        "mean_heldout_long_horizon_value_mse": 5.238529448733282e-32,
+        "mean_policy_regret": 0.0,
+        "mean_teleport_q_overestimation": 1.6653345369377348e-16,
+        "mean_teleport_q_underestimation": 0.0,
+        "num_rows": 2,
+        "teleport_action_rate": 0.5
+      },
+      "history_model_dp": {
+        "action_disagreement_rate": 0.0,
+        "mean_calibration_error": 0.0,
+        "mean_heldout_long_horizon_value_mse": 0.0,
+        "mean_policy_regret": 0.0,
+        "mean_teleport_q_overestimation": 0.0,
+        "mean_teleport_q_underestimation": 0.0,
+        "num_rows": 2,
+        "teleport_action_rate": 0.5
+      },
+      "history_trl_log": {
+        "action_disagreement_rate": 0.0,
+        "mean_calibration_error": 0.0,
+        "mean_heldout_long_horizon_value_mse": 0.0,
+        "mean_policy_regret": 0.0,
+        "mean_teleport_q_overestimation": 0.0,
+        "mean_teleport_q_underestimation": 0.0,
+        "num_rows": 2,
+        "teleport_action_rate": 0.5
+      },
+      "latent_oracle_dp": {
+        "action_disagreement_rate": 0.0,
+        "mean_calibration_error": 0.0,
+        "mean_heldout_long_horizon_value_mse": 0.0,
+        "mean_policy_regret": 0.0,
+        "mean_teleport_q_overestimation": 0.0,
+        "mean_teleport_q_underestimation": 0.0,
+        "num_rows": 2,
+        "teleport_action_rate": 0.5
+      },
+      "observation_empirical_model_dp": {
+        "action_disagreement_rate": 0.5,
+        "mean_calibration_error": 0.14613749999999995,
+        "mean_heldout_long_horizon_value_mse": 0.037554514075413215,
+        "mean_policy_regret": 0.018224999999999936,
+        "mean_teleport_q_overestimation": 0.1388045454545454,
+        "mean_teleport_q_underestimation": 0.13457045454545458,
+        "num_rows": 2,
+        "teleport_action_rate": 0.0
+      },
+      "observation_trl_log": {
+        "action_disagreement_rate": 0.5,
+        "mean_calibration_error": 0.14613749999999995,
+        "mean_heldout_long_horizon_value_mse": 0.037554514075413215,
+        "mean_policy_regret": 0.018224999999999936,
+        "mean_teleport_q_overestimation": 0.1388045454545454,
+        "mean_teleport_q_underestimation": 0.13457045454545458,
+        "num_rows": 2,
+        "teleport_action_rate": 0.0
+      }
+    },
+    "num_trajectories": 56,
+    "success_criteria_met": {
+      "history_mc_plus_mse_improvement_at_least_25_percent": true,
+      "history_mc_plus_policy_or_action_improvement_vs_observation_trl_log": true,
+      "history_model_dp_included_and_explains_gain": true,
+      "observation_aliasing_failure": true
+    }
+  },
+  "next_questions": [
+    "Can a non-model TRL objective exploit bounded history when model DP is unavailable or prohibitively large?",
+    "How sensitive is the history key length to noisier cue observations?",
+    "Should future stochastic TRL benchmarks include explicit aliasing/context diagnostics?"
+  ],
+  "resource_usage": {
+    "device": "cpu",
+    "label_horizon_cutoff": 2,
+    "num_trajectories": 56
+  },
+  "runtime_seconds": 0.007605008002428804,
+  "status": "completed",
+  "success_criteria_results": [
+    "Observation-only aliasing failure observed: True.",
+    "History MC+TRL-log heldout MSE improvement over history MC-only: 1.000000.",
+    "History MC+TRL-log policy/regret improvement over observation TRL-log: True.",
+    "History-model-DP baseline included; fully explains gain: True.",
+    "Training methods used only observations, actions, goal outcomes, and bounded history keys; latent states were saved only for audit/evaluation."
+  ]
+}

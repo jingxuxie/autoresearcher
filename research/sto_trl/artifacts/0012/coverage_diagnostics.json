@@ -1,0 +1,198 @@
+{
+  "history_label_coverage": {
+    "cue_b|cue_b>hub>safe|advance": {
+      "censored_positive_labels": 8,
+      "label_count_used": 0,
+      "mean_used_label": 0.0,
+      "positive_labels": 0,
+      "total_occurrences": 8,
+      "zero_labels": 0
+    },
+    "cue_b|cue_b>hub>tele|advance": {
+      "censored_positive_labels": 0,
+      "label_count_used": 4,
+      "mean_used_label": 0.81,
+      "positive_labels": 4,
+      "total_occurrences": 4,
+      "zero_labels": 0
+    },
+    "cue_b|cue_b>hub|safe": {
+      "censored_positive_labels": 8,
+      "label_count_used": 0,
+      "mean_used_label": 0.0,
+      "positive_labels": 0,
+      "total_occurrences": 8,
+      "zero_labels": 0
+    },
+    "cue_b|cue_b>hub|teleport": {
+      "censored_positive_labels": 4,
+      "label_count_used": 16,
+      "mean_used_label": 0.0,
+      "positive_labels": 0,
+      "total_occurrences": 20,
+      "zero_labels": 16
+    },
+    "cue_b|enter": {
+      "censored_positive_labels": 12,
+      "label_count_used": 16,
+      "mean_used_label": 0.0,
+      "positive_labels": 0,
+      "total_occurrences": 28,
+      "zero_labels": 16
+    },
+    "cue_b|hub>safe>safe|advance": {
+      "censored_positive_labels": 0,
+      "label_count_used": 8,
+      "mean_used_label": 0.8100000000000003,
+      "positive_labels": 8,
+      "total_occurrences": 8,
+      "zero_labels": 0
+    },
+    "cue_b|hub>tele>tele|advance": {
+      "censored_positive_labels": 0,
+      "label_count_used": 4,
+      "mean_used_label": 0.9,
+      "positive_labels": 4,
+      "total_occurrences": 4,
+      "zero_labels": 0
+    },
+    "cue_b|safe>safe>safe|advance": {
+      "censored_positive_labels": 0,
+      "label_count_used": 8,
+      "mean_used_label": 0.9000000000000001,
+      "positive_labels": 8,
+      "total_occurrences": 8,
+      "zero_labels": 0
+    },
+    "cue_g|cue_g>hub>safe|advance": {
+      "censored_positive_labels": 8,
+      "label_count_used": 0,
+      "mean_used_label": 0.0,
+      "positive_labels": 0,
+      "total_occurrences": 8,
+      "zero_labels": 0
+    },
+    "cue_g|cue_g>hub>tele|advance": {
+      "censored_positive_labels": 0,
+      "label_count_used": 19,
+      "mean_used_label": 0.8100000000000004,
+      "positive_labels": 19,
+      "total_occurrences": 19,
+      "zero_labels": 0
+    },
+    "cue_g|cue_g>hub|safe": {
+      "censored_positive_labels": 8,
+      "label_count_used": 0,
+      "mean_used_label": 0.0,
+      "positive_labels": 0,
+      "total_occurrences": 8,
+      "zero_labels": 0
+    },
+    "cue_g|cue_g>hub|teleport": {
+      "censored_positive_labels": 19,
+      "label_count_used": 1,
+      "mean_used_label": 0.0,
+      "positive_labels": 0,
+      "total_occurrences": 20,
+      "zero_labels": 1
+    },
+    "cue_g|enter": {
+      "censored_positive_labels": 27,
+      "label_count_used": 1,
+      "mean_used_label": 0.0,
+      "positive_labels": 0,
+      "total_occurrences": 28,
+      "zero_labels": 1
+    },
+    "cue_g|hub>safe>safe|advance": {
+      "censored_positive_labels": 0,
+      "label_count_used": 8,
+      "mean_used_label": 0.8100000000000003,
+      "positive_labels": 8,
+      "total_occurrences": 8,
+      "zero_labels": 0
+    },
+    "cue_g|hub>tele>tele|advance": {
+      "censored_positive_labels": 0,
+      "label_count_used": 19,
+      "mean_used_label": 0.9,
+      "positive_labels": 19,
+      "total_occurrences": 19,
+      "zero_labels": 0
+    },
+    "cue_g|safe>safe>safe|advance": {
+      "censored_positive_labels": 0,
+      "label_count_used": 8,
+      "mean_used_label": 0.9000000000000001,
+      "positive_labels": 8,
+      "total_occurrences": 8,
+      "zero_labels": 0
+    }
+  },
+  "label_horizon_cutoff": 2,
+  "num_trajectories": 56,
+  "observation_label_coverage": {
+    "cue_b|enter": {
+      "censored_positive_labels": 12,
+      "label_count_used": 16,
+      "mean_used_label": 0.0,
+      "positive_labels": 0,
+      "total_occurrences": 28,
+      "zero_labels": 16
+    },
+    "cue_g|enter": {
+      "censored_positive_labels": 27,
+      "label_count_used": 1,
+      "mean_used_label": 0.0,
+      "positive_labels": 0,
+      "total_occurrences": 28,
+      "zero_labels": 1
+    },
+    "hub|safe": {
+      "censored_positive_labels": 16,
+      "label_count_used": 0,
+      "mean_used_label": 0.0,
+      "positive_labels": 0,
+      "total_occurrences": 16,
+      "zero_labels": 0
+    },
+    "hub|teleport": {
+      "censored_positive_labels": 23,
+      "label_count_used": 17,
+      "mean_used_label": 0.0,
+      "positive_labels": 0,
+      "total_occurrences": 40,
+      "zero_labels": 17
+    },
+    "safe|advance": {
+      "censored_positive_labels": 16,
+      "label_count_used": 32,
+      "mean_used_label": 0.8549999999999996,
+      "positive_labels": 32,
+      "total_occurrences": 48,
+      "zero_labels": 0
+    },
+    "tele|advance": {
+      "censored_positive_labels": 0,
+      "label_count_used": 46,
+      "mean_used_label": 0.8549999999999996,
+      "positive_labels": 46,
+      "total_occurrences": 46,
+      "zero_labels": 0
+    }
+  },
+  "teleport_outcome_counts": {
+    "bad": {
+      "failure": 16,
+      "success": 4
+    },
+    "good": {
+      "failure": 1,
+      "success": 19
+    },
+    "observation_aliased_total": {
+      "failure": 17,
+      "success": 23
+    }
+  }
+}
