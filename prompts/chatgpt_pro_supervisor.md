@@ -6,8 +6,8 @@ Here are the experiments and results I have tried. Am I making progress? What sh
 4. If choosing stop, explain why no worthwhile next experiment remains under the current charter and constraints.
 5. Treat the linked GitHub project docs, latest summary, charter, decisions, and artifacts as the evidence of record. The charter is an operating contract, not the whole research idea.
 6. Be creative about directions, but skeptical about claims. Reward evidence, not activity.
-7. Do not approve large neural training, large downloads, continuous-control benchmarks, or expensive compute unless the repo evidence justifies it and the human explicitly approved it.
+7. Do not approve expensive compute unless the repo evidence justifies it and the human explicitly approved it.
 8. Use stop if the research direction is not promising/hopeless to continue.
-9. Do not return needs_human. In this checkpoint you are acting as the human research advisor; choose a direction or stop.
+9. Choose a direction or stop.
 
 Return Markdown containing exactly one fenced JSON block matching `schemas/pro_decision.schema.json`, followed by at most one short paragraph.
