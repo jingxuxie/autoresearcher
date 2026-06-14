@@ -441,8 +441,8 @@ The expected value of this experiment is not an algorithm win. It should identif
   "last_failure": null,
   "last_pro_review_iteration": 7,
   "last_pro_review_path": null,
-  "last_summary_iteration": 7,
-  "last_summary_path": "research/sto_trl/progress/0007_pre_pro_local_stop_summary.md",
+  "last_summary_iteration": 9,
+  "last_summary_path": "research/sto_trl/progress/0009_pre_pro_weak_pass_streak_summary.md",
   "no_progress_rounds": 0,
   "notes": [
     "2026-06-13T08:58:38+00:00: supervisor decision pivot",
@@ -1291,71 +1291,71 @@ The expected value of this experiment is not an algorithm win. It should identif
 {
   "checkpoint_reason": null,
   "checkpoint_recommended": false,
-  "confidence": 0.82,
+  "confidence": 0.78,
   "decision": "continue",
   "evidence": [
-    "0008 result is completed with required artifacts, summary, and validation reported ok in the review.",
-    "0008 review reports success_criteria_satisfied=true, failure_criteria_triggered=false, allows_auto_continue=true, and should_escalate_to_pro=false.",
-    "0008 grid covered 465 exact-DP cells over true risky probability, safe path length, risky sample count, and observed successes, with 4185 method rows.",
-    "0008 chain guard passed with raw_trl_max_abs_error=0.0 and trl_log_max_abs_error=0.0.",
-    "0008 method summary shows trl_log and empirical_transition_dp have identical action_accuracy=0.6903225806451613 and mean_policy_regret=0.07556516129032252, indicating the tested TRL-log failures are empirical transition-identifiability failures on this grid.",
-    "0008 posterior/conservative baselines improved mean regret on the uniformly weighted grid: posterior_mean_beta_1_1 mean_policy_regret=0.05130387096774184, posterior_lower_q10_beta_1_1=0.026568387096774195, and hoeffding_lcb_delta_0_2=0.019136129032258063, while raw_trl was much worse at 0.2713587096774201.",
-    "0008 classified many cells as ambiguous, lucky-only, no-success, or prior-dependent, so the next test should establish transition-posterior baselines before any further stochastic TRL algorithm claims.",
-    "The human pivot and next-step plan explicitly recommend continuing under the reframed transition-level stochastic uncertainty question, with Milestone 2 focused on empirical model DP, Bayesian posterior mean/quantile DP, and robust confidence-set DP."
+    "0009 result and review report required result, summary, and artifacts, with result/artifact validation ok and allows_auto_continue=true.",
+    "0009 selected 8 representative cells covering matched safe, matched risk, lucky-only safe, no-success safe, no-success risk, ambiguous safe, ambiguous risk, and prior-dependent safe regimes.",
+    "0009 reports empirical_model_dp, empirical_risky_value, and trl_log have identical mean_policy_regret=0.10901250000000001 on the representative subset, showing no distinct transitive benefit on the one-step risky shortcut family.",
+    "0009 reports posterior_lower_q10_dp_beta_1_1 as best_transition_uncertainty_method with target-regime regret delta versus TRL-log of -0.17752500000000004.",
+    "0009 reports transition_baseline_positive=true, but no_success_risk_optimal_solved_methods is empty and known_failures includes risk-optimal no-success remains unsolved from counts alone.",
+    "0009 review warns that the positive evidence rests on four target cells and an 8-cell handpicked subset, so it should set a baseline rather than support broad generalization.",
+    "The human-approved next-step plan explicitly moves from transition-level posterior baselines to adding transitive propagation to posterior transition models, with a critical ablation against transition uncertainty alone."
   ],
   "next_experiment": {
     "estimated_runtime_minutes": 25,
-    "experiment_id": "0009",
+    "experiment_id": "0010",
     "failure_criteria": [
-      "The experiment uses exact DP values or true transition probabilities as decision inputs rather than evaluation ground truth.",
-      "The selected subset omits anti-conservatism checks, especially matched risk-optimal and no-success risk-optimal regimes.",
-      "The result reports only aggregate averages and omits regime-stratified metrics.",
-      "The posterior or robust methods are not compared against both empirical transition DP and TRL-log.",
-      "The experiment claims a stochastic TRL win without beating or matching simple transition-model DP baselines.",
+      "The experiment omits prior-matched posterior model DP baselines, making transitive propagation effects impossible to isolate.",
+      "Exact DP values or true transition probabilities are used as training or decision inputs rather than evaluation ground truth.",
+      "The scenario is only a one-step risky shortcut where 0008 and 0009 already showed TRL-log is equivalent to empirical model DP.",
+      "The result reports aggregate averages without per-regime or coverage-stratified diagnostics.",
+      "The method appears successful only by choosing safe in matched risk-optimal regimes or by being conservative everywhere.",
       "The run expands to neural networks, continuous control, OGBench, large downloads, broad sweeps, or exceeds 30 minutes."
     ],
-    "hypothesis": "Transition-level uncertainty baselines will explain most recoverable performance in finite-coverage risky-shortcut regimes: posterior mean, posterior quantile, and robust confidence-set DP should improve regret versus raw TRL and empirical TRL-log in prior-dependent or lucky-only cells while preserving matched safe-optimal and matched risk-optimal choices. Any remaining failures should identify where explicit priors or future transitive propagation are necessary.",
-    "objective": "Run a compact transition-level posterior model-DP baseline audit on representative regimes from the 0008 identifiability grid, establishing what empirical, Bayesian, quantile, and robust transition models can solve before adding transitive/posterior TRL variants.",
+    "hypothesis": "On a multi-step stochastic branch-chain with censored long-horizon labels, posterior transition uncertainty can reduce risky-path overestimation while log-space transitive propagation preserves long-horizon reachability; however, if posterior TRL-log is equivalent to posterior model DP or only improves through the same prior, then there is no distinct transitive posterior benefit yet.",
+    "objective": "Test whether posterior transition uncertainty plus log-space transitive propagation adds value beyond transition-model DP on a small multi-step tabular stochastic branch-chain diagnostic.",
     "required_outputs": [
-      "research/sto_trl/artifacts/0009/transition_posterior_baselines.py",
-      "research/sto_trl/artifacts/0009/raw_metrics.json",
-      "research/sto_trl/artifacts/0009/metrics.csv",
-      "research/sto_trl/artifacts/0009/regime_summary.csv",
-      "research/sto_trl/artifacts/0009/posterior_diagnostics.json",
-      "research/sto_trl/artifacts/0009/selected_grid_cells.json",
-      "research/sto_trl/artifacts/0009/coverage_diagnostics.json",
-      "research/sto_trl/artifacts/0009/transition_tables.json",
-      "research/sto_trl/artifacts/0009/value_tables.json",
-      "research/sto_trl/results/0009_result.json",
-      "research/sto_trl/results/0009_summary.md"
+      "research/sto_trl/artifacts/0010/posterior_transitive_ablation.py",
+      "research/sto_trl/artifacts/0010/raw_metrics.json",
+      "research/sto_trl/artifacts/0010/metrics.csv",
+      "research/sto_trl/artifacts/0010/regime_summary.csv",
+      "research/sto_trl/artifacts/0010/posterior_transitive_diagnostics.json",
+      "research/sto_trl/artifacts/0010/coverage_diagnostics.json",
+      "research/sto_trl/artifacts/0010/offline_datasets.json",
+      "research/sto_trl/artifacts/0010/transition_tables.json",
+      "research/sto_trl/artifacts/0010/value_tables.json",
+      "research/sto_trl/results/0010_result.json",
+      "research/sto_trl/results/0010_summary.md"
     ],
     "success_criteria": [
-      "Creates a self-contained artifact under research/sto_trl/artifacts/0009/ without editing prior results, schemas, AGENTS.md, scripts/autoresearcher.py, or environment files.",
-      "Selects a small representative subset from the 0008 grid covering matched-identifiable, lucky-only, no-success, ambiguous, prior-dependent, safe-optimal, and risk-optimal regimes.",
-      "Implements and reports empirical model DP, Bayesian posterior mean DP, posterior lower and upper quantile DP, and robust confidence-set DP, alongside raw TRL, TRL-log, and empirical risky-value baselines.",
-      "Uses exact DP ground truth only for evaluation, not as a training or decision input.",
-      "Reports regime-stratified action accuracy, mean policy regret, risky-action selection rate, Q overestimation, calibration error, and prior-dependence diagnostics.",
-      "Counts positive evidence only if transition-level posterior or robust baselines reduce regret versus TRL-log in prior-dependent or lucky-only regimes while not simply selecting safe everywhere and while preserving matched risk-optimal action choice.",
-      "Explicitly states whether transition uncertainty alone matches or beats the current stochastic TRL variants, setting a baseline for any future transitive/posterior TRL experiment.",
-      "Produces valid research/sto_trl/results/0009_result.json and research/sto_trl/results/0009_summary.md with exact commands run."
+      "Creates a self-contained artifact under research/sto_trl/artifacts/0010/ without editing prior results, schemas, AGENTS.md, scripts/autoresearcher.py, or environment files.",
+      "Uses exact DP ground truth for every evaluated tabular MDP and keeps runtime under 30 minutes.",
+      "Includes a deterministic chain guard with real raw TRL and TRL-log execution, not only a closed-form formula check if practical.",
+      "Includes at least one multi-step stochastic branch-chain or stochastic stitching graph where long-horizon labels are censored and transitive propagation could differ from one-step empirical transition scoring.",
+      "Compares mc_supervised, trl_raw, trl_log, empirical model DP, posterior mean model DP, posterior quantile or robust model DP, posterior_trl_log, and posterior_mc_plus_trl_log under matched priors.",
+      "Reports held-out long-horizon value MSE, calibration error, Q overestimation and underestimation, policy regret, risky action selection rate, and regime or coverage diagnostics.",
+      "Counts positive evidence only if posterior_trl_log or posterior_mc_plus_trl_log improves long-horizon or policy metrics versus both trl_log and the prior-matched posterior model DP without losing matched risk-optimal action choice.",
+      "Counts equivalence to posterior model DP or improvement only from prior choice as negative or boundary evidence, not a stochastic TRL win.",
+      "Produces valid research/sto_trl/results/0010_result.json and research/sto_trl/results/0010_summary.md with exact commands run."
     ],
     "tasks_for_codex": [
-      "Create research/sto_trl/artifacts/0009/ and implement a small transition_posterior_baselines.py script, reusing 0008 grid definitions where practical.",
-      "Select and save a representative evaluation subset from 0008 with explicit regime labels and coverage diagnostics.",
-      "Implement empirical model DP, beta-binomial posterior mean DP, posterior lower and upper quantile DP, and a simple robust confidence-set DP for the risky shortcut family.",
-      "Evaluate raw TRL, TRL-log, empirical risky-value, and the transition-posterior baselines against exact DP ground truth on the same subset.",
-      "Save raw_metrics.json, metrics.csv, regime_summary.csv, posterior_diagnostics.json, selected_grid_cells.json, coverage_diagnostics.json, transition_tables.json, and value_tables.json under research/sto_trl/artifacts/0009/.",
-      "Write research/sto_trl/results/0009_result.json and research/sto_trl/results/0009_summary.md, then validate the result JSON with scripts/validate_artifacts.py and artifact checks."
+      "Create research/sto_trl/artifacts/0010/ and implement a small posterior_transitive_ablation.py script reusing prior tabular helpers where practical.",
+      "Define a compact deterministic chain guard and a multi-step stochastic branch-chain or stitching MDP with exact DP ground truth, finite offline coverage, and long-horizon label censoring.",
+      "Implement prior-matched empirical and posterior model-DP baselines plus posterior_trl_log and posterior_mc_plus_trl_log variants.",
+      "Evaluate methods on matched safe-optimal, matched risk-optimal, lucky-only safe-optimal, no-success risk-optimal, and at least one ambiguous/prior-dependent multi-step regime.",
+      "Save raw_metrics.json, metrics.csv, regime_summary.csv, posterior_transitive_diagnostics.json, coverage_diagnostics.json, offline_datasets.json, transition_tables.json, and value_tables.json under research/sto_trl/artifacts/0010/.",
+      "Write research/sto_trl/results/0010_result.json and research/sto_trl/results/0010_summary.md, then validate the result JSON with scripts/validate_artifacts.py and artifact checks."
     ]
   },
   "progress_score": 7,
-  "rationale": "Experiment 0008 successfully did the human-approved identifiability step and produced a useful map, but it also showed that TRL-log is effectively identical to empirical transition DP on this tabular risky-shortcut grid. The next small, high-information test should follow the approved next-step plan: compare transition-level posterior and robust model-DP baselines directly against TRL-log/raw on representative grid regimes before adding any new transitive algorithm. This tests whether stochastic uncertainty alone explains the remaining gains and sets a baseline that any future transitive/posterior TRL variant must beat.",
+  "rationale": "Experiment 0009 established the transition-posterior baseline gate on a representative tabular subset. It showed that posterior and robust transition-model DP can reduce regret versus TRL-log in recoverable finite-coverage regimes, while TRL-log is equivalent to empirical model DP on the one-step risky shortcut family. The next small decisive step is the planned Milestone 3 ablation: add posterior transition uncertainty to log-space transitive propagation in a setting where multi-step propagation could matter, and require comparison against transition-model DP so any gain is not just a prior choice.",
   "risks": [
-    "Do not treat the 0008 method rankings as probability-weighted performance claims because the grid weights observed success counts uniformly.",
-    "Posterior and confidence-set methods encode priors or risk preferences; the result must separate empirical evidence from prior assumptions.",
-    "If the posterior DP baseline already dominates, future TRL-style extensions need a specific transitive benefit beyond transition uncertainty alone.",
-    "Keep this tabular and exact-DP based; do not move to neural networks, continuous control, OGBench, downloads, or broad sweeps.",
-    "Avoid overfitting to the full 0008 grid by using a compact representative subset and reporting regime-stratified results."
+    "Posterior transitive propagation may collapse to posterior model DP in fully tabular settings; the experiment must treat equivalence as negative or boundary evidence, not success.",
+    "Any apparent win can come from prior choice rather than TRL-style propagation; require prior-matched comparisons against posterior model DP.",
+    "A conservative posterior method can reduce risky overestimation by avoiding risk everywhere; matched risk-optimal and ambiguous risk-optimal regimes must be hard checks.",
+    "Keep the experiment small and tabular; do not move to neural networks, continuous control, OGBench, downloads, or broad sweeps.",
+    "The chain guard should be a real raw/log TRL execution check rather than only a formula check if feasible within the small harness."
   ],
   "terminal_decision_requires_pro": false
 }
@@ -1363,32 +1363,6 @@ The expected value of this experiment is not an algorithm win. It should identif
 
 
 ## Recent decision summaries
-
-## 0007_decision.json
-
-```json
-{
-  "confidence": 0.76,
-  "decision": "needs_human",
-  "evidence": [
-    "Current state reports last_decision=retryable_failure with failure_streak=1 and note: reviewer failed or timed out for 0007.",
-    "research/sto_trl/results/0007_result.json and research/sto_trl/results/0007_summary.md exist, along with artifacts under research/sto_trl/artifacts/0007/.",
-    "Validation of research/sto_trl/results/0007_result.json against schemas/result.schema.json with artifact checks returned validation ok.",
-    "research/sto_trl/reviews/0007_review_events.jsonl reports: Codex ran out of room in the model's context window; turn.failed.",
-    "research/sto_trl/reviews/0007_review_stderr.log is empty and no research/sto_trl/reviews/0007_review.json is present in the review listing.",
-    "The prompt's latest accepted result summary is still 0006, while the filesystem contains an unreviewed 0007 result, so the source-of-truth state is inconsistent."
-  ],
-  "next_experiment": null,
-  "progress_score": 6,
-  "rationale": "Do not launch another experiment yet. The loop state is ambiguous: the current state reports a retryable reviewer failure for iteration 0007 and still presents 0006 as the latest accepted result, but the workspace already contains a completed 0007 result and artifacts. The 0007 result validates, yet the 0007 reviewer failed from context exhaustion and no accepted 0007 review JSON is present. Proposing another 0007 experiment risks duplicating or overwriting unreviewed outputs; advancing scientifically without resolving the review failure would treat an unsupported result as accepted.",
-  "risks": [
-    "Repeating experiment id 0007 could overwrite or duplicate an existing unreviewed result, conflicting with the repository rule to preserve prior results and artifacts.",
-    "Treating 0007 as accepted without a completed review would weaken the evidence gate and bypass the loop's validation process.",
-    "The reviewer failure appears to be an infrastructure/context-window issue, not a scientific result; the right next action is to resolve or rerun the review in a compact mode before selecting a further experiment.",
-    "If the system cannot reconcile whether 0007 is accepted, any proposed next experiment id would be unsafe because the prompt still requires 0007 rather than a new 0008 id."
-  ]
-}
-```
 
 ## 0008_decision.json
 
@@ -1471,6 +1445,48 @@ The expected value of this experiment is not an algorithm win. It should identif
     "If the posterior DP baseline already dominates, future TRL-style extensions need a specific transitive benefit beyond transition uncertainty alone.",
     "Keep this tabular and exact-DP based; do not move to neural networks, continuous control, OGBench, downloads, or broad sweeps.",
     "Avoid overfitting to the full 0008 grid by using a compact representative subset and reporting regime-stratified results."
+  ]
+}
+```
+
+## 0010_decision.json
+
+```json
+{
+  "confidence": 0.78,
+  "decision": "continue",
+  "evidence": [
+    "0009 result and review report required result, summary, and artifacts, with result/artifact validation ok and allows_auto_continue=true.",
+    "0009 selected 8 representative cells covering matched safe, matched risk, lucky-only safe, no-success safe, no-success risk, ambiguous safe, ambiguous risk, and prior-dependent safe regimes.",
+    "0009 reports empirical_model_dp, empirical_risky_value, and trl_log have identical mean_policy_regret=0.10901250000000001 on the representative subset, showing no distinct transitive benefit on the one-step risky shortcut family.",
+    "0009 reports posterior_lower_q10_dp_beta_1_1 as best_transition_uncertainty_method with target-regime regret delta versus TRL-log of -0.17752500000000004.",
+    "0009 reports transition_baseline_positive=true, but no_success_risk_optimal_solved_methods is empty and known_failures includes risk-optimal no-success remains unsolved from counts alone.",
+    "0009 review warns that the positive evidence rests on four target cells and an 8-cell handpicked subset, so it should set a baseline rather than support broad generalization.",
+    "The human-approved next-step plan explicitly moves from transition-level posterior baselines to adding transitive propagation to posterior transition models, with a critical ablation against transition uncertainty alone."
+  ],
+  "next_experiment": {
+    "estimated_runtime_minutes": 25,
+    "experiment_id": "0010",
+    "hypothesis": "On a multi-step stochastic branch-chain with censored long-horizon labels, posterior transition uncertainty can reduce risky-path overestimation while log-space transitive propagation preserves long-horizon reachability; however, if posterior TRL-log is equivalent to posterior model DP or only improves through the same prior, then there is no distinct transitive posterior benefit yet.",
+    "objective": "Test whether posterior transition uncertainty plus log-space transitive propagation adds value beyond transition-model DP on a small multi-step tabular stochastic branch-chain diagnostic.",
+    "required_outputs": {
+      "_type": "list",
+      "first_items": [
+        "research/sto_trl/artifacts/0010/posterior_transitive_ablation.py",
+        "research/sto_trl/artifacts/0010/raw_metrics.json",
+        "research/sto_trl/artifacts/0010/metrics.csv"
+      ],
+      "length": 11
+    }
+  },
+  "progress_score": 7,
+  "rationale": "Experiment 0009 established the transition-posterior baseline gate on a representative tabular subset. It showed that posterior and robust transition-model DP can reduce regret versus TRL-log in recoverable finite-coverage regimes, while TRL-log is equivalent to empirical model DP on the one-step risky shortcut family. The next small decisive step is the planned Milestone 3 ablation: add posterior transition uncertainty to log-space transitive propagation in a setting where multi-step propagation could matter, and require comparison against transition-model DP so any gain is not just a prior choice.",
+  "risks": [
+    "Posterior transitive propagation may collapse to posterior model DP in fully tabular settings; the experiment must treat equivalence as negative or boundary evidence, not success.",
+    "Any apparent win can come from prior choice rather than TRL-style propagation; require prior-matched comparisons against posterior model DP.",
+    "A conservative posterior method can reduce risky overestimation by avoiding risk everywhere; matched risk-optimal and ambiguous risk-optimal regimes must be hard checks.",
+    "Keep the experiment small and tabular; do not move to neural networks, continuous control, OGBench, downloads, or broad sweeps.",
+    "The chain guard should be a real raw/log TRL execution check rather than only a formula check if feasible within the small harness."
   ]
 }
 ```
@@ -1595,8 +1611,8 @@ The expected value of this experiment is not an algorithm win. It should identif
 
 ## Existing progress summaries
 
-- `research/sto_trl/progress/0007_manual_summary.md`
 - `research/sto_trl/progress/0007_pre_pro_local_stop_summary.md`
+- `research/sto_trl/progress/0009_pre_pro_weak_pass_streak_summary.md`
 - `research/sto_trl/progress/latest_summary.md`
 
 
@@ -1647,3 +1663,4 @@ The expected value of this experiment is not an algorithm win. It should identif
 - `research/sto_trl/decisions/0007_decision.md`
 - `research/sto_trl/decisions/0008_decision.md`
 - `research/sto_trl/decisions/0009_decision.md`
+- `research/sto_trl/decisions/0010_decision.md`
