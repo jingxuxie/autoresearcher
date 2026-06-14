@@ -476,8 +476,8 @@ The expected value of this experiment is not an algorithm win. It should identif
   "iteration": 9,
   "last_decision": "continue",
   "last_failure": null,
-  "last_pro_review_iteration": 7,
-  "last_pro_review_path": null,
+  "last_pro_review_iteration": 9,
+  "last_pro_review_path": "research/sto_trl/decisions/0010_pro_decision.json",
   "last_summary_iteration": 9,
   "last_summary_path": "research/sto_trl/progress/0009_pre_pro_weak_pass_streak_summary.md",
   "no_progress_rounds": 0,
@@ -496,12 +496,14 @@ The expected value of this experiment is not an algorithm win. It should identif
     "2026-06-14T02:48:15+00:00: retryable failure 1/3: supervisor failed or timed out; see /home/eston/autoresearcher/research/sto_trl/decisions/0008_decision_stderr.log",
     "2026-06-14T02:48:22+00:00: retryable failure 2/3: supervisor failed or timed out; see /home/eston/autoresearcher/research/sto_trl/decisions/0008_decision_stderr.log",
     "2026-06-14T02:48:28+00:00: retry limit reached after 3/3 failures: supervisor failed or timed out; see /home/eston/autoresearcher/research/sto_trl/decisions/0008_decision_stderr.log",
-    "2026-06-14T02:51:00+00:00: resumed after fixing strict structured-output schema requirements"
+    "2026-06-14T02:51:00+00:00: resumed after fixing strict structured-output schema requirements",
+    "2026-06-14T03:26:20+00:00: Pro checkpoint blocked (response_parse_failed); packet research/sto_trl/pro_packets/0010_PRO_REVIEW_PACKET.md",
+    "2026-06-14T03:29:27+00:00: applied Pro decision continue from research/sto_trl/decisions/0010_pro_decision.json"
   ],
   "pending_checkpoint": null,
   "pending_local_decision_path": null,
   "primary_metric": null,
-  "pro_review_count": 0,
+  "pro_review_count": 1,
   "protected_file_drift": false,
   "status": "active",
   "weak_pass_streak": 2
