@@ -1,0 +1,17 @@
+{
+  "audit_complete": true,
+  "command": "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0003/run_sampled_vs_soft_cliffwalking.py --check-only",
+  "gammas": [
+    0.95,
+    0.99,
+    0.995
+  ],
+  "gymnasium_dependency_used_for_environment": false,
+  "matches_previous_0002_transition_hash": true,
+  "missing_fields": [],
+  "seed_count": 10,
+  "status": "passed",
+  "timestamp": "2026-06-14T11:35:27.715609+00:00",
+  "transition_budget": 200000,
+  "transition_table_hash": "f6fa1c509349d50f18e13b6309b3f051c6cef9a8fcdab25f1332537f521d40a2"
+}

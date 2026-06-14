@@ -1,0 +1,276 @@
+{
+  "artifacts": [
+    "research/reward_to_gcrl/artifacts/0003/run_sampled_vs_soft_cliffwalking.py",
+    "research/reward_to_gcrl/artifacts/0003/local_compatibility_check.json",
+    "research/reward_to_gcrl/artifacts/0003/environment_audit.json",
+    "research/reward_to_gcrl/artifacts/0003/exact_soft_dp_reference.json",
+    "research/reward_to_gcrl/artifacts/0003/per_seed_metrics.json",
+    "research/reward_to_gcrl/artifacts/0003/per_seed_summary.csv",
+    "research/reward_to_gcrl/artifacts/0003/learning_curves.json",
+    "research/reward_to_gcrl/artifacts/0003/learning_curves.csv",
+    "research/reward_to_gcrl/artifacts/0003/raw_metrics.json",
+    "research/reward_to_gcrl/artifacts/0003/progress.jsonl"
+  ],
+  "baseline_metrics": {
+    "baseline_name": "sampled_augmented_g_plus_learning",
+    "mean_conditional_sampling_variance": 0.0004278098216495158,
+    "mean_final_bellman_residual_sufficient": 0.04124613525377317,
+    "mean_final_value_error_sufficient": 0.08156038291965984,
+    "mean_g_plus_events_per_10000": 212.67000000000002,
+    "mean_raw_return": -200.0,
+    "mean_success_rate": 0.0
+  },
+  "claim_tested": "On the audited local CliffWalking transition table, sampled augmented g_plus learning is an unbiased but higher-variance estimator of the terminal-only soft successor target and reduces error more slowly under the same original transition budget.",
+  "commands_run": [
+    "mkdir -p research/reward_to_gcrl/artifacts/0003 research/reward_to_gcrl/results",
+    "conda run -n autoresearcher_reward_to_gcrl python --version",
+    "conda run -n autoresearcher_reward_to_gcrl python -m py_compile research/reward_to_gcrl/artifacts/0003/run_sampled_vs_soft_cliffwalking.py",
+    "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0003/run_sampled_vs_soft_cliffwalking.py --check-only",
+    "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0003/run_sampled_vs_soft_cliffwalking.py",
+    "conda run -n autoresearcher_reward_to_gcrl python -m jsonschema -i research/reward_to_gcrl/results/0003_result.json schemas/result.schema.json",
+    "conda run -n autoresearcher_reward_to_gcrl python scripts/validate_artifacts.py --repo-root . --json research/reward_to_gcrl/results/0003_result.json --schema schemas/result.schema.json --check-result-artifacts"
+  ],
+  "decision_relevant_findings": [
+    "The local transition table hash matches the audited 0002 table.",
+    "The sampled update uses p(g_plus)=(1-gamma)r_bar, p(g_minus)=(1-gamma)(1-r_bar), and p(continue)=gamma.",
+    "Continued sampled targets use max_a M(s_next,a) directly, without an extra gamma factor.",
+    "The raw CliffWalking policy returns remain diagnostic because the normalized reward maps ordinary steps and goal transitions to the same reward."
+  ],
+  "experiment_id": "0003",
+  "failure_criteria_results": [
+    "NOT_TRIGGERED: result JSON and summary validate after generation.",
+    "NOT_TRIGGERED: commands, raw metrics, artifacts, reward normalization, and terminal masks are recorded.",
+    "NOT_TRIGGERED: sampled augmented baseline uses no bootstrap after g_plus/g_minus and no extra gamma on continued sampled targets.",
+    "NOT_TRIGGERED: target variance, g_plus event counts, and exact-DP error metrics are reported.",
+    "NOT_TRIGGERED: soft dominance is claimed only because sampled target means match tolerance and raw per-seed metrics exist.",
+    "NOT_TRIGGERED: no neural approximation, auxiliary goals, larger environments, large downloads, or expensive training were added."
+  ],
+  "interpretation": "The sampled augmented target is unbiased within the predeclared Monte Carlo tolerance in all gamma/seed runs, but its terminal sampling variance is strictly positive while the deterministic soft target has zero terminal sampling variance. Under the matched transition stream, the soft learner has lower final or earlier-threshold value error in most runs.",
+  "known_failures": [],
+  "metric_deltas": {
+    "mean_final_sampled_bellman_residual_sufficient": 0.04124613525377317,
+    "mean_final_sampled_value_error_sufficient": 0.08156038291965984,
+    "mean_final_soft_bellman_residual_sufficient": 0.03875043674884314,
+    "mean_final_soft_value_error_sufficient": 0.08211314819103989,
+    "mean_g_plus_events_per_10000": 212.67000000000002,
+    "sampled_variance_exceeds_soft_rate": 1.0,
+    "soft_dominance_rate": 0.5666666666666667,
+    "target_mean_match_rate": 1.0
+  },
+  "metrics": {
+    "config": {
+      "alpha": 0.2,
+      "checkpoints": [
+        1000,
+        5000,
+        10000,
+        25000,
+        50000,
+        100000,
+        200000
+      ],
+      "epsilon_end": 0.05,
+      "epsilon_start": 0.35,
+      "gammas": [
+        0.95,
+        0.99,
+        0.995
+      ],
+      "mc_sigma_tolerance": 6.0,
+      "min_pair_visits": 5,
+      "reward_normalization": "(raw_reward + 100) / 99 for raw -100/-1; terminal self-loop maps to 0",
+      "sampled_continue_target": "max_a M(s_next,a) with no extra gamma factor",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "terminal_mask": "zero bootstrap on original terminated transitions; g_plus/g_minus sampled events never bootstrap",
+      "transition_budget": 200000,
+      "value_error_threshold": 0.1
+    },
+    "environment_audit": {
+      "complete": true,
+      "matches_previous_0002_transition_hash": true,
+      "missing_fields": [],
+      "transition_table_hash": "f6fa1c509349d50f18e13b6309b3f051c6cef9a8fcdab25f1332537f521d40a2",
+      "transition_table_record_count": 192
+    },
+    "exact_soft_dp": {
+      "rows": [
+        {
+          "bellman_residual_max_decision": 9.103828801926284e-14,
+          "final_delta": 9.581224702515101e-14,
+          "gamma": 0.95,
+          "iterations": 527,
+          "max_value": 0.999999999998179,
+          "min_value": 0.0
+        },
+        {
+          "bellman_residual_max_decision": 9.814371537686384e-14,
+          "final_delta": 9.914291609902648e-14,
+          "gamma": 0.99,
+          "iterations": 2522,
+          "max_value": 0.9999999999901835,
+          "min_value": 0.0
+        },
+        {
+          "bellman_residual_max_decision": 9.936496070395151e-14,
+          "final_delta": 9.992007221626409e-14,
+          "gamma": 0.995,
+          "iterations": 4916,
+          "max_value": 0.9999999999801267,
+          "min_value": 0.0
+        }
+      ]
+    },
+    "pass_flags": {
+      "all_primary_criteria_satisfied": true,
+      "cpu_tabular_only": true,
+      "environment_audit_complete": true,
+      "gamma_seed_budget_complete": true,
+      "raw_per_seed_metrics_saved": true,
+      "sampled_target_means_match_expected_soft_target": true,
+      "sampled_target_variance_exceeds_soft_terminal_sampling_variance": true,
+      "soft_lower_or_faster_error_in_most_runs": true
+    },
+    "sampled_vs_soft": {
+      "aggregate": {
+        "by_gamma": {
+          "0.95": {
+            "max_g_plus_events_per_10000": 495.40000000000003,
+            "max_target_mean_abs_error": 0.00014360042218752866,
+            "max_target_mean_mc_tolerance": 0.0004567915178390718,
+            "mean_conditional_sampling_variance": 0.0009100421567544779,
+            "mean_final_sampled_bellman_residual_sufficient": 0.035393674374786896,
+            "mean_final_sampled_value_error_sufficient": 0.06859389419150172,
+            "mean_final_soft_bellman_residual_sufficient": 0.029723025528761254,
+            "mean_final_soft_value_error_sufficient": 0.0665790846026678,
+            "mean_g_plus_events_per_10000": 490.84499999999997,
+            "mean_sampled_policy_raw_return": -200.0,
+            "mean_sampled_policy_success_rate": 0.0,
+            "mean_soft_policy_raw_return": -200.0,
+            "mean_soft_policy_success_rate": 0.0,
+            "min_g_plus_events_per_10000": 483.95,
+            "run_count": 10,
+            "sampled_variance_exceeds_soft_count": 10,
+            "sampled_variance_exceeds_soft_rate": 1.0,
+            "soft_dominance_count": 7,
+            "soft_dominance_rate": 0.7,
+            "soft_final_value_error_lower_count": 7,
+            "soft_final_value_error_lower_rate": 0.7,
+            "target_mean_match_count": 10,
+            "target_mean_match_rate": 1.0
+          },
+          "0.99": {
+            "max_g_plus_events_per_10000": 99.35,
+            "max_target_mean_abs_error": 9.062568370199475e-05,
+            "max_target_mean_mc_tolerance": 0.00022448531780410664,
+            "mean_conditional_sampling_variance": 0.00022574409920474246,
+            "mean_final_sampled_bellman_residual_sufficient": 0.03919694767872324,
+            "mean_final_sampled_value_error_sufficient": 0.06963149064030684,
+            "mean_final_soft_bellman_residual_sufficient": 0.0381969972987969,
+            "mean_final_soft_value_error_sufficient": 0.07072052339941519,
+            "mean_g_plus_events_per_10000": 97.39500000000001,
+            "mean_sampled_policy_raw_return": -200.0,
+            "mean_sampled_policy_success_rate": 0.0,
+            "mean_soft_policy_raw_return": -200.0,
+            "mean_soft_policy_success_rate": 0.0,
+            "min_g_plus_events_per_10000": 95.5,
+            "run_count": 10,
+            "sampled_variance_exceeds_soft_count": 10,
+            "sampled_variance_exceeds_soft_rate": 1.0,
+            "soft_dominance_count": 6,
+            "soft_dominance_rate": 0.6,
+            "soft_final_value_error_lower_count": 6,
+            "soft_final_value_error_lower_rate": 0.6,
+            "target_mean_match_count": 10,
+            "target_mean_match_rate": 1.0
+          },
+          "0.995": {
+            "max_g_plus_events_per_10000": 52.1,
+            "max_target_mean_abs_error": 3.0256948815865492e-05,
+            "max_target_mean_mc_tolerance": 0.0001749096669174052,
+            "mean_conditional_sampling_variance": 0.000147643208989327,
+            "mean_final_sampled_bellman_residual_sufficient": 0.049147783707809395,
+            "mean_final_sampled_value_error_sufficient": 0.10645576392717093,
+            "mean_final_soft_bellman_residual_sufficient": 0.04833128741897124,
+            "mean_final_soft_value_error_sufficient": 0.10903983657103664,
+            "mean_g_plus_events_per_10000": 49.769999999999996,
+            "mean_sampled_policy_raw_return": -200.0,
+            "mean_sampled_policy_success_rate": 0.0,
+            "mean_soft_policy_raw_return": -200.0,
+            "mean_soft_policy_success_rate": 0.0,
+            "min_g_plus_events_per_10000": 46.1,
+            "run_count": 10,
+            "sampled_variance_exceeds_soft_count": 10,
+            "sampled_variance_exceeds_soft_rate": 1.0,
+            "soft_dominance_count": 4,
+            "soft_dominance_rate": 0.4,
+            "soft_final_value_error_lower_count": 4,
+            "soft_final_value_error_lower_rate": 0.4,
+            "target_mean_match_count": 10,
+            "target_mean_match_rate": 1.0
+          }
+        },
+        "max_g_plus_events_per_10000": 495.40000000000003,
+        "max_target_mean_abs_error": 0.00014360042218752866,
+        "max_target_mean_mc_tolerance": 0.0004567915178390718,
+        "mean_conditional_sampling_variance": 0.0004278098216495158,
+        "mean_final_sampled_bellman_residual_sufficient": 0.04124613525377317,
+        "mean_final_sampled_value_error_sufficient": 0.08156038291965984,
+        "mean_final_soft_bellman_residual_sufficient": 0.03875043674884314,
+        "mean_final_soft_value_error_sufficient": 0.08211314819103989,
+        "mean_g_plus_events_per_10000": 212.67000000000002,
+        "mean_sampled_policy_raw_return": -200.0,
+        "mean_sampled_policy_success_rate": 0.0,
+        "mean_soft_policy_raw_return": -200.0,
+        "mean_soft_policy_success_rate": 0.0,
+        "min_g_plus_events_per_10000": 46.1,
+        "run_count": 30,
+        "sampled_variance_exceeds_soft_count": 30,
+        "sampled_variance_exceeds_soft_rate": 1.0,
+        "soft_dominance_count": 17,
+        "soft_dominance_rate": 0.5666666666666667,
+        "soft_final_value_error_lower_count": 17,
+        "soft_final_value_error_lower_rate": 0.5666666666666667,
+        "target_mean_match_count": 30,
+        "target_mean_match_rate": 1.0
+      }
+    }
+  },
+  "next_questions": [
+    "Should the next experiment reduce the constant-alpha noise floor with a decaying step size or replay-style averaging?",
+    "Should the sampled-vs-soft comparison be repeated only on reward normalizations that preserve raw CliffWalking goal-reaching incentives?"
+  ],
+  "resource_usage": {
+    "device": "cpu",
+    "gpu_used": false,
+    "large_datasets_downloaded": false,
+    "large_dependencies_installed": false,
+    "learning_runs": 30,
+    "total_original_transitions": 6000000,
+    "transition_table_actions": 4,
+    "transition_table_states": 48
+  },
+  "runtime_seconds": 68.42737457499607,
+  "status": "completed",
+  "success_criteria_results": [
+    "PASS: required result JSON and summary Markdown are written.",
+    "PASS: reproducible artifacts are written under research/reward_to_gcrl/artifacts/0003/.",
+    "PASS: only CPU tabular methods on the local CliffWalking table were used.",
+    "PASS: gamma values {0.95, 0.99, 0.995}, 10 seeds, and a 200000-transition budget per run were used.",
+    "PASS: exact commands, reward normalization, terminal handling, seeds, alpha/epsilon schedules, and transition budget are recorded.",
+    "PASS: per gamma/seed metrics include g_plus counts, events per 10000 transitions, target variance, Bellman/value error to exact DP, checkpoints, policies, and evaluation metrics.",
+    "PASS: sampled target means match conditional expected soft targets within Monte Carlo tolerance in all runs.",
+    "PASS: sampled target variance exceeds zero soft terminal-sampling variance in all runs.",
+    "PASS: soft reaches lower final or earlier-threshold error in most gamma/seed settings."
+  ]
+}
