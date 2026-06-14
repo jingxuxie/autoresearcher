@@ -111,6 +111,7 @@ class ProBridgeTests(unittest.TestCase):
             state["iteration"] = 1
             state["status"] = "stopped"
             state["last_decision"] = "stop"
+            state["weak_pass_streak"] = 2
             write_json(root / "state.json", state)
 
             autoresearcher.run_pro_review(repo, "project_001", autoresearcher.load_config(repo), reason="local_stop")
@@ -120,7 +121,12 @@ class ProBridgeTests(unittest.TestCase):
             self.assertEqual(state["status"], "stopped")
             self.assertFalse(state["human_review_required"])
             self.assertEqual(state["pro_review_count"], 1)
+            self.assertEqual(state["weak_pass_streak"], 0)
             self.assertFalse((root / "plans" / "0002_plan.md").exists())
+
+            autoresearcher.apply_pro_decision(repo, "project_001")
+            state = json.loads((root / "state.json").read_text())
+            self.assertEqual(state["pro_review_count"], 1)
 
     def test_fake_blocker_pauses_with_structured_blocker(self) -> None:
         with tempfile.TemporaryDirectory() as td, fake_pro("blocker:login_required"):

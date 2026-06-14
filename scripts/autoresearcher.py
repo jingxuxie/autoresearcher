@@ -1856,12 +1856,20 @@ def apply_pro_decision(repo_root: Path, project: str) -> Path:
     else:
         raise RuntimeError(f"unknown Pro decision kind {decision_kind!r}")
 
+    relative_decision_path = str(path.relative_to(repo_root))
+    already_applied = (
+        state.get("last_pro_review_path") == relative_decision_path
+        and state.get("pending_checkpoint") is None
+    )
     state["last_pro_review_iteration"] = int(state.get("iteration", 0) or 0)
-    state["last_pro_review_path"] = str(path.relative_to(repo_root))
-    state["pro_review_count"] = int(state.get("pro_review_count", 0) or 0) + 1
+    state["last_pro_review_path"] = relative_decision_path
+    if not already_applied:
+        state["pro_review_count"] = int(state.get("pro_review_count", 0) or 0) + 1
+    state["weak_pass_streak"] = 0
     state["pending_checkpoint"] = None
     state["pending_local_decision_path"] = None
-    state.setdefault("notes", []).append(f"{utc_now_iso()}: applied Pro decision {decision_kind} from {path.relative_to(repo_root)}")
+    if not already_applied:
+        state.setdefault("notes", []).append(f"{utc_now_iso()}: applied Pro decision {decision_kind} from {relative_decision_path}")
     state_path = save_project_state(repo_root, project, state)
     paths.append(state_path)
     GitManager(repo_root, load_config(repo_root)).commit(paths, f"autoresearcher({project}): apply Pro decision {iteration_id}")
