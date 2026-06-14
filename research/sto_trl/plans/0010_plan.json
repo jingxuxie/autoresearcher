@@ -1,0 +1,30 @@
+{
+  "estimated_runtime_minutes": 30,
+  "experiment_id": "0010",
+  "failure_criteria": [
+    "posterior_trl_log is numerically equivalent to posterior model DP on all target regimes.",
+    "Any gain disappears after matching the transition prior or quantile level.",
+    "The method improves safe cases only by avoiding risk everywhere, failing matched risk-optimal cells.",
+    "The experiment uses neural networks, continuous control, OGBench, broad sweeps, or runtime beyond 30 minutes."
+  ],
+  "hypothesis": "If the pivot is promising, posterior_trl_log or posterior_mc_plus_trl_log will improve multi-step stitch/regret metrics over both TRL-log and prior-matched posterior model DP while preserving matched safe-optimal and matched risk-optimal actions.",
+  "objective": "Test whether posterior transition uncertainty plus log-space transitive propagation adds value beyond prior-matched transition-model DP on a small multi-step tabular stochastic branch-chain or stitching graph.",
+  "required_outputs": [
+    "research/sto_trl/results/0010_result.json",
+    "research/sto_trl/results/0010_summary.md",
+    "research/sto_trl/artifacts/0010/"
+  ],
+  "success_criteria": [
+    "posterior_trl_log or posterior_mc_plus_trl_log has lower mean policy regret than both trl_log and prior-matched posterior_lower_q10_model_dp on the multi-step target regimes.",
+    "The winning transitive method preserves zero or near-zero regret on matched safe-optimal and matched risk-optimal cells.",
+    "The report shows regime-stratified regret, risky-action rate, Q overestimation, calibration error, and an explicit comparison against transition-model DP.",
+    "A real raw/log TRL chain execution check is included rather than only a formula guard."
+  ],
+  "tasks_for_codex": [
+    "Create a small multi-step stochastic branch-chain or stitching-graph tabular diagnostic where transitive propagation could matter.",
+    "Implement or reuse prior-matched empirical, posterior mean, posterior lower-quantile, and robust transition-model DP baselines.",
+    "Implement posterior_trl_log and posterior_mc_plus_trl_log with the same posterior assumptions as the model-DP baselines.",
+    "Run only a compact representative cell set sufficient to test matched safe, matched risk, lucky-only safe, ambiguous, and prior-dependent regimes.",
+    "Validate artifacts and write a result summary that treats equivalence to posterior model DP as negative or boundary evidence."
+  ]
+}
