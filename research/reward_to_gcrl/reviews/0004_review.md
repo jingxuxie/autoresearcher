@@ -1,27 +1,28 @@
-# Review 0004: needs_human
+# Review 0004: fail
 
 Allows auto-continue: False
 
 ## Reasons
 
-- Required 0004 result JSON, summary markdown, and declared artifacts are present.
-- Result JSON validates against schemas/result.schema.json, and declared artifact paths validate successfully.
-- The repaired experiment itself is scientifically stronger than 0003: it uses a nondegenerate 5-state chain, identity reward normalization, non-tie exact DP policies, direct sampled-vs-deterministic-soft target comparison from the same sampled learner state, and matched transition streams over 3 gammas x 10 seeds.
-- Raw and normalized exact-DP policies are preserved, exact soft scaling matches normalized Q, and evaluation is nondegenerate: soft policies have mean raw return 1 and success rate 1 while sampled policies have mean raw return 0 and success rate 0.
-- Target mean matching and sampled variance criteria pass in all 30 runs; soft also has lower mean final Bellman residual and lower mean value error.
-- However, the plan's first gate was protected file drift resolution/adjudication. The 0004 result does not contain any drift_status/protected_file_drift audit, and research/reward_to_gcrl/state.json still reports protected_file_drift: true.
-- A prior guard file research/reward_to_gcrl/decisions/0004_worktree_guard.json records protected drift on autoresearcher.yaml. Although a current scoped git status did not show tracked protected modifications, the loop state and result artifact do not explicitly clear or adjudicate this drift, so the prerequisite evidence gate is not satisfied.
+- Required 0004 result JSON, summary markdown, and artifact directory are present, and the declared artifact paths validate successfully.
+- The existing scientific 0004 result still validates against schemas/result.schema.json, but it is the prior learning-improvement result and does not implement the current drift-resolution plan.
+- No protected_file_drift_audit.json is present under research/reward_to_gcrl/artifacts/0004/.
+- research/reward_to_gcrl/results/0004_result.json has no top-level drift_status and no metrics.drift_status field.
+- research/reward_to_gcrl/state.json still reports protected_file_drift: true, and research/reward_to_gcrl/decisions/0004_worktree_guard.json records protected drift on autoresearcher.yaml.
+- A current scoped git status no longer shows autoresearcher.yaml modified, but the executor did not adjudicate this in an audit artifact or result field, so the evidence-integrity gate remains unresolved.
+- The scientific metrics from the prior 0004 run look strong, but current success criteria require drift adjudication before acceptance.
 
 ## Required fixes
 
-- Clear or explicitly adjudicate protected_file_drift before treating 0004 as accepted evidence.
-- Add a drift_status or protected_file_drift audit field to the 0004 result, including whether protected paths changed and why the output is safe to use.
-- If the supervisor confirms the drift flag is stale and no protected files are currently modified, the 0004 scientific result can likely be accepted without rerunning learning.
+- Write research/reward_to_gcrl/artifacts/0004/protected_file_drift_audit.json identifying affected protected files, hashes if available, current worktree status, impact assessment, and final drift_status.
+- Update research/reward_to_gcrl/results/0004_result.json to include drift_status and an accepted_evidence, superseded_by_clean_rerun, rejected_due_to_drift, or inconclusive verdict.
+- If drift is stale or harmless, explicitly revalidate the existing 0004 result and artifact paths and record that validation in the result.
+- If drift is real or unresolved, rerun the same 5-state CPU-only diagnostic from a clean/adjudicated state and mark the prior result superseded.
 
 ## Risk flags
 
-- Protected file drift remains unresolved in loop metadata despite current git status not showing tracked protected-path modifications.
-- The 0004 result omits the required drift status even though the plan explicitly required it.
-- The behavior stream is oracle-guided by exact normalized Q with epsilon, so the result tests matched-stream estimator quality rather than fully online learner-induced exploration.
-- The environment is a very small 5-state chain; it is decisive for the repaired tabular gate but not sufficient evidence for larger grid or long-horizon tasks.
-- Sampled baseline failure is stark under a fixed 100000-transition budget, but no decaying step-size or larger-budget sensitivity check was run.
+- Protected file drift remains true in loop state without adjudication.
+- The prior 0004 result is being surfaced as completed learning-improvement evidence despite lacking the newly required drift_status field.
+- No audit identifies whether the previously flagged autoresearcher.yaml change can affect experiment logic or reporting.
+- Current git status suggests the protected-file modification may be stale, but this is not recorded in the experiment artifacts.
+- Proceeding to RiverSwim, auxiliary goals, neural approximation, or larger environments would violate the current evidence-integrity gate.

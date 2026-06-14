@@ -6,45 +6,43 @@
 
 ## Objective
 
-Resolve protected file drift and validate the repaired nondegenerate sampled-vs-soft experiment. If existing 0004 artifacts are complete and trustworthy, review them without new learning runs; otherwise rerun a CPU-only tabular repaired diagnostic that directly compares sampled augmented targets to deterministic soft targets in a nondegenerate task.
+Resolve protected_file_drift and determine whether 0004 can be accepted as valid evidence. If drift is stale or harmless, add an explicit drift audit and review 0004 without new learning compute. If drift is real or unclear, rerun the 0004 nondegenerate 5-state chain diagnostic after clearing drift.
 
 ## Hypothesis
 
-The earlier positive variance result should survive in a nondegenerate tabular task, but a credible learning-improvement claim requires direct sampled-vs-deterministic-soft target comparison, preserved or explicitly audited raw-objective policy behavior, and soft Bellman/value performance that is lower or statistically indistinguishable from sampled under matched data.
+The 0004 scientific result is likely useful but cannot be trusted until evidence integrity is restored. After drift adjudication, either the existing 0004 artifacts will be accepted as a stronger tabular matched-stream result, or a clean rerun will reproduce the same qualitative outcome: deterministic soft targets have zero terminal-sampling variance, lower Bellman/value error, and better nondegenerate policy evaluation than sampled augmented updates.
 
 ## Success criteria
 
-- Protected file drift is cleared or explicitly adjudicated before any 0004 or 0005 output is treated as evidence.
-- The result includes an environment and reward audit with raw rewards, normalized rewards, affine constants, terminal handling, exact transition table hash, and exact-DP policy-preservation check.
-- Exact DP has meaningful non-tie states and nondegenerate raw task success metrics.
-- Sampled targets are compared directly to the deterministic soft target computed from the same learner state, transition, and bootstrap values, not only to the sampled learner's own conditional expectation.
-- Across gamma in {0.95, 0.99, 0.995} and 10 seeds, sampled target variance exceeds deterministic soft terminal-sampling variance, while sampled target means match deterministic soft targets within predeclared Monte Carlo tolerance.
-- Soft has lower mean final Bellman residual and lower or statistically indistinguishable mean final value error versus sampled; otherwise the verdict must be labeled variance-only rather than learning-improvement.
-- Evaluation reports raw return, normalized return, success rate, steps to goal, and tie-aware policy disagreement against exact DP.
+- A protected-file drift audit is written and explicitly states whether drift is stale, harmless, real, or unresolved.
+- The audit identifies the exact protected file or files involved, including autoresearcher.yaml if still flagged, and records whether they affect the reward_to_gcrl experiment logic or reporting.
+- If drift is stale or harmless, existing 0004 result and summary are revalidated against schemas and artifact paths, and a reviewed acceptance note records drift_status.
+- If drift is real or unresolved, 0004 is rerun from a clean state with the same CPU-only tabular scope and a new result JSON containing drift_status.
+- Accepted or rerun evidence must include direct sampled-vs-deterministic-soft target comparison, sampled variance versus soft variance, Bellman residual, value error, raw return, success rate, and policy diagnostics.
+- The final verdict labels 0004 as one of: accepted_evidence, superseded_by_clean_rerun, rejected_due_to_drift, or inconclusive.
+- No RiverSwim, auxiliary goals, neural approximation, GPU use, or larger environments are started before this gate passes.
 
 ## Failure criteria
 
-- Protected file drift remains unresolved.
-- Existing 0004 outputs are used as evidence without review validation.
-- The normalized objective again destroys raw task success or produces mostly tie states without being labeled as an objective-mismatch result.
-- The target comparison again validates sampled targets only against the sampled learner's conditional expectation.
-- Soft has worse value error and no compensating Bellman-residual or policy-quality advantage.
-- The run adds neural networks, auxiliary goals, large environments, GPU dependence, or expensive hyperparameter sweeps before this repaired tabular gate passes.
+- protected_file_drift remains true without adjudication.
+- 0004 is treated as accepted evidence without a drift_status field or equivalent audit artifact.
+- The drift audit does not identify which protected file changed or whether the change can affect the experiment.
+- A rerun changes the scientific setup without documenting differences from 0004.
+- The rerun fails to reproduce the main 0004 qualitative claims and the summary does not downgrade the evidence accordingly.
+- The next step proceeds to RiverSwim, auxiliary goals, or neural approximation before resolving evidence integrity.
 
 ## Estimated runtime
 
-<= 25 minutes
+<= 15 minutes
 
 ## Tasks for Codex
 
-- Inspect protected_file_drift and record whether protected files changed; do not proceed until drift is cleared or documented.
-- Review existing research/reward_to_gcrl/results/0004_result.json and research/reward_to_gcrl/results/0004_summary.md if present, but mark them unaccepted unless schema, artifact, and scientific criteria pass.
-- If 0004 is insufficient, create or rerun a CPU-only tabular diagnostic under research/reward_to_gcrl/artifacts/0004/ using a small nondegenerate chain or gridworld.
-- Compute exact DP references for raw Q, normalized Q, and soft g_plus, including tie-aware policy preservation and value-scaling checks.
-- Run matched-stream sampled augmented and deterministic soft learners with synchronized initialization, transition stream, alpha, epsilon schedule, gamma values, seeds, and transition budget.
-- Record deterministic soft targets from the same learner state and transition for every sampled update so target means and variances are directly comparable.
-- Save result JSON with raw metrics, pass/fail flags, exact commands, environment audit, drift status, and conservative verdict: evidence-accepted, variance-only, objective-mismatch, or failed diagnostic.
-- Write a short summary that decides whether the next step should be RiverSwim long-horizon propagation, auxiliary state goals, or stopping the sampled-vs-soft learning-advantage thread.
+- Inspect research/reward_to_gcrl/state.json and the worktree guard artifact to determine why protected_file_drift is true.
+- Write research/reward_to_gcrl/artifacts/0004/protected_file_drift_audit.json with affected files, hashes if available, impact assessment, and final drift_status.
+- Validate existing research/reward_to_gcrl/results/0004_result.json, research/reward_to_gcrl/results/0004_summary.md, and declared artifacts if drift is judged stale or harmless.
+- If drift is real or unclear, rerun the 0004 repaired sampled-vs-soft diagnostic in a clean state using the same nondegenerate 5-state chain, seeds, gammas, and CPU-only tabular budget.
+- Write research/reward_to_gcrl/results/0004_result.json containing drift_status, whether 0004 was accepted or superseded, schema validation status, key scientific metrics, and pass/fail flags.
+- Write research/reward_to_gcrl/results/0004_summary.md with a conservative recommendation: move to RiverSwim if 0004 is accepted or reproduced; otherwise repair the nondegenerate diagnostic again.
 
 ## Required outputs
 
@@ -57,41 +55,39 @@ The earlier positive variance result should survive in a nondegenerate tabular t
 
 ```json
 {
-  "estimated_runtime_minutes": 25,
+  "estimated_runtime_minutes": 15,
   "experiment_id": "0004",
   "failure_criteria": [
-    "Protected file drift remains unresolved.",
-    "Existing 0004 outputs are used as evidence without review validation.",
-    "The normalized objective again destroys raw task success or produces mostly tie states without being labeled as an objective-mismatch result.",
-    "The target comparison again validates sampled targets only against the sampled learner's conditional expectation.",
-    "Soft has worse value error and no compensating Bellman-residual or policy-quality advantage.",
-    "The run adds neural networks, auxiliary goals, large environments, GPU dependence, or expensive hyperparameter sweeps before this repaired tabular gate passes."
+    "protected_file_drift remains true without adjudication.",
+    "0004 is treated as accepted evidence without a drift_status field or equivalent audit artifact.",
+    "The drift audit does not identify which protected file changed or whether the change can affect the experiment.",
+    "A rerun changes the scientific setup without documenting differences from 0004.",
+    "The rerun fails to reproduce the main 0004 qualitative claims and the summary does not downgrade the evidence accordingly.",
+    "The next step proceeds to RiverSwim, auxiliary goals, or neural approximation before resolving evidence integrity."
   ],
-  "hypothesis": "The earlier positive variance result should survive in a nondegenerate tabular task, but a credible learning-improvement claim requires direct sampled-vs-deterministic-soft target comparison, preserved or explicitly audited raw-objective policy behavior, and soft Bellman/value performance that is lower or statistically indistinguishable from sampled under matched data.",
-  "objective": "Resolve protected file drift and validate the repaired nondegenerate sampled-vs-soft experiment. If existing 0004 artifacts are complete and trustworthy, review them without new learning runs; otherwise rerun a CPU-only tabular repaired diagnostic that directly compares sampled augmented targets to deterministic soft targets in a nondegenerate task.",
+  "hypothesis": "The 0004 scientific result is likely useful but cannot be trusted until evidence integrity is restored. After drift adjudication, either the existing 0004 artifacts will be accepted as a stronger tabular matched-stream result, or a clean rerun will reproduce the same qualitative outcome: deterministic soft targets have zero terminal-sampling variance, lower Bellman/value error, and better nondegenerate policy evaluation than sampled augmented updates.",
+  "objective": "Resolve protected_file_drift and determine whether 0004 can be accepted as valid evidence. If drift is stale or harmless, add an explicit drift audit and review 0004 without new learning compute. If drift is real or unclear, rerun the 0004 nondegenerate 5-state chain diagnostic after clearing drift.",
   "required_outputs": [
     "research/reward_to_gcrl/results/0004_result.json",
     "research/reward_to_gcrl/results/0004_summary.md",
     "research/reward_to_gcrl/artifacts/0004/"
   ],
   "success_criteria": [
-    "Protected file drift is cleared or explicitly adjudicated before any 0004 or 0005 output is treated as evidence.",
-    "The result includes an environment and reward audit with raw rewards, normalized rewards, affine constants, terminal handling, exact transition table hash, and exact-DP policy-preservation check.",
-    "Exact DP has meaningful non-tie states and nondegenerate raw task success metrics.",
-    "Sampled targets are compared directly to the deterministic soft target computed from the same learner state, transition, and bootstrap values, not only to the sampled learner's own conditional expectation.",
-    "Across gamma in {0.95, 0.99, 0.995} and 10 seeds, sampled target variance exceeds deterministic soft terminal-sampling variance, while sampled target means match deterministic soft targets within predeclared Monte Carlo tolerance.",
-    "Soft has lower mean final Bellman residual and lower or statistically indistinguishable mean final value error versus sampled; otherwise the verdict must be labeled variance-only rather than learning-improvement.",
-    "Evaluation reports raw return, normalized return, success rate, steps to goal, and tie-aware policy disagreement against exact DP."
+    "A protected-file drift audit is written and explicitly states whether drift is stale, harmless, real, or unresolved.",
+    "The audit identifies the exact protected file or files involved, including autoresearcher.yaml if still flagged, and records whether they affect the reward_to_gcrl experiment logic or reporting.",
+    "If drift is stale or harmless, existing 0004 result and summary are revalidated against schemas and artifact paths, and a reviewed acceptance note records drift_status.",
+    "If drift is real or unresolved, 0004 is rerun from a clean state with the same CPU-only tabular scope and a new result JSON containing drift_status.",
+    "Accepted or rerun evidence must include direct sampled-vs-deterministic-soft target comparison, sampled variance versus soft variance, Bellman residual, value error, raw return, success rate, and policy diagnostics.",
+    "The final verdict labels 0004 as one of: accepted_evidence, superseded_by_clean_rerun, rejected_due_to_drift, or inconclusive.",
+    "No RiverSwim, auxiliary goals, neural approximation, GPU use, or larger environments are started before this gate passes."
   ],
   "tasks_for_codex": [
-    "Inspect protected_file_drift and record whether protected files changed; do not proceed until drift is cleared or documented.",
-    "Review existing research/reward_to_gcrl/results/0004_result.json and research/reward_to_gcrl/results/0004_summary.md if present, but mark them unaccepted unless schema, artifact, and scientific criteria pass.",
-    "If 0004 is insufficient, create or rerun a CPU-only tabular diagnostic under research/reward_to_gcrl/artifacts/0004/ using a small nondegenerate chain or gridworld.",
-    "Compute exact DP references for raw Q, normalized Q, and soft g_plus, including tie-aware policy preservation and value-scaling checks.",
-    "Run matched-stream sampled augmented and deterministic soft learners with synchronized initialization, transition stream, alpha, epsilon schedule, gamma values, seeds, and transition budget.",
-    "Record deterministic soft targets from the same learner state and transition for every sampled update so target means and variances are directly comparable.",
-    "Save result JSON with raw metrics, pass/fail flags, exact commands, environment audit, drift status, and conservative verdict: evidence-accepted, variance-only, objective-mismatch, or failed diagnostic.",
-    "Write a short summary that decides whether the next step should be RiverSwim long-horizon propagation, auxiliary state goals, or stopping the sampled-vs-soft learning-advantage thread."
+    "Inspect research/reward_to_gcrl/state.json and the worktree guard artifact to determine why protected_file_drift is true.",
+    "Write research/reward_to_gcrl/artifacts/0004/protected_file_drift_audit.json with affected files, hashes if available, impact assessment, and final drift_status.",
+    "Validate existing research/reward_to_gcrl/results/0004_result.json, research/reward_to_gcrl/results/0004_summary.md, and declared artifacts if drift is judged stale or harmless.",
+    "If drift is real or unclear, rerun the 0004 repaired sampled-vs-soft diagnostic in a clean state using the same nondegenerate 5-state chain, seeds, gammas, and CPU-only tabular budget.",
+    "Write research/reward_to_gcrl/results/0004_result.json containing drift_status, whether 0004 was accepted or superseded, schema validation status, key scientific metrics, and pass/fail flags.",
+    "Write research/reward_to_gcrl/results/0004_summary.md with a conservative recommendation: move to RiverSwim if 0004 is accepted or reproduced; otherwise repair the nondegenerate diagnostic again."
   ]
 }
 ```
