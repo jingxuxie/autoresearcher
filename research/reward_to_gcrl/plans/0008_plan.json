@@ -1,0 +1,38 @@
+{
+  "estimated_runtime_minutes": 25,
+  "experiment_id": "0008",
+  "failure_criteria": [
+    "Missing, invalid, or schema-incompatible result JSON or summary markdown.",
+    "Exact commands, raw metrics, artifact paths, environment audit, reward normalization, goal indexing, or terminal masks are omitted.",
+    "The vector update couples goals or changes the g_plus slice relative to terminal-only soft beyond the predeclared tolerance.",
+    "Real-state goal diagnostics are only visual/prose and omit exact value error or goal-reaching metrics.",
+    "The experiment claims auxiliary-goal reward improvement in tabular mode without shared parameters.",
+    "The executor adds neural approximation, low-rank factorization, sampled augmented baselines, larger environments, large downloads, GPU-dependent work, or long training before this tabular vector sanity gate is complete."
+  ],
+  "hypothesis": "For a tabular vector SSM with independent goal slices, adding real-state goals should learn correct state-goal reachability maps while leaving the g_plus reward-success slice numerically equivalent to the terminal-only soft learner. Any degradation of the g_plus policy or value slice would indicate an implementation, indexing, reward-normalization, or terminal-mask bug rather than a research effect.",
+  "objective": "Run a CPU-only tabular vector successor-measure sanity check with real-state goals plus g_plus on a tiny deterministic FourRooms grid.",
+  "required_outputs": [
+    "research/reward_to_gcrl/results/0008_result.json",
+    "research/reward_to_gcrl/results/0008_summary.md",
+    "research/reward_to_gcrl/artifacts/0008/"
+  ],
+  "success_criteria": [
+    "Creates research/reward_to_gcrl/results/0008_result.json and research/reward_to_gcrl/results/0008_summary.md.",
+    "Creates reproducible artifacts under research/reward_to_gcrl/artifacts/0008/.",
+    "Uses only CPU tabular methods on a tiny deterministic FourRooms grid; no neural models, low-rank factorization, large environments, GPU-dependent work, large downloads, or expensive training.",
+    "Predeclares and saves grid layout, wall cells, doorway cells, state indexing, action mapping, reward task, reward normalization, terminal masks, gamma values, update procedure, seeds if stochastic, and exact commands run.",
+    "Solves exact DP references for the terminal-only g_plus slice and for real-state goal slices, and reports max_abs_error for learned vector slices versus exact references.",
+    "Reports max_abs(M_vector[:,:,g_plus] - M_terminal_only), max_abs(M_vector[:,:,g_plus]/(1-gamma) - Q_norm), and reward-policy disagreement versus terminal-only soft or exact DP.",
+    "For sampled real-state goals or all selected goals, reports greedy goal-reaching success rate, mean shortest-path distance reduction, policy disagreement versus exact goal policies, and reachability heatmap/arrow artifacts.",
+    "Passes only if the g_plus slice matches terminal-only soft within a predeclared tolerance, reward-policy disagreement is zero or only due to ties, and real-state goal slices achieve high reachability accuracy on non-wall reachable goals."
+  ],
+  "tasks_for_codex": [
+    "Implement a standalone diagnostic script under research/reward_to_gcrl/artifacts/0008/ defining a tiny deterministic FourRooms transition table with audited state indexing, walls, doorways, actions, rewards, and terminals.",
+    "Implement terminal-only soft M_plus and vector M[s,a,g] with real-state goals 0..n_states-1 and artificial g_plus = n_states using the prototype update immediate[s_next] += (1-gamma) and immediate[g_plus] += (1-gamma)*r_bar.",
+    "Compute exact DP references for Q_norm, terminal-only soft g_plus, and real-state goal reachability slices for gamma values such as 0.95 and 0.99.",
+    "Run small deterministic full-sweep tabular updates or a fixed logged transition stream to convergence within the 30-minute budget.",
+    "Compute g_plus equivalence metrics, reward-policy disagreement, real-state goal value errors, greedy goal-reaching success rates, shortest-path distance diagnostics, and tie counts.",
+    "Save raw per-goal metrics, aggregate metrics, environment audit, exact DP references, and reachability heatmap/arrow data under research/reward_to_gcrl/artifacts/0008/.",
+    "Validate the result JSON with schemas/result.schema.json and validate declared artifacts with scripts/validate_artifacts.py."
+  ]
+}
