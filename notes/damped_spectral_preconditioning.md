@@ -1,16 +1,16 @@
 # Damped spectral preconditioning theorem
 
-This note proves the next theorem in the roadmap: fixed **damped spectral preconditioning**
+This note proves the next result in the roadmap: fixed damped spectral preconditioning
 
 \[
 P_{\rho,q}=(H+\rho I)^{-q},\qquad 0\le q<1,\quad \rho>0.
 \]
 
-The important point is that damping creates a two-slope effective spectrum. For Adam/RMSProp-like behavior, the main case is \(q=1/2\), with \(\rho\) playing the role of an \(\epsilon\)-dependent spectral floor.
+The damping parameter \(\rho\) is the clean spectral analogue of Adam/RMSProp's \(\epsilon\)-floor. The main Adam/RMSProp proxy is \(q=1/2\).
 
 ---
 
-## 1. Setup
+## Setup
 
 Work in the population covariance eigenbasis:
 
@@ -34,7 +34,7 @@ Assume the source condition
 s_i:=\lambda_i(w_{\star,i})^2\asymp i^{-b},\qquad b>1.
 \]
 
-The model class is the span of the first \(M\) spectral coordinates. Hence the approximation error is
+The model class is the span of the first \(M\) spectral coordinates, so the approximation error is
 
 \[
 A_M=\sum_{i>M}s_i\asymp M^{1-b}.
@@ -46,7 +46,7 @@ Train with one-pass preconditioned SGD
 w_{t+1}
 =
 w_t-\gamma_t P_{\rho,q}
-\big(\langle x_t,w_t\rangle-y_t\big)x_t,
+(\langle x_t,w_t\rangle-y_t)x_t,
 \qquad
 P_{\rho,q}=(H+\rho I)^{-q}.
 \]
@@ -63,11 +63,11 @@ where \(\gamma\) is the scale of the step-size schedule.
 
 ---
 
-## 2. Black-box SGD lemma used from the Lin-style analysis
+## Effective-dimension SGD lemma used as a black box
 
-The proof below uses the following effective-dimension form of the standard one-pass SGD risk bound. This is the part inherited from the original SGD scaling-law theorem; the new work here is the reduction to the transformed problem and the evaluation of the damped spectrum.
+We use the following Lin-style effective-dimension risk form for ordinary one-pass SGD. This is the part inherited from the original SGD scaling-law theorem. The new work in this note is the exact reduction from damped preconditioned SGD to ordinary SGD plus the evaluation of the damped spectrum.
 
-**Lemma 1, effective-dimension SGD risk.** Consider ordinary one-pass SGD on a Gaussian linear-regression problem with covariance eigenvalues \(\mu_i\) and target energies
+**Lemma 1.** Consider ordinary one-pass SGD on a Gaussian linear-regression problem with covariance eigenvalues \(\mu_i\) and target energies
 
 \[
 \tilde s_i:=\mu_i(u_{\star,i})^2\asymp i^{-b}.
@@ -79,7 +79,7 @@ Let
 K(n):=\#\{i:\ n\mu_i\gtrsim 1\}.
 \]
 
-In the non-very-smooth regime where the usual Lin-style bias estimate is sharp, ordinary SGD satisfies, up to universal constants and logarithmic factors,
+In the non-very-smooth regime where the usual last-iterate SGD bias estimate is sharp, ordinary SGD satisfies, up to constants and logarithmic factors,
 
 \[
 \mathbb E R_M(u_N)-\sigma^2
@@ -91,7 +91,7 @@ K(n)^{1-b}
 \frac{\min\{M,K(n)\}}{N_{\mathrm{eff}}}.
 \]
 
-For a pure power-law spectrum \(\mu_i\asymp i^{-\alpha}\), this reproduces
+For a pure power-law spectrum \(\mu_i\asymp i^{-\alpha}\), this recovers
 
 \[
 M^{1-b}
@@ -101,17 +101,17 @@ n^{-(b-1)/\alpha}
 \frac{\min\{M,n^{1/\alpha}\}}{N_{\mathrm{eff}}}.
 \]
 
-In the theorem below, a clean sufficient condition for this non-very-smooth regime is
+For the theorem below, a clean sufficient condition for staying in this non-very-smooth regime is
 
 \[
 1<b<a(1-q)+1.
 \]
 
-The reduction and spectral-counting lemmas remain valid outside this range, but the last-iterate SGD bias estimate needs a separate refinement in the very-smooth regime.
+The reduction and spectral-counting parts remain valid outside this range, but the last-iterate SGD bias term needs a separate refinement in the very-smooth regime.
 
 ---
 
-## 3. Main theorem
+## Theorem
 
 Define
 
@@ -123,7 +123,7 @@ n_\rho:=\rho^{-(1-q)},
 K_\rho:=\rho^{-1/a}.
 \]
 
-Also define the damped effective learned dimension
+Also define the damped learned dimension
 
 \[
 K_{\rho,q}(n)
@@ -138,14 +138,15 @@ K_{\rho,q}(n)
 \asymp
 \begin{cases}
  n^{1/[a(1-q)]}, & n\lesssim \rho^{-(1-q)},\\[4pt]
- \rho^{-q/a} n^{1/a}, & n\gtrsim \rho^{-(1-q)}.
+ \rho^{-q/a}n^{1/a}, & n\gtrsim \rho^{-(1-q)}.
 \end{cases}
 \]
 
 **Theorem 2, damped spectral preconditioning.** Suppose
 
 \[
-\lambda_i\asymp i^{-a},\qquad
+\lambda_i\asymp i^{-a},
+\qquad
 s_i=\lambda_i(w_{\star,i})^2\asymp i^{-b},
 \qquad
 0\le q<1,
@@ -186,14 +187,14 @@ In the damped-tail phase \(n\gtrsim n_\rho\),
 \asymp
 M^{1-b}
 +
-\rho^{q(b-1)/a} n^{-(b-1)/a}
+\rho^{q(b-1)/a}n^{-(b-1)/a}
 +
 \frac{\min\{M,\rho^{-q/a}n^{1/a}\}}{N_{\mathrm{eff}}}.
 \]
 
 ---
 
-## 4. Proof
+## Proof
 
 ### Step 1: Reduce preconditioned SGD to ordinary SGD
 
@@ -227,12 +228,10 @@ The transformed covariance is
 P_{\rho,q}^{1/2}HP_{\rho,q}^{1/2}.
 \]
 
-Because \(P_{\rho,q}\) is a spectral function of \(H\), it commutes with \(H\). Therefore
+Since \(P_{\rho,q}\) is a spectral function of \(H\), it commutes with \(H\). Hence
 
 \[
-\tilde H
-=
-H(H+\rho I)^{-q}.
+\tilde H=H(H+\rho I)^{-q}.
 \]
 
 The preconditioned update becomes
@@ -241,11 +240,10 @@ The preconditioned update becomes
 u_{t+1}
 =
 u_t-
-\gamma_t
-(\langle \tilde x_t,u_t\rangle-y_t)\tilde x_t,
+\gamma_t(\langle \tilde x_t,u_t\rangle-y_t)\tilde x_t,
 \]
 
-which is ordinary SGD on the transformed data \((\tilde x_t,y_t)\).
+which is ordinary SGD on \((\tilde x_t,y_t)\).
 
 The transformed target is
 
@@ -254,7 +252,7 @@ u_\star=P_{\rho,q}^{-1/2}w_\star
 =(H+\rho I)^{q/2}w_\star.
 \]
 
-The risk is invariant under this change of variables:
+The risk is invariant:
 
 \[
 R(w)-\sigma^2
@@ -266,37 +264,33 @@ R(w)-\sigma^2
 \tilde R(u)-\sigma^2.
 \]
 
-Thus the problem is exactly ordinary SGD with covariance \(\tilde H\).
+So the problem is exactly ordinary SGD with covariance \(\tilde H\).
 
 ### Step 2: Compute the transformed spectrum
 
 The transformed eigenvalues are
 
 \[
-\mu_i
-=
-\lambda_i(\lambda_i+\rho)^{-q}.
+\mu_i=\lambda_i(\lambda_i+\rho)^{-q}.
 \]
 
-Let the damping knee be
+Let
 
 \[
 i_\rho:=\rho^{-1/a}.
 \]
 
-For \(i\lesssim i_\rho\), we have \(\lambda_i\gtrsim \rho\), and therefore
+For \(i\lesssim i_\rho\), \(\lambda_i\gtrsim \rho\), so
 
 \[
 \mu_i
 \asymp
 \lambda_i^{1-q}
 \asymp
-i^{-a(1-q)}
-=
-i^{-\alpha}.
+i^{-a(1-q)}.
 \]
 
-For \(i\gtrsim i_\rho\), we have \(\lambda_i\lesssim \rho\), and therefore
+For \(i\gtrsim i_\rho\), \(\lambda_i\lesssim \rho\), so
 
 \[
 \mu_i
@@ -306,7 +300,7 @@ For \(i\gtrsim i_\rho\), we have \(\lambda_i\lesssim \rho\), and therefore
 \rho^{-q}i^{-a}.
 \]
 
-So the damped preconditioner creates the two-slope spectrum
+Thus
 
 \[
 \boxed{
@@ -322,19 +316,13 @@ So the damped preconditioner creates the two-slope spectrum
 At the knee,
 
 \[
-\mu_{i_\rho}
-\asymp
-\rho^{1-q}.
+\mu_{i_\rho}\asymp \rho^{1-q},
 \]
 
-Hence the time scale needed to reach the knee is
+so the time scale needed to reach the knee is
 
 \[
-n_\rho
-\asymp
-\mu_{i_\rho}^{-1}
-\asymp
-\rho^{-(1-q)}.
+n_\rho\asymp \mu_{i_\rho}^{-1}\asymp \rho^{-(1-q)}.
 \]
 
 ### Step 3: Count the learned modes
@@ -342,38 +330,34 @@ n_\rho
 By definition,
 
 \[
-K_{\rho,q}(n)
-=
-\#\{i:\ n\mu_i\gtrsim 1\}.
+K_{\rho,q}(n)=\#\{i:\ n\mu_i\gtrsim 1\}.
 \]
 
-If \(n\lesssim n_\rho\), then \(1/n\gtrsim \rho^{1-q}\), so the threshold lies before the damping knee. We solve
+If \(n\lesssim n_\rho\), the threshold lies before the damping knee. Solving
 
 \[
-i^{-a(1-q)}\asymp n^{-1},
+i^{-a(1-q)}\asymp n^{-1}
 \]
 
-which gives
+gives
 
 \[
 K_{\rho,q}(n)\asymp n^{1/[a(1-q)]}.
 \]
 
-If \(n\gtrsim n_\rho\), then \(1/n\lesssim \rho^{1-q}\), so the threshold lies after the damping knee. We solve
+If \(n\gtrsim n_\rho\), the threshold lies after the damping knee. Solving
 
 \[
-\rho^{-q}i^{-a}\asymp n^{-1},
+\rho^{-q}i^{-a}\asymp n^{-1}
 \]
 
-which gives
+gives
 
 \[
-K_{\rho,q}(n)
-\asymp
-\rho^{-q/a}n^{1/a}.
+K_{\rho,q}(n)\asymp \rho^{-q/a}n^{1/a}.
 \]
 
-The two formulas agree at the crossover:
+The two formulas match at the crossover:
 
 \[
 \left(\rho^{-(1-q)}\right)^{1/[a(1-q)]}
@@ -383,50 +367,31 @@ The two formulas agree at the crossover:
 \rho^{-q/a}\left(\rho^{-(1-q)}\right)^{1/a}.
 \]
 
-Therefore
-
-\[
-\boxed{
-K_{\rho,q}(n)
-\asymp
-\begin{cases}
- n^{1/[a(1-q)]}, & n\lesssim \rho^{-(1-q)},\\[4pt]
- \rho^{-q/a} n^{1/a}, & n\gtrsim \rho^{-(1-q)}.
-\end{cases}
-}
-\]
-
-### Step 4: Check the transformed source condition
+### Step 4: Check the source condition
 
 The transformed target coordinate is
 
 \[
-u_{\star,i}
-=
-(\lambda_i+\rho)^{q/2}w_{\star,i}.
+u_{\star,i}=(\lambda_i+\rho)^{q/2}w_{\star,i}.
 \]
 
 Therefore
 
 \[
-\mu_i \nu_{\star,i}^2
+\mu_i u_{\star,i}^2
 =
 \lambda_i(\lambda_i+\rho)^{-q}
 \cdot
 (\lambda_i+\rho)^q w_{\star,i}^2
 =
 \lambda_i w_{\star,i}^2
-=
-s_i.
+=s_i.
 \]
 
 Thus the source exponent is unchanged:
 
 \[
-\tilde s_i
-:=
-\mu_i\nu_{\star,i}^2
-\asymp i^{-b}.
+\tilde s_i:=\mu_i u_{\star,i}^2\asymp i^{-b}.
 \]
 
 The approximation error is also unchanged:
@@ -438,14 +403,14 @@ The approximation error is also unchanged:
 \asymp M^{1-b}.
 \]
 
-### Step 5: Apply the effective-dimension SGD lemma
+### Step 5: Apply Lemma 1
 
-By Lemma 1 applied to the transformed ordinary-SGD problem,
+Lemma 1 applied to the transformed ordinary-SGD problem gives
 
 \[
 \mathbb E R_M(w_N)-\sigma^2
 =
-\mathbb E \tilde R_M(u_N)-\sigma^2
+\mathbb E\tilde R_M(u_N)-\sigma^2
 \asymp
 M^{1-b}
 +
@@ -454,13 +419,13 @@ K_{\rho,q}(n)^{1-b}
 \frac{\min\{M,K_{\rho,q}(n)\}}{N_{\mathrm{eff}}}.
 \]
 
-Substituting the two expressions for \(K_{\rho,q}(n)\) gives the two displayed phase formulas. This proves Theorem 2.
+Substituting the two formulas for \(K_{\rho,q}(n)\) gives the two phase formulas. This proves Theorem 2.
 
 ---
 
-## 5. Adam/RMSProp proxy: \(q=1/2\)
+## Adam/RMSProp proxy: \(q=1/2\)
 
-For an Adam/RMSProp-like second-moment preconditioner, the idealized spectral exponent is
+For Adam/RMSProp-like second-moment preconditioning, the idealized spectral exponent is
 
 \[
 q=\frac12.
@@ -489,7 +454,7 @@ K_{\rho,1/2}(n)^{1-b}
 \frac{\min\{M,K_{\rho,1/2}(n)\}}{N_{\mathrm{eff}}}.
 \]
 
-Equivalently, before the damping knee,
+Before the damping knee,
 
 \[
 \mathbb E R_M(w_N)-\sigma^2
@@ -498,10 +463,10 @@ M^{1-b}
 +
 n^{-2(b-1)/a}
 +
-\frac{\min\{M,n^{2/a}\}}{N_{\mathrm{eff}}},
+\frac{\min\{M,n^{2/a}\}}{N_{\mathrm{eff}}}.
 \]
 
-while after the damping knee,
+After the damping knee,
 
 \[
 \mathbb E R_M(w_N)-\sigma^2
@@ -513,13 +478,15 @@ M^{1-b}
 \frac{\min\{M,\rho^{-1/(2a)}n^{1/a}\}}{N_{\mathrm{eff}}}.
 \]
 
-So damping resolves the trace-class pathology of the undamped \(q=1/2\) preconditioner. The algorithm initially behaves as if the spectrum exponent were \(a/2\), but after the knee it reverts to tail exponent \(a\), with \(\rho\)-dependent constants.
+Thus damping resolves the trace-class pathology of undamped \(q=1/2\). The algorithm initially behaves as if the spectrum exponent were \(a/2\), then reverts after the damping knee to tail exponent \(a\), with \(\rho\)-dependent constants.
 
 ---
 
-## 6. Compute-allocation corollary, ignoring variance
+## Compute-allocation corollary, ignoring variance
 
-Set \(C=MN\) and take \(n\asymp N\). In the early preconditioned phase, the effective spectral exponent is
+Set \(C=MN\) and take \(n\asymp N\).
+
+In the early preconditioned phase, the effective spectral exponent is
 
 \[
 \alpha=a(1-q).
@@ -544,9 +511,7 @@ N_\star\asymp C^{\alpha/(\alpha+1)},
 and
 
 \[
-R(C)-\sigma^2
-\asymp
-C^{-(b-1)/(\alpha+1)}.
+R(C)-\sigma^2\asymp C^{-(b-1)/(\alpha+1)}.
 \]
 
 This early-phase allocation is valid only while
@@ -566,13 +531,9 @@ M^{-(b-1)}
 under \(C=MN\) gives
 
 \[
-M_\star
-\asymp
-\rho^{-q/(a+1)}C^{1/(a+1)},
+M_\star\asymp \rho^{-q/(a+1)}C^{1/(a+1)},
 \qquad
-N_\star
-\asymp
-\rho^{q/(a+1)}C^{a/(a+1)},
+N_\star\asymp \rho^{q/(a+1)}C^{a/(a+1)},
 \]
 
 and
@@ -583,13 +544,11 @@ R(C)-\sigma^2
 \rho^{q(b-1)/(a+1)}C^{-(b-1)/(a+1)}.
 \]
 
-Thus a fixed damping floor gives a transient exponent improvement and an asymptotic constant improvement. To get a persistent exponent change as \(C\to\infty\), the effective damping floor must move with scale, which is exactly what can happen for online Adam/RMSProp because \(\rho_t\approx \epsilon/c_t\) depends on the evolving gradient second moment.
+Thus a fixed damping floor gives a transient exponent improvement and an asymptotic constant improvement. To get a persistent exponent change as \(C\to\infty\), the effective damping floor must move with scale, which is plausible for online Adam/RMSProp because \(\rho_t\approx \epsilon/c_t\) depends on the evolving gradient second moment.
 
 ---
 
-## 7. Next theorem target: frozen RMSProp
-
-The next step is to prove that a frozen RMSProp preconditioner estimates the damped spectral form with \(q=1/2\).
+## Next theorem target: frozen RMSProp
 
 For squared loss,
 
@@ -603,9 +562,9 @@ For Gaussian design,
 \[
 \mathbb E[g_i^2\mid e]
 =
-\lambda_i\big(\sigma^2+\|e\|_H^2\big)
+\lambda_i(\sigma^2+\|e\|_H^2)
 +
-2\lambda_i^2 e_i^2.
+2\lambda_i^2e_i^2.
 \]
 
 In a noise-dominated or global-residual-dominated regime,
