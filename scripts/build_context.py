@@ -475,6 +475,7 @@ def markdown_list(items: Iterable[Path]) -> str:
 
 def build_supervisor_context(repo_root: Path, project: str) -> str:
     root = project_root(repo_root, project)
+    context_cfg = load_context_config(repo_root)
     state_obj = read_json_obj(root / "state.json")
     completed_iteration = int(state_obj.get("iteration", 0)) if isinstance(state_obj, dict) else 0
     if completed_iteration > 0:
@@ -494,11 +495,31 @@ def build_supervisor_context(repo_root: Path, project: str) -> str:
         latest_review = None
     latest_decisions = last_matching_up_to(root / "decisions", "*_decision.json", completed_iteration, limit=3)
     metric_ledger = build_metric_ledger(repo_root, project)
+    planning_docs = discover_source_docs(root)
+    human_pivot_notes = last_matching(root / "progress", "human_pivot_*.md", limit=3)
 
     sections = [
         f"# Supervisor Context: {project}",
-        "## Requested action\n\nChoose continue, pivot, stop, or needs_human. If this is iteration 0 with no prior result, propose the first small experiment when the charter is specific enough. If continuing, propose exactly one small experiment.\n",
+        "## Requested action\n\nChoose continue, pivot, stop, or needs_human. If this is iteration 0 with no prior result, propose the first small experiment when the charter is specific enough. If continuing, propose exactly one small experiment. If a human pivot note or next-step review plan exists, treat it as approved human direction and normally choose continue with the next small experiment from that plan, unless it is unsafe or impossible.\n",
         "## Project charter\n\n" + read_text(root / "charter.md"),
+        "## Project planning docs\n\n"
+        + (
+            "\n".join(
+                source_doc_section(path, repo_root, int(context_cfg.get("max_source_doc_chars", 12000)))
+                for path in planning_docs
+            )
+            if planning_docs
+            else "_None._"
+        ),
+        "## Human pivot notes\n\n"
+        + (
+            "\n".join(
+                source_doc_section(path, repo_root, int(context_cfg.get("max_source_doc_chars", 12000)))
+                for path in human_pivot_notes
+            )
+            if human_pivot_notes
+            else "_None._"
+        ),
         fenced("Environment state", read_json_pretty(root / "env_state.json"), "json"),
         fenced("Current state", read_json_pretty(root / "state.json"), "json"),
         fenced("Latest result summary", compact_result_summary(latest_result), "json"),
