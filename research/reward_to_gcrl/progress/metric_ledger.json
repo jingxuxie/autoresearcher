@@ -195,6 +195,41 @@
       ],
       "review_verdict": "pass",
       "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "On 6-state RiverSwim with non-oracle behavior streams, sampled augmented g_plus updates remain unbiased but higher variance than deterministic soft updates, with coverage determining whether learning advantages are interpretable.",
+      "decision": null,
+      "important_metrics": {
+        "metrics.config.behaviors.medium_right_bias.uses_exact_q": false,
+        "metrics.config.behaviors.mild_right_bias.uses_exact_q": false,
+        "metrics.config.behaviors.strong_right_bias.uses_exact_q": false,
+        "metrics.config.behaviors.uniform_random.uses_exact_q": false,
+        "metrics.exact_dp.rows.0.exact_greedy_policy.0": 1,
+        "metrics.exact_dp.rows.0.exact_greedy_policy.1": 1,
+        "metrics.exact_dp.rows.0.exact_greedy_policy.2": 1,
+        "metrics.exact_dp.rows.0.exact_greedy_policy.3": 1,
+        "metrics.exact_dp.rows.0.exact_greedy_policy.4": 1,
+        "metrics.exact_dp.rows.0.exact_greedy_policy.5": 1,
+        "metrics.exact_dp.rows.0.f_gplus_star.0.0": 0.2126535293972451,
+        "metrics.exact_dp.rows.0.f_gplus_star.0.1": 0.2233195046287773
+      },
+      "iteration": "0007",
+      "negative_signals": [
+        "Data generation used fixed action probabilities only; exact DP was not consulted by behavior policies.",
+        "The coverage-performance regression includes visited_state_action_pairs, but that feature is constant at 12 in the observed runs, so the regression is effectively driven by right-reward event variation.",
+        "Soft value error is worse than sampled in 4 of 35 adequate-coverage individual runs, although the adequate-bin mean clearly favors soft and satisfies the stated criterion.",
+        "Right-biased behavior policies are fixed and non-oracle, but they are hand-designed to favor the known RiverSwim rightward direction; broader non-oracle data-collection policies remain untested.",
+        "Starved runs show lower soft Bellman residual but worse soft value error, so future claims should preserve the coverage caveat."
+      ],
+      "positive_signals": [
+        "Coverage bins are predeclared using right reward events per 10000 transitions and visited state-action pairs.",
+        "Estimator claims are separated from learning claims on coverage-starved runs.",
+        "The same 6-state RiverSwim transition hash as 0005 and 0006 was recreated and verified.",
+        "Coverage dose response completed: sampled targets match deterministic soft marginal targets within tolerance and have higher terminal-sampling variance in every run. Soft learning advantages are supported on adequate-coverage runs only; starved runs are report"
+      ],
+      "review_verdict": "pass",
+      "status": "completed"
     }
   ],
   "project": "reward_to_gcrl"

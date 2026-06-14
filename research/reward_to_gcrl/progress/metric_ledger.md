@@ -8,6 +8,7 @@
 | 0004 | completed | weak_pass | needs_human | `metrics.environment_audit.reward_audit.non_success_reward`=0.0<br>`metrics.environment_audit.reward_audit.success_reward`=1.0<br>`metrics.exact_dp.non_tie_policy_informative`=True<br>`metrics.exact_dp.raw_normalized_policy_preserved`=True<br>`metrics.exact_dp.rows.0.gamma`=0.95 |
 | 0005 | completed | pass | continue | `metrics.exact_dp.rows.0.exact_greedy_policy.0`=1<br>`metrics.exact_dp.rows.0.exact_greedy_policy.1`=1<br>`metrics.exact_dp.rows.0.exact_greedy_policy.2`=1<br>`metrics.exact_dp.rows.0.exact_greedy_policy.3`=1<br>`metrics.exact_dp.rows.0.exact_greedy_policy.4`=1 |
 | 0006 | completed | pass | continue | `metrics.config.behaviors.right_biased_random.uses_exact_q`=False<br>`metrics.config.behaviors.uniform_random.uses_exact_q`=False<br>`metrics.exact_dp.rows.0.exact_greedy_policy.0`=1<br>`metrics.exact_dp.rows.0.exact_greedy_policy.1`=1<br>`metrics.exact_dp.rows.0.exact_greedy_policy.2`=1 |
+| 0007 | completed | pass | None | `metrics.config.behaviors.medium_right_bias.uses_exact_q`=False<br>`metrics.config.behaviors.mild_right_bias.uses_exact_q`=False<br>`metrics.config.behaviors.strong_right_bias.uses_exact_q`=False<br>`metrics.config.behaviors.uniform_random.uses_exact_q`=False<br>`metrics.exact_dp.rows.0.exact_greedy_policy.0`=1 |
 
 ## Positive Signals
 
@@ -29,6 +30,9 @@
 - `0006`: Coverage thresholds are predeclared using right reward events per 10000 transitions and visited state-action pairs.
 - `0006`: Estimator claims are separated from learning claims on coverage-starved runs.
 - `0006`: The same 6-state RiverSwim transition semantics as 0005 were recreated and freshly audited.
+- `0007`: Coverage bins are predeclared using right reward events per 10000 transitions and visited state-action pairs.
+- `0007`: Estimator claims are separated from learning claims on coverage-starved runs.
+- `0007`: The same 6-state RiverSwim transition hash as 0005 and 0006 was recreated and verified.
 
 ## Negative Signals
 
@@ -50,3 +54,6 @@
 - `0006`: Data generation used fixed action probabilities only; exact DP was not consulted by behavior policies.
 - `0006`: Half of the runs are coverage-starved under the predeclared threshold, so learning-performance conclusions should be restricted to the adequate-coverage subset or explicitly labeled as coverage-limited.
 - `0006`: In coverage-starved uniform-random runs, soft has lower Bellman residual but worse mean value error than sampled in most runs, so value-error superiority is not uniform under poor coverage.
+- `0007`: Data generation used fixed action probabilities only; exact DP was not consulted by behavior policies.
+- `0007`: The coverage-performance regression includes visited_state_action_pairs, but that feature is constant at 12 in the observed runs, so the regression is effectively driven by right-reward event variation.
+- `0007`: Soft value error is worse than sampled in 4 of 35 adequate-coverage individual runs, although the adequate-bin mean clearly favors soft and satisfies the stated criterion.
