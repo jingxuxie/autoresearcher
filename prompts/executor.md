@@ -9,6 +9,10 @@ Rules:
 - Run the baseline under comparable conditions when applicable.
 - Run only small-scale experiments suitable for quick validation.
 - Do not run anything expected to exceed the configured timeout.
+- Create the artifact directory at the start of the iteration.
+- For any experiment with more than one meaningful step, save intermediate progress artifacts as you go, normally `research/<project>/artifacts/NNNN/progress.jsonl` plus any partial raw metrics already available.
+- Append to the progress artifact after environment probes, compatibility checks, script creation, each major experiment phase, validation, and any blocker. Include timestamps and exact commands for completed steps.
+- If a compatibility check shows the plan cannot run as written, write a failed or blocked result JSON immediately instead of spending the timeout budget.
 - Save exact commands run.
 - Save raw metrics.
 - Save artifacts.

@@ -546,6 +546,12 @@ class ValidationAndPlanTests(unittest.TestCase):
             repo = make_repo(Path(td))
             written = autoresearcher.write_timeout_result(repo, "project_001", "0001")
             self.assertTrue(all(path.exists() for path in written))
+            self.assertIn(repo / "research" / "project_001" / "artifacts" / "0001" / "timeout_diagnostics.md", written)
+            result = json.loads((repo / "research" / "project_001" / "results" / "0001_result.json").read_text())
+            self.assertEqual(
+                result["artifacts"],
+                ["research/project_001/artifacts/0001/timeout_diagnostics.md"],
+            )
             validate_json_schema(
                 repo / "research" / "project_001" / "results" / "0001_result.json",
                 repo / "schemas" / "result.schema.json",
@@ -783,6 +789,33 @@ class StateAndLoopTests(unittest.TestCase):
             ).stdout.splitlines()
             self.assertIn("tracked.txt", files)
             self.assertNotIn("ignored.log", files)
+
+    def test_git_commit_expands_dirs_and_skips_empty_dirs(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            repo = make_repo(Path(td))
+            subprocess.run(["git", "init"], cwd=repo, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            subprocess.run(["git", "config", "user.email", "test@example.com"], cwd=repo, check=True)
+            subprocess.run(["git", "config", "user.name", "Test User"], cwd=repo, check=True)
+            empty_dir = repo / "empty_artifacts"
+            empty_dir.mkdir()
+            artifact_dir = repo / "artifact_dir"
+            artifact_dir.mkdir()
+            artifact = artifact_dir / "metrics.json"
+            artifact.write_text("{}\n")
+            manager = autoresearcher.GitManager(
+                repo,
+                {"git": {"enabled": True, "commit": True, "push": False}},
+            )
+            self.assertTrue(manager.commit([empty_dir, artifact_dir], "test directory paths"))
+            files = subprocess.run(
+                ["git", "ls-files"],
+                cwd=repo,
+                check=True,
+                text=True,
+                stdout=subprocess.PIPE,
+            ).stdout.splitlines()
+            self.assertIn("artifact_dir/metrics.json", files)
+            self.assertFalse(manager.commit([empty_dir], "empty only"))
 
     def test_context_window_failure_resets_role_session(self) -> None:
         with tempfile.TemporaryDirectory() as td:

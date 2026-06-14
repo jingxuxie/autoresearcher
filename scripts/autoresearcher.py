@@ -699,17 +699,36 @@ class GitManager:
         proc = self._git(["check-ignore", "-q", "--", rel_path])
         return proc.returncode == 0
 
-    def commit(self, paths: Iterable[Path], message: str) -> bool:
-        if not self.enabled() or not self.is_repo():
-            return False
+    def _trackable_rel_paths(self, paths: Iterable[Path]) -> List[str]:
+        root = self.repo_root.resolve()
         rel_paths = []
+        seen = set()
+
+        def add_path(path: Path) -> None:
+            try:
+                rel_path = str(path.resolve().relative_to(root))
+            except ValueError:
+                return
+            if rel_path in seen or self._is_ignored(rel_path):
+                return
+            seen.add(rel_path)
+            rel_paths.append(rel_path)
+
         for path in paths:
             if not path.exists():
                 continue
-            rel_path = str(path.resolve().relative_to(self.repo_root.resolve()))
-            if self._is_ignored(rel_path):
-                continue
-            rel_paths.append(rel_path)
+            if path.is_dir():
+                for child in sorted(path.rglob("*")):
+                    if child.is_file() or child.is_symlink():
+                        add_path(child)
+            elif path.is_file() or path.is_symlink():
+                add_path(path)
+        return rel_paths
+
+    def commit(self, paths: Iterable[Path], message: str) -> bool:
+        if not self.enabled() or not self.is_repo():
+            return False
+        rel_paths = self._trackable_rel_paths(paths)
         if not rel_paths:
             return False
         status = self._git(["status", "--porcelain", "--"] + rel_paths)
@@ -870,6 +889,16 @@ def summary_due(state: Dict[str, Any], config: Dict[str, Any], reason: str) -> b
 def write_timeout_result(repo_root: Path, project: str, iteration_id: str) -> List[Path]:
     result_path, summary_path, artifact_dir = result_paths(repo_root, project, iteration_id)
     artifact_dir.mkdir(parents=True, exist_ok=True)
+    diagnostic_path = artifact_dir / "timeout_diagnostics.md"
+    diagnostic_path.write_text(
+        f"# Experiment {iteration_id} Timeout Diagnostics\n\n"
+        "Status: timeout.\n\n"
+        "The executor exceeded the configured timeout before completing the experiment. "
+        "No experimental claim should be accepted from this iteration.\n\n"
+        "The orchestrator wrote this artifact so the timeout has a trackable artifact path "
+        "and the retry record can be committed even when the executor produced no files.\n"
+    )
+    diagnostic_rel = str(diagnostic_path.relative_to(repo_root))
     data = {
         "experiment_id": iteration_id,
         "status": "timeout",
@@ -877,7 +906,7 @@ def write_timeout_result(repo_root: Path, project: str, iteration_id: str) -> Li
         "commands_run": [],
         "metrics": {},
         "baseline_metrics": {},
-        "artifacts": [],
+        "artifacts": [diagnostic_rel],
         "interpretation": "The executor exceeded the configured timeout. Treat this as a failed or blocked small-scale experiment.",
         "known_failures": ["Executor timeout"],
         "next_questions": ["Can the experiment be reduced to a smaller validation?"],
@@ -887,7 +916,7 @@ def write_timeout_result(repo_root: Path, project: str, iteration_id: str) -> Li
         f"# Experiment {iteration_id} Timeout\n\n"
         "The executor exceeded the configured timeout. No experimental claim should be accepted from this run.\n"
     )
-    return [result_path, summary_path, artifact_dir]
+    return [result_path, summary_path, diagnostic_path]
 
 
 def write_review_markdown(repo_root: Path, project: str, iteration_id: str, review: Dict[str, Any]) -> Path:
