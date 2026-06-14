@@ -1,0 +1,32 @@
+{
+  "estimated_runtime_minutes": 30,
+  "experiment_id": "0013",
+  "failure_criteria": [
+    "History-keyed MC+TRL-log is not better than history-keyed MC-only in cue-sufficient regimes.",
+    "All gains are fully matched by history-model DP with zero action disagreement and no heldout-MSE gap.",
+    "The only positive cases use history keys that directly encode the latent state or otherwise leak oracle information.",
+    "Cue-noisy or cue-insufficient regimes are omitted, preventing separation of context sufficiency from oracle disambiguation.",
+    "Runtime exceeds 30 minutes or introduces neural networks, continuous control, OGBench, large downloads, or expensive training."
+  ],
+  "hypothesis": "Across a small randomized suite of aliased tabular POMDPs with varying cue reliability and history sufficiency, observation-only methods will fail when observations alias latent states, bounded-history methods will improve when history is sufficient, and a viable TRL/context direction requires MC+TRL-log to improve over history MC-only without being fully explained by history-model DP on every regime.",
+  "objective": "Test whether the partial-observation/context pivot generalizes beyond the single hand-constructed 0012 POMDP and whether any TRL-style transitive component adds value beyond history-model DP.",
+  "required_outputs": [
+    "research/sto_trl/results/0013_result.json",
+    "research/sto_trl/results/0013_summary.md",
+    "research/sto_trl/artifacts/0013/"
+  ],
+  "success_criteria": [
+    "Run at least 3 tiny POMDP families with 5 fixed seeds each, including cue-sufficient, cue-noisy, and cue-insufficient regimes.",
+    "Observation-only TRL-log and observation-only model DP have higher heldout MSE or policy regret than latent-oracle evaluation in aliased regimes.",
+    "History-keyed MC+TRL-log improves heldout MSE over history-keyed MC-only by at least 25% averaged over cue-sufficient regimes.",
+    "The report explicitly compares history-keyed MC+TRL-log against history-model DP; if model DP fully explains all gains, the result is labeled boundary/negative for TRL algorithmic value.",
+    "No training method consumes latent states, exact DP labels, true transition probabilities, or future observations as inputs."
+  ],
+  "tasks_for_codex": [
+    "Generate a randomized suite of tiny latent tabular POMDPs with aliased observations, stochastic shortcuts or teleporters, and controlled cue reliability.",
+    "Evaluate observation-only empirical model DP, observation-only TRL-log, history MC-only, history TRL-log, history MC+TRL-log, history-model DP, and latent-oracle DP.",
+    "Keep latent states only for audit and exact evaluation; add explicit leakage checks confirming training keys are observation/history-only.",
+    "Stratify metrics by cue-sufficient, cue-noisy, and cue-insufficient regimes.",
+    "Write a summary that decides whether this is real representation/context evidence or another model-DP-equivalence boundary."
+  ]
+}
