@@ -1,0 +1,32 @@
+{
+  "estimated_runtime_minutes": 30,
+  "experiment_id": "0012",
+  "failure_criteria": [
+    "History-keyed MC+TRL-log is equivalent to or worse than history-keyed MC-only on heldout long-horizon MSE.",
+    "The apparent gain disappears when compared to a prior-matched history-model-DP baseline.",
+    "The task requires oracle latent-state access or future-information leakage to show improvement.",
+    "The experiment does not include observation-only, history-keyed, and latent-oracle evaluation baselines.",
+    "Runtime exceeds 30 minutes or introduces neural networks, continuous control, OGBench, large downloads, or expensive training."
+  ],
+  "hypothesis": "In a latent tabular MDP with two or more hidden states sharing the same observation, observation-only empirical model DP and observation-only TRL-log will be miscalibrated, while history-keyed MC+TRL-log will improve held-out long-horizon value MSE and policy regret versus history-keyed MC-only without using latent states in training.",
+  "objective": "Test whether short trajectory context plus log-space transitive propagation helps in a tiny stochastic POMDP with aliased observations, where observation-level model DP is not a fair Markov baseline.",
+  "required_outputs": [
+    "research/sto_trl/results/0012_result.json",
+    "research/sto_trl/results/0012_summary.md",
+    "research/sto_trl/artifacts/0012/"
+  ],
+  "success_criteria": [
+    "Observation-only empirical model DP and observation-only TRL-log show a measurable aliasing failure: higher heldout MSE or policy regret than a latent-oracle evaluation baseline.",
+    "History-keyed MC+TRL-log improves heldout long-horizon value MSE over history-keyed MC-only by at least 25% on censored labels.",
+    "History-keyed MC+TRL-log improves policy regret or risky/teleport action choice versus observation-only TRL-log on at least one aliased stochastic shortcut or teleporter family.",
+    "The report includes a history-model-DP baseline; if history-model-DP fully explains the gain, the result is labeled as representation/context evidence rather than a distinct TRL algorithm win.",
+    "No training method uses true latent state, exact DP labels, true transition probabilities, or future observations as inputs."
+  ],
+  "tasks_for_codex": [
+    "Create a tiny latent tabular POMDP with aliased observations, including one risky shortcut or stochastic teleporter and one safe path.",
+    "Generate offline trajectories where training inputs are observations, actions, rewards/goals, and bounded history keys only; store latent states only for audit and exact evaluation.",
+    "Implement observation-only empirical model DP, observation-only TRL-log, history-keyed MC-only, history-keyed TRL-log, history-keyed MC+TRL-log, history-model DP, and latent-oracle DP evaluation.",
+    "Use censored long-horizon labels so transitive propagation has a reason to help beyond MC supervision.",
+    "Report metrics stratified by alias regime: heldout MSE, policy regret, risky/teleport action rate, calibration error, and action disagreement with latent-oracle policy."
+  ]
+}
