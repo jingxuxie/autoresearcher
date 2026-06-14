@@ -160,6 +160,41 @@
       ],
       "review_verdict": "pass",
       "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "On 6-state RiverSwim with non-oracle behavior streams, sampled augmented g_plus updates remain unbiased but higher variance than deterministic soft updates, with coverage determining whether learning advantages are interpretable.",
+      "decision": "continue",
+      "important_metrics": {
+        "metrics.config.behaviors.right_biased_random.uses_exact_q": false,
+        "metrics.config.behaviors.uniform_random.uses_exact_q": false,
+        "metrics.exact_dp.rows.0.exact_greedy_policy.0": 1,
+        "metrics.exact_dp.rows.0.exact_greedy_policy.1": 1,
+        "metrics.exact_dp.rows.0.exact_greedy_policy.2": 1,
+        "metrics.exact_dp.rows.0.exact_greedy_policy.3": 1,
+        "metrics.exact_dp.rows.0.exact_greedy_policy.4": 1,
+        "metrics.exact_dp.rows.0.exact_greedy_policy.5": 1,
+        "metrics.exact_dp.rows.0.f_gplus_star.0.0": 0.2126535293972451,
+        "metrics.exact_dp.rows.0.f_gplus_star.0.1": 0.2233195046287773,
+        "metrics.exact_dp.rows.0.f_gplus_star.1.0": 0.2121535293972451,
+        "metrics.exact_dp.rows.0.f_gplus_star.1.1": 0.25270364997491473
+      },
+      "iteration": "0006",
+      "negative_signals": [
+        "Data generation used fixed action probabilities only; exact DP was not consulted by behavior policies.",
+        "Half of the runs are coverage-starved under the predeclared threshold, so learning-performance conclusions should be restricted to the adequate-coverage subset or explicitly labeled as coverage-limited.",
+        "In coverage-starved uniform-random runs, soft has lower Bellman residual but worse mean value error than sampled in most runs, so value-error superiority is not uniform under poor coverage.",
+        "The behavior policies are simple state-independent random policies; additional non-oracle exploration policies may be needed before broader claims.",
+        "Current git status shows an untracked reviewer packet, but no protected path is currently modified."
+      ],
+      "positive_signals": [
+        "Coverage thresholds are predeclared using right reward events per 10000 transitions and visited state-action pairs.",
+        "Estimator claims are separated from learning claims on coverage-starved runs.",
+        "The same 6-state RiverSwim transition semantics as 0005 were recreated and freshly audited.",
+        "With non-oracle behavior streams, sampled targets remain unbiased within tolerance and higher variance. Coverage is explicitly split by the predeclared right-reward threshold; on adequately covered runs, soft retains the residual/value advantage."
+      ],
+      "review_verdict": "pass",
+      "status": "completed"
     }
   ],
   "project": "reward_to_gcrl"
