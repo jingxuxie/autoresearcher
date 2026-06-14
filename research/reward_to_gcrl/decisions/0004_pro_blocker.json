@@ -1,0 +1,29 @@
+{
+  "details": {
+    "assistantCount": 13,
+    "bodySample": "Skip to content\nChat history\nChatGPT\nNew chat\nSearch chats\nLibrary\nApps\nMore\nPinned\nTransitive RL Research\nCoding practice\nJournal Review\nFatigue and Energy Reset\nProjects\nreward RL to GCRL\nBranch \u00b7 Reward-based RL to GCRL\nReward-based RL to GCRL\nAI ML fundamentals\nFinding job\nautoresearcher\nReinforcement Learning\nShow more\nChats\nProject Decision: Stop\nTest Page\nStock Price Limitations\nBranch \u00b7 Stock Price Limitations\nBackground description analysis\nHedging and Arbitrage on Polymarket\nLinkedIn Message Advice\nCMU Fellowship Tax Exemption\nEarnings Volatility Options\nIn Care Of Explanation\nVoice Memo to Text\nMonitor height solutions\nState Tax Filing Marriage\nEarly Bird Parking Berkeley\nCO2 Rise in Sealed Room\nItchy Thigh Rash Diagnosis\nTurn off heat completely\nMicrowaving Non-marked Plates\nHong Kong Skyline Identification\nMistake explanation\nSilent calls explanation\nExpired shampoo use advice\nSwitch polarity explanation\nTire repair vs replacement\nRash symptoms and treatment\nRent information guidance\nProofreading manuscript for typos\nWhole fat milk check\nEston Javas\nPro\nreward RL to GCRL\nShare\nI am reading this post about turning reward-based RL into goal-conditioned RL. https://iclr-b",
+    "captcha": false,
+    "composerFound": true,
+    "generating": false,
+    "href": "https://chatgpt.com/g/g-p-6a2e58f52e0881918bd072fbc764a861-reward-rl-to-gcrl/c/6a2e6da6-9250-83e8-809b-de2a79b3f013",
+    "latestAssistant": "I",
+    "loginRequired": false,
+    "rateLimited": false,
+    "sendDisabled": null,
+    "sendFound": false,
+    "title": "ChatGPT - reward RL to GCRL"
+  },
+  "failed_command": [
+    "python",
+    "scripts/chatgpt_cdp_bridge.py",
+    "probe",
+    "--cdp-url",
+    "http://172.17.240.1:9223",
+    "--thread-url",
+    "https://chatgpt.com/g/g-p-6a2e58f52e0881918bd072fbc764a861-reward-rl-to-gcrl/c/6a2e6da6-9250-83e8-809b-de2a79b3f013"
+  ],
+  "iteration_id": "0004",
+  "message": "Timed out waiting for a ChatGPT assistant response.",
+  "packet_path": "research/reward_to_gcrl/pro_packets/0004_PRO_REVIEW_PACKET.md",
+  "reason": "pro_backend_failed"
+}

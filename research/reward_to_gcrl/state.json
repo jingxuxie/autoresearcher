@@ -1,7 +1,7 @@
 {
   "best_primary_metric": null,
   "failure_streak": 0,
-  "human_review_required": false,
+  "human_review_required": true,
   "iteration": 3,
   "last_decision": "continue",
   "last_failure": null,
@@ -23,13 +23,23 @@
     "2026-06-14T11:05:19+00:00: Pro checkpoint blocked (response_parse_failed); packet research/reward_to_gcrl/pro_packets/0002_review2_PRO_REVIEW_PACKET.md",
     "2026-06-14T11:11:01+00:00: Pro decision saved for checkpoint review_needs_human (research/reward_to_gcrl/decisions/0002_review3_pro_decision.json)",
     "2026-06-14T11:11:03+00:00: applied Pro decision continue from research/reward_to_gcrl/decisions/0002_review3_pro_decision.json",
-    "2026-06-14T11:12:06+00:00: cleared retry failure state after applied Pro continuation"
+    "2026-06-14T11:12:06+00:00: cleared retry failure state after applied Pro continuation",
+    "2026-06-14T11:50:30+00:00: Pro checkpoint blocked (pro_backend_failed); packet research/reward_to_gcrl/pro_packets/0004_PRO_REVIEW_PACKET.md"
   ],
-  "pending_checkpoint": null,
+  "pending_checkpoint": {
+    "backend": "cdp",
+    "blocker_path": "research/reward_to_gcrl/decisions/0004_pro_blocker.json",
+    "iteration_id": "0004",
+    "manual_fallback": true,
+    "packet_path": "research/reward_to_gcrl/pro_packets/0004_PRO_REVIEW_PACKET.md",
+    "reason": "weak_pass_streak",
+    "status": "blocked",
+    "type": "chatgpt_pro"
+  },
   "pending_local_decision_path": null,
   "primary_metric": null,
   "pro_review_count": 2,
   "protected_file_drift": false,
-  "status": "active",
+  "status": "paused",
   "weak_pass_streak": 2
 }
