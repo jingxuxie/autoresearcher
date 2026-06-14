@@ -6,6 +6,7 @@
 | 0002 | completed | weak_pass | continue | `metrics.config.exact_scaling_tolerance`=1e-06<br>`metrics.exact_dp.max_abs_error_scaled_f_vs_q`=9.711982329463353e-10<br>`metrics.exact_dp.max_policy_disagreement_rate`=0.0<br>`metrics.exact_dp.rows.0.f_final_delta`=9.581224702515101e-14<br>`metrics.exact_dp.rows.0.f_value_iteration_steps`=527 |
 | 0003 | completed | weak_pass | continue | `metrics.exact_soft_dp.rows.0.bellman_residual_max_decision`=9.103828801926284e-14<br>`metrics.exact_soft_dp.rows.0.final_delta`=9.581224702515101e-14<br>`metrics.exact_soft_dp.rows.0.gamma`=0.95<br>`metrics.exact_soft_dp.rows.0.iterations`=527<br>`metrics.exact_soft_dp.rows.0.max_value`=0.999999999998179 |
 | 0004 | completed | weak_pass | needs_human | `metrics.environment_audit.reward_audit.non_success_reward`=0.0<br>`metrics.environment_audit.reward_audit.success_reward`=1.0<br>`metrics.exact_dp.non_tie_policy_informative`=True<br>`metrics.exact_dp.raw_normalized_policy_preserved`=True<br>`metrics.exact_dp.rows.0.gamma`=0.95 |
+| 0005 | completed | pass | continue | `metrics.exact_dp.rows.0.exact_greedy_policy.0`=1<br>`metrics.exact_dp.rows.0.exact_greedy_policy.1`=1<br>`metrics.exact_dp.rows.0.exact_greedy_policy.2`=1<br>`metrics.exact_dp.rows.0.exact_greedy_policy.3`=1<br>`metrics.exact_dp.rows.0.exact_greedy_policy.4`=1 |
 
 ## Positive Signals
 
@@ -21,6 +22,9 @@
 - `0004`: Identity reward normalization avoids the CliffWalking objective mismatch.
 - `0004`: The hand-built chain has three decision states, all with non-tie exact greedy actions.
 - `0004`: The sampled target is compared to a deterministic soft target computed from the same sampled learner table before each update.
+- `0005`: The RiverSwim transition table is stochastic, continuing, and has rewards already normalized to [0,1].
+- `0005`: Sampled continued targets use max_a M(s_next,a) directly, without an extra gamma factor.
+- `0005`: Right-end occupancy and reward-event counts are saved so sparse reward coverage is auditable.
 
 ## Negative Signals
 
@@ -36,3 +40,6 @@
 - `0004`: The latest plan text inconsistently references 0005 audit/result paths, while required outputs and actual evidence use 0004 paths.
 - `0004`: drift_status and evidence_integrity_verdict are under metrics rather than top-level result fields.
 - `0004`: The accepted learning-improvement evidence is still from a tiny 5-state chain with controlled matched streams; broader environments remain untested.
+- `0005`: The behavior policy is epsilon-greedy with respect to the exact normalized-Q greedy action, so the result is a controlled matched-stream propagation test rather than an online exploration test.
+- `0005`: Right-end coverage is strong under the oracle-guided behavior stream; conclusions about sparse-reward exploration failures should be tested separately with a non-oracle exploratory behavior policy.
+- `0005`: Greedy-policy return is not uniformly better for the soft learner per seed: soft has higher mean return overall, but is strictly higher than sampled in only 14 of 30 runs and has a few low-return learned policies.
