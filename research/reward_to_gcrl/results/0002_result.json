@@ -1,0 +1,26 @@
+{
+  "artifacts": [
+    "research/reward_to_gcrl/artifacts/0002/timeout_diagnostics.md"
+  ],
+  "baseline_metrics": {},
+  "claim_tested": "Executor timed out before completing the experiment.",
+  "commands_run": [
+    "python scripts/autoresearcher.py run --project reward_to_gcrl --max-iters 20",
+    "sed -n '1,260p' research/reward_to_gcrl/plans/0002_plan.json 2>/dev/null || true",
+    "sed -n '1,220p' research/reward_to_gcrl/plans/0002_plan.md 2>/dev/null || true",
+    "git status --short research/reward_to_gcrl | sed -n '1,120p'",
+    "conda run -n autoresearcher_reward_to_gcrl python -c \"import gymnasium as gym; print([k for k in gym.envs.registry.keys() if 'CliffWalking' in k])\"",
+    "conda run -n autoresearcher_reward_to_gcrl python -c \"import gymnasium as gym; env=gym.make('CliffWalking-v1'); u=env.unwrapped; print('nS', u.observation_space.n, 'nA', u.action_space.n); print('shape', getattr(u,'shape',None)); for s in [36,37,46,47,35]: print('state', s)\"",
+    "mkdir -p research/reward_to_gcrl/artifacts/0002 research/reward_to_gcrl/results"
+  ],
+  "experiment_id": "0002",
+  "interpretation": "The executor exceeded the configured timeout. Treat this as a failed or blocked small-scale experiment.",
+  "known_failures": [
+    "Executor timeout"
+  ],
+  "metrics": {},
+  "next_questions": [
+    "Can the experiment be reduced to a smaller validation?"
+  ],
+  "status": "timeout"
+}
