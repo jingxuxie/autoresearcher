@@ -10,6 +10,7 @@
 | 0006 | completed | pass | continue | `metrics.config.behaviors.right_biased_random.uses_exact_q`=False<br>`metrics.config.behaviors.uniform_random.uses_exact_q`=False<br>`metrics.exact_dp.rows.0.exact_greedy_policy.0`=1<br>`metrics.exact_dp.rows.0.exact_greedy_policy.1`=1<br>`metrics.exact_dp.rows.0.exact_greedy_policy.2`=1 |
 | 0007 | completed | pass | None | `metrics.config.behaviors.medium_right_bias.uses_exact_q`=False<br>`metrics.config.behaviors.mild_right_bias.uses_exact_q`=False<br>`metrics.config.behaviors.strong_right_bias.uses_exact_q`=False<br>`metrics.config.behaviors.uniform_random.uses_exact_q`=False<br>`metrics.exact_dp.rows.0.exact_greedy_policy.0`=1 |
 | 0008 | completed | pass | continue | `metrics.config.goal_success_threshold`=0.99<br>`metrics.exact_dp.rows.0.gamma`=0.95<br>`metrics.exact_dp.rows.0.gplus_final_delta`=0.0<br>`metrics.exact_dp.rows.0.gplus_iterations`=14<br>`metrics.exact_dp.rows.0.max_abs_scaled_gplus_minus_q_norm`=1.1102230246251565e-16 |
+| 0009 | completed | weak_pass | continue | `metrics.config.improvement_threshold`=0.1<br>`metrics.config.replay_behavior.uses_exact_q_or_dp`=False<br>`metrics.exact_dp.gamma`=0.95<br>`metrics.exact_dp.goal_iterations`=14<br>`metrics.exact_dp.gplus_iterations`=14 |
 
 ## Positive Signals
 
@@ -37,6 +38,8 @@
 - `0008`: The g_plus slice remains a direct scaled normalized-Q reference under the audited terminal mask.
 - `0008`: Real-state goals solve the deterministic reachability sanity check, so future reward changes require shared parameters or coupling to be meaningful.
 - `0008`: The vector SSM slices are numerically independent in this tabular FourRooms check: the g_plus slice matches terminal-only soft learning, scaled g_plus matches normalized Q, and real-state goal slices match exact reachability references with successful greedy g
+- `0009`: The low-rank model genuinely shares state-action factors across real-state goals and g_plus.
+- `0009`: Combined auxiliary training worsened a g_plus metric or reward-policy disagreement under adequate replay coverage; auxiliary-goal benefit is not supported.
 
 ## Negative Signals
 
@@ -64,3 +67,6 @@
 - `0008`: Independent tabular real-state goal slices did not perturb the g_plus reward-success slice.
 - `0008`: This is an exact/full-sweep deterministic sanity check; it validates indexing and independent tabular slices, not learning under sampled data or function approximation.
 - `0008`: The result is expected to be nearly tautological because exact references and learned vector backups use the same audited transition semantics; this is acceptable for the predeclared implementation gate but should not be...
+- `0009`: Conservative verdict: negative_transfer.
+- `0009`: Exact tabular references are used only for evaluation, not behavior generation or target labels.
+- `0009`: Auxiliary reward-task benefit should not be claimed unless the verdict is auxiliary_helped_gplus.

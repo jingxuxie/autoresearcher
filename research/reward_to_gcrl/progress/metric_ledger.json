@@ -264,6 +264,39 @@
       ],
       "review_verdict": "pass",
       "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "A shared rank-4 NumPy low-rank FourRooms successor-measure model trained with real-state auxiliary goals should improve the g_plus reward-success slice versus terminal-only g_plus training under matched adequate offline replay, or the auxiliary benefit should not be claimed.",
+      "decision": "continue",
+      "important_metrics": {
+        "metrics.config.improvement_threshold": 0.1,
+        "metrics.config.replay_behavior.uses_exact_q_or_dp": false,
+        "metrics.exact_dp.gamma": 0.95,
+        "metrics.exact_dp.goal_iterations": 14,
+        "metrics.exact_dp.gplus_iterations": 14,
+        "metrics.exact_dp.max_abs_scaled_gplus_minus_q_norm": 1.1102230246251565e-16,
+        "metrics.exact_dp.q_iterations": 14,
+        "metrics.lowrank_auxiliary.aggregate.mean_combined_goal_success_rate": 0.003717948717948718,
+        "metrics.lowrank_auxiliary.aggregate.mean_combined_reward_success_rate": 0.0,
+        "metrics.lowrank_auxiliary.aggregate.mean_terminal_reward_success_rate": 0.5384615384615384,
+        "metrics.lowrank_auxiliary.aggregate.relative_bellman_residual_improvement": -37.09593648978651,
+        "metrics.lowrank_auxiliary.aggregate.relative_value_error_improvement": -230.03690989471423
+      },
+      "iteration": "0009",
+      "negative_signals": [
+        "Conservative verdict: negative_transfer.",
+        "Exact tabular references are used only for evaluation, not behavior generation or target labels.",
+        "Auxiliary reward-task benefit should not be claimed unless the verdict is auxiliary_helped_gplus.",
+        "reward_policy_not_worse",
+        "auxiliary_helped_gplus_criterion"
+      ],
+      "positive_signals": [
+        "The low-rank model genuinely shares state-action factors across real-state goals and g_plus.",
+        "Combined auxiliary training worsened a g_plus metric or reward-policy disagreement under adequate replay coverage; auxiliary-goal benefit is not supported."
+      ],
+      "review_verdict": "weak_pass",
+      "status": "completed"
     }
   ],
   "project": "reward_to_gcrl"
