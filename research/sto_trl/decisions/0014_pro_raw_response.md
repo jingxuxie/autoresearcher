@@ -1,0 +1,30 @@
+JSON
+{
+  "decision": "stop",
+  "confidence": 0.86,
+  "rationale": "I do not approve another pivot in the current loop. The fully observed stochastic-TRL line failed against fair model-DP baselines, and the partial-observation/context pivot has now also reached a clear boundary: history/context helps under aliasing, but history-model DP fully explains the gains in both the hand-constructed and randomized POMDP audits. Further small tabular experiments are likely to repeat the same result unless the project is reframed into a different research program such as representation learning or scalable function approximation, which is outside the current loop's validated evidence.",
+  "evidence": [
+    "Latest progress says the project is active at 0013 but the reviewed evidence argues for pausing or stopping the current representation/context branch unless the question changes again.",
+    "Latest progress says no reviewed experiment shows a distinct stochastic TRL algorithmic advantage over the appropriate baseline.",
+    "0013 tested 3 cue regimes with 5 seeds each, 15 cases, and 280 metric rows, covering cue-sufficient, cue-noisy, and cue-insufficient aliased POMDPs.",
+    "0013 confirmed observation-only aliasing failure and 100% cue-sufficient MC+TRL-log improvement over MC-only, but also reports history-model DP explains all gains.",
+    "0013 method summary shows history_mc_plus_trl_log, history_trl_log, and history_model_dp have identical aggregate heldout MSE, policy regret, teleport rate, calibration error, and action disagreement.",
+    "The 0013 review says a predeclared failure criterion was triggered because history-model DP fully matches history MC+TRL-log gains with no heldout-MSE gap.",
+    "The latest summary says fully observed stochastic TRL and posterior-transitive TRL have already failed against fair model-DP baselines and warns not to move to neural, continuous-control, OGBench, or expensive experiments from this evidence."
+  ],
+  "risks": [
+    "Stopping may leave useful diagnostic material unpublished unless the results are written up as negative/boundary evidence.",
+    "This stop does not refute TRL-log as a long-horizon propagation baseline or context/history as useful representation.",
+    "A future project on scalable representation learning, neural function approximation, or settings where model DP is unavailable could still be interesting, but it would need a new charter and baselines.",
+    "Continuing the current loop risks rewarding activity rather than evidence and overclaiming representation/context sufficiency as a TRL algorithmic advantage."
+  ],
+  "next_experiment": null
+}
+
+I disagree with another local pivot: the current evidence supports stopping this loop and preserving the findings as diagnostic/negative results, not launching another tabular tweak. 
+
+latest_summary
+
+ 
+
+0013_summary
