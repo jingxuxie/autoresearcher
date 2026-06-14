@@ -3,7 +3,7 @@
   "failure_streak": 0,
   "human_review_required": false,
   "iteration": 0,
-  "last_decision": "start",
+  "last_decision": "protected_file_drift",
   "last_failure": null,
   "last_pro_review_iteration": 0,
   "last_pro_review_path": null,
@@ -18,7 +18,7 @@
   "pending_local_decision_path": null,
   "primary_metric": null,
   "pro_review_count": 0,
-  "protected_file_drift": false,
+  "protected_file_drift": true,
   "status": "active",
   "weak_pass_streak": 0
 }
