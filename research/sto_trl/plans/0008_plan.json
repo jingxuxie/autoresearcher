@@ -1,0 +1,37 @@
+{
+  "estimated_runtime_minutes": 25,
+  "experiment_id": "0008",
+  "failure_criteria": [
+    "The grid omits exact DP ground truth or policy regret for any evaluated cell.",
+    "The result reports only aggregate averages and does not save per-cell raw metrics.",
+    "The experiment claims an algorithmic win instead of separating identifiable, ambiguous, and prior-dependent regimes.",
+    "The posterior or confidence baselines use true transition probabilities or exact DP labels as training inputs rather than evaluation ground truth.",
+    "The sweep is too broad, exceeds 30 minutes, or expands to neural networks, continuous control, OGBench, downloads, or large training.",
+    "The result omits commands run, artifacts, coverage diagnostics, or validation against schemas/result.schema.json."
+  ],
+  "hypothesis": "Across risky-shortcut MDPs, some regimes are identifiable from observed risky successes/failures and simple empirical or posterior transition estimates should match exact DP action choice, while lucky-only and no-success regimes will expose impossibility or prior-dependence. This grid should clarify when log-TRL failures are data-identifiability failures versus algorithmic failures.",
+  "objective": "Run a small tabular identifiability and coverage grid that maps when risky-shortcut action choice is identifiable from finite offline stochastic coverage, before adding new stochastic TRL algorithms.",
+  "required_outputs": [
+    "research/sto_trl/results/0008_result.json",
+    "research/sto_trl/results/0008_summary.md",
+    "research/sto_trl/artifacts/0008/"
+  ],
+  "success_criteria": [
+    "Creates a self-contained artifact under research/sto_trl/artifacts/0008/ without editing prior results, schemas, AGENTS.md, scripts/autoresearcher.py, or environment files.",
+    "Sweeps a small predeclared grid over true risky success probability, safe route length, risky sample count, and observed risky success count, with exact DP ground truth for every cell.",
+    "Includes at least one deterministic chain guard or equivalent sanity row showing raw/log TRL still recover deterministic long-horizon behavior.",
+    "Compares raw TRL, TRL-log, empirical risky-value or empirical-transition DP, Bayesian posterior mean, posterior lower and upper quantile choices, and simple confidence-bound choices on the same grid cells.",
+    "Reports per-cell action choice, policy regret, risky value overestimation, calibration error, and whether the cell is empirically identifiable, ambiguous, lucky-only, no-success, or prior-dependent.",
+    "Saves coverage diagnostics and raw grid metrics, plus compact heatmap-friendly CSV or JSON tables for regret and action choice.",
+    "Counts the experiment as useful if it identifies regimes where no method can be justified without explicit priors, and regimes where transition-level uncertainty baselines are sufficient or insufficient versus TRL-log.",
+    "Produces valid research/sto_trl/results/0008_result.json and research/sto_trl/results/0008_summary.md with exact commands run."
+  ],
+  "tasks_for_codex": [
+    "Create research/sto_trl/artifacts/0008/ and implement a small standalone identifiability_grid.py or equivalent script, reusing helper code from prior tabular artifacts when useful.",
+    "Define the predeclared grid with a compact set such as true risky success probabilities, safe path lengths, risky sample counts, and observed success counts that can run in minutes.",
+    "For each cell, compute exact DP risky and safe values, empirical estimates from observed counts, posterior mean and quantile estimates under explicit priors, confidence-bound choices, raw TRL, and TRL-log where applicable.",
+    "Classify each cell by coverage regime, including matched, lucky-only, no-success, ambiguous, and prior-dependent cases.",
+    "Save raw_grid.json, metrics.csv, regret_heatmap.csv, action_choice_grid.csv, impossibility_cases.json, coverage_diagnostics.json, transition_tables.json, and value_tables.json under research/sto_trl/artifacts/0008/.",
+    "Write research/sto_trl/results/0008_result.json and research/sto_trl/results/0008_summary.md, then validate the result JSON with scripts/validate_artifacts.py and artifact checks."
+  ]
+}
