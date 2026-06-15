@@ -6,7 +6,7 @@
   "last_decision": "continue",
   "last_failure": null,
   "last_pro_review_iteration": 11,
-  "last_pro_review_path": "research/reward_to_gcrl/decisions/0012_pro_decision.json",
+  "last_pro_review_path": "research/reward_to_gcrl/decisions/0013_review2_pro_decision.json",
   "last_summary_iteration": 12,
   "last_summary_path": "research/reward_to_gcrl/progress/0012_pre_pro_the_next_output_is_a_short_paper_draft_with_publishable_claims__it_should_be_reviewed_before_any_external_publication_or_broader_claim_is_made_summary.md",
   "no_progress_rounds": 0,
@@ -48,14 +48,9 @@
     "2026-06-15T00:24:17+00:00: Pro checkpoint blocked (pro_backend_failed); packet research/reward_to_gcrl/pro_packets/0013_PRO_REVIEW_PACKET.md"
   ],
   "pending_checkpoint": {
-    "backend": "cdp",
-    "blocker_path": "research/reward_to_gcrl/decisions/0013_pro_blocker.json",
-    "iteration_id": "0013",
-    "manual_fallback": true,
-    "packet_path": "research/reward_to_gcrl/pro_packets/0013_PRO_REVIEW_PACKET.md",
-    "reason": "The next output is a short-paper draft with publishable claims. It should be reviewed before any external publication or broader claim is made.",
-    "status": "blocked",
-    "type": "chatgpt_pro"
+    "iteration_id": "0013_review2",
+    "pro_decision_path": "research/reward_to_gcrl/decisions/0013_review2_pro_decision.json",
+    "status": "pro_decision_ingested"
   },
   "pending_local_decision_path": "research/reward_to_gcrl/decisions/0013_decision.json",
   "primary_metric": null,
