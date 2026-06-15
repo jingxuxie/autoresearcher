@@ -1,12 +1,12 @@
 {
   "best_primary_metric": null,
-  "failure_streak": 1,
+  "failure_streak": 2,
   "human_review_required": false,
   "iteration": 12,
   "last_decision": "retryable_failure",
   "last_failure": {
-    "at": "2026-06-15T00:37:27+00:00",
-    "attempt": 1,
+    "at": "2026-06-15T00:38:09+00:00",
+    "attempt": 2,
     "max_attempts": 3,
     "note": "reviewer verdict pass"
   },
@@ -52,7 +52,8 @@
     "2026-06-14T23:56:37+00:00: applied Pro decision pivot from research/reward_to_gcrl/decisions/0012_pro_decision.json",
     "2026-06-15T00:24:17+00:00: Pro checkpoint blocked (pro_backend_failed); packet research/reward_to_gcrl/pro_packets/0013_PRO_REVIEW_PACKET.md",
     "2026-06-15T00:28:57+00:00: applied Pro decision continue from research/reward_to_gcrl/decisions/0013_review2_pro_decision.json",
-    "2026-06-15T00:37:27+00:00: retryable failure 1/3: reviewer verdict pass"
+    "2026-06-15T00:37:27+00:00: retryable failure 1/3: reviewer verdict pass",
+    "2026-06-15T00:38:09+00:00: retryable failure 2/3: reviewer verdict pass"
   ],
   "pending_checkpoint": null,
   "pending_local_decision_path": null,
