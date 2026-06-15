@@ -1,0 +1,36 @@
+{
+  "auxiliary_negative_evidence": {
+    "0009_bellman_residual_delta_combined_minus_terminal": 0.035458099349646194,
+    "0009_combined_gplus_bellman_residual": 0.03641394796016472,
+    "0009_combined_gplus_value_error": 16.89386841611688,
+    "0009_combined_reward_success_rate": 0.0,
+    "0009_terminal_gplus_bellman_residual": 0.0009558486105185331,
+    "0009_terminal_gplus_value_error": 0.0731219458562512,
+    "0009_terminal_reward_success_rate": 0.5384615384615384,
+    "0009_value_error_delta_combined_minus_terminal": 16.820746470260634,
+    "0010_loss_balanced_gplus_residual": 0.017908517900543923,
+    "0010_loss_balanced_gplus_value_error": 7.377041677454426,
+    "0010_staged_gplus_residual": 0.05081488373594548,
+    "0010_staged_gplus_value_error": 18.57975839410728,
+    "0010_terminal_gplus_value_error": 0.0731219458562512,
+    "0010_verdict": "auxiliary_unsupported_for_lowrank"
+  },
+  "estimator_evidence": {
+    "0001_finite_mdp_scaled_error": 3.9475168023273e-08,
+    "0001_max_sampled_target_variance": 0.090401347996,
+    "0001_max_soft_target_variance": 0.0,
+    "0002_cliffwalking_exact_scaled_error": 9.711982329463353e-10,
+    "0003_sampled_residual": 0.04124613525377317,
+    "0003_sampled_variance_exceeds_soft_rate": 1.0,
+    "0003_soft_residual": 0.03875043674884314,
+    "0003_target_mean_match_rate": 1.0,
+    "0007_adequate_coverage_residual_delta": -0.005358710791709285,
+    "0007_adequate_coverage_value_delta": -0.06148229477674819,
+    "0007_starved_coverage_value_delta": 0.04011280505290292,
+    "0008_min_goal_success_rate": 1.0,
+    "0008_vector_gplus_minus_terminal": 0.0,
+    "0008_vector_gplus_scaled_minus_q_norm": 1.1102230246251565e-16
+  },
+  "experiment_id": "0012",
+  "new_learning_compute_run": false
+}

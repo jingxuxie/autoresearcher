@@ -1,0 +1,161 @@
+{
+  "artifacts": [
+    "research/reward_to_gcrl/reports/0012_writeup_outline.md",
+    "research/reward_to_gcrl/artifacts/0012/build_writeup_outline.py",
+    "research/reward_to_gcrl/artifacts/0012/local_compatibility_check.json",
+    "research/reward_to_gcrl/artifacts/0012/numeric_evidence.json",
+    "research/reward_to_gcrl/artifacts/0012/claim_status_table.json",
+    "research/reward_to_gcrl/artifacts/0012/progress.jsonl"
+  ],
+  "baseline_metrics": {
+    "new_baseline_run": false,
+    "reason": "Memo-only iteration; baselines and comparisons are prior completed results 0001-0011."
+  },
+  "claim_tested": "Package existing 0001-0011 evidence into a concise memo and define a formal gate for future auxiliary-goal experiments without running new learning compute.",
+  "commands_run": [
+    "mkdir -p research/reward_to_gcrl/artifacts/0012 research/reward_to_gcrl/results research/reward_to_gcrl/reports && date -u -Iseconds",
+    "conda run -n autoresearcher_reward_to_gcrl python --version",
+    "rg --files research/reward_to_gcrl/results | sort | rg '00(0[1-9]|1[0-2])_(result|summary)\\.md|00(0[1-9]|1[0-2])_result\\.json|001[0-2]_(result|summary)\\.md|001[0-2]_result\\.json'",
+    "ls research/reward_to_gcrl/reports schemas/result.schema.json scripts/validate_artifacts.py",
+    "jq '{status, recommendation:.metrics.final_recommendation, auxiliary_next_decision:.metrics.auxiliary_next_decision, new_learning_compute_run:.metrics.new_learning_compute_run}' research/reward_to_gcrl/results/0011_result.json",
+    "jq '.metrics.lowrank_auxiliary' research/reward_to_gcrl/results/0009_result.json",
+    "jq '.metrics.lowrank_auxiliary.aggregate.variant_summaries' research/reward_to_gcrl/results/0010_result.json",
+    "jq '.metrics.vector_ssm, .metric_deltas' research/reward_to_gcrl/results/0008_result.json",
+    "jq '.metrics.sampled_vs_soft.coverage_bin_summary // .metric_deltas.by_coverage_bin // .metric_deltas' research/reward_to_gcrl/results/0007_result.json",
+    "conda run -n autoresearcher_reward_to_gcrl python -m py_compile research/reward_to_gcrl/artifacts/0012/build_writeup_outline.py",
+    "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0012/build_writeup_outline.py --check-only",
+    "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0012/build_writeup_outline.py",
+    "conda run -n autoresearcher_reward_to_gcrl python -m jsonschema -i research/reward_to_gcrl/results/0012_result.json schemas/result.schema.json",
+    "conda run -n autoresearcher_reward_to_gcrl python scripts/validate_artifacts.py --repo-root . --json research/reward_to_gcrl/results/0012_result.json --schema schemas/result.schema.json --check-result-artifacts"
+  ],
+  "decision_relevant_findings": [
+    "Existing evidence is mature enough for a scoped short write-up.",
+    "Soft terminal marginalization claims must remain small-tabular and coverage-qualified.",
+    "Rank-4 low-rank auxiliary FourRooms benefit is contradicted by 0009 and 0010.",
+    "Future auxiliary work requires a new falsifiable hypothesis before compute."
+  ],
+  "experiment_id": "0012",
+  "failure_criteria_results": [
+    "NOT_TRIGGERED: memo does not propose new compute before summarizing evidence.",
+    "NOT_TRIGGERED: memo does not claim auxiliary-goal benefit.",
+    "NOT_TRIGGERED: memo does not present low-rank auxiliary failure as a general impossibility result.",
+    "NOT_TRIGGERED: RiverSwim coverage caveats and small-tabular limits are included.",
+    "NOT_TRIGGERED: memo does not recommend broad sweeps, neural frameworks, GPU use, or larger environments without a new hypothesis.",
+    "NOT_TRIGGERED: concrete go/no-go gate for reopening auxiliary experiments is included."
+  ],
+  "interpretation": "Current evidence is ready for a scoped write-up: positive small-tabular soft terminal marginalization, negative rank-4 low-rank FourRooms auxiliary result, and a formal gate before any more auxiliary compute.",
+  "known_failures": [
+    "rank4_lowrank_fourrooms_auxiliary_benefit_contradicted",
+    "neural_larger_environment_online_claims_not_tested"
+  ],
+  "metric_deltas": {
+    "0007_adequate_value_delta": -0.06148229477674819,
+    "0007_starved_value_delta": 0.04011280505290292,
+    "0009_combined_minus_terminal_value_error": 16.820746470260634,
+    "0010_loss_balanced_value_error": 7.377041677454426,
+    "claim_status_counts": {
+      "contradicted": 1,
+      "not_tested": 1,
+      "partially_supported": 1,
+      "supported": 2,
+      "unsupported": 1
+    },
+    "final_recommendation": "write_short_paper",
+    "new_learning_compute_run": false
+  },
+  "metrics": {
+    "auxiliary_thread_gate": "new_hypothesis_required_before_more_compute",
+    "claim_status_counts": {
+      "contradicted": 1,
+      "not_tested": 1,
+      "partially_supported": 1,
+      "supported": 2,
+      "unsupported": 1
+    },
+    "final_recommendation": "write_short_paper",
+    "inspected_experiment_ids": [
+      "0001",
+      "0002",
+      "0003",
+      "0004",
+      "0005",
+      "0006",
+      "0007",
+      "0008",
+      "0009",
+      "0010",
+      "0011"
+    ],
+    "new_learning_compute_run": false,
+    "numeric_evidence": {
+      "auxiliary_negative_evidence": {
+        "0009_bellman_residual_delta_combined_minus_terminal": 0.035458099349646194,
+        "0009_combined_gplus_bellman_residual": 0.03641394796016472,
+        "0009_combined_gplus_value_error": 16.89386841611688,
+        "0009_combined_reward_success_rate": 0.0,
+        "0009_terminal_gplus_bellman_residual": 0.0009558486105185331,
+        "0009_terminal_gplus_value_error": 0.0731219458562512,
+        "0009_terminal_reward_success_rate": 0.5384615384615384,
+        "0009_value_error_delta_combined_minus_terminal": 16.820746470260634,
+        "0010_loss_balanced_gplus_residual": 0.017908517900543923,
+        "0010_loss_balanced_gplus_value_error": 7.377041677454426,
+        "0010_staged_gplus_residual": 0.05081488373594548,
+        "0010_staged_gplus_value_error": 18.57975839410728,
+        "0010_terminal_gplus_value_error": 0.0731219458562512,
+        "0010_verdict": "auxiliary_unsupported_for_lowrank"
+      },
+      "estimator_evidence": {
+        "0001_finite_mdp_scaled_error": 3.9475168023273e-08,
+        "0001_max_sampled_target_variance": 0.090401347996,
+        "0001_max_soft_target_variance": 0.0,
+        "0002_cliffwalking_exact_scaled_error": 9.711982329463353e-10,
+        "0003_sampled_residual": 0.04124613525377317,
+        "0003_sampled_variance_exceeds_soft_rate": 1.0,
+        "0003_soft_residual": 0.03875043674884314,
+        "0003_target_mean_match_rate": 1.0,
+        "0007_adequate_coverage_residual_delta": -0.005358710791709285,
+        "0007_adequate_coverage_value_delta": -0.06148229477674819,
+        "0007_starved_coverage_value_delta": 0.04011280505290292,
+        "0008_min_goal_success_rate": 1.0,
+        "0008_vector_gplus_minus_terminal": 0.0,
+        "0008_vector_gplus_scaled_minus_q_norm": 1.1102230246251565e-16
+      },
+      "experiment_id": "0012",
+      "new_learning_compute_run": false
+    },
+    "red_line_claims": [
+      "auxiliary-goal benefit for g_plus",
+      "general impossibility of real-state auxiliary goals",
+      "neural auxiliary-goal benefit",
+      "larger-environment generality",
+      "online exploration robustness",
+      "coverage-starved RiverSwim learning superiority",
+      "reward-task improvement from independent tabular goal slices"
+    ],
+    "report_only": true,
+    "strongest_defensible_auxiliary_claim": "The tested rank-4 NumPy low-rank FourRooms real-state auxiliary approach is unsupported and showed negative transfer.",
+    "strongest_defensible_estimator_claim": "Soft terminal marginalization is a useful small-tabular estimator/equivalence mechanism under audited reward normalization and adequate coverage."
+  },
+  "next_questions": [
+    "Should the short paper/blog draft be written from the 0012 outline?",
+    "Is there a principled new auxiliary hypothesis worth reviewing before any further compute?"
+  ],
+  "resource_usage": {
+    "cpu_only": true,
+    "dependencies_added": [],
+    "gpu_used": false,
+    "new_learning_compute_run": false,
+    "new_training_runs": 0
+  },
+  "runtime_seconds": 0.004367494999314658,
+  "status": "completed",
+  "success_criteria_results": [
+    "PASS: produced a concise memo separating positive estimator evidence, negative auxiliary evidence, limitations, and unsupported claims.",
+    "PASS: claim-status table includes supported, partially_supported, unsupported, contradicted, and not_tested labels.",
+    "PASS: strongest estimator claim is scoped to small-tabular settings and adequate coverage.",
+    "PASS: strongest auxiliary claim is scoped to the tested rank-4 NumPy low-rank FourRooms setup.",
+    "PASS: figure/table plan uses only existing 0001-0011 evidence.",
+    "PASS: new-hypothesis gate requires principled architecture or loss-normalization change and predeclared criteria.",
+    "PASS: recommendation is one of the requested directions: write_short_paper."
+  ]
+}

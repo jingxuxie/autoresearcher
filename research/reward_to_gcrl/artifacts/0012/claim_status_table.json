@@ -1,0 +1,95 @@
+{
+  "claims": [
+    {
+      "claim": "Soft terminal marginalization is a useful small-tabular estimator/equivalence mechanism under audited reward normalization and adequate coverage.",
+      "numeric_evidence": [
+        "0001 soft variance 0 vs sampled variance up to 0.0904013",
+        "0002 scaled CliffWalking error 9.71198e-10",
+        "0008 vector g_plus scaled-Q error 1.11022e-16"
+      ],
+      "source_experiments": [
+        "0001",
+        "0002",
+        "0003",
+        "0004",
+        "0005",
+        "0006",
+        "0007",
+        "0008",
+        "0011"
+      ],
+      "status": "supported"
+    },
+    {
+      "claim": "RiverSwim learning advantages are coverage-qualified rather than unconditional.",
+      "numeric_evidence": [
+        "0007 adequate bin value delta -0.0614823",
+        "0007 starved bin value delta 0.0401128"
+      ],
+      "source_experiments": [
+        "0005",
+        "0006",
+        "0007",
+        "0011"
+      ],
+      "status": "partially_supported"
+    },
+    {
+      "claim": "Independent tabular real-state goal slices are correct and do not perturb g_plus.",
+      "numeric_evidence": [
+        "g_plus perturbation 0",
+        "min goal success rate 1"
+      ],
+      "source_experiments": [
+        "0008"
+      ],
+      "status": "supported"
+    },
+    {
+      "claim": "The tested rank-4 NumPy low-rank real-state auxiliary approach improves g_plus.",
+      "numeric_evidence": [
+        "0009 combined value error 16.8939 vs terminal-only 0.0731219",
+        "0010 loss-balanced value error 7.37704 vs terminal-only 0.0731219"
+      ],
+      "source_experiments": [
+        "0009",
+        "0010",
+        "0011"
+      ],
+      "status": "contradicted"
+    },
+    {
+      "claim": "Real-state auxiliary goals are generally impossible or useless.",
+      "numeric_evidence": [
+        "Only one tiny rank-4 architecture family and replay construction were tested."
+      ],
+      "source_experiments": [
+        "0009",
+        "0010",
+        "0011"
+      ],
+      "status": "unsupported"
+    },
+    {
+      "claim": "Neural, large-environment, GPU, or online-exploration generality follows from this evidence.",
+      "numeric_evidence": [
+        "No neural framework, GPU training, larger environment, or broad online robustness run exists in 0001-0011."
+      ],
+      "source_experiments": [
+        "0001",
+        "0002",
+        "0003",
+        "0004",
+        "0005",
+        "0006",
+        "0007",
+        "0008",
+        "0009",
+        "0010",
+        "0011"
+      ],
+      "status": "not_tested"
+    }
+  ],
+  "experiment_id": "0012"
+}

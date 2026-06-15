@@ -1,0 +1,23 @@
+{
+  "artifact_validator_path": "scripts/validate_artifacts.py",
+  "checked_at": "2026-06-15T00:01:01.524264+00:00",
+  "experiment_id": "0012",
+  "new_learning_compute_run": false,
+  "prior_result_files": [
+    "research/reward_to_gcrl/results/0001_result.json",
+    "research/reward_to_gcrl/results/0002_result.json",
+    "research/reward_to_gcrl/results/0003_result.json",
+    "research/reward_to_gcrl/results/0004_result.json",
+    "research/reward_to_gcrl/results/0005_result.json",
+    "research/reward_to_gcrl/results/0006_result.json",
+    "research/reward_to_gcrl/results/0007_result.json",
+    "research/reward_to_gcrl/results/0008_result.json",
+    "research/reward_to_gcrl/results/0009_result.json",
+    "research/reward_to_gcrl/results/0010_result.json",
+    "research/reward_to_gcrl/results/0011_result.json"
+  ],
+  "prior_synthesis_report_present": true,
+  "required_prior_results_present": true,
+  "schema_path": "schemas/result.schema.json",
+  "status": "passed"
+}
