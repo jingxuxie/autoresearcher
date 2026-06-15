@@ -1,11 +1,11 @@
 {
   "best_primary_metric": null,
   "failure_streak": 0,
-  "human_review_required": true,
+  "human_review_required": false,
   "iteration": 12,
   "last_decision": "continue",
   "last_failure": null,
-  "last_pro_review_iteration": 11,
+  "last_pro_review_iteration": 12,
   "last_pro_review_path": "research/reward_to_gcrl/decisions/0013_review2_pro_decision.json",
   "last_summary_iteration": 12,
   "last_summary_path": "research/reward_to_gcrl/progress/0012_pre_pro_the_next_output_is_a_short_paper_draft_with_publishable_claims__it_should_be_reviewed_before_any_external_publication_or_broader_claim_is_made_summary.md",
@@ -45,17 +45,14 @@
     "2026-06-14T23:41:57+00:00: applied Pro decision pivot from research/reward_to_gcrl/decisions/0011_pro_decision.json",
     "2026-06-14T23:56:35+00:00: Pro decision saved for checkpoint local_pivot (research/reward_to_gcrl/decisions/0012_pro_decision.json)",
     "2026-06-14T23:56:37+00:00: applied Pro decision pivot from research/reward_to_gcrl/decisions/0012_pro_decision.json",
-    "2026-06-15T00:24:17+00:00: Pro checkpoint blocked (pro_backend_failed); packet research/reward_to_gcrl/pro_packets/0013_PRO_REVIEW_PACKET.md"
+    "2026-06-15T00:24:17+00:00: Pro checkpoint blocked (pro_backend_failed); packet research/reward_to_gcrl/pro_packets/0013_PRO_REVIEW_PACKET.md",
+    "2026-06-15T00:28:57+00:00: applied Pro decision continue from research/reward_to_gcrl/decisions/0013_review2_pro_decision.json"
   ],
-  "pending_checkpoint": {
-    "iteration_id": "0013_review2",
-    "pro_decision_path": "research/reward_to_gcrl/decisions/0013_review2_pro_decision.json",
-    "status": "pro_decision_ingested"
-  },
-  "pending_local_decision_path": "research/reward_to_gcrl/decisions/0013_decision.json",
+  "pending_checkpoint": null,
+  "pending_local_decision_path": null,
   "primary_metric": null,
-  "pro_review_count": 11,
+  "pro_review_count": 12,
   "protected_file_drift": false,
-  "status": "paused",
+  "status": "active",
   "weak_pass_streak": 0
 }
