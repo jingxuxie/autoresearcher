@@ -9,4 +9,7 @@ Current focus:
 3. Frozen RMSProp: estimating the second-moment preconditioner from gradients and then freezing it.
 4. Fully online Adam/RMSProp and AdamW.
 
-See [`notes/damped_spectral_preconditioning.md`](notes/damped_spectral_preconditioning.md) for the current theorem and proof draft.
+Current proof notes:
+
+- [`notes/damped_spectral_preconditioning.md`](notes/damped_spectral_preconditioning.md): oracle damped spectral preconditioning and the two-slope learned-dimension law.
+- [`notes/frozen_rmsprop_preconditioning.md`](notes/frozen_rmsprop_preconditioning.md): frozen RMSProp theorem showing that robust second-moment burn-in estimates recover the Adam/RMSProp-like \(q=1/2\) damped preconditioner.
