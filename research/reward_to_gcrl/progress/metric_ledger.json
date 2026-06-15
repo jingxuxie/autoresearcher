@@ -352,6 +352,34 @@
       ],
       "review_verdict": "pass",
       "status": "completed"
+    },
+    {
+      "allows_auto_continue": true,
+      "claim_tested": "Package existing 0001-0011 evidence into a concise memo and define a formal gate for future auxiliary-goal experiments without running new learning compute.",
+      "decision": null,
+      "important_metrics": {
+        "metrics.numeric_evidence.auxiliary_negative_evidence.0009_combined_reward_success_rate": 0.0,
+        "metrics.numeric_evidence.auxiliary_negative_evidence.0009_terminal_reward_success_rate": 0.5384615384615384,
+        "metrics.numeric_evidence.estimator_evidence.0002_cliffwalking_exact_scaled_error": 9.711982329463353e-10,
+        "metrics.numeric_evidence.estimator_evidence.0008_min_goal_success_rate": 1.0
+      },
+      "iteration": "0012",
+      "negative_signals": [
+        "rank4_lowrank_fourrooms_auxiliary_benefit_contradicted",
+        "neural_larger_environment_online_claims_not_tested",
+        "This iteration is packaging and synthesis only; it should not be treated as new empirical evidence.",
+        "Auto-continuation should proceed only toward a short write-up using existing evidence, not toward new auxiliary compute without the stated gate.",
+        "All positive estimator claims remain limited to small CPU tabular or CPU NumPy settings with audited reward normalization and terminal masks."
+      ],
+      "positive_signals": [
+        "Existing evidence is mature enough for a scoped short write-up.",
+        "Soft terminal marginalization claims must remain small-tabular and coverage-qualified.",
+        "Rank-4 low-rank auxiliary FourRooms benefit is contradicted by 0009 and 0010.",
+        "Future auxiliary work requires a new falsifiable hypothesis before compute.",
+        "Current evidence is ready for a scoped write-up: positive small-tabular soft terminal marginalization, negative rank-4 low-rank FourRooms auxiliary result, and a formal gate before any more auxiliary compute."
+      ],
+      "review_verdict": "pass",
+      "status": "completed"
     }
   ],
   "project": "reward_to_gcrl"

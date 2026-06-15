@@ -13,6 +13,7 @@
 | 0009 | completed | weak_pass | continue | `metrics.config.improvement_threshold`=0.1<br>`metrics.config.replay_behavior.uses_exact_q_or_dp`=False<br>`metrics.exact_dp.gamma`=0.95<br>`metrics.exact_dp.goal_iterations`=14<br>`metrics.exact_dp.gplus_iterations`=14 |
 | 0010 | completed | weak_pass | None | `metrics.config.improvement_threshold`=0.1<br>`metrics.config.replay_behavior.uses_exact_q_or_dp`=False<br>`metrics.environment_audit.verified_against_0009_where_available.aggregate.mean_combined_goal_success_rate`=0.003717948717948718<br>`metrics.environment_audit.verified_against_0009_where_available.aggregate.mean_combined_reward_success_rate`=0.0<br>`metrics.environment_audit.verified_against_0009_where_available.aggregate.mean_terminal_reward_success_rate`=0.5384615384615384 |
 | 0011 | completed | pass | None | _None extracted_ |
+| 0012 | completed | pass | None | `metrics.numeric_evidence.auxiliary_negative_evidence.0009_combined_reward_success_rate`=0.0<br>`metrics.numeric_evidence.auxiliary_negative_evidence.0009_terminal_reward_success_rate`=0.5384615384615384<br>`metrics.numeric_evidence.estimator_evidence.0002_cliffwalking_exact_scaled_error`=9.711982329463353e-10<br>`metrics.numeric_evidence.estimator_evidence.0008_min_goal_success_rate`=1.0 |
 
 ## Positive Signals
 
@@ -48,6 +49,9 @@
 - `0011`: Soft terminal marginalization has supported small-tabular estimator/equivalence evidence.
 - `0011`: Low-rank rank-4 FourRooms auxiliary training is unsupported after reproduction and repair diagnostics.
 - `0011`: The evidence supports soft terminal marginalization as a small-tabular estimator/equivalence mechanism with coverage-qualified RiverSwim learning advantages. It does not support low-rank shared real-state auxiliary goals for the tested FourRooms setup; pause t
+- `0012`: Existing evidence is mature enough for a scoped short write-up.
+- `0012`: Soft terminal marginalization claims must remain small-tabular and coverage-qualified.
+- `0012`: Rank-4 low-rank auxiliary FourRooms benefit is contradicted by 0009 and 0010.
 
 ## Negative Signals
 
@@ -84,3 +88,6 @@
 - `0011`: RiverSwim learning advantages are coverage-qualified; starved runs are not learning-superiority evidence.
 - `0011`: Independent tabular real-state goals are a correctness sanity check, not an auxiliary reward-improvement result.
 - `0011`: lowrank_auxiliary_gplus_benefit_unsupported_for_tested_rank4_fourrooms_setup
+- `0012`: rank4_lowrank_fourrooms_auxiliary_benefit_contradicted
+- `0012`: neural_larger_environment_online_claims_not_tested
+- `0012`: This iteration is packaging and synthesis only; it should not be treated as new empirical evidence.
