@@ -1,0 +1,147 @@
+{
+  "claims": [
+    {
+      "claim": "Soft terminal marginalization removes terminal-sampling variance in audited small tabular settings.",
+      "claim_id": "C1",
+      "evidence_iterations": [
+        "0001",
+        "0003",
+        "0005",
+        "0006",
+        "0007",
+        "0011",
+        "0012"
+      ],
+      "limitations": [
+        "Tabular or CPU NumPy only; matched-stream and controlled behavior settings."
+      ],
+      "numeric_evidence": [
+        "0001 max soft target variance 0",
+        "0001 max sampled target variance 0.0904013",
+        "sampled_variance_exceeds_soft_rate is 1 in 0003/0005/0006/0007"
+      ],
+      "status": "supported"
+    },
+    {
+      "claim": "Soft g_plus fixed points preserve normalized-Q scaling under audited reward normalization and terminal masks.",
+      "claim_id": "C2",
+      "evidence_iterations": [
+        "0001",
+        "0002",
+        "0008",
+        "0011",
+        "0012"
+      ],
+      "limitations": [
+        "Reward normalization must be explicit; CliffWalking raw returns remain diagnostic."
+      ],
+      "numeric_evidence": [
+        "0001 finite-MDP scaled error 3.94752e-08",
+        "0002 CliffWalking scaled error 9.71198e-10",
+        "0008 FourRooms scaled error 1.11022e-16"
+      ],
+      "status": "supported"
+    },
+    {
+      "claim": "Soft updates can improve learning metrics when coverage is adequate.",
+      "claim_id": "C3",
+      "evidence_iterations": [
+        "0004",
+        "0005",
+        "0006",
+        "0007",
+        "0011",
+        "0012"
+      ],
+      "limitations": [
+        "Coverage-starved RiverSwim runs are not learning-superiority evidence."
+      ],
+      "numeric_evidence": [
+        "0007 adequate value-error delta -0.0614823",
+        "0007 adequate Bellman-residual delta -0.00535871",
+        "0007 starved value-error delta 0.0401128"
+      ],
+      "status": "partially_supported"
+    },
+    {
+      "claim": "Independent tabular vector SSM real-state goals are correct and non-interfering.",
+      "claim_id": "C4",
+      "evidence_iterations": [
+        "0008",
+        "0011",
+        "0012"
+      ],
+      "limitations": [
+        "This is correctness evidence, not shared-representation reward improvement."
+      ],
+      "numeric_evidence": [
+        "0008 vector g_plus minus terminal-only 0",
+        "0008 min goal success rate 1"
+      ],
+      "status": "supported"
+    },
+    {
+      "claim": "The tested rank-4 low-rank FourRooms real-state auxiliary approach improves g_plus.",
+      "claim_id": "C5",
+      "evidence_iterations": [
+        "0009",
+        "0010",
+        "0011",
+        "0012"
+      ],
+      "limitations": [
+        "Negative evidence is limited to rank 4, optimizer, replay, gamma, and repair variants tested."
+      ],
+      "numeric_evidence": [
+        "0009 terminal-only value error 0.0731219",
+        "0009 combined value error 16.8939",
+        "0010 loss-balanced value error 7.37704",
+        "0010 staged value error 18.5798"
+      ],
+      "status": "contradicted"
+    },
+    {
+      "claim": "Auxiliary goals are generally impossible or harmful.",
+      "claim_id": "C6",
+      "evidence_iterations": [
+        "0009",
+        "0010",
+        "0011",
+        "0012"
+      ],
+      "limitations": [
+        "A new principled architecture or loss hypothesis could still be tested after review."
+      ],
+      "numeric_evidence": [
+        "Only one tiny rank-4 shared low-rank setup was tested."
+      ],
+      "status": "unsupported"
+    },
+    {
+      "claim": "Neural, large-environment, benchmark, or online-exploration generality follows.",
+      "claim_id": "C7",
+      "evidence_iterations": [
+        "0001",
+        "0002",
+        "0003",
+        "0004",
+        "0005",
+        "0006",
+        "0007",
+        "0008",
+        "0009",
+        "0010",
+        "0011",
+        "0012"
+      ],
+      "limitations": [
+        "Must not appear in external claims without new reviewed evidence."
+      ],
+      "numeric_evidence": [
+        "No neural, GPU, large-environment, benchmark, or broad online robustness experiment exists."
+      ],
+      "status": "not_tested"
+    }
+  ],
+  "experiment_id": "0013"
+}

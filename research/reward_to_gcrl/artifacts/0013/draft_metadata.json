@@ -1,0 +1,19 @@
+{
+  "claim_ids": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5",
+    "C6",
+    "C7"
+  ],
+  "draft_status": "internal_review_required",
+  "experiment_id": "0013",
+  "external_use_requires_review": true,
+  "new_learning_compute_run": false,
+  "scaffold_reports": [
+    "research/reward_to_gcrl/reports/0011_evidence_synthesis.md",
+    "research/reward_to_gcrl/reports/0012_writeup_outline.md"
+  ]
+}

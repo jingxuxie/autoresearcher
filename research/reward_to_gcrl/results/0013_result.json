@@ -1,0 +1,123 @@
+{
+  "artifacts": [
+    "research/reward_to_gcrl/reports/0013_short_paper_draft.md",
+    "research/reward_to_gcrl/artifacts/0013/build_short_paper_draft.py",
+    "research/reward_to_gcrl/artifacts/0013/local_compatibility_check.json",
+    "research/reward_to_gcrl/artifacts/0013/claim_to_evidence_map.json",
+    "research/reward_to_gcrl/artifacts/0013/draft_metadata.json",
+    "research/reward_to_gcrl/artifacts/0013/progress.jsonl"
+  ],
+  "baseline_metrics": {
+    "new_baseline_run": false,
+    "reason": "Draft-only iteration; all evidence and comparisons come from completed iterations 0001-0012."
+  },
+  "claim_tested": "Existing 0001-0012 evidence is sufficient for an internal short-paper draft with scoped positive estimator claims and scoped negative low-rank auxiliary evidence.",
+  "commands_run": [
+    "mkdir -p research/reward_to_gcrl/artifacts/0013 research/reward_to_gcrl/results research/reward_to_gcrl/reports && date -u -Iseconds",
+    "conda run -n autoresearcher_reward_to_gcrl python --version",
+    "ls -l research/reward_to_gcrl/reports/0011_evidence_synthesis.md research/reward_to_gcrl/reports/0012_writeup_outline.md schemas/result.schema.json scripts/validate_artifacts.py",
+    "rg --files research/reward_to_gcrl/results | sort | rg '00(0[1-9]|1[0-3])_result\\.json|001[0-3]_result\\.json|00(0[1-9]|1[0-3])_summary\\.md|001[0-3]_summary\\.md'",
+    "jq '{status, recommendation:.metrics.final_recommendation, gate:.metrics.auxiliary_thread_gate, new_learning_compute_run:.metrics.new_learning_compute_run}' research/reward_to_gcrl/results/0012_result.json",
+    "sed -n '1,260p' research/reward_to_gcrl/reports/0012_writeup_outline.md",
+    "sed -n '1,260p' research/reward_to_gcrl/reports/0011_evidence_synthesis.md",
+    "jq '.metrics.numeric_evidence, .metrics.red_line_claims, .metrics.final_recommendation' research/reward_to_gcrl/results/0012_result.json",
+    "jq '.metrics.lowrank_auxiliary.aggregate, .metric_deltas' research/reward_to_gcrl/results/0010_result.json",
+    "conda run -n autoresearcher_reward_to_gcrl python -m py_compile research/reward_to_gcrl/artifacts/0013/build_short_paper_draft.py",
+    "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0013/build_short_paper_draft.py --check-only",
+    "conda run -n autoresearcher_reward_to_gcrl python research/reward_to_gcrl/artifacts/0013/build_short_paper_draft.py",
+    "conda run -n autoresearcher_reward_to_gcrl python -m jsonschema -i research/reward_to_gcrl/results/0013_result.json schemas/result.schema.json",
+    "conda run -n autoresearcher_reward_to_gcrl python scripts/validate_artifacts.py --repo-root . --json research/reward_to_gcrl/results/0013_result.json --schema schemas/result.schema.json --check-result-artifacts"
+  ],
+  "decision_relevant_findings": [
+    "The short-paper draft is ready for internal review only.",
+    "Soft terminal marginalization evidence is positive but small-tabular and coverage-qualified.",
+    "Rank-4 low-rank FourRooms auxiliary evidence is negative and should not be generalized beyond the tested setup.",
+    "The draft contains a red-line section and review checklist before external use."
+  ],
+  "experiment_id": "0013",
+  "failure_criteria_results": [
+    "NOT_TRIGGERED: draft does not propose or run new experiments.",
+    "NOT_TRIGGERED: draft does not claim general reward-to-GCRL success.",
+    "NOT_TRIGGERED: draft does not claim auxiliary-goal benefit.",
+    "NOT_TRIGGERED: draft does not claim auxiliary goals are generally impossible or harmful.",
+    "NOT_TRIGGERED: RiverSwim coverage caveats and matched-stream limitations are included.",
+    "NOT_TRIGGERED: negative auxiliary evidence is explicit.",
+    "NOT_TRIGGERED: draft is explicitly framed as requiring review before external use."
+  ],
+  "interpretation": "An internal short-paper draft now exists, but it is not externally publishable without review. The draft preserves the scoped positive estimator claim and the scoped negative low-rank auxiliary result.",
+  "known_failures": [
+    "rank4_lowrank_fourrooms_auxiliary_benefit_contradicted",
+    "neural_large_environment_online_generality_not_tested",
+    "external_publication_not_yet_reviewed"
+  ],
+  "metric_deltas": {
+    "claim_status_counts": {
+      "contradicted": 1,
+      "not_tested": 1,
+      "partially_supported": 1,
+      "supported": 3,
+      "unsupported": 1
+    },
+    "draft_status": "internal_review_required",
+    "external_use_requires_review": true,
+    "new_learning_compute_run": false
+  },
+  "metrics": {
+    "claim_status_counts": {
+      "contradicted": 1,
+      "not_tested": 1,
+      "partially_supported": 1,
+      "supported": 3,
+      "unsupported": 1
+    },
+    "contains_prepublication_checklist": true,
+    "contains_red_lines": true,
+    "draft_status": "internal_review_required",
+    "external_use_requires_review": true,
+    "inspected_evidence_files": [
+      "research/reward_to_gcrl/results/0001_result.json",
+      "research/reward_to_gcrl/results/0002_result.json",
+      "research/reward_to_gcrl/results/0003_result.json",
+      "research/reward_to_gcrl/results/0004_result.json",
+      "research/reward_to_gcrl/results/0005_result.json",
+      "research/reward_to_gcrl/results/0006_result.json",
+      "research/reward_to_gcrl/results/0007_result.json",
+      "research/reward_to_gcrl/results/0008_result.json",
+      "research/reward_to_gcrl/results/0009_result.json",
+      "research/reward_to_gcrl/results/0010_result.json",
+      "research/reward_to_gcrl/results/0011_result.json",
+      "research/reward_to_gcrl/results/0012_result.json",
+      "research/reward_to_gcrl/reports/0011_evidence_synthesis.md",
+      "research/reward_to_gcrl/reports/0012_writeup_outline.md"
+    ],
+    "main_claim_count": 7,
+    "new_learning_compute_run": false,
+    "report_only": true,
+    "separates_estimator_vector_and_auxiliary_sections": true,
+    "strongest_auxiliary_claim": "The tested rank-4 low-rank FourRooms real-state auxiliary approach is unsupported and showed negative transfer.",
+    "strongest_positive_claim": "Soft terminal marginalization is useful for small audited tabular variance reduction and normalized-Q equivalence, with adequate-coverage learning improvements."
+  },
+  "next_questions": [
+    "Who will perform the pre-publication review against the checklist?",
+    "Should a separate negative-result note be prepared for 0009 and 0010 details?"
+  ],
+  "resource_usage": {
+    "cpu_only": true,
+    "dependencies_added": [],
+    "gpu_used": false,
+    "new_learning_compute_run": false,
+    "new_training_runs": 0
+  },
+  "runtime_seconds": 0.00448351600789465,
+  "status": "completed",
+  "success_criteria_results": [
+    "PASS: no new learning compute was run.",
+    "PASS: draft separates estimator claims, vector-SSM correctness, and auxiliary-goal negative evidence.",
+    "PASS: main claims link to specific existing iterations from 0001 through 0012.",
+    "PASS: strongest positive claim is limited to small audited tabular or CPU NumPy settings, normalized-Q scaling, variance reduction, and adequate coverage.",
+    "PASS: auxiliary result is limited to the tested rank-4 low-rank FourRooms architecture, optimizer, replay setup, gamma, and repair variants.",
+    "PASS: limitations include coverage dependence, matched-stream tests, tiny environments, tabular scope, uniform reset replay, and lack of neural or large-environment evidence.",
+    "PASS: unsupported-claims red lines are included.",
+    "PASS: pre-publication review checklist is included."
+  ]
+}
