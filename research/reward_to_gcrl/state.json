@@ -1,12 +1,12 @@
 {
   "best_primary_metric": null,
-  "failure_streak": 2,
-  "human_review_required": false,
+  "failure_streak": 3,
+  "human_review_required": true,
   "iteration": 12,
   "last_decision": "retryable_failure",
   "last_failure": {
-    "at": "2026-06-15T00:38:09+00:00",
-    "attempt": 2,
+    "at": "2026-06-15T00:38:39+00:00",
+    "attempt": 3,
     "max_attempts": 3,
     "note": "reviewer verdict pass"
   },
@@ -53,13 +53,14 @@
     "2026-06-15T00:24:17+00:00: Pro checkpoint blocked (pro_backend_failed); packet research/reward_to_gcrl/pro_packets/0013_PRO_REVIEW_PACKET.md",
     "2026-06-15T00:28:57+00:00: applied Pro decision continue from research/reward_to_gcrl/decisions/0013_review2_pro_decision.json",
     "2026-06-15T00:37:27+00:00: retryable failure 1/3: reviewer verdict pass",
-    "2026-06-15T00:38:09+00:00: retryable failure 2/3: reviewer verdict pass"
+    "2026-06-15T00:38:09+00:00: retryable failure 2/3: reviewer verdict pass",
+    "2026-06-15T00:38:39+00:00: retry limit reached after 3/3 failures: reviewer verdict pass"
   ],
   "pending_checkpoint": null,
   "pending_local_decision_path": null,
   "primary_metric": null,
   "pro_review_count": 12,
   "protected_file_drift": false,
-  "status": "active",
+  "status": "paused",
   "weak_pass_streak": 0
 }
