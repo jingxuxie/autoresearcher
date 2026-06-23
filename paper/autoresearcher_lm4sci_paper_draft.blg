@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: autoresearcher_lm4sci_paper_draft.aux
+The style file: colm2026_conference.bst
+Database file #1: autoresearcher_lm4sci_references.bib
+You've used 6 entries,
+            2773 wiz_defined-function locations,
+            620 strings with 6413 characters,
+and the built_in function-call counts, 3555 in all, are:
+= -- 268
+> -- 369
+< -- 1
++ -- 123
+- -- 117
+* -- 328
+:= -- 577
+add.period$ -- 18
+call.type$ -- 6
+change.case$ -- 57
+chr.to.int$ -- 6
+cite$ -- 12
+duplicate$ -- 95
+empty$ -- 198
+format.name$ -- 125
+if$ -- 707
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 0
+newline$ -- 38
+num.names$ -- 24
+pop$ -- 131
+preamble$ -- 1
+purify$ -- 51
+quote$ -- 0
+skip$ -- 120
+stack$ -- 0
+substring$ -- 12
+swap$ -- 6
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 66
+warning$ -- 0
+while$ -- 18
+width$ -- 0
+write$ -- 79

@@ -1,0 +1,54 @@
+\begin{thebibliography}{6}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Ghafarollahi \& Buehler(2024)Ghafarollahi and
+  Buehler]{ghafarollahi2024sciagents}
+Alireza Ghafarollahi and Markus~J. Buehler.
+\newblock {SciAgents}: Automating scientific discovery through multi-agent
+  intelligent graph reasoning, 2024.
+\newblock URL \url{https://arxiv.org/abs/2409.05556}.
+
+\bibitem[Ghareeb et~al.(2025)Ghareeb, Chang, Mitchener, Yiu, Szostkiewicz,
+  Laurent, Razzak, White, Hinks, and Rodriques]{ghareeb2025robin}
+Ali~Essam Ghareeb, Benjamin Chang, Ludovico Mitchener, Angela Yiu, Caralyn~J.
+  Szostkiewicz, Jon~M. Laurent, Muhammed~T. Razzak, Andrew~D. White,
+  Michaela~M. Hinks, and Samuel~G. Rodriques.
+\newblock {Robin}: A multi-agent system for automating scientific discovery,
+  2025.
+\newblock URL \url{https://arxiv.org/abs/2505.13400}.
+
+\bibitem[Huang et~al.(2023)Huang, Vora, Liang, and
+  Leskovec]{huang2023mlagentbench}
+Qian Huang, Jian Vora, Percy Liang, and Jure Leskovec.
+\newblock {MLAgentBench}: Evaluating language agents on machine learning
+  experimentation, 2023.
+\newblock URL \url{https://arxiv.org/abs/2310.03302}.
+
+\bibitem[Lu et~al.(2024)Lu, Lu, Lange, Foerster, Clune, and
+  Ha]{lu2024aiscientist}
+Chris Lu, Cong Lu, Robert~Tjarko Lange, Jakob Foerster, Jeff Clune, and David
+  Ha.
+\newblock {The AI Scientist}: Towards fully automated open-ended scientific
+  discovery, 2024.
+\newblock URL \url{https://arxiv.org/abs/2408.06292}.
+
+\bibitem[Schmidgall et~al.(2025)Schmidgall, Su, Wang, Sun, Wu, Yu, Liu, Liu,
+  and Barsoum]{schmidgall2025agentlab}
+Samuel Schmidgall, Yusheng Su, Ze~Wang, Ximeng Sun, Jialian Wu, Xiaodong Yu,
+  Jiang Liu, Zicheng Liu, and Emad Barsoum.
+\newblock {Agent Laboratory}: Using llm agents as research assistants, 2025.
+\newblock URL \url{https://arxiv.org/abs/2501.04227}.
+
+\bibitem[Yamada et~al.(2025)Yamada, Lange, Lu, Hu, Lu, Foerster, Clune, and
+  Ha]{yamada2025aiscientistv2}
+Yutaro Yamada, Robert~Tjarko Lange, Cong Lu, Shengran Hu, Chris Lu, Jakob
+  Foerster, Jeff Clune, and David Ha.
+\newblock {The AI Scientist-v2}: Workshop-level automated scientific discovery
+  via agentic tree search, 2025.
+\newblock URL \url{https://arxiv.org/abs/2504.08066}.
+
+\end{thebibliography}
