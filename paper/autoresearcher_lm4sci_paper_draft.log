@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.6.16)  28 JUN 2026 20:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.6.16)  28 JUN 2026 20:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -524,11 +524,21 @@ File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 Underfull \vbox (badness 2762) has occurred while \output is active []
 
  [2]
-[3]
-Underfull \vbox (badness 7777) has occurred while \output is active []
+<figure/figure 1.png, id=193, 1496.59125pt x 1058.95625pt>
+File: figure/figure 1.png Graphic file (type png)
+<use figure/figure 1.png>
+Package pdftex.def Info: figure/figure 1.png  used on input line 83.
+(pdftex.def)             Requested size: 397.48499pt x 281.25224pt.
 
- [4]
-[5] [6]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3 <./figure/figure 1.png (PNG copy)>] [4] [5]
+<figure/figure 2.png, id=215, 1678.27pt x 944.52875pt>
+File: figure/figure 2.png Graphic file (type png)
+<use figure/figure 2.png>
+Package pdftex.def Info: figure/figure 2.png  used on input line 155.
+(pdftex.def)             Requested size: 397.48499pt x 223.69376pt.
+ [6 <./figure/figure 2.png (PNG copy)>]
 Underfull \hbox (badness 1259) in paragraph at lines 191--191
 []|\OT1/ppl/m/n/9 (+20) Positive di-ag-nos-
  []
@@ -573,11 +583,7 @@ Underfull \hbox (badness 2894) in paragraph at lines 194--195
 []|\OT1/ppl/m/n/9 (+20) Independent tab-u-lar goal
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [7]
-(./autoresearcher_lm4sci_paper_draft.bbl
+[7] (./autoresearcher_lm4sci_paper_draft.bbl
 LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 1
 3.
 
@@ -589,47 +595,47 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
  [8]) [9]
-Underfull \hbox (badness 1924) in paragraph at lines 247--248
+Underfull \hbox (badness 1924) in paragraph at lines 244--245
 []|\OT1/ppl/m/n/9 (+20) Raw op-ti-mism con-firmed; log-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 248--248
+Underfull \hbox (badness 10000) in paragraph at lines 245--245
 []|\OT1/ppl/m/n/9 (+20) Successor-
  []
 
 
-Underfull \hbox (badness 1622) in paragraph at lines 248--248
+Underfull \hbox (badness 1622) in paragraph at lines 245--245
 []|\OT1/ppl/m/n/9 (+20) Whether successor-distance vari-
  []
 
 
-Underfull \hbox (badness 4940) in paragraph at lines 248--249
+Underfull \hbox (badness 4940) in paragraph at lines 245--246
 []|\OT1/ppl/m/n/9 (+20) Negative: im-prov-ing vari-ants
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 249--249
+Underfull \hbox (badness 10000) in paragraph at lines 246--246
 []|\OT1/ppl/m/n/9 (+20) Uncertainty
  []
 
 
-Overfull \hbox (1.86209pt too wide) in paragraph at lines 250--250
+Overfull \hbox (1.86209pt too wide) in paragraph at lines 247--247
 []|\OT1/ppl/m/n/9 (-20) Posterior/model
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 250--250
+Underfull \hbox (badness 10000) in paragraph at lines 247--247
 []|\OT1/ppl/m/n/9 (+20) Posterior-transitive vari-ants vs.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 251--251
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
 []|\OT1/ppl/m/n/9 (+20) Partial ob-serv-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 252--252
+Underfull \hbox (badness 10000) in paragraph at lines 249--249
 []|\OT1/ppl/m/n/9 (+20) Final check-
  []
 
@@ -637,27 +643,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 252--252
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [10]
-Underfull \hbox (badness 10000) in paragraph at lines 274--275
+Underfull \hbox (badness 10000) in paragraph at lines 271--272
 []\OT1/ppl/m/n/10 (+20) Required de-ci-sion fields in-clude \OT1/pcr/m/n/10 dec
 ision\OT1/ppl/m/n/10 (+20) , \OT1/pcr/m/n/10 confidence\OT1/ppl/m/n/10 (+20) , 
 \OT1/pcr/m/n/10 progress[]score\OT1/ppl/m/n/10 (+20) ,
  []
 
 
-Overfull \hbox (12.31502pt too wide) in paragraph at lines 284--284
+Overfull \hbox (12.31502pt too wide) in paragraph at lines 281--281
 []\OT1/pcr/m/n/10 If the plan is impossible, write a failed result JSON explain
 ing why.[] 
  []
 
 
-Underfull \hbox (badness 3000) in paragraph at lines 288--289
+Underfull \hbox (badness 3000) in paragraph at lines 285--286
 []\OT1/ppl/m/n/10 (+20) The re-sult schema re-quires fields for \OT1/pcr/m/n/10
  experiment[]id\OT1/ppl/m/n/10 (+20) , \OT1/pcr/m/n/10 status\OT1/ppl/m/n/10 (+
 20) , \OT1/pcr/m/n/10 claim[]tested\OT1/ppl/m/n/10 (+20) ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 288--289
+Underfull \hbox (badness 10000) in paragraph at lines 285--286
 \OT1/pcr/m/n/10 commands[]run\OT1/ppl/m/n/10 (+20) , \OT1/pcr/m/n/10 metrics\OT
 1/ppl/m/n/10 (+20) , \OT1/pcr/m/n/10 baseline[]metrics\OT1/ppl/m/n/10 (+20) , \
 OT1/pcr/m/n/10 artifacts\OT1/ppl/m/n/10 (+20) , \OT1/pcr/m/n/10 interpretation\
@@ -665,63 +671,63 @@ OT1/ppl/m/n/10 (+20) ,
  []
 
 
-Overfull \hbox (19.51501pt too wide) in paragraph at lines 295--295
+Overfull \hbox (19.51501pt too wide) in paragraph at lines 292--292
 []\OT1/pcr/m/n/10 baseline fairness, success criteria, failure criteria, cherry
 -picking,[] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 300--301
+Underfull \hbox (badness 10000) in paragraph at lines 297--298
 []\OT1/ppl/m/n/10 (+20) The re-view schema re-quires \OT1/pcr/m/n/10 verdict\OT
 1/ppl/m/n/10 (+20) , \OT1/pcr/m/n/10 allows[]auto[]continue\OT1/ppl/m/n/10 (+20
 ) , \OT1/pcr/m/n/10 reasons\OT1/ppl/m/n/10 (+20) ,
  []
 
 
-Underfull \hbox (badness 2269) in paragraph at lines 300--301
+Underfull \hbox (badness 2269) in paragraph at lines 297--298
 \OT1/pcr/m/n/10 evidence[]checked\OT1/ppl/m/n/10 (+20) , \OT1/pcr/m/n/10 requir
 ed[]fixes\OT1/ppl/m/n/10 (+20) , and \OT1/pcr/m/n/10 risk[]flags\OT1/ppl/m/n/10
  (+20) . This makes re-viewer
  []
 
 [11]
-Overfull \hbox (4.51501pt too wide) in paragraph at lines 320--320
+Overfull \hbox (4.51501pt too wide) in paragraph at lines 317--317
 []\OT1/pcr/m/n/10 Be skeptical. Reward evidence, not activity. If continuing, p
 ropose[] 
  []
 
 
-Overfull \hbox (19.21501pt too wide) in paragraph at lines 339--339
+Overfull \hbox (19.21501pt too wide) in paragraph at lines 336--336
 []\OT1/pcr/m/n/10 Training the artificial success-goal head with expected termi
 nal mass,[] 
  []
 
 
-Overfull \hbox (13.51501pt too wide) in paragraph at lines 340--340
+Overfull \hbox (13.51501pt too wide) in paragraph at lines 337--337
 []  \OT1/pcr/m/n/10 y(s,a,g+) = (1-gamma) r_bar(s,a) + gamma max_a' M_target(s'
 ,a',g+),[] 
  []
 
 
-Overfull \hbox (20.41501pt too wide) in paragraph at lines 350--350
+Overfull \hbox (20.41501pt too wide) in paragraph at lines 347--347
 []\OT1/pcr/m/n/10 Target mean/variance; number of sampled g+ events per 10k tra
 nsitions;[] 
  []
 
 
-Overfull \hbox (34.51501pt too wide) in paragraph at lines 355--355
+Overfull \hbox (34.51501pt too wide) in paragraph at lines 352--352
 []\OT1/pcr/m/n/10 Pause if terminal-only soft successor learning fails to match
  normalized[] 
  []
 
 
-Overfull \hbox (28.51501pt too wide) in paragraph at lines 356--356
+Overfull \hbox (28.51501pt too wide) in paragraph at lines 353--353
 []\OT1/pcr/m/n/10 Q-learning, if reward normalization is ambiguous, if terminal
  masks are[] 
  []
 
 
-Overfull \hbox (16.21501pt too wide) in paragraph at lines 357--357
+Overfull \hbox (16.21501pt too wide) in paragraph at lines 354--354
 []\OT1/pcr/m/n/10 wrong, if only training loss is reported, or if larger benchm
 arks are[] 
  []
@@ -732,13 +738,13 @@ ot changed.
 (rerunfilecheck)             Checksum: E9FC93E2186CA1FA7C13B8427E42FA3F;5946.
  ) 
 Here is how much of TeX's memory you used:
- 13417 strings out of 480247
- 210516 string characters out of 5896151
- 547521 words of memory out of 5000000
- 30795 multiletter control sequences out of 15000+600000
- 507078 words of font info for 275 fonts, out of 8000000 for 9000
+ 13407 strings out of 480247
+ 210654 string characters out of 5896151
+ 547520 words of memory out of 5000000
+ 30807 multiletter control sequences out of 15000+600000
+ 504766 words of font info for 257 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 70i,11n,76p,1393b,479s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 70i,11n,76p,1393b,471s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/f
@@ -747,11 +753,11 @@ ype1/public/mathpazo/fplmri.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
 courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplb
 8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on autoresearcher_lm4sci_paper_draft.pdf (12 pages, 157558 bytes
-).
+Output written on autoresearcher_lm4sci_paper_draft.pdf (12 pages, 2365783 byte
+s).
 PDF statistics:
- 339 PDF objects out of 1000 (max. 8388607)
- 305 compressed objects within 4 object streams
- 68 named destinations out of 1000 (max. 500000)
- 52953 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 340 PDF objects out of 1000 (max. 8388607)
+ 304 compressed objects within 4 object streams
+ 67 named destinations out of 1000 (max. 500000)
+ 48867 words of extra memory for PDF output out of 51595 (max. 10000000)
 

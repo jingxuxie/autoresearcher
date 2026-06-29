@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex autoresearcher_lm4sci_paper_draft"] 1782703641 "autoresearcher_lm4sci_paper_draft.aux" "autoresearcher_lm4sci_paper_draft.bbl" "autoresearcher_lm4sci_paper_draft" 1782703642
+["bibtex autoresearcher_lm4sci_paper_draft"] 1782705256 "autoresearcher_lm4sci_paper_draft.aux" "autoresearcher_lm4sci_paper_draft.bbl" "autoresearcher_lm4sci_paper_draft" 1782705257
   "./colm2026_conference.bst" 1765212413 26973 af983813ca1a1414954dbceae7baa2a1 ""
-  "autoresearcher_lm4sci_paper_draft.aux" 1782703642 9127 f00ecd6098add7a8ed911fd7ca5c5389 "pdflatex"
+  "autoresearcher_lm4sci_paper_draft.aux" 1782705256 9125 4a7a6437a09aa2d98e57e5196d24dc11 "pdflatex"
   "autoresearcher_lm4sci_references.bib" 1782685765 10283 4c5d4a59cadea0ab640676d31bf91de0 ""
   (generated)
   "autoresearcher_lm4sci_paper_draft.bbl"
   "autoresearcher_lm4sci_paper_draft.blg"
-["pdflatex"] 1782703641 "autoresearcher_lm4sci_paper_draft.tex" "autoresearcher_lm4sci_paper_draft.pdf" "autoresearcher_lm4sci_paper_draft" 1782703642
+["pdflatex"] 1782705256 "autoresearcher_lm4sci_paper_draft.tex" "autoresearcher_lm4sci_paper_draft.pdf" "autoresearcher_lm4sci_paper_draft" 1782705257
   "/etc/texmf/web2c/texmf.cnf" 1781594183 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/eston/.texlive2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1782277064 141747 bb81182562fad7814165f744d82c14e5 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -120,12 +120,14 @@
   "/usr/share/texmf/tex/latex/tex-gyre/tgpagella.sty" 1480098840 2230 fc853fd117e6b73f5d6716214d3abb3c ""
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1781594193 1405651 926d71813ed372f1c85db1604c05ef9a ""
-  "autoresearcher_lm4sci_paper_draft.aux" 1782703642 9127 f00ecd6098add7a8ed911fd7ca5c5389 "pdflatex"
-  "autoresearcher_lm4sci_paper_draft.bbl" 1782703641 6428 3bd58621f1dc24ca80241c5e54f3ea3c "bibtex autoresearcher_lm4sci_paper_draft"
-  "autoresearcher_lm4sci_paper_draft.out" 1782703642 5946 e9fc93e2186ca1fa7c13b8427e42fa3f "pdflatex"
-  "autoresearcher_lm4sci_paper_draft.tex" 1782703640 38642 9948e1985ddd2cfbf4e089ec27345011 ""
+  "autoresearcher_lm4sci_paper_draft.aux" 1782705256 9125 4a7a6437a09aa2d98e57e5196d24dc11 "pdflatex"
+  "autoresearcher_lm4sci_paper_draft.bbl" 1782705256 6428 3bd58621f1dc24ca80241c5e54f3ea3c "bibtex autoresearcher_lm4sci_paper_draft"
+  "autoresearcher_lm4sci_paper_draft.out" 1782705256 5946 e9fc93e2186ca1fa7c13b8427e42fa3f "pdflatex"
+  "autoresearcher_lm4sci_paper_draft.tex" 1782705254 36881 6644770fa9fa4805d7469970a66de58c ""
   "colm2026_conference.sty" 1765212413 7727 238cc72ad95c78fc3c004773db9ec9c5 ""
   "fancyhdr.sty" 1765212413 20521 e5d13d98d57bd53d4fed3aa61bd29c86 ""
+  "figure/figure 1.png" 1782704708 1282283 33f0239a70014eacfbc390e0c2bafeb3 ""
+  "figure/figure 2.png" 1782704796 981961 a37e4c98f70eb8a45bd448e9d941c170 ""
   "inconsolata.sty" 1782197133 115 4bf7e1e62f2bc56fe56a895a06583c91 ""
   "natbib.sty" 1765212413 45154 40088ce024445d7ee2bca59e704cdd01 ""
   (generated)

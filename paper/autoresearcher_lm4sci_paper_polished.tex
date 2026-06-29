@@ -91,7 +91,7 @@ Both case studies involve goal-conditioned reinforcement learning (GCRL), a sett
 
 \begin{figure}[t]
 \centering
-\todofig{\textbf{Placeholder for system diagram.} The final figure should show a repository at the center. On the left, a human scientist writes a charter. Around the repository are role-resumed agents: Supervisor/Planner, Executor, Reviewer, Summarizer, and \gptpro\ checkpoint supervisor. Arrows show the loop: charter/state/ledger $\rightarrow$ supervisor decision and plan $\rightarrow$ executor code/results/artifacts $\rightarrow$ reviewer verdict $\rightarrow$ summarizer and metric ledger $\rightarrow$ checkpoint policy $\rightarrow$ continue/pivot/stop/human review. Deterministic validators and Git commits should be drawn as gates around every transition.}
+\includegraphics[width=\linewidth]{"figure/figure 1.png"}
 \caption{Architecture of the \intern. The repository is the source of truth; agents are workers that read and write structured artifacts under deterministic validation.}
 \label{fig:pipeline}
 \end{figure}
@@ -173,8 +173,8 @@ The two projects are both reinforcement-learning-style computational ideas, but 
 
 \begin{figure}[t]
 \centering
-\todofig{\textbf{Placeholder for case-study timeline.} The final figure should show a horizontal timeline for Soft Reward-to-Goal Conversion. Start with the charter on the left, then show iteration groups: 0001 one-state variance diagnostic; 0002--0004 CliffWalking and chain equivalence repairs; 0005--0007 RiverSwim coverage and propagation; 0008 tabular vector successor-measure FourRooms; 0009 low-rank auxiliary negative transfer; 0010 repair diagnostics; 0011 evidence synthesis; 0012 outline/claim boundaries; 0013 internal short-paper draft. Use green markers for supported estimator evidence, orange for coverage-qualified findings, red for negative auxiliary evidence, and blue diamonds for \gptpro\ checkpoints.}
-\caption{Desired case-study diagram for Soft Reward-to-Goal Conversion. The important story is not a single benchmark number but a sequence of evidence-gated decisions that narrow the supported claim.}
+\includegraphics[width=\linewidth]{"figure/figure 2.png"}
+\caption{Case-study iteration flow for Soft Reward-to-Goal Conversion. The important story is not a single benchmark number but a sequence of evidence-gated decisions that narrow the supported claim.}
 \label{fig:rewardtimeline}
 \end{figure}
 
