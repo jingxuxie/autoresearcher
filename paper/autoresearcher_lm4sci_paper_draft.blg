@@ -3,44 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: autoresearcher_lm4sci_paper_draft.aux
 The style file: colm2026_conference.bst
 Database file #1: autoresearcher_lm4sci_references.bib
-You've used 6 entries,
+You've used 17 entries,
             2773 wiz_defined-function locations,
-            620 strings with 6413 characters,
-and the built_in function-call counts, 3555 in all, are:
-= -- 268
-> -- 369
+            665 strings with 9172 characters,
+and the built_in function-call counts, 10537 in all, are:
+= -- 789
+> -- 1140
 < -- 1
-+ -- 123
-- -- 117
-* -- 328
-:= -- 577
-add.period$ -- 18
-call.type$ -- 6
-change.case$ -- 57
-chr.to.int$ -- 6
-cite$ -- 12
-duplicate$ -- 95
-empty$ -- 198
-format.name$ -- 125
-if$ -- 707
++ -- 380
+- -- 363
+* -- 996
+:= -- 1711
+add.period$ -- 51
+call.type$ -- 17
+change.case$ -- 172
+chr.to.int$ -- 17
+cite$ -- 34
+duplicate$ -- 271
+empty$ -- 561
+format.name$ -- 382
+if$ -- 2094
 int.to.chr$ -- 1
 int.to.str$ -- 1
 missing$ -- 0
-newline$ -- 38
-num.names$ -- 24
-pop$ -- 131
+newline$ -- 93
+num.names$ -- 68
+pop$ -- 394
 preamble$ -- 1
-purify$ -- 51
+purify$ -- 155
 quote$ -- 0
-skip$ -- 120
+skip$ -- 345
 stack$ -- 0
-substring$ -- 12
-swap$ -- 6
+substring$ -- 34
+swap$ -- 17
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 66
+type$ -- 187
 warning$ -- 0
-while$ -- 18
+while$ -- 51
 width$ -- 0
-write$ -- 79
+write$ -- 211

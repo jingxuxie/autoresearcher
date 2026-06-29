@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.6.16)  22 JUN 2026 23:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.6.16)  28 JUN 2026 20:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -358,53 +358,78 @@ Package: lineno 2005/11/02 line numbers on paragraphs v4.41
 \bframebox=\box53
 LaTeX Info: Redefining \\ on input line 3056.
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 13.
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2019/06/20 v3.9 Customized lists
+\labelindent=\skip65
+\enit@outerparindent=\dimen175
+\enit@toks=\toks24
+\enit@inbox=\box54
+\enit@count@id=\count296
+\enitdp@description=\count297
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
+\col@sep=\dimen176
+\ar@mcellbox=\box55
+\extrarowheight=\dimen177
+\NC@list=\toks25
+\extratabsurround=\skip66
+\backup@length=\skip67
+\ar@cellbox=\box56
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2020-07-07 v1.5u LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks26
+\verbatim@line=\toks27
+\verbatim@in@stream=\read2
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 17.
 LaTeX Font Info:    Trying to load font information for OT1+ppl on input line 2
-0.
+8.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ppl.fd
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count296
-\l__pdf_internal_box=\box54
+\l__color_backend_stack_int=\count298
+\l__pdf_internal_box=\box57
 )
 (./autoresearcher_lm4sci_paper_draft.aux)
 \openout1 = `autoresearcher_lm4sci_paper_draft.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count297
-\scratchdimen=\dimen175
-\scratchbox=\box55
-\nofMPsegments=\count298
-\nofMParguments=\count299
-\everyMPshowfont=\toks24
-\MPscratchCnt=\count300
-\MPscratchDim=\dimen176
-\MPnumerator=\count301
-\makeMPintoPDFobject=\count302
-\everyMPtoPDFconversion=\toks25
+\scratchcounter=\count299
+\scratchdimen=\dimen178
+\scratchbox=\box58
+\nofMPsegments=\count300
+\nofMParguments=\count301
+\everyMPshowfont=\toks28
+\MPscratchCnt=\count302
+\MPscratchDim=\dimen179
+\MPnumerator=\count303
+\makeMPintoPDFobject=\count304
+\everyMPtoPDFconversion=\toks29
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -414,18 +439,18 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Info: Redefining \microtypecontext on input line 20.
-Package microtype Info: Applying patch `item' on input line 20.
-Package microtype Info: Applying patch `toc' on input line 20.
-Package microtype Info: Applying patch `eqnum' on input line 20.
-Package microtype Info: Applying patch `footnote' on input line 20.
+LaTeX Info: Redefining \microtypecontext on input line 28.
+Package microtype Info: Applying patch `item' on input line 28.
+Package microtype Info: Applying patch `toc' on input line 28.
+Package microtype Info: Applying patch `eqnum' on input line 28.
+Package microtype Info: Applying patch `footnote' on input line 28.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 20.
+LaTeX Info: Redefining \showhyphens on input line 28.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -433,7 +458,7 @@ Package microtype Info: No adjustment of character kerning.
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ppl.cfg
 File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 )
-Package hyperref Info: Link coloring ON on input line 20.
+Package hyperref Info: Link coloring ON on input line 28.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -444,11 +469,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count303
+\c@section@level=\count305
 )
-LaTeX Info: Redefining \ref on input line 20.
-LaTeX Info: Redefining \pageref on input line 20.
-LaTeX Info: Redefining \nameref on input line 20.
+LaTeX Info: Redefining \ref on input line 28.
+LaTeX Info: Redefining \pageref on input line 28.
+LaTeX Info: Redefining \nameref on input line 28.
 
 (./autoresearcher_lm4sci_paper_draft.out)
 (./autoresearcher_lm4sci_paper_draft.out)
@@ -456,25 +481,25 @@ LaTeX Info: Redefining \nameref on input line 20.
 \openout3 = `autoresearcher_lm4sci_paper_draft.out'.
 
 LaTeX Font Info:    Trying to load font information for OML+zplm on input line 
-27.
+35.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
 LaTeX Font Info:    Trying to load font information for OMS+zplm on input line 
-27.
+35.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
 LaTeX Font Info:    Trying to load font information for OMX+zplm on input line 
-27.
+35.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
 LaTeX Font Info:    Trying to load font information for OT1+zplm on input line 
-27.
+35.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
@@ -487,11 +512,74 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmss' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+ [1{/home/eston/.texlive2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 5
-2.
+LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 5
+3.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ppl.fd
+File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
+)
+Underfull \vbox (badness 2762) has occurred while \output is active []
+
+ [2]
+[3]
+Underfull \vbox (badness 7777) has occurred while \output is active []
+
+ [4]
+[5] [6]
+Underfull \hbox (badness 1259) in paragraph at lines 191--191
+[]|\OT1/ppl/m/n/9 (+20) Positive di-ag-nos-
+ []
+
+
+Underfull \hbox (badness 1953) in paragraph at lines 192--192
+[]|\OT1/ppl/m/n/9 (+20) Does scaled artificial-goal
+ []
+
+
+Underfull \hbox (badness 1448) in paragraph at lines 192--192
+[]|\OT1/ppl/m/n/9 (+20) Positive af-ter re-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 193--193
+[]|\OT1/ppl/m/n/9 (+20) Coverage-
+ []
+
+
+Underfull \hbox (badness 7326) in paragraph at lines 193--194
+[]|\OT1/ppl/m/n/9 (+20) Adequate cov-er-age only;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 194--194
+[]|\OT1/ppl/m/n/9 (+20) Are in-de-pen-dent vec-tor
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 194--194
+\OT1/ppl/m/n/9 (+20) successor-measure goal
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 194--194
+[]|\OT1/ppl/m/n/9 (+20) Positive cor-rect-
+ []
+
+
+Underfull \hbox (badness 2894) in paragraph at lines 194--195
+[]|\OT1/ppl/m/n/9 (+20) Independent tab-u-lar goal
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [7]
+(./autoresearcher_lm4sci_paper_draft.bbl
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 1
+3.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
@@ -500,32 +588,170 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `pcr' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [2]
-(./autoresearcher_lm4sci_paper_draft.bbl [3]) [4]
-(./autoresearcher_lm4sci_paper_draft.aux)
+ [8]) [9]
+Underfull \hbox (badness 1924) in paragraph at lines 247--248
+[]|\OT1/ppl/m/n/9 (+20) Raw op-ti-mism con-firmed; log-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
+[]|\OT1/ppl/m/n/9 (+20) Successor-
+ []
+
+
+Underfull \hbox (badness 1622) in paragraph at lines 248--248
+[]|\OT1/ppl/m/n/9 (+20) Whether successor-distance vari-
+ []
+
+
+Underfull \hbox (badness 4940) in paragraph at lines 248--249
+[]|\OT1/ppl/m/n/9 (+20) Negative: im-prov-ing vari-ants
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 249--249
+[]|\OT1/ppl/m/n/9 (+20) Uncertainty
+ []
+
+
+Overfull \hbox (1.86209pt too wide) in paragraph at lines 250--250
+[]|\OT1/ppl/m/n/9 (-20) Posterior/model
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 250--250
+[]|\OT1/ppl/m/n/9 (+20) Posterior-transitive vari-ants vs.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 251--251
+[]|\OT1/ppl/m/n/9 (+20) Partial ob-serv-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 252--252
+[]|\OT1/ppl/m/n/9 (+20) Final check-
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [10]
+Underfull \hbox (badness 10000) in paragraph at lines 274--275
+[]\OT1/ppl/m/n/10 (+20) Required de-ci-sion fields in-clude \OT1/pcr/m/n/10 dec
+ision\OT1/ppl/m/n/10 (+20) , \OT1/pcr/m/n/10 confidence\OT1/ppl/m/n/10 (+20) , 
+\OT1/pcr/m/n/10 progress[]score\OT1/ppl/m/n/10 (+20) ,
+ []
+
+
+Overfull \hbox (12.31502pt too wide) in paragraph at lines 284--284
+[]\OT1/pcr/m/n/10 If the plan is impossible, write a failed result JSON explain
+ing why.[] 
+ []
+
+
+Underfull \hbox (badness 3000) in paragraph at lines 288--289
+[]\OT1/ppl/m/n/10 (+20) The re-sult schema re-quires fields for \OT1/pcr/m/n/10
+ experiment[]id\OT1/ppl/m/n/10 (+20) , \OT1/pcr/m/n/10 status\OT1/ppl/m/n/10 (+
+20) , \OT1/pcr/m/n/10 claim[]tested\OT1/ppl/m/n/10 (+20) ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 288--289
+\OT1/pcr/m/n/10 commands[]run\OT1/ppl/m/n/10 (+20) , \OT1/pcr/m/n/10 metrics\OT
+1/ppl/m/n/10 (+20) , \OT1/pcr/m/n/10 baseline[]metrics\OT1/ppl/m/n/10 (+20) , \
+OT1/pcr/m/n/10 artifacts\OT1/ppl/m/n/10 (+20) , \OT1/pcr/m/n/10 interpretation\
+OT1/ppl/m/n/10 (+20) ,
+ []
+
+
+Overfull \hbox (19.51501pt too wide) in paragraph at lines 295--295
+[]\OT1/pcr/m/n/10 baseline fairness, success criteria, failure criteria, cherry
+-picking,[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 300--301
+[]\OT1/ppl/m/n/10 (+20) The re-view schema re-quires \OT1/pcr/m/n/10 verdict\OT
+1/ppl/m/n/10 (+20) , \OT1/pcr/m/n/10 allows[]auto[]continue\OT1/ppl/m/n/10 (+20
+) , \OT1/pcr/m/n/10 reasons\OT1/ppl/m/n/10 (+20) ,
+ []
+
+
+Underfull \hbox (badness 2269) in paragraph at lines 300--301
+\OT1/pcr/m/n/10 evidence[]checked\OT1/ppl/m/n/10 (+20) , \OT1/pcr/m/n/10 requir
+ed[]fixes\OT1/ppl/m/n/10 (+20) , and \OT1/pcr/m/n/10 risk[]flags\OT1/ppl/m/n/10
+ (+20) . This makes re-viewer
+ []
+
+[11]
+Overfull \hbox (4.51501pt too wide) in paragraph at lines 320--320
+[]\OT1/pcr/m/n/10 Be skeptical. Reward evidence, not activity. If continuing, p
+ropose[] 
+ []
+
+
+Overfull \hbox (19.21501pt too wide) in paragraph at lines 339--339
+[]\OT1/pcr/m/n/10 Training the artificial success-goal head with expected termi
+nal mass,[] 
+ []
+
+
+Overfull \hbox (13.51501pt too wide) in paragraph at lines 340--340
+[]  \OT1/pcr/m/n/10 y(s,a,g+) = (1-gamma) r_bar(s,a) + gamma max_a' M_target(s'
+,a',g+),[] 
+ []
+
+
+Overfull \hbox (20.41501pt too wide) in paragraph at lines 350--350
+[]\OT1/pcr/m/n/10 Target mean/variance; number of sampled g+ events per 10k tra
+nsitions;[] 
+ []
+
+
+Overfull \hbox (34.51501pt too wide) in paragraph at lines 355--355
+[]\OT1/pcr/m/n/10 Pause if terminal-only soft successor learning fails to match
+ normalized[] 
+ []
+
+
+Overfull \hbox (28.51501pt too wide) in paragraph at lines 356--356
+[]\OT1/pcr/m/n/10 Q-learning, if reward normalization is ambiguous, if terminal
+ masks are[] 
+ []
+
+
+Overfull \hbox (16.21501pt too wide) in paragraph at lines 357--357
+[]\OT1/pcr/m/n/10 wrong, if only training loss is reported, or if larger benchm
+arks are[] 
+ []
+
+[12] (./autoresearcher_lm4sci_paper_draft.aux)
 Package rerunfilecheck Info: File `autoresearcher_lm4sci_paper_draft.out' has n
 ot changed.
-(rerunfilecheck)             Checksum: D7EBFB7914CA57BF6BB1E77B65A9EBE2;1084.
+(rerunfilecheck)             Checksum: E9FC93E2186CA1FA7C13B8427E42FA3F;5946.
  ) 
 Here is how much of TeX's memory you used:
- 12652 strings out of 480247
- 198353 string characters out of 5896151
- 534666 words of memory out of 5000000
- 30240 multiletter control sequences out of 15000+600000
- 487928 words of font info for 155 fonts, out of 8000000 for 9000
+ 13417 strings out of 480247
+ 210516 string characters out of 5896151
+ 547521 words of memory out of 5000000
+ 30795 multiletter control sequences out of 15000+600000
+ 507078 words of font info for 275 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 70i,11n,76p,2122b,467s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 70i,11n,76p,1393b,479s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf
--dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/pal
-atino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8
-a.pfb>
-Output written on autoresearcher_lm4sci_paper_draft.pdf (4 pages, 92371 bytes).
-
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/mathpazo/fplmri.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
+courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplb
+8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on autoresearcher_lm4sci_paper_draft.pdf (12 pages, 157558 bytes
+).
 PDF statistics:
- 123 PDF objects out of 1000 (max. 8388607)
- 105 compressed objects within 2 object streams
- 23 named destinations out of 1000 (max. 500000)
- 32833 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 339 PDF objects out of 1000 (max. 8388607)
+ 305 compressed objects within 4 object streams
+ 68 named destinations out of 1000 (max. 500000)
+ 52953 words of extra memory for PDF output out of 61914 (max. 10000000)
 

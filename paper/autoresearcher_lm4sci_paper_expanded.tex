@@ -1,0 +1,304 @@
+\documentclass{article}
+\usepackage[submission]{colm2026_conference}
+
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{lineno}
+\usepackage{enumitem}
+\usepackage{array}
+
+\definecolor{darkblue}{rgb}{0, 0, 0.5}
+\hypersetup{colorlinks=true, citecolor=darkblue, linkcolor=darkblue, urlcolor=darkblue}
+
+\newcommand{\sys}{\textsc{Autoresearcher}}
+\newcommand{\gptpro}{GPT-5.5-Pro}
+\newcommand{\todofig}[1]{\fbox{\begin{minipage}{0.94\linewidth}\vspace{0.7em}\small #1\vspace{0.7em}\end{minipage}}}
+
+\title{Autoresearcher Intern: Evidence-Gated Human--AI Collaboration for Scientific Workflow Automation}
+
+% Submission mode anonymizes authors automatically.
+\author{Anonymous Author(s)}
+
+\begin{document}
+
+\ifcolmsubmission
+\linenumbers
+\fi
+
+\maketitle
+
+\begin{abstract}
+Scientific discovery often depends on many small engineering-heavy decisions: choosing a diagnostic, implementing a fair baseline, running a controlled experiment, checking artifacts, and deciding whether the hypothesis still deserves attention. We present \sys, a repository-centered human--AI research pipeline that turns rough research ideas into auditable small-scale experiments. \sys decomposes the loop into role-specialized agents for planning, execution, review, summarization, and checkpoint supervision; requires structured plans, results, reviews, and metric ledgers; and escalates high-stakes decisions to a stronger \gptpro\ supervisor. Across two live reinforcement-learning research projects, \sys produced both scoped positive evidence and decision-relevant negative results, including stopping decisions that prevented unsupported scaling. We argue that this ``AI research intern'' paradigm is a practical alternative to both passive coding assistance and fully autonomous AI-scientist systems.
+\end{abstract}
+
+\section{Introduction}
+
+Scientific work is often portrayed as a sequence of conceptual breakthroughs, but day-to-day computational research is dominated by a slower loop: formulate a hypothesis, translate it into code, build a minimal diagnostic, choose a fair baseline, run the experiment, inspect artifacts, update the hypothesis, and record what happened. For machine-learning researchers, this loop is both intellectually important and operationally expensive. A research idea may be promising, but evaluating it requires scaffolding: environment setup, small benchmark construction, result schemas, scripts, metrics, plots, validation commands, and written interpretation. Conversely, many ideas should be stopped early, but they are not stopped because the negative evidence is scattered across logs or because no one has time to build the decisive falsification experiment.
+
+Large language model (LLM) agents are beginning to automate parts of this loop. Modern coding agents can modify repositories, run tests, and produce summaries. Scientific agents can propose experiments, search literature, synthesize hypotheses, and in some cases generate complete workshop-style papers. The most ambitious framing is the fully autonomous ``AI scientist'': an agent that proposes ideas, implements experiments, writes a paper, and reviews the result with minimal human input~\citep{lu2024aiscientist,yamada2025aiscientistv2}. This direction is important, but it is not the only useful form of scientific automation. In many realistic settings, especially for students and small labs, the desired collaborator is not an unconstrained autonomous scientist. It is closer to a research intern: a system that can take a rough human idea, make it executable, run small falsifiable prototypes, keep a lab notebook, highlight uncertainties, and ask for senior guidance when the evidence becomes ambiguous.
+
+This paper presents \sys, a prototype of that research-intern paradigm. \sys is a repository-centered orchestration system for human--AI scientific prototyping. The human scientist writes a project charter that specifies the research goal, hypothesis, scope, primary metrics, success criteria, failure criteria, and compute budget. A local supervisor agent proposes exactly one next experiment or chooses to pivot, stop, request human review, or request a \gptpro\ checkpoint. An executor agent implements and runs the experiment under a hard wall-clock budget. A reviewer agent audits the result and states whether automatic continuation is allowed. A summarizer maintains human-readable progress reports. A deterministic orchestrator validates every structured artifact, commits the project state, enforces stop conditions, and escalates high-stakes decisions to \gptpro.
+
+The central design principle is \emph{evidence-gated co-autonomy}. \sys allows agents to propose and execute experiments, but not to silently convert activity into scientific progress. Claims must be grounded in machine-readable result files, declared artifacts, baseline metrics, reviewer verdicts, and metric ledgers. Continuation is allowed only when the evidence passes both model-based review and deterministic validation. Pivots, stop decisions, ambiguous reviewer outcomes, timeouts, repeated weak passes, protected-file drift, and publication-oriented claims can trigger a stronger \gptpro\ checkpoint or human review. The repository, rather than any chat transcript, is the authoritative memory.
+
+The motivation is not merely safety. A repository-centered, evidence-gated system changes the collaboration pattern between a scientist and an AI system. Instead of asking an assistant to write isolated code snippets, the scientist delegates an entire bounded research loop. Instead of trusting an agent's prose summary, the scientist receives a structured trail of plans, commands, metrics, artifacts, reviews, and decisions. Instead of deciding manually after every run, the scientist can specify when the system may continue locally and when it must escalate. This lets the human focus on taste, framing, and claim boundaries, while the agent handles implementation, bookkeeping, and preliminary falsification.
+
+We evaluate \sys through two live reinforcement-learning research projects. The first, \texttt{reward\_to\_gcrl}, tests whether soft successor-measure terminal marginalization can preserve reward-to-goal equivalence while reducing the variance of sampled terminal success events. In this project, \sys progressed from one-state variance diagnostics to tabular equivalence checks, RiverSwim coverage tests, FourRooms vector-goal checks, and a low-rank auxiliary-goal negative result. It produced a scoped internal write-up: soft terminal marginalization is supported as a small-tabular variance-reduction and normalized-Q-equivalence mechanism under adequate coverage, while the tested rank-4 low-rank auxiliary-goal approach is unsupported and showed negative transfer. The second, \texttt{sto\_trl}, tests stochastic extensions of Transitive RL (TRL). This project produced useful diagnostics, but ultimately stopped after showing that apparent stochastic-TRL improvements were explained by fairer baselines or representation/context sufficiency rather than a distinct algorithmic advantage. We use \texttt{reward\_to\_gcrl} as the main case study and summarize \texttt{sto\_trl} in the appendix.
+
+This paper makes four contributions. First, we introduce \emph{evidence-gated co-autonomy}, a human--AI collaboration pattern in which agents can run bounded research loops but continuation depends on structured evidence and explicit gates. Second, we describe a concrete architecture for repository-centered scientific memory, including structured plans, results, reviews, metric ledgers, progress summaries, and checkpoint packets. Third, we show how stronger-model supervision can be used selectively as a senior checkpoint reviewer rather than as the default executor, reducing cost and preserving local autonomy. Fourth, we report two live case studies showing that the system can produce both positive and negative scientific evidence, including stopping decisions that prevent unsupported scaling.
+
+\section{Related Work}
+
+\subsection{Autonomous scientific discovery agents}
+
+The most direct comparison is with systems that attempt broad automation of scientific discovery. The AI Scientist proposes an end-to-end pipeline for idea generation, experiment execution, manuscript writing, and automated review~\citep{lu2024aiscientist}. AI Scientist-v2 extends this direction with more structured agentic search toward workshop-level papers~\citep{yamada2025aiscientistv2}. Robin explores multi-agent automation for scientific discovery in biological settings~\citep{ghareeb2025robin}, while SciAgents uses multi-agent graph reasoning to support scientific hypothesis generation~\citep{ghafarollahi2024sciagents}. These systems are valuable because they demonstrate that LLM agents can coordinate complex scientific workflows.
+
+\sys differs in its autonomy target. We do not aim to remove the human scientist from the loop or to generate a paper as the primary objective. Instead, \sys is designed as a bounded research intern for early-stage prototyping. It accepts human research taste as input, constrains experiments to small tests, records negative evidence, and escalates important decisions. In our view, this middle ground is especially important because many scientific bottlenecks are neither purely conceptual nor fully automatable. They involve judgment about whether evidence is good enough, whether an apparent improvement is explained by a baseline, and whether a claim should be narrowed before further compute is spent.
+
+\subsection{LLM agents for machine-learning experimentation}
+
+A second line of work studies LLM agents as experimental machine-learning assistants. Agent Laboratory frames LLM agents as research assistants that can help with literature review, experimentation, and report writing~\citep{schmidgall2025agentlab}. MLAgentBench evaluates language agents on machine-learning experimentation tasks and highlights the difficulty of reliable autonomous ML workflows~\citep{huang2023mlagentbench}. These works share our concern with real experimental practice rather than isolated question answering.
+
+\sys is complementary to this line of work. Our focus is less on benchmarking a generic agent and more on designing a workflow protocol that makes agentic experimentation auditable. The key unit in \sys is not a chat turn but an experiment record: a plan with success and failure criteria, a result JSON with commands and artifacts, a review verdict, and a state transition. This protocol is deliberately simple. It does not require a new foundation model, domain-specific planner, or large multi-agent framework. It requires that every agent action become part of a repository ledger that can be inspected, validated, committed, and revisited.
+
+\subsection{Human--AI collaboration and evidence-gated autonomy}
+
+Much of the scientific-agent literature implicitly contrasts passive assistance with full autonomy. We argue that an important third mode is \emph{co-autonomy}: the system acts independently inside bounded regions but yields control at epistemically important gates. In \sys, the human scientist specifies the charter and retains authority over research framing, risky pivots, expensive scaling, and publication claims. The agents handle implementation, experiment bookkeeping, preliminary review, and progress synthesis. A stronger \gptpro\ model acts as a senior checkpoint reviewer, not as an all-purpose hidden controller.
+
+This design is motivated by the failure modes of LLM agents in research settings. Agents may overvalue activity, accept optimistic executor summaries, repeat low-value sweeps, or move to larger benchmarks before the small diagnostic is understood. They may also stop too early when the next step requires scientific taste rather than more code. Evidence-gated autonomy addresses these failures by separating roles, requiring structured artifacts, and making stop/pivot/continue decisions explicit. The result is not guaranteed discovery, but a more inspectable scientific workflow.
+
+\section{Methodology: The Autoresearcher Pipeline}
+\label{sec:method}
+
+\sys is implemented as a local orchestration system around role-specialized LLM agents and a deterministic state machine. The system is designed for computational research projects where useful early evidence can be obtained from small-scale experiments. Its default behavior is conservative: each experiment should be cheap, bounded, reproducible, and interpretable. This section describes the pipeline components and the motivation for each design choice.
+
+\begin{figure}[t]
+\centering
+\todofig{\textbf{Placeholder for pipeline diagram.} The final figure should show a human scientist writing a project charter on the left. The charter enters a repository-centered state machine. From the state machine, arrows go to role-resumed agents: Supervisor, Executor, Reviewer, and Summarizer. The Supervisor writes a decision and plan; the Executor writes results and artifacts; the Reviewer writes an audit; the Summarizer writes a progress report. A deterministic validator and metric ledger sit below the agents and gate all arrows. A \gptpro\ checkpoint supervisor appears above the loop, connected only to high-stakes gates such as pivot, stop, timeout, weak evidence, and publication claims. The repository sits in the center as the authoritative memory.}
+\caption{Conceptual architecture of \sys. Agents perform bounded roles, while the repository and deterministic orchestrator control memory, validation, and continuation.}
+\label{fig:pipeline}
+\end{figure}
+
+\subsection{Project charter and bounded research scope}
+
+Every \sys project begins with a charter. The charter is intentionally more structured than an informal prompt but lighter than a full research proposal. It includes: (i) the research goal, (ii) the main falsifiable hypothesis, (iii) initial scope, (iv) primary and secondary metrics, (v) success criteria, (vi) failure criteria, and (vii) runtime and compute budget. The charter serves two purposes. First, it gives agents enough context to design meaningful experiments. Second, it prevents the loop from drifting into nearby but unsupported tasks.
+
+For example, the \texttt{reward\_to\_gcrl} charter states that the project should begin with tiny discrete environments and not start with MuJoCo, AntMaze, image observations, OGBench, large downloads, or expensive neural training. It defines success in terms of target mean/variance, normalized-Q equivalence, policy disagreement, Bellman error, return, and success rate. It also defines failure conditions such as wrong terminal masks, ambiguous reward normalization, and reporting only training loss. These constraints matter because an unconstrained agent might prematurely build a large benchmark experiment. \sys instead asks: what is the smallest experiment that can falsify or support the current hypothesis?
+
+The charter is also where the human scientist contributes irreplaceable taste. \sys can implement variants and run diagnostics, but it does not know which research questions are worth asking. By writing the charter, the scientist specifies the intended scientific boundary. By requiring later pivots to refer back to the charter, the system keeps autonomy aligned with the original motivation.
+
+\subsection{Role-specialized agents}
+
+\sys decomposes the research loop into roles rather than using one monolithic agent. The main roles are Supervisor, Executor, Reviewer, Summarizer, Setup, and optional Checkpoint Supervisor.
+
+The \textbf{Supervisor} runs before an experiment. It reads the charter, current state, recent results, recent reviews, and progress summaries. It must choose one of several decisions: continue, pivot, stop, needs-human, or checkpoint. If it chooses continue or pivot, it proposes exactly one next experiment. The plan must include an objective, hypothesis, success criteria, failure criteria, task list, required outputs, and estimated runtime. The Supervisor is intentionally not an implementer. Its role is to decide what should be tested next and why that test is informative.
+
+The \textbf{Executor} receives the plan and performs the experiment. It may edit code and run commands, but only within the configured sandbox and wall-clock budget. It must write a machine-readable result JSON, a human-readable summary, and any required artifacts. This separation is important because the executor is naturally biased toward making its work look useful. By restricting the executor to producing evidence rather than deciding continuation, the pipeline reduces self-justifying loops.
+
+The \textbf{Reviewer} runs after execution. It audits whether the experiment actually followed the plan, whether artifacts exist, whether baseline comparisons are fair, whether success criteria were met, and whether the interpretation overclaims. It returns a verdict such as pass, weak-pass, fail, or needs-human, along with a boolean field indicating whether automatic continuation is allowed. This role catches a common failure mode of agentic experimentation: a plausible summary built on incomplete or unfair evidence.
+
+The \textbf{Summarizer} writes progress summaries from reviewed evidence. This is not merely a convenience. Long agent runs accumulate many artifacts, and human scientists need compressed state to decide whether to intervene. The summary separates current status, experiment ledger, main findings, limitations, and recommended next human decision. It is also used to build checkpoint packets for stronger-model review.
+
+The optional \textbf{\gptpro\ Checkpoint Supervisor} is used at high-stakes gates: cadence checkpoints, local stop/pivot decisions, reviewer failures, timeouts, weak-pass streaks, protected-file drift, and publication-oriented claims. This stronger model is not used to run every experiment. It acts as a senior reviewer of the current evidence and can approve continuation, request a pivot, stop the project, or ask for human review.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{p{0.17\linewidth}p{0.29\linewidth}p{0.29\linewidth}p{0.14\linewidth}}
+\toprule
+Role & Main question & Required output & Sandbox/gate \\
+\midrule
+Supervisor & What should be tested next? & Decision JSON, plan JSON/Markdown & Read-only; structured schema \\
+Executor & Can the plan be implemented and tested? & Result JSON, summary, artifacts & Workspace-write; hard timeout \\
+Reviewer & Does evidence support the claim? & Review JSON/Markdown & Read-only; auto-continue flag \\
+Summarizer & What should the human know now? & Progress summary, latest summary & Read-only; evidence only \\
+\gptpro\ checkpoint & Should a high-stakes decision stand? & Pro decision JSON/Markdown or blocker & Escalation only \\
+\bottomrule
+\end{tabular}
+\caption{Role decomposition in \sys. The division of labor is designed to prevent the same agent from planning, executing, and rubber-stamping its own experiment.}
+\label{tab:roles}
+\end{table}
+
+\subsection{Repository-centered memory}
+
+A central design choice is that the repository is the authoritative memory. Chat transcripts and role-resumed sessions provide useful continuity, but every agent is told that repository files are the source of truth. Each project directory contains a charter, state file, environment file, decisions, plans, results, reviews, artifacts, progress summaries, metric ledgers, and checkpoint packets.
+
+This design addresses three problems. First, model context is not a reliable database. Long sessions can forget details, compress away important negative evidence, or mix current and obsolete plans. Second, scientific claims require traceability. A result should be linked to commands, metrics, and artifacts, not only to a model's explanation. Third, human collaboration requires inspectability. A scientist should be able to open the repository and see why a project continued, pivoted, or stopped.
+
+The memory design is intentionally redundant. A result appears in raw artifacts, in a structured result JSON, in a reviewer audit, in a metric ledger, and in a progress summary. This redundancy is not wasteful: it creates multiple opportunities to catch overclaiming. For example, if a result summary says a method improved policy regret but the metric ledger shows unchanged regret, the reviewer or checkpoint supervisor can flag the discrepancy.
+
+\subsection{Structured data protocol}
+
+\sys uses simple JSON schemas as the communication protocol between agents and the orchestrator. The Supervisor writes a decision object with fields for decision, confidence, progress score, rationale, evidence, risks, and optional next experiment. The Executor writes a result object with fields for experiment id, status, claim tested, commands run, metrics, baseline metrics, artifacts, interpretation, known failures, and next questions. The Reviewer writes a review object with fields for experiment id, verdict, whether automatic continuation is allowed, reasons, evidence checked, required fixes, and risk flags.
+
+The schema requirement is central to the methodology. Without schemas, agents can produce convincing prose that is hard to validate. With schemas, the orchestrator can deterministically reject missing fields, invalid statuses, absent artifacts, and malformed outputs. The system does not need to understand every scientific metric to enforce basic epistemic hygiene: a result without commands, metrics, or artifact paths cannot silently move the project forward.
+
+The result schema also forces the executor to record negative evidence. A failed or blocked experiment is still a valid result if it states what was tested, what commands were run, what failed, and what questions remain. This matters because negative evidence is often lost in manual research workflows. \sys treats negative evidence as first-class scientific output.
+
+\subsection{Evidence grounding and claim control}
+
+The pipeline is designed to make scientific claims conditional on evidence. Each plan contains success and failure criteria before execution. Each result states the claim tested and reports baseline metrics. Each review states whether the success criteria were actually satisfied. The metric ledger extracts important scalars and signals across iterations. Progress summaries distinguish confirmed findings, limitations, and recommended human decisions.
+
+This claim-control mechanism is especially important for LLM agents because they are fluent summarizers. An agent can write a plausible story even when the experiment is weak. \sys counters this by requiring that every claim map back to one or more artifacts. In the \texttt{reward\_to\_gcrl} case, the final internal write-up includes a claim-to-evidence map: soft terminal marginalization removes terminal-sampling variance; scaled soft values preserve normalized-Q relations; learning improvements are coverage-qualified; independent tabular vector goals are correct; the tested low-rank auxiliary approach is contradicted; broader neural and benchmark claims are not tested. This claim-to-evidence map is a direct product of the pipeline's artifact discipline.
+
+\subsection{Reflection, checkpoints, and stopping}
+
+\sys agents reflect on their own work through reviews, summaries, and checkpoint policies. The local Reviewer audits executor outputs. The Summarizer produces a compact project-level reflection. The checkpoint policy decides when local autonomy is insufficient. Triggers include local stop/pivot/needs-human decisions, reviewer fail/needs-human verdicts, explicit reviewer escalation requests, result timeouts, weak-pass streaks, no-progress near-limit, protected-file drift, cadence, and publication boundaries.
+
+This policy makes stopping a normal part of the workflow. A project can stop because the hypothesis was falsified, because the next step requires human taste, because evidence is ambiguous, or because continuing would risk overclaiming. In \texttt{sto\_trl}, the final \gptpro\ decision stopped the project after the partial-observation pivot showed that history-model dynamic programming explained the apparent gains. This is a success of the research-intern model: the system did not merely search for positive results; it identified a boundary and preserved it.
+
+\subsection{Runtime, environment, and safety gates}
+
+Scientific agents can waste compute if allowed to run broad sweeps or large training jobs prematurely. \sys therefore enforces a hard executor timeout, with 30 minutes as the default. It also records environment setup, tracks whether GPU is required, and blocks expensive or large-scale work unless explicitly approved. When a timeout occurs, the orchestrator writes a timeout result rather than leaving the project in an ambiguous state.
+
+Protected-file drift is another safety concern. An executor should not silently modify orchestration scripts, schemas, or prompts while running a research experiment. \sys includes guard logic that can escalate protected-file changes to review. This helps separate improvements to the research pipeline from experiments conducted by the pipeline.
+
+\section{Evaluation Protocol}
+
+We evaluate \sys through live use on two research projects proposed by the human scientist. This is not a controlled user study, and we do not claim productivity speedups with a randomized baseline. Instead, we ask whether the pipeline can support the core behaviors required of a research intern:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Translation.} Can the system convert a rough research idea and charter into concrete experiments?
+    \item \textbf{Execution.} Can it implement and run small diagnostics with required artifacts?
+    \item \textbf{Grounding.} Does it tie claims to metrics, commands, and evidence files?
+    \item \textbf{Epistemic discipline.} Does it record negative evidence and avoid unsupported scaling?
+    \item \textbf{Autonomy control.} Does it know when to continue locally and when to escalate or stop?
+\end{enumerate}
+
+The two projects are both reinforcement-learning-style computational ideas, but they differ in outcome. \texttt{reward\_to\_gcrl} produced scoped positive estimator evidence and scoped negative auxiliary evidence, culminating in an internal short-paper draft. \texttt{sto\_trl} produced useful diagnostics but ultimately stopped after stronger baselines explained apparent algorithmic gains. This contrast is useful: an autoresearcher should not be judged only by whether it finds positive results. It should also be judged by whether it can narrow claims and terminate weak directions.
+
+\section{Main Case Study: Reward-to-GCRL Soft Successor Measures}
+\label{sec:reward-case}
+
+\begin{figure}[t]
+\centering
+\todofig{\textbf{Placeholder for case-study timeline.} The final figure should show a horizontal timeline for \texttt{reward\_to\_gcrl}. Start with the charter on the left, then show iteration groups: 0001 one-state variance diagnostic; 0002--0004 CliffWalking and chain equivalence repairs; 0005--0007 RiverSwim coverage and propagation; 0008 tabular vector successor-measure FourRooms; 0009 low-rank auxiliary negative transfer; 0010 repair diagnostics; 0011 evidence synthesis; 0012 outline/claim boundaries; 0013 internal short-paper draft. Use green markers for supported estimator evidence, orange for coverage-qualified findings, red for negative auxiliary evidence, and blue diamonds for \gptpro\ checkpoints.}
+\caption{Desired case-study diagram for \texttt{reward\_to\_gcrl}. The important story is not a single benchmark number but a sequence of evidence-gated decisions that narrow the supported claim.}
+\label{fig:rewardtimeline}
+\end{figure}
+
+\subsection{Starting idea and charter}
+
+The \texttt{reward\_to\_gcrl} project began from a question about reward-to-goal-conditioned reinforcement learning. A sampled conversion from reward MDPs to goal-conditioned MDPs can introduce sparse terminal success events. The human scientist hypothesized that a soft successor-measure target could preserve the reward-to-goal equivalence while marginalizing over terminal success events and reducing target variance.
+
+The project charter made this idea operational. It defined the main target equation
+\[
+    y(s,a,g_+) = (1-\gamma)\bar r(s,a) + \gamma \max_{a'} M_{\text{target}}(s',a',g_+),
+\]
+where \(g_+\) is an artificial success goal. The core hypothesis was that this deterministic soft target would match normalized Q-learning in tabular sanity checks while avoiding the high target variance of sampled terminal success events. The charter also separated a later hypothesis: auxiliary real-state successor goals might help low-capacity function approximation through shared representations. This separation later became important because the estimator claim and auxiliary-representation claim received different evidence.
+
+The initial scope was deliberately small: one-state synthetic MDPs, CliffWalking, RiverSwim chains, and tiny FourRooms. The charter explicitly excluded MuJoCo, AntMaze, OGBench, image observations, large downloads, and expensive neural training. Thus the system had a clear mandate: do not optimize for impressive benchmarks; first determine whether the estimator transformation is correct and whether the auxiliary hypothesis survives tiny controlled tests.
+
+\subsection{Autoresearcher trajectory}
+
+\sys approached the project as a ladder of falsifiable diagnostics. The first diagnostic tested whether sampled and soft terminal targets have the same mean and different variance. This is the smallest possible check of the estimator idea. A positive result here does not prove usefulness in RL, but a negative result would immediately falsify the transformation.
+
+The next iterations tested equivalence to normalized Q-learning in small tabular environments. CliffWalking and chain variants were used to check scaling, terminal masks, and reward normalization. These are common sources of false positives in reward-to-goal conversions: an agent might appear to learn a useful goal value while actually comparing quantities with inconsistent scaling or bootstrapping after terminal states. By requiring exact or analytically known references, \sys made the early experiments diagnostic rather than benchmark-like.
+
+The middle stage moved to RiverSwim propagation and coverage. This addressed a more realistic question: does the soft estimator help learning when rewards are sparse and long-horizon propagation matters? The system separated adequate-coverage and starved-coverage settings, preventing a misleading unconditional claim. This is a good example of the research-intern behavior: rather than simply reporting an average improvement, the pipeline exposed the condition under which the result should be interpreted.
+
+A later tabular vector successor-measure FourRooms experiment tested whether independent real-state goal slices could be represented correctly alongside the artificial reward goal. This was still not a shared-representation claim; it was a correctness check for the vectorized formulation. Only after this did the system test a low-capacity shared low-rank model where real-state auxiliary goals and the \(g_+\) reward head interacted through shared parameters.
+
+The low-rank auxiliary stage produced negative evidence. The first shared low-rank FourRooms test showed that combined auxiliary training worsened the \(g_+\) value error and Bellman residual relative to terminal-only training. A follow-up repair diagnostic tested loss-balanced and staged variants, but neither recovered terminal-only performance. The system therefore separated a positive estimator story from a negative auxiliary story.
+
+\subsection{Results and decisions}
+
+The final project summary records a nuanced outcome. The positive estimator evidence is that soft terminal marginalization removes terminal-sampling variance and preserves normalized-Q scaling in small audited settings. In the one-state diagnostic, the maximum soft target variance is zero while sampled target variance reaches approximately 0.0904. Scaling checks are near numerical precision: finite-MDP scaled error around \(3.95\times 10^{-8}\), CliffWalking scaled error around \(9.71\times 10^{-10}\), and FourRooms vector \(g_+\) scaled-vs-Q error around \(1.11\times 10^{-16}\). RiverSwim learning improvements are coverage-qualified: adequate-coverage runs support Bellman/value improvements, while starved runs must not be cited as learning-superiority evidence.
+
+The negative auxiliary evidence is equally important. In the low-rank FourRooms experiment, terminal-only \(g_+\) training had mean scaled value error around 0.073 and Bellman residual around 0.00096. Combined auxiliary training worsened mean scaled value error to approximately 16.89 and Bellman residual to approximately 0.0364. The repair diagnostic reproduced the negative-transfer pattern: loss-balanced and staged variants also failed to match terminal-only performance. \sys recorded the strongest defensible auxiliary conclusion as scoped negative evidence for the tested rank-4 low-rank architecture, optimizer, replay setup, discount factor, and repair variants---not as a general claim that auxiliary goals are impossible or harmful.
+
+This case study shows several contributions of the pipeline. First, the system translated a high-level theoretical estimator idea into a sequence of controlled diagnostics. Second, it maintained claim boundaries across many iterations. Third, it generated a claim-to-evidence map rather than a single optimistic conclusion. Fourth, it produced an internal paper draft from existing evidence only, explicitly marking it as requiring pre-publication review. This is the intended use of \sys: the agent accelerates the research workflow, but the human scientist retains authority over external claims.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{p{0.14\linewidth}p{0.28\linewidth}p{0.17\linewidth}p{0.28\linewidth}}
+\toprule
+Iterations & Question & Outcome & Claim boundary \\
+\midrule
+0001 & Do sampled and soft terminal targets match in mean but differ in variance? & Positive diagnostic & Supports variance-reduction mechanism only \\
+0002--0004 & Does scaled \(g_+\) match normalized Q in small tabular tasks? & Positive after repair checks & Requires audited normalization and terminal masks \\
+0005--0007 & Does soft learning help long-horizon propagation? & Coverage-qualified positive & Adequate coverage only; starved runs are caveated \\
+0008 & Are independent vector successor-measure goal slices correct? & Positive correctness check & Independent tabular goal slices only \\
+0009--0010 & Do real-state auxiliary goals help a shared low-rank \(g_+\) head? & Negative transfer & Limited to tested rank-4 low-rank setup \\
+0011--0013 & Can evidence be packaged safely? & Internal draft & External use requires review \\
+\bottomrule
+\end{tabular}
+\caption{Evidence trajectory for the main case study. \sys did not return a single binary success/failure result; it narrowed the supported claim.}
+\label{tab:rewardtrajectory}
+\end{table}
+
+\section{Discussion}
+
+The case studies suggest that a research-intern pipeline can accelerate scientific work in ways that are not captured by benchmark accuracy alone. The most obvious benefit is implementation throughput: the system writes scripts, runs diagnostics, and maintains artifacts. But the deeper benefit is epistemic structure. \sys makes research progress legible. It forces the question ``what claim did this experiment test?'' and requires the answer to be linked to metrics and artifacts.
+
+This matters because many scientific projects fail not through one dramatic error but through gradual overclaiming. A method works in one small setting, then the claim expands; a baseline is missing; a failure mode is noted but not integrated; an agent proposes another sweep because it can. \sys counters this with gates. The local reviewer can pass, weak-pass, fail, or require human input. The checkpoint policy can escalate to \gptpro. The metric ledger can preserve negative signals. The progress summary can state that the goal is not solved. These mechanisms make it easier for a human scientist to say: continue, stop, or reframe.
+
+The \texttt{sto\_trl} project illustrates the value of stopping. The project produced positive diagnostics: raw TRL can overestimate lucky stochastic paths; log-space TRL improves long-horizon propagation relative to MC-only in censored-label settings; history/context helps under partial observability. However, fairer baselines explained the apparent algorithmic gains. A fully autonomous system optimized for producing novelty might continue searching for a positive framing. \sys instead produced a stop decision: the current evidence did not support a distinct stochastic-TRL algorithmic advantage. That negative boundary is scientifically useful.
+
+The \texttt{reward\_to\_gcrl} project illustrates a different value: claim splitting. The system supported a scoped estimator claim while rejecting a broader auxiliary-benefit claim. This is more useful than either blanket optimism or blanket pessimism. It tells the scientist what can be written, what cannot be written, and what would require a new hypothesis.
+
+\section{Limitations}
+
+This work has several limitations. First, we report live case studies rather than a controlled productivity evaluation. We do not yet measure human time saved, total token cost, number of agent calls per accepted result, or comparison against a manual baseline. These measurements are important future work.
+
+Second, both projects are computational reinforcement-learning prototypes. They are well suited to \sys because they can be decomposed into small scripts, exact-DP checks, tabular diagnostics, and artifact validation. Other scientific domains may require laboratory interfaces, simulators, literature search, human-subject constraints, or domain-specific validation.
+
+Third, \sys relies on LLM agents that can still fail. They can write invalid JSON, time out, misunderstand a charter, or propose low-value experiments. The point of \sys is not that agents become infallible, but that failures become structured and recoverable. A timeout is a result; a parse failure is a blocker; a reviewer disagreement is a checkpoint.
+
+Fourth, stronger-model checkpoint supervision is not a substitute for expert scientific judgment. In our workflow, \gptpro\ is useful as a senior reviewer that can read compact packets and challenge local decisions, but it does not own the research agenda. Human review remains necessary before external publication, large-scale experiments, or claims that go beyond the evidence.
+
+Finally, the current implementation is optimized for early-stage prototyping, not final scientific validation. It intentionally blocks large training runs, broad hyperparameter sweeps, and benchmark-scale experiments unless explicitly approved. This is a feature for the intern paradigm but a limitation for end-to-end autonomous discovery.
+
+\section{Conclusion}
+
+We introduced \sys, a repository-centered pipeline for evidence-gated human--AI scientific collaboration. The system operationalizes an AI research intern: it translates rough ideas into bounded experiments, executes and reviews those experiments, maintains structured memory, escalates high-stakes decisions, and preserves both positive and negative evidence. Across two live reinforcement-learning research projects, \sys produced scoped positive claims, negative boundary results, and stopping decisions that prevented unsupported scaling. We believe this middle-ground autonomy---more capable than passive coding assistance, more accountable than unconstrained AI-scientist automation---is a promising design pattern for language models in scientific discovery.
+
+\section*{Ethics and Reproducibility Statement}
+
+\sys is designed to assist human scientists, not replace expert review. It can generate code and scientific prose, so misuse could amplify unsupported claims. The pipeline therefore emphasizes structured evidence, claim boundaries, and human/\gptpro\ checkpoints before publication. Repository artifacts, schemas, prompts, results, reviews, and progress summaries are intended to make the workflow auditable and reproducible.
+
+\bibliography{autoresearcher_lm4sci_references}
+\bibliographystyle{colm2026_conference}
+
+\newpage
+\appendix
+
+\section{Appendix: Stochastic Transitive RL Case Study}
+\label{app:stotrl}
+
+The \texttt{sto\_trl} project tested whether calibrated stochastic successor distances plus TRL-style divide-and-conquer path relaxation could improve long-horizon offline goal-conditioned RL under stochastic dynamics. The charter began with a concrete concern: deterministic-style TRL may overestimate lucky stochastic paths, while a calibrated stochastic estimator might reduce optimistic bias without losing TRL-style horizon generalization.
+
+\sys first built exact-DP tabular diagnostics. The early experiments confirmed that raw TRL could overestimate lucky stochastic shortcuts and that log-space TRL helped long-horizon propagation relative to MC-only in censored-label settings. These were useful positive diagnostics. However, successor-distance variants did not show distinct value beyond TRL-log, and later posterior/transitive variants were explained by prior-matched posterior mean model-DP baselines. The system then explored a partial-observation pivot where history/context could disambiguate aliased states. This produced a representation finding---history helps under aliasing---but history-model DP explained the gains.
+
+The final \gptpro\ decision stopped the loop. The rationale was that the fully observed stochastic-TRL line failed against fair model-DP baselines, and the partial-observation/context pivot reached the same boundary: context helps, but the appropriate model-DP baseline explains the gains. This is an example of \sys producing a useful negative result. The project generated diagnostics and clarified baselines, but it did not support a distinct stochastic-TRL algorithmic advantage.
+
+\section{Appendix: Example Artifact Schema}
+
+A typical executor result contains fields of the following form:
+\begin{verbatim}
+{
+  "experiment_id": "0013",
+  "status": "completed",
+  "claim_tested": "...",
+  "commands_run": ["..."],
+  "metrics": {"...": "..."},
+  "baseline_metrics": {"...": "..."},
+  "artifacts": ["research/project/artifacts/0013/..."],
+  "interpretation": "...",
+  "known_failures": ["..."],
+  "next_questions": ["..."]
+}
+\end{verbatim}
+The exact schema is intentionally simple. Its purpose is to force every experiment to name the claim tested, record commands, expose metrics and baselines, and declare artifacts that can be validated.
+
+\section{Appendix: Additional Quantities to Report in a Camera-Ready Version}
+
+A more complete empirical evaluation should report: number of local agent calls by role; number of \gptpro\ checkpoints; number and reason of blockers; total wall-clock time; total human interventions; number of commits; number of generated artifacts; number of failed or timed-out experiments; and comparison to a human-only baseline on similar research ideas.
+
+\end{document}

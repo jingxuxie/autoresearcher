@@ -1,9 +1,16 @@
-\begin{thebibliography}{6}
+\begin{thebibliography}{17}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Aleithan et~al.(2024)Aleithan, Xue, Mohajer, Nnorom, Uddin, and
+  Wang]{aleithan2024swebenchplus}
+Reem Aleithan, Haoran Xue, Mohammad~Mahdi Mohajer, Elijah Nnorom, Gias Uddin,
+  and Song Wang.
+\newblock {SWE-Bench+}: Enhanced coding benchmark for llms, 2024.
+\newblock URL \url{https://arxiv.org/abs/2410.06992}.
 
 \bibitem[Ghafarollahi \& Buehler(2024)Ghafarollahi and
   Buehler]{ghafarollahi2024sciagents}
@@ -28,6 +35,14 @@ Qian Huang, Jian Vora, Percy Liang, and Jure Leskovec.
   experimentation, 2023.
 \newblock URL \url{https://arxiv.org/abs/2310.03302}.
 
+\bibitem[Jimenez et~al.(2023)Jimenez, Yang, Wettig, Yao, Pei, Press, and
+  Narasimhan]{jimenez2023swebench}
+Carlos~E. Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir
+  Press, and Karthik Narasimhan.
+\newblock {SWE-bench}: Can language models resolve real-world github issues?,
+  2023.
+\newblock URL \url{https://arxiv.org/abs/2310.06770}.
+
 \bibitem[Lu et~al.(2024)Lu, Lu, Lange, Foerster, Clune, and
   Ha]{lu2024aiscientist}
 Chris Lu, Cong Lu, Robert~Tjarko Lange, Jakob Foerster, Jeff Clune, and David
@@ -36,12 +51,42 @@ Chris Lu, Cong Lu, Robert~Tjarko Lange, Jakob Foerster, Jeff Clune, and David
   discovery, 2024.
 \newblock URL \url{https://arxiv.org/abs/2408.06292}.
 
+\bibitem[Ren et~al.(2025)Ren, Jian, Ren, Leng, Xie, and
+  Zhang]{ren2025scientificagents}
+Shuo Ren, Pu~Jian, Zhenjiang Ren, Chunlin Leng, Can Xie, and Jiajun Zhang.
+\newblock Towards scientific intelligence: A survey of llm-based scientific
+  agents, 2025.
+\newblock URL \url{https://arxiv.org/abs/2503.24047}.
+
+\bibitem[Schick et~al.(2023)Schick, Dwivedi-Yu, Dessi, Raileanu, Lomeli,
+  Zettlemoyer, Cancedda, and Scialom]{schick2023toolformer}
+Timo Schick, Jane Dwivedi-Yu, Roberto Dessi, Roberta Raileanu, Maria Lomeli,
+  Luke Zettlemoyer, Nicola Cancedda, and Thomas Scialom.
+\newblock {Toolformer}: Language models can teach themselves to use tools,
+  2023.
+\newblock URL \url{https://arxiv.org/abs/2302.04761}.
+
 \bibitem[Schmidgall et~al.(2025)Schmidgall, Su, Wang, Sun, Wu, Yu, Liu, Liu,
   and Barsoum]{schmidgall2025agentlab}
 Samuel Schmidgall, Yusheng Su, Ze~Wang, Ximeng Sun, Jialian Wu, Xiaodong Yu,
   Jiang Liu, Zicheng Liu, and Emad Barsoum.
 \newblock {Agent Laboratory}: Using llm agents as research assistants, 2025.
 \newblock URL \url{https://arxiv.org/abs/2501.04227}.
+
+\bibitem[Shinn et~al.(2023)Shinn, Cassano, Berman, Gopinath, Narasimhan, and
+  Yao]{shinn2023reflexion}
+Noah Shinn, Federico Cassano, Edward Berman, Ashwin Gopinath, Karthik
+  Narasimhan, and Shunyu Yao.
+\newblock Reflexion: Language agents with verbal reinforcement learning, 2023.
+\newblock URL \url{https://arxiv.org/abs/2303.11366}.
+
+\bibitem[Wang et~al.(2023)Wang, Xie, Jiang, Mandlekar, Xiao, Zhu, Fan, and
+  Anandkumar]{wang2023voyager}
+Guanzhi Wang, Yuqi Xie, Yunfan Jiang, Ajay Mandlekar, Chaowei Xiao, Yuke Zhu,
+  Linxi Fan, and Anima Anandkumar.
+\newblock Voyager: An open-ended embodied agent with large language models,
+  2023.
+\newblock URL \url{https://arxiv.org/abs/2305.16291}.
 
 \bibitem[Yamada et~al.(2025)Yamada, Lange, Lu, Hu, Lu, Foerster, Clune, and
   Ha]{yamada2025aiscientistv2}
@@ -50,5 +95,46 @@ Yutaro Yamada, Robert~Tjarko Lange, Cong Lu, Shengran Hu, Chris Lu, Jakob
 \newblock {The AI Scientist-v2}: Workshop-level automated scientific discovery
   via agentic tree search, 2025.
 \newblock URL \url{https://arxiv.org/abs/2504.08066}.
+
+\bibitem[Yang et~al.(2024)Yang, Jimenez, Wettig, Lieret, Yao, Narasimhan, and
+  Press]{yang2024sweagent}
+John Yang, Carlos~E. Jimenez, Alexander Wettig, Kilian Lieret, Shunyu Yao,
+  Karthik Narasimhan, and Ofir Press.
+\newblock {SWE-agent}: Agent-computer interfaces enable automated software
+  engineering, 2024.
+\newblock URL \url{https://arxiv.org/abs/2405.15793}.
+
+\bibitem[Yao et~al.(2022)Yao, Zhao, Yu, Du, Shafran, Narasimhan, and
+  Cao]{yao2022react}
+Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan,
+  and Yuan Cao.
+\newblock {ReAct}: Synergizing reasoning and acting in language models, 2022.
+\newblock URL \url{https://arxiv.org/abs/2210.03629}.
+
+\bibitem[Yao et~al.(2023)Yao, Yu, Zhao, Shafran, Griffiths, Cao, and
+  Narasimhan]{yao2023tree}
+Shunyu Yao, Dian Yu, Jeffrey Zhao, Izhak Shafran, Thomas~L. Griffiths, Yuan
+  Cao, and Karthik Narasimhan.
+\newblock Tree of thoughts: Deliberate problem solving with large language
+  models, 2023.
+\newblock URL \url{https://arxiv.org/abs/2305.10601}.
+
+\bibitem[Zhang et~al.(2025)Zhang, Khan, Mahmud, Yang, Lavin, Levin, Frey,
+  Dunnmon, Evans, Bundy, Dzeroski, Tegner, and
+  Zenil]{zhang2025scientificmethod}
+Yanbo Zhang, Sumeer~A. Khan, Adnan Mahmud, Huck Yang, Alexander Lavin, Michael
+  Levin, Jeremy Frey, Jared Dunnmon, James Evans, Alan Bundy, Saso Dzeroski,
+  Jesper Tegner, and Hector Zenil.
+\newblock Advancing the scientific method with large language models: From
+  hypothesis to discovery, 2025.
+\newblock URL \url{https://arxiv.org/abs/2505.16477}.
+
+\bibitem[Zheng et~al.(2025)Zheng, Deng, Tsang, Wang, Bai, Wang, and
+  Song]{zheng2025automationautonomy}
+Tianshi Zheng, Zheye Deng, Hong~Ting Tsang, Weiqi Wang, Jiaxin Bai, Zihao Wang,
+  and Yangqiu Song.
+\newblock From automation to autonomy: A survey on large language models in
+  scientific discovery, 2025.
+\newblock URL \url{https://arxiv.org/abs/2505.13259}.
 
 \end{thebibliography}
